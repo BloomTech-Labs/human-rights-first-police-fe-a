@@ -11,7 +11,7 @@ export const useIncident = ({ incident_id }) => {
     () => {
       return axios
         .get(
-          `http://hrf-c-api.herokuapp.com/incidents/incident/${incident_id}`
+          `${process.env.REACT_APP_BACKENDURL}/incidents/incident/${incident_id}`
         )
         .then(res => res.data);
     },

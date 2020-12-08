@@ -2,8 +2,27 @@ import React from 'react';
 import ReactMapGL from 'react-map-gl';
 // components
 import ClusterMarkers from './ClusterMarkers';
+import { Input, Collapse, Divider } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
+import './MapContainer.css'
+
+const { Search } = Input;
+const { Panel } = Collapse;
+
+const suffix = (
+  <SearchOutlined 
+    style={{
+      fontSize: 16,
+      color: '#1890ff',
+    }}
+  />
+);
+function callback(key) {
+  console.log(key);
+}
 
 function MapContainer({ setIncidentsOfInterest }) {
+  const onSearch = value => console.log(value);
   const minZoom = 2.75;
   const maxZoom = 17;
 
@@ -36,6 +55,7 @@ function MapContainer({ setIncidentsOfInterest }) {
         .toArray()
         .flat()
     : null;
+
   return (
     <ReactMapGL
       {...viewport}
@@ -51,6 +71,36 @@ function MapContainer({ setIncidentsOfInterest }) {
       }}
       ref={mapRef}
     >
+      <div className='map-menu-background'>
+        <div className='map-menu'>
+      <Input  
+      className='map-search' 
+      placeholder="Search" 
+      allowClear onSearch={onSearch} 
+      suffix={suffix}
+      bordered={false}  />
+      <Divider style={{margin: '0px'}} />
+      <Collapse
+       style={{color: 'white'}}
+        defaultActiveKey={['1']}
+         onChange={callback}
+          bordered={false}
+          expandIconPosition='right'
+          ghost
+          >
+          
+    <Panel bordered={false} 
+    style={{color: 'white', padding:'0px'}} 
+     header="More Info"
+      key="1"
+      >
+        <Divider style={{margin: '0px'}} />
+        <p>text</p>
+      
+    </Panel>
+    </Collapse>
+    </div>
+      </div>
       <ClusterMarkers
         mapRef={mapRef}
         viewport={viewport}

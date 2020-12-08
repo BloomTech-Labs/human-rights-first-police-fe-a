@@ -4,8 +4,8 @@ import useSupercluster from 'use-supercluster';
 // hooks
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 // styles
-import './ClusterMarker.css'
-console.log(useIncidents) 
+import './ClusterMarker.css';
+// console.log(useIncidents) ;
 
 function ClusterMarkers({
   mapRef,
@@ -58,7 +58,7 @@ function ClusterMarkers({
   const incidentsWithLatLong = incidents.filter(
     incident => incident.lat !== 0 && incident.long !== 0
   );
-// console.log(incidents)
+console.log(incidents)
   //Lethal force
   const force = incidents.filter(
     incident => incident.lethal_force === true
@@ -80,7 +80,7 @@ console.log(incidentsWithLatLong)
     // set1.add(incident.categories)
     // console.log(set1.flat())
     // console.log(incident.categories)
-    console.log(cleanArray)
+    // console.log(cleanArray)
     return {
       
       type: 'Feature',
