@@ -20,8 +20,12 @@ function App() {
     <>
       <div>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <div>HELLO!</div>
+          </Route>
+
+          <Route path="/graph">
+            <div>graph</div>
           </Route>
         </Switch>
       </div>
