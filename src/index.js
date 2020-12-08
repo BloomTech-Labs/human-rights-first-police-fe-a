@@ -6,9 +6,6 @@ import { ReactQueryDevtools } from 'react-query-devtools';
 import './index.css';
 import 'antd/dist/antd.less';
 
-
-import MapView from './components/map/MapView';
-
 ReactDOM.render(
   <Router>
     <React.StrictMode>
@@ -22,16 +19,11 @@ function App() {
   return (
     <>
       <div>
-        
-        
-
         <Switch>
-          
           <Route path="/">
-            <MapView />
+            <div>HELLO!</div>
           </Route>
         </Switch>
-      
       </div>
       <ReactQueryDevtools />
     </>
