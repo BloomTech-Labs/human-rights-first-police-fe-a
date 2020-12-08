@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query-devtools';
 
 import './index.css';
 import 'antd/dist/antd.less';
+import LineGraph from './components/graphs/GraphContainer';
 
 ReactDOM.render(
   <Router>
@@ -25,7 +26,7 @@ function App() {
           </Route>
 
           <Route path="/graph">
-            <div>graph</div>
+            <LineGraph />
           </Route>
         </Switch>
       </div>
