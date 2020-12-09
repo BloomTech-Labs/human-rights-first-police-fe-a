@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useIncidents } from './DataQueryHook';
+import LineGraph from './linegraph/LineGraph';
 
 const getIncidentCount = (data, state) => {
   let count = {
@@ -44,7 +45,7 @@ const GraphContainer = props => {
 
   // Incident Data
   const incidents = useIncidents();
-  // const data = incidents.data && !incidents.isError ? incidents.data : [];
+
   useEffect(() => {
     if (incidents.data && !incidents.isError) {
       setData(incidents.data);
@@ -54,10 +55,13 @@ const GraphContainer = props => {
   useEffect(() => {
     let count = getIncidentCount(data, usState);
     setIncidentCount(count);
-    console.log(count);
   }, [data, setIncidentCount]);
 
-  return <div></div>;
+  return (
+    <section>
+      <LineGraph monthlyData={incidentCount} />
+    </section>
+  );
 };
 
 export default GraphContainer;
