@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 import LineGraph from './linegraph/LineGraph';
 
+// Time Libraries
+import Moment from 'react-moment';
+import 'moment-timezone';
+
 const twentyOne = {
   categories: ['baton', 'beat', 'strike'],
   city: 'Minneapolis',
@@ -21,30 +25,25 @@ const twentyOne = {
   verbalization: false,
 };
 
-const getIncidentCount = (data, state) => {
+const getIncidentCount = (data, state, today) => {
   let sortedByYear = {};
 
-  let count = {
-    '01': 0,
-    '02': 0,
-    '03': 0,
-    '04': 0,
-    '05': 0,
-    '06': 0,
-    '07': 0,
-    '08': 0,
-    '09': 0,
-    '10': 0,
-    '11': 0,
-    '12': 0,
-  };
+  // Dates
+  const yearInMilliseconds = 31556952000;
 
-  // Some incidents do not have dates, filter those out
-  const filtered = data.filter(incident => incident.date);
+  // Only grab events that have occurred in the last 12 months and filter out any that do not have dates:
+  const oneYearData = data.filter(incident => {
+    const date = Date.parse(incident.date);
+    const start = new Date(today - yearInMilliseconds);
+
+    if (incident.date && date >= start && date <= today) {
+      return incident;
+    }
+  });
 
   // If the state is not selected:
   if (!state) {
-    filtered.forEach(incident => {
+    oneYearData.forEach(incident => {
       const year = incident.date.slice(0, 4);
       const month = incident.date.slice(5, 7);
 
@@ -82,6 +81,7 @@ const GraphContainer = props => {
   const [incidentCount, setIncidentCount] = useState({});
   const [data, setData] = useState([]);
   const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
+  const [today, setToday] = useState(new Date().getTime());
 
   // Incident Data
   const incidents = useIncidents();
@@ -93,7 +93,7 @@ const GraphContainer = props => {
   }, [incidents]);
 
   useEffect(() => {
-    let count = getIncidentCount(data, usState);
+    let count = getIncidentCount(data, usState, today);
     setIncidentCount(count);
   }, [data, setIncidentCount]);
 
