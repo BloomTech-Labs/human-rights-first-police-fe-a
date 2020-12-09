@@ -1,6 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useIncidents } from './DataQueryHook';
+import { useIncidents } from '../../state/query_hooks/useIncidents';
 import LineGraph from './linegraph/LineGraph';
+
+const twentyOne = {
+  categories: ['baton', 'beat', 'strike'],
+  city: 'Minneapolis',
+  date: '2021-05-26T00:00:00.000Z',
+  desc: `A group of cops start to approach a group of press taking photos and video. One press member repeats "we have our hands up and we have press passes". An officer walking by points in the direction of a photographer and says something indiscernable. The camera pans to show a cop hitting the photographer in the neck and head with a wooden baton.`,
+  empty_hand_hard: false,
+  empty_hand_soft: false,
+  incident_id: 'mn-minneapolis-21',
+  lat: 44.947865,
+  less_lethal_methods: true,
+  lethal_force: false,
+  long: -93.234886,
+  src: ['https://youtu.be/XAa5xb6JitI?t=5982'],
+  state: 'Minnesota',
+  title: 'Police hit press in neck and head with wooden baton',
+  uncategorized: false,
+  verbalization: false,
+};
 
 const getIncidentCount = (data, state) => {
   let sortedByYear = {};
@@ -31,7 +50,20 @@ const getIncidentCount = (data, state) => {
 
       // If the year doesn't exist create it, if it does, increment the total for the month of that year
       if (!(year in sortedByYear)) {
-        sortedByYear[year] = count;
+        sortedByYear[year] = {
+          '01': 0,
+          '02': 0,
+          '03': 0,
+          '04': 0,
+          '05': 0,
+          '06': 0,
+          '07': 0,
+          '08': 0,
+          '09': 0,
+          '10': 0,
+          '11': 0,
+          '12': 0,
+        };
         sortedByYear[year][month]++;
       } else {
         sortedByYear[year][month]++;

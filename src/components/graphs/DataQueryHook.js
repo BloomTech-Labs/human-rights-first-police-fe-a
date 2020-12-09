@@ -7,8 +7,8 @@ import { useQuery } from 'react-query';
 export const useIncidents = () => {
   return useQuery(
     'incidents',
-    async () => {
-      return await axios
+    () => {
+      return axios
         .get(`${process.env.REACT_APP_BACKENDURL}/incidents/showallincidents`)
         .then(res => res.data);
     },
