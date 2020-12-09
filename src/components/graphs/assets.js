@@ -13,7 +13,7 @@ const months = [
   'December',
 ];
 
-const createData = data => {
+const createData = (data, year) => {
   const ordered = {};
   // Order the keys by ascending order
   Object.keys(data)
@@ -28,21 +28,15 @@ const createData = data => {
     incidentCounts.push(ordered[month]);
   }
 
-  // Return the final data object that the linegraph component will consume
-  const incidentCategories = {
-    labels: months,
-    datasets: [
-      {
-        incidentId: 'all',
-        label: 'All',
-        data: incidentCounts,
-        borderColor: '#c0ba17',
-        backgroundColor: 'rgba(0,0,0,0)',
-      },
-    ],
+  const yearReview = {
+    incidentId: `${year}`,
+    label: `${year}`,
+    data: incidentCounts,
+    borderColor: '#c0ba17',
+    backgroundColor: 'rgba(0,0,0,0)',
   };
 
-  return incidentCategories;
+  return yearReview;
 };
 
 const defaultData = {
@@ -101,4 +95,4 @@ const options = {
   },
 };
 
-export { options, defaultData, createData };
+export { options, defaultData, createData, months };

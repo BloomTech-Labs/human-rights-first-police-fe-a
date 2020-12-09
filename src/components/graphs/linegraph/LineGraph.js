@@ -1,12 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { options, createData, defaultData } from './assets';
+import { options, createData, defaultData, months } from '../assets';
 
-const LineGraph = ({ monthlyData }) => {
+const LineGraph = ({ monthlyData, selectedYear }) => {
   const [data, setData] = useState(defaultData);
 
   useEffect(() => {
-    setData(createData(monthlyData));
+    // Test to see if monthlyData is empty, if it's not, then do stuff
+    if (
+      !(
+        Object.keys(monthlyData).length === 0 &&
+        monthlyData.constructor === Object
+      )
+    ) {
+      // Create the template for the data to be stored in:
+      const incidentCategories = {
+        labels: months,
+        datasets: [],
+      };
+
+      for (let year in monthlyData) {
+        console.log(createData(monthlyData[year], year));
+        incidentCategories.datasets.push(createData(monthlyData[year], year));
+      }
+
+      setData(incidentCategories);
+    }
   }, [monthlyData, setData]);
 
   return (
