@@ -4,12 +4,12 @@ import { useQuery } from 'react-query';
 // ⬇️ --> USAGE: in react component <-- ⬇️
 // const incidentsQuery = useIncident();
 
-export const useIncidents = () => {
+export const useTimeline = () => {
   return useQuery(
-    'incidents',
+    'timeline',
     () => {
       return axios
-        .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
+        .get(`${process.env.REACT_APP_BACKENDURL}/incidents/gettimeline`)
         .then(res => res.data);
     },
     {
