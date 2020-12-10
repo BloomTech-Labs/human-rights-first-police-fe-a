@@ -5,7 +5,6 @@
   "license": "MIT",
   "repository": "github:Lambda-School-Labs/labs-spa-starter",
   "dependencies": {
-    " ": "^0.2.9",
     "@ant-design/icons": "^4.3.0",
     "@craco/craco": "^5.9.0",
     "@okta/okta-react": "^3.0.2",
@@ -17,6 +16,7 @@
     "plotly.js": "^1.54.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-infinite-scroller": "^1.2.4",
     "react-map-gl": "^5.2.10",
     "react-mapbox-gl": "^5.1.1",
     "react-plotly.js": "^2.4.0",

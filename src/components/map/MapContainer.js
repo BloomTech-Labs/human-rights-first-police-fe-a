@@ -1,6 +1,15 @@
-import React from 'react';
+import React, { useState, useContext, useRef, useCallback } from 'react';
 import ReactMapGL from 'react-map-gl';
 // components
+import {
+  ContextState,
+  ContextView,
+  ContextSearchText,
+  ContextActiveFilters,
+  ContextLong,
+  ContextLat,
+  ContextIncidents,
+} from '../Store'; 
 import ClusterMarkers from './ClusterMarkers';
 
 
@@ -9,27 +18,16 @@ import './MapContainer.css'
 
 
 
-function MapContainer({ setIncidentsOfInterest }) {
+function MapContainer() {
   const onSearch = value => console.log(value);
   const minZoom = 2.75;
   const maxZoom = 17;
 
   // state variable for map viewport state
-  const [viewport, setViewport] = React.useState({
-    latitude: 41.850033,
-    longitude: -97.6500523,
-    zoom: minZoom,
-  });
+  const [viewport, setViewport] = useContext(ContextView);
+  const [incidentsOfInterest, setIncidentsOfInterest] = useContext(ContextIncidents)
 
-  // state variable for interacting with MapboxGL map
-  const [settings, setSettings] = React.useState({
-    dragRotate: false,
-    scrollZoom: true,
-    touchZoom: false,
-    touchRotate: false,
-    keyboard: false,
-    doubleClickZoom: false,
-  });
+ 
 
   // mapRef is used to get current bounds of the map
   const mapRef = React.useRef();
@@ -47,7 +45,7 @@ function MapContainer({ setIncidentsOfInterest }) {
   return (
     <ReactMapGL
       {...viewport}
-      {...settings}
+      
       maxZoom={maxZoom}
       minZoom={2.75}
       width={'fit'}
@@ -70,6 +68,7 @@ function MapContainer({ setIncidentsOfInterest }) {
         setIncidentsOfInterest={setIncidentsOfInterest}
       />
     </ReactMapGL>
+    
   );
 }
 

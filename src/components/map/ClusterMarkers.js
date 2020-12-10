@@ -1,4 +1,13 @@
-import * as React from 'react';
+import React, { useState, useContext, useRef, useCallback } from 'react';
+import {
+  ContextState,
+  ContextView,
+  ContextSearchText,
+  ContextActiveFilters,
+  ContextLong,
+  ContextLat,
+  ContextIncidents,
+} from '../Store'; 
 import { Marker, FlyToInterpolator } from 'react-map-gl';
 import useSupercluster from 'use-supercluster';
 // hooks
@@ -7,45 +16,16 @@ import { useIncidents } from '../../state/query_hooks/useIncidents';
 import './ClusterMarker.css';
 // console.log(useIncidents) ;
 
-function ClusterMarkers({
-  mapRef,
-  viewport,
-  setViewport,
-  setIncidentsOfInterest,
-}) {
+const  ClusterMarkers =({mapRef})=> {
+  const [viewport, setViewport] = useContext(ContextView);
+  const [incidentsOfInterest, setIncidentsOfInterest] = useContext(ContextIncidents)
+
   const maxZoom = 17;
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
 
-  const theData = incidentsQuery.data
+  const theData = incidentsQuery.data;
  
-
-  // console.log('data1', theData.map( x => x.lethal_force))
-
-  // const newData = data => {
-  //   const newCurrentData = data.map(obj =>
-  //     Object.keys(obj)
-  //       .filter(x => obj[x] !== null)
-  //       .reduce((o, e) => {
-  //         o[e] = obj[e];
-  //         return o;
-  //       }, {})
-  //   );
-  //   const noUnderfined = newCurrentData.map(obj =>
-  //     Object.keys(obj)
-  //       .filter(x => obj[x] !== undefined)
-  //       .reduce((o, e) => {
-  //         o[e] = obj[e];
-  //         return o;
-  //       }, {})
-  //   );
-  //   return noUnderfined;
-  // };
-
-  // console.log('data2', newData(theData))
-
-
-
 
 
   // save data to an incidents variable
@@ -58,31 +38,15 @@ function ClusterMarkers({
   const incidentsWithLatLong = incidents.filter(
     incident => incident.lat !== 0 && incident.long !== 0
   );
-console.log(incidents)
-  //Lethal force
-  const force = incidents.filter(
-    incident => incident.lethal_force === true
-  );
-  // console.log('what force', force)
   // get geoJSON Feature 'points'
   // --> will be passed to useSupercluster()
   // --> properties: {} -- similar to state, allows us to access underlying data of cluster rendered on screen
   // --> geometry: {} -- lat/long used to create 'clusters'
   //     --> !!! MUST BE [LONG, LAT] -- order matters !!!
-  let list =[]
-let set1 = new Set()
-console.log(incidentsWithLatLong)
+  
   const points = incidentsWithLatLong.map(incident => {
     
-    let count = list.push(incident.categories)
-    let cleanArray =[...new Set(list.flat())] 
-    
-    // set1.add(incident.categories)
-    // console.log(set1.flat())
-    // console.log(incident.categories)
-    // console.log(cleanArray)
     return {
-      
       type: 'Feature',
       properties: {
         incident: incident,
@@ -95,6 +59,9 @@ console.log(incidentsWithLatLong)
       },
     };
   });
+
+   // mapRef is used to get current bounds of the map
+  
 
   // tried passing bounds into cluster markers but not all clusters were showing up.
   // --> this is redundant (same code is in Map.js)
