@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { options, createData, defaultData, months } from '../assets';
 
-const LineGraph = ({ monthlyData, selectedYear }) => {
+import { DateTime } from 'luxon';
+
+const LineGraph = ({ monthlyData, today }) => {
   const [data, setData] = useState(defaultData);
+  const [monthsInMilliseconds, setMonthsInMilliseconds] = useState(28927182167); // 11 Months
+  const [start, setStart] = useState(today - monthsInMilliseconds);
 
   useEffect(() => {
     // Test to see if monthlyData is empty, if it's not, then do stuff
@@ -14,6 +18,17 @@ const LineGraph = ({ monthlyData, selectedYear }) => {
       )
     ) {
       // Create the template for the data to be stored in:
+      // Dynamically create labels denoting every month in my dataset:
+      let months = [];
+      let firstMonth = DateTime.fromMillis(start).toFormat('MMM');
+      let month = start;
+      months.push(firstMonth);
+
+      while (month <= today - 2592000000) {
+        month += 2592000000;
+        months.push(DateTime.fromMillis(month).toFormat('MMM'));
+      }
+
       const incidentCategories = {
         labels: months,
         datasets: [],

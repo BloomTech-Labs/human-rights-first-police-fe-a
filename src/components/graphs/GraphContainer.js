@@ -3,9 +3,9 @@ import { useIncidents } from '../../state/query_hooks/useIncidents';
 import LineGraph from './linegraph/LineGraph';
 
 // Time Libraries
-import Moment from 'react-moment';
-import 'moment-timezone';
+import { DateTime } from 'luxon';
 
+// Helper Data
 const twentyOne = {
   categories: ['baton', 'beat', 'strike'],
   city: 'Minneapolis',
@@ -37,6 +37,7 @@ const getIncidentCount = (data, state, today) => {
     const start = new Date(today - yearInMilliseconds);
 
     if (incident.date && date >= start && date <= today) {
+      incident.date = date;
       return incident;
     }
   });
@@ -44,24 +45,25 @@ const getIncidentCount = (data, state, today) => {
   // If the state is not selected:
   if (!state) {
     oneYearData.forEach(incident => {
-      const year = incident.date.slice(0, 4);
-      const month = incident.date.slice(5, 7);
+      const date = DateTime.fromMillis(incident.date);
+      const year = date.toFormat('y');
+      const month = date.toFormat('MMM');
 
       // If the year doesn't exist create it, if it does, increment the total for the month of that year
       if (!(year in sortedByYear)) {
         sortedByYear[year] = {
-          '01': 0,
-          '02': 0,
-          '03': 0,
-          '04': 0,
-          '05': 0,
-          '06': 0,
-          '07': 0,
-          '08': 0,
-          '09': 0,
-          '10': 0,
-          '11': 0,
-          '12': 0,
+          Jan: 0,
+          Feb: 0,
+          Mar: 0,
+          Apr: 0,
+          May: 0,
+          Jun: 0,
+          Jul: 0,
+          Aug: 0,
+          Sep: 0,
+          Oct: 0,
+          Nov: 0,
+          Dec: 0,
         };
         sortedByYear[year][month]++;
       } else {
@@ -80,7 +82,6 @@ const GraphContainer = props => {
   const [usState, setUsState] = useState(null);
   const [incidentCount, setIncidentCount] = useState({});
   const [data, setData] = useState([]);
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear());
   const [today, setToday] = useState(new Date().getTime());
 
   // Incident Data
@@ -99,7 +100,7 @@ const GraphContainer = props => {
 
   return (
     <section>
-      <LineGraph monthlyData={incidentCount} selectedYear={selectedYear} />
+      <LineGraph monthlyData={incidentCount} today={today} />
     </section>
   );
 };
