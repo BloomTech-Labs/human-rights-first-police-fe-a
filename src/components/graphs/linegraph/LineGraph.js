@@ -29,6 +29,8 @@ const LineGraph = ({ monthlyData, today }) => {
         months.push(DateTime.fromMillis(month).toFormat('MMM'));
       }
 
+      console.log(months);
+
       const incidentCategories = {
         labels: months,
         datasets: [],
