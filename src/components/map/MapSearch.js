@@ -170,7 +170,8 @@ const MapSearch = () => {
           
           <div className='incident-content'>
             <List>
-              {!incidentsOfInterest? (
+              {!incidentsOfInterest && searchText ===  '' ? 
+              (
                 <div
                 className="incident-card"
                 
@@ -182,7 +183,8 @@ const MapSearch = () => {
                 <h3 className='incident-discription'>{lastIncident?.desc}</h3>
                 
               </div>
-              ): (
+              )
+              : (
 
                 !incidentsOfInterest ? filterDataList.map((data, index) => {
                 return (
