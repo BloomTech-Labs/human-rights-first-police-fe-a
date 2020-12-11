@@ -47,7 +47,7 @@ function MapContainer() {
       minZoom={2.75}
       width={'fit'}
       height={'70vh'}
-      mapboxApiAccessToken= 'pk.eyJ1IjoiYnJpZGdlc3RvcHJvc3Blcml0eSIsImEiOiJjajRpd2sxeGQwMjU5MnhxajJkNzZnODZtIn0.UrOwxq6A1Zl2yvwzYxBudQ'
+      mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
       mapStyle="mapbox://styles/mapbox/dark-v9"
       onViewportChange={newViewport => {
         setViewport({ ...newViewport });
