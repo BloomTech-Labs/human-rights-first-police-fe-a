@@ -1,13 +1,10 @@
-import React, { useState, useContext, useRef, useCallback } from 'react';
+import React, { useContext} from 'react';
 import ReactMapGL from 'react-map-gl';
 // components
 import {
-  ContextState,
+ 
   ContextView,
-  ContextSearchText,
-  ContextActiveFilters,
-  ContextLong,
-  ContextLat,
+ 
   ContextIncidents,
 } from '../Store'; 
 import ClusterMarkers from './ClusterMarkers';
@@ -19,13 +16,13 @@ import './MapContainer.css'
 
 
 function MapContainer() {
-  const onSearch = value => console.log(value);
+ 
   const minZoom = 2.75;
   const maxZoom = 17;
 
   // state variable for map viewport state
   const [viewport, setViewport] = useContext(ContextView);
-  const [incidentsOfInterest, setIncidentsOfInterest] = useContext(ContextIncidents)
+  const [ setIncidentsOfInterest] = useContext(ContextIncidents)
 
  
 

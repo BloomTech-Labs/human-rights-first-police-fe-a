@@ -4,7 +4,7 @@ import { FlyToInterpolator } from 'react-map-gl';
 import {
   ContextState,
   ContextView,
-  ContextSearchText,
+  
   ContextActiveFilters,
   ContextLong,
   ContextLat,
@@ -15,7 +15,7 @@ import { Input, Collapse, Divider, List } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import './MapSearch.css';
 
-const { Search } = Input;
+
 const { Panel } = Collapse;
 
 const suffix = (
@@ -47,7 +47,7 @@ const MapSearch = () => {
   const [incidentsOfInterest, setIncidentsOfInterest] = useContext(ContextIncidents)
   const onSearch = value => console.log(value);
 
-  console.log(incidentsOfInterest)
+
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
  
@@ -77,7 +77,8 @@ const MapSearch = () => {
   };
 
   const dataList = newData();
-  console.log(dataList);
+  const lastIncident = dataList.shift()
+ 
   //List everything to exclude with filtering
   const exclude = ['incident_id'];
 
@@ -126,18 +127,30 @@ const MapSearch = () => {
     let newState = [...activeFilters, filter];
     setActiveFilters(newState);
   };
-  console.log(dataList);
+  
   return (
     <div className="map-menu">
+    
+
+
       <Input
         className="map-search"
         placeholder="Search"
         allowClear
-        onChange={e => handleChange(e.target.value)}
+       
+        onChange={(e) => {
+          handleChange(e.target.value)
+          setIncidentsOfInterest(undefined)
+
+        }}
         suffix={suffix}
-        bordered={false}
+        
       />
-      <Divider style={{ margin: '0px' }} />
+
+
+
+      
+      
       <Collapse
         style={{ color: 'white' }}
         defaultActiveKey={['1']}
@@ -145,17 +158,33 @@ const MapSearch = () => {
         bordered={false}
         expandIconPosition="right"
         ghost
+        accordion={true}
       >
+        <Divider style={{ margin: '0px' }} />
         <Panel
           bordered={false}
           style={{ color: 'white', padding: '0px' }}
           header="More Info"
           key="1"
         >
-          <Divider style={{ margin: '0px' }} />
-          <div>
+          
+          <div className='incident-content'>
             <List>
-              {filterDataList.map((data, index) => {
+              {!incidentsOfInterest? (
+                <div
+                className="incident-card"
+                
+                
+              >
+                <h2 className='incident-header'>{lastIncident?.title}</h2>
+                <h3 className='incident-location'> {lastIncident?.city}, {lastIncident?.state}</h3>
+                
+                <h3 className='incident-discription'>{lastIncident?.desc}</h3>
+                
+              </div>
+              ): (
+
+                !incidentsOfInterest ? filterDataList.map((data, index) => {
                 return (
                   <div
                     className="incident-card"
@@ -165,17 +194,42 @@ const MapSearch = () => {
                       FlyTo();
                     }}
                   >
-                    <h3>Ttile:{data.title}</h3>
-                    <h3>State:{data.state}</h3>
-                    <h3>City:{data.city}</h3>
-                    <h3>Discription:{data.desc}</h3>
-                    {/* <h3>City:{data.city}</h3>
-                        <h3>City:{data.city}</h3>
-                        <h3>City:{data.city}</h3> */}
+                    <h2 className='incident-header'>{data.title}</h2>
+                    <h3 className='incident-location'> {data.city}, {data.state}</h3>
+                    
+                    <h3 className='incident-discription'>{data.desc}</h3>
+                    <Divider style={{ margin: '0px' }} />
                   </div>
                 );
-              })}
+              }): incidentsOfInterest.map((incidents,i) =>{
+                  return(
+                    <div
+                    className="incident-card"
+                    key={i}
+                    onMouseEnter={() => setCoord(incidents.lat, incidents.long)}
+                    onClick={() => {
+                      FlyTo();
+                    }}
+                  >
+                    <h2 className='incident-header'>{incidents.properties.incident.title}</h2>
+                    <h3 className='incident-location'>{incidents.properties.incident.city}, {incidents.properties.incident.state } </h3>
+                    
+                    <h3 className='incident-discription'>{incidents.properties.incident.desc}</h3>
+                    <Divider style={{ margin: '0px' }} />
+                  </div>
+                  
+                  );
+              })
+              )
+
+              }
+              
+            
+            
+              
+              
             </List>
+           
           </div>
         </Panel>
       </Collapse>

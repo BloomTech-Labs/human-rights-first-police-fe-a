@@ -18,7 +18,7 @@ const initialState = {
 const initialView = {
   latitude: 41.850033,
   longitude: -97.6500523,
-  zoom: 8.2,
+  zoom: 3.2,
 };
 
 const initialLong = -97.6500523;

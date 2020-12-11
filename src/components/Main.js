@@ -7,7 +7,11 @@ const Main = () => {
     return (
         <div>
             <Store>
+                <div 
+                style={{width: '90%', margin: 'auto'}}
+                >
             < MapContainer/>
+            </div>
             </Store>
         </div>
     )

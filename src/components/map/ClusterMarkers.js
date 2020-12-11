@@ -1,11 +1,8 @@
-import React, { useState, useContext, useRef, useCallback } from 'react';
+import React, { useContext} from 'react';
 import {
-  ContextState,
+  
   ContextView,
-  ContextSearchText,
-  ContextActiveFilters,
-  ContextLong,
-  ContextLat,
+ 
   ContextIncidents,
 } from '../Store'; 
 import { Marker, FlyToInterpolator } from 'react-map-gl';
@@ -18,13 +15,12 @@ import './ClusterMarker.css';
 
 const  ClusterMarkers =({mapRef})=> {
   const [viewport, setViewport] = useContext(ContextView);
-  const [incidentsOfInterest, setIncidentsOfInterest] = useContext(ContextIncidents)
+  const [ setIncidentsOfInterest] = useContext(ContextIncidents)
 
   const maxZoom = 17;
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
 
-  const theData = incidentsQuery.data;
  
 
 
@@ -88,6 +84,7 @@ const  ClusterMarkers =({mapRef})=> {
       maxZoom: 20,
     },
   });
+  
   return (
     <div>
       {clusters.map(cluster => {

@@ -11,7 +11,7 @@ export const useIncidents = () => {
     'incidents',
     () => {
       return axios
-        .get(`${process.env.REACT_APP_BACKENDURL}/incidents/showallincidents`)
+        .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
         .then(res => res.data);
     },
     {
