@@ -15,7 +15,7 @@ import './ClusterMarker.css';
 
 const  ClusterMarkers =({mapRef})=> {
   const [viewport, setViewport] = useContext(ContextView);
-  const [ setIncidentsOfInterest] = useContext(ContextIncidents)
+  const [ incidentsofInterest, setIncidentsOfInterest] = useContext(ContextIncidents)
 
   const maxZoom = 17;
   // load incident data using custom react-query hook (see state >> query_hooks)
