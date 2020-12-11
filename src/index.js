@@ -5,6 +5,7 @@ import { ReactQueryDevtools } from 'react-query-devtools';
 
 import './index.css';
 import 'antd/dist/antd.less';
+import RecentTimeline from './components/timeline/RecentTimeline';
 
 ReactDOM.render(
   <Router>
@@ -24,6 +25,7 @@ function App() {
             <div>HELLO!</div>
           </Route>
         </Switch>
+        <RecentTimeline />
       </div>
       <ReactQueryDevtools />
     </>
