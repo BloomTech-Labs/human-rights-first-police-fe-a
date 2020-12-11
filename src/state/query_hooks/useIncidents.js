@@ -5,13 +5,11 @@ import { useQuery } from 'react-query';
 // const incidentsQuery = useIncident();
 
 export const useIncidents = () => {
-
- 
   return useQuery(
     'incidents',
     () => {
       return axios
-        .get(`${process.env.REACT_APP_BACKENDURL}/incidents/showallincidents`)
+        .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
         .then(res => res.data);
     },
     {

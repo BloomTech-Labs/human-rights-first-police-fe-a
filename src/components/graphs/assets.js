@@ -1,36 +1,21 @@
-const months = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-
-const createData = (data, year) => {
-  const ordered = {};
-  // Order the keys by ascending order
-  Object.keys(data)
-    .sort()
-    .forEach(
-      key => (ordered[key.slice(0, 1) === '0' ? key.slice(1) : key] = data[key])
-    );
-
+const createData = data => {
   // Create the array that will be points on the graph
   let incidentCounts = [];
-  for (let month in ordered) {
-    incidentCounts.push(ordered[month]);
+
+  for (const month in data) {
+    incidentCounts.push(data[month]);
+  }
+
+  let years = [];
+  for (let year in data) {
+    years.push(year);
   }
 
   const yearReview = {
-    incidentId: `${year}`,
-    label: `${year}`,
+    incidentId: `Years`,
+    label: `${
+      years.length > 1 ? `${years[0]} - ${years[years.length - 1]}` : years[0]
+    }`,
     data: incidentCounts,
     borderColor: '#c0ba17',
     backgroundColor: 'rgba(0,0,0,0)',
@@ -40,7 +25,20 @@ const createData = (data, year) => {
 };
 
 const defaultData = {
-  labels: months,
+  labels: [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ],
   datasets: [
     {
       incidentId: 'all',
@@ -95,4 +93,4 @@ const options = {
   },
 };
 
-export { options, defaultData, createData, months };
+export { options, defaultData, createData };

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { options, createData, defaultData, months } from '../assets';
+import { options, createData, defaultData } from '../assets';
 
 import { DateTime } from 'luxon';
 
 const LineGraph = ({ monthlyData, today }) => {
   const [data, setData] = useState(defaultData);
-  const [monthsInMilliseconds, setMonthsInMilliseconds] = useState(28927182167); // 11 Months
-  const [start, setStart] = useState(today - monthsInMilliseconds);
+  const [monthsInMilliseconds] = useState(28927182167); // 11 Months
+  const [start] = useState(today - monthsInMilliseconds);
 
   useEffect(() => {
     // Test to see if monthlyData is empty, if it's not, then do stuff
@@ -29,21 +29,15 @@ const LineGraph = ({ monthlyData, today }) => {
         months.push(DateTime.fromMillis(month).toFormat('MMM'));
       }
 
-      console.log(months);
-
       const incidentCategories = {
         labels: months,
         datasets: [],
       };
 
-      for (let year in monthlyData) {
-        console.log(createData(monthlyData[year], year));
-        incidentCategories.datasets.push(createData(monthlyData[year], year));
-      }
-
+      incidentCategories.datasets.push(createData(monthlyData));
       setData(incidentCategories);
     }
-  }, [monthlyData, setData]);
+  }, [monthlyData, setData, start, today]);
 
   return (
     <div

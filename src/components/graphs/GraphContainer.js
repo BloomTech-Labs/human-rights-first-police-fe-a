@@ -25,78 +25,68 @@ const twentyOne = {
   verbalization: false,
 };
 
-const getIncidentCount = (data, state, today) => {
+const getIncidentCount = (data, state, today, elevenMonths) => {
+  let start = today - elevenMonths;
   let sortedByYear = {};
 
-  // Dates
-  const yearInMilliseconds = 31556952000;
-
-  // Only grab events that have occurred in the last 12 months and filter out any that do not have dates:
-  const oneYearData = data.filter(incident => {
-    const date = Date.parse(incident.date);
-    const start = new Date(today - yearInMilliseconds);
-
-    if (incident.date && date >= start && date <= today) {
-      incident.date = date;
-      return incident;
-    }
-  });
+  while (start < today) {
+    sortedByYear[DateTime.fromMillis(start).toFormat('MMM')] = 0;
+    start += 2592000000;
+  }
 
   // If the state is not selected:
   if (!state) {
-    oneYearData.forEach(incident => {
+    data.forEach(incident => {
       const date = DateTime.fromMillis(incident.date);
-      const year = date.toFormat('y');
       const month = date.toFormat('MMM');
 
-      // If the year doesn't exist create it, if it does, increment the total for the month of that year
-      if (!(year in sortedByYear)) {
-        sortedByYear[year] = {
-          Jan: 0,
-          Feb: 0,
-          Mar: 0,
-          Apr: 0,
-          May: 0,
-          Jun: 0,
-          Jul: 0,
-          Aug: 0,
-          Sep: 0,
-          Oct: 0,
-          Nov: 0,
-          Dec: 0,
-        };
-        sortedByYear[year][month]++;
-      } else {
-        sortedByYear[year][month]++;
-      }
+      sortedByYear[month]++;
     });
   }
 
   return sortedByYear;
 };
 
+const filterData = (data, today, elevenMonths) => {
+  // Only grab events that have occurred in the last 12 months and filter out any that do not have dates:
+  const oneYearData = data.filter(incident => {
+    let date = Date.parse(incident.date);
+    const start = today - elevenMonths;
+
+    if (date >= start && date <= today) {
+      incident.date = date;
+      return incident;
+    }
+  });
+
+  return oneYearData;
+};
+
 // The Graph Container only needs to know a few things, the selected US State, the number of incidents per month, and the type of incidents per month. The latter two, will be influenced by the selected State.
 
-const GraphContainer = props => {
+const GraphContainer = () => {
   // State Management
   const [usState, setUsState] = useState(null);
   const [incidentCount, setIncidentCount] = useState({});
   const [data, setData] = useState([]);
-  const [today, setToday] = useState(new Date().getTime());
+  const [today] = useState(new Date().getTime());
+  const [elevenMonths] = useState(28927182167); // Milliseconds
 
   // Incident Data
   const incidents = useIncidents();
 
   useEffect(() => {
     if (incidents.data && !incidents.isError) {
-      setData(incidents.data);
+      // Filter Data
+      const filtered = filterData(incidents.data, today, elevenMonths);
+      setData(filtered);
     }
-  }, [incidents]);
+  }, [incidents, elevenMonths, today]);
 
   useEffect(() => {
-    let count = getIncidentCount(data, usState, today);
+    let count = getIncidentCount(data, usState, today, elevenMonths);
     setIncidentCount(count);
-  }, [data, setIncidentCount]);
+  }, [data, setIncidentCount, today, usState]);
 
   return (
     <section>
