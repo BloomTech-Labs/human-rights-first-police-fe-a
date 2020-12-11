@@ -24,7 +24,8 @@
     "react-query-devtools": "^2.6.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "supercluster": "^7.1.0"
+    "supercluster": "^7.1.0",
+    "vertical-timeline-component-for-react": "^1.0.7"
   },
   "scripts": {
     "start": "craco start",
