@@ -26,13 +26,12 @@ function App() {
         
 
         <Switch>
-          
           <Route path="/">
             <Main />
           
+            <div>HELLO!</div>
           </Route>
         </Switch>
-      
       </div>
       <ReactQueryDevtools />
     </>
