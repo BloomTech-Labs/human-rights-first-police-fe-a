@@ -1,29 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 import LineGraph from './linegraph/LineGraph';
+import BarGraph from './bargraph/BarGraph';
 
 // Time Libraries
 import { DateTime } from 'luxon';
-
-// Helper Data
-const twentyOne = {
-  categories: ['baton', 'beat', 'strike'],
-  city: 'Minneapolis',
-  date: '2021-05-26T00:00:00.000Z',
-  desc: `A group of cops start to approach a group of press taking photos and video. One press member repeats "we have our hands up and we have press passes". An officer walking by points in the direction of a photographer and says something indiscernable. The camera pans to show a cop hitting the photographer in the neck and head with a wooden baton.`,
-  empty_hand_hard: false,
-  empty_hand_soft: false,
-  incident_id: 'mn-minneapolis-21',
-  lat: 44.947865,
-  less_lethal_methods: true,
-  lethal_force: false,
-  long: -93.234886,
-  src: ['https://youtu.be/XAa5xb6JitI?t=5982'],
-  state: 'Minnesota',
-  title: 'Police hit press in neck and head with wooden baton',
-  uncategorized: false,
-  verbalization: false,
-};
 
 const getIncidentCount = (data, state, today, elevenMonths) => {
   let start = today - elevenMonths;
@@ -71,6 +52,7 @@ const GraphContainer = () => {
   const [data, setData] = useState([]);
   const [today] = useState(new Date().getTime());
   const [elevenMonths] = useState(28927182167); // Milliseconds
+  const [graph, setGraph] = useState('Bar');
 
   // Incident Data
   const incidents = useIncidents();
@@ -86,13 +68,21 @@ const GraphContainer = () => {
   useEffect(() => {
     let count = getIncidentCount(data, usState, today, elevenMonths);
     setIncidentCount(count);
-  }, [data, setIncidentCount, today, usState]);
+  }, [data, setIncidentCount, today, usState, elevenMonths]);
 
-  return (
-    <section>
-      <LineGraph monthlyData={incidentCount} today={today} />
-    </section>
-  );
+  if (graph === 'Line') {
+    return (
+      <section>
+        <LineGraph monthlyData={incidentCount} today={today} />
+      </section>
+    );
+  } else if (graph === 'Bar') {
+    return (
+      <section>
+        <BarGraph data={data} />
+      </section>
+    );
+  }
 };
 
 export default GraphContainer;
