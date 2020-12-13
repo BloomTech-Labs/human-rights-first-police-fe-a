@@ -2,6 +2,7 @@ import React from 'react';
 import { Timeline, TimelineItem } from 'vertical-timeline-component-for-react';
 import Moment from 'react-moment';
 import { useTimeline } from '../../state/query_hooks/useTimeline';
+import './RecentTimeline.css';
 
 export function RecentTimeline() {
   const timelineQuery = useTimeline();
@@ -27,8 +28,13 @@ export function RecentTimeline() {
                 ))}
               </div>
               <div className="timeline-links">
-                {details.src.splice(0, 3).map(element => (
-                  <a href={element} className="link-button">
+                {details.src.map(element => (
+                  <a
+                    href={element}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-button"
+                  >
                     Source
                   </a>
                 ))}

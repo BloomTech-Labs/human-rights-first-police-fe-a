@@ -1,0 +1,27 @@
+:root {
+  --blue: #003767;
+  --orange: #bc541e;
+  --light-blue: #7f9bb3;
+}
+
+h1 {
+  text-align: center;
+}
+
+.categories,
+.timeline-links {
+  display: flex;
+  align-items: space-between;
+}
+
+.category-item,
+.link-button {
+  background-color: #dadbdc;
+  margin: 5px;
+  padding: 5px;
+}
+
+.link-button,
+h3 {
+  color: var(--orange);
+}
