@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useIncidents } from '../../state/query_hooks/useIncidents';
+
+// Graphs
 import LineGraph from './linegraph/LineGraph';
 import BarGraph from './bargraph/BarGraph';
+import PieGraph from './piegraph/PieGraph';
+
+// CSS
+import './GraphContainer.css';
 
 // Time Libraries
 import { DateTime } from 'luxon';
+import Pagination from './pagination/Pagination';
 
 const getIncidentCount = (data, state, today, elevenMonths) => {
   let start = today - elevenMonths;
@@ -23,14 +30,23 @@ const getIncidentCount = (data, state, today, elevenMonths) => {
 
       sortedByYear[month]++;
     });
+  } else {
+    data.forEach(incident => {
+      if (incident.state === state) {
+        const date = DateTime.fromMillis(incident.date);
+        const month = date.toFormat('MMM');
+
+        sortedByYear[month]++;
+      }
+    });
   }
 
   return sortedByYear;
 };
 
-const filterData = (data, today, elevenMonths) => {
+const filterData = (data, today, elevenMonths, state) => {
   // Only grab events that have occurred in the last 12 months and filter out any that do not have dates:
-  const oneYearData = data.filter(incident => {
+  let oneYearData = data.filter(incident => {
     let date = Date.parse(incident.date);
     const start = today - elevenMonths;
 
@@ -40,6 +56,11 @@ const filterData = (data, today, elevenMonths) => {
     }
   });
 
+  if (state) {
+    oneYearData = oneYearData.filter(incident => incident.state === state);
+  }
+
+  console.log(oneYearData);
   return oneYearData;
 };
 
@@ -47,12 +68,12 @@ const filterData = (data, today, elevenMonths) => {
 
 const GraphContainer = () => {
   // State Management
-  const [usState, setUsState] = useState(null);
+  const [usState, setUsState] = useState('New York');
   const [incidentCount, setIncidentCount] = useState({});
   const [data, setData] = useState([]);
   const [today] = useState(new Date().getTime());
   const [elevenMonths] = useState(28927182167); // Milliseconds
-  const [graph, setGraph] = useState('Bar');
+  const [graph, setGraph] = useState('Pie');
 
   // Incident Data
   const incidents = useIncidents();
@@ -60,10 +81,10 @@ const GraphContainer = () => {
   useEffect(() => {
     if (incidents.data && !incidents.isError) {
       // Filter Data
-      const filtered = filterData(incidents.data, today, elevenMonths);
+      const filtered = filterData(incidents.data, today, elevenMonths, usState);
       setData(filtered);
     }
-  }, [incidents, elevenMonths, today]);
+  }, [incidents, elevenMonths, today, usState]);
 
   useEffect(() => {
     let count = getIncidentCount(data, usState, today, elevenMonths);
@@ -72,14 +93,23 @@ const GraphContainer = () => {
 
   if (graph === 'Line') {
     return (
-      <section>
+      <section className="graph-container">
+        <Pagination setGraph={setGraph} />
         <LineGraph monthlyData={incidentCount} today={today} />
       </section>
     );
   } else if (graph === 'Bar') {
     return (
-      <section>
-        <BarGraph data={data} />
+      <section className="graph-container">
+        <Pagination setGraph={setGraph} />
+        <BarGraph data={data} usState={usState} />
+      </section>
+    );
+  } else if (graph === 'Pie') {
+    return (
+      <section className="graph-container">
+        <Pagination setGraph={setGraph} />
+        <PieGraph data={data} usState={usState} />
       </section>
     );
   }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 const states = [
@@ -240,6 +240,21 @@ const states = [
   },
 ];
 
+const def = {
+  labels: ['Loading Data'],
+  datasets: [
+    {
+      label: 'Number of incidents',
+      backgroundColor: 'rgb(103,183,220)',
+      borderColor: 'rgb(103,183,220)',
+      borderWidth: 1,
+      hoverBackgroundColor: 'rgba(255,99,132,0.4)',
+      hoverBorderColor: 'rgba(255,99,132,1)',
+      data: [0],
+    },
+  ],
+};
+
 const stateData = {};
 
 for (let i = 0; i < states.length - 1; i++) {
@@ -264,23 +279,22 @@ stateData['Unknown'] = {
   count: 0,
 };
 
-const filterDataByState = (state, data) => {
-  if (!state) {
-    data.forEach(incident => {
-      if (incident.state in stateData) {
-        stateData[incident.state]['count'] += 1;
-      } else {
-        console.log(incident.state);
-      }
-    });
-  }
-
+const createNumberOfIncidents = (data, stateData) => {
+  console.log('I am running');
+  data.forEach(incident => {
+    if (incident.state in stateData) {
+      stateData[incident.state]['count'] += 1;
+    } else {
+      stateData['Unknown']['count'] += 1;
+    }
+  });
   console.log(stateData);
+  return stateData;
 };
 
 const createDataSet = data => {
   const result = {
-    labels: states.map(state => state.name),
+    labels: Object.keys(stateData).map(key => key),
     datasets: [
       {
         label: 'Number of incidents',
@@ -289,7 +303,7 @@ const createDataSet = data => {
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)',
-        data: Object.keys(stateData).map(key => stateData[key]['count']),
+        data: Object.keys(data).map(key => stateData[key]['count']),
       },
     ],
   };
@@ -297,13 +311,20 @@ const createDataSet = data => {
 };
 
 const BarGraph = ({ data }) => {
-  useEffect(() => {
-    if (data) {
-      filterDataByState(null, data);
-    }
-  }, [data]);
+  const [policeData] = useState(data);
+  const [barData, setBarData] = useState(def);
 
-  return <Bar data={createDataSet(data)} />;
+  useEffect(() => {
+    const num = createNumberOfIncidents(policeData, stateData);
+    const dataset = createDataSet(num);
+    setBarData(dataset);
+
+    return () => {
+      setBarData(def);
+    };
+  }, [data, policeData]);
+
+  return <Bar data={barData} />;
 };
 
 export default BarGraph;

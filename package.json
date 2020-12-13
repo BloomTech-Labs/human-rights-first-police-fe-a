@@ -19,6 +19,7 @@
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.32",
     "plotly.js": "^1.54.6",
+    "randomcolor": "^0.6.2",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.11.1",
     "react-dom": "^16.13.1",
