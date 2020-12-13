@@ -1,12 +1,13 @@
 import React from 'react';
 import { Timeline, TimelineItem } from 'vertical-timeline-component-for-react';
-import Moment from 'react-moment';
+import { DateTime } from 'luxon';
 import { nanoid } from 'nanoid';
 import { useTimeline } from '../../state/query_hooks/useTimeline';
 import './RecentTimeline.css';
 
 export function RecentTimeline() {
   const timelineQuery = useTimeline();
+
   return timelineQuery.isSuccess ? (
     <div className="timeline-container">
       <h1> Timeline of Recent Events </h1>
@@ -15,7 +16,9 @@ export function RecentTimeline() {
           return (
             <TimelineItem
               key={nanoid()}
-              dateText={<Moment format="LL">{details.date}</Moment>}
+              dateText={DateTime.fromISO(details.date).toLocaleString(
+                DateTime.DATE_FULL
+              )}
               style={{ color: '#BC541E' }}
               dateInnerStyle={{ color: 'white', backgroundColor: '#003767' }}
             >
