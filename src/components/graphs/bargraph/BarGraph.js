@@ -311,18 +311,19 @@ const createDataSet = data => {
 };
 
 const BarGraph = ({ data }) => {
-  const [policeData] = useState(data);
   const [barData, setBarData] = useState(def);
+  const [incidentCount, setIncidentCount] = useState(null);
 
   useEffect(() => {
-    const num = createNumberOfIncidents(policeData, stateData);
-    const dataset = createDataSet(num);
-    setBarData(dataset);
+    setIncidentCount(createNumberOfIncidents(data, stateData));
+  }, []);
 
-    return () => {
-      setBarData(def);
-    };
-  }, [data, policeData]);
+  useEffect(() => {
+    if (incidentCount) {
+      const dataset = createDataSet(incidentCount);
+      setBarData(dataset);
+    }
+  }, [incidentCount]);
 
   return <Bar data={barData} />;
 };
