@@ -8,6 +8,12 @@ import './RecentTimeline.css';
 export function RecentTimeline() {
   const timelineQuery = useTimeline();
 
+  const urlDomain = url => {
+    let re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/gim;
+    let newUrl = url.split(re)[1].replace('.com', '');
+    return newUrl;
+  };
+
   return timelineQuery.isSuccess ? (
     <div className="timeline-container">
       <h1> Timeline of Recent Events </h1>
@@ -42,7 +48,7 @@ export function RecentTimeline() {
                     className="link-button"
                     key={nanoid()}
                   >
-                    Source
+                    {urlDomain(element)}
                   </a>
                 ))}
               </div>
