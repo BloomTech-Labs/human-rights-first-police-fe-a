@@ -25,3 +25,9 @@ h1 {
 h3 {
   color: var(--orange);
 }
+
+.sourceText {
+  line-height: 2.7;
+  padding-right: 5px;
+  margin-top: 5px;
+}
