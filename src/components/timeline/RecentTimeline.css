@@ -25,3 +25,10 @@ h1 {
 h3 {
   color: var(--orange);
 }
+
+.sourceText {
+  text-align: center;
+  padding: 5px;
+  margin-top: 5px;
+  line-height: 2.1;
+}

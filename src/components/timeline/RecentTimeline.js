@@ -41,7 +41,9 @@ export function RecentTimeline() {
                   </span>
                 ))}
               </div>
+
               <div className="timeline-links">
+                <h4 className="sourceText"> Sources: </h4>
                 {details.src.map(element => (
                   <a
                     href={element}
