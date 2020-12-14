@@ -3,6 +3,7 @@ import { Timeline, TimelineItem } from 'vertical-timeline-component-for-react';
 import { DateTime } from 'luxon';
 import { nanoid } from 'nanoid';
 import { useTimeline } from '../../state/query_hooks/useTimeline';
+import ModalTimeline from './ModalTimeline';
 import './RecentTimeline.css';
 
 export function RecentTimeline() {
