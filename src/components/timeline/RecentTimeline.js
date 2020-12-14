@@ -9,7 +9,7 @@ export function RecentTimeline() {
   const timelineQuery = useTimeline();
 
   const urlDomain = url => {
-    let re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:\/\n?]+)/gim;
+    let re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/\n?]+)/gim;
     let newUrl = url.split(re)[1].replace('.com', '');
     return newUrl;
   };
