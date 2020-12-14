@@ -22,6 +22,7 @@ export function RecentTimeline() {
           return (
             <TimelineItem
               key={nanoid()}
+              description={details.desc}
               dateText={DateTime.fromISO(details.date).toLocaleString(
                 DateTime.DATE_FULL
               )}
