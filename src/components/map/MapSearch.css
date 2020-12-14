@@ -1,42 +1,70 @@
 .map-menu{
+
     
     margin-top:20px;
+    background-color: rgb(36, 35, 33);
     
     border-style: solid;
-    border-color: rgb(52,51,50);
+    border-color: rgb(36, 35, 33);
     padding-left: 2%;
-
+   width: 400px;
+   
+   
 }
-.map-search{
-    background-color:rgb(52,51,50);
-   border: none;
+span.map-search{
+    background-color:rgb(36, 35, 33);
+   border-color: rgb(36, 35, 33);
    font-size: 1.2rem;
-   font-weight: 300;
+   font-weight: 00;
+   color: blue;
     
     
 }
-.ant-input{
-    background-color: rgb(52,51,50);
+input.ant-input{
+    background-color: rgb(36, 35, 33);
     color:white
     
 }
-.ant-input-affix-wrapper{
-    padding: 0px
-}
+
 .ant-collapse{
-    background-color: rgb(52,51,50);
+    background-color: rgb(36, 35, 33);
     border: none;
+   
     
     
     
 }
 .ant-collapse-content-box{
-    background-color: rgb(52,51,50);
+    background-color:rgb(36, 35, 33);
+    overflow: auto;
+   
+    
     
 }
+.incident-content{
+    height: 40vh;
+}
+div.ant-collapse-header{
+    padding: 0;
+    text-align: center;
+    color: white;
+    padding-bottom: 2%;
+}
 
-.ant-collapse > .ant-collapse-item > .ant-collapse-header{
+div.ant-collapse > .ant-collapse-item > .ant-collapse-header{
     color:white;
-    padding: 10px 0px 0px 0px;
+    padding: 5px 0px 5px 0px;
     font-size: 1.2rem ;
+}
+
+.incident-header{
+    color: white
+}
+.incident-location{
+    color: white
+    
+}
+.incident-discription{
+    
+    color: white
 }

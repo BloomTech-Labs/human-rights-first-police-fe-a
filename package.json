@@ -7,6 +7,9 @@
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
     "@craco/craco": "^5.9.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.32",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
+    "@fortawesome/react-fontawesome": "^0.1.13",
     "@okta/okta-react": "^3.0.2",
     "@okta/okta-signin-widget": "^4.1.2",
     "antd": "^4.4.3",
@@ -17,6 +20,7 @@
     "plotly.js": "^1.54.6",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-infinite-scroller": "^1.2.4",
     "react-map-gl": "^5.2.10",
     "react-mapbox-gl": "^5.1.1",
     "react-plotly.js": "^2.4.0",
