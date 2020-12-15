@@ -17,13 +17,13 @@ const LineGraph = ({ data, months }) => {
     if (
       !(Object.keys(data).length === 0 && inCategories.constructor === Object)
     ) {
-      let d = [];
+      let lineDataPoints = [];
 
       months.forEach(month => {
-        d.push(data[month]);
+        lineDataPoints.push(data[month]);
       });
 
-      setLineData(d);
+      setLineData(lineDataPoints);
     }
   }, [data, labels]);
 

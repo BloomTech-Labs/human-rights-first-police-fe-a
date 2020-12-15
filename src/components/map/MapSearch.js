@@ -56,7 +56,6 @@ const MapSearch = () => {
   const [incidentsOfInterest, setIncidentsOfInterest] = useContext(
     ContextIncidents
   );
-  const onSearch = value => console.log(value);
 
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
@@ -141,7 +140,6 @@ const MapSearch = () => {
   };
 
   const iconPicker = incident => {
-    // return console.log(incident)
     if (incident?.empty_hand_hard) {
       return punch;
     }
@@ -167,7 +165,6 @@ const MapSearch = () => {
     }
   };
   const toolTipPicker = incident => {
-    // return console.log(incident)
     if (incident?.empty_hand_hard) {
       return 'Officers use bodily force to gain control of a situation';
     } else if (incident?.empty_hard_soft) {
@@ -182,7 +179,6 @@ const MapSearch = () => {
       return 'Force is not-physical';
     }
   };
-  console.log(lastIncident);
   return (
     <div className="map-menu">
       <Input
