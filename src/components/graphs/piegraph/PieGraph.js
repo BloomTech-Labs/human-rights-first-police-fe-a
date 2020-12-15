@@ -15,10 +15,8 @@ const incrementor = (incident, type, types) => {
   }
 };
 
-const getTypesOfForce = (data, state) => {
+const getTypesOfForce = data => {
   let types = {};
-
-  data = state ? data.filter(incident => incident.state === state) : data;
 
   data.forEach(incident => {
     switch (true) {

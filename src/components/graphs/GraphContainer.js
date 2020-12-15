@@ -11,105 +11,118 @@ import './GraphContainer.css';
 
 // Time Libraries
 import { DateTime } from 'luxon';
+
+// Navigation
 import Pagination from './pagination/Pagination';
 
-const getIncidentCount = (data, state, today, elevenMonths) => {
-  let start = today - elevenMonths;
-  let sortedByYear = {};
-
-  while (start < today) {
-    sortedByYear[DateTime.fromMillis(start).toFormat('MMM')] = 0;
-    start += 2592000000;
-  }
-
-  // If the state is not selected:
-  if (!state) {
-    data.forEach(incident => {
-      const date = DateTime.fromMillis(incident.date);
-      const month = date.toFormat('MMM');
-
-      sortedByYear[month]++;
-    });
-  } else {
-    data.forEach(incident => {
-      if (incident.state === state) {
-        const date = DateTime.fromMillis(incident.date);
-        const month = date.toFormat('MMM');
-
-        sortedByYear[month]++;
-      }
-    });
-  }
-
-  return sortedByYear;
-};
+// Assets
+import { stateData } from './assets/bargraphAssets';
 
 const filterData = (data, today, elevenMonths, state) => {
   // Only grab events that have occurred in the last 12 months and filter out any that do not have dates:
-  let oneYearData = data.filter(incident => {
-    let date = Date.parse(incident.date);
-    const start = today - elevenMonths;
+  const start = today - elevenMonths;
 
-    if (date >= start && date <= today) {
-      incident.date = date;
-      return incident;
-    }
+  const dateFilter = data.map(incident => {
+    incident.date = Date.parse(incident.date);
+    return incident;
   });
+
+  let oneYearData = dateFilter.filter(
+    incident => incident.date >= start && incident.date <= today
+  );
 
   if (state) {
     oneYearData = oneYearData.filter(incident => incident.state === state);
   }
 
-  console.log(oneYearData);
   return oneYearData;
 };
 
 // The Graph Container only needs to know a few things, the selected US State, the number of incidents per month, and the type of incidents per month. The latter two, will be influenced by the selected State.
 
 const GraphContainer = () => {
+  const query = useIncidents();
+  const incidents = query.data && !query.isError ? query.data : [];
+
   // State Management
   const [usState, setUsState] = useState('New York');
-  const [incidentCount, setIncidentCount] = useState({});
-  const [data, setData] = useState([]);
   const [today] = useState(new Date().getTime());
   const [elevenMonths] = useState(28927182167); // Milliseconds
-  const [graph, setGraph] = useState('Pie');
-
-  // Incident Data
-  const incidents = useIncidents();
+  const [graph, setGraph] = useState('Line');
+  const [filtered, setFiltered] = useState([]);
+  const [counts, setCounts] = useState({});
+  const [barCounts, setBarCounts] = useState({});
+  const [months, setmonths] = useState([]);
 
   useEffect(() => {
-    if (incidents.data && !incidents.isError) {
-      // Filter Data
-      const filtered = filterData(incidents.data, today, elevenMonths, usState);
-      setData(filtered);
+    // Incident Data
+    setFiltered(filterData(incidents, today, elevenMonths, usState));
+  }, [query.isLoading, usState]);
+
+  // Create keys for months object dynamically
+  useEffect(() => {
+    let months = [];
+    let start = today - elevenMonths;
+    let firstMonth = DateTime.fromMillis(start).toFormat('MMM');
+    let month = start;
+    months.push(firstMonth);
+
+    while (month <= today - 2592000000) {
+      month += 2592000000;
+      months.push(DateTime.fromMillis(month).toFormat('MMM'));
     }
-  }, [incidents, elevenMonths, today, usState]);
+
+    setmonths(months);
+  }, [elevenMonths, today]);
 
   useEffect(() => {
-    let count = getIncidentCount(data, usState, today, elevenMonths);
-    setIncidentCount(count);
-  }, [data, setIncidentCount, today, usState, elevenMonths]);
+    const counts = {};
+    months.forEach(month => (counts[month] = 0));
+
+    filtered.forEach(incident => {
+      let month = DateTime.fromMillis(incident?.date).toFormat('MMM');
+      if (month in counts) {
+        counts[month]++;
+      }
+    });
+    setCounts(counts);
+  }, [filtered, months]);
+
+  // Bar Graph Data manipulation:
+  useEffect(() => {
+    const data = [...filtered];
+    const barCounts = { ...stateData };
+    console.log(data);
+    data.forEach(incident => {
+      if (incident.state in barCounts) {
+        barCounts[incident.state]['count'] += 1;
+      } else {
+        barCounts['Unknown']['count'] += 1;
+      }
+    });
+
+    setBarCounts(barCounts);
+  }, [filtered]);
 
   if (graph === 'Line') {
     return (
       <section className="graph-container">
         <Pagination setGraph={setGraph} />
-        <LineGraph monthlyData={incidentCount} today={today} />
+        <LineGraph data={counts} months={months} />
       </section>
     );
   } else if (graph === 'Bar') {
     return (
       <section className="graph-container">
         <Pagination setGraph={setGraph} />
-        <BarGraph data={data} usState={usState} />
+        <BarGraph count={barCounts} />
       </section>
     );
   } else if (graph === 'Pie') {
     return (
       <section className="graph-container">
         <Pagination setGraph={setGraph} />
-        <PieGraph data={data} usState={usState} />
+        <PieGraph data={filtered} />
       </section>
     );
   }

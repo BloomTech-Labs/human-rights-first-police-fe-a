@@ -1,9 +1,23 @@
-const createData = data => {
+const createData = (data, months) => {
   // Create the array that will be points on the graph
-  let incidentCounts = [];
+  let incidentCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+  for (const state in data) {
+    // console.log(state, data[state]['months']);
+  }
+
+  // data.map(state => console.log(state));
+
+  // console.log(data['New York']?.months);
+
+  // for (let state in data) {
+  //   for (let month in data[state]['months']) {
+  //     console.log(state, month, data[state]['months'][month]);
+  //   }
+  // }
 
   for (const month in data) {
-    incidentCounts.push(data[month]);
+    incidentCounts.push(data[month]['count']);
   }
 
   let years = [];

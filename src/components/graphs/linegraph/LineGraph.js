@@ -1,43 +1,56 @@
 import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
-import { options, createData, defaultData } from '../assets';
+import { options } from '../assets';
 
-import { DateTime } from 'luxon';
-
-const LineGraph = ({ monthlyData, today }) => {
-  const [data, setData] = useState(defaultData);
-  const [monthsInMilliseconds] = useState(28927182167); // 11 Months
-  const [start] = useState(today - monthsInMilliseconds);
+const LineGraph = ({ data, months }) => {
+  const [inCategories, setInCategories] = useState({});
+  const [labels, setLabels] = useState([]);
+  const [incidentID, setIncidentID] = useState('all');
+  const [label, setLabel] = useState('All');
+  const [lineData, setLineData] = useState([]);
 
   useEffect(() => {
-    // Test to see if monthlyData is empty, if it's not, then do stuff
+    setLabels(months);
+  }, [data, months]);
+
+  useEffect(() => {
     if (
-      !(
-        Object.keys(monthlyData).length === 0 &&
-        monthlyData.constructor === Object
-      )
+      !(Object.keys(data).length === 0 && inCategories.constructor === Object)
     ) {
-      // Create the template for the data to be stored in:
-      // Dynamically create labels denoting every month in my dataset:
-      let months = [];
-      let firstMonth = DateTime.fromMillis(start).toFormat('MMM');
-      let month = start;
-      months.push(firstMonth);
+      let d = [];
 
-      while (month <= today - 2592000000) {
-        month += 2592000000;
-        months.push(DateTime.fromMillis(month).toFormat('MMM'));
-      }
+      months.forEach(month => {
+        d.push(data[month]);
+      });
 
-      const incidentCategories = {
-        labels: months,
-        datasets: [],
-      };
-
-      incidentCategories.datasets.push(createData(monthlyData));
-      setData(incidentCategories);
+      setLineData(d);
     }
-  }, [monthlyData, setData, start, today]);
+  }, [data, labels]);
+
+  // useEffect(() => {
+  //   // Test to see if data is empty, if it's not, then do stuff
+  //   if (!(Object.keys(data).length === 0 && data.constructor === Object)) {
+  //     // Create the template for the data to be stored in:
+  //     // Dynamically create labels denoting every month in my dataset:
+
+  //   const lineData = {
+  //   labels: months,
+  //   datasets: [
+  //     {
+  //       incidentId: 'all',
+  //       label: 'All',
+  //       data: [],
+  //       borderColor: '#c0ba17',
+  //       backgroundColor: 'rgba(0,0,0,0)',
+  //     },
+  //   ],
+  // }
+
+  //     months.forEach(month => {
+  //       inCategories.datasets[0].data.push(data[month]);
+  //     });
+  //   }
+  // }, [data]);
 
   return (
     <div
@@ -47,7 +60,21 @@ const LineGraph = ({ monthlyData, today }) => {
         maxWidth: '1550px',
       }}
     >
-      <Line data={data} options={options} />
+      <Line
+        data={{
+          labels: labels,
+          datasets: [
+            {
+              incidentId: incidentID,
+              label: label,
+              data: lineData,
+              borderColor: '#c0ba17',
+              backgroundColor: 'rgba(0,0,0,0)',
+            },
+          ],
+        }}
+        options={options}
+      />
     </div>
   );
 };
