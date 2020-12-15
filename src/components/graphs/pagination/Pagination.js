@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import './Pagination.css';
 
 const Button = ({ name, setGraph }) => {
-  return <button onClick={() => setGraph(name)}>{name}</button>;
+  return (
+    <button onClick={() => setGraph(name)} className="pagination-btn">
+      {name}
+    </button>
+  );
 };
 
 const Pagination = ({ setGraph }) => {

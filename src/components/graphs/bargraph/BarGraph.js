@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 
-import {
-  stateData,
-  createNumberOfIncidents,
-  createDataSet,
-} from '../assets/bargraphAssets';
+import { createDataSet } from '../assets/bargraphAssets';
 
 const def = {
   labels: ['Loading Data'],

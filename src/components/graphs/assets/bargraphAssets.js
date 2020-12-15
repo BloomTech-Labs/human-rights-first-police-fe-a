@@ -257,7 +257,6 @@ stateData['Unknown'] = {
 };
 
 const createNumberOfIncidents = (data, stateData) => {
-  console.log('I am running');
   data.forEach(incident => {
     if (incident.state in stateData) {
       stateData[incident.state]['count'] += 1;
@@ -265,12 +264,10 @@ const createNumberOfIncidents = (data, stateData) => {
       stateData['Unknown']['count'] += 1;
     }
   });
-  console.log(stateData);
   return stateData;
 };
 
 const createDataSet = data => {
-  console.log(data);
   const result = {
     labels: Object.keys(data).map(key => key),
     datasets: [

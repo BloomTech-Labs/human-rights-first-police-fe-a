@@ -45,7 +45,7 @@ const GraphContainer = () => {
   const incidents = query.data && !query.isError ? query.data : [];
 
   // State Management
-  const [usState, setUsState] = useState('New York');
+  const [usState, setUsState] = useState(null);
   const [today] = useState(new Date().getTime());
   const [elevenMonths] = useState(28927182167); // Milliseconds
   const [graph, setGraph] = useState('Line');
@@ -92,7 +92,7 @@ const GraphContainer = () => {
   useEffect(() => {
     const data = [...filtered];
     const barCounts = { ...stateData };
-    console.log(data);
+
     data.forEach(incident => {
       if (incident.state in barCounts) {
         barCounts[incident.state]['count'] += 1;
