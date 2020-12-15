@@ -17,6 +17,8 @@
     "craco": "0.0.3",
     "craco-less": "^1.17.0",
     "dotenv": "^8.2.0",
+    "framer-motion": "^2.9.5",
+    "luxon": "^1.25.0",
     "luxon": "^1.25.0",
     "nanoid": "^3.1.20",
     "plotly.js": "^1.54.6",
