@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+
 import ReactMapGL from 'react-map-gl';
 // components
 import { ContextView, ContextIncidents } from '../Store';
@@ -14,6 +15,7 @@ function MapContainer() {
   // state variable for map viewport state
   const [viewport, setViewport] = useContext(ContextView);
   const [setIncidentsOfInterest] = useContext(ContextIncidents);
+
   const [settings, setsettings] = useState({
     scrollZoom: false,
   });
@@ -35,6 +37,7 @@ function MapContainer() {
     <ReactMapGL
       {...viewport}
       {...settings}
+
       maxZoom={maxZoom}
       minZoom={2.75}
       width={'fit'}

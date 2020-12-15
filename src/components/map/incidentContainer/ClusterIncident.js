@@ -1,79 +1,98 @@
-import React, {useContext} from 'react'
-import {ContextLat, ContextLong, ContextView} from '../../Store'
-import questionMark from '../iconImg/question-mark.png'
+import React, { useContext } from 'react';
+import { ContextLat, ContextLong, ContextView } from '../../Store';
+import questionMark from '../iconImg/question-mark.png';
 import { Input, Collapse, Divider, List, Tooltip } from 'antd';
 import { FlyToInterpolator } from 'react-map-gl';
 
-const iconPicker =(incident) =>{
+const iconPicker = incident => {
+  // return console.log(incident)
+  // if(incident?.empty_hand_hard)
+  //   {return punch; }
 
-    // return console.log(incident)
-        // if(incident?.empty_hand_hard)
-        //   {return punch; }
-  
-        //  if(incident?.empty_hard_soft)
-        //   {return wrestling;}
-  
-        // if(incident?.less_lethal_methods)
-        //   {return warning;}
-  
-        // if(incident?.lethal_force)
-        //   {return danger;}
-  
-         if(incident?.uncategorized)
-          {return questionMark;}
-        
-        //  if(incident?.verbalization)
-        //   {return siren;}
-    
-        }; 
+  //  if(incident?.empty_hard_soft)
+  //   {return wrestling;}
 
-const ClusterIncident = ({incidents, i}) => {
-    const [lat, setLat] = useContext(ContextLat);
-    const [long, setLong] = useContext(ContextLat);
-    const [viewport, setViewport] = useContext(ContextView);
+  // if(incident?.less_lethal_methods)
+  //   {return warning;}
 
-    const FlyTo = () => {
-        const flyViewport = {
-          latitude: lat,
-          longitude: long,
-          zoom: 14,
-          transitionDuration: 5000,
-          transitionInterpolator: new FlyToInterpolator(),
-        };
-        setViewport(flyViewport);
-      };
+  // if(incident?.lethal_force)
+  //   {return danger;}
 
-    const setCoord = (lat, long) => {
-        setLat(lat);
-        setLong(long);
-      };
+  if (incident?.uncategorized) {
+    return questionMark;
+  }
 
-    return (
-        <div
-                          className="incident-card"
-                          key={i}
-                          onMouseEnter={() => setCoord(incidents.properties.incident.lat, incidents.properties.incident.long)}
-                          onClick={() => {
-                            FlyTo();
-                          }}
-                        >
-                          <img className='icon-img' src={iconPicker(incidents.properties.incident) ? iconPicker(incidents.properties.incident) : questionMark} alt='?' />
-                          <h4 className='incident-location'>{incidents.properties.incident.city}, {incidents.properties.incident.state} </h4>
-                          <h2 className='incident-header'>{incidents.properties.incident.title}</h2>
+  //  if(incident?.verbalization)
+  //   {return siren;}
+};
 
-                          <h3 className='incident-discription'>{incidents.properties.incident.desc}</h3>
-                          <h2 className='incident-category' >Category:</h2>
-                          {incidents.properties.incident?.categories.map((category, i) => {
-                            return (
-                              <h3 className='incident-categories'
-                                style={{ color: 'white', fontWeight: 'lighter' }}>
-                                - {category.charAt(0).toUpperCase() + category.slice(1)}
-                              </h3>
-                            )
-                          })}
-                          <Divider style={{ margin: '0px' }} />
-                        </div>
-    )
-}
+const ClusterIncident = ({ incidents, i }) => {
+  const [lat, setLat] = useContext(ContextLat);
+  const [long, setLong] = useContext(ContextLat);
+  const [viewport, setViewport] = useContext(ContextView);
 
-export default ClusterIncident
+  const FlyTo = () => {
+    const flyViewport = {
+      latitude: lat,
+      longitude: long,
+      zoom: 14,
+      transitionDuration: 5000,
+      transitionInterpolator: new FlyToInterpolator(),
+    };
+    setViewport(flyViewport);
+  };
+
+  const setCoord = (lat, long) => {
+    setLat(lat);
+    setLong(long);
+  };
+
+  return (
+    <div
+      className="incident-card"
+      key={i}
+      onMouseEnter={() =>
+        setCoord(
+          incidents.properties.incident.lat,
+          incidents.properties.incident.long
+        )
+      }
+      onClick={() => {
+        FlyTo();
+      }}
+    >
+      <img
+        className="icon-img"
+        src={
+          iconPicker(incidents.properties.incident)
+            ? iconPicker(incidents.properties.incident)
+            : questionMark
+        }
+        alt="?"
+      />
+      <h4 className="incident-location">
+        {incidents.properties.incident.city},{' '}
+        {incidents.properties.incident.state}{' '}
+      </h4>
+      <h2 className="incident-header">{incidents.properties.incident.title}</h2>
+
+      <h3 className="incident-discription">
+        {incidents.properties.incident.desc}
+      </h3>
+      <h2 className="incident-category">Category:</h2>
+      {incidents.properties.incident?.categories.map((category, i) => {
+        return (
+          <h3
+            className="incident-categories"
+            style={{ color: 'white', fontWeight: 'lighter' }}
+          >
+            - {category.charAt(0).toUpperCase() + category.slice(1)}
+          </h3>
+        );
+      })}
+      <Divider style={{ margin: '0px' }} />
+    </div>
+  );
+};
+
+export default ClusterIncident;
