@@ -24,8 +24,9 @@ function App() {
     <>
       <div>
         <Switch>
-          <Route exact path="/">
-            <div>HELLO!</div>
+          <Route path="/">
+            <Main />
+            <RecentTimeline />
           </Route>
 
           <Route path="/graph">
