@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 
 import Key from './Key';
-
-// Colors
-// import randomColor from 'randomcolor'; // https://github.com/davidmerfield/randomColor
 import colorShader from './colorShader';
 
 const incrementor = (incident, type, types) => {
@@ -116,7 +113,6 @@ const PieGraph = ({ data, usState }) => {
       setTypes(getPercentages(types, data));
       setGraphData(createDataPoints(types));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [types]);
 
   return (

@@ -27,31 +27,6 @@ const LineGraph = ({ data, months }) => {
     }
   }, [data, labels]);
 
-  // useEffect(() => {
-  //   // Test to see if data is empty, if it's not, then do stuff
-  //   if (!(Object.keys(data).length === 0 && data.constructor === Object)) {
-  //     // Create the template for the data to be stored in:
-  //     // Dynamically create labels denoting every month in my dataset:
-
-  //   const lineData = {
-  //   labels: months,
-  //   datasets: [
-  //     {
-  //       incidentId: 'all',
-  //       label: 'All',
-  //       data: [],
-  //       borderColor: '#c0ba17',
-  //       backgroundColor: 'rgba(0,0,0,0)',
-  //     },
-  //   ],
-  // }
-
-  //     months.forEach(month => {
-  //       inCategories.datasets[0].data.push(data[month]);
-  //     });
-  //   }
-  // }, [data]);
-
   return (
     <div
       style={{
