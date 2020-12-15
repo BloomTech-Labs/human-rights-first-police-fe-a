@@ -8,10 +8,6 @@ const states = [
     abbreviation: 'AK',
   },
   {
-    name: 'American Samoa',
-    abbreviation: 'AS',
-  },
-  {
     name: 'Arizona',
     abbreviation: 'AZ',
   },
@@ -36,12 +32,8 @@ const states = [
     abbreviation: 'DE',
   },
   {
-    name: 'District Of Columbia',
+    name: 'Washington DC',
     abbreviation: 'DC',
-  },
-  {
-    name: 'Federated States Of Micronesia',
-    abbreviation: 'FM',
   },
   {
     name: 'Florida',
@@ -50,10 +42,6 @@ const states = [
   {
     name: 'Georgia',
     abbreviation: 'GA',
-  },
-  {
-    name: 'Guam',
-    abbreviation: 'GU',
   },
   {
     name: 'Hawaii',
@@ -90,10 +78,6 @@ const states = [
   {
     name: 'Maine',
     abbreviation: 'ME',
-  },
-  {
-    name: 'Marshall Islands',
-    abbreviation: 'MH',
   },
   {
     name: 'Maryland',
@@ -156,10 +140,6 @@ const states = [
     abbreviation: 'ND',
   },
   {
-    name: 'Northern Mariana Islands',
-    abbreviation: 'MP',
-  },
-  {
     name: 'Ohio',
     abbreviation: 'OH',
   },
@@ -172,16 +152,8 @@ const states = [
     abbreviation: 'OR',
   },
   {
-    name: 'Palau',
-    abbreviation: 'PW',
-  },
-  {
     name: 'Pennsylvania',
     abbreviation: 'PA',
-  },
-  {
-    name: 'Puerto Rico',
-    abbreviation: 'PR',
   },
   {
     name: 'Rhode Island',
@@ -210,10 +182,6 @@ const states = [
   {
     name: 'Vermont',
     abbreviation: 'VT',
-  },
-  {
-    name: 'Virgin Islands',
-    abbreviation: 'VI',
   },
   {
     name: 'Virginia',
@@ -245,11 +213,6 @@ for (let i = 0; i < states.length - 1; i++) {
     count: 0,
   };
 }
-
-stateData['Washington DC'] = {
-  abbreviation: 'DC',
-  count: 0,
-};
 
 stateData['Unknown'] = {
   abbreviation: '???',
