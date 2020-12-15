@@ -61,7 +61,7 @@ const getPercentages = (types, policeData) => {
 };
 
 const createDataPoints = data => {
-  let d = {
+  let pieData = {
     labels: Object.keys(data).map(key => `${key}`),
     datasets: [
       {
@@ -82,13 +82,13 @@ const createDataPoints = data => {
     ],
   };
 
-  for (let i = 0; i < d.datasets[0].data.length; i++) {
-    d.datasets[0].backgroundColor.forEach(color =>
-      d.datasets[0].borderColor.push(colorShader(color, -1))
+  for (let i = 0; i < pieData.datasets[0].data.length; i++) {
+    pieData.datasets[0].backgroundColor.forEach(color =>
+      pieData.datasets[0].borderColor.push(colorShader(color, -1))
     );
   }
 
-  return d;
+  return pieData;
 };
 
 const PieGraph = ({ data, usState }) => {
