@@ -11,7 +11,7 @@ import {
 } from '../Store';
 import { Input, Collapse, Divider, List, Tooltip, Row, Col } from 'antd';
 import { DateTime } from 'luxon';
-import LastIncident from './incidentContainer/LastIncident'
+import LastIncident from './incidentContainer/LastIncident';
 
 import { SearchOutlined } from '@ant-design/icons';
 import './MapSearch.css';
@@ -56,7 +56,6 @@ const MapSearch = () => {
   const [incidentsOfInterest, setIncidentsOfInterest] = useContext(
     ContextIncidents
   );
-  const onSearch = value => console.log(value);
 
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
@@ -90,7 +89,7 @@ const MapSearch = () => {
   const dataList = newData();
   const lastIncident = dataList.shift();
   const findthem = dataList.filter(x => x.empty_hand_soft === true);
-  
+
   //List everything to exclude with filtering
   const exclude = ['incident_id'];
 
@@ -141,7 +140,6 @@ const MapSearch = () => {
   };
 
   const iconPicker = incident => {
-    // return console.log(incident)
     if (incident?.empty_hand_hard) {
       return punch;
     }
@@ -158,8 +156,6 @@ const MapSearch = () => {
       return danger;
     }
 
-    
-
     if (incident?.empty_hand_soft) {
       return wrestling;
     }
@@ -169,7 +165,6 @@ const MapSearch = () => {
     }
   };
   const toolTipPicker = incident => {
-    // return console.log(incident)
     if (incident?.empty_hand_hard) {
       return 'Officers use bodily force to gain control of a situation';
     } else if (incident?.empty_hard_soft) {
@@ -184,7 +179,6 @@ const MapSearch = () => {
       return 'Force is not-physical';
     }
   };
-console.log(lastIncident)
   return (
     <div className="map-menu">
       <Input
@@ -218,7 +212,6 @@ console.log(lastIncident)
             <Divider style={{ margin: '0px' }} />
             <List>
               {!incidentsOfInterest && searchText === '' ? (
-                    
                 // <LastIncident  lastIncident={lastIncident} />
 
                 <div
@@ -235,8 +228,8 @@ console.log(lastIncident)
                       className="icon-img"
                       src={
                         iconPicker(lastIncident)
-                          // ? iconPicker(lastIncident)
-                          // : questionMark
+                        // ? iconPicker(lastIncident)
+                        // : questionMark
                       }
                       alt="?"
                     />
@@ -261,27 +254,24 @@ console.log(lastIncident)
                         className="incident-container"
                         style={{ display: 'flex', flexDirection: 'row' }}
                       >
-                        <Row   >
-                        <Col
-                        span={6}
-                          className="incident-categories"
-                          style={{ color: 'white', fontWeight: 'lighter' }}
-                        >
-                          
-                          -{' '}
-                          {category.charAt(0).toUpperCase() + category.slice(1)}
-                        </Col>
+                        <Row>
+                          <Col
+                            span={6}
+                            className="incident-categories"
+                            style={{ color: 'white', fontWeight: 'lighter' }}
+                          >
+                            -{' '}
+                            {category.charAt(0).toUpperCase() +
+                              category.slice(1)}
+                          </Col>
                         </Row>
-
                       </div>
                     );
                   })}
                 </div>
-
               ) : !incidentsOfInterest ? (
                 filterDataList.map((data, index) => {
                   return (
-
                     // <FilteredIncident data={data} index={index} />
 
                     <div
@@ -294,9 +284,10 @@ console.log(lastIncident)
                     >
                       <img
                         className="icon-img"
-                        src={iconPicker(data)
+                        src={
+                          iconPicker(data)
                           //  ? iconPicker(data) : questionMark
-                          }
+                        }
                         alt="?"
                       />
                       <h4 className="incident-location">
@@ -320,14 +311,12 @@ console.log(lastIncident)
                       })}
                       <Divider style={{ margin: '0px' }} />
                     </div>
-
-
                   );
                 })
               ) : (
                 incidentsOfInterest.map((incidents, i) => {
                   return (
-                        // <ClusterIncident incidents={incidents} i={i} />
+                    // <ClusterIncident incidents={incidents} i={i} />
 
                     <div
                       className="incident-card"
@@ -346,8 +335,8 @@ console.log(lastIncident)
                         className="icon-img"
                         src={
                           iconPicker(incidents.properties.incident)
-                            // ? iconPicker(incidents.properties.incident)
-                            // : questionMark
+                          // ? iconPicker(incidents.properties.incident)
+                          // : questionMark
                         }
                         alt="?"
                       />
@@ -379,8 +368,6 @@ console.log(lastIncident)
                       )}
                       <Divider style={{ margin: '0px' }} />
                     </div>
-
-
                   );
                 })
               )}

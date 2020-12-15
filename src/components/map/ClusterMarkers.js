@@ -6,7 +6,7 @@ import useSupercluster from 'use-supercluster';
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 // styles
 import './ClusterMarker.css';
-import {motion, useMotionValue, useTransform} from 'framer-motion'
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 // console.log(useIncidents) ;
 
 const ClusterMarkers = ({ mapRef }) => {
@@ -87,8 +87,6 @@ const ClusterMarkers = ({ mapRef }) => {
           point_count: pointCount,
         } = cluster.properties;
 
-        
-
         return (
           <Marker
             key={cluster.id}
@@ -97,18 +95,19 @@ const ClusterMarkers = ({ mapRef }) => {
             offsetLeft={-(10 + (pointCount / points.length) * 600) / 2}
             offsetTop={-(10 + (pointCount / points.length) * 600) / 2}
           >
-            <motion.div className='cluster-marker'
-            animate={{
-              scale:[1, 1.2, 1.2, 1, 1],
-              border:['solid','none','solid','none', 'solid']
-            }}
-            transition={{
-              duration: 2,
-              ease: "easeInOut",
-              times: [0, 0.2, 0.5, 0.8, 1],
-              loop: Infinity,
-              repeatDelay: 1
-            }}
+            <motion.div
+              className="cluster-marker"
+              animate={{
+                scale: [1, 1.2, 1.2, 1, 1],
+                border: ['solid', 'none', 'solid', 'none', 'solid'],
+              }}
+              transition={{
+                duration: 2,
+                ease: 'easeInOut',
+                times: [0, 0.2, 0.5, 0.8, 1],
+                loop: Infinity,
+                repeatDelay: 1,
+              }}
               style={{
                 width: `${10 + (pointCount / points.length) * 600}px`,
                 height: `${10 + (pointCount / points.length) * 600}px`,

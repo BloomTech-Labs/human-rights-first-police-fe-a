@@ -50,10 +50,11 @@ const Store = ({ children }) => {
           <ContextLong.Provider value={[long, setLong]}>
             <ContextLat.Provider value={[lat, setLat]}>
               <ContextState.Provider value={[state, setState]}>
-                  <ContextIncidents.Provider value={[incidentsOfInterest, setIncidentsOfInterest]}>
-
-                {children}
-                  </ContextIncidents.Provider>
+                <ContextIncidents.Provider
+                  value={[incidentsOfInterest, setIncidentsOfInterest]}
+                >
+                  {children}
+                </ContextIncidents.Provider>
               </ContextState.Provider>
             </ContextLat.Provider>
           </ContextLong.Provider>

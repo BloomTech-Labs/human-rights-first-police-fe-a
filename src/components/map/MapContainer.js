@@ -1,30 +1,19 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import ReactMapGL from 'react-map-gl';
 // components
-import {
- 
-  ContextView,
- 
-  ContextIncidents,
-} from '../Store'; 
+import { ContextView, ContextIncidents } from '../Store';
 import ClusterMarkers from './ClusterMarkers';
 
-
-import MapSearch from './MapSearch'
-import './MapContainer.css'
-
-
+import MapSearch from './MapSearch';
+import './MapContainer.css';
 
 function MapContainer() {
- 
   const minZoom = 2.75;
   const maxZoom = 17;
 
   // state variable for map viewport state
   const [viewport, setViewport] = useContext(ContextView);
-  const [ setIncidentsOfInterest] = useContext(ContextIncidents)
-
- 
+  const [setIncidentsOfInterest] = useContext(ContextIncidents);
 
   // mapRef is used to get current bounds of the map
   const mapRef = React.useRef();
@@ -42,7 +31,6 @@ function MapContainer() {
   return (
     <ReactMapGL
       {...viewport}
-      
       maxZoom={maxZoom}
       minZoom={2.75}
       width={'fit'}
@@ -54,8 +42,8 @@ function MapContainer() {
       }}
       ref={mapRef}
     >
-      <div className='map-menu-background'>
-        <MapSearch/>
+      <div className="map-menu-background">
+        <MapSearch />
       </div>
       <ClusterMarkers
         mapRef={mapRef}
@@ -65,7 +53,6 @@ function MapContainer() {
         setIncidentsOfInterest={setIncidentsOfInterest}
       />
     </ReactMapGL>
-    
   );
 }
 

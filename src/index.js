@@ -8,6 +8,8 @@ import './index.css';
 import 'antd/dist/antd.less';
 import RecentTimeline from './components/timeline/RecentTimeline';
 
+import GraphContainer from './components/graphs/GraphContainer';
+
 ReactDOM.render(
   <Router>
     <React.StrictMode>
@@ -22,9 +24,13 @@ function App() {
     <>
       <div>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Main />
             <RecentTimeline />
+          </Route>
+
+          <Route path="/graph">
+            <GraphContainer />
           </Route>
         </Switch>
       </div>
