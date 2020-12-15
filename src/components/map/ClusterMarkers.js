@@ -1,10 +1,5 @@
-import React, { useContext} from 'react';
-import {
-  
-  ContextView,
- 
-  ContextIncidents,
-} from '../Store'; 
+import React, { useContext } from 'react';
+import { ContextView, ContextIncidents } from '../Store';
 import { Marker, FlyToInterpolator } from 'react-map-gl';
 import useSupercluster from 'use-supercluster';
 // hooks
@@ -14,17 +9,15 @@ import './ClusterMarker.css';
 import {motion, useMotionValue, useTransform} from 'framer-motion'
 // console.log(useIncidents) ;
 
-const  ClusterMarkers =({mapRef})=> {
+const ClusterMarkers = ({ mapRef }) => {
   const [viewport, setViewport] = useContext(ContextView);
-  const [ incidentsofInterest, setIncidentsOfInterest] = useContext(ContextIncidents)
+  const [incidentsofInterest, setIncidentsOfInterest] = useContext(
+    ContextIncidents
+  );
 
   const maxZoom = 17;
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
-
-  const x = useMotionValue(0);
-  const color = useTransform(x, [0, 100], ["#32e5aa", "#f322ee"]);
-
 
   // save data to an incidents variable
   // --> make sure incident data is present & no errors fetching that data
@@ -41,9 +34,8 @@ const  ClusterMarkers =({mapRef})=> {
   // --> properties: {} -- similar to state, allows us to access underlying data of cluster rendered on screen
   // --> geometry: {} -- lat/long used to create 'clusters'
   //     --> !!! MUST BE [LONG, LAT] -- order matters !!!
-  
+
   const points = incidentsWithLatLong.map(incident => {
-    
     return {
       type: 'Feature',
       properties: {
@@ -58,8 +50,7 @@ const  ClusterMarkers =({mapRef})=> {
     };
   });
 
-   // mapRef is used to get current bounds of the map
-  
+  // mapRef is used to get current bounds of the map
 
   // tried passing bounds into cluster markers but not all clusters were showing up.
   // --> this is redundant (same code is in Map.js)
@@ -86,7 +77,7 @@ const  ClusterMarkers =({mapRef})=> {
       maxZoom: 20,
     },
   });
-  
+
   return (
     <div>
       {clusters.map(cluster => {
@@ -151,6 +142,6 @@ const  ClusterMarkers =({mapRef})=> {
       })}
     </div>
   );
-}
+};
 
 export default ClusterMarkers;
