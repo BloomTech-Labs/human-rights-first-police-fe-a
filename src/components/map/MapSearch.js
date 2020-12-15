@@ -179,6 +179,7 @@ const MapSearch = () => {
       return 'Force is not-physical';
     }
   };
+
   return (
     <div className="map-menu">
       <Input

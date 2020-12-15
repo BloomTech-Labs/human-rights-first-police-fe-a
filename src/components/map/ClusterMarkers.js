@@ -111,6 +111,14 @@ const ClusterMarkers = ({ mapRef }) => {
               style={{
                 width: `${10 + (pointCount / points.length) * 600}px`,
                 height: `${10 + (pointCount / points.length) * 600}px`,
+                color: 'white',
+                background: '#e63946',
+                borderRadius: '50%',
+                padding: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                opacity: '55%',
               }}
               onClick={() => {
                 const clusterId = cluster.id;
