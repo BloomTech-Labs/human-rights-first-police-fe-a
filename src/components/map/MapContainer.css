@@ -1,5 +1,6 @@
 .map-menu-background{
-    margin-left: 70%;
-    background-color:rgb(52,51,50);
-    margin-right: 20px;
+    position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
 }

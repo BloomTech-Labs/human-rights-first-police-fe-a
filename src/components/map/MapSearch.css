@@ -1,42 +1,83 @@
-.map-menu{
-    
-    margin-top:20px;
-    
-    border-style: solid;
-    border-color: rgb(52,51,50);
-    padding-left: 2%;
+.map-menu {
+  margin-top: 20px;
+  background-color: rgb(36, 35, 33);
 
+  border-style: solid;
+  border-color: rgb(36, 35, 33);
+  padding-left: 2%;
+  width: 400px;
 }
-.map-search{
-    background-color:rgb(52,51,50);
-   border: none;
-   font-size: 1.2rem;
-   font-weight: 300;
-    
-    
+span.map-search {
+  background-color: rgb(36, 35, 33);
+  border-color: rgb(36, 35, 33);
+  font-size: 1.2rem;
+  font-weight: 00;
+  color: blue;
 }
-.ant-input{
-    background-color: rgb(52,51,50);
-    color:white
-    
-}
-.ant-input-affix-wrapper{
-    padding: 0px
-}
-.ant-collapse{
-    background-color: rgb(52,51,50);
-    border: none;
-    
-    
-    
-}
-.ant-collapse-content-box{
-    background-color: rgb(52,51,50);
-    
+input.ant-input {
+  background-color: rgb(36, 35, 33);
+  color: white;
+  font-size: 25px;
+  margin-left: 3px;
 }
 
-.ant-collapse > .ant-collapse-item > .ant-collapse-header{
-    color:white;
-    padding: 10px 0px 0px 0px;
-    font-size: 1.2rem ;
+.icon-img {
+  width: 50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  z-index: 1;
+}
+
+.ant-collapse {
+  background-color: rgb(36, 35, 33);
+  border: none;
+}
+.ant-collapse-content-box {
+  background-color: rgb(36, 35, 33);
+  overflow: auto;
+}
+.incident-content {
+  height: 40vh;
+}
+div.ant-collapse-header {
+  padding: 0;
+  text-align: center;
+  color: white;
+  padding-bottom: 2%;
+}
+
+div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  color: white;
+  padding: 5px 0px 5px 0px;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-left: 15px;
+  font-weight: 500;
+}
+
+.incident-header {
+  color: white;
+}
+.incident-location {
+  color: white;
+  font-weight: lighter;
+}
+.incident-date {
+  color: white;
+  font-weight: lighter;
+}
+
+.incident-discription {
+  color: white;
+}
+.incident-category {
+  color: white;
+}
+.incident-categories {
+  color: white;
+}
+
+.incident-container{
+    display: flex;
+    flex-direction: row;
 }
