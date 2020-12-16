@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Timeline, TimelineItem } from 'vertical-timeline-component-for-react';
 import { DateTime } from 'luxon';
 import { nanoid } from 'nanoid';
@@ -8,6 +8,20 @@ import './RecentTimeline.css';
 
 export function RecentTimeline() {
   const timelineQuery = useTimeline();
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   const urlDomain = url => {
     let re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/\n?]+)/gim;
@@ -30,7 +44,9 @@ export function RecentTimeline() {
               style={{ color: '#BC541E' }}
               dateInnerStyle={{ color: 'white', backgroundColor: '#003767' }}
             >
-              <h3>{details.title}</h3>
+              <h3 onClick={showModal} visible={isModalVisible} onOk={handleOk}>
+                {details.title}
+              </h3>
               <h4>
                 {details.city}, {details.state}
               </h4>
