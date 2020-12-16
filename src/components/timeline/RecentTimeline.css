@@ -27,8 +27,7 @@ h3 {
 }
 
 .sourceText {
-  text-align: center;
-  padding: 5px;
-  margin-top: 5px;
-  line-height: 2.1;
+  line-height: 2.7;
+  padding-right: 5px;
+  margin-top: 10px;
 }

@@ -1,52 +1,23 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { ContextView, ContextIncidents } from '../Store';
 import { Marker, FlyToInterpolator } from 'react-map-gl';
 import useSupercluster from 'use-supercluster';
 // hooks
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 // styles
 import './ClusterMarker.css';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 // console.log(useIncidents) ;
 
-function ClusterMarkers({
-  mapRef,
-  viewport,
-  setViewport,
-  setIncidentsOfInterest,
-}) {
+const ClusterMarkers = ({ mapRef }) => {
+  const [viewport, setViewport] = useContext(ContextView);
+  const [incidentsofInterest, setIncidentsOfInterest] = useContext(
+    ContextIncidents
+  );
+
   const maxZoom = 17;
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
-
-  const theData = incidentsQuery.data
- 
-
-  // console.log('data1', theData.map( x => x.lethal_force))
-
-  // const newData = data => {
-  //   const newCurrentData = data.map(obj =>
-  //     Object.keys(obj)
-  //       .filter(x => obj[x] !== null)
-  //       .reduce((o, e) => {
-  //         o[e] = obj[e];
-  //         return o;
-  //       }, {})
-  //   );
-  //   const noUnderfined = newCurrentData.map(obj =>
-  //     Object.keys(obj)
-  //       .filter(x => obj[x] !== undefined)
-  //       .reduce((o, e) => {
-  //         o[e] = obj[e];
-  //         return o;
-  //       }, {})
-  //   );
-  //   return noUnderfined;
-  // };
-
-  // console.log('data2', newData(theData))
-
-
-
-
 
   // save data to an incidents variable
   // --> make sure incident data is present & no errors fetching that data
@@ -58,31 +29,14 @@ function ClusterMarkers({
   const incidentsWithLatLong = incidents.filter(
     incident => incident.lat !== 0 && incident.long !== 0
   );
-console.log(incidents)
-  //Lethal force
-  const force = incidents.filter(
-    incident => incident.lethal_force === true
-  );
-  // console.log('what force', force)
   // get geoJSON Feature 'points'
   // --> will be passed to useSupercluster()
   // --> properties: {} -- similar to state, allows us to access underlying data of cluster rendered on screen
   // --> geometry: {} -- lat/long used to create 'clusters'
   //     --> !!! MUST BE [LONG, LAT] -- order matters !!!
-  let list =[]
-let set1 = new Set()
-console.log(incidentsWithLatLong)
+
   const points = incidentsWithLatLong.map(incident => {
-    
-    let count = list.push(incident.categories)
-    let cleanArray =[...new Set(list.flat())] 
-    
-    // set1.add(incident.categories)
-    // console.log(set1.flat())
-    // console.log(incident.categories)
-    // console.log(cleanArray)
     return {
-      
       type: 'Feature',
       properties: {
         incident: incident,
@@ -95,6 +49,8 @@ console.log(incidentsWithLatLong)
       },
     };
   });
+
+  // mapRef is used to get current bounds of the map
 
   // tried passing bounds into cluster markers but not all clusters were showing up.
   // --> this is redundant (same code is in Map.js)
@@ -121,6 +77,7 @@ console.log(incidentsWithLatLong)
       maxZoom: 20,
     },
   });
+
   return (
     <div>
       {clusters.map(cluster => {
@@ -138,10 +95,30 @@ console.log(incidentsWithLatLong)
             offsetLeft={-(10 + (pointCount / points.length) * 600) / 2}
             offsetTop={-(10 + (pointCount / points.length) * 600) / 2}
           >
-            <div className='cluster-marker'
+            <motion.div
+              className="cluster-marker"
+              animate={{
+                scale: [1, 1.2, 1.2, 1, 1],
+                border: ['solid', 'none', 'solid', 'none', 'solid'],
+              }}
+              transition={{
+                duration: 2,
+                ease: 'easeInOut',
+                times: [0, 0.2, 0.5, 0.8, 1],
+                loop: Infinity,
+                repeatDelay: 1,
+              }}
               style={{
                 width: `${10 + (pointCount / points.length) * 600}px`,
                 height: `${10 + (pointCount / points.length) * 600}px`,
+                color: 'white',
+                background: '#e63946',
+                borderRadius: '50%',
+                padding: '10px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                opacity: '55%',
               }}
               onClick={() => {
                 const clusterId = cluster.id;
@@ -166,12 +143,12 @@ console.log(incidentsWithLatLong)
               }}
             >
               {pointCount}
-            </div>
+            </motion.div>
           </Marker>
         );
       })}
     </div>
   );
-}
+};
 
 export default ClusterMarkers;

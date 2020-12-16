@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import { Modal } from 'antd';
 
-export default function ModalTimeline(description) {
-  return <div>{description}</div>;
+export default function ModalTimeline(details) {
+  return <div>{details.desc}</div>;
 }

@@ -3,26 +3,13 @@ import { Timeline, TimelineItem } from 'vertical-timeline-component-for-react';
 import { DateTime } from 'luxon';
 import { nanoid } from 'nanoid';
 import { useTimeline } from '../../state/query_hooks/useTimeline';
-import ModalTimeline from './ModalTimeline';
+import ModalTimeLine from './ModalTimeline';
 import './RecentTimeline.css';
 
 export function RecentTimeline() {
   const timelineQuery = useTimeline();
 
-  const [isModalVisible, setIsModalVisible] = useState(false);
-
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
-
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
+  // parses url to get website name
   const urlDomain = url => {
     let re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/\n?]+)/gim;
     let newUrl = url.split(re)[1].replace('.com', '');
@@ -44,10 +31,8 @@ export function RecentTimeline() {
               style={{ color: '#BC541E' }}
               dateInnerStyle={{ color: 'white', backgroundColor: '#003767' }}
             >
-              <h3 onClick={showModal} visible={isModalVisible} onOk={handleOk}>
-                {details.title}
-              </h3>
-              <h4>
+              <h3>{details.title}</h3>
+              <h4 className="cityState">
                 {details.city}, {details.state}
               </h4>
               <div className="categories">
