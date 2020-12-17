@@ -8,9 +8,6 @@ h1 {
   text-align: center;
 }
 
-h3:hover {
-  color:#003767;
-}
 .categories,
 .timeline-links {
   display: flex;
