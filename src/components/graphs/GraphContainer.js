@@ -18,14 +18,26 @@ import Pagination from './pagination/Pagination';
 // Assets
 import { stateData } from './assets/bargraphAssets';
 
-const filterData = (data, today, elevenMonths, state) => {
+const filterData = (
+  data,
+  today,
+  elevenMonths,
+  state,
+  dateIsMilli,
+  setDateIsMilli
+) => {
   // Only grab events that have occurred in the last 12 months and filter out any that do not have dates:
   const start = today - elevenMonths;
+  let dateFilter;
 
-  const dateFilter = data.map(incident => {
-    incident.date = Date.parse(incident.date);
-    return incident;
-  });
+  !dateIsMilli
+    ? (dateFilter = data.map(incident => {
+        incident.date = DateTime.fromISO(incident.date).toMillis();
+        return incident;
+      }))
+    : (dateFilter = data);
+
+  setDateIsMilli(true);
 
   let oneYearData = dateFilter.filter(
     incident => incident.date >= start && incident.date <= today
@@ -43,9 +55,17 @@ const filterData = (data, today, elevenMonths, state) => {
 const GraphContainer = () => {
   const query = useIncidents();
   const incidents = query.data && !query.isError ? query.data : [];
+  const [dateIsMilli, setDateIsMilli] = useState(false);
+
+  // Check if is loading:
+  useEffect(() => {
+    if (query.isLoading && !query.isSuccess) {
+      setDateIsMilli(false);
+    }
+  }, [query.isLoading]);
 
   // State Management
-  const [usState, setUsState] = useState(null);
+  const [usState, setUsState] = useState();
   const [today] = useState(new Date().getTime());
   const [elevenMonths] = useState(28927182167); // Milliseconds
   const [graph, setGraph] = useState('Line');
@@ -56,7 +76,18 @@ const GraphContainer = () => {
 
   useEffect(() => {
     // Incident Data
-    setFiltered(filterData(incidents, today, elevenMonths, usState));
+    if (!query.isLoading) {
+      setFiltered(
+        filterData(
+          incidents,
+          today,
+          elevenMonths,
+          usState,
+          dateIsMilli,
+          setDateIsMilli
+        )
+      );
+    }
   }, [query.isLoading, usState]);
 
   // Create keys for months object dynamically
@@ -73,7 +104,7 @@ const GraphContainer = () => {
     }
 
     setmonths(months);
-  }, [elevenMonths, today]);
+  }, [elevenMonths, today, usState]);
 
   useEffect(() => {
     const counts = {};
@@ -86,7 +117,7 @@ const GraphContainer = () => {
       }
     });
     setCounts(counts);
-  }, [filtered, months]);
+  }, [filtered, months, usState]);
 
   // Bar Graph Data manipulation:
   useEffect(() => {
@@ -102,26 +133,26 @@ const GraphContainer = () => {
     });
 
     setBarCounts(barCounts);
-  }, [filtered]);
+  }, [filtered, usState]);
 
   if (graph === 'Line') {
     return (
       <section className="graph-container">
-        <Pagination setGraph={setGraph} />
+        <Pagination setGraph={setGraph} setUsState={setUsState} />
         <LineGraph data={counts} months={months} />
       </section>
     );
   } else if (graph === 'Bar') {
     return (
       <section className="graph-container">
-        <Pagination setGraph={setGraph} />
+        <Pagination setGraph={setGraph} setUsState={setUsState} />
         <BarGraph count={barCounts} />
       </section>
     );
   } else if (graph === 'Pie') {
     return (
       <section className="graph-container">
-        <Pagination setGraph={setGraph} />
+        <Pagination setGraph={setGraph} setUsState={setUsState} />
         <PieGraph data={filtered} />
       </section>
     );
