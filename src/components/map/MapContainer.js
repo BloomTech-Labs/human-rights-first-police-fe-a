@@ -37,7 +37,6 @@ function MapContainer() {
     <ReactMapGL
       {...viewport}
       {...settings}
-
       maxZoom={maxZoom}
       minZoom={2.75}
       width={'fit'}
