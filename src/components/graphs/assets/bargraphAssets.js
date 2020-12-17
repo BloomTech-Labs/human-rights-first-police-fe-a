@@ -219,17 +219,6 @@ stateData['Unknown'] = {
   count: 0,
 };
 
-const createNumberOfIncidents = (data, stateData) => {
-  data.forEach(incident => {
-    if (incident.state in stateData) {
-      stateData[incident.state]['count'] += 1;
-    } else {
-      stateData['Unknown']['count'] += 1;
-    }
-  });
-  return stateData;
-};
-
 const createDataSet = data => {
   const result = {
     labels: Object.keys(data).map(key => key),
@@ -248,4 +237,4 @@ const createDataSet = data => {
   return result;
 };
 
-export { stateData, createNumberOfIncidents, createDataSet };
+export { stateData, createDataSet };

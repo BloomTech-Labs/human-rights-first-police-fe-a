@@ -121,18 +121,23 @@ const GraphContainer = () => {
 
   // Bar Graph Data manipulation:
   useEffect(() => {
+    setBarCounts({});
     const data = [...filtered];
-    const barCounts = { ...stateData };
+    const newBarCounts = {};
+
+    for (let state in stateData) {
+      newBarCounts[state] = { ...stateData[state] };
+    }
 
     data.forEach(incident => {
-      if (incident.state in barCounts) {
-        barCounts[incident.state]['count'] += 1;
+      if (incident.state in newBarCounts) {
+        newBarCounts[incident.state]['count'] += 1;
       } else {
-        barCounts['Unknown']['count'] += 1;
+        newBarCounts['Unknown']['count'] += 1;
       }
     });
 
-    setBarCounts(barCounts);
+    setBarCounts(newBarCounts);
   }, [filtered, usState]);
 
   if (graph === 'Line') {
