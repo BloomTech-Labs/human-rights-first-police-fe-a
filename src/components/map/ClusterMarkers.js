@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ContextView, ContextIncidents } from '../Store';
+import { ContextView, ContextIncidents, ContextActiveFilters } from '../Store';
 import { Marker, FlyToInterpolator } from 'react-map-gl';
 import useSupercluster from 'use-supercluster';
 // hooks

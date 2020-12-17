@@ -95,7 +95,7 @@ const MapSearch = () => {
   const exclude = ['incident_id'];
 
   //filter function for filtering search data out of dataList
-  const filterData = value => {
+  const filterData = (value, list) => {
     const lowercasedValue = value.toLowerCase().trim();
     if (lowercasedValue === '') setFilterDataList([]);
     else {
@@ -140,49 +140,6 @@ const MapSearch = () => {
     setActiveFilters(newState);
   };
 
-  const iconPicker = incident => {
-    // return console.log(incident)
-    if (incident?.empty_hand_hard) {
-      return punch;
-    }
-
-    if (incident?.uncategorized) {
-      return questionMark;
-    }
-
-    if (incident?.less_lethal_methods) {
-      return warning;
-    }
-
-    if (incident?.lethal_force) {
-      return danger;
-    }
-
-    if (incident?.empty_hand_soft) {
-      return wrestling;
-    }
-
-    if (incident?.verbalization) {
-      return siren;
-    }
-  };
-  const toolTipPicker = incident => {
-    // return console.log(incident)
-    if (incident?.empty_hand_hard) {
-      return 'Officers use bodily force to gain control of a situation';
-    } else if (incident?.empty_hard_soft) {
-      return 'Officers use bodily force to gain control of a situation';
-    } else if (incident?.less_lethal_methods) {
-      return 'Officers use less-lethal technologies to gain control of a situation';
-    } else if (incident?.lethal_force) {
-      return 'Officers use lethal weapons to gain control of a situation';
-    } else if (incident?.uncategorized) {
-      return 'uncategorized incident type';
-    } else if (incident?.verbalization) {
-      return 'Force is not-physical';
-    }
-  };
-  console.log(lastIncident);
   return (
     <div className="map-menu">
       <Input
@@ -216,163 +173,14 @@ const MapSearch = () => {
             <Divider style={{ margin: '0px' }} />
             <List>
               {!incidentsOfInterest && searchText === '' ? (
-                // <LastIncident  lastIncident={lastIncident} />
-
-                <div
-                  className="incident-card"
-                  onMouseEnter={() =>
-                    setCoord(lastIncident?.lat, lastIncident?.long)
-                  }
-                  onClick={() => {
-                    FlyTo();
-                  }}
-                >
-                  <Tooltip title={toolTipPicker(lastIncident)}>
-                    <img
-                      className="icon-img"
-                      src={
-                        iconPicker(lastIncident)
-                        // ? iconPicker(lastIncident)
-                        // : questionMark
-                      }
-                      alt="?"
-                    />
-                  </Tooltip>
-
-                  <h4 className="incident-location">
-                    {' '}
-                    {lastIncident?.city}, {lastIncident?.state}
-                  </h4>
-                  <h2 className="incident-header">{lastIncident?.title}</h2>
-                  <h4
-                    className="incident-date"
-                    style={{ color: 'white', fontWeight: 'lighter' }}
-                  >
-                    {}
-                  </h4>
-                  <h3 className="incident-discription">{lastIncident?.desc}</h3>
-                  <h2 className="incident-category">Category:</h2>
-                  {lastIncident?.categories.map((category, i) => {
-                    return (
-                      <div
-                        className="incident-container"
-                        style={{ display: 'flex', flexDirection: 'row' }}
-                      >
-                        <Row>
-                          <Col
-                            span={6}
-                            className="incident-categories"
-                            style={{ color: 'white', fontWeight: 'lighter' }}
-                          >
-                            -{' '}
-                            {category.charAt(0).toUpperCase() +
-                              category.slice(1)}
-                          </Col>
-                        </Row>
-                      </div>
-                    );
-                  })}
-                </div>
+                <LastIncident lastIncident={lastIncident} />
               ) : !incidentsOfInterest ? (
                 filterDataList.map((data, index) => {
-                  return (
-                    // <FilteredIncident data={data} index={index} />
-
-                    <div
-                      className="incident-card"
-                      key={index}
-                      onMouseEnter={() => setCoord(data.lat, data.long)}
-                      onClick={() => {
-                        FlyTo();
-                      }}
-                    >
-                      <img
-                        className="icon-img"
-                        src={
-                          iconPicker(data)
-                          //  ? iconPicker(data) : questionMark
-                        }
-                        alt="?"
-                      />
-                      <h4 className="incident-location">
-                        {' '}
-                        {data.city}, {data.state}
-                      </h4>
-                      <h2 className="incident-header">{data.title}</h2>
-                      <h3 className="incident-discription">{data.desc}</h3>
-                      <h2 className="incident-category">Category:</h2>
-                      {data.categories.map((category, i) => {
-                        return (
-                          <h3
-                            className="incident-categories"
-                            style={{ color: 'white', fontWeight: 'lighter' }}
-                          >
-                            -{' '}
-                            {category.charAt(0).toUpperCase() +
-                              category.slice(1)}
-                          </h3>
-                        );
-                      })}
-                      <Divider style={{ margin: '0px' }} />
-                    </div>
-                  );
+                  return <FilteredIncident data={data} index={index} />;
                 })
               ) : (
                 incidentsOfInterest.map((incidents, i) => {
-                  return (
-                    // <ClusterIncident incidents={incidents} i={i} />
-
-                    <div
-                      className="incident-card"
-                      key={i}
-                      onMouseEnter={() =>
-                        setCoord(
-                          incidents.properties.incident.lat,
-                          incidents.properties.incident.long
-                        )
-                      }
-                      onClick={() => {
-                        FlyTo();
-                      }}
-                    >
-                      <img
-                        className="icon-img"
-                        src={
-                          iconPicker(incidents.properties.incident)
-                          // ? iconPicker(incidents.properties.incident)
-                          // : questionMark
-                        }
-                        alt="?"
-                      />
-                      <h4 className="incident-location">
-                        {incidents.properties.incident.city},{' '}
-                        {incidents.properties.incident.state}{' '}
-                      </h4>
-                      <h2 className="incident-header">
-                        {incidents.properties.incident.title}
-                      </h2>
-
-                      <h3 className="incident-discription">
-                        {incidents.properties.incident.desc}
-                      </h3>
-                      <h2 className="incident-category">Category:</h2>
-                      {incidents.properties.incident?.categories.map(
-                        (category, i) => {
-                          return (
-                            <h3
-                              className="incident-categories"
-                              style={{ color: 'white', fontWeight: 'lighter' }}
-                            >
-                              -{' '}
-                              {category.charAt(0).toUpperCase() +
-                                category.slice(1)}
-                            </h3>
-                          );
-                        }
-                      )}
-                      <Divider style={{ margin: '0px' }} />
-                    </div>
-                  );
+                  return <ClusterIncident incidents={incidents} i={i} />;
                 })
               )}
             </List>

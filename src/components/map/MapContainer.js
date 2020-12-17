@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import ReactMapGL from 'react-map-gl';
+import ReactMapGL, {ScaleControl, NavigationControl} from 'react-map-gl';
 // components
 import { ContextView, ContextIncidents } from '../Store';
 import ClusterMarkers from './ClusterMarkers';
@@ -31,6 +31,15 @@ function MapContainer() {
         .flat()
     : null;
 
+  
+
+    const navStyle = {
+      position: 'absolute',
+      top: 32,
+      left: 0,
+      padding: '10px'
+    };
+
   return (
     <ReactMapGL
       {...viewport}
@@ -46,9 +55,14 @@ function MapContainer() {
       }}
       ref={mapRef}
     >
+       <div style={navStyle}>
+          <NavigationControl />
+        </div>
       <div className="map-menu-background">
         <MapSearch />
       </div>
+
+     
       <ClusterMarkers
         mapRef={mapRef}
         viewport={viewport}

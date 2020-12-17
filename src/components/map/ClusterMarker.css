@@ -1,4 +1,4 @@
-/* .cluster-marker{
+.cluster-marker{
     color: white;
     background: #e63946;
   border-radius: 50%;
@@ -7,6 +7,6 @@
   justify-content: center;
   align-items: center;
   opacity: 55%;
-  
+  /* border: 20px solid rgb(50, 21, 214); */
 
-} */
+}
