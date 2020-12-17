@@ -7,11 +7,14 @@ import { Modal } from 'antd';
 import './RecentTimeline.css';
 
 export default function TimelineItems({ details }) {
+  // the urlDomain function pulls the website name from the string we are getting back from the API
   const urlDomain = url => {
     let re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/\n?]+)/gim;
     let newUrl = url.split(re)[1].replace('.com', '');
     return newUrl;
   };
+
+  // modal logic
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 

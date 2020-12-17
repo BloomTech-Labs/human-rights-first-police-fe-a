@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Timeline } from 'vertical-timeline-component-for-react';
 import { useTimeline } from '../../state/query_hooks/useTimeline';
 import './RecentTimeline.css';
 import TimelineItems from './TimelineItems';
-import { nanoid } from 'nanoid';
 
 export function RecentTimeline() {
   const timelineQuery = useTimeline();
