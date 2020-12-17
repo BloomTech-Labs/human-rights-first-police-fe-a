@@ -54,7 +54,6 @@ export default function TimelineItems({ details }) {
           </span>
         ))}
       </div>
-
       <div className="timeline-links">
         <h4 className="sourceText"> Sources: </h4>
         {details.src.map(element => (
