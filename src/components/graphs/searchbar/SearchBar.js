@@ -58,18 +58,6 @@ const SearchBar = ({ setUsState }) => {
       placeholder="Enter a US State"
       notFoundContent="No US State Found"
     />
-    // <Autosuggest
-    //   suggestions={suggestions}
-    //   onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-    //   onSuggestionsClearRequested={onSuggestionsClearRequested}
-    //   onSuggestionSelected={onSuggestionSelected}
-    //   shouldRenderSuggestions={shouldRenderSuggestions}
-    //   getSuggestionValue={getSuggestionValue}
-    //   renderSuggestion={renderSuggestion}
-    //   renderInputComponent={renderInputComponent}
-    //   inputProps={inputProps}
-    //   theme={theme}
-    // />
   );
 };
 
