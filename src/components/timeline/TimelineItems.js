@@ -37,12 +37,12 @@ export default function TimelineItems({ details }) {
       style={{ color: '#BC541E' }}
       dateInnerStyle={{ color: 'white', backgroundColor: '#003767' }}
     >
-      <h3 onClick={showModal}>
-        {details.title}
-        <Modal title="Basic Modal" visible={isModalVisible}>
-          <div>{details.desc}</div>
-        </Modal>
+      <h3 style={{ color: '#BC541E', cursor: 'pointer' }} onClick={showModal}>
+        {details.title}{' '}
       </h3>
+      <Modal visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+        <div className="desc">{details.desc}</div>
+      </Modal>
 
       <h4 className="cityState">
         {details.city}, {details.state}
