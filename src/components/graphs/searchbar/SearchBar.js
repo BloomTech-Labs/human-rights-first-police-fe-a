@@ -1,88 +1,75 @@
-import React, { useState } from 'react';
-import Autosuggest from 'react-autosuggest';
+import React, { useState, useEffect } from 'react';
 import { stateData } from '../assets/bargraphAssets';
 
-// CSS
-import theme from './SearchBar.css';
+// Components
+import { AutoComplete } from 'antd';
 
 const data = [];
 for (let state in stateData) {
   let item = {
-    name: state,
-    ...stateData[state],
+    label: state,
+    value: state,
+    abbreviation: stateData[state]['abbreviation'],
   };
   data.push(item);
 }
 
-const getSuggestions = value => {
-  const inputValue = value.trim().toLowerCase();
-  const inputLength = inputValue.length;
-
-  return inputLength === 0
-    ? []
-    : data.filter(
-        state =>
-          state.name.toLowerCase().slice(0, inputLength) === inputValue ||
-          state.abbreviation.toLowerCase().slice(0, inputLength) === inputValue
-      );
-};
-
-const getSuggestionValue = suggestion => suggestion.name;
-
-const renderSuggestion = suggestion => (
-  <div className="search-item">{suggestion.name}</div>
-);
-
-const shouldRenderSuggestions = (value, reason) => {
-  return value.trim().length >= 2;
-};
-
 const SearchBar = ({ setUsState }) => {
   const [value, setValue] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
+  const [options, setOptions] = useState([...data]);
 
-  const onChange = (event, { newValue }) => setValue(newValue); // Should set Input
-  const onClick = e => {
-    setValue('');
-    setUsState(null);
-  }; // Clear Input and US State
+  useEffect(() => {
+    if (value === undefined || value.length === 0) {
+      setValue('');
+      setUsState(null);
+    }
+  }, [value]);
 
-  const onSuggestionsFetchRequested = ({ value }) =>
-    setSuggestions(getSuggestions(value)); // Should set suggestions
+  const onSearch = searchText => {
+    setOptions(!searchText ? [] : [...data]);
+  };
 
-  const onSuggestionsClearRequested = () => setSuggestions([]);
+  const onSelect = data => {
+    setUsState(data);
+  };
 
-  const onSuggestionSelected = (
-    event,
-    { suggestion, suggestionValue, suggestionIndex }
-  ) => setUsState(suggestionValue);
+  const onChange = data => {
+    setValue(data);
+  };
 
-  const renderInputComponent = inputProps => (
-    <div className="search-bar">
-      <input {...inputProps} className="user-input" />
-      <span onClick={onClick}>&#x2716;</span>
-    </div>
-  );
-
-  const inputProps = {
-    placeholder: 'Enter a US State',
-    value,
-    onChange,
+  const filterOption = (inputValue, option) => {
+    return inputValue.slice(0, inputValue.length).toLowerCase() ===
+      option.label.slice(0, inputValue.length).toLowerCase() ||
+      inputValue.toLowerCase() === option.abbreviation.toLowerCase()
+      ? option
+      : null;
   };
 
   return (
-    <Autosuggest
-      suggestions={suggestions}
-      onSuggestionsFetchRequested={onSuggestionsFetchRequested}
-      onSuggestionsClearRequested={onSuggestionsClearRequested}
-      onSuggestionSelected={onSuggestionSelected}
-      shouldRenderSuggestions={shouldRenderSuggestions}
-      getSuggestionValue={getSuggestionValue}
-      renderSuggestion={renderSuggestion}
-      renderInputComponent={renderInputComponent}
-      inputProps={inputProps}
-      theme={theme}
+    <AutoComplete
+      value={value}
+      options={options}
+      onSearch={onSearch}
+      onSelect={onSelect}
+      onChange={onChange}
+      style={{ width: 200 }}
+      allowClear={true}
+      filterOption={filterOption}
+      placeholder="Enter a US State"
+      notFoundContent="No US State Found"
     />
+    // <Autosuggest
+    //   suggestions={suggestions}
+    //   onSuggestionsFetchRequested={onSuggestionsFetchRequested}
+    //   onSuggestionsClearRequested={onSuggestionsClearRequested}
+    //   onSuggestionSelected={onSuggestionSelected}
+    //   shouldRenderSuggestions={shouldRenderSuggestions}
+    //   getSuggestionValue={getSuggestionValue}
+    //   renderSuggestion={renderSuggestion}
+    //   renderInputComponent={renderInputComponent}
+    //   inputProps={inputProps}
+    //   theme={theme}
+    // />
   );
 };
 
