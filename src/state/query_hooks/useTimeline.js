@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
 
-// ⬇️ --> USAGE: in react component <-- ⬇️
-// const incidentsQuery = useIncident();
-
 export const useTimeline = () => {
   return useQuery(
     'timeline',

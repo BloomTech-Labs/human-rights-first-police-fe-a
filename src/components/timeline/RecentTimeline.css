@@ -21,8 +21,7 @@ h1 {
   padding: 5px;
 }
 
-.link-button,
-h3 {
+.link-button {
   color: var(--orange);
 }
 
@@ -31,3 +30,11 @@ h3 {
   padding-right: 5px;
   margin-top: 10px;
 }
+
+.ant-btn:first-child {
+  visibility: hidden;
+ }
+
+ div.ant-modal-body {
+   padding: 35px 35px 0px 35px;
+ }
