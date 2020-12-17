@@ -23,7 +23,7 @@ const SearchBar = ({ setUsState }) => {
       setValue('');
       setUsState(null);
     }
-  }, [value]);
+  }, [value, setUsState]);
 
   const onSearch = searchText => {
     setOptions(!searchText ? [] : [...data]);
