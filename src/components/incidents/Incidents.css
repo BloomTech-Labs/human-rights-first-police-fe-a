@@ -1,3 +1,36 @@
+:root {
+  --blue: #003767;
+  --orange: #bc541e;
+  --light-blue: #7f9bb3;
+}
 
+div.incidentsApp {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
 
+section ul {
+  display: flex;
+  flex-wrap: wrap;
+  margin: auto !important;
+  align-items: center;
+  justify-content: center;
+}
 
+div.ant-card.ant-card-bordered {
+  width: 300px;
+  margin: 8px;
+}
+
+div.ant-card-head {
+  background: var(--blue);
+  color: white;
+}
+
+div.ant-card-body {
+  height: 300px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

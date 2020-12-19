@@ -27,8 +27,8 @@ const Incidents = () => {
 
   return (
     <>
-      <div>
-        <h1> Expanded Timeline of Events </h1>
+      <div className="incidentsApp">
+        <h1 className="expandedHeader"> Expanded Timeline of Events </h1>
         <section>
           <ul>
             {currentPosts.map(incident => {
