@@ -4,7 +4,7 @@ import { Card } from 'antd';
 import 'antd/dist/antd.css';
 
 const IncidentsCard = props => {
-  let cityState = props.incident.city + ', ' + props.incident.state;
+  let cityState = `${props.incident.city}, ${props.incident.state}`;
 
   return (
     <div className="cardBox">
