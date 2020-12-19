@@ -1,18 +1,26 @@
 import React from 'react';
 import { DateTime } from 'luxon';
+import { Card } from 'antd';
+import 'antd/dist/antd.css';
 
 const IncidentsCard = props => {
+  let cityState = props.incident.city + ', ' + props.incident.state;
+
   return (
-    <div>
-      <p>{props.incident.state}</p>
-      <p>
-        {DateTime.fromISO(props.incident.date).toLocaleString(
-          DateTime.DATE_FULL
-        )}
-      </p>
-      <p>{props.incident.city}</p>
-      <p>{props.incident.title}</p>
-      <p>{props.incident.desc}</p>
+    <div className="cardBox">
+      {/* for states, I was thinking we could import the abbreviations from the bargraphAssets file */}
+
+      <Card title={cityState}>
+        <p>
+          {DateTime.fromISO(props.incident.date).toLocaleString(
+            DateTime.DATE_FULL
+          )}
+        </p>
+
+        {/* below should be in bottom half of card */}
+        <h4>{props.incident.title}</h4>
+        <p>{props.incident.desc}</p>
+      </Card>
     </div>
   );
 };

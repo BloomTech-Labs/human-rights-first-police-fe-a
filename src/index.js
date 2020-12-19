@@ -28,11 +28,13 @@ function App() {
           <Route exact path="/">
             <Main />
             <RecentTimeline />
-            <Incidents />
           </Route>
 
           <Route path="/graph">
             <GraphContainer />
+          </Route>
+          <Route path="/incidents">
+            <Incidents />
           </Route>
         </Switch>
       </div>

@@ -4,6 +4,7 @@ import IncidentsCard from '../incidents/IncidentsCard';
 import { newData } from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
 import { Pagination } from 'antd';
+import './Incidents.css';
 
 const Incidents = () => {
   const [itemsPerPage] = useState(12);
@@ -25,13 +26,16 @@ const Incidents = () => {
   console.log(data);
 
   return (
-    <section>
+    <>
       <div>
-        <ul>
-          {currentPosts.map(incident => {
-            return <IncidentsCard key={nanoid()} incident={incident} />;
-          })}
-        </ul>
+        <h1> Expanded Timeline of Events </h1>
+        <section>
+          <ul>
+            {currentPosts.map(incident => {
+              return <IncidentsCard key={nanoid()} incident={incident} />;
+            })}
+          </ul>
+        </section>
       </div>
       <Pagination
         onChange={onChange}
@@ -39,7 +43,7 @@ const Incidents = () => {
         pageSize={itemsPerPage}
         total={data.length}
       />
-    </section>
+    </>
   );
 };
 
