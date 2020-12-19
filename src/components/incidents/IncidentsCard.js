@@ -12,9 +12,9 @@ const IncidentsCard = props => {
 
       <Card title={cityState}>
         <p style={{ color: '#bc541e', fontWeight: 'bold' }}>
-          {DateTime.fromISO(props.incident.date).toLocaleString(
-            DateTime.DATE_FULL
-          )}
+          {DateTime.fromISO(props.incident.date)
+            .plus({ days: 1 })
+            .toLocaleString(DateTime.DATE_MED)}
         </p>
 
         {/* below should be in bottom half of card */}

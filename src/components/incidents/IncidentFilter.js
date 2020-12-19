@@ -1,4 +1,4 @@
-export const newData = arr => {
+const newData = arr => {
   const newCurrentData = arr.map(obj =>
     Object.keys(obj)
       .filter(x => obj[x] !== null)
@@ -17,3 +17,11 @@ export const newData = arr => {
   );
   return noUndefined;
 };
+
+const filterDataByState = (data, state) => {
+  return state === null
+    ? data
+    : data.filter(incident => incident.state === state);
+};
+
+export { newData, filterDataByState };
