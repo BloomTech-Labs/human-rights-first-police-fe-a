@@ -7,6 +7,7 @@ import Main from './components/Main';
 import './index.css';
 import 'antd/dist/antd.less';
 import RecentTimeline from './components/timeline/RecentTimeline';
+import Incidents from './components/incidents/Incidents';
 
 import GraphContainer from './components/graphs/GraphContainer';
 
@@ -27,6 +28,7 @@ function App() {
           <Route exact path="/">
             <Main />
             <RecentTimeline />
+            <Incidents />
           </Route>
 
           <Route path="/graph">
