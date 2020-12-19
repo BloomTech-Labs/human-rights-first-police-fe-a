@@ -19,8 +19,12 @@ section ul {
   justify-content: center;
 }
 
+h1.expandedHeader {
+  margin: 16px;
+}
+
 div.ant-card.ant-card-bordered {
-  width: 300px;
+  width: 500px;
   margin: 8px;
 }
 
@@ -30,7 +34,7 @@ div.ant-card-head {
 }
 
 div.ant-card-body {
-  height: 300px;
+  height: 200px;
   overflow-y: scroll;
   overflow-x: hidden;
 }

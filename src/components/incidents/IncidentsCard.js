@@ -11,7 +11,7 @@ const IncidentsCard = props => {
       {/* for states, I was thinking we could import the abbreviations from the bargraphAssets file */}
 
       <Card title={cityState}>
-        <p>
+        <p style={{ color: '#bc541e', fontWeight: 'bold' }}>
           {DateTime.fromISO(props.incident.date).toLocaleString(
             DateTime.DATE_FULL
           )}
