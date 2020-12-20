@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { stateData } from '../assets/bargraphAssets';
 
 // Components
-import { AutoComplete } from 'antd';
+import { AutoComplete, Button } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 
 const data = [];
 for (let state in stateData) {
@@ -26,7 +27,7 @@ const SearchBar = ({ setUsState }) => {
   }, [value, setUsState]);
 
   const onSearch = searchText => {
-    setOptions(!searchText ? [] : [...data]);
+    setOptions(searchText && [...data]);
   };
 
   const onSelect = data => {
@@ -46,18 +47,20 @@ const SearchBar = ({ setUsState }) => {
   };
 
   return (
-    <AutoComplete
-      value={value}
-      options={options}
-      onSearch={onSearch}
-      onSelect={onSelect}
-      onChange={onChange}
-      style={{ width: 200 }}
-      allowClear={true}
-      filterOption={filterOption}
-      placeholder="Enter a US State"
-      notFoundContent="No US State Found"
-    />
+    <>
+      <AutoComplete
+        value={value}
+        options={options}
+        onSearch={onSearch}
+        onSelect={onSelect}
+        onChange={onChange}
+        style={{ width: 200 }}
+        allowClear={true}
+        filterOption={filterOption}
+        placeholder="Enter a US State"
+        notFoundContent="No US State Found"
+      />
+    </>
   );
 };
 

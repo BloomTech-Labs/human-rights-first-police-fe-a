@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 import IncidentsCard from '../incidents/IncidentsCard';
-import { newData } from '../incidents/IncidentFilter';
+import { newData, filterDataByState } from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
 import { Pagination } from 'antd';
 import './Incidents.css';
@@ -15,18 +15,24 @@ const Incidents = () => {
 
   // Data State
   const [usState, setUsState] = useState(null);
+  const [dates, setDates] = useState(null);
   const [data, setData] = useState([]);
 
   // Async Data Call
   const dataQuery = useIncidents();
   const incidents = dataQuery.data && !dataQuery.isError ? dataQuery.data : [];
-  // const data = newData(incidents);
 
   useEffect(() => {
-    !dataQuery.isLoading && !dataQuery.isError
-      ? setData(dataQuery.data)
-      : setData([]);
+    !dataQuery.isLoading &&
+      !dataQuery.isError &&
+      setData(newData(dataQuery.data));
   }, [dataQuery.isLoading, dataQuery.isError, dataQuery.data]);
+
+  useEffect(() => {
+    usState === null
+      ? setData(newData(incidents))
+      : setData(filterDataByState(data, usState));
+  }, [usState]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
@@ -56,6 +62,7 @@ const Incidents = () => {
         current={currentPage}
         pageSize={itemsPerPage}
         total={data.length}
+        showSizeChanger={false}
       />
     </>
   );

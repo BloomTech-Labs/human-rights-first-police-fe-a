@@ -19,9 +19,7 @@ const newData = arr => {
 };
 
 const filterDataByState = (data, state) => {
-  return state === null
-    ? data
-    : data.filter(incident => incident.state === state);
+  return data.filter(incident => incident.state === state);
 };
 
 export { newData, filterDataByState };
