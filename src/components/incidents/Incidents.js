@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 import IncidentsCard from '../incidents/IncidentsCard';
-import { newData, filterDataByState } from '../incidents/IncidentFilter';
+import {
+  newData,
+  filterDataByState,
+  filterDataByDate,
+  createRange,
+} from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
-import { Pagination } from 'antd';
 import './Incidents.css';
 
+// Time Imports
+import { DateTime } from 'luxon';
+
+// Search Bar
 import SearchBar from '../graphs/searchbar/SearchBar';
-import { stateData } from '../graphs/assets/bargraphAssets';
+
+// Ant Design Imports:
+import { Pagination, DatePicker } from 'antd';
+const { RangePicker } = DatePicker;
 
 const Incidents = () => {
   const [itemsPerPage] = useState(12);
@@ -29,10 +40,27 @@ const Incidents = () => {
   }, [dataQuery.isLoading, dataQuery.isError, dataQuery.data]);
 
   useEffect(() => {
-    usState === null
-      ? setData(newData(incidents))
-      : setData(filterDataByState(data, usState));
-  }, [usState]);
+    const range = dates && createRange(dates);
+
+    if (usState && dates) {
+      const copyOfData = [...incidents];
+      let filteredData = filterDataByState(copyOfData, usState);
+      let dateAndStateFilteredData = filterDataByDate(filteredData, range);
+
+      setData(dateAndStateFilteredData);
+    } else if (usState && !dates) {
+      const copyOfData = [...incidents];
+      let filteredByState = filterDataByState(copyOfData, usState);
+      setData(filteredByState);
+    } else if (!usState && dates) {
+      const copyOfData = [...incidents];
+
+      let filteredByDate = filterDataByDate(copyOfData, range);
+      setData(filteredByDate);
+    } else {
+      setData(newData(incidents));
+    }
+  }, [usState, dates]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
@@ -41,14 +69,21 @@ const Incidents = () => {
   const onChange = page => {
     setCurrentPage(page);
   };
-  console.log(data);
+
+  const onDateSelection = (dates, dateStrings) => {
+    setDates(
+      dateStrings[0] && dateStrings[1]
+        ? [DateTime.fromISO(dateStrings[0]), DateTime.fromISO(dateStrings[1])]
+        : null
+    );
+  };
 
   return (
     <>
       <div className="incidentsApp">
         <h1 className="expandedHeader"> Expanded Timeline of Events </h1>
         <SearchBar setUsState={setUsState} />
-
+        <RangePicker onCalendarChange={onDateSelection} />
         <section>
           <ul>
             {currentPosts.map(incident => {
@@ -57,13 +92,15 @@ const Incidents = () => {
           </ul>
         </section>
       </div>
-      <Pagination
-        onChange={onChange}
-        current={currentPage}
-        pageSize={itemsPerPage}
-        total={data.length}
-        showSizeChanger={false}
-      />
+      <section className="pagination">
+        <Pagination
+          onChange={onChange}
+          current={currentPage}
+          pageSize={itemsPerPage}
+          total={data.length}
+          showSizeChanger={false}
+        />
+      </section>
     </>
   );
 };

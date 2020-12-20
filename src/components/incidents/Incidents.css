@@ -38,3 +38,8 @@ div.ant-card-body {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
