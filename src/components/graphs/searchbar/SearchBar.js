@@ -26,10 +26,6 @@ const SearchBar = ({ setUsState }) => {
     }
   }, [value, setUsState]);
 
-  const onSearch = searchText => {
-    setOptions(searchText && [...data]);
-  };
-
   const onSelect = data => {
     setUsState(data);
   };
@@ -51,7 +47,6 @@ const SearchBar = ({ setUsState }) => {
       <AutoComplete
         value={value}
         options={options}
-        onSearch={onSearch}
         onSelect={onSelect}
         onChange={onChange}
         style={{ width: 200 }}
