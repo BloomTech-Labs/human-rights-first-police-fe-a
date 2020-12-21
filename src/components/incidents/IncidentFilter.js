@@ -1,24 +1,27 @@
 import { DateTime } from 'luxon';
 import Interval from 'luxon/src/interval.js';
 
-const newData = arr => {
-  const newCurrentData = arr.map(obj =>
-    Object.keys(obj)
-      .filter(x => obj[x] !== null)
-      .reduce((o, e) => {
-        o[e] = obj[e];
-        return o;
+// When raw data from the back end is received, remove any key/value pairs from the object that resolve to undefined or null
+const falsiesRemoved = data => {
+  const nullRemoved = data.map(incident =>
+    Object.keys(incident)
+      .filter(key => incident[key] !== null)
+      .reduce((newIncident, key) => {
+        newIncident[key] = incident[key];
+        return newIncident;
       }, {})
   );
-  const noUndefined = newCurrentData.map(obj =>
-    Object.keys(obj)
-      .filter(x => obj[x] !== undefined)
-      .reduce((o, e) => {
-        o[e] = obj[e];
-        return o;
+
+  const undefinedRemoved = nullRemoved.map(incident =>
+    Object.keys(incident)
+      .filter(key => incident[key] !== undefined)
+      .reduce((newIncident, key) => {
+        newIncident[key] = incident[key];
+        return newIncident;
       }, {})
   );
-  return noUndefined;
+
+  return undefinedRemoved;
 };
 
 const filterDataByState = (data, state) => {
@@ -37,4 +40,4 @@ const filterDataByDate = (data, range) => {
   );
 };
 
-export { newData, filterDataByState, createRange, filterDataByDate };
+export { falsiesRemoved, filterDataByState, createRange, filterDataByDate };

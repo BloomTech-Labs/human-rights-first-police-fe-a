@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 import IncidentsCard from '../incidents/IncidentsCard';
 import {
-  newData,
+  falsiesRemoved,
   filterDataByState,
   filterDataByDate,
   createRange,
@@ -36,7 +36,7 @@ const Incidents = () => {
   useEffect(() => {
     !dataQuery.isLoading &&
       !dataQuery.isError &&
-      setData(newData(dataQuery.data));
+      setData(falsiesRemoved(dataQuery.data));
   }, [dataQuery.isLoading, dataQuery.isError, dataQuery.data]);
 
   useEffect(() => {
@@ -58,7 +58,7 @@ const Incidents = () => {
       let filteredByDate = filterDataByDate(copyOfData, range);
       setData(filteredByDate);
     } else {
-      setData(newData(incidents));
+      setData(falsiesRemoved(incidents));
     }
   }, [usState, dates]);
 
