@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { nanoid } from 'nanoid';
 
 const keyData = {
   'Officer Presence': {
@@ -27,20 +28,32 @@ const Key = props => {
   const [data] = useState(keyData);
 
   return (
-    <ul>
+    <ul
+      style={{
+        flexFlow: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+      }}
+    >
       {Object.keys(data).map((type, index) => {
         if (type === 'Empty-Hand Control') {
           return (
-            <>
-              <li key={index}> {`${type}: ${data[type]['desc']}`} </li>
-              <ul>
-                <li key={'soft'}> {`Soft: ${data[type]['soft']}`} </li>
-                <li key={'hard'}> {`Hard: ${data[type]['hard']}`} </li>
+            <React.Fragment key={nanoid()}>
+              <li key={nanoid()}> {`${type}: ${data[type]['desc']}`} </li>
+              <ul
+                style={{
+                  flexFlow: 'column',
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start',
+                }}
+              >
+                <li key={nanoid()}> {`Soft: ${data[type]['soft']}`} </li>
+                <li key={nanoid()}> {`Hard: ${data[type]['hard']}`} </li>
               </ul>
-            </>
+            </React.Fragment>
           );
         } else {
-          return <li key={index}> {`${type}: ${data[type]['desc']}`} </li>;
+          return <li key={nanoid()}> {`${type}: ${data[type]['desc']}`} </li>;
         }
       })}
     </ul>

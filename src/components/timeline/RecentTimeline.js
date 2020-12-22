@@ -9,7 +9,7 @@ export function RecentTimeline() {
 
   return timelineQuery.isSuccess ? (
     <div className="timeline-container">
-      <h1> Timeline of Recent Events </h1>
+      <h1 style={{ margin: '25px' }}> Timeline of Recent Events </h1>
       <Timeline lineColor={'#</Timeline>ddd'}>
         {timelineQuery.data.map(details => {
           return <TimelineItems details={details} />;

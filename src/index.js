@@ -7,6 +7,7 @@ import Main from './components/Main';
 import './index.css';
 import 'antd/dist/antd.less';
 import RecentTimeline from './components/timeline/RecentTimeline';
+import Incidents from './components/incidents/Incidents';
 
 import GraphContainer from './components/graphs/GraphContainer';
 
@@ -31,6 +32,9 @@ function App() {
 
           <Route path="/graph">
             <GraphContainer />
+          </Route>
+          <Route path="/incidents">
+            <Incidents />
           </Route>
         </Switch>
       </div>
