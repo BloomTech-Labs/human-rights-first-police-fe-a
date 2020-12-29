@@ -1,4 +1,10 @@
-import React, { useState, useContext, useRef, useCallback } from 'react';
+import React, {
+  useState,
+  useContext,
+  useRef,
+  useCallback,
+  useMemo,
+} from 'react';
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 import { FlyToInterpolator } from 'react-map-gl';
 import {
@@ -8,6 +14,7 @@ import {
   ContextLong,
   ContextLat,
   ContextIncidents,
+  ContextFilterData,
 } from '../Store';
 import { Input, Collapse, Divider, List, Tooltip, Row, Col } from 'antd';
 import { DateTime } from 'luxon';
@@ -26,7 +33,7 @@ import FilteredIncident from './incidentContainer/FilteredIncident';
 import ClusterIncident from './incidentContainer/ClusterIncident';
 
 const { Panel } = Collapse;
-
+const { Search } = Input;
 const suffix = (
   <SearchOutlined
     style={{
@@ -46,7 +53,7 @@ const MapSearch = () => {
     newViewport => setViewport(newViewport),
     []
   );
-  const [filterDataList, setFilterDataList] = useState([]);
+  const [filterDataList, setFilterDataList] = useContext(ContextFilterData);
   const [searchText, setSearchText] = useState('');
   const [long, setLong] = useContext(ContextLong);
   const [lat, setLat] = useContext(ContextLat);
@@ -56,7 +63,7 @@ const MapSearch = () => {
   const [incidentsOfInterest, setIncidentsOfInterest] = useContext(
     ContextIncidents
   );
-
+  const [search, setSearch] = useState('');
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
 
@@ -93,9 +100,9 @@ const MapSearch = () => {
   //List everything to exclude with filtering
   const exclude = ['incident_id'];
 
-  //filter function for filtering search data out of dataList
-  const filterData = (value, list) => {
-    const lowercasedValue = value.toLowerCase().trim();
+  const filterData = useMemo(() => {
+    if (!search) return dataList;
+    const lowercasedValue = search.toLowerCase().trim();
     if (lowercasedValue === '') setFilterDataList([]);
     else {
       const filteredData = dataList.filter(item => {
@@ -108,14 +115,15 @@ const MapSearch = () => {
                 .includes(lowercasedValue)
         );
       });
-      setFilterDataList(filteredData);
+      return filteredData;
     }
-  };
+  }, [dataList, search]);
 
-  //Handle change for search box
+  console.log(filterData);
+
   const handleChange = value => {
     setSearchText(value);
-    filterData(value);
+    setSearch(value);
   };
 
   const FlyTo = () => {
@@ -139,61 +147,18 @@ const MapSearch = () => {
     setActiveFilters(newState);
   };
 
-<<<<<<< HEAD
-=======
-  const iconPicker = incident => {
-    if (incident?.empty_hand_hard) {
-      return punch;
-    }
-
-    if (incident?.uncategorized) {
-      return questionMark;
-    }
-
-    if (incident?.less_lethal_methods) {
-      return warning;
-    }
-
-    if (incident?.lethal_force) {
-      return danger;
-    }
-
-    if (incident?.empty_hand_soft) {
-      return wrestling;
-    }
-
-    if (incident?.verbalization) {
-      return siren;
-    }
-  };
-  const toolTipPicker = incident => {
-    if (incident?.empty_hand_hard) {
-      return 'Officers use bodily force to gain control of a situation';
-    } else if (incident?.empty_hard_soft) {
-      return 'Officers use bodily force to gain control of a situation';
-    } else if (incident?.less_lethal_methods) {
-      return 'Officers use less-lethal technologies to gain control of a situation';
-    } else if (incident?.lethal_force) {
-      return 'Officers use lethal weapons to gain control of a situation';
-    } else if (incident?.uncategorized) {
-      return 'uncategorized incident type';
-    } else if (incident?.verbalization) {
-      return 'Force is not-physical';
-    }
+  const onSearch = value => {
+    setSearch(value);
+    setIncidentsOfInterest(undefined);
   };
 
->>>>>>> 951bfc1a1879dd041e5fbf8ff7e72bb86caedb6c
   return (
     <div className="map-menu">
-      <Input
-        className="map-search"
-        placeholder="Search"
-        allowClear
-        onChange={e => {
-          handleChange(e.target.value);
-          setIncidentsOfInterest(undefined);
-        }}
-        suffix={suffix}
+      <Search
+        style={{ color: 'white' }}
+        placeholder="Location, Type, etc..."
+        enterButton="Search"
+        onSearch={onSearch}
       />
 
       <Collapse
@@ -205,7 +170,6 @@ const MapSearch = () => {
         ghost
         accordion={true}
       >
-        <Divider style={{ margin: '0px' }} />
         <Panel
           bordered={false}
           style={{ color: 'white', padding: '0px' }}
@@ -215,10 +179,10 @@ const MapSearch = () => {
           <div className="incident-content">
             <Divider style={{ margin: '0px' }} />
             <List>
-              {!incidentsOfInterest && searchText === '' ? (
+              {!incidentsOfInterest && search === '' ? (
                 <LastIncident lastIncident={lastIncident} />
               ) : !incidentsOfInterest ? (
-                filterDataList.map((data, index) => {
+                filterData.map((data, index) => {
                   return <FilteredIncident data={data} index={index} />;
                 })
               ) : (

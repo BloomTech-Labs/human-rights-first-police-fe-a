@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ContextLat, ContextLong, ContextView } from '../../Store';
+import { ContextLat, ContextLong, ContextView, ContextIncidents } from '../../Store';
 import questionMark from '../iconImg/question-mark.png';
 import { Input, Collapse, Divider, List, Tooltip } from 'antd';
 import { FlyToInterpolator } from 'react-map-gl';
@@ -9,9 +9,10 @@ const ClusterIncident = ({ incidents, i }) => {
   const [lat, setLat] = useContext(ContextLat);
   const [long, setLong] = useContext(ContextLong);
   const [viewport, setViewport] = useContext(ContextView);
-
-  console.log(lat);
-  console.log(long);
+  const [incidentsofInterest, setIncidentsOfInterest] = useContext(
+    ContextIncidents
+  );
+console.log(incidentsofInterest)
 
   const FlyTo = () => {
     const flyViewport = {
@@ -23,6 +24,7 @@ const ClusterIncident = ({ incidents, i }) => {
     };
     setViewport(flyViewport);
   };
+
 
   return (
     <div

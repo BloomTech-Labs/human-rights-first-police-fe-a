@@ -7,7 +7,7 @@
   padding-left: 2%;
   width: 400px;
 }
-span.map-search {
+/* span.map-search {
   background-color: rgb(36, 35, 33);
   border-color: rgb(36, 35, 33);
   font-size: 1.2rem;
@@ -19,8 +19,19 @@ input.ant-input {
   color: white;
   font-size: 25px;
   margin-left: 3px;
+} */
+input.ant-input {
+  background-color: rgb(36, 35, 33);
+  color: white;
 }
-
+span.ant-input-group-addon {
+}
+button.ant-btn.ant-btn-primary.ant-input-search-button {
+  visibility: visible;
+  background-color: rgb(255, 255, 255);
+  border-color: #ffff;
+  color: black;
+}
 .icon-img {
   width: 50px;
   margin-top: 5px;
@@ -77,7 +88,7 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
   color: white;
 }
 
-.incident-container{
-    display: flex;
-    flex-direction: row;
+.incident-container {
+  display: flex;
+  flex-direction: row;
 }
