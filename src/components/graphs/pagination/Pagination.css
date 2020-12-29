@@ -1,0 +1,10 @@
+.pagination-btn {
+  width: 96px;
+  height: 36px;
+}
+
+.page-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

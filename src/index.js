@@ -7,6 +7,9 @@ import Main from './components/Main';
 import './index.css';
 import 'antd/dist/antd.less';
 import RecentTimeline from './components/timeline/RecentTimeline';
+import Incidents from './components/incidents/Incidents';
+
+import GraphContainer from './components/graphs/GraphContainer';
 
 ReactDOM.render(
   <Router>
@@ -22,9 +25,16 @@ function App() {
     <>
       <div>
         <Switch>
-          <Route path="/">
+          <Route exact path="/">
             <Main />
             <RecentTimeline />
+          </Route>
+
+          <Route path="/graph">
+            <GraphContainer />
+          </Route>
+          <Route path="/incidents">
+            <Incidents />
           </Route>
         </Switch>
       </div>

@@ -1,5 +1,10 @@
 import React, { useContext, useState } from 'react';
+<<<<<<< HEAD
 import ReactMapGL, {ScaleControl, NavigationControl} from 'react-map-gl';
+=======
+
+import ReactMapGL from 'react-map-gl';
+>>>>>>> 951bfc1a1879dd041e5fbf8ff7e72bb86caedb6c
 // components
 import { ContextView, ContextIncidents } from '../Store';
 import ClusterMarkers from './ClusterMarkers';
@@ -14,6 +19,7 @@ function MapContainer() {
   // state variable for map viewport state
   const [viewport, setViewport] = useContext(ContextView);
   const [setIncidentsOfInterest] = useContext(ContextIncidents);
+
   const [settings, setsettings] = useState({
     scrollZoom: false,
   });

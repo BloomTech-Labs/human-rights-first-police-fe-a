@@ -55,11 +55,15 @@ const Store = ({ children }) => {
                 <ContextIncidents.Provider
                   value={[incidentsOfInterest, setIncidentsOfInterest]}
                 >
+<<<<<<< HEAD
                   <ContextFilterData.Provider
                     value={[filterDataList, setFilterDataList]}
                   >
                     {children}
                   </ContextFilterData.Provider>
+=======
+                  {children}
+>>>>>>> 951bfc1a1879dd041e5fbf8ff7e72bb86caedb6c
                 </ContextIncidents.Provider>
               </ContextState.Provider>
             </ContextLat.Provider>

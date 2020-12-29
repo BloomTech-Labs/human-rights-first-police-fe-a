@@ -56,7 +56,6 @@ const MapSearch = () => {
   const [incidentsOfInterest, setIncidentsOfInterest] = useContext(
     ContextIncidents
   );
-  const onSearch = value => console.log(value);
 
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
@@ -140,6 +139,50 @@ const MapSearch = () => {
     setActiveFilters(newState);
   };
 
+<<<<<<< HEAD
+=======
+  const iconPicker = incident => {
+    if (incident?.empty_hand_hard) {
+      return punch;
+    }
+
+    if (incident?.uncategorized) {
+      return questionMark;
+    }
+
+    if (incident?.less_lethal_methods) {
+      return warning;
+    }
+
+    if (incident?.lethal_force) {
+      return danger;
+    }
+
+    if (incident?.empty_hand_soft) {
+      return wrestling;
+    }
+
+    if (incident?.verbalization) {
+      return siren;
+    }
+  };
+  const toolTipPicker = incident => {
+    if (incident?.empty_hand_hard) {
+      return 'Officers use bodily force to gain control of a situation';
+    } else if (incident?.empty_hard_soft) {
+      return 'Officers use bodily force to gain control of a situation';
+    } else if (incident?.less_lethal_methods) {
+      return 'Officers use less-lethal technologies to gain control of a situation';
+    } else if (incident?.lethal_force) {
+      return 'Officers use lethal weapons to gain control of a situation';
+    } else if (incident?.uncategorized) {
+      return 'uncategorized incident type';
+    } else if (incident?.verbalization) {
+      return 'Force is not-physical';
+    }
+  };
+
+>>>>>>> 951bfc1a1879dd041e5fbf8ff7e72bb86caedb6c
   return (
     <div className="map-menu">
       <Input
