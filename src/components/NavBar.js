@@ -9,14 +9,12 @@ const { Header } = Layout;
 const NavBar = () => {
   return (
     <Layout className="layout">
-      <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal">
-          <Menu.Item key="1">nav 1</Menu.Item>
-          <Menu.Item key="2">nav 2</Menu.Item>
-          <Menu.Item key="3">nav 3</Menu.Item>
-        </Menu>
-      </Header>
+      <div className="logo" />
+      <Menu mode="horizontal">
+        <Menu.Item key="1">Home</Menu.Item>
+        <Menu.Item key="2">Graphs</Menu.Item>
+        <Menu.Item key="3">About</Menu.Item>
+      </Menu>
     </Layout>
   );
 };
