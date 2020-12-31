@@ -21,7 +21,7 @@ root:hover {
   margin-bottom: 3rem;
 }
 
-/* The following classes were needed in order to override the current antd classes and colors. These classes make sure the color of the text and the hover colors are orange rather than default colors. Vars would not work so colors were added by hex */
+/* The following classes were needed in order to override the current antd classes and colors. These classes make sure the color of the text, bottom border and the hover colors are orange rather than default colors. Vars would not work so colors were added by hex */
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
@@ -38,10 +38,10 @@ root:hover {
   color: white;
 }
 
-a {
+.layout a {
   color: white !important;
 }
 
-a:focus {
+.layout a:focus {
   color: #bc541e !important;
 }

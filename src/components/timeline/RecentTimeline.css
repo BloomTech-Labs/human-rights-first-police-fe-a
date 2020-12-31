@@ -27,8 +27,8 @@ h1 {
   padding: 5px;
 }
 
-.link-button {
-  color: var(--orange);
+a.link-button {
+  color: var(--orange) !important;
 }
 
 .sourceText {
