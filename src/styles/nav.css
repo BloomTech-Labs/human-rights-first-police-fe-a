@@ -14,7 +14,7 @@ root:hover {
   height: 3rem;
   margin-bottom: 3rem;
   color: white;
-  font-size: large;
+  font-size: x-large;
 }
 
 .ant-layout {
@@ -31,5 +31,17 @@ root:hover {
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
   border-bottom: 3px solid #bc541e;
-  color: #bc541e;
+  color: #bc541e !important;
+}
+
+.ant-menu-horizontal > .ant-menu-item a {
+  color: white;
+}
+
+a {
+  color: white !important;
+}
+
+a:focus {
+  color: #bc541e !important;
 }

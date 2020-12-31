@@ -4,10 +4,14 @@
   --light-blue: #7f9bb3;
 }
 
+div.timeline-container {
+  margin-top: 55px;
+}
+
 h1 {
   margin-top: 20px;
   text-align: center;
-  font-size: 28px;
+  font-size: 32px;
 }
 
 .categories,
