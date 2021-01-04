@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 import { DatePicker } from 'antd';
+import axios from 'axios';
 
 // component imports
 import SearchBar from '../graphs/searchbar/SearchBar';
@@ -24,29 +25,30 @@ const DataExportForm = () => {
     if (dates) {
       const startDate = `${dates[0].c.year}-${dates[0].c.month}-${dates[0].c.day}`;
       const endDate = `${dates[1].c.year}-${dates[1].c.month}-${dates[1].c.day}`;
-      setQueryString(
-        `?state=${usState}&startDate=${startDate}&endDate=${endDate}`
-      );
+      setQueryString(`?state=${usState}&start=${startDate}&end=${endDate}`);
       console.log(queryString);
     }
   }, [dates, usState]);
 
-  //TODO: Create API calls to correct endpoints
   const downloadCSV = () => {
-    // replace with API call
-    console.log(queryString);
+    window.open(
+      `${process.env.REACT_APP_BACKENDURL}/incidents/download${queryString}`
+    );
   };
 
+  //TODO: Create API calls to correct endpoints
   const viewJSON = () => {
     // replace with API call
     console.log(queryString);
   };
+
   return (
     <div>
       <RangePicker onCalendarChange={onDateSelection} />
       <SearchBar setUsState={setUsState} />
       <button onClick={downloadCSV}>Download CSV</button>
       <button onClick={viewJSON}>View as JSON</button>
+      {/* Create a container that displays conditionally based on a returned query */}
     </div>
   );
 };
