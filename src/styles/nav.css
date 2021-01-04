@@ -11,10 +11,16 @@ root:hover {
 [role='menu'] {
   background-color: var(--blue);
   width: 100%;
-  height: 3rem;
+  height: 7rem;
   margin-bottom: 3rem;
   color: white;
   font-size: x-large;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.logo-container {
+  background-color: white
 }
 
 .ant-layout {

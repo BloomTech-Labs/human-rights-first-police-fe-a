@@ -40,7 +40,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-      <ReactQueryDevtools />
+      <ReactQueryDevtools initialIsOpen={false} />
     </>
   );
 }
