@@ -5,7 +5,9 @@
 }
 
 h1 {
+  margin-top: 20px;
   text-align: center;
+  font-size: 28px;
 }
 
 .categories,
@@ -33,8 +35,8 @@ h1 {
 
 .ant-btn:first-child {
   visibility: hidden;
- }
+}
 
- div.ant-modal-body {
-   padding: 35px 35px 0px 35px;
- }
+div.ant-modal-body {
+  padding: 35px 35px 0px 35px;
+}

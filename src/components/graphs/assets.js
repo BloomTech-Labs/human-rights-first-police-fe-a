@@ -1,29 +1,3 @@
-const createData = (data, months) => {
-  // Create the array that will be points on the graph
-  let incidentCounts = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-  for (const month in data) {
-    incidentCounts.push(data[month]['count']);
-  }
-
-  let years = [];
-  for (let year in data) {
-    years.push(year);
-  }
-
-  const yearReview = {
-    incidentId: `Years`,
-    label: `${
-      years.length > 1 ? `${years[0]} - ${years[years.length - 1]}` : years[0]
-    }`,
-    data: incidentCounts,
-    borderColor: '#c0ba17',
-    backgroundColor: 'rgba(0,0,0,0)',
-  };
-
-  return yearReview;
-};
-
 const defaultData = {
   labels: [
     'Jan',
@@ -93,4 +67,4 @@ const options = {
   },
 };
 
-export { options, defaultData, createData };
+export { options, defaultData };
