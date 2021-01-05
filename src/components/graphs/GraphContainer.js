@@ -51,7 +51,7 @@ const GraphContainer = () => {
 
   // State Management
   const [usState, setUsState] = useState(null);
-  const [today] = useState(new Date().getTime());
+  const [today] = useState(DateTime.local());
   const [elevenMonths] = useState(28927182167); // Milliseconds
   const [graph, setGraph] = useState('Line');
   const [filtered, setFiltered] = useState([]); // Data filtered by user
@@ -67,21 +67,21 @@ const GraphContainer = () => {
     }
   }, [usState, query.isLoading, query.isSuccess]);
 
-  // Create keys for months object dynamically:
   useEffect(() => {
     let months = [];
-    let start = today - elevenMonths;
-    let firstMonth = DateTime.fromMillis(start).toFormat('MMM');
-    let month = start;
-    months.push(firstMonth);
+    let end = today.minus({ months: 12 });
 
-    while (month <= today - 2592000000) {
-      month += 2592000000;
-      months.push(DateTime.fromMillis(month).toFormat('MMM'));
+    let currentMonth = end;
+    let i = 1;
+
+    while (i < 13) {
+      months.push(currentMonth.monthShort);
+      currentMonth = currentMonth.plus({ months: 1 });
+      i++;
     }
 
     setmonths(months);
-  }, [elevenMonths, today, usState]);
+  }, [today]);
 
   // Create the counts state:
   useEffect(() => {
