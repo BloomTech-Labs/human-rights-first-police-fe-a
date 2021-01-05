@@ -30,8 +30,12 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/">
+            <div className='Map'>
             <Main />
+            </div>
+            <div className='Timeline'>
             <RecentTimeline />
+            </div>
           </Route>
 
           <Route path="/graph">

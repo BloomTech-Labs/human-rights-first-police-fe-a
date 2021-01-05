@@ -1,0 +1,10 @@
+.mapDiv{
+    width: 90%;
+    margin: auto;
+}
+@media (max-width: 768px) {
+  .mapDiv {
+    width: 100%;
+   
+  }
+}

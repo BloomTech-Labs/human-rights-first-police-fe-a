@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
-import { ContextView, ContextIncidents } from '../Store';
+import { ContextView, ContextIncidents, ContextActiveFilters } from '../Store';
 import { Marker, FlyToInterpolator } from 'react-map-gl';
 import useSupercluster from 'use-supercluster';
 // hooks
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 // styles
 import './ClusterMarker.css';
-import { motion, useMotionValue, useTransform } from 'framer-motion';
+
 // console.log(useIncidents) ;
 
 const ClusterMarkers = ({ mapRef }) => {
@@ -95,7 +95,7 @@ const ClusterMarkers = ({ mapRef }) => {
             offsetLeft={-(10 + (pointCount / points.length) * 600) / 2}
             offsetTop={-(10 + (pointCount / points.length) * 600) / 2}
           >
-            <motion.div
+            <div
               className="cluster-marker"
               animate={{
                 scale: [1, 1.2, 1.2, 1, 1],
@@ -143,7 +143,7 @@ const ClusterMarkers = ({ mapRef }) => {
               }}
             >
               {pointCount}
-            </motion.div>
+            </div>
           </Marker>
         );
       })}
