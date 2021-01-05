@@ -11,8 +11,8 @@ position: absolute;
 height: 150px;
 left: 50%;
 transform:translate(-50%, -50%);
-top:80%;
-z-index: 1;
+top:98%;
+z-index: 2;
     
 }
 
@@ -20,12 +20,12 @@ z-index: 1;
     .Timeline{
 
         position: absolute;
-height: 150px;
+height: 25px;
 width: 90%;
 left: 50%;
 transform:translate(-50%, -50%);
-top:85%;
-z-index: 1;
+top:99%;
+z-index: 2;
 
     }
 }

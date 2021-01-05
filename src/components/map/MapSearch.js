@@ -128,7 +128,7 @@ const MapSearch = () => {
       >
         <Panel
           bordered={false}
-          style={{ color: 'white', padding: '0px' }}
+          style={{ color: 'white', padding: '6px' }}
           header="More Info"
           key="1"
         >

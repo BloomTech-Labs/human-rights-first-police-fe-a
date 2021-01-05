@@ -59,10 +59,10 @@ button.ant-btn.ant-btn-primary.ant-input-search-button {
   z-index: 1;
 }
 div.ant-collapse-header {
-  padding: 0;
+  padding: 4;
   text-align: center;
   color: white;
-  padding-bottom: 2%;
+  padding-bottom: 4%;
 }
 
 div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
