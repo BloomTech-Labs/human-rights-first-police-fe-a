@@ -6,8 +6,10 @@ import Main from './components/Main';
 
 import './index.css';
 import 'antd/dist/antd.less';
+
 import RecentTimeline from './components/timeline/RecentTimeline';
 import Incidents from './components/incidents/Incidents';
+import About from './components/about/About';
 
 import GraphContainer from './components/graphs/GraphContainer';
 import NavBar from './components/NavBar';
@@ -41,6 +43,9 @@ function App() {
           </Route>
           <Route path="/incidents">
             <Incidents />
+          </Route>
+          <Route path="/about">
+            <About />
           </Route>
         </Switch>
       </div>
