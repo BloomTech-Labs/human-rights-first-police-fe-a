@@ -10,6 +10,7 @@ import RecentTimeline from './components/timeline/RecentTimeline';
 import Incidents from './components/incidents/Incidents';
 
 import GraphContainer from './components/graphs/GraphContainer';
+import NavBar from './components/NavBar';
 
 ReactDOM.render(
   <Router>
@@ -24,6 +25,7 @@ function App() {
   return (
     <>
       <div>
+        <NavBar />
         <Switch>
           <Route exact path="/">
             <div className='Map'>
@@ -42,7 +44,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-      <ReactQueryDevtools />
+      <ReactQueryDevtools initialIsOpen={false} />
     </>
   );
 }
