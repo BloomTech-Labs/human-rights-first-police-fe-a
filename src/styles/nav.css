@@ -1,6 +1,6 @@
 root {
   --blue: #003767;
-  --orange: #bc541e;
+  --orange: #fff;
   --light-blue: #7f9bb3;
 }
 
@@ -8,40 +8,19 @@ root:hover {
   color: yellow;
 }
 
-[role='menu'] {
+.layout [role='menu'] {
   background-color: var(--blue);
   width: 100%;
-  height: 7rem;
-  margin-bottom: 3rem;
-  color: white;
-  font-size: x-large;
+  height: 60px;
   display: flex;
-  justify-content: space-evenly;
 }
 
 .logo-container {
-  background-color: white
+  background-color: white;
 }
 
-.ant-layout {
-  margin-bottom: 3rem;
-}
-
-/* The following classes were needed in order to override the current antd classes and colors. These classes make sure the color of the text, bottom border and the hover colors are orange rather than default colors. Vars would not work so colors were added by hex */
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
-  border-bottom: 3px solid #bc541e;
-  color: #bc541e !important;
-}
-
-.ant-menu-horizontal > .ant-menu-item a {
-  color: white;
+.layout {
+  border: none;
 }
 
 .layout a {
@@ -50,4 +29,18 @@ root:hover {
 
 .layout a:focus {
   color: #bc541e !important;
+}
+
+.undefined-submenu {
+  color: #fff;
+}
+
+.logo {
+  height: 100%;
+  background-color: transparent;
+}
+
+.logo-container {
+  height: 48px;
+  background-color: transparent;
 }

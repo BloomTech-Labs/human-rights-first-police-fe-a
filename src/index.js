@@ -4,8 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import Main from './components/Main';
 
-import './index.css';
-import 'antd/dist/antd.less';
+import './index.less';
 import RecentTimeline from './components/timeline/RecentTimeline';
 import Incidents from './components/incidents/Incidents';
 

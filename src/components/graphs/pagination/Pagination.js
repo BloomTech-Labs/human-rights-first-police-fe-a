@@ -26,17 +26,32 @@ const Pagination = ({ setGraph, setUsState }) => {
       selectedKeys={names}
       mode="horizontal"
     >
-      <Menu.Item key="Line" icon={<LineChartOutlined />}>
-        Line Graph
-      </Menu.Item>
-      <Menu.Item key="Bar" icon={<BarChartOutlined />}>
-        Bar Graph
-      </Menu.Item>
-      <Menu.Item key="Pie" icon={<PieChartOutlined />}>
-        Pie Graph
-      </Menu.Item>
-
-      <SearchBar setUsState={setUsState} className="search-bar" />
+      <Menu.ItemGroup className="links">
+        <Menu.Item
+          key="Line"
+          icon={<LineChartOutlined />}
+          className="graph-menu-item"
+        >
+          Line Graph
+        </Menu.Item>
+        <Menu.Item
+          key="Bar"
+          icon={<BarChartOutlined />}
+          className="graph-menu-item"
+        >
+          Bar Graph
+        </Menu.Item>
+        <Menu.Item
+          key="Pie"
+          icon={<PieChartOutlined />}
+          className="graph-menu-item"
+        >
+          Pie Graph
+        </Menu.Item>
+      </Menu.ItemGroup>
+      <Menu.ItemGroup>
+        <SearchBar setUsState={setUsState} className="search-bar" />
+      </Menu.ItemGroup>
     </Menu>
   );
 };
