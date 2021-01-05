@@ -31,6 +31,7 @@ export const ContextActiveFilters = createContext();
 export const ContextLong = createContext();
 export const ContextLat = createContext();
 export const ContextIncidents = createContext();
+export const ContextFilterData = createContext();
 
 const Store = ({ children }) => {
   const [viewport, setViewport] = useState(initialView);
@@ -40,6 +41,7 @@ const Store = ({ children }) => {
   const [lat, setLat] = useState(initialLat);
   const [activeFilters, setActiveFilters] = useState();
   const [incidentsOfInterest, setIncidentsOfInterest] = useState();
+  const [filterDataList, setFilterDataList] = useState([]);
 
   return (
     <ContextView.Provider value={[viewport, setViewport]}>
@@ -53,7 +55,11 @@ const Store = ({ children }) => {
                 <ContextIncidents.Provider
                   value={[incidentsOfInterest, setIncidentsOfInterest]}
                 >
-                  {children}
+                  <ContextFilterData.Provider
+                    value={[filterDataList, setFilterDataList]}
+                  >
+                    {children}
+                  </ContextFilterData.Provider>
                 </ContextIncidents.Provider>
               </ContextState.Provider>
             </ContextLat.Provider>

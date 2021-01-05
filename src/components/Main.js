@@ -2,14 +2,15 @@ import React from 'react';
 import MapContainer from '../components/map/MapContainer';
 import { Layout } from 'antd';
 import Store from '../components/Store';
+import './Main.css'
 
 const Main = () => {
   return (
-    <div>
+    <div className='mapDiv'  >
       <Store>
-        <div style={{ width: '90%', margin: 'auto' }}>
+        
           <MapContainer />
-        </div>
+        
       </Store>
     </div>
   );
