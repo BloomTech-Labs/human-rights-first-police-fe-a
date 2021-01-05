@@ -113,7 +113,9 @@ const LastIncident = () => {
                         maxIncidentCategories
                       )}
                     >
-                      - {category.charAt(0).toUpperCase() + category.slice(1)}
+                      {category.charAt(0).toUpperCase() +
+                      category.slice(1).replaceAll('-', ' ')}
+                    &nbsp;&nbsp;
                     </h3>
                   </div>
                 );
