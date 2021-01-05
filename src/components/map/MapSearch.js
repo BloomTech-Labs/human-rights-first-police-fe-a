@@ -1,41 +1,19 @@
-import React, {
-  useState,
-  useContext,
-  useRef,
-  useCallback,
-  useMemo,
-} from 'react';
+import React, { useState, useContext, useMemo } from 'react';
 import { useIncidents } from '../../state/query_hooks/useIncidents';
-import { FlyToInterpolator } from 'react-map-gl';
-import {
-  ContextState,
-  ContextView,
-  ContextActiveFilters,
-  ContextLong,
-  ContextLat,
-  ContextIncidents,
-  ContextFilterData,
-} from '../Store';
+import { ContextIncidents, ContextFilterData } from '../Store';
 import { Input, Collapse, Divider, List } from 'antd';
 
 import LastIncident from './incidentContainer/LastIncident';
 
-import { SearchOutlined } from '@ant-design/icons';
 import './MapSearch.css';
 
 import FilteredIncident from './incidentContainer/FilteredIncident';
 import ClusterIncident from './incidentContainer/ClusterIncident';
+import { nanoid } from 'nanoid';
 
 const { Panel } = Collapse;
 const { Search } = Input;
-const suffix = (
-  <SearchOutlined
-    style={{
-      fontSize: 16,
-      color: '#1890ff',
-    }}
-  />
-);
+
 function callback(key) {
   console.log(key);
 }
@@ -101,7 +79,6 @@ const MapSearch = () => {
       return filteredData;
     }
   }, [dataList, search]);
-  console.log(filterData);
 
   const onSearch = value => {
     setSearch(value);
@@ -136,20 +113,26 @@ const MapSearch = () => {
             <Divider style={{ margin: '0px' }} />
             <List>
               {!incidentsOfInterest && search === '' ? (
-                <LastIncident lastIncident={lastIncident} />
+                <LastIncident lastIncident={lastIncident} key={nanoid()} />
               ) : !incidentsOfInterest ? (
                 filterData.map((data, index) => {
                   return (
                     <FilteredIncident
                       data={data}
-                      index={index}
+                      key={nanoid()}
                       filterData={filterData}
                     />
                   );
                 })
               ) : (
                 incidentsOfInterest.map((incidents, i) => {
-                  return <ClusterIncident incidents={incidents} i={i} />;
+                  return (
+                    <ClusterIncident
+                      incidents={incidents}
+                      i={i}
+                      key={nanoid()}
+                    />
+                  );
                 })
               )}
             </List>

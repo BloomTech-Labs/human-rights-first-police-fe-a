@@ -4,26 +4,55 @@ import './Pagination.css';
 // Search Bar
 import SearchBar from '../searchbar/SearchBar';
 
-const Button = ({ name, setGraph }) => {
-  return (
-    <button onClick={() => setGraph(name)} className="pagination-btn">
-      {name}
-    </button>
-  );
-};
+// Menu
+import { Menu } from 'antd';
+import {
+  LineChartOutlined,
+  BarChartOutlined,
+  PieChartOutlined,
+} from '@ant-design/icons';
 
 const Pagination = ({ setGraph, setUsState }) => {
   const [names] = useState(['Line', 'Bar', 'Pie']);
-  return (
-    <nav className="page-nav">
-      <div className="link-container">
-        {names.map(name => (
-          <Button key={name} name={name} setGraph={setGraph} />
-        ))}
-      </div>
 
-      <SearchBar setUsState={setUsState} />
-    </nav>
+  const onClick = e => {
+    setGraph(e.key);
+  };
+
+  return (
+    <Menu
+      className="link-container"
+      onClick={onClick}
+      selectedKeys={names}
+      mode="horizontal"
+    >
+      <Menu.ItemGroup className="links">
+        <Menu.Item
+          key="Line"
+          icon={<LineChartOutlined />}
+          className="graph-menu-item"
+        >
+          Line Graph
+        </Menu.Item>
+        <Menu.Item
+          key="Bar"
+          icon={<BarChartOutlined />}
+          className="graph-menu-item"
+        >
+          Bar Graph
+        </Menu.Item>
+        <Menu.Item
+          key="Pie"
+          icon={<PieChartOutlined />}
+          className="graph-menu-item"
+        >
+          Pie Graph
+        </Menu.Item>
+      </Menu.ItemGroup>
+      <Menu.ItemGroup>
+        <SearchBar setUsState={setUsState} className="search-bar" />
+      </Menu.ItemGroup>
+    </Menu>
   );
 };
 

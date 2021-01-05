@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import '../styles/nav.css';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-import logo from '../assets/hrf-logo.png';
+import logo from '../assets/hrflogo.png';
 
 import { Layout, Menu } from 'antd';
 
@@ -16,7 +16,7 @@ const NavBar = () => {
         <Menu mode="horizontal">
           <div className="logo-container">
             <Link to="/">
-              <img src={logo} alt="Human Rights First" />
+              <img src={logo} alt="Human Rights First" className="logo" />
             </Link>
           </div>
           <Menu.Item key="1">

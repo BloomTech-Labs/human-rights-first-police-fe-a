@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 
+import './Key.css';
+
 const keyData = {
   'Officer Presence': {
     desc: 'No force is used',
@@ -33,6 +35,7 @@ const Key = props => {
         flexFlow: 'column',
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
+        margin: 0,
       }}
     >
       {Object.keys(data).map((type, index) => {
