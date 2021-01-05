@@ -5,7 +5,7 @@
   border-style: solid;
   border-color: rgb(36, 35, 33);
   padding-left: 2%;
-  width: 400px;
+  width: 300px;
 }
 /* span.map-search {
   background-color: rgb(36, 35, 33);
@@ -24,8 +24,7 @@ input.ant-input {
   background-color: rgb(36, 35, 33);
   color: white;
 }
-span.ant-input-group-addon {
-}
+
 button.ant-btn.ant-btn-primary.ant-input-search-button {
   visibility: visible;
   background-color: rgb(255, 255, 255);
@@ -47,8 +46,17 @@ button.ant-btn.ant-btn-primary.ant-input-search-button {
   background-color: rgb(36, 35, 33);
   overflow: auto;
 }
+@media (max-width: 800px) {
+  .ant-collapse-content-box {
+    background-color: rgb(36, 35, 33);
+  }
+  div.incident-content {
+    height: 17vh;
+  }
+}
 .incident-content {
-  height: 40vh;
+  height: 50vh;
+  z-index: 1;
 }
 div.ant-collapse-header {
   padding: 0;
@@ -64,6 +72,18 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
   text-align: left;
   margin-left: 15px;
   font-weight: 500;
+}
+@media (max-width: 800px) {
+  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    font-size: 1.1rem;
+  }
+  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    padding: 3px 0px 1px 0px;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-left: 15px;
+    font-weight: 500;
+  }
 }
 
 .incident-header {

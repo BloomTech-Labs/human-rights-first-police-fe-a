@@ -16,19 +16,13 @@ import {
   ContextIncidents,
   ContextFilterData,
 } from '../Store';
-import { Input, Collapse, Divider, List, Tooltip, Row, Col } from 'antd';
-import { DateTime } from 'luxon';
+import { Input, Collapse, Divider, List } from 'antd';
+
 import LastIncident from './incidentContainer/LastIncident';
 
 import { SearchOutlined } from '@ant-design/icons';
 import './MapSearch.css';
-import wrestling from './iconImg/wrestling.png';
-import warning from './iconImg/warning.png';
-import siren from './iconImg/siren.png';
-import punch from './iconImg/question-mark.png';
-import danger from './iconImg/punch.png';
-import bullHorn from './iconImg/bull-horn.png';
-import questionMark from './iconImg/question-mark.png';
+
 import FilteredIncident from './incidentContainer/FilteredIncident';
 import ClusterIncident from './incidentContainer/ClusterIncident';
 
@@ -47,19 +41,8 @@ function callback(key) {
 }
 
 const MapSearch = () => {
-  const mapRef = useRef();
-
-  const handleViewportChange = useCallback(
-    newViewport => setViewport(newViewport),
-    []
-  );
   const [filterDataList, setFilterDataList] = useContext(ContextFilterData);
-  const [searchText, setSearchText] = useState('');
-  const [long, setLong] = useContext(ContextLong);
-  const [lat, setLat] = useContext(ContextLat);
-  const [viewport, setViewport] = useContext(ContextView);
-  const [state, setState] = useContext(ContextState);
-  const [activeFilters, setActiveFilters] = useContext(ContextActiveFilters);
+
   const [incidentsOfInterest, setIncidentsOfInterest] = useContext(
     ContextIncidents
   );
@@ -95,7 +78,6 @@ const MapSearch = () => {
 
   const dataList = newData();
   const lastIncident = dataList.shift();
-  const findthem = dataList.filter(x => x.empty_hand_soft === true);
 
   //List everything to exclude with filtering
   const exclude = ['incident_id'];
@@ -115,37 +97,11 @@ const MapSearch = () => {
                 .includes(lowercasedValue)
         );
       });
+
       return filteredData;
     }
   }, [dataList, search]);
-
   console.log(filterData);
-
-  const handleChange = value => {
-    setSearchText(value);
-    setSearch(value);
-  };
-
-  const FlyTo = () => {
-    const flyViewport = {
-      latitude: lat,
-      longitude: long,
-      zoom: 14,
-      transitionDuration: 5000,
-      transitionInterpolator: new FlyToInterpolator(),
-    };
-    setViewport(flyViewport);
-  };
-
-  const setCoord = (lat, long) => {
-    setLat(lat);
-    setLong(long);
-  };
-
-  const addFilter = filter => {
-    let newState = [...activeFilters, filter];
-    setActiveFilters(newState);
-  };
 
   const onSearch = value => {
     setSearch(value);
@@ -183,7 +139,13 @@ const MapSearch = () => {
                 <LastIncident lastIncident={lastIncident} />
               ) : !incidentsOfInterest ? (
                 filterData.map((data, index) => {
-                  return <FilteredIncident data={data} index={index} />;
+                  return (
+                    <FilteredIncident
+                      data={data}
+                      index={index}
+                      filterData={filterData}
+                    />
+                  );
                 })
               ) : (
                 incidentsOfInterest.map((incidents, i) => {

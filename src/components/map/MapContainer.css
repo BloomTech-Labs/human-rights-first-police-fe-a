@@ -4,3 +4,12 @@
   right: 10px;
   z-index: 1;
 }
+
+@media (max-width: 768px) {
+  .map-menu-background {
+    position: absolute;
+    top: 68%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+  }
+}

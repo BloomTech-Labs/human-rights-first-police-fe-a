@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import ReactMapGL, { ScaleControl, NavigationControl } from 'react-map-gl';
+import ReactMapGL, {  NavigationControl } from 'react-map-gl';
 // components
 import { ContextView, ContextIncidents } from '../Store';
 import ClusterMarkers from './ClusterMarkers';
@@ -42,35 +42,37 @@ function MapContainer() {
   };
 
   return (
-    <ReactMapGL
-      {...viewport}
-      {...settings}
-      maxZoom={maxZoom}
-      minZoom={2.75}
-      width={'fit'}
-      height={'70vh'}
-      mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-      mapStyle="mapbox://styles/mapbox/dark-v9"
-      onViewportChange={newViewport => {
-        setViewport({ ...newViewport });
-      }}
-      ref={mapRef}
-    >
-      <div style={navStyle}>
-        <NavigationControl />
-      </div>
-      <div className="map-menu-background">
-        <MapSearch />
-      </div>
+    <div>
+      <ReactMapGL
+        {...viewport}
+        {...settings}
+        maxZoom={maxZoom}
+        minZoom={2.75}
+        width={'fit'}
+        height={'80vh'}
+        mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
+        mapStyle="mapbox://styles/mapbox/dark-v9"
+        onViewportChange={newViewport => {
+          setViewport({ ...newViewport });
+        }}
+        ref={mapRef}
+      >
+        <div style={navStyle}>
+          <NavigationControl />
+        </div>
+        <div className="map-menu-background">
+          <MapSearch />
+        </div>
 
-      <ClusterMarkers
-        mapRef={mapRef}
-        viewport={viewport}
-        bounds={bounds}
-        setViewport={setViewport}
-        setIncidentsOfInterest={incidentsofInterest}
-      />
-    </ReactMapGL>
+        <ClusterMarkers
+          mapRef={mapRef}
+          viewport={viewport}
+          bounds={bounds}
+          setViewport={setViewport}
+          setIncidentsOfInterest={incidentsofInterest}
+        />
+      </ReactMapGL>
+    </div>
   );
 }
 
