@@ -61,4 +61,8 @@
   .incidents-page header .user-input {
     flex-flow: column;
   }
+
+  .incidents-page header .user-input .ant-select {
+    width: 100% !important;
+  }
 }
