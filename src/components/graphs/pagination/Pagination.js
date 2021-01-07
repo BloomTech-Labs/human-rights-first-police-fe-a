@@ -1,58 +1,58 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Pagination.css';
 
 // Search Bar
 import SearchBar from '../searchbar/SearchBar';
 
-// Menu
-import { Menu } from 'antd';
 import {
   LineChartOutlined,
   BarChartOutlined,
   PieChartOutlined,
 } from '@ant-design/icons';
+import { nanoid } from 'nanoid';
+
+const names = ['Line', 'Bar', 'Pie'];
+
+const generateButtons = onClick => {
+  const buttons = names.map(name => {
+    let icon;
+    if (name === 'Line') {
+      icon = <LineChartOutlined className="line icon" />;
+    } else if (name === 'Bar') {
+      icon = <BarChartOutlined className="bar icon" />;
+    } else {
+      icon = <PieChartOutlined className="pie icon" />;
+    }
+
+    return (
+      <li
+        className="link-item"
+        data-key={`${name}`}
+        onClick={e => onClick(e)}
+        key={nanoid()}
+      >
+        {icon}
+        <span className="text">{name}</span>
+      </li>
+    );
+  });
+
+  return buttons;
+};
 
 const Pagination = ({ setGraph, setUsState }) => {
-  const [names] = useState(['Line', 'Bar', 'Pie']);
-
   const onClick = e => {
-    setGraph(e.key);
+    e.persist();
+    setGraph(e.currentTarget.dataset.key);
   };
 
   return (
-    <Menu
-      className="link-container"
-      onClick={onClick}
-      selectedKeys={names}
-      mode="horizontal"
-    >
-      <Menu.ItemGroup className="links">
-        <Menu.Item
-          key="Line"
-          icon={<LineChartOutlined />}
-          className="graph-menu-item"
-        >
-          Line Graph
-        </Menu.Item>
-        <Menu.Item
-          key="Bar"
-          icon={<BarChartOutlined />}
-          className="graph-menu-item"
-        >
-          Bar Graph
-        </Menu.Item>
-        <Menu.Item
-          key="Pie"
-          icon={<PieChartOutlined />}
-          className="graph-menu-item"
-        >
-          Pie Graph
-        </Menu.Item>
-      </Menu.ItemGroup>
-      <Menu.ItemGroup>
+    <nav className="link-container">
+      <ul className="graph-buttons">{generateButtons(onClick)}</ul>
+      <div className="search-bar-container">
         <SearchBar setUsState={setUsState} className="search-bar" />
-      </Menu.ItemGroup>
-    </Menu>
+      </div>
+    </nav>
   );
 };
 

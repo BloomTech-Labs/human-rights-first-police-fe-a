@@ -4,42 +4,65 @@
   --light-blue: #7f9bb3;
 }
 
-div.incidentsApp {
+.incidents-page {
+  max-width: 1200px;
+  margin: 32px auto 0;
+}
+
+.incidents-page header {
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
+  padding: 0 32px;
 }
 
-section ul {
+.incidents-page header .user-input {
   display: flex;
+  justify-content: space-between;
+}
+
+.incidents-page section ul {
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
   flex-wrap: wrap;
-  margin: auto !important;
-  align-items: center;
-  justify-content: center;
 }
 
-h1.expandedHeader {
-  margin: 16px;
-}
-
-div.ant-card.ant-card-bordered {
-  width: 500px;
-  margin: 8px;
-}
-
-div.ant-card-head {
-  background: var(--blue);
-  color: white;
-}
-
-div.ant-card-body {
-  height: 200px;
+.card-box {
+  width: 45%;
+  height: 250px;
   overflow-y: scroll;
-  overflow-x: hidden;
+  margin: 24px 16px;
+}
+
+.card-box .ant-card-head {
+  background-color: var(--blue);
+  color: #fff;
 }
 
 .pagination {
   display: flex;
   justify-content: center;
+}
+
+@media screen and (max-width: 1081px) {
+  .incidents-page header {
+    flex-flow: column;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .card-box {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .incidents-page header .user-input {
+    flex-flow: column;
+  }
+
+  .incidents-page header .user-input .ant-select {
+    width: 100% !important;
+  }
 }

@@ -80,10 +80,14 @@ const Incidents = () => {
 
   return (
     <>
-      <div className="incidentsApp">
-        <h1 className="expandedHeader"> Expanded Timeline of Events </h1>
-        <SearchBar setUsState={setUsState} />
-        <RangePicker onCalendarChange={onDateSelection} />
+      <div className="incidents-page">
+        <header>
+          <h1 className="title"> Expanded Timeline of Events </h1>
+          <section className="user-input">
+            <SearchBar setUsState={setUsState} />
+            <RangePicker onCalendarChange={onDateSelection} />
+          </section>
+        </header>
         <section>
           <ul>
             {currentPosts.map(incident => {
