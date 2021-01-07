@@ -3,11 +3,13 @@ import { DateTime } from 'luxon';
 import { Card } from 'antd';
 import 'antd/dist/antd.css';
 
+import './Incidents.css';
+
 const IncidentsCard = props => {
   let cityState = `${props.incident.city}, ${props.incident.state}`;
 
   return (
-    <div className="cardBox">
+    <div className="card-box">
       {/* for states, I was thinking we could import the abbreviations from the bargraphAssets file */}
 
       <Card title={cityState}>

@@ -3,10 +3,10 @@ import { Line } from 'react-chartjs-2';
 import { options } from '../assets';
 
 const LineGraph = ({ data, months }) => {
-  const [inCategories, setInCategories] = useState({});
+  const [inCategories] = useState({});
   const [labels, setLabels] = useState([]);
-  const [incidentID, setIncidentID] = useState('all');
-  const [label, setLabel] = useState('All');
+  const [incidentID] = useState('all');
+  const [label] = useState('All');
   const [lineData, setLineData] = useState([]);
 
   useEffect(() => {
@@ -43,8 +43,10 @@ const LineGraph = ({ data, months }) => {
               incidentId: incidentID,
               label: label,
               data: lineData,
-              borderColor: '#c0ba17',
-              backgroundColor: 'rgba(0,0,0,0)',
+              borderColor: '#003767',
+              backgroundColor: '#ededed',
+              pointBackgroundColor: '#e63946',
+              pointBorderColor: '#95363d',
             },
           ],
         }}
