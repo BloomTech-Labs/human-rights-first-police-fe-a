@@ -1,0 +1,46 @@
+root {
+  --blue: #003767;
+  --orange: #fff;
+  --light-blue: #7f9bb3;
+}
+
+root:hover {
+  color: yellow;
+}
+
+.layout [role='menu'] {
+  background-color: var(--blue);
+  width: 100%;
+  height: 60px;
+  display: flex;
+}
+
+.logo-container {
+  background-color: white;
+}
+
+.layout {
+  border: none;
+}
+
+.layout a {
+  color: white !important;
+}
+
+.layout a:focus {
+  color: #bc541e !important;
+}
+
+.undefined-submenu {
+  color: #fff;
+}
+
+.logo {
+  height: 100%;
+  background-color: transparent;
+}
+
+.logo-container {
+  height: 48px;
+  background-color: transparent;
+}

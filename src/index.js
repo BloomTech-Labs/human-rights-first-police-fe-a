@@ -6,10 +6,13 @@ import Main from './components/Main';
 
 import './index.css';
 import 'antd/dist/antd.less';
+
 import RecentTimeline from './components/timeline/RecentTimeline';
 import Incidents from './components/incidents/Incidents';
+import About from './components/about/About';
 
 import GraphContainer from './components/graphs/GraphContainer';
+import NavBar from './components/NavBar';
 
 ReactDOM.render(
   <Router>
@@ -24,10 +27,15 @@ function App() {
   return (
     <>
       <div>
+        <NavBar />
         <Switch>
           <Route exact path="/">
+            <div className='Map'>
             <Main />
+            </div>
+            <div className='Timeline'>
             <RecentTimeline />
+            </div>
           </Route>
 
           <Route path="/graph">
@@ -36,9 +44,12 @@ function App() {
           <Route path="/incidents">
             <Incidents />
           </Route>
+          <Route path="/about">
+            <About />
+          </Route>
         </Switch>
       </div>
-      <ReactQueryDevtools />
+      <ReactQueryDevtools initialIsOpen={false} />
     </>
   );
 }
