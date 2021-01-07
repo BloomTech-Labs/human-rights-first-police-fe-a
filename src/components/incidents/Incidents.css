@@ -50,3 +50,15 @@
     flex-flow: column;
   }
 }
+
+@media screen and (max-width: 640px) {
+  .card-box {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .incidents-page header .user-input {
+    flex-flow: column;
+  }
+}
