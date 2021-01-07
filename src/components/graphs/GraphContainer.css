@@ -3,6 +3,9 @@
   margin: 0 auto;
 }
 
+.graph-container header {
+}
+
 .link-container[role='menu'] {
   height: 60px;
   border: none;
