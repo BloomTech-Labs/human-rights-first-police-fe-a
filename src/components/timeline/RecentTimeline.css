@@ -15,6 +15,11 @@ h1 {
   font-size: 32px;
 }
 
+.categories{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .categories,
 .timeline-links {
   display: flex;
@@ -44,4 +49,7 @@ a.link-button {
 
 div.ant-modal-body {
   padding: 35px 35px 0px 35px;
+}
+.entry .title::before{
+  right: -11px
 }

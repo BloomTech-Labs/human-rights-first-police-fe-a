@@ -1,31 +1,23 @@
-.Map{
-position: relative;
-width: 100%;
-height: 80vh
+.Map {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  margin-top: -1px;
 }
 
-.Timeline{
-    
-    background-color: #ffff;
-position: absolute;
-height: 150px;
-left: 50%;
-transform:translate(-50%, -50%);
-top:87%;
-z-index: 2;
-    
+.Timeline {
+  background-color: #ffff;
+
+  display: flex;
+  justify-content: space-around;
 }
 
-@media(max-width: 800px) {
-    .Timeline{
+.H-bar{
+margin-top: 10px;
+width: 500px;
+}
 
-        position: absolute;
-height: 25px;
-width: 90%;
-left: 50%;
-transform:translate(-50%, -50%);
-top:85%;
-z-index: 2;
-
-    }
+@media (max-width: 800px) {
+  .Timeline {
+  }
 }

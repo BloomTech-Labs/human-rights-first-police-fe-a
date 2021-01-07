@@ -4,7 +4,7 @@ import { ContextLat, ContextLong, ContextView } from '../../Store';
 import { FlyToInterpolator } from 'react-map-gl';
 import { iconPicker, newData } from '../GetFunctions';
 import { useIncidents } from '../../../state/query_hooks/useIncidents';
-
+import { Divider} from 'antd';
 import './LastIncident.css';
 import {
   minStyles,
@@ -88,9 +88,10 @@ const LastIncident = () => {
             </h2>
           </div>
         </div>
-
+        <Divider style={{ borderWidth: '1px' }} />
         <div className="incident-info" style={renderStyles(incidentInfo)}>
           <h3 className="incident-discription">{lastIncident?.desc}</h3>
+          <Divider style={{ borderWidth: '1px' }} />
 
           <div>
             <h2

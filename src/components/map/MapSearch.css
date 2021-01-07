@@ -1,34 +1,24 @@
 .map-menu {
   margin-top: 20px;
-  background-color: rgb(36, 35, 33);
-
-  border-style: solid;
-  border-color: rgb(36, 35, 33);
+  background-color: rgb(250, 250, 250);
+  
+  /* border-style: solid;
+  border-color: rgb(0,55,103); */
   padding-left: 2%;
-  width: 300px;
+  width: 375px;
 }
-/* span.map-search {
-  background-color: rgb(36, 35, 33);
-  border-color: rgb(36, 35, 33);
-  font-size: 1.2rem;
-  font-weight: 00;
-  color: blue;
-}
-input.ant-input {
-  background-color: rgb(36, 35, 33);
-  color: white;
-  font-size: 25px;
-  margin-left: 3px;
-} */
-input.ant-input {
-  background-color: rgb(36, 35, 33);
-  color: white;
+
+
+.search-header{
+  display: flex;
+  position: absolute;
+  
 }
 
 button.ant-btn.ant-btn-primary.ant-input-search-button {
   visibility: visible;
   background-color: rgb(255, 255, 255);
-  border-color: #ffff;
+ 
   color: black;
 }
 .icon-img {
@@ -39,19 +29,25 @@ button.ant-btn.ant-btn-primary.ant-input-search-button {
 }
 
 .ant-collapse {
-  background-color: rgb(36, 35, 33);
+  background-color:  rgb(255, 255, 255);
   border: none;
 }
 .ant-collapse-content-box {
-  background-color: rgb(36, 35, 33);
+  background-color:  rgb(255, 255, 255);
   overflow: auto;
 }
 @media (max-width: 800px) {
   .ant-collapse-content-box {
-    background-color: rgb(36, 35, 33);
+    background-color:  rgb(255, 255, 255);
   }
   div.incident-content {
     height: 17vh;
+  }
+  .search-header{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    
   }
 }
 .incident-content {
@@ -61,12 +57,12 @@ button.ant-btn.ant-btn-primary.ant-input-search-button {
 div.ant-collapse-header {
   padding: 4;
   text-align: center;
-  color: white;
+  
   padding-bottom: 4%;
 }
 
 div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
-  color: white;
+  
   padding: 5px 0px 5px 0px;
   font-size: 1.5rem;
   text-align: left;
@@ -87,25 +83,25 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
 }
 
 .incident-header {
-  color: white;
+  
 }
 .incident-location {
-  color: white;
+  
   font-weight: lighter;
 }
 .incident-date {
-  color: white;
+
   font-weight: lighter;
 }
 
 .incident-discription {
-  color: white;
+ 
 }
 .incident-category {
-  color: white;
+ 
 }
 .incident-categories {
-  color: white;
+  
 }
 
 .incident-container {

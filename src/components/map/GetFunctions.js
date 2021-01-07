@@ -9,6 +9,7 @@ import questionMark from './iconImg/question-mark.png';
 import FilteredIncident from './incidentContainer/FilteredIncident';
 import ClusterIncident from './incidentContainer/ClusterIncident';
 
+
 export const iconPicker = incident => {
   // return console.log(incident)
   if (incident?.empty_hand_hard) {
