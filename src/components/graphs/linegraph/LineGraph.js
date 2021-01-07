@@ -43,7 +43,7 @@ const LineGraph = ({ data, months }) => {
               incidentId: incidentID,
               label: label,
               data: lineData,
-              borderColor: '#f7f7f7',
+              borderColor: '#003767',
               backgroundColor: '#ededed',
               pointBackgroundColor: '#e63946',
               pointBorderColor: '#95363d',
