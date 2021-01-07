@@ -1,24 +1,22 @@
 .map-menu {
   margin-top: 20px;
   background-color: rgb(250, 250, 250);
-  
+
   /* border-style: solid;
   border-color: rgb(0,55,103); */
   padding-left: 2%;
   width: 375px;
 }
 
-
-.search-header{
+.search-header {
   display: flex;
   position: absolute;
-  
 }
 
 button.ant-btn.ant-btn-primary.ant-input-search-button {
   visibility: visible;
   background-color: rgb(255, 255, 255);
- 
+
   color: black;
 }
 .icon-img {
@@ -29,25 +27,24 @@ button.ant-btn.ant-btn-primary.ant-input-search-button {
 }
 
 .ant-collapse {
-  background-color:  rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   border: none;
 }
 .ant-collapse-content-box {
-  background-color:  rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
   overflow: auto;
 }
 @media (max-width: 800px) {
   .ant-collapse-content-box {
-    background-color:  rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255);
   }
   div.incident-content {
     height: 17vh;
   }
-  .search-header{
+  .search-header {
     display: flex;
     flex-direction: column;
     position: absolute;
-    
   }
 }
 .incident-content {
@@ -57,12 +54,11 @@ button.ant-btn.ant-btn-primary.ant-input-search-button {
 div.ant-collapse-header {
   padding: 4;
   text-align: center;
-  
+
   padding-bottom: 4%;
 }
 
 div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
-  
   padding: 5px 0px 5px 0px;
   font-size: 1.5rem;
   text-align: left;
@@ -83,25 +79,19 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
 }
 
 .incident-header {
-  
 }
 .incident-location {
-  
   font-weight: lighter;
 }
 .incident-date {
-
   font-weight: lighter;
 }
 
 .incident-discription {
- 
 }
 .incident-category {
- 
 }
 .incident-categories {
-  
 }
 
 .incident-container {

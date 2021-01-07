@@ -24,7 +24,7 @@ const ClusterMarkers = ({ mapRef }) => {
   const incidents =
     incidentsQuery.data && !incidentsQuery.isError ? incidentsQuery.data : [];
 
-    // console.log(incidents)
+  // console.log(incidents)
 
   // Known problem with DS data ... some incidents are coming over without a lat/long
   // --> this ensures those data points do not get added to the map

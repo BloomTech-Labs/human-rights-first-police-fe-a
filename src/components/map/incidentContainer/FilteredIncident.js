@@ -7,7 +7,7 @@ import {
   ContextView,
   ContextFilterData,
   ContextDates,
-  ContextSearchText
+  ContextSearchText,
 } from '../../Store';
 
 import { FlyToInterpolator } from 'react-map-gl';
@@ -29,16 +29,15 @@ import { iconPicker, newData } from '../GetFunctions';
 import { useMediaQuery } from 'react-responsive';
 import { nanoid } from 'nanoid';
 
-
 const { Search } = Input;
 
 const FilteredIncident = () => {
   const [lat, setLat] = useContext(ContextLat);
   const [long, setLong] = useContext(ContextLong);
   const [viewport, setViewport] = useContext(ContextView);
-  const [dates, setDates] = useContext(ContextDates)
+  const [dates, setDates] = useContext(ContextDates);
   const [filterDataList, setFilterDataList] = useContext(ContextFilterData);
-  const [searchText, setSearchText] = useContext(ContextSearchText)
+  const [searchText, setSearchText] = useContext(ContextSearchText);
 
   const incidentsQuery = useIncidents();
 
@@ -47,11 +46,9 @@ const FilteredIncident = () => {
 
   const dataList = newData(incidents);
 
-
   const exclude = ['incident_id'];
 
   const filterData = value => {
-    
     const lowercasedValue = value.toLowerCase().trim();
     if (lowercasedValue === '') setFilterDataList([]);
     else {
@@ -68,10 +65,9 @@ const FilteredIncident = () => {
 
       setFilterDataList(filteredData);
     }
-    
   };
 
-console.log(filterDataList)
+  console.log(filterDataList);
 
   const desktopOrMobile = useMediaQuery({
     query: '(min-device-width: 800px',
@@ -80,8 +76,6 @@ console.log(filterDataList)
   const renderStyles = (style1, style2) => {
     return !desktopOrMobile ? style1 : style2;
   };
-
-
 
   const FlyTo = () => {
     const flyViewport = {
@@ -96,93 +90,96 @@ console.log(filterDataList)
 
   const onSearch = value => {
     setSearchText(value);
-    filterData(value)
-  
+    filterData(value);
   };
 
-console.log(filterDataList)
-
-
+  console.log(filterDataList);
 
   return (
     <div>
-      {filterDataList.map((data, index) =>{
-        return(
+      {filterDataList.map((data, index) => {
+        return (
           <div
-      className="incident-card"
-      key={nanoid}
-      onMouseEnter={() => {
-        setLat(data?.lat);
-        setLong(data?.long);
-      }}
-    >
-      <h4 className="incident-location" style={renderStyles(incidentLocation)}>
-        {' '}
-        {data?.city}, {data?.state}
-      </h4>
-      <div className="HeaderInfo" style={renderStyles(minStyles)}>
-        <img
-          className="icon-img"
-          onClick={() => {
-            FlyTo();
-          }}
-          style={renderStyles(imgMinStyle)}
-          src={iconPicker(data) ? iconPicker(data) : questionMark}
-          alt="?"
-        />
-        <div
-          className="incidentHeader"
-          style={renderStyles(incidentHeader, maxIncidentHeader)}
-        >
-          <h2 className="incident-header" style={renderStyles(incidentTitle)}>
-            {data?.title}
-          </h2>
-        </div>
-      </div>
-      <Divider style={{ borderWidth: '1px' }} />
-
-      <div className="incident-info" style={renderStyles(incidentInfo)}>
-        <h3 className="incident-discription">{data?.desc}</h3>
-        <Divider style={{ borderWidth: '1px' }} />
-        <div>
-          <h2
-            className="incident-category"
-            style={renderStyles(incidentCategory)}
+            className="incident-card"
+            key={nanoid}
+            onMouseEnter={() => {
+              setLat(data?.lat);
+              setLong(data?.long);
+            }}
           >
-            Category:
-          </h2>
-          <div className="categories" style={renderStyles(categories)}>
-            {data?.categories.map((category, i) => {
-              return (
-                <div
-                  className="incident-container"
-                  style={renderStyles(categories)}
+            <h4
+              className="incident-location"
+              style={renderStyles(incidentLocation)}
+            >
+              {' '}
+              {data?.city}, {data?.state}
+            </h4>
+            <div className="HeaderInfo" style={renderStyles(minStyles)}>
+              <img
+                className="icon-img"
+                onClick={() => {
+                  FlyTo();
+                }}
+                style={renderStyles(imgMinStyle)}
+                src={iconPicker(data) ? iconPicker(data) : questionMark}
+                alt="?"
+              />
+              <div
+                className="incidentHeader"
+                style={renderStyles(incidentHeader, maxIncidentHeader)}
+              >
+                <h2
+                  className="incident-header"
+                  style={renderStyles(incidentTitle)}
                 >
-                  <h3
-                    className="incident-categories"
-                    style={renderStyles(
-                      incidentCategories,
-                      maxIncidentCategories
-                    )}
-                  >
-                    {category.charAt(0).toUpperCase() +
-                      category.slice(1).replaceAll('-', ' ')}
-                    &nbsp;&nbsp;
-                  </h3>
-                </div>
-              );
-            })}
-            
-          </div>
-        </div>
-      </div>
-      <Divider style={{ borderWidth: '3px', borderColor:'rgb(0,55,103)' }} /> 
-    </div>
+                  {data?.title}
+                </h2>
+              </div>
+            </div>
+            <Divider style={{ borderWidth: '1px' }} />
 
-        )
+            <div className="incident-info" style={renderStyles(incidentInfo)}>
+              <h3 className="incident-discription">{data?.desc}</h3>
+              <Divider style={{ borderWidth: '1px' }} />
+              <div>
+                <h2
+                  className="incident-category"
+                  style={renderStyles(incidentCategory)}
+                >
+                  Category:
+                </h2>
+                <div className="categories" style={renderStyles(categories)}>
+                  {data?.categories.map((category, i) => {
+                    return (
+                      <div
+                        className="incident-container"
+                        style={renderStyles(categories)}
+                      >
+                        <h3
+                          className="incident-categories"
+                          style={renderStyles(
+                            incidentCategories,
+                            maxIncidentCategories
+                          )}
+                        >
+                          {category.charAt(0).toUpperCase() +
+                            category.slice(1).replaceAll('-', ' ')}
+                          &nbsp;&nbsp;
+                        </h3>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+            <Divider
+              style={{ borderWidth: '3px', borderColor: 'rgb(0,55,103)' }}
+            />
+          </div>
+        );
       })}
-     
-    {/* <div
+
+      {/* <div
       className="incident-card"
       key={nanoid}
       onMouseEnter={() => {

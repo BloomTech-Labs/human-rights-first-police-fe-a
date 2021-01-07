@@ -53,8 +53,7 @@ export default function TimelineItems({ details }) {
       <div className="categories">
         {details.categories.map(element => (
           <span className="category-item" key={nanoid()}>
-            {element.charAt(0).toUpperCase() +
-              element.slice(1)}
+            {element.charAt(0).toUpperCase() + element.slice(1)}
           </span>
         ))}
       </div>

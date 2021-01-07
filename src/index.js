@@ -31,14 +31,14 @@ function App() {
         <NavBar />
         <Switch>
           <Route exact path="/">
-            <div className='Map'>
-            <Main />
+            <div className="Map">
+              <Main />
             </div>
-            <div className='Timeline'>
-            <RecentTimeline />
-            <div className='H-bar'> 
-            <HorizontalBar />
-            </div>
+            <div className="Timeline">
+              <RecentTimeline />
+              <div className="H-bar">
+                <HorizontalBar />
+              </div>
             </div>
           </Route>
 

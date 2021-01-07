@@ -1,8 +1,7 @@
-.search-header{
+.search-header {
   width: 500px;
   padding-bottom: 2%;
 }
-
 
 .map-menu-background {
   position: absolute;
@@ -16,19 +15,16 @@
     position: absolute;
     top: 48%;
     right: 0px;
-    
   }
 
-  .search-header{
+  .search-header {
     width: 350px;
     display: flex;
     flex-direction: column;
   }
 }
 @media (max-width: 900px) {
-  
-
-  .search-header{
+  .search-header {
     width: 350px;
     display: flex;
     flex-direction: column;

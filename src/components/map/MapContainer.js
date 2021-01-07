@@ -1,13 +1,14 @@
 import React, { useContext, useState } from 'react';
-import ReactMapGL, {  NavigationControl } from 'react-map-gl';
+import ReactMapGL, { NavigationControl } from 'react-map-gl';
 // components
-import { ContextView, ContextIncidents,
+import {
+  ContextView,
+  ContextIncidents,
   ContextFilterData,
   ContextDates,
-  ContextSearchText, } from '../Store';
+  ContextSearchText,
+} from '../Store';
 import ClusterMarkers from './ClusterMarkers';
-
-
 
 import MapSearch from './MapSearch';
 import './MapContainer.css';
@@ -66,11 +67,10 @@ function MapContainer() {
         <div style={navStyle}>
           <NavigationControl />
         </div>
-        <div className ='search-header'>
+        <div className="search-header">
           <SearchHeader />
         </div>
         <div className="map-menu-background">
-          
           <MapSearch />
         </div>
 

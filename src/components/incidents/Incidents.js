@@ -33,7 +33,7 @@ const Incidents = () => {
   const dataQuery = useIncidents();
   const incidents = dataQuery.data && !dataQuery.isError ? dataQuery.data : [];
 
-  console.log(dataQuery)
+
   useEffect(() => {
     !dataQuery.isLoading &&
       !dataQuery.isError &&

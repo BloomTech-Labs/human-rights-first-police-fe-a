@@ -40,7 +40,6 @@ const MapSearch = () => {
 
   return (
     <div>
-      
       <div className="map-menu">
         <Collapse
           style={{ color: 'white' }}

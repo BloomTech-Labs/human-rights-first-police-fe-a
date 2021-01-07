@@ -15,7 +15,7 @@ h1 {
   font-size: 32px;
 }
 
-.categories{
+.categories {
   display: flex;
   flex-wrap: wrap;
 }
@@ -50,6 +50,6 @@ a.link-button {
 div.ant-modal-body {
   padding: 35px 35px 0px 35px;
 }
-.entry .title::before{
-  right: -11px
+.entry .title::before {
+  right: -11px;
 }

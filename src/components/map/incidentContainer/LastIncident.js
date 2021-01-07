@@ -4,7 +4,7 @@ import { ContextLat, ContextLong, ContextView } from '../../Store';
 import { FlyToInterpolator } from 'react-map-gl';
 import { iconPicker, newData } from '../GetFunctions';
 import { useIncidents } from '../../../state/query_hooks/useIncidents';
-import { Divider} from 'antd';
+import { Divider } from 'antd';
 import './LastIncident.css';
 import {
   minStyles,
@@ -115,8 +115,8 @@ const LastIncident = () => {
                       )}
                     >
                       {category.charAt(0).toUpperCase() +
-                      category.slice(1).replaceAll('-', ' ')}
-                    &nbsp;&nbsp;
+                        category.slice(1).replaceAll('-', ' ')}
+                      &nbsp;&nbsp;
                     </h3>
                   </div>
                 );
