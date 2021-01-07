@@ -22,6 +22,6 @@
   padding: 0;
 }
 
-.graph-container header ul .links {
-  width: 500px;
+.graph-container canvas {
+  background-color: #fff;
 }
