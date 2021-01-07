@@ -32,11 +32,9 @@ export const incidentCategory = {
   fontSize: '.9rem',
 };
 export const maxIncidentCategories = {
-  color: 'white',
   fontWeight: 'lighter',
 };
 export const incidentCategories = {
-  color: 'white',
   fontWeight: 'lighter',
   fontSize: '.7rem',
 };

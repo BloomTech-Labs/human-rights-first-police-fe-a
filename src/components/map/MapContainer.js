@@ -1,11 +1,18 @@
 import React, { useContext, useState } from 'react';
-import ReactMapGL, {  NavigationControl } from 'react-map-gl';
+import ReactMapGL, { NavigationControl } from 'react-map-gl';
 // components
-import { ContextView, ContextIncidents } from '../Store';
+import {
+  ContextView,
+  ContextIncidents,
+  ContextFilterData,
+  ContextDates,
+  ContextSearchText,
+} from '../Store';
 import ClusterMarkers from './ClusterMarkers';
 
 import MapSearch from './MapSearch';
 import './MapContainer.css';
+import SearchHeader from './incidentContainer/SearchHeader';
 
 function MapContainer() {
   const minZoom = 2.75;
@@ -36,7 +43,7 @@ function MapContainer() {
 
   const navStyle = {
     position: 'absolute',
-    top: 32,
+    top: 82,
     left: 0,
     padding: '10px',
   };
@@ -51,7 +58,7 @@ function MapContainer() {
         width={'fit'}
         height={'80vh'}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle="mapbox://styles/mikeybz2/ckjkr7gz207a819pd888lmd43"
         onViewportChange={newViewport => {
           setViewport({ ...newViewport });
         }}
@@ -59,6 +66,9 @@ function MapContainer() {
       >
         <div style={navStyle}>
           <NavigationControl />
+        </div>
+        <div className="search-header">
+          <SearchHeader />
         </div>
         <div className="map-menu-background">
           <MapSearch />

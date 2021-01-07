@@ -13,6 +13,7 @@ import About from './components/about/About';
 
 import GraphContainer from './components/graphs/GraphContainer';
 import NavBar from './components/NavBar';
+import HorizontalBar from './components/graphs/bargraph/HorizontalBar';
 
 ReactDOM.render(
   <Router>
@@ -35,6 +36,9 @@ function App() {
             </div>
             <div className="Timeline">
               <RecentTimeline />
+              <div className="H-bar">
+                <HorizontalBar />
+              </div>
             </div>
           </Route>
 

@@ -7,6 +7,7 @@ const def = {
   labels: ['Loading Data'],
   datasets: [
     {
+      type: 'horizontalBar',
       label: 'Number of incidents',
       backgroundColor: 'rgb(103,183,220)',
       borderColor: 'rgb(103,183,220)',
