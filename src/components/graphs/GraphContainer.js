@@ -122,7 +122,7 @@ const GraphContainer = () => {
     return (
       <section className="graph-container">
         <header>
-          <h1>Incidents over time</h1>
+          <h2>Incidents over time</h2>
           <Pagination setGraph={setGraph} setUsState={setUsState} />
         </header>
         <LineGraph data={counts} months={months} />
@@ -132,7 +132,7 @@ const GraphContainer = () => {
     return (
       <section className="graph-container">
         <header>
-          <h1>Incidents in each state</h1>
+          <h2>Incidents in each state</h2>
           <Pagination setGraph={setGraph} setUsState={setUsState} />
         </header>
         <BarGraph count={barCounts} />
@@ -142,7 +142,7 @@ const GraphContainer = () => {
     return (
       <section className="graph-container">
         <header>
-          <h1>Types of incidents</h1>
+          <h2>Types of incidents</h2>
           <Pagination setGraph={setGraph} setUsState={setUsState} />
         </header>
         <PieGraph data={filtered} />
