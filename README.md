@@ -154,8 +154,8 @@ Our team is developing an interactive map that identifies potential instances of
 
 - `Incidents`
 
-  - [`https://hrf-c-api.herokuapp.com/incidents/showallincidents`](https://humanrightsfirst-a-api.herokuapp.com/incidents/showAllIncdients) --> returns an array of all incident objects
-  - [`https://hrf-c-api.herokuapp.com/incidents/incident/:incident_id`](https://humanrightsfirst-a-api.herokuapp.com/incidents/incident/:incident_id`) --> returns single incident object if the incident_id passed in is valid
+  - [`https://hrf-c-api.herokuapp.com/incidents/getincidents`](https://humanrightsfirst-a-api.herokuapp.com/incidents/getincidents) --> returns an array of all incident objects
+  - [`https://hrf-c-api.herokuapp.com/incidents/gettimeline`](https://humanrightsfirst-a-api.herokuapp.com/incidents/gettimeline`) --> returns single incident object if the incident_id passed in is valid
 
 ## Issues / Bugs
 
