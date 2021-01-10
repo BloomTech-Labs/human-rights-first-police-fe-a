@@ -35,6 +35,7 @@ function App() {
             <div className="Map">
               <Main />
             </div>
+          <div className ='bottom-section'>
             <div className="Timeline">
               <RecentTimeline />
               <div className="Info-Section">
@@ -46,6 +47,7 @@ function App() {
                 </div>
               </div>
             </div>
+</div>
           </Route>
 
           <Route path="/graph">
