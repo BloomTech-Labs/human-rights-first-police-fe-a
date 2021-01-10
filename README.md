@@ -8,9 +8,9 @@ Our team is developing an interactive map that identifies potential instances of
 > We know it is not enough to expose and protest injustice, so we create the political environment and policy solutions necessary to ensure consistent respect for human rights. Whether we are protecting refugees, combating torture, or defending persecuted minorities, we focus not on making a point, but on making a difference. For almost 40 years, we've built bipartisan coalitions and teamed up with frontline activists and lawyers to tackle global challenges that demand American leadership.
 > Human Rights First is a non-profit, nonpartisan international human rights organization based in New York, Washington D.C., Houston, and Los Angeles.
 
-## Contributors
+<br>
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
+## Contributors
 
 |                                           [Jason Long](https://github.com/jlong5795)                                           |                                        [Mark Rivera](https://github.com/MarkRivera)                                         |                                        [Michael Rockingham](https://github.com/mrockingham)                                         |                                          [Jen Stewart](https://github.com/jstewart8053)                                          |                                          [Anthony Carillo](https://github.com/anthony2698)                                           |
 | :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: |
