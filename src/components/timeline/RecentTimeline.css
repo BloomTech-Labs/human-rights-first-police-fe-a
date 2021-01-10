@@ -25,7 +25,9 @@ h1 {
   display: flex;
   align-items: space-between;
 }
-
+.timeline-links {
+  flex-wrap: wrap;
+}
 .category-item,
 .link-button {
   background-color: #dadbdc;
