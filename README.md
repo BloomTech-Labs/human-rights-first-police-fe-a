@@ -1,125 +1,167 @@
-# Basic SPA
+# Human Rights First FE-C
 
-For steps on how to work with this repository [please see here](https://docs.labs.lambdaschool.com/labs-spa-starter/)
+## Description
 
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your first Pull-Request is merged. This is intended to be a guideline. Feel free to add your own flare to it.
+Our team is developing an interactive map that identifies potential instances of police use-of-force across the United States of America for Human Rights First, an independent advocacy and action organization. Here is a little the non-profit from their [website](https://www.humanrightsfirst.org/about):
 
-# Title of project goes here
-
-You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
+> Human Rights First is an independent advocacy and action organization that challenges America to live up to its ideals. We believe American leadership is essential in the global struggle for human rights, so we press the U.S. government and private companies to respect human rights and the rule of law. When they fail, we step in to demand reform, accountability and justice. Around the world, we work where we can best harness American influence to secure core freedoms.
+> We know it is not enough to expose and protest injustice, so we create the political environment and policy solutions necessary to ensure consistent respect for human rights. Whether we are protecting refugees, combating torture, or defending persecuted minorities, we focus not on making a point, but on making a difference. For almost 40 years, we've built bipartisan coalitions and teamed up with frontline activists and lawyers to tackle global challenges that demand American leadership.
+> Human Rights First is a non-profit, nonpartisan international human rights organization based in New York, Washington D.C., Houston, and Los Angeles.
 
 ## Contributors
 
 🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
 
-|                                                      [Student 1](https://github.com/)                                                       |                                                       [Student 2](https://github.com/)                                                        |                                                      [Student 3](https://github.com/)                                                       |                                                       [Student 4](https://github.com/)                                                        |                                                      [Student 5](https://github.com/)                                                       |
-| :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------: |
-| [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/) |
-|                                [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                                |                            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)                             |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)                           |                          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)                           |                           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)                            |
-|                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |                 [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                 |                [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/)                |
+|                                           [Jason Long](https://github.com/jlong5795)                                           |                                        [Mark Rivera](https://github.com/MarkRivera)                                         |                                        [Michael Rockingham](https://github.com/mrockingham)                                         |                                          [Jen Stewart](https://github.com/jstewart8053)                                          |                                          [Anthony Carillo](https://github.com/anthony2698)                                           |
+| :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: |
+|      [<img src="https://ca.slack-edge.com/ESZCHB482-W012JQ21VFD-01cf6b4b0f96-512" width = "200" />](https://github.com/)       |     [<img src="https://ca.slack-edge.com/ESZCHB482-W0123RRAYGP-24a11c5a21c0-512" width = "200" />](https://github.com/)     |         [<img src="https://ca.slack-edge.com/ESZCHB482-W012BRSM0CE-4185df18f7ee-512" width = "200" />](https://github.com/)         |       [<img src="https://ca.slack-edge.com/ESZCHB482-W016369SB7T-5bc27b0171fc-512" width = "200" />](https://github.com/)        |         [<img src="https://ca.slack-edge.com/ESZCHB482-W012JQ3D2AX-e0654ed5ac8d-512" width = "200" />](https://github.com/)          |
+|                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jlong5795)                     |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/MarkRivera)                   |                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mrockingham)                       |                    [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jstewart8053)                     |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/anthony2698)                       |
+|                                                              TPL                                                               |                                                        Web Developer                                                        |                                                            Web Developer                                                            |                                                          Web Developer                                                           |                                                            Web Developer                                                             |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jasonlong1231/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/Mrivera1991) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michaelkrockingham/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jen-stewart-feb/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/anthony-carrillo826/) |
 
 <br>
 <br>
 
-🚫 Optional examples of using images with links for your tech stack, make sure to change these to fit your project
+## Deployed Product
 
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)
+[Front End Deployed Site](https://main.d3t9o9zlt9pxgv.amplifyapp.com/)
 
-🚫 more info on using badges [here](https://github.com/badges/shields)
+[Back End Deployed Site](https://humanrightsfirst-a-api.herokuapp.com/)
 
-- Fork and clone the repo to install it as your own remote.
-  - **note** please [be sure to set your remote](https://help.github.jp/enterprise/2.11/user/articles/changing-a-remote-s-url/) for this repo to point to your Labs Team Front End Repository.
-- run: `npm install` to download all dependencies.
-- run: `npm start` to start your local development server.
+[Data Science Deployed Site](http://human-rights-first-labs28-c.eba-sfzun5yy.us-east-1.elasticbeanstalk.com/)
 
-> When using Okta for authentication, the app will need to run locally on port 3000.
+## Linked Repos
 
-### Key Features
+[Front End Repo](https://github.com/Lambda-School-Labs/human-rights-first-fe-a)
 
-- feature one
-- feature two
-- feature three
-- feature four
-- feature five
+[Back End Repo](https://github.com/Lambda-School-Labs/human-rights-first-be-a)
 
-#### Front end deployed to `🚫insert service here`
+[Data Science Repo](https://github.com/Lambda-School-Labs/human-rights-first-ds-c)
 
-#### [Back end](🚫link to back end repo here) built using:
+## Getting Started
 
-#### 🚫 back end framework goes here
+[Inherited Work](https://github.com/Lambda-School-Labs/human-rights-first-fe-c/pull/17)
 
-- point one
-- point two
-- point three
+- How to get started working with this repo
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+  - See TPL about `.env` file configuration
 
-# APIs
+    ```
+    REACT_APP_BACKENDURL = "HEROKU_DEPLOYMENT_URL"
+    REACT_APP_MAPBOX_TOKEN = "MAPBOX_GL_TOKEN"
+    ```
 
-## Authentication API here
+- Where each portion is deployed
+  - FE: Deployed on AWS Amplify
+  - BE: Deployed in Heroku
+  - DS: Deployed on AWS Elastic Beanstalk
 
-🚫Replace text below with a description of the API
+## Tech Stack Used
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+- List the tech stack used
+  - ReactJS
+  - MapBoxGL, React-Map-GL, Supercluster, Use-Supercluster (map)
+  - Chart JS
+  - React-Query, Axios (fetches server data)
+  - AntDesign
 
-## Payment API here
+## User Flows
 
-🚫Replace text below with a description of the API
+- User can see clusters of incidents on a map that breaks apart as they scroll in so that they can see more specifically where each incident in the cluster occurred.
+- User is able to click on a data point within the map and view more details including date, description, tags, and sources.
+- User can view charts by state or by use of force tags to see where incidents are more prevelant and what type of force is most commonly used.
+- User can view incident data and browse through them using pagination
+- User can view trends in data with data visualizations in the form of graphs
+- User can download the publicly available data in CSV or JSON format
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+## Architecture (Same for all repos)
 
-## Misc API here
+- DS backend scrapes and shapes data
+- Web BE gets data from DS backend through a cron job and updates Web Database
+- Web FE can use endpoints to fetch an incident by or all incidents (currently we are only fetching all incidents at once)
 
-🚫Replace text below with a description of the API
+- Describe the file hierarchy and where to find things
 
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+- FE specific file hierarchy
 
-# Installation Instructions
+- src >> index.js >> `App()`
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+  - `NavBar` on all pages
+  - Switch / Routes for all page view components
+  - Important Page Views:
 
-## Other Scripts
+    - `path='/'` --> `<MapView/>`
+    - `path='/graph'` --> `<GraphContainerView/>`
+    - `path='/incidents'` --> `<IncidentsContainerView />`
+    - `path='/about'` --> `<AboutPageView />`
 
-🚫replace these examples with your own
+* `<ReactQueryDevtools` --> devDependency only (won't show in production)
+* `ChartsNavBar` displayed on Map, Bar, and Pie Charts to switch between chart views
 
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+* src >> components >>
 
-# Contributing
+  - 📂 `Map` 📂
 
-When contributing to this repository, please first discuss the change you wish to make via issue, email, or any other method with the owners of this repository before making a change.
+    - `MapView.js` --> renders both the container for the Map and an incidents viewer side-by-side on the page
 
-Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it in all your interactions with the project.
+      - `Pagination.js` gives users the option of what chart to view
 
-## Issue/Bug Request
+      - `MapContainer.js`
 
-**If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**
+        - MapContainer renders the MapboxGL Map as well as the ClusterMarkers that represent underlying data points
+        - `ClusterMarkers.js`
 
-- Check first to see if your issue has already been reported.
-- Check to see if the issue has recently been fixed by attempting to reproduce the issue using the latest master branch in the repository.
-- Create a live example of the problem.
-- Submit a detailed bug report including your environment & browser, steps to reproduce the issue, actual and expected outcomes, where you believe the issue is originating from, and any potential solutions you have considered.
+          - cluster markers can add `incidentsOfInterest` to state
+          - size of cluster is calculated using weird formula -- this could be improved so that as the data set gets larger we don't have to continually update this function
+            - `${10 + (pointCount / points.length) * 600}px`
+            - the clusters are offset to the left and vertically to center the circle properly
+            - the value we want to pass to the offsets is _negative_ (1/2 of the width or height) pixels
+              - `offsetLeft={-(10 + (pointCount / points.length) * 600) / 2}` <--> same as offsetTop
 
-### Feature Requests
+      - `IncidentsViewer.js`
+        - IF there are no `incidentsOfInterest`, we display a message explaining to the users they can click on a cluster to view the incident data
+        - If there are `incidentsOfInterest`, we map through all the relevant incident data and display underlying incident info for the user to explore to the right of the map
 
-We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
+  - 📂 `bar_chart` 📂
 
-### Pull Requests
+    - `BarGraph.js` --> renders the container for displaying a bar chart that totals incidents by state
 
-If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
+      - `Pagination.js` gives users the option of what chart to view
 
-Remember that this project is licensed under the MIT license, and by submitting a pull request, you agree that your work will be, too.
+        - fetches incident data using custom react-query `useIncidents()` query_hook and renders the actual bar graph
 
-#### Pull Request Guidelines
+        - `BarChart.js`
+          - ChartJS component that uses the data we passed in ... expects an array of objects
 
-- Update the README.md with details of changes to the interface, including new plist variables, exposed ports, useful file locations and container parameters.
-- Ensure that your code conforms to our existing code conventions and test coverage.
-- Include the relevant issue number, if applicable.
-- You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
+  - 📂 `pie_chart` 📂
 
-## Documentation
+    - `PieGraph.js` --> renders the container for displaying a pie chart that totals incidents by type-of-force tags provided by our DS backend
 
-See [Backend Documentation](🚫*link to your backend API SWAGGER DOCS here*) for details on the backend of our project.
+      - `Pagination.js` gives users the option of what chart to view
+      - `PieGraph.js`
+
+        - renders `<PieGraph>` in a very similar way as the bar char
+        - `PieGraph.js`
+          - ChartJS component that uses the data we passed in ... expects an array of objects
+
+## Updates To Repo in Labs 29
+
+- Optimized Map and unified code databases
+- Added 3 ChartJS components to display data in different visually appealing ways
+- Charts fed data by parent component
+
+## End Points
+
+- `Incidents`
+
+  - [`https://hrf-c-api.herokuapp.com/incidents/getincidents`](https://humanrightsfirst-a-api.herokuapp.com/incidents/getincidents) --> returns an array of all incident objects
+  - [`https://hrf-c-api.herokuapp.com/incidents/gettimeline`](https://humanrightsfirst-a-api.herokuapp.com/incidents/gettimeline`) --> returns events for the timeline on the map component
+  - [`https://hrf-c-api.herokuapp.com/incidents/incident/:id`](https://humanrightsfirst-a-api.herokuapp.com/incidents/incident/:id`) --> returns single incident object if the incident_id passed in is valid
+
+## Issues / Bugs
+
+- Lots of ugly scroll bars
+
+## Support (BE, FE, or DS specific)
+
+Who to contact for further support. Jason Long, Mark Rivera or Michael Rockingham
