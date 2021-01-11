@@ -10,6 +10,7 @@
 
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrapgit ;
 }
 
 .H-bar {
