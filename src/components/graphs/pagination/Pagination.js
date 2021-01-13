@@ -1,5 +1,4 @@
 import React from 'react';
-import './Pagination.css';
 
 // Search Bar
 import SearchBar from '../searchbar/SearchBar';

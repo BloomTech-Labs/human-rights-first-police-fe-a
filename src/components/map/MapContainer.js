@@ -11,7 +11,7 @@ import {
 import ClusterMarkers from './ClusterMarkers';
 
 import MapSearch from './MapSearch';
-import './MapContainer.css';
+
 import SearchHeader from './incidentContainer/SearchHeader';
 
 function MapContainer() {

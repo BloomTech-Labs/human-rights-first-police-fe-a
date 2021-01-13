@@ -5,7 +5,6 @@ import { FlyToInterpolator } from 'react-map-gl';
 import { iconPicker, newData } from '../GetFunctions';
 import { useIncidents } from '../../../state/query_hooks/useIncidents';
 import { Divider } from 'antd';
-import './LastIncident.css';
 import {
   minStyles,
   imgMinStyle,

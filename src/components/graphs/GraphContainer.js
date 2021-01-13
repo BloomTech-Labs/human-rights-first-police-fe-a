@@ -6,9 +6,6 @@ import LineGraph from './linegraph/LineGraph';
 import BarGraph from './bargraph/BarGraph';
 import PieGraph from './piegraph/PieGraph';
 
-// CSS
-import './GraphContainer.css';
-
 // Time Libraries
 import { DateTime } from 'luxon';
 

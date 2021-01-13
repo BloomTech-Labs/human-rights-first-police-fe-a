@@ -8,7 +8,6 @@ import {
   createRange,
 } from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
-import './Incidents.css';
 
 // Time Imports
 import { DateTime } from 'luxon';
@@ -32,7 +31,6 @@ const Incidents = () => {
   // Async Data Call
   const dataQuery = useIncidents();
   const incidents = dataQuery.data && !dataQuery.isError ? dataQuery.data : [];
-
 
   useEffect(() => {
     !dataQuery.isLoading &&

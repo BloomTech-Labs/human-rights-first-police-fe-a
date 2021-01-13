@@ -18,7 +18,6 @@ import LastIncident from '../incidentContainer/LastIncident';
 import { iconPicker, newData } from '../GetFunctions';
 
 import { DateTime } from 'luxon';
-import './SearchHeader.css';
 
 const { Search } = Input;
 const { RangePicker } = DatePicker;
