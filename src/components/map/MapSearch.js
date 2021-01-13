@@ -53,7 +53,7 @@ const MapSearch = () => {
           <Panel
             bordered={false}
             style={{ color: 'white', padding: '6px' }}
-            header="Incidents of Police Burtality "
+            header="Incidents of Police Use of Force "
             key="1"
           >
             <div className="incident-content">
