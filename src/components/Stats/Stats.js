@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './Stats.css';
 
 import { useIncidents } from '../../state/query_hooks/useIncidents';
 import { newData } from '../../components/map/GetFunctions';

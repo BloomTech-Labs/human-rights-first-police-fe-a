@@ -1,0 +1,33 @@
+@import './components/about/About.scss';
+@import './components/graphs/linegraph/LineGraph.scss';
+@import './components/graphs/pagination/Pagination.scss';
+@import './components/graphs/piegraph/Key.scss';
+@import './components/graphs/GraphContainer.scss';
+@import './components/incidents/Incidents.scss';
+@import './components/map/incidentContainer/LastIncident.scss';
+@import './components/map/ClusterMarker.scss';
+@import './components/map/MapContainer.scss';
+@import './components/map/MapSearch.scss';
+@import './components/Stats/Stats.scss';
+@import './components/timeline/RecentTimeline.scss';
+@import './components/Main.scss';
+
+.Map {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    margin-top: -1px;
+  }
+  
+  .Timeline {
+    background-color: #ffff;
+  
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrapgit ;
+  }
+  
+  .H-bar {
+    margin-top: 10px;
+    width: 500px;
+  }

@@ -1,3 +1,397 @@
+.about-container {
+  margin: auto;
+  max-width: 50%;
+}
+
+.about-container h1 {
+  text-align: left;
+}
+
+h2 {
+  font-size: 24px;
+}
+
+.about-container p {
+  margin-bottom: 2rem;
+  font-size: 14px;
+}
+
+div canvas {
+  background-color: #fff;
+}
+
+.link-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 60%;
+}
+
+.link-container .graph-buttons {
+  list-style-type: none;
+  padding: 0;
+  width: 50%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.link-container .graph-buttons .link-item {
+  width: 120px;
+  height: 48px;
+  line-height: 46px;
+  text-size-adjust: 100%;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: #1890ff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.link-container .graph-buttons .link-item .icon {
+  margin-right: 10px;
+  line-height: 0px;
+  min-width: 14px;
+}
+
+.link-container .graph-buttons .link-item .text {
+  margin-right: 8px;
+}
+
+.link-container .search-bar-container {
+  display: flex;
+  align-items: center;
+}
+
+section ul {
+  margin: 0 !important;
+}
+
+.graph-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.link-container[role=menu] {
+  height: 60px;
+  border: none;
+}
+
+.graph-menu-item [role=menu-item] {
+  height: 48px;
+}
+
+.graph-container header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.graph-container header .ant-menu-item-group-title {
+  padding: 0;
+}
+
+.graph-container canvas {
+  background-color: #fff;
+}
+
+:root {
+  --blue: #003767;
+  --orange: #bc541e;
+  --light-blue: #7f9bb3;
+}
+
+.incidents-page {
+  max-width: 1200px;
+  margin: 32px auto 0;
+}
+
+.incidents-page header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+}
+
+.incidents-page header .user-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.incidents-page section ul {
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card-box {
+  width: 45%;
+  height: 250px;
+  overflow-y: scroll;
+  margin: 24px 16px;
+}
+
+.card-box .ant-card-head {
+  background-color: var(--blue);
+  color: #fff;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 1081px) {
+  .incidents-page header {
+    flex-flow: column;
+  }
+}
+@media screen and (max-width: 640px) {
+  .card-box {
+    width: 75%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .incidents-page header .user-input {
+    flex-flow: column;
+  }
+
+  .incidents-page header .user-input .ant-select {
+    width: 100% !important;
+  }
+}
+div.HeaderInfo {
+  color: blue;
+}
+
+h3.incident-container {
+  color: blue;
+}
+
+.cluster-marker {
+  color: white;
+  background: #e63946;
+  border-radius: 50%;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 55%;
+}
+
+.search-header {
+  width: 500px;
+  padding-bottom: 2%;
+}
+
+.map-menu-background {
+  position: absolute;
+  top: -25px;
+  right: 0px;
+  z-index: 1;
+}
+
+@media (max-width: 800px) {
+  .map-menu-background {
+    position: absolute;
+    top: 48%;
+    right: 0px;
+  }
+
+  .search-header {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 900px) {
+  .search-header {
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.map-menu {
+  margin-top: 20px;
+  background-color: #fafafa;
+  padding-left: 2%;
+  width: 375px;
+}
+
+.search-header {
+  display: flex;
+  position: absolute;
+}
+
+button.ant-btn.ant-btn-primary.ant-input-search-button {
+  visibility: visible;
+  background-color: white;
+  color: black;
+}
+
+.icon-img {
+  width: 50px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  z-index: 1;
+}
+
+.ant-collapse {
+  background-color: white;
+  border: none;
+}
+
+.ant-collapse-content-box {
+  background-color: white;
+  overflow: auto;
+}
+
+@media (max-width: 800px) {
+  .ant-collapse-content-box {
+    background-color: white;
+  }
+
+  div.incident-content {
+    height: 17vh;
+  }
+
+  .search-header {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+  }
+}
+.incident-content {
+  height: 50vh;
+  z-index: 1;
+}
+
+div.ant-collapse-header {
+  padding: 4;
+  text-align: center;
+  padding-bottom: 4%;
+}
+
+div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 5px 0px 5px 0px;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-left: 15px;
+  font-weight: 500;
+}
+
+@media (max-width: 800px) {
+  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    font-size: 1.1rem;
+  }
+
+  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    padding: 3px 0px 1px 0px;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-left: 15px;
+    font-weight: 500;
+  }
+}
+.incident-location {
+  font-weight: lighter;
+}
+
+.incident-date {
+  font-weight: lighter;
+}
+
+.incident-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.stats {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.Total-incidents {
+  margin-bottom: 10%;
+}
+
+.Total-spray-gas {
+  margin-bottom: 10%;
+}
+
+:root {
+  --blue: #003767;
+  --orange: #bc541e;
+  --light-blue: #7f9bb3;
+}
+
+div.timeline-container {
+  margin-top: 10px;
+  background-color: white;
+}
+
+h1 {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 32px;
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.categories,
+.timeline-links {
+  display: flex;
+  align-items: space-between;
+}
+
+.timeline-links {
+  flex-wrap: wrap;
+}
+
+.category-item,
+.link-button {
+  background-color: #dadbdc;
+  margin: 5px 5px 5px 0px;
+  padding: 5px;
+}
+
+a.link-button {
+  color: var(--orange) !important;
+}
+
+.sourceText {
+  line-height: 2.7;
+  padding-right: 5px;
+  margin-top: 10px;
+}
+
+.ant-btn:first-child {
+  visibility: hidden;
+}
+
+div.ant-modal-body {
+  padding: 35px 35px 0px 35px;
+}
+
+.entry .title::before {
+  right: -11px;
+}
+
+.mapDiv {
+  width: 100%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .mapDiv {
+    width: 100%;
+  }
+}
 .Map {
   position: relative;
   width: 100%;
@@ -7,13 +401,14 @@
 
 .Timeline {
   background-color: #ffff;
-
   display: flex;
   justify-content: space-around;
-  flex-wrap: wrapgit ;
+  flex-wrap: wrapgit;
 }
 
 .H-bar {
   margin-top: 10px;
   width: 500px;
 }
+
+/*# sourceMappingURL=index.css.map */

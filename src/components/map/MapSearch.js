@@ -6,7 +6,6 @@ import { Input, Collapse, Divider, List, DatePicker } from 'antd';
 
 import LastIncident from './incidentContainer/LastIncident';
 import { iconPicker, newData } from './GetFunctions';
-import './MapSearch.css';
 
 import FilteredIncident from './incidentContainer/FilteredIncident';
 import ClusterIncident from './incidentContainer/ClusterIncident';
