@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { DateTime } from 'luxon';
 import { DatePicker } from 'antd';
-import axios from 'axios';
 
 // component imports
 import SearchBar from '../graphs/searchbar/SearchBar';

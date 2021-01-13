@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { TimelineItem } from 'vertical-timeline-component-for-react';
 import { DateTime } from 'luxon';
 import { nanoid } from 'nanoid';
-import 'antd/dist/antd.css';
 import { Modal } from 'antd';
 
 export default function TimelineItems({ details }) {

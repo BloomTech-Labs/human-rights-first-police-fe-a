@@ -1,9 +1,8 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import '../styles/nav.css';
 import { Link } from 'react-router-dom';
 
-import logo from '../assets/hrflogo.png';
+import logo from '../../assets/hrflogo.png';
 
 import { Layout, Menu } from 'antd';
 
