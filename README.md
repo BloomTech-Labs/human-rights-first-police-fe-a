@@ -1,4 +1,4 @@
-# Human Rights First FE-C
+# Human Rights First FE
 
 ## Description
 
@@ -8,15 +8,15 @@ Our team is developing an interactive map that identifies potential instances of
 > We know it is not enough to expose and protest injustice, so we create the political environment and policy solutions necessary to ensure consistent respect for human rights. Whether we are protecting refugees, combating torture, or defending persecuted minorities, we focus not on making a point, but on making a difference. For almost 40 years, we've built bipartisan coalitions and teamed up with frontline activists and lawyers to tackle global challenges that demand American leadership.
 > Human Rights First is a non-profit, nonpartisan international human rights organization based in New York, Washington D.C., Houston, and Los Angeles.
 
+<br>
+
 ## Contributors
 
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                           [Jason Long](https://github.com/jlong5795)                                           |                                        [Mark Rivera](https://github.com/MarkRivera)                                         |                                        [Michael Rockingham](https://github.com/mrockingham)                                         |                                          [Jen Stewart](https://github.com/jstewart8053)                                          |                                          [Anthony Carillo](https://github.com/anthony2698)                                           |
+|                                           [Jason Long](https://github.com/jlong5795)                                           |                                        [Mark Rivera](https://github.com/MarkRivera)                                         |                                        [Michael Rockingham](https://github.com/mrockingham)                                         |                                          [Jen Stewart](https://github.com/jstewart8053)                                          |                                          
 | :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: |
 |      [<img src="https://ca.slack-edge.com/ESZCHB482-W012JQ21VFD-01cf6b4b0f96-512" width = "200" />](https://github.com/)       |     [<img src="https://ca.slack-edge.com/ESZCHB482-W0123RRAYGP-24a11c5a21c0-512" width = "200" />](https://github.com/)     |         [<img src="https://ca.slack-edge.com/ESZCHB482-W012BRSM0CE-4185df18f7ee-512" width = "200" />](https://github.com/)         |       [<img src="https://ca.slack-edge.com/ESZCHB482-W016369SB7T-5bc27b0171fc-512" width = "200" />](https://github.com/)        |         [<img src="https://ca.slack-edge.com/ESZCHB482-W012JQ3D2AX-e0654ed5ac8d-512" width = "200" />](https://github.com/)          |
 |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jlong5795)                     |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/MarkRivera)                   |                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mrockingham)                       |                    [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jstewart8053)                     |                       [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/anthony2698)                       |
-|                                                              TPL                                                               |                                                        Web Developer                                                        |                                                            Web Developer                                                            |                                                          Web Developer                                                           |                                                            Web Developer                                                             |
+|                                                              Technical Project Lead                                                               |                                                        Web Developer                                                        |                                                            Web Developer                                                            |                                                          Web Developer                                                           |                                                            Web Developer                                                             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jasonlong1231/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/Mrivera1991) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michaelkrockingham/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jen-stewart-feb/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/anthony-carrillo826/) |
 
 <br>
@@ -24,7 +24,7 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Deployed Product
 
-[Front End Deployed Site](https://main.d3t9o9zlt9pxgv.amplifyapp.com/)
+[Front End Deployed Site](https://a-30.humanrightsfirst.dev/)
 
 [Back End Deployed Site](https://humanrightsfirst-a-api.herokuapp.com/)
 
@@ -47,7 +47,7 @@ Our team is developing an interactive map that identifies potential instances of
   - See TPL about `.env` file configuration
 
     ```
-    REACT_APP_BACKENDURL = "HEROKU_DEPLOYMENT_URL"
+    REACT_APP_BACKENDURL = "WEB_API_DEPLOYMENT_URL"
     REACT_APP_MAPBOX_TOKEN = "MAPBOX_GL_TOKEN"
     ```
 
@@ -154,13 +154,13 @@ Our team is developing an interactive map that identifies potential instances of
 
 - `Incidents`
 
-  - [`https://hrf-c-api.herokuapp.com/incidents/getincidents`](https://humanrightsfirst-a-api.herokuapp.com/incidents/getincidents) --> returns an array of all incident objects
-  - [`https://hrf-c-api.herokuapp.com/incidents/gettimeline`](https://humanrightsfirst-a-api.herokuapp.com/incidents/gettimeline`) --> returns events for the timeline on the map component
-  - [`https://hrf-c-api.herokuapp.com/incidents/incident/:id`](https://humanrightsfirst-a-api.herokuapp.com/incidents/incident/:id`) --> returns single incident object if the incident_id passed in is valid
+  - [`https://humanrightsfirst-a-api.herokuapp.com/incidents/getincidents`](https://humanrightsfirst-a-api.herokuapp.com/incidents/getincidents) --> returns an array of all incident objects
+  - [`https://humanrightsfirst-a-api.herokuapp.com/incidents/gettimeline`](https://humanrightsfirst-a-api.herokuapp.com/incidents/gettimeline`) --> returns events for the timeline on the map component
+  - [`https://humanrightsfirst-a-api.herokuapp.com/incident/:id`](https://humanrightsfirst-a-api.herokuapp.com/incidents/incident/:id`) --> returns single incident object if the incident_id passed in is valid
 
 ## Issues / Bugs
 
-- Lots of ugly scroll bars
+
 
 ## Support (BE, FE, or DS specific)
 
