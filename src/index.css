@@ -41,7 +41,6 @@ nav {
 
 .layout a:focus {
   font-weight: bold;
-  opacity: 100%;
 }
 
 .undefined-submenu {
