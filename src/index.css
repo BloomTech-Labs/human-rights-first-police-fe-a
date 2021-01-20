@@ -18,6 +18,14 @@ nav .layout [role=menu] {
 .nav-container {
   display: flex;
 }
+.nav-container .lambda-container {
+  max-height: 2.5rem;
+  margin-top: 6px;
+}
+.nav-container .logo {
+  padding-top: 4px;
+  float: right;
+}
 
 .logo-container {
   background-color: white;

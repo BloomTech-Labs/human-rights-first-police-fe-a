@@ -17,6 +17,15 @@ nav .layout [role='menu'] {
 
 .nav-container {
   display: flex;
+
+  .lambda-container {
+    max-height: 2.5rem;
+    margin-top: 6px;
+  }
+  .logo {
+    padding-top: 4px;
+    float: right;
+  }
 }
 
 .logo-container {
@@ -55,5 +64,4 @@ nav {
 .logo-container {
   height: 59px;
   background-color: var(--blue);
-
 }
