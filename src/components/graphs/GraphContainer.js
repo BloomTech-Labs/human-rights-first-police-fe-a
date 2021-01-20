@@ -25,12 +25,6 @@ const changeDataDatesToMillis = data => {
   );
 };
 
-const filterDataToOneYear = (data, start, end) => {
-  return data.filter(
-    incident => incident.date >= start && incident.date <= end
-  );
-};
-
 // The Graph Container only needs to know a few things, the selected US State, the number of incidents per month, and the type of incidents per month. The latter two, will be influenced by the selected State.
 
 const GraphContainer = () => {
@@ -49,7 +43,7 @@ const GraphContainer = () => {
   // State Management
   const [usState, setUsState] = useState(null);
   const [today] = useState(DateTime.local());
-  const [elevenMonths] = useState(28927182167); // Milliseconds
+  // const [elevenMonths] = useState(28927182167); // Milliseconds
   const [graph, setGraph] = useState('Line');
   const [filtered, setFiltered] = useState([]); // Data filtered by user
   const [counts, setCounts] = useState({});

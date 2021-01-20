@@ -12,7 +12,7 @@ import Incidents from './components/incidents/Incidents';
 import About from './components/about/About';
 
 import GraphContainer from './components/graphs/GraphContainer';
-import NavBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 import HorizontalBar from './components/graphs/bargraph/HorizontalBar';
 import Stats from './components/Stats/Stats';
 
@@ -35,19 +35,19 @@ function App() {
             <div className="Map">
               <Main />
             </div>
-          <div className ='bottom-section'>
-            <div className="Timeline">
-              <RecentTimeline />
-              <div className="Info-Section">
-                <div className="Stats">
-                  <Stats />
-                </div>
-                <div className="H-bar">
-                  <HorizontalBar />
+            <div className="bottom-section">
+              <div className="Timeline">
+                <RecentTimeline />
+                <div className="Info-Section">
+                  <div className="Stats">
+                    <Stats />
+                  </div>
+                  <div className="H-bar">
+                    <HorizontalBar />
+                  </div>
                 </div>
               </div>
             </div>
-</div>
           </Route>
 
           <Route path="/graph">

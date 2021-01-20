@@ -1,13 +1,7 @@
 import React, { useContext, useState } from 'react';
 import ReactMapGL, { NavigationControl } from 'react-map-gl';
 // components
-import {
-  ContextView,
-  ContextIncidents,
-  ContextFilterData,
-  ContextDates,
-  ContextSearchText,
-} from '../Store';
+import { ContextView, ContextIncidents } from '../Store';
 import ClusterMarkers from './ClusterMarkers';
 
 import MapSearch from './MapSearch';
@@ -15,16 +9,13 @@ import MapSearch from './MapSearch';
 import SearchHeader from './incidentContainer/SearchHeader';
 
 function MapContainer() {
-  const minZoom = 2.75;
   const maxZoom = 17;
 
   // state variable for map viewport state
   const [viewport, setViewport] = useContext(ContextView);
-  const [incidentsofInterest, setIncidentsOfInterest] = useContext(
-    ContextIncidents
-  );
+  const [incidentsofInterest] = useContext(ContextIncidents);
 
-  const [settings, setsettings] = useState({
+  const [settings] = useState({
     scrollZoom: false,
   });
 

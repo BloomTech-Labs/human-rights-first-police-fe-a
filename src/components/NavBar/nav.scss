@@ -8,7 +8,7 @@ root:hover {
   color: yellow;
 }
 
-.layout [role='menu'] {
+nav .layout [role='menu'] {
   background-color: var(--blue);
   height: 60px;
   display: flex;
@@ -36,13 +36,11 @@ nav {
 
 .layout a {
   color: white !important;
-  opacity: 54%;
   font-size: 1.5rem;
 }
 
 .layout a:focus {
   font-weight: bold;
-  opacity: 100%;
 }
 
 .undefined-submenu {

@@ -1,3 +1,62 @@
+root {
+  --blue: #003767;
+  --orange: #fff;
+  --light-blue: #7f9bb3;
+}
+
+root:hover {
+  color: yellow;
+}
+
+nav .layout [role=menu] {
+  background-color: var(--blue);
+  height: 60px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.nav-container {
+  display: flex;
+}
+
+.logo-container {
+  background-color: white;
+  max-width: 10%;
+  margin-right: 0;
+}
+
+nav {
+  display: inline;
+  min-width: 100%;
+}
+
+.layout {
+  border: none;
+}
+
+.layout a {
+  color: white !important;
+  font-size: 1.5rem;
+}
+
+.layout a:focus {
+  font-weight: bold;
+}
+
+.undefined-submenu {
+  color: #fff;
+}
+
+.logo {
+  height: 100%;
+  background-color: transparent;
+}
+
+.logo-container {
+  height: 59px;
+  background-color: var(--blue);
+}
+
 .about-container {
   margin: auto;
   max-width: 50%;

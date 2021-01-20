@@ -5,13 +5,12 @@ import { ContextIncidents, ContextDates, ContextSearchText } from '../Store';
 import { Input, Collapse, Divider, List, DatePicker } from 'antd';
 
 import LastIncident from './incidentContainer/LastIncident';
-import { iconPicker, newData } from './GetFunctions';
+import { newData } from './GetFunctions';
 
 import FilteredIncident from './incidentContainer/FilteredIncident';
 import ClusterIncident from './incidentContainer/ClusterIncident';
 
 import { nanoid } from 'nanoid';
-import SearchHeader from './incidentContainer/SearchHeader';
 
 const { Panel } = Collapse;
 
@@ -20,12 +19,8 @@ function callback(key) {
 }
 
 const MapSearch = () => {
-  const [incidentsOfInterest, setIncidentsOfInterest] = useContext(
-    ContextIncidents
-  );
-  const [search, setSearch] = useState('');
-  const [dates, setDates] = useContext(ContextDates);
-  const [searchText, setSearchText] = useContext(ContextSearchText);
+  const [incidentsOfInterest] = useContext(ContextIncidents);
+  const [searchText] = useContext(ContextSearchText);
 
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
