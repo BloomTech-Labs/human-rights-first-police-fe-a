@@ -3,6 +3,8 @@ import React from 'react';
 // component imports
 import DataExportForm from './DataExportForm';
 
+import lambdalogo from '../../assets/LambdaAssets/Lambda-Logo-Red 1.png';
+
 const About = () => {
   return (
     <div className="about-container">
@@ -48,12 +50,14 @@ const About = () => {
       <p>
         This project was designed and built in a partnership between Human
         Rights First's Innovation Lab and Lambda School. It represents nearly
-        six months of work by Lambda School students many of whom are listed
-        below:
+        six months of work by Lambda School students.
       </p>
-      {/* 
-      //TODO: How do we want to present students here? 
-      */}
+      <p>Placeholder for student credits</p>
+      <img
+        className="lambda-logo"
+        src={lambdalogo}
+        alt="Lambda School Red Logo"
+      />
     </div>
   );
 };
