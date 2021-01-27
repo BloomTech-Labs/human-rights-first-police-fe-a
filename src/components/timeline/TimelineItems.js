@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { TimelineItem } from 'vertical-timeline-component-for-react';
 import { DateTime } from 'luxon';
 import { nanoid } from 'nanoid';
-import 'antd/dist/antd.css';
 import { Modal } from 'antd';
-import './RecentTimeline.css';
 
 export default function TimelineItems({ details }) {
   // the urlDomain function pulls the website name from the string we are getting back from the API

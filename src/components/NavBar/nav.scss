@@ -8,16 +8,26 @@ root:hover {
   color: yellow;
 }
 
-.layout [role='menu'] {
+nav .layout [role='menu'] {
   background-color: var(--blue);
-  width: 100%;
   height: 60px;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
+}
+
+.nav-container {
+  display: flex;
 }
 
 .logo-container {
   background-color: white;
+  max-width: 10%;
+  margin-right: 0;
+}
+
+nav {
+  display: inline;
+  min-width: 100%;
 }
 
 .layout {
@@ -26,10 +36,11 @@ root:hover {
 
 .layout a {
   color: white !important;
+  font-size: 1.5rem;
 }
 
 .layout a:focus {
-  color: #bc541e !important;
+  font-weight: bold;
 }
 
 .undefined-submenu {
@@ -42,6 +53,7 @@ root:hover {
 }
 
 .logo-container {
-  height: 48px;
-  background-color: transparent;
+  height: 59px;
+  background-color: var(--blue);
+
 }

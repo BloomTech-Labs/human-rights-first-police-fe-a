@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { stateData } from '../assets/bargraphAssets';
 
 // Components
-import { AutoComplete, Button } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { AutoComplete } from 'antd';
 
 const data = [];
 for (let state in stateData) {

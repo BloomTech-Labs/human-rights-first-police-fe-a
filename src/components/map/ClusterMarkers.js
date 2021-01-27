@@ -1,13 +1,9 @@
 import React, { useContext } from 'react';
-import { ContextView, ContextIncidents, ContextActiveFilters } from '../Store';
+import { ContextView, ContextIncidents } from '../Store';
 import { Marker, FlyToInterpolator } from 'react-map-gl';
 import useSupercluster from 'use-supercluster';
 // hooks
 import { useIncidents } from '../../state/query_hooks/useIncidents';
-// styles
-import './ClusterMarker.css';
-
-// console.log(useIncidents) ;
 
 const ClusterMarkers = ({ mapRef }) => {
   const [viewport, setViewport] = useContext(ContextView);

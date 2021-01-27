@@ -1,9 +1,7 @@
 import React from 'react';
 import { DateTime } from 'luxon';
 import { Card } from 'antd';
-import 'antd/dist/antd.css';
-
-import './Incidents.css';
+// import '../NavBar/node_modules/antd/dist/antd.css';
 
 const IncidentsCard = props => {
   let cityState = `${props.incident.city}, ${props.incident.state}`;

@@ -1,5 +1,4 @@
 import React from 'react';
-import './About.css';
 
 // component imports
 import DataExportForm from './DataExportForm';

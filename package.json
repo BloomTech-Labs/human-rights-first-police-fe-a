@@ -41,6 +41,7 @@
     "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "scss": "^0.2.4",
     "supercluster": "^7.1.0",
     "use-supercluster": "^0.2.9",
     "vertical-timeline-component-for-react": "^1.0.7"

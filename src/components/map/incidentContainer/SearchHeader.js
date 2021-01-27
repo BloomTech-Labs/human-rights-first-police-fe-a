@@ -1,24 +1,19 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useIncidents } from '../../../state/query_hooks/useIncidents';
 import {
-  ContextIncidents,
   ContextFilterData,
   ContextDates,
   ContextSearchText,
 } from '../../Store';
 import {
-  falsiesRemoved,
   filterDataByState,
   filterDataByDate,
   createRange,
 } from '../../incidents/IncidentFilter';
-import { Input, Collapse, Divider, List, DatePicker } from 'antd';
-import Interval from 'luxon/src/interval.js';
-import LastIncident from '../incidentContainer/LastIncident';
-import { iconPicker, newData } from '../GetFunctions';
+import { Input, DatePicker } from 'antd';
+import { newData } from '../GetFunctions';
 
 import { DateTime } from 'luxon';
-import './SearchHeader.css';
 
 const { Search } = Input;
 const { RangePicker } = DatePicker;

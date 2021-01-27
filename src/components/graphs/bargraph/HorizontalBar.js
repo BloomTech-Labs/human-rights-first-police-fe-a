@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
 import { useIncidents } from '../../../state/query_hooks/useIncidents';
-import { iconPicker, newData } from '../../map/GetFunctions';
+import { newData } from '../../map/GetFunctions';
 
 const Horizontalbar = () => {
   const [emptyHandSoft, setEmptyHandSoft] = useState();
@@ -73,7 +73,6 @@ const Horizontalbar = () => {
     setLethalForce(lethalforceMethodsTotal);
   }, [dataList]);
 
-  //   console.log(emptyHand)
   return (
     <div>
       <h1>Total Incidents By Category</h1>

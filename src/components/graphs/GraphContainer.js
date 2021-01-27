@@ -6,9 +6,6 @@ import LineGraph from './linegraph/LineGraph';
 import BarGraph from './bargraph/BarGraph';
 import PieGraph from './piegraph/PieGraph';
 
-// CSS
-import './GraphContainer.css';
-
 // Time Libraries
 import { DateTime } from 'luxon';
 
@@ -25,12 +22,6 @@ const filterDataByState = (state, data) => {
 const changeDataDatesToMillis = data => {
   return data.filter(
     incident => (incident.date = new Date(incident.date).getTime())
-  );
-};
-
-const filterDataToOneYear = (data, start, end) => {
-  return data.filter(
-    incident => incident.date >= start && incident.date <= end
   );
 };
 
@@ -52,7 +43,7 @@ const GraphContainer = () => {
   // State Management
   const [usState, setUsState] = useState(null);
   const [today] = useState(DateTime.local());
-  const [elevenMonths] = useState(28927182167); // Milliseconds
+  // const [elevenMonths] = useState(28927182167); // Milliseconds
   const [graph, setGraph] = useState('Line');
   const [filtered, setFiltered] = useState([]); // Data filtered by user
   const [counts, setCounts] = useState({});
