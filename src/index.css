@@ -83,6 +83,7 @@ div canvas {
   display: flex;
   justify-content: flex-end;
   width: 60%;
+  min-width: 60%;
 }
 
 .link-container .graph-buttons {
