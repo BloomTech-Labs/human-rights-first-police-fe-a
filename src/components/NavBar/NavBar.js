@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Link } from 'react-router-dom';
 
-import logo from '../../assets/hrflogo.png';
+import logo from '../../assets/hrf-logo.png';
 import lambda from '../../assets/LambdaAssets/Built by lambda.png';
 
 import { Layout, Menu } from 'antd';
@@ -23,7 +23,7 @@ const NavBar = () => {
             </Menu.Item>
 
             <Menu.Item key="2">
-              <Link to="/incidents">Incidents </Link>
+              <Link to="/incidents">Incidents</Link>
             </Menu.Item>
 
             <Menu.Item key="3">
@@ -34,7 +34,7 @@ const NavBar = () => {
               <Link to="/about">About </Link>
             </Menu.Item>
             <div className="lambda-container">
-              <img src={lambda} alt="Built By Lambda" className="logo" />
+              <img src={lambda} alt="Built By Lambda" className="lambda" />
             </div>
           </Menu>
         </Layout>

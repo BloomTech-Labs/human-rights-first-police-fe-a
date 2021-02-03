@@ -8,35 +8,39 @@ root:hover {
   color: yellow;
 }
 
-nav .layout {
-  background-color: var(--blue);
+.nav-container {
+  display: flex;
 }
-
-nav .layout [role=menu] {
+.nav-container nav {
+  background-color: var(--blue);
+  display: flex;
+}
+.nav-container nav .layout {
+  width: 70%;
+}
+.nav-container nav .layout [role=menu] {
   background-color: var(--blue);
   height: 60px;
   display: flex;
   justify-content: space-evenly;
-  width: 80%;
 }
-
-.nav-container {
-  display: flex;
+.nav-container .logo-container {
+  width: 15%;
+  height: 59px;
+  background-color: var(--blue);
 }
 .nav-container .lambda-container {
   max-height: 2.5rem;
   margin-top: 6px;
   width: 15%;
 }
-.nav-container .logo {
-  padding-top: 4px;
-  float: right;
+.nav-container .lambda-container .lambda {
+  max-height: 2.5rem;
 }
-
-.logo-container {
-  background-color: white;
-  min-width: 15%;
-  margin-right: 0;
+.nav-container .logo {
+  padding: 0 6px;
+  float: right;
+  max-height: 3.5rem;
 }
 
 nav {
@@ -47,28 +51,16 @@ nav {
 .layout {
   border: none;
 }
-
 .layout a {
   color: white !important;
   font-size: 1.5rem;
 }
-
 .layout a:focus {
   font-weight: bold;
 }
 
 .undefined-submenu {
   color: #fff;
-}
-
-.logo {
-  height: 100%;
-  background-color: transparent;
-}
-
-.logo-container {
-  height: 59px;
-  background-color: var(--blue);
 }
 
 .about-container {
