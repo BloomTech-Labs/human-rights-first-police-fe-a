@@ -8,21 +8,39 @@ root:hover {
   color: yellow;
 }
 
-nav .layout [role=menu] {
+.nav-container {
+  display: flex;
+}
+.nav-container nav {
+  background-color: var(--blue);
+  display: flex;
+}
+.nav-container nav .layout {
+  width: 70%;
+}
+.nav-container nav .layout [role=menu] {
   background-color: var(--blue);
   height: 60px;
   display: flex;
   justify-content: space-evenly;
 }
-
-.nav-container {
-  display: flex;
+.nav-container .logo-container {
+  width: 15%;
+  height: 59px;
+  background-color: var(--blue);
 }
-
-.logo-container {
-  background-color: white;
-  max-width: 10%;
-  margin-right: 0;
+.nav-container .lambda-container {
+  max-height: 2.5rem;
+  margin-top: 6px;
+  width: 15%;
+}
+.nav-container .lambda-container .lambda {
+  max-height: 2.5rem;
+}
+.nav-container .logo {
+  padding: 0 6px;
+  float: right;
+  max-height: 3.5rem;
 }
 
 nav {
@@ -33,28 +51,16 @@ nav {
 .layout {
   border: none;
 }
-
 .layout a {
   color: white !important;
   font-size: 1.5rem;
 }
-
 .layout a:focus {
   font-weight: bold;
 }
 
 .undefined-submenu {
   color: #fff;
-}
-
-.logo {
-  height: 100%;
-  background-color: transparent;
-}
-
-.logo-container {
-  height: 59px;
-  background-color: var(--blue);
 }
 
 .about-container {
@@ -73,6 +79,10 @@ h2 {
 .about-container p {
   margin-bottom: 2rem;
   font-size: 14px;
+}
+
+.lambda-logo {
+  max-height: 4rem;
 }
 
 div canvas {
