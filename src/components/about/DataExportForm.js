@@ -46,7 +46,10 @@ const DataExportForm = () => {
       <RangePicker onCalendarChange={onDateSelection} />
       <SearchBar setUsState={setUsState} />
       <button onClick={downloadCSV}>Download CSV</button>
-      <button onClick={viewJSON}>View as JSON</button>
+      {/* Button is hidden pending functionality */}
+      <button onClick={viewJSON} style={{ display: 'none' }}>
+        View as JSON
+      </button>
       {/* Create a container that displays conditionally based on a returned query */}
     </div>
   );
