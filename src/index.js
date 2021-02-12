@@ -4,6 +4,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { ReactQueryDevtools } from 'react-query-devtools';
 import Main from './components/Main';
 
+import { Provider } from 'react-redux';
+import store from './store';
+
 import './index.css';
 import 'antd/dist/antd.less';
 
@@ -19,7 +22,9 @@ import Stats from './components/Stats/Stats';
 ReactDOM.render(
   <Router>
     <React.StrictMode>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </React.StrictMode>
   </Router>,
   document.getElementById('root')
