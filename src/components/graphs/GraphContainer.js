@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useIncidents } from '../../state/query_hooks/useIncidents';
+import { useIncidents } from '../../hooks/legacy/useIncidents';
 
 // Graphs
 import LineGraph from './linegraph/LineGraph';

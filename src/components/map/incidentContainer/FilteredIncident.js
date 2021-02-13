@@ -1,12 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { mapActions } from '../../../store';
+import useViewport from './../../../hooks/useViewport';
 import questionMark from '../iconImg/question-mark.png';
-import {
-  ContextLat,
-  ContextLong,
-  ContextView,
-  ContextFilterData,
-} from '../../Store';
-
 import { FlyToInterpolator } from 'react-map-gl';
 import { Divider, Input } from 'antd';
 import {
@@ -27,10 +23,14 @@ import { useMediaQuery } from 'react-responsive';
 import { nanoid } from 'nanoid';
 
 const FilteredIncident = () => {
-  const [lat, setLat] = useContext(ContextLat);
-  const [long, setLong] = useContext(ContextLong);
-  const [viewport, setViewport] = useContext(ContextView);
-  const [filterDataList, setFilterDataList] = useContext(ContextFilterData);
+  const dispatch = useDispatch();
+  const lat = useSelector(state => state.map.latitude);
+  const setLat = l => dispatch(mapActions.setLatitude(l));
+  const long = useSelector(state => state.map.longitude);
+  const setLong = l => dispatch(mapActions.setLongitude(l));
+  const { setViewport } = useViewport();
+
+  const filterDataList = useSelector(state => state.map.filterData);
 
   const desktopOrMobile = useMediaQuery({
     query: '(min-device-width: 800px',

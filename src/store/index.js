@@ -17,4 +17,5 @@ export default store;
 
 export const { actions: apiActions } = apiSlice;
 export const { actions: incidentActions } = incidentSlice;
+export const { actions: mapActions } = mapSlice;
 export const { actions: timelineActions } = timelineSlice;

@@ -1,15 +1,11 @@
-import React, { useState, useContext } from 'react';
-import { useIncidents } from '../../state/query_hooks/useIncidents';
-import { ContextIncidents, ContextDates, ContextSearchText } from '../Store';
-
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useIncidents } from '../../hooks/legacy/useIncidents';
 import { Input, Collapse, Divider, List, DatePicker } from 'antd';
-
 import LastIncident from './incidentContainer/LastIncident';
 import { newData } from './GetFunctions';
-
 import FilteredIncident from './incidentContainer/FilteredIncident';
 import ClusterIncident from './incidentContainer/ClusterIncident';
-
 import { nanoid } from 'nanoid';
 
 const { Panel } = Collapse;
@@ -19,15 +15,16 @@ function callback(key) {
 }
 
 const MapSearch = () => {
-  const [incidentsOfInterest] = useContext(ContextIncidents);
-  const [searchText] = useContext(ContextSearchText);
+  const incidentsOfInterest = useSelector(
+    state => state.map.incidentsOfInterest
+  );
+  const searchText = useSelector(state => state.map.search);
 
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
 
   const incidents =
     incidentsQuery.data && !incidentsQuery.isError ? incidentsQuery.data : [];
-  // console.log(incidentsQuery)
 
   const dataList = newData(incidents);
   const lastIncident = dataList.shift();
