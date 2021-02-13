@@ -20,9 +20,10 @@ const filterDataByState = (state, data) => {
 };
 
 const changeDataDatesToMillis = data => {
-  return data.filter(
-    incident => (incident.date = new Date(incident.date).getTime())
-  );
+  return data.map(incident => ({
+    ...incident,
+    date: new Date(incident.date).getTime(),
+  }));
 };
 
 // The Graph Container only needs to know a few things, the selected US State, the number of incidents per month, and the type of incidents per month. The latter two, will be influenced by the selected State.
