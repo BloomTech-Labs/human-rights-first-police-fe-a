@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import questionMark from '../iconImg/question-mark.png';
-import { ContextLat, ContextLong, ContextView } from '../../Store';
 import { FlyToInterpolator } from 'react-map-gl';
 import { iconPicker, newData } from '../GetFunctions';
-import { useIncidents } from '../../../state/query_hooks/useIncidents';
+import { useIncidents } from '../../../hooks/legacy/useIncidents';
 import { Divider } from 'antd';
 import {
   minStyles,
@@ -20,10 +19,17 @@ import {
 } from './Styles';
 import { useMediaQuery } from 'react-responsive';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { mapActions } from '../../../store';
+import useViewport from './../../../hooks/useViewport';
+
 const LastIncident = () => {
-  const [lat, setLat] = useContext(ContextLat);
-  const [long, setLong] = useContext(ContextLong);
-  const [viewport, setViewport] = useContext(ContextView);
+  const dispatch = useDispatch();
+  const lat = useSelector(state => state.map.latitude);
+  const setLat = l => dispatch(mapActions.setLatitude(l));
+  const long = useSelector(state => state.map.longitude);
+  const setLong = l => dispatch(mapActions.setLongitude(l));
+  const { setViewport } = useViewport();
 
   const desktopOrMobile = useMediaQuery({
     query: '(min-device-width: 800px',

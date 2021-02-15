@@ -1,50 +1,49 @@
 .link-container {
-    display: flex;
-    justify-content: flex-end;
-    width: 60%;
-    min-width: 60%;
-  }
-  
-  .link-container .graph-buttons {
-    list-style-type: none;
-    padding: 0;
-    width: 50%;
-  
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-end;
-  }
-  
-  .link-container .graph-buttons .link-item {
-    width: 120px;
-    height: 48px;
-    line-height: 46px;
-    text-size-adjust: 100%;
-  
-    font-size: 14px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-      'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-      'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-    color: #1890ff;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .link-container .graph-buttons .link-item .icon {
-    margin-right: 10px;
-    line-height: 0px;
-    min-width: 14px;
-  }
-  
-  .link-container .graph-buttons .link-item .text {
-    margin-right: 8px;
-  }
-  
-  .link-container .search-bar-container {
-    display: flex;
-    align-items: center;
-  }
-  
+  display: flex;
+  justify-content: flex-end;
+  width: 60%;
+  min-width: 60%;
+}
+
+.link-container .graph-buttons {
+  list-style-type: none;
+  padding: 0;
+  width: 50%;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.link-container .graph-buttons .link-item {
+  width: 120px;
+  height: 48px;
+  line-height: 46px;
+  text-size-adjust: 100%;
+
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  color: #1890ff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.link-container .graph-buttons .link-item .icon {
+  margin-right: 10px;
+  line-height: 0px;
+  min-width: 14px;
+}
+
+.link-container .graph-buttons .link-item .text {
+  margin-right: 8px;
+}
+
+.link-container .search-bar-container {
+  display: flex;
+  align-items: center;
+}

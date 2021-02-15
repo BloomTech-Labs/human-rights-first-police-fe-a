@@ -1,10 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useIncidents } from '../../../state/query_hooks/useIncidents';
-import {
-  ContextFilterData,
-  ContextDates,
-  ContextSearchText,
-} from '../../Store';
+import { useIncidents } from '../../../hooks/legacy/useIncidents';
 import {
   filterDataByState,
   filterDataByDate,
@@ -15,15 +10,19 @@ import { newData } from '../GetFunctions';
 
 import { DateTime } from 'luxon';
 
+import { useSelector, useDispatch } from 'react-redux';
+import { mapActions } from '../../../store';
+
 const { Search } = Input;
 const { RangePicker } = DatePicker;
 
 const SearchHeader = () => {
-  const [filterDataList, setFilterDataList] = useContext(ContextFilterData);
+  const dispatch = useDispatch();
+  const setFilterDataList = d => dispatch(mapActions.setFilterData(d));
+  const dates = useSelector(state => state.map.dates);
+  const setDates = d => dispatch(mapActions.setDates(d));
+  const setSearchText = t => dispatch(mapActions.setSearch(t));
 
-  const [search, setSearch] = useState('');
-  const [dates, setDates] = useContext(ContextDates);
-  const [searchText, setSearchText] = useContext(ContextSearchText);
   const [usState, setUsState] = useState(null);
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();

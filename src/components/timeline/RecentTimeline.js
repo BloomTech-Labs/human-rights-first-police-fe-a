@@ -1,6 +1,6 @@
 import React from 'react';
 import { Timeline } from 'vertical-timeline-component-for-react';
-import { useTimeline } from '../../state/query_hooks/useTimeline';
+import { useTimeline } from '../../hooks/legacy/useTimeline';
 import { nanoid } from 'nanoid';
 import TimelineItems from './TimelineItems';
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { useIncidents } from '../../state/query_hooks/useIncidents';
+import { useIncidents } from '../../hooks/legacy/useIncidents';
 import { newData } from '../../components/map/GetFunctions';
 import { CountUpAnimation } from './StatsFunction';
 import { ArrowUpOutlined } from '@ant-design/icons';

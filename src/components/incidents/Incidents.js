@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useIncidents } from '../../state/query_hooks/useIncidents';
+import { useIncidents } from '../../hooks/legacy/useIncidents';
 import IncidentsCard from '../incidents/IncidentsCard';
 import {
   falsiesRemoved,

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
-import { useIncidents } from '../../../state/query_hooks/useIncidents';
+import { useIncidents } from '../../../hooks/legacy/useIncidents';
 import { newData } from '../../map/GetFunctions';
 
 const Horizontalbar = () => {

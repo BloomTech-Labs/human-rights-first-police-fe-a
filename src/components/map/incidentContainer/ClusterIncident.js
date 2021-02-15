@@ -1,10 +1,7 @@
-import React, { useContext } from 'react';
-import {
-  ContextLat,
-  ContextLong,
-  ContextView,
-  ContextIncidents,
-} from '../../Store';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { mapActions } from '../../../store';
+import useViewport from './../../../hooks/useViewport';
 import questionMark from '../iconImg/question-mark.png';
 import { Divider } from 'antd';
 import { FlyToInterpolator } from 'react-map-gl';
@@ -25,13 +22,12 @@ import {
 import { useMediaQuery } from 'react-responsive';
 
 const ClusterIncident = ({ incidents, i }) => {
-  const [lat, setLat] = useContext(ContextLat);
-  const [long, setLong] = useContext(ContextLong);
-  const [viewport, setViewport] = useContext(ContextView);
-  const [incidentsofInterest, setIncidentsOfInterest] = useContext(
-    ContextIncidents
-  );
-  console.log(incidentsofInterest);
+  const dispatch = useDispatch();
+  const lat = useSelector(state => state.map.latitude);
+  const setLat = l => dispatch(mapActions.setLatitude(l));
+  const long = useSelector(state => state.map.longitude);
+  const setLong = l => dispatch(mapActions.setLongitude(l));
+  const { setViewport } = useViewport();
 
   const desktopOrMobile = useMediaQuery({
     query: '(min-device-width: 800px',

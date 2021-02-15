@@ -1,17 +1,19 @@
-import React, { useContext } from 'react';
-import { ContextView, ContextIncidents } from '../Store';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { mapActions } from '../../store';
+import useViewport from './../../hooks/useViewport';
 import { Marker, FlyToInterpolator } from 'react-map-gl';
 import useSupercluster from 'use-supercluster';
-// hooks
-import { useIncidents } from '../../state/query_hooks/useIncidents';
+import { useIncidents } from '../../hooks/legacy/useIncidents';
 
 const ClusterMarkers = ({ mapRef }) => {
-  const [viewport, setViewport] = useContext(ContextView);
-  const [incidentsofInterest, setIncidentsOfInterest] = useContext(
-    ContextIncidents
-  );
+  const dispatch = useDispatch();
+  const { viewport, setViewport } = useViewport();
+  const setIncidentsOfInterest = d =>
+    dispatch(mapActions.setIncidentsOfInterest(d));
 
   const maxZoom = 17;
+
   // load incident data using custom react-query hook (see state >> query_hooks)
   const incidentsQuery = useIncidents();
 
@@ -19,8 +21,6 @@ const ClusterMarkers = ({ mapRef }) => {
   // --> make sure incident data is present & no errors fetching that data
   const incidents =
     incidentsQuery.data && !incidentsQuery.isError ? incidentsQuery.data : [];
-
-  // console.log(incidents)
 
   // Known problem with DS data ... some incidents are coming over without a lat/long
   // --> this ensures those data points do not get added to the map
