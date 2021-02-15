@@ -12,11 +12,11 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Contributors
 
-|                                           [Jason Long](https://github.com/jlong5795)                                           |                                        [Mark Rivera](https://github.com/MarkRivera)                                         |                                        [Michael Rockingham](https://github.com/mrockingham)                                         |                                          [Jen Stewart](https://github.com/jstewart8053)                                          |                                          
-| :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: | 
-|      [<img src="https://ca.slack-edge.com/ESZCHB482-W012JQ21VFD-01cf6b4b0f96-512" width = "200" />](https://github.com/)       |     [<img src="https://ca.slack-edge.com/ESZCHB482-W0123RRAYGP-24a11c5a21c0-512" width = "200" />](https://github.com/)     |         [<img src="https://ca.slack-edge.com/ESZCHB482-W012BRSM0CE-4185df18f7ee-512" width = "200" />](https://github.com/)         |       [<img src="https://ca.slack-edge.com/ESZCHB482-W016369SB7T-5bc27b0171fc-512" width = "200" />](https://github.com/)        |         [<img src="https://ca.slack-edge.com/ESZCHB482-W012JQ3D2AX-e0654ed5ac8d-512" width = "200" />](https://github.com/)          |
+|                                           [Jason Long](https://github.com/jlong5795)                                           |                                        [Mark Rivera](https://github.com/MarkRivera)                                         |                                        [Michael Rockingham](https://github.com/mrockingham)                                         |                                          [Jen Stewart](https://github.com/jstewart8053)                                          |
+| :----------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------: |
+|      [<img src="https://ca.slack-edge.com/ESZCHB482-W012JQ21VFD-01cf6b4b0f96-512" width = "200" />](https://github.com/)       |     [<img src="https://ca.slack-edge.com/ESZCHB482-W0123RRAYGP-24a11c5a21c0-512" width = "200" />](https://github.com/)     |         [<img src="https://ca.slack-edge.com/ESZCHB482-W012BRSM0CE-4185df18f7ee-512" width = "200" />](https://github.com/)         |       [<img src="https://ca.slack-edge.com/ESZCHB482-W016369SB7T-5bc27b0171fc-512" width = "200" />](https://github.com/)        | [<img src="https://ca.slack-edge.com/ESZCHB482-W012JQ3D2AX-e0654ed5ac8d-512" width = "200" />](https://github.com/) |
 |                     [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jlong5795)                     |                   [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/MarkRivera)                   |                      [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/mrockingham)                       |                    [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/jstewart8053)                     |
-|                                                              Technical Project Lead                                                               |                                                        Web Developer                                                        |                                                            Web Developer                                                            |                                                          Web Developer                                                           | 
+|                                                     Technical Project Lead                                                     |                                                        Web Developer                                                        |                                                            Web Developer                                                            |                                                          Web Developer                                                           |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jasonlong1231/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/Mrivera1991) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/michaelkrockingham/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jen-stewart-feb/) |
 
 <br>
@@ -62,8 +62,9 @@ Our team is developing an interactive map that identifies potential instances of
   - ReactJS
   - MapBoxGL, React-Map-GL, Supercluster, Use-Supercluster (map)
   - Chart JS
-  - React-Query, Axios (fetches server data)
+  - Axios (fetches server data)
   - AntDesign
+  - Redux
 
 ## User Flows
 
@@ -95,7 +96,6 @@ Our team is developing an interactive map that identifies potential instances of
     - `path='/incidents'` --> `<IncidentsContainerView />`
     - `path='/about'` --> `<AboutPageView />`
 
-* `<ReactQueryDevtools` --> devDependency only (won't show in production)
 * `ChartsNavBar` displayed on Map, Bar, and Pie Charts to switch between chart views
 
 * src >> components >>
@@ -128,7 +128,7 @@ Our team is developing an interactive map that identifies potential instances of
 
       - `Pagination.js` gives users the option of what chart to view
 
-        - fetches incident data using custom react-query `useIncidents()` query_hook and renders the actual bar graph
+        - fetches incident data using custom `useIncidents()` hook and renders the actual bar graph
 
         - `BarChart.js`
           - ChartJS component that uses the data we passed in ... expects an array of objects
@@ -159,8 +159,6 @@ Our team is developing an interactive map that identifies potential instances of
   - [`https://humanrightsfirst-a-api.herokuapp.com/incident/:id`](https://humanrightsfirst-a-api.herokuapp.com/incidents/incident/:id`) --> returns single incident object if the incident_id passed in is valid
 
 ## Issues / Bugs
-
-
 
 ## Support (BE, FE, or DS specific)
 

@@ -1,31 +1,30 @@
 .graph-container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .graph-container header {
-  }
-  
-  .link-container[role='menu'] {
-    height: 60px;
-    border: none;
-  }
-  
-  .graph-menu-item [role='menu-item'] {
-    height: 48px;
-  }
-  
-  .graph-container header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .graph-container header .ant-menu-item-group-title {
-    padding: 0;
-  }
-  
-  .graph-container canvas {
-    background-color: #fff;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.graph-container header {
+}
+
+.link-container[role='menu'] {
+  height: 60px;
+  border: none;
+}
+
+.graph-menu-item [role='menu-item'] {
+  height: 48px;
+}
+
+.graph-container header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.graph-container header .ant-menu-item-group-title {
+  padding: 0;
+}
+
+.graph-container canvas {
+  background-color: #fff;
+}
