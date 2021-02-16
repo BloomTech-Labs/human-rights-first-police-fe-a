@@ -12,6 +12,7 @@ import 'antd/dist/antd.less';
 import RecentTimeline from './components/timeline/RecentTimeline';
 import Incidents from './components/incidents/Incidents';
 import About from './components/about/About';
+import AdminDashboard from './components/AdminDashboard/AdminDashboard';
 
 import GraphContainer from './components/graphs/GraphContainer';
 import NavBar from './components/NavBar/NavBar';
@@ -61,6 +62,9 @@ function App() {
         </Route>
         <Route path="/about">
           <About />
+        </Route>
+        <Route path="/admin-dashboard">
+          <AdminDashboard />
         </Route>
       </Switch>
     </div>

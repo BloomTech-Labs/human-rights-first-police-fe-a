@@ -33,6 +33,10 @@ const NavBar = () => {
             <Menu.Item key="4">
               <Link to="/about">About </Link>
             </Menu.Item>
+
+            <Menu.Item key="5">
+              <Link to="/admin-dashboard">Admin Dashboard</Link>
+            </Menu.Item>
             <div className="lambda-container">
               <img src={lambda} alt="Built By Lambda" className="lambda" />
             </div>
