@@ -6,6 +6,8 @@ import { Card } from 'antd';
 const IncidentsCard = props => {
   let cityState = `${props.incident.city}, ${props.incident.state}`;
 
+  console.log(props.incident);
+
   return (
     <div className="card-box">
       {/* for states, I was thinking we could import the abbreviations from the bargraphAssets file */}
