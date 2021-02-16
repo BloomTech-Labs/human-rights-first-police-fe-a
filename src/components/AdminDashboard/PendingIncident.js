@@ -19,12 +19,9 @@ const PendingIncident = props => {
 
   const isSelected = selected.includes(incident.incident_id);
 
-  const formattedDate =
-    incident.date.split('-')[1] +
-    '/' +
-    incident.date.split('-')[2].slice(0, 2) +
-    '/' +
-    incident.date.split('-')[0];
+  const formattedDate = `${incident.date.split('-')[1]}/${incident.date
+    .split('-')[2]
+    .slice(0, 2)}/${incident.date.split('-')[0]}`;
 
   return (
     <div>
