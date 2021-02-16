@@ -44,6 +44,7 @@
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "scss": "^0.2.4",
+    "styled-components": "^5.2.1",
     "supercluster": "^7.1.0",
     "use-supercluster": "^0.2.9",
     "vertical-timeline-component-for-react": "^1.0.7"

@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
 import MapContainer from './components/map/MapContainer';
-
+import { Security, LoginCallback, SecureRoute } from '@okta/okta-react';
+import { OktaAuth } from '@okta/okta-auth-js';
 import { Provider } from 'react-redux';
 import store from './store';
 
@@ -17,6 +23,10 @@ import GraphContainer from './components/graphs/GraphContainer';
 import NavBar from './components/NavBar/NavBar';
 import HorizontalBar from './components/graphs/bargraph/HorizontalBar';
 import Stats from './components/Stats/Stats';
+import LoginContainer from './Login/LoginContainer';
+import Dashboard from './components/dashboardTest/Dashboard';
+
+import { config } from './utils/oktaConfig';
 
 ReactDOM.render(
   <Router>
@@ -30,8 +40,18 @@ ReactDOM.render(
 );
 
 function App() {
+  // The reason to declare App this way is so that we can use any helper functions we'd need for business logic, in our case auth.
+  // React Router has a nifty useHistory hook we can use at this level to ensure we have security around our routes.
+  const history = useHistory();
+
+  const authHandler = () => {
+    // We pass this to our <Security /> component that wraps our routes.
+    // It'll automatically check if userToken is available and push back to login if not :)
+    history.push('/login');
+  };
+
   return (
-    <div>
+    <Security {...config} onAuthRequired={authHandler}>
       <NavBar />
       <Switch>
         <Route exact path="/">
@@ -62,7 +82,11 @@ function App() {
         <Route path="/about">
           <About />
         </Route>
+        <Route path="/login" component={LoginContainer} />
+        <SecureRoute path="/" exact component={() => <MapContainer />} />
+        <SecureRoute path="/dashboard" component={Dashboard} />
+        <Route path="/implicit/callback" component={LoginCallback} />
       </Switch>
-    </div>
+    </Security>
   );
 }
