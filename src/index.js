@@ -63,9 +63,9 @@ function App() {
         <Route path="/about">
           <About />
         </Route>
-        <Router path="/admin-dashboard">
+        <Route path="/admin-dashboard">
           <AdminDashboard />
-        </Router>
+        </Route>
       </Switch>
     </div>
   );
