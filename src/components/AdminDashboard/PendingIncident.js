@@ -5,6 +5,7 @@ import './PendingIncident.scss';
 import CompleteIncident from './CompleteIncident';
 
 const PendingIncident = props => {
+  // using local state to determine whether the "complete incident" information is toggled
   const [moreInfo, setMoreInfo] = useState(false);
 
   const { incident, selected, changeSelected } = props;
@@ -25,28 +26,27 @@ const PendingIncident = props => {
 
   return (
     <div>
-      <div className="pending-incident-untoggled">
-        <div className="incident-info">
-          <input type="checkbox" checked={isSelected} onChange={toggleCheck} />
-        </div>
+      <div
+        className={moreInfo ? 'pending-incident toggled' : 'pending-incident'}
+      >
+        <input
+          className="incident-info"
+          type="checkbox"
+          checked={isSelected}
+          onChange={toggleCheck}
+        />
 
-        <div className="incident-info">
-          <p>{incident.title}</p>
-        </div>
+        <p className="incident-info">{incident.title}</p>
 
-        <div className="incident-info">
-          <p>
-            {incident.city}, {incident.state}
-          </p>
-        </div>
+        <p className="incident-info">
+          {incident.city}, {incident.state}
+        </p>
 
-        <div className="incident-info">
-          <p>{formattedDate}</p>
-        </div>
+        <p className="incident-info">{formattedDate}</p>
 
-        <div className="incident-info more-info" onClick={toggleMoreInfo}>
-          More Info
-        </div>
+        <p className="incident-info more-info" onClick={toggleMoreInfo}>
+          {moreInfo ? 'Less Info' : 'More Info'}
+        </p>
       </div>
       {moreInfo && (
         <CompleteIncident incident={incident} formattedDate={formattedDate} />

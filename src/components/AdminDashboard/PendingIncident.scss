@@ -1,18 +1,34 @@
-.pending-incident-untoggled {
+.pending-incident {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   border: solid black 2px;
-  margin: 1% auto;
   width: 100%;
+  align-items: center;
+}
+
+.toggled {
+  border-bottom: none;
 }
 
 .incident-info {
-  width: 30%;
-  text-align: center;
+  text-align: left;
+  padding-top: 1%;
 }
 
 .incident-info:first-child {
   text-align: left;
+  margin-left: 1%;
+}
+
+.incident-info:nth-child(2) {
+  width: 35%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.incident-info:nth-child(3) {
+  width: 25%;
 }
 
 .more-info {

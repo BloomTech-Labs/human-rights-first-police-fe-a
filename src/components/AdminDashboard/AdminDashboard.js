@@ -94,15 +94,21 @@ const AdminDashboard = () => {
 
       <h3>Incidents</h3>
       <label htmlFor="select-all">
-        Select All
-        <input type="checkbox" name="select-all" onChange={selectAll} />
-        <button>Approve</button>
-        <button>Reject</button>
+        <p className="approve-reject-select">Select All</p>
+        <input
+          className="approve-reject-select"
+          type="checkbox"
+          name="select-all"
+          onChange={selectAll}
+        />
+        <button className="approve-reject-select">Approve</button>
+        <button className="approve-reject-select">Reject</button>
       </label>
       <div className="incidents">
         {dummyData.map(incident => {
           return (
             <PendingIncident
+              key={incident.incident_id}
               incident={incident}
               selected={selected}
               changeSelected={changeSelected}
