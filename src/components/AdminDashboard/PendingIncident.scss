@@ -1,0 +1,15 @@
+.pending-incident-untoggled {
+  display: flex;
+  align-items: center;
+  border: solid black 2px;
+  margin: 1% auto;
+  width: 100%;
+}
+
+.incident-info {
+  width: 30%;
+}
+
+.more-info {
+  cursor: pointer;
+}
