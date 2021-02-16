@@ -1,9 +1,11 @@
 import React from 'react';
 
+import './CompleteIncident.scss';
+
 const CompleteIncident = props => {
   const { incident } = props;
   return (
-    <div>
+    <div className="complete-incident">
       <p>{incident.date}</p>
       <p>
         {incident.city}, {incident.state}

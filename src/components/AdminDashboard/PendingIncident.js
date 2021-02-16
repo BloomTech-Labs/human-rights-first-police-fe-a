@@ -42,7 +42,7 @@ const PendingIncident = props => {
           <p>{incident.date}</p>
         </div>
 
-        <div className="incident-info" onClick={toggleMoreInfo}>
+        <div className="incident-info more-info" onClick={toggleMoreInfo}>
           More Info
         </div>
       </div>
