@@ -8,6 +8,11 @@
 
 .incident-info {
   width: 30%;
+  text-align: center;
+}
+
+.incident-info:first-child {
+  text-align: left;
 }
 
 .more-info {

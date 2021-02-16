@@ -19,7 +19,12 @@ const PendingIncident = props => {
 
   const isSelected = selected.includes(incident.incident_id);
 
-  console.log(selected);
+  const formattedDate =
+    incident.date.split('-')[1] +
+    '/' +
+    incident.date.split('-')[2].slice(0, 2) +
+    '/' +
+    incident.date.split('-')[0];
 
   return (
     <div>
@@ -39,14 +44,16 @@ const PendingIncident = props => {
         </div>
 
         <div className="incident-info">
-          <p>{incident.date}</p>
+          <p>{formattedDate}</p>
         </div>
 
         <div className="incident-info more-info" onClick={toggleMoreInfo}>
           More Info
         </div>
       </div>
-      {moreInfo && <CompleteIncident incident={incident} />}
+      {moreInfo && (
+        <CompleteIncident incident={incident} formattedDate={formattedDate} />
+      )}
     </div>
   );
 };

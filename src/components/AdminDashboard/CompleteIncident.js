@@ -3,10 +3,11 @@ import React from 'react';
 import './CompleteIncident.scss';
 
 const CompleteIncident = props => {
-  const { incident } = props;
+  const { incident, formattedDate } = props;
+
   return (
     <div className="complete-incident">
-      <p>{incident.date}</p>
+      <p>{formattedDate}</p>
       <p>
         {incident.city}, {incident.state}
       </p>

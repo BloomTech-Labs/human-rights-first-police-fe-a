@@ -4,6 +4,7 @@ import PendingIncident from './PendingIncident';
 
 import './AdminDashboard.scss';
 
+// Mock data to represent incoming twitter data from the database that will be reviewed by the admin
 const dummyData = [
   {
     categories: [
@@ -50,6 +51,7 @@ const dummyData = [
 ];
 
 const AdminDashboard = () => {
+  // setting up local state to keep track of selected/"checked" incidents
   const [selected, setSelected] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
 
