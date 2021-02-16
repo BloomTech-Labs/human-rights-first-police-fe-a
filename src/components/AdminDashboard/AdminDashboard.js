@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import PendingIncident from './PendingIncident';
 
@@ -50,10 +50,34 @@ const dummyData = [
 ];
 
 const AdminDashboard = () => {
+  const [selected, setSelected] = useState([]);
+  const [allSelected, setAllSelected] = useState(false);
+
+  const selectAll = () => {
+    setAllSelected(!allSelected);
+    if (!allSelected) {
+      setSelected(dummyData.map(data => data.incident_id));
+    } else {
+      setSelected([]);
+    }
+  };
+
+  const changeSelected = incident => {
+    if (selected.includes(incident.incident_id)) {
+      const newSelected = selected.filter(id => {
+        return id !== incident.incident_id;
+      });
+      setSelected(newSelected);
+    } else {
+      setSelected([...selected, incident.incident_id]);
+    }
+  };
+
   return (
     <div>
       <h2>Admin Dashboard</h2>
       <h3>Statistics</h3>
+
       <div className="statboxes">
         <div className="statbox">
           <p>{dummyData.length} unapproved incidents</p>
@@ -65,14 +89,23 @@ const AdminDashboard = () => {
           <p>STATS!</p>
         </div>
       </div>
+
       <h3>Incidents</h3>
       <label htmlFor="select-all">
         Select All
-        <input type="checkbox" name="select-all" />
+        <input type="checkbox" name="select-all" onChange={selectAll} />
+        <button>Approve</button>
+        <button>Reject</button>
       </label>
       <div className="incidents">
         {dummyData.map(incident => {
-          return <PendingIncident incident={incident} />;
+          return (
+            <PendingIncident
+              incident={incident}
+              selected={selected}
+              changeSelected={changeSelected}
+            />
+          );
         })}
       </div>
     </div>
