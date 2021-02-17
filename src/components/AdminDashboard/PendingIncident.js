@@ -5,6 +5,7 @@ import './PendingIncident.scss';
 import CompleteIncident from './CompleteIncident';
 
 const PendingIncident = props => {
+  
   // using local state to determine whether the "complete incident" information is toggled
   const [moreInfo, setMoreInfo] = useState(false);
 

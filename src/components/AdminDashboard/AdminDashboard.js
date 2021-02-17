@@ -4,7 +4,9 @@ import PendingIncident from './PendingIncident';
 
 import './AdminDashboard.scss';
 
+
 // Mock data to represent incoming twitter data from the database that will be reviewed by the admin
+
 const dummyData = [
   {
     categories: [
@@ -16,8 +18,7 @@ const dummyData = [
     ],
     city: 'San Jose',
     date: '2020-05-29T05:00:00.000Z',
-    desc:
-      'desc A protester filming receives water bottles from a car and begins to distribute them',
+    desc: 'desc A protester filming receives water bottles from a car and begins to distribute them',
     empty_hand_hard: false,
     empty_hand_soft: false,
     incident_id: 'ca-sanjose-5',
