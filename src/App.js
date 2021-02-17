@@ -12,7 +12,7 @@ import NavBar from './components/NavBar/NavBar';
 import HorizontalBar from './components/graphs/bargraph/HorizontalBar';
 import Stats from './components/Stats/Stats';
 import LoginContainer from './components/Login/LoginContainer';
-import Dashboard from './components/dashboardTest/Dashboard';
+import Dashboard from './components/AdminDashboard/AdminDashboard';
 
 import useOktaRedux from './hooks/useOktaRedux';
 
@@ -54,7 +54,7 @@ export default function App() {
         </Route>
         <Route path="/login" component={LoginContainer} />
         <SecureRoute path="/" exact component={() => <MapContainer />} />
-        <SecureRoute path="/dashboard" component={Dashboard} />
+        <SecureRoute path="/admin-dashboard" component={Dashboard} />
         <Route path="/implicit/callback" component={LoginCallback} />
       </Switch>
     </>
