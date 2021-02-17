@@ -29,6 +29,9 @@
 
 .incident-info:nth-child(3) {
   width: 15%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .incident-info:last-child {
