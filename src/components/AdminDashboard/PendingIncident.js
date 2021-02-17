@@ -8,7 +8,13 @@ const PendingIncident = props => {
   // using local state to determine whether the "complete incident" information is toggled
   const [moreInfo, setMoreInfo] = useState(false);
 
-  const { incident, selected, changeSelected } = props;
+  const {
+    incident,
+    selected,
+    changeSelected,
+    unapprovedIncidents,
+    setUnapprovedIncidents,
+  } = props;
 
   const toggleMoreInfo = () => {
     setMoreInfo(!moreInfo);
@@ -49,7 +55,12 @@ const PendingIncident = props => {
         </p>
       </div>
       {moreInfo && (
-        <CompleteIncident incident={incident} formattedDate={formattedDate} />
+        <CompleteIncident
+          unapprovedIncidents={unapprovedIncidents}
+          setUnapprovedIncidents={setUnapprovedIncidents}
+          incident={incident}
+          formattedDate={formattedDate}
+        />
       )}
     </div>
   );

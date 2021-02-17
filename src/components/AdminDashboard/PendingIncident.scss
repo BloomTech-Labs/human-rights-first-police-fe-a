@@ -17,18 +17,22 @@
 
 .incident-info:first-child {
   text-align: left;
-  margin-left: 1%;
+  margin: auto 1%;
 }
 
 .incident-info:nth-child(2) {
-  width: 35%;
+  width: 45%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .incident-info:nth-child(3) {
-  width: 25%;
+  width: 15%;
+}
+
+.incident-info:last-child {
+  margin-right: 1%;
 }
 
 .more-info {
