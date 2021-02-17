@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import ReactMapGL, { NavigationControl } from 'react-map-gl';
 // components
