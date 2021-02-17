@@ -5,7 +5,7 @@ import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 // Below is the Human Rights logo
 import hrfLogo from './hrf-logo.png';
 
-import { config } from '../utils/oktaConfig';
+import config from '../../utils/oktaConfig';
 
 const LoginContainer = () => {
   useEffect(() => {
