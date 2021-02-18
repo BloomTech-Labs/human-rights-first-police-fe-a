@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import MapContainer from './components/map/MapContainer';
-import { LoginCallback, SecureRoute } from '@okta/okta-react';
+import { LoginCallback } from '@okta/okta-react';
+import OktaRoute from './components/OktaRoute';
 
 import RecentTimeline from './components/timeline/RecentTimeline';
 import Incidents from './components/incidents/Incidents';
@@ -53,8 +54,9 @@ export default function App() {
           <About />
         </Route>
         <Route path="/login" component={LoginContainer} />
-        <SecureRoute path="/" exact component={() => <MapContainer />} />
-        <SecureRoute path="/admin-dashboard" component={Dashboard} />
+        <Route path="/" exact component={() => <MapContainer />} />
+        {/* Bandaid fix to prevent production from crashing due to unspecified Okta environment variables */}
+        <OktaRoute path="/admin-dashboard" component={Dashboard} />
         <Route path="/implicit/callback" component={LoginCallback} />
       </Switch>
     </>
