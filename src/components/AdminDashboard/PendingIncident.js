@@ -5,9 +5,16 @@ import './PendingIncident.scss';
 import CompleteIncident from './CompleteIncident';
 
 const PendingIncident = props => {
+  // using local state to determine whether the "complete incident" information is toggled
   const [moreInfo, setMoreInfo] = useState(false);
 
-  const { incident, selected, changeSelected } = props;
+  const {
+    incident,
+    selected,
+    changeSelected,
+    unapprovedIncidents,
+    setUnapprovedIncidents,
+  } = props;
 
   const toggleMoreInfo = () => {
     setMoreInfo(!moreInfo);
@@ -19,34 +26,42 @@ const PendingIncident = props => {
 
   const isSelected = selected.includes(incident.incident_id);
 
-  console.log(selected);
+  //   changing the date into a more readable format
+  const [year, month, day] = incident.date.split('-');
+  const formattedDate = `${month}/${day.slice(0, 2)}/${year}`;
 
   return (
     <div>
-      <div className="pending-incident-untoggled">
-        <div className="incident-info">
-          <input type="checkbox" checked={isSelected} onChange={toggleCheck} />
-        </div>
+      <div
+        className={moreInfo ? 'pending-incident toggled' : 'pending-incident'}
+      >
+        <input
+          className="incident-info"
+          type="checkbox"
+          checked={isSelected}
+          onChange={toggleCheck}
+        />
 
-        <div className="incident-info">
-          <p>{incident.title}</p>
-        </div>
+        <p className="incident-info">{incident.title}</p>
 
-        <div className="incident-info">
-          <p>
-            {incident.city}, {incident.state}
-          </p>
-        </div>
+        <p className="incident-info">
+          {incident.city}, {incident.state}
+        </p>
 
-        <div className="incident-info">
-          <p>{incident.date}</p>
-        </div>
+        <p className="incident-info">{formattedDate}</p>
 
-        <div className="incident-info more-info" onClick={toggleMoreInfo}>
-          More Info
-        </div>
+        <p className="incident-info more-info" onClick={toggleMoreInfo}>
+          {moreInfo ? 'Less Info' : 'More Info'}
+        </p>
       </div>
-      {moreInfo && <CompleteIncident incident={incident} />}
+      {moreInfo && (
+        <CompleteIncident
+          unapprovedIncidents={unapprovedIncidents}
+          setUnapprovedIncidents={setUnapprovedIncidents}
+          incident={incident}
+          formattedDate={formattedDate}
+        />
+      )}
     </div>
   );
 };
