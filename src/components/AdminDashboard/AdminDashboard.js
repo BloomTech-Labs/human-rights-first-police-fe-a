@@ -2,109 +2,50 @@ import React, { useState, useEffect } from 'react';
 
 import PendingIncident from './PendingIncident';
 
+import { useIncidents } from '../../hooks/legacy/useIncidents';
+
+import { falsiesRemoved } from '../incidents/IncidentFilter';
+
 import './AdminDashboard.scss';
-
-
-// Mock data to represent incoming twitter data from the database that will be reviewed by the admin
-
-const dummyData = [
-  {
-    categories: [
-      'explosive',
-      'less-lethal',
-      'projectile',
-      'rubber-bullet',
-      'shoot',
-    ],
-    city: 'San Jose',
-    date: '2020-05-29T05:00:00.000Z',
-    desc: 'desc A protester filming receives water bottles from a car and begins to distribute them',
-    empty_hand_hard: false,
-    empty_hand_soft: false,
-    incident_id: 'ca-sanjose-5',
-    lat: 37.3353,
-    less_lethal_methods: true,
-    lethal_force: false,
-    long: -121.889,
-    src: ['https://www.youtube.com/watch?v=89mUHzu3480'],
-    state: 'California',
-    title: 'title Man struck by rubber bullet and explosive device',
-    uncategorized: false,
-  },
-  {
-    categories: ['explosive', 'shoot'],
-    city: 'Chicago',
-    date: '2020-05-29T05:00:00.000Z',
-    desc:
-      'A protester filming receives water bottles from a car and begins to distribute them',
-    empty_hand_hard: false,
-    empty_hand_soft: false,
-    incident_id: 'il-chicago-6',
-    lat: 37.3353,
-    less_lethal_methods: true,
-    lethal_force: false,
-    long: -121.889,
-    src: ['https://www.youtube.com/watch?v=89mUHzu3480'],
-    state: 'Illinois',
-    title: 'Man struck by weapon',
-    uncategorized: false,
-  },
-  {
-    categories: ['less-lethal', 'projectile', 'rubber-bullet'],
-    city: 'New York City',
-    date: '2020-06-29T05:00:00.000Z',
-    desc:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
-    empty_hand_hard: false,
-    empty_hand_soft: true,
-    incident_id: 'ny-nyc-5',
-    lat: 37.3353,
-    less_lethal_methods: true,
-    lethal_force: false,
-    long: -121.889,
-    src: ['https://www.youtube.com/watch?v=89mUHzu3480'],
-    state: 'New York',
-    title:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
-    uncategorized: false,
-  },
-  {
-    categories: ['explosive', 'projectile'],
-    city: 'Los Angeles',
-    date: '2020-07-07T05:00:00.000Z',
-    desc:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
-    empty_hand_hard: true,
-    empty_hand_soft: false,
-    incident_id: 'ca-losangeles-5',
-    lat: 37.3353,
-    less_lethal_methods: true,
-    lethal_force: false,
-    long: -121.889,
-    src: ['https://www.youtube.com/watch?v=89mUHzu3480'],
-    state: 'California',
-    title:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
-    uncategorized: false,
-  },
-];
 
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
   const [selected, setSelected] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
 
-  //   temporarily setting up dummy data in local state to represent incoming unapproved incidents
+  //   setting state necessary for pagination
+  const [pageNumber, setPageNumber] = useState(1);
+  const [incidentsPerPage, setIncidentsPerPage] = useState(2);
+  const [currentSet, setCurrentSet] = useState([]);
+
+  //   setting state for confirmation buttons of confirming/rejecting
+  const [confirmApprove, setConfirmApprove] = useState(false);
+
   const [unapprovedIncidents, setUnapprovedIncidents] = useState([]);
 
-  useEffect(() => {
-    setUnapprovedIncidents(dummyData);
-  }, []);
+  const dataQuery = useIncidents();
+  const incidents = dataQuery.data && !dataQuery.isError ? dataQuery.data : [];
 
+  useEffect(() => {
+    !dataQuery.isLoading &&
+      !dataQuery.isError &&
+      setUnapprovedIncidents(falsiesRemoved(incidents));
+  }, [dataQuery.isLoading, dataQuery.isError, dataQuery.data]);
+
+  useEffect(() => {
+    const start = incidentsPerPage * pageNumber - incidentsPerPage;
+    const newCurrentSet = unapprovedIncidents.slice(
+      start,
+      start + incidentsPerPage
+    );
+    setCurrentSet(newCurrentSet);
+  }, [pageNumber, incidentsPerPage, unapprovedIncidents]);
+
+  // incident selection (checkbox) functions
   const selectAll = () => {
     setAllSelected(!allSelected);
     if (!allSelected) {
-      setSelected(dummyData.map(data => data.incident_id));
+      setSelected(incidents.map(data => data.incident_id));
     } else {
       setSelected([]);
     }
@@ -121,20 +62,54 @@ const AdminDashboard = () => {
     }
   };
 
-  const approveHandler = evt => {
+  //   approving/rejecting incidents
+  const confirmApproveHandler = evt => {
     evt.preventDefault();
-    const approvedData = dummyData.filter(dataObj => {
-      return selected.includes(dataObj.incident_id);
-    });
-    console.log(approvedData);
+    setConfirmApprove(true);
   };
 
-  const rejectHandler = evt => {
+  const approveHandler = evt => {
     evt.preventDefault();
-    const rejectedData = dummyData.filter(dataObj => {
-      return selected.includes(dataObj.incident_id);
+    const [approvedData, unapprovedData] = sortApproved();
+    console.log(approvedData);
+    setUnapprovedIncidents(unapprovedData);
+    setSelected([]);
+    setConfirmApprove(false);
+  };
+
+  const confirmCancel = evt => {
+    evt.preventDefault();
+    setConfirmApprove(false);
+  };
+
+  const sortApproved = () => {
+    const approvedData = [];
+    const unapprovedData = [];
+    incidents.forEach(dataObj => {
+      if (selected.includes(dataObj.incident_id)) {
+        approvedData.push(dataObj);
+      } else {
+        unapprovedData.push(dataObj);
+      }
     });
-    console.log(rejectedData);
+    return [approvedData, unapprovedData];
+  };
+
+  //   page number functions
+  const handleNextClick = evt => {
+    evt.preventDefault();
+    setPageNumber(pageNumber + 1);
+  };
+
+  const handleBackClick = evt => {
+    evt.preventDefault();
+    setPageNumber(pageNumber - 1);
+  };
+
+  const handlePerPageChange = evt => {
+    evt.preventDefault();
+    setIncidentsPerPage(Number(evt.target.value));
+    setPageNumber(1);
   };
 
   return (
@@ -153,37 +128,124 @@ const AdminDashboard = () => {
           <p>STATS!</p>
         </div>
       </div>
-
-      <h3>Incidents</h3>
-      <label htmlFor="select-all">
-        <p className="approve-reject-select">Select All</p>
-        <input
-          className="approve-reject-select"
-          type="checkbox"
-          name="select-all"
-          onChange={selectAll}
-        />
-        <button onClick={approveHandler} className="approve-reject-select">
-          Approve
-        </button>
-        <button onClick={rejectHandler} className="approve-reject-select">
-          Reject
-        </button>
-      </label>
-      <div className="incidents">
-        {unapprovedIncidents.map(incident => {
-          return (
-            <PendingIncident
-              key={incident.incident_id}
-              incident={incident}
-              selected={selected}
-              changeSelected={changeSelected}
-              setUnapprovedIncidents={setUnapprovedIncidents}
-              unapprovedIncidents={unapprovedIncidents}
-            />
-          );
-        })}
+      <div className="confirmation-message-div">
+        <h3>Incidents</h3>
+        <p
+          className={
+            !confirmApprove
+              ? 'confirmation-message transparent'
+              : 'confirmation-message'
+          }
+        >
+          Are you sure?
+        </p>
       </div>
+      {unapprovedIncidents.length === 0 ? (
+        <p>There are no incidents awaiting approval</p>
+      ) : (
+        <>
+          <div className="dashboard-top-flex">
+            <div className="dashboard-top-input">
+              <label htmlFor="select-all">Select All </label>
+              <input
+                className="approve-reject-select"
+                type="checkbox"
+                name="select-all"
+                onChange={confirmApprove ? '' : selectAll}
+                checked={allSelected}
+              />
+            </div>
+
+            <div className="dashboard-top-approve-reject">
+              {!confirmApprove ? (
+                <button
+                  disabled={selected.length < 1}
+                  onClick={confirmApproveHandler}
+                  className="approve-reject-select"
+                >
+                  Approve
+                </button>
+              ) : (
+                <button
+                  onClick={approveHandler}
+                  className="approve-reject-select"
+                >
+                  Yes
+                </button>
+              )}
+              {!confirmApprove ? (
+                <button
+                  disabled={selected.length < 1}
+                  onClick={confirmApproveHandler}
+                  className="approve-reject-select"
+                >
+                  Reject
+                </button>
+              ) : (
+                <button
+                  onClick={confirmCancel}
+                  className="approve-reject-select"
+                >
+                  No
+                </button>
+              )}
+            </div>
+
+            <div className="dashboard-top-page-number">
+              <p className="page-number-display">
+                Page {pageNumber} of{' '}
+                {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
+              </p>
+              <label htmlFor="per-page-selector">Items Per Page</label>
+              <select name="per-page-selector" onChange={handlePerPageChange}>
+                <option value="2">2</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+            </div>
+
+            <div className="dashboard-top-page-buttons">
+              {pageNumber > 1 && (
+                <button
+                  onClick={handleBackClick}
+                  className="page-number-display"
+                >
+                  Previous Page
+                </button>
+              )}
+
+              {pageNumber <
+                Math.ceil(unapprovedIncidents.length / incidentsPerPage) && (
+                <button
+                  onClick={handleNextClick}
+                  className="page-number-display"
+                >
+                  Next Page
+                </button>
+              )}
+            </div>
+          </div>
+
+          <div className="incidents">
+            {currentSet.map(incident => {
+              return (
+                <PendingIncident
+                  confirmApprove={confirmApprove}
+                  key={incident.incident_id}
+                  incident={incident}
+                  selected={selected}
+                  changeSelected={changeSelected}
+                  setUnapprovedIncidents={setUnapprovedIncidents}
+                  unapprovedIncidents={unapprovedIncidents}
+                />
+              );
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 };

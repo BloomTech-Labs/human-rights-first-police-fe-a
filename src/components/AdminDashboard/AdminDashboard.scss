@@ -19,6 +19,14 @@
   flex-direction: column;
 }
 
+.confirmation-message {
+  margin-left: 25%;
+}
+
+.transparent {
+  opacity: 0;
+}
+
 .approve-reject-select {
   margin-right: 2%;
   margin-bottom: 1%;
@@ -27,4 +35,68 @@
 p.approve-reject-select {
   display: inline;
   margin-right: 0.25%;
+}
+
+p.page-number-display {
+  display: inline;
+}
+
+button.page-number-display {
+  margin: auto 2%;
+}
+
+.dashboard-top-flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dashboard-top-flex div {
+  margin: auto 1%;
+}
+
+.dashboard-top-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+}
+
+.dashboard-top-input input {
+  margin-left: 2%;
+}
+
+.dashboard-top-approve-reject {
+  display: flex;
+  width: 22%;
+}
+
+.dashboard-top-approve-reject button {
+  margin: auto 2%;
+  width: 45%;
+}
+
+.dashboard-top-page-number {
+  display: flex;
+  align-items: center;
+  width: 30%;
+}
+
+.dashboard-top-page-number p {
+  margin-top: 4%;
+  margin-left: 15%;
+}
+
+.dashboard-top-page-number label {
+  margin-left: 10%;
+  margin-right: 1%;
+}
+
+.dashboard-top-page-buttons {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard-top-page-buttons button {
+  width: 45%;
 }

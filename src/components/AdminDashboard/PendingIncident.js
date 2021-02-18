@@ -5,7 +5,6 @@ import './PendingIncident.scss';
 import CompleteIncident from './CompleteIncident';
 
 const PendingIncident = props => {
-  
   // using local state to determine whether the "complete incident" information is toggled
   const [moreInfo, setMoreInfo] = useState(false);
 
@@ -15,6 +14,7 @@ const PendingIncident = props => {
     changeSelected,
     unapprovedIncidents,
     setUnapprovedIncidents,
+    confirmApprove,
   } = props;
 
   const toggleMoreInfo = () => {
@@ -40,7 +40,7 @@ const PendingIncident = props => {
           className="incident-info"
           type="checkbox"
           checked={isSelected}
-          onChange={toggleCheck}
+          onChange={confirmApprove ? '' : toggleCheck}
         />
 
         <p className="incident-info">{incident.title}</p>
