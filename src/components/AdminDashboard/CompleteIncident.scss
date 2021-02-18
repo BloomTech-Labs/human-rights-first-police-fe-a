@@ -1,8 +1,9 @@
 .complete-incident {
-  text-align: center;
-  border: solid black 2px;
+  text-align: left;
   border-top: none;
   padding-bottom: 2%;
+  border: 1px solid #e3e8ee;
+  border-radius: 5px;
 
   button {
     margin: auto 1%;
@@ -15,4 +16,13 @@
 
 .label {
   font-weight: bold;
+}
+
+.complete-incident-dropdown {
+  margin-top: 23px;
+  margin-left: 2%;
+}
+
+#dropdown-edit-button {
+  margin-left: 0px;
 }

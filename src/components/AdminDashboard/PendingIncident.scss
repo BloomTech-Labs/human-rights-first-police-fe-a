@@ -1,4 +1,3 @@
-
 .pending-incident {
   display: flex;
   justify-content: space-between;
@@ -11,9 +10,26 @@
   border-bottom: none;
 }
 
+#incident-title {
+  margin-left: 0px;
+  font-weight: 500;
+  width: 45%;
+  text-align: left;
+  padding: 0px;
+}
+
 .incident-info {
   text-align: left;
   padding-top: 1%;
+}
+
+.incident-info-text-wrap {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  color: #3c4257;
+  font-weight: 500;
 }
 
 .incident-info:first-child {
@@ -22,7 +38,7 @@
 }
 
 .incident-info:nth-child(2) {
-  width: 45%;
+  width: 18%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;

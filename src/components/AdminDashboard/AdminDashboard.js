@@ -156,13 +156,16 @@ const AdminDashboard = () => {
 
       <h3>Incidents</h3>
       <label htmlFor="select-all">
-        <p className="approve-reject-select">Select All</p>
         <input
+          id="approve-reject-select-checkbox"
           className="approve-reject-select"
           type="checkbox"
           name="select-all"
           onChange={selectAll}
         />
+        <p className="approve-reject-select" id="approve-reject-select-text">
+          Select All
+        </p>
         <button onClick={approveHandler} className="approve-reject-select">
           Approve
         </button>

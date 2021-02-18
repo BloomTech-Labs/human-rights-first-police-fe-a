@@ -5,13 +5,17 @@
 .statboxes {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: start;
 }
 
 .statbox {
-  border: solid black 1px;
+  border: 2px solid #e3e8ee;
   padding: 1%;
-  width: 29%;
+  width: 18%;
+  color: #3c4257;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-right: 20px;
 }
 
 .incidents {
@@ -19,9 +23,31 @@
   flex-direction: column;
 }
 
+.pending-incident {
+  border: 1px solid #e3e8ee;
+  border-radius: 5px;
+  height: 50px;
+}
+
+#approve-reject-select-text {
+  border-style: none;
+  margin-right: 25px;
+  margin-bottom: 1%;
+}
+
+#approve-reject-select-checkbox {
+  margin-right: 10px;
+}
+
 .approve-reject-select {
+  border: 1px solid #e3e8ee;
+  background-color: rgb(255, 255, 255);
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
   margin-right: 2%;
   margin-bottom: 1%;
+  color: rgb(60, 66, 87);
 }
 
 p.approve-reject-select {
