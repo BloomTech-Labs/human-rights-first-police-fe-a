@@ -38,7 +38,7 @@ const PendingIncident = props => {
           className="incident-info"
           type="checkbox"
           checked={isSelected}
-          onChange={confirmApprove ? '' : toggleCheck}
+          onChange={confirmApprove ? () => {} : toggleCheck}
         />
 
         <p className="incident-info">{incident.title}</p>

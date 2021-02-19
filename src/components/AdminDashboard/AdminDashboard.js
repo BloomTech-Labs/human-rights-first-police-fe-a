@@ -43,7 +43,7 @@ const AdminDashboard = () => {
   const selectAll = () => {
     setAllSelected(!allSelected);
     if (!allSelected) {
-      setSelected(incidents.map(data => data.incident_id));
+      setSelected(currentSet.map(data => data.incident_id));
     } else {
       setSelected([]);
     }
@@ -149,7 +149,7 @@ const AdminDashboard = () => {
                 className="approve-reject-select"
                 type="checkbox"
                 name="select-all"
-                onChange={confirmApprove ? '' : selectAll}
+                onChange={confirmApprove ? () => {} : selectAll}
                 checked={allSelected}
               />
             </div>
