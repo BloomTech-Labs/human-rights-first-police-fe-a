@@ -1,0 +1,30 @@
+.dashboard-container {
+  width: 98%;
+  margin: auto;
+}
+.statboxes {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.statbox {
+  border: solid black 1px;
+  padding: 1%;
+  width: 29%;
+}
+
+.incidents {
+  display: flex;
+  flex-direction: column;
+}
+
+.approve-reject-select {
+  margin-right: 2%;
+  margin-bottom: 1%;
+}
+
+p.approve-reject-select {
+  display: inline;
+  margin-right: 0.25%;
+}
