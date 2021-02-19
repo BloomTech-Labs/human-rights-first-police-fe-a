@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 
-import './PendingIncident.scss';
-
 import CompleteIncident from './CompleteIncident';
 
 const PendingIncident = props => {
@@ -14,6 +12,7 @@ const PendingIncident = props => {
     changeSelected,
     unapprovedIncidents,
     setUnapprovedIncidents,
+    confirmApprove,
   } = props;
 
   const toggleMoreInfo = () => {
@@ -39,7 +38,7 @@ const PendingIncident = props => {
           className="incident-info"
           type="checkbox"
           checked={isSelected}
-          onChange={toggleCheck}
+          onChange={confirmApprove ? '' : toggleCheck}
         />
 
         <p className="incident-info">{incident.title}</p>

@@ -11,7 +11,9 @@
 @import './components/map/MapSearch.scss';
 @import './components/Stats/Stats.scss';
 @import './components/timeline/RecentTimeline.scss';
-@import './components/Main.scss';
+@import './components/AdminDashboard/AdminDashboard.scss';
+@import './components/AdminDashboard/CompleteIncident.scss';
+@import './components/AdminDashboard/PendingIncident.scss';
 
 .Map {
   position: relative;

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-import './CompleteIncident.scss';
-
 const CompleteIncident = props => {
   const [editing, setEditing] = useState(false);
   const [formValues, setFormValues] = useState({});
