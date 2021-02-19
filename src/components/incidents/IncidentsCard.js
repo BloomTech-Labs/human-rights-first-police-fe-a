@@ -1,11 +1,13 @@
 import React from 'react';
 import { DateTime } from 'luxon';
-import { Card, Popover, Button } from 'antd';
+import { Card, Popover, Button, Tag } from 'antd';
+import { nanoid } from 'nanoid';
 // import '../NavBar/node_modules/antd/dist/antd.css';
 
 const IncidentsCard = props => {
   let cityState = `${props.incident.city}, ${props.incident.state}`;
 
+  // This still has a bug if the url has a . anywhere besides www. and .com
   function getDomain(url) {
     url = url.replace(/(https?:\/\/)?(www.)?/i, '');
     url = url.split('.');
@@ -23,7 +25,7 @@ const IncidentsCard = props => {
       ) : (
         props.incident.src.map(source => {
           return (
-            <div>
+            <div key={nanoid()}>
               <a href={source} target="_blank" rel="noopener noreferrer">
                 {getDomain(source)}
               </a>
@@ -41,21 +43,27 @@ const IncidentsCard = props => {
     <div className="card-box">
       {/* for states, I was thinking we could import the abbreviations from the bargraphAssets file */}
 
-      <Card
-        title={
-          <p>
+      <Card bordered={false}>
+        <div className="card-title">
+          <h4>
             {DateTime.fromISO(props.incident.date)
               .plus({ days: 1 })
               .toLocaleString(DateTime.DATE_MED)}
-          </p>
-        }
-        extra={cityState}
-      >
-        <h4>{props.incident.title}</h4>
-        <p>{props.incident.categories.join(' | ')}</p>
+          </h4>
+          <h4>{cityState}</h4>
+        </div>
+        <h3>{props.incident.title}</h3>
+        {props.incident.categories.map(cat => {
+          return <Tag key={nanoid()}>{cat}</Tag>;
+        })}
         <p>{props.incident.desc}</p>
         <Popover content={popoverContent} placement="rightTop">
-          <Button type="primary">Sources</Button>
+          <Button
+            type="primary"
+            style={{ backgroundColor: '#003767', border: 'none' }}
+          >
+            Sources
+          </Button>
         </Popover>
       </Card>
     </div>

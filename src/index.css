@@ -18,7 +18,7 @@ root:hover {
 .nav-container nav .layout {
   width: 70%;
 }
-.nav-container nav .layout [role='menu'] {
+.nav-container nav .layout [role=menu] {
   background-color: var(--blue);
   height: 60px;
   display: flex;
@@ -111,9 +111,7 @@ div canvas {
   line-height: 46px;
   text-size-adjust: 100%;
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: #1890ff;
   display: flex;
   justify-content: center;
@@ -145,12 +143,12 @@ section ul {
   margin: 0 auto;
 }
 
-.link-container[role='menu'] {
+.link-container[role=menu] {
   height: 60px;
   border: none;
 }
 
-.graph-menu-item [role='menu-item'] {
+.graph-menu-item [role=menu-item] {
   height: 48px;
 }
 
@@ -183,7 +181,7 @@ section ul {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 32px;
+  padding: 0 19px;
 }
 
 .incidents-page header .user-input {
@@ -199,15 +197,21 @@ section ul {
 }
 
 .card-box {
-  width: 45%;
-  height: 250px;
+  width: 30%;
+  height: 375px;
   overflow-y: scroll;
   margin: 24px 16px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-.card-box .ant-card-head {
-  background-color: var(--blue);
-  color: #fff;
+.card-box .card-title {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.card-box p {
+  margin: 15px 0;
 }
 
 .pagination {
@@ -253,6 +257,16 @@ h3.incident-container {
   opacity: 55%;
 }
 
+.mapDiv {
+  width: 100%;
+  margin: auto;
+}
+
+@media (max-width: 768px) {
+  .mapDiv {
+    width: 100%;
+  }
+}
 .search-header {
   width: 500px;
   padding-bottom: 2%;
@@ -454,16 +468,6 @@ div.ant-modal-body {
   right: -11px;
 }
 
-.mapDiv {
-  width: 100%;
-  margin: auto;
-}
-
-@media (max-width: 768px) {
-  .mapDiv {
-    width: 100%;
-  }
-}
 .Map {
   position: relative;
   width: 100%;

@@ -11,7 +11,7 @@
 @import './components/map/MapSearch.scss';
 @import './components/Stats/Stats.scss';
 @import './components/timeline/RecentTimeline.scss';
-@import './components/Main.scss';
+// @import './components/Main.scss';
 
 .Map {
   position: relative;
@@ -22,10 +22,10 @@
 
 .Timeline {
   background-color: #ffff;
-
   display: flex;
   justify-content: space-around;
   flex-wrap: wrapgit;
+  // ^ This seems to be a typo? 
 }
 
 .H-bar {
