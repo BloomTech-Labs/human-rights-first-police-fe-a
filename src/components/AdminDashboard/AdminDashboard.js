@@ -69,7 +69,6 @@ const AdminDashboard = () => {
   const approveHandler = evt => {
     evt.preventDefault();
     const [approvedData, unapprovedData] = sortApproved();
-    console.log(approvedData);
     setUnapprovedIncidents(unapprovedData);
     setSelected([]);
     setConfirmApprove(false);
