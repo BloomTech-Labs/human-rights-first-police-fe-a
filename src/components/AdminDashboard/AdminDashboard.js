@@ -87,6 +87,25 @@ const dummyData = [
       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt',
     uncategorized: false,
   },
+  {
+    incident_id: 'ny-newyorkcity-2',
+    src: ['https://twitter.com/DriveWendys/status/1266555286678048770'],
+    categories: ['drive', 'vehicle'],
+    city: 'New York City',
+    state: 'New York',
+    lat: 0,
+    long: 0,
+    title: 'Police drive by man and hit him with car door',
+    desc:
+      'Policeman deliberately opens car door to knock an individual down to the ground.',
+    date: '2020-05-29T06:00:00.000Z',
+    verbalization: false,
+    empty_hand_soft: false,
+    empty_hand_hard: false,
+    less_lethal_methods: false,
+    lethal_force: false,
+    uncategorized: true,
+  },
 ];
 
 const AdminDashboard = () => {
