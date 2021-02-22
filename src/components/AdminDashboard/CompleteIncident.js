@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import EmbedSource from '../EmbedSource';
 
 const CompleteIncident = props => {
   const [editing, setEditing] = useState(false);
@@ -152,7 +153,7 @@ const CompleteIncident = props => {
       )}
 
       {!editing ? (
-        <p>{incident.src.join(' ')}</p>
+        incident.src.map(src => <EmbedSource url={src} />)
       ) : (
         <>
           <label htmlFor="src" className="label">
