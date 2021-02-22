@@ -53,7 +53,6 @@ const CompleteIncident = props => {
     });
     setUnapprovedIncidents(updatedIncidents);
     setEditing(!editing);
-    console.log(unapprovedIncidents);
   };
 
   return (
