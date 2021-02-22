@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EmbedSource from '../EmbedSource';
 
-import './CompleteIncident.scss';
-
 const CompleteIncident = props => {
   const [editing, setEditing] = useState(false);
   const [formValues, setFormValues] = useState({});
@@ -56,7 +54,6 @@ const CompleteIncident = props => {
     });
     setUnapprovedIncidents(updatedIncidents);
     setEditing(!editing);
-    console.log(unapprovedIncidents);
   };
 
   return (
