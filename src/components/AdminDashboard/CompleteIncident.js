@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import EmbedSource from '../EmbedSource';
 
 const CompleteIncident = props => {
   const [editing, setEditing] = useState(false);
@@ -53,7 +54,6 @@ const CompleteIncident = props => {
     });
     setUnapprovedIncidents(updatedIncidents);
     setEditing(!editing);
-    console.log(unapprovedIncidents);
   };
 
   return (
@@ -153,6 +153,7 @@ const CompleteIncident = props => {
           </>
         )}
 
+
         {!editing ? (
           <p>{incident.src.join(' ')}</p>
         ) : (
@@ -172,6 +173,14 @@ const CompleteIncident = props => {
               name="src"
               value={formValues.src.join(' ')}
             />
+
+      {!editing ? (
+        incident.src.map(src => <EmbedSource url={src} />)
+      ) : (
+        <>
+          <label htmlFor="src" className="label">
+            Sources
+
             <br />
           </>
         )}
