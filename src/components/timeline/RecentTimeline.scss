@@ -9,20 +9,13 @@ div.timeline-container {
   background-color: white;
 }
 
-// h1 {
-//   margin-top: 10px;
-//   text-align: center;
-//   font-size: 32px;
-// }
-
 .timeline {
-  border: 1px solid green;
   width: 100%;
   margin: 0;
 }
 
 .timeline-box {
-  width: 90%;
+  width: 100%;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
   overflow-y: scroll;
 }

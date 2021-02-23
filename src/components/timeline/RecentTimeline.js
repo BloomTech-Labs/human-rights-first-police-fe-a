@@ -8,14 +8,11 @@ export function RecentTimeline() {
   const timelineQuery = useTimeline();
 
   return timelineQuery.isSuccess ? (
-    <div className="timeline-container">
-      <h2> Recent Events </h2>
-      <Timeline lineColor={'#</Timeline>ddd'}>
-        {timelineQuery.data.map(details => {
-          return <TimelineItems details={details} key={nanoid()} />;
-        })}
-      </Timeline>
-    </div>
+    <Timeline lineColor={'#</Timeline>ddd'}>
+      {timelineQuery.data.map(details => {
+        return <TimelineItems details={details} key={nanoid()} />;
+      })}
+    </Timeline>
   ) : null;
 }
 

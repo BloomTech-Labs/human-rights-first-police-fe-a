@@ -394,17 +394,33 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
   flex-direction: row;
 }
 
+:root {
+  --blue: #003767;
+  --orange: #bc541e;
+  --light-blue: #7f9bb3;
+}
+
 .stats {
-  margin-top: 10px;
+  background-color: var(--blue);
   text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 15vh;
 }
 
-.Total-incidents {
-  margin-bottom: 10%;
+.stat {
+  margin: 0 10%;
 }
 
-.Total-spray-gas {
-  margin-bottom: 10%;
+.stat h2,
+.stat h3 {
+  color: white;
+}
+.stat h2 :hover,
+.stat h3 :hover {
+  font-weight: bolder;
 }
 
 :root {
@@ -419,13 +435,12 @@ div.timeline-container {
 }
 
 .timeline {
-  border: 1px solid green;
   width: 100%;
   margin: 0;
 }
 
 .timeline-box {
-  width: 90%;
+  width: 100%;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
   overflow-y: scroll;
 }
@@ -438,7 +453,7 @@ div.timeline-container {
 .Map {
   position: relative;
   width: 100%;
-  height: 80vh;
+  min-height: calc(85vh - 60px);
   margin-top: -1px;
 }
 
@@ -447,11 +462,6 @@ div.timeline-container {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrapgit;
-}
-
-.H-bar {
-  margin-top: 10px;
-  width: 500px;
 }
 
 /*# sourceMappingURL=index.css.map */
