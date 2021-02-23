@@ -1,9 +1,9 @@
 {
-  "name": "labs-spa-starter",
+  "name": "blue-witness",
   "version": "0.1.0",
   "private": false,
   "license": "MIT",
-  "repository": "github:Lambda-School-Labs/labs-spa-starter",
+  "repository": "github:Lambda-School-Labs/human-rights-first-fe-a",
   "dependencies": {
     "@ant-design/icons": "^4.5.0",
     "@craco/craco": "^5.9.0",
@@ -43,6 +43,7 @@
     "react-responsive": "^8.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "react-twitter-embed": "^3.0.3",
     "redux": "^4.0.5",
     "scss": "^0.2.4",
     "styled-components": "^5.2.1",
