@@ -10,7 +10,6 @@ import About from './components/about/About';
 
 import GraphContainer from './components/graphs/GraphContainer';
 import NavBar from './components/NavBar/NavBar';
-import HorizontalBar from './components/graphs/bargraph/HorizontalBar';
 import Stats from './components/Stats/Stats';
 import LoginContainer from './components/Login/LoginContainer';
 import Dashboard from './components/AdminDashboard/AdminDashboard';
@@ -30,16 +29,9 @@ export default function App() {
             <MapContainer />
           </div>
           <div className="bottom-section">
+            <Stats />
             <div className="Timeline">
               <RecentTimeline />
-              <div className="Info-Section">
-                <div className="Stats">
-                  <Stats />
-                </div>
-                <div className="H-bar">
-                  <HorizontalBar />
-                </div>
-              </div>
             </div>
           </div>
         </Route>
