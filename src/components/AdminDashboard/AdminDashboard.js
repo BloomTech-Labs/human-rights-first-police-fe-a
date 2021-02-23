@@ -143,14 +143,15 @@ const AdminDashboard = () => {
         <>
           <div className="dashboard-top-flex">
             <div className="dashboard-top-input">
-              <label htmlFor="select-all">Select All </label>
               <input
+                id="approve-reject-select-checkbox"
                 className="approve-reject-select"
                 type="checkbox"
                 name="select-all"
                 onChange={confirmApprove ? () => {} : selectAll}
                 checked={allSelected}
               />
+              <label htmlFor="select-all">Select All </label>
             </div>
 
             <div className="dashboard-top-approve-reject">
@@ -208,7 +209,8 @@ const AdminDashboard = () => {
               {pageNumber > 1 && (
                 <button
                   onClick={handleBackClick}
-                  className="page-number-display"
+                  className="approve-reject-select"
+                  id="page-number-display"
                 >
                   Previous Page
                 </button>
@@ -218,7 +220,8 @@ const AdminDashboard = () => {
                 Math.ceil(unapprovedIncidents.length / incidentsPerPage) && (
                 <button
                   onClick={handleNextClick}
-                  className="page-number-display"
+                  className="approve-reject-select"
+                  id="page-number-display"
                 >
                   Next Page
                 </button>

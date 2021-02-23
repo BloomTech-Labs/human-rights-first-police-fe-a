@@ -40,18 +40,21 @@ const PendingIncident = props => {
           checked={isSelected}
           onChange={confirmApprove ? () => {} : toggleCheck}
         />
+        <div className="incident-info-text-wrap">
+          <p className="incident-info" id="incident-title">
+            {incident.title}
+          </p>
 
-        <p className="incident-info">{incident.title}</p>
+          <p className="incident-info">
+            {incident.city}, {incident.state}
+          </p>
 
-        <p className="incident-info">
-          {incident.city}, {incident.state}
-        </p>
+          <p className="incident-info">{formattedDate}</p>
 
-        <p className="incident-info">{formattedDate}</p>
-
-        <p className="incident-info more-info" onClick={toggleMoreInfo}>
-          {moreInfo ? 'Less Info' : 'More Info'}
-        </p>
+          <p className="incident-info more-info" onClick={toggleMoreInfo}>
+            {moreInfo ? 'Less Info' : 'More Info'}
+          </p>
+        </div>
       </div>
       {moreInfo && (
         <CompleteIncident

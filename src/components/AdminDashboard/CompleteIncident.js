@@ -58,125 +58,137 @@ const CompleteIncident = props => {
 
   return (
     <div className="complete-incident">
-      {!editing ? (
-        <p>{formattedDate}</p>
-      ) : (
-        <>
-          <label htmlFor="date" className="label">
-            Date
-          </label>
-          <br />
-          <input
-            className="edit-input"
-            onChange={handleInputChange}
-            type="text"
-            name="date"
-            value={formValues.date}
-          />
-          <br />
-        </>
-      )}
-
-      {!editing ? (
-        <p>
-          {incident.city}, {incident.state}
-        </p>
-      ) : (
-        <>
-          <label htmlFor="city" className="label">
-            City
-          </label>
-          <br />
-          <input
-            className="edit-input"
-            onChange={handleInputChange}
-            type="text"
-            name="city"
-            value={formValues.city}
-          />
-          <br />
-          <label htmlFor="state" className="label">
-            State
-          </label>
-          <br />
-          <input
-            className="edit-input"
-            onChange={handleInputChange}
-            type="text"
-            name="state"
-            value={formValues.state}
-          />
-          <br />
-        </>
-      )}
-
-      {!editing ? (
-        <p>{incident.title}</p>
-      ) : (
-        <>
-          <label htmlFor="title" className="label">
-            Title
-          </label>
-          <br />
-          <input
-            className="edit-input"
-            onChange={handleInputChange}
-            type="text"
-            name="title"
-            value={formValues.title}
-          />
-          <br />
-        </>
-      )}
-
-      {!editing ? (
-        <p>{incident.categories.join(' ')}</p>
-      ) : (
-        <>
-          <label htmlFor="categories" className="label">
-            Categories
+      <div className="complete-incident-dropdown">
+        {!editing ? (
+          <p>{formattedDate}</p>
+        ) : (
+          <>
+            <label htmlFor="date" className="label">
+              Date
+            </label>
             <br />
-            (Separated by commas)
-          </label>
-          <br />
-          <textarea
-            className="edit-input"
-            cols="25"
-            rows="5"
-            onChange={handleInputChange}
-            type="textarea"
-            name="categories"
-            value={formValues.categories}
-          />
-          <br />
-        </>
-      )}
-
-      {!editing ? (
-        <p>{incident.src.join(' ')}</p>
-      ) : (
-        <>
-          <label htmlFor="src" className="label">
-            Sources
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="date"
+              value={formValues.date}
+            />
             <br />
-            (Separated by commas)
-          </label>
-          <br />
-          <textarea
-            cols="25"
-            rows="5"
-            className="edit-input text-area"
-            onChange={handleInputChange}
-            type="textarea"
-            name="src"
-            value={formValues.src.join(' ')}
-          />
-          <br />
-        </>
-      )}
+          </>
+        )}
 
-      <button onClick={toggleEditor}>{editing ? 'Cancel' : 'Edit'}</button>
-      {editing && <button onClick={applyEdits}>Apply Changes</button>}
+        {!editing ? (
+          <p>
+            {incident.city}, {incident.state}
+          </p>
+        ) : (
+          <>
+            <label htmlFor="city" className="label">
+              City
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="city"
+              value={formValues.city}
+            />
+            <br />
+            <label htmlFor="state" className="label">
+              State
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="state"
+              value={formValues.state}
+            />
+            <br />
+          </>
+        )}
+
+        {!editing ? (
+          <p>{incident.title}</p>
+        ) : (
+          <>
+            <label htmlFor="title" className="label">
+              Title
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="title"
+              value={formValues.title}
+            />
+            <br />
+          </>
+        )}
+
+        {!editing ? (
+          <p>{incident.categories.join(' ')}</p>
+        ) : (
+          <>
+            <label htmlFor="categories" className="label">
+              Categories
+              <br />
+              (Separated by commas)
+            </label>
+            <br />
+            <textarea
+              className="edit-input"
+              cols="25"
+              rows="5"
+              onChange={handleInputChange}
+              type="textarea"
+              name="categories"
+              value={formValues.categories}
+            />
+            <br />
+          </>
+        )}
+
+        {!editing ? (
+          <p>{incident.src.join(' ')}</p>
+        ) : (
+          <>
+            <label htmlFor="src" className="label">
+              Sources
+              <br />
+              (Separated by commas)
+            </label>
+            <br />
+            <textarea
+              cols="25"
+              rows="5"
+              className="edit-input text-area"
+              onChange={handleInputChange}
+              type="textarea"
+              name="src"
+              value={formValues.src.join(' ')}
+            />
+            <br />
+          </>
+        )}
+
+        <button
+          id="dropdown-edit-button"
+          className="approve-reject-select"
+          onClick={toggleEditor}
+        >
+          {editing ? 'Cancel' : 'Edit'}
+        </button>
+        {editing && (
+          <button className="approve-reject-select" onClick={applyEdits}>
+            Apply Changes
+          </button>
+        )}
+      </div>
     </div>
   );
 };
