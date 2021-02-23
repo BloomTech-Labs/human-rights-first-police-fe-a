@@ -470,18 +470,36 @@ div.ant-modal-body {
 .statboxes {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: start;
 }
 
 .statbox {
-  border: solid black 1px;
+  border: 2px solid #e3e8ee;
   padding: 1%;
-  width: 29%;
+  width: 18%;
+  color: #3c4257;
+  border-radius: 5px;
+  font-weight: 500;
+  margin-right: 20px;
 }
 
 .incidents {
   display: flex;
   flex-direction: column;
+}
+
+#approve-reject-select-text {
+  border-style: none;
+  margin-right: 25px;
+  margin-bottom: 1%;
+}
+
+#approve-reject-select-checkbox {
+  margin-right: 10px;
+}
+
+.confirmation-message-div {
+  margin-top: 1%;
 }
 
 .confirmation-message {
@@ -493,8 +511,14 @@ div.ant-modal-body {
 }
 
 .approve-reject-select {
+  border: 1px solid #e3e8ee;
+  background-color: white;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
   margin-right: 2%;
   margin-bottom: 1%;
+  color: #3c4257;
 }
 
 p.approve-reject-select {
@@ -506,7 +530,7 @@ p.page-number-display {
   display: inline;
 }
 
-button.page-number-display {
+#page-number-display {
   margin: auto 2%;
 }
 
@@ -522,9 +546,9 @@ button.page-number-display {
 
 .dashboard-top-input {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  width: 15%;
+  width: 7%;
 }
 
 .dashboard-top-input input {
@@ -568,10 +592,13 @@ button.page-number-display {
 }
 
 .complete-incident {
-  text-align: center;
-  border: solid black 2px;
+  text-align: left;
+  border: solid #e3e8ee 1px;
   border-top: none;
   padding-bottom: 2%;
+  margin-top: 0px;
+  background-color: #f7fafc;
+  border-radius: 5px;
 }
 .complete-incident button {
   margin: auto 1%;
@@ -579,27 +606,60 @@ button.page-number-display {
 
 .edit-input {
   margin-bottom: 2%;
+  border: solid #e3e8ee 1px;
+  width: 97%;
 }
 
 .label {
   font-weight: bold;
 }
 
+.complete-incident-dropdown {
+  margin-top: 0px;
+  margin-left: 3%;
+}
+
+#dropdown-edit-button {
+  margin-left: 0px;
+}
+
 .pending-incident {
   display: flex;
   justify-content: space-between;
-  border: solid black 2px;
+  border: solid #e3e8ee 1px;
   width: 100%;
   align-items: center;
+  margin-bottom: 0px;
+  border-radius: 5px;
 }
 
 .toggled {
   border-bottom: none;
+  background-color: #f7fafc;
+}
+
+#incident-title {
+  margin-left: 0px;
+  font-weight: 500;
+  width: 45%;
+  text-align: left;
+  padding: 0px;
 }
 
 .incident-info {
   text-align: left;
   padding-top: 1%;
+}
+
+.incident-info-text-wrap {
+  display: flex;
+  text-align: left;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  color: #3c4257;
+  font-weight: 500;
+  margin: 0 auto;
 }
 
 .incident-info:first-child {
@@ -608,7 +668,7 @@ button.page-number-display {
 }
 
 .incident-info:nth-child(2) {
-  width: 45%;
+  width: 18%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
