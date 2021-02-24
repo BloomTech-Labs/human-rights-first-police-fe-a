@@ -77,7 +77,6 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
-
         {!editing ? (
           <p>
             {incident.city}, {incident.state}
@@ -110,7 +109,6 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
-
         {!editing ? (
           <p>{incident.title}</p>
         ) : (
@@ -129,7 +127,6 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
-
         {!editing ? (
           <p>{incident.categories.join(' ')}</p>
         ) : (
@@ -152,8 +149,6 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
-
-
         {!editing ? (
           <p>{incident.src.join(' ')}</p>
         ) : (
@@ -173,18 +168,20 @@ const CompleteIncident = props => {
               name="src"
               value={formValues.src.join(' ')}
             />
-
-      {!editing ? (
-        incident.src.map(src => <EmbedSource url={src} />)
-      ) : (
-        <>
-          <label htmlFor="src" className="label">
-            Sources
-
             <br />
           </>
         )}
-
+        {!editing ? (
+          incident.src.map(src => <EmbedSource url={src} />)
+        ) : (
+          <>
+            <label htmlFor="src" className="label">
+              Sources
+            </label>
+            <br />
+          </>
+        )}
+        <br />
         <button
           id="dropdown-edit-button"
           className="approve-reject-select"
