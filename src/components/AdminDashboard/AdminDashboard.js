@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import PendingIncident from './PendingIncident';
+import AddIncident from './AddIncident';
 
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
@@ -170,9 +171,7 @@ const AdminDashboard = () => {
   return (
     <div className="dashboard-container">
       <h2>Admin Dashboard</h2>
-      <button onClick={toggleAddIncident}>
-        {adding ? 'Dashboard' : 'Add Incident'}
-      </button>
+      <button onClick={toggleAddIncident}>Create New Incident</button>
       <h3>Statistics</h3>
 
       <div className="statboxes">
@@ -198,8 +197,8 @@ const AdminDashboard = () => {
           Are you sure?
         </p>
       </div>
-      {unapprovedIncidents.length === 0 ? (
-        <p>There are no incidents awaiting approval</p>
+      {adding ? (
+        <AddIncident setAdding={setAdding} />
       ) : (
         <>
           <div className="dashboard-top-flex">
