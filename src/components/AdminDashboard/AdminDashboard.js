@@ -11,7 +11,9 @@ const AdminDashboard = () => {
 
   //   setting state necessary for pagination
   const [pageNumber, setPageNumber] = useState(1);
-  const [incidentsPerPage, setIncidentsPerPage] = useState(2);
+  const [incidentsPerPage, setIncidentsPerPage] = useState(
+    2
+  ); /*<---!!!!!change this eventually!!!!!*/
   const [currentSet, setCurrentSet] = useState([]);
 
   //   setting state for confirmation buttons of confirming/rejecting
@@ -35,6 +37,8 @@ const AdminDashboard = () => {
         console.log(err);
       });
   }, []);
+
+  console.log(unapprovedIncidents);
 
   // setting up pagination display on dashboard
   useEffect(() => {
@@ -106,7 +110,6 @@ const AdminDashboard = () => {
           rejected: true,
         };
       }
-      console.log(updatedIncident);
       axios
         .put(
           `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.twitter_incident_id}`,
