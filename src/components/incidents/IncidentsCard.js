@@ -37,8 +37,6 @@ const IncidentsCard = props => {
     </div>
   );
 
-  console.log(props.incident);
-
   return (
     <div className="card-box">
       {/* for states, I was thinking we could import the abbreviations from the bargraphAssets file */}

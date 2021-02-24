@@ -30,18 +30,13 @@ const wrapRender = async (component, options) => {
   return renderReturned; // act() requires no return value, so return what render would normally return
 };
 
-// Re-export React Testing Library
-export * from '@testing-library/react';
-
-// Override custom exports
-export { wrapRender as render };
-
-// Jest module mocks
+// Jest mocks
 jest.mock('react-chartjs-2', () => ({
   // See https://github.com/reactchartjs/react-chartjs-2/issues/155
-  Line: () => null,
-  Bar: () => null,
-  Pie: () => null,
+  Line: () => <div></div>,
+  Bar: () => <div></div>,
+  HorizontalBar: () => <div></div>,
+  Pie: () => <div></div>,
 }));
 
 jest.mock('../hooks/legacy/useTimeline', () => ({
@@ -52,3 +47,14 @@ jest.mock('../hooks/legacy/useTimeline', () => ({
     isError: false,
   }),
 }));
+
+Object.defineProperty(window, 'matchMedia', {
+  writable: true,
+  value: () => ({ addListener: jest.fn(), removeListener: jest.fn() }),
+});
+
+// Re-export React Testing Library
+export * from '@testing-library/react';
+
+// Override custom exports
+export { wrapRender as render };

@@ -25,9 +25,7 @@ const AdminDashboard = () => {
   const incidents = dataQuery.data && !dataQuery.isError ? dataQuery.data : [];
 
   useEffect(() => {
-    !dataQuery.isLoading &&
-      !dataQuery.isError &&
-      setUnapprovedIncidents(falsiesRemoved(incidents));
+    setUnapprovedIncidents(falsiesRemoved(incidents));
   }, [dataQuery.isLoading, dataQuery.isError, dataQuery.data]);
 
   useEffect(() => {
