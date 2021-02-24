@@ -83,7 +83,10 @@
     "coveragePathIgnorePatterns": [
       "<rootDir>/src/stories/",
       "<rootDir>/node_modules/"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^@okta/okta-auth-js$": "<rootDir>/node_modules/@okta/okta-auth-js/dist/okta-auth-js.umd.js"
+    }
   },
   "browserslist": {
     "production": [
