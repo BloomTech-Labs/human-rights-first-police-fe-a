@@ -8,18 +8,17 @@ const initialFormValues = {
   city: '',
   date: '',
   desc: '',
-  // empty_hand_hard: false,
-  // empty_hand_soft: false,
-  // incident_id: "ca-sanjose-5",
-  // lat: 37.33532,
-  // less_lethal_methods: true,
-  // lethal_force: false,
-  // long: -121.88931,
-  //   src: [],
+  empty_hand_hard: false,
+  empty_hand_soft: false,
+  lat: 37.33532,
+  less_lethal_methods: true,
+  lethal_force: false,
+  long: -121.88931,
+  src: [],
   state: '',
   title: '',
-  // uncategorized: false,
-  // verbalization: false,
+  uncategorized: false,
+  verbalization: false,
 };
 
 const AddIncident = props => {
@@ -51,12 +50,13 @@ const AddIncident = props => {
     }
     const newIncident = {
       ...formValues,
-      approved: false,
-      rejected: false,
       date: newDateString,
+      pending: false,
+      rejected: false,
     };
+    console.log(newIncident);
     setConfirmLoading(true);
-    // axios.post(`${process.env.REACT_APP_BACKENDURL}/incidents/approved`, newIncident)
+    // axios.post(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`, newIncident)
     // .then(res=>{
     //     setModalText('New incident added successfully');
     //     setTimeout(() => {
@@ -275,6 +275,7 @@ const AddIncident = props => {
         </label>
         <br />
       </form>
+      {modalText ? modalText : ''}
     </Modal>
   );
 };

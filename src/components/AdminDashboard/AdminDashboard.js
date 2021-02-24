@@ -267,43 +267,6 @@ const AdminDashboard = () => {
                 </button>
               )}
             </div>
-
-            <div className="dashboard-top-page-number">
-              <p className="page-number-display">
-                Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
-                {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
-              </p>
-              <label htmlFor="per-page-selector">Items Per Page</label>
-              <select name="per-page-selector" onChange={handlePerPageChange}>
-                <option value="2">2</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-            </div>
-
-            <div className="dashboard-top-page-buttons">
-              {pageNumber > 1 && (
-                <button
-                  onClick={handleBackClick}
-                  className="page-number-display"
-                >
-                  Previous Page
-                </button>
-              )}
-
-              {pageNumber <
-                Math.ceil(unapprovedIncidents.length / incidentsPerPage) && (
-                <button
-                  onClick={handleNextClick}
-                  className="page-number-display"
-                >
-                  Next Page
-                </button>
-              )}
-            </div>
           </div>
 
           <div className="incidents">
@@ -320,6 +283,43 @@ const AdminDashboard = () => {
                 />
               );
             })}
+          </div>
+          <div className="pagination">
+            <div className="dashboard-top-page-number">
+              <label htmlFor="per-page-selector">Items Per Page</label>
+              <select
+                className="items-pp-select"
+                name="per-page-selector"
+                onChange={handlePerPageChange}
+              >
+                <option value="2">2</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
+              <p className="page-number-display">
+                Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
+                {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
+              </p>
+            </div>
+
+            <div className="dashboard-top-page-buttons">
+              <button onClick={handleBackClick} disabled={pageNumber === 1}>
+                Previous Page
+              </button>
+
+              <button
+                onClick={handleNextClick}
+                disabled={
+                  pageNumber ===
+                  Math.ceil(unapprovedIncidents.length / incidentsPerPage)
+                }
+              >
+                Next Page
+              </button>
+            </div>
           </div>
         </>
       )}
