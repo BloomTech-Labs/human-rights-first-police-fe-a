@@ -9,6 +9,8 @@ import { MemoryRouter } from 'react-router-dom';
 // Redux store
 import store from '../store';
 
+import * as antd from 'antd';
+
 // Provides a custom render function for tests that makes Redux, React Router,
 // and Okta available to components
 function Wrapper(props) {
@@ -38,6 +40,15 @@ jest.mock('react-chartjs-2', () => ({
   HorizontalBar: () => <div></div>,
   Pie: () => <div></div>,
 }));
+
+jest.mock('antd', () => {
+  const antd = jest.requireActual('antd');
+  return {
+    __esModule: true,
+    ...antd,
+    Modal: () => <div></div>,
+  };
+});
 
 jest.mock('../hooks/legacy/useTimeline', () => ({
   useTimeline: () => ({
