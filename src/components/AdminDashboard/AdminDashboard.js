@@ -72,6 +72,13 @@ const AdminDashboard = () => {
     setUnapprovedIncidents(unapprovedData);
     setSelected([]);
     setConfirmApprove(false);
+    setAllSelected(false);
+    if (
+      pageNumber >
+      Math.ceil(unapprovedIncidents.length / incidentsPerPage) - 1
+    ) {
+      setPageNumber(pageNumber - 1);
+    }
   };
 
   const confirmCancel = evt => {
