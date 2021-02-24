@@ -2,15 +2,10 @@ import React, { useState, useEffect } from 'react';
 import EmbedSource from '../EmbedSource';
 
 const CompleteIncident = props => {
+  // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
-  const [formValues, setFormValues] = useState({});
 
-  useEffect(() => {
-    setFormValues({ ...incident, date: formattedDate });
-    return () => {
-      setFormValues({});
-    };
-  }, []);
+  const [formValues, setFormValues] = useState({});
 
   const {
     incident,
@@ -19,12 +14,21 @@ const CompleteIncident = props => {
     setUnapprovedIncidents,
   } = props;
 
+  useEffect(() => {
+    setFormValues({ ...incident, date: formattedDate });
+    return () => {
+      setFormValues({});
+    };
+  }, []);
+
+  // toggle "editing mode"
   const toggleEditor = evt => {
     evt.preventDefault();
     setFormValues({ ...incident, date: formattedDate });
     setEditing(!editing);
   };
 
+  // setting form values on input change
   const handleInputChange = evt => {
     setFormValues({
       ...formValues,
@@ -32,6 +36,7 @@ const CompleteIncident = props => {
     });
   };
 
+  // functions for applying changes to incident
   const applyEdits = evt => {
     evt.preventDefault();
     const [month, day, year] = formValues.date.split('/');
@@ -77,7 +82,6 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
-
         {!editing ? (
           <p>
             {incident.city}, {incident.state}
@@ -110,7 +114,6 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
-
         {!editing ? (
           <p>{incident.title}</p>
         ) : (
@@ -129,7 +132,6 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
-
         {!editing ? (
           <p>{incident.categories.join(' ')}</p>
         ) : (
@@ -152,7 +154,6 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
-
         {!editing ? (
           <p>{incident.src.join(' ')}</p>
         ) : (
@@ -176,7 +177,7 @@ const CompleteIncident = props => {
         )}
 
         {!editing ? (
-          incident.src.map(src => <EmbedSource url={src} />)
+          incident.src.map(src => <EmbedSource key={incident.src} url={src} />)
         ) : (
           <>
             <label htmlFor="src" className="label">
@@ -185,7 +186,17 @@ const CompleteIncident = props => {
             </label>
           </>
         )}
-
+        {!editing ? (
+          incident.src.map(src => <EmbedSource url={src} />)
+        ) : (
+          <>
+            <label htmlFor="src" className="label">
+              Sources
+            </label>
+            <br />
+          </>
+        )}
+        <br />
         <button
           id="dropdown-edit-button"
           className="approve-reject-select"
