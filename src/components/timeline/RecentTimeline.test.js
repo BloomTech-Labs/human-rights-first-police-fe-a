@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, cleanup } from '../../utils/test-utils';
-import About from './About';
+import { RecentTimeline } from './RecentTimeline';
 
 afterEach(() => {
   cleanup();
   jest.clearAllMocks();
 });
 
-describe('<About />', () => {
+describe('<RecentTimeline />', () => {
   test('Component renders', async () => {
-    const { container } = await render(<About />);
+    const { container } = await render(<RecentTimeline />);
     expect(container).toContainElement(container.firstChild);
   });
 });
