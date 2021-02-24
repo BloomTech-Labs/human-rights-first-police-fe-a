@@ -14,6 +14,8 @@
 @import './components/AdminDashboard/AdminDashboard.scss';
 @import './components/AdminDashboard/CompleteIncident.scss';
 @import './components/AdminDashboard/PendingIncident.scss';
+@import './components/AdminDashboard/AddIncident.scss';
+@import './components/AdminDashboard/Source.scss';
 
 .Map {
   position: relative;
@@ -27,5 +29,5 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrapgit;
-  // ^ This seems to be a typo? 
+  // ^ This seems to be a typo?
 }
