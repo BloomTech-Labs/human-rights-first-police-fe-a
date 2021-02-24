@@ -21,7 +21,7 @@ const slice = createSlice({
     longitude: -97.6500523,
     filters: null,
     incidentsOfInterest: null,
-    filterData: {},
+    filterData: [],
     dates: null,
   },
   reducers: {

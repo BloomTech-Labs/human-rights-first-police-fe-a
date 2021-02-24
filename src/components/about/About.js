@@ -39,13 +39,16 @@ const About = () => {
       <p>Our backend processes started collection on date [X] and run through the present day. Our earliest reported incident occurred on [Insert Date Here]</p> 
       */}
       <h2>Can I have a copy of your dataset?</h2>
-      <p>
-        Yes, you can access our complete database via download as a .csv file
-        and view as a JSON object. This site is also open source and you can
-        access the site code here [link to Github repo]. Leave date and state
-        fields empty to receive complete data set.
+      <div>
+        <span>
+          Yes, you can access our complete database via download as a .csv file
+          and view as a JSON object. This site is also open source and you can
+          access the site code here [link to Github repo]. Leave date and state
+          fields empty to receive complete data set.
+        </span>
         <DataExportForm />
-      </p>
+        <p></p> {/* for spacing */}
+      </div>
       <h2>Who built this site?</h2>
       <p>
         This project was designed and built in a partnership between Human

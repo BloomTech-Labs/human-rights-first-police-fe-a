@@ -1,5 +1,4 @@
-import { DateTime } from 'luxon';
-import Interval from 'luxon/src/interval.js';
+import { DateTime, Interval } from 'luxon';
 
 // When raw data from the back end is received, remove any key/value pairs from the object that resolve to undefined or null
 const falsiesRemoved = data => {
