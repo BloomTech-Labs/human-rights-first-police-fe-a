@@ -123,7 +123,7 @@ p.page-number-display {
 .pagination {
   display: flex;
   justify-content: space-between;
-  margin: 2% auto;
+  margin: 0 auto;
 }
 
 .pagination div {
@@ -144,6 +144,10 @@ p.page-number-display {
 
 .items-pp-select {
   margin-left: 2%;
+}
+
+#items-per-page {
+  margin-left: 1%;
 }
 
 .page-number-display {

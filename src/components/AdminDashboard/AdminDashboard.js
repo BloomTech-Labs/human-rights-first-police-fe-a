@@ -293,7 +293,9 @@ const AdminDashboard = () => {
           </div>
           <div className="pagination">
             <div className="dashboard-top-page-number">
-              <label htmlFor="per-page-selector">Items Per Page</label>
+              <label id="items-per-page" htmlFor="per-page-selector">
+                Items Per Page
+              </label>
               <select
                 className="items-pp-select"
                 name="per-page-selector"
