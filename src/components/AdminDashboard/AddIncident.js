@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'antd';
+import { Modal } from 'antd';
 import axios from 'axios';
 
 import Source from './Source';
-import { stringToBase64Url } from '@okta/okta-auth-js';
 
 const initialFormValues = {
   city: '',
@@ -25,7 +24,11 @@ const initialFormValues = {
 
 const AddIncident = props => {
   const [formValues, setFormValues] = useState(initialFormValues);
+
+  //   setting state for src text input on form
   const [srcValue, setSrcValue] = useState('');
+
+  //   setting state for all sources added
   const [sources, setSources] = useState([]);
 
   const [visible, setVisible] = useState(true);
@@ -33,6 +36,7 @@ const AddIncident = props => {
 
   const { setAdding } = props;
 
+  //   submitting the form
   const handleOk = () => {
     setConfirmLoading(true);
     // axios.post(`${process.env.REACT_APP_BACKENDURL}/incidents/approved`, formValues)
@@ -54,22 +58,7 @@ const AddIncident = props => {
     }, 750);
   };
 
-  const handleCancel = () => {
-    setVisible(false);
-    setAdding(false);
-  };
-
-  const handleChange = evt => {
-    setFormValues({
-      ...formValues,
-      [evt.target.name]: evt.target.value,
-    });
-  };
-
-  const handleSrcChange = evt => {
-    setSrcValue(evt.target.value);
-  };
-
+  // adding and removing sources
   const removeSrc = src => {
     const updatedSources = sources.filter(source => {
       return src !== source;
@@ -86,6 +75,23 @@ const AddIncident = props => {
       setSources([...sources, srcValue]);
       setSrcValue('');
     }
+  };
+
+  //   form value management functions
+  const handleChange = evt => {
+    setFormValues({
+      ...formValues,
+      [evt.target.name]: evt.target.value,
+    });
+  };
+
+  const handleSrcChange = evt => {
+    setSrcValue(evt.target.value);
+  };
+
+  const handleCancel = () => {
+    setVisible(false);
+    setAdding(false);
   };
 
   return (

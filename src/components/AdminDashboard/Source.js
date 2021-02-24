@@ -3,6 +3,7 @@ import React from 'react';
 const Source = props => {
   const { source, removeSrc } = props;
 
+  //   remove source!
   const removeSrcHandler = evt => {
     evt.preventDefault();
     removeSrc(source);

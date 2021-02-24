@@ -18,10 +18,13 @@ const AdminDashboard = () => {
   const [confirmApprove, setConfirmApprove] = useState(false);
   const [confirmReject, setConfirmReject] = useState(false);
 
+  // setting state for unapproved/pending incidents from the database
   const [unapprovedIncidents, setUnapprovedIncidents] = useState([]);
 
+  // setting state to toggle whether or not the modal pop up (addIncident) is rendered
   const [adding, setAdding] = useState(false);
 
+  // getting unapproved/pending incidents from the database
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`)
@@ -33,6 +36,7 @@ const AdminDashboard = () => {
       });
   }, []);
 
+  // setting up pagination display on dashboard
   useEffect(() => {
     const start = incidentsPerPage * pageNumber - incidentsPerPage;
     const newCurrentSet = unapprovedIncidents.slice(
@@ -64,46 +68,6 @@ const AdminDashboard = () => {
   };
 
   //   approving/rejecting incidents
-  const confirmApproveHandler = evt => {
-    evt.preventDefault();
-    setConfirmApprove(true);
-  };
-
-  const confirmRejectHandler = evt => {
-    evt.preventDefault();
-    setConfirmReject(true);
-  };
-
-  const approveHandler = evt => {
-    evt.preventDefault();
-    const reviewedIncidents = sortApproved();
-    putIncidents(reviewedIncidents, true);
-    if (
-      pageNumber >
-      Math.ceil(unapprovedIncidents.length / incidentsPerPage) - 1
-    ) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  const rejectHandler = evt => {
-    evt.preventDefault();
-    const reviewedIncidents = sortApproved();
-    putIncidents(reviewedIncidents, false);
-    if (
-      pageNumber >
-      Math.ceil(unapprovedIncidents.length / incidentsPerPage) - 1
-    ) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  const confirmCancel = evt => {
-    evt.preventDefault();
-    setConfirmApprove(false);
-    setConfirmReject(false);
-  };
-
   const sortApproved = () => {
     const approvedData = [];
     const unapprovedData = [];
@@ -146,7 +110,48 @@ const AdminDashboard = () => {
     });
   };
 
-  //   page number functions
+  const approveHandler = evt => {
+    evt.preventDefault();
+    const reviewedIncidents = sortApproved();
+    putIncidents(reviewedIncidents, true);
+    if (
+      pageNumber >
+      Math.ceil(unapprovedIncidents.length / incidentsPerPage) - 1
+    ) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  const rejectHandler = evt => {
+    evt.preventDefault();
+    const reviewedIncidents = sortApproved();
+    putIncidents(reviewedIncidents, false);
+    if (
+      pageNumber >
+      Math.ceil(unapprovedIncidents.length / incidentsPerPage) - 1
+    ) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  // toggling confirmation of approve/reject buttons
+  const confirmApproveHandler = evt => {
+    evt.preventDefault();
+    setConfirmApprove(true);
+  };
+
+  const confirmRejectHandler = evt => {
+    evt.preventDefault();
+    setConfirmReject(true);
+  };
+
+  const confirmCancel = evt => {
+    evt.preventDefault();
+    setConfirmApprove(false);
+    setConfirmReject(false);
+  };
+
+  //   pagination functions
   const handleNextClick = evt => {
     evt.preventDefault();
     setPageNumber(pageNumber + 1);
@@ -163,6 +168,7 @@ const AdminDashboard = () => {
     setPageNumber(1);
   };
 
+  // toggling rendering of AddIncident pop up modal
   const toggleAddIncident = evt => {
     evt.preventDefault();
     setAdding(true);

@@ -2,15 +2,10 @@ import React, { useState, useEffect } from 'react';
 import EmbedSource from '../EmbedSource';
 
 const CompleteIncident = props => {
+  // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
-  const [formValues, setFormValues] = useState({});
 
-  useEffect(() => {
-    setFormValues({ ...incident, date: formattedDate });
-    return () => {
-      setFormValues({});
-    };
-  }, []);
+  const [formValues, setFormValues] = useState({});
 
   const {
     incident,
@@ -19,12 +14,21 @@ const CompleteIncident = props => {
     setUnapprovedIncidents,
   } = props;
 
+  useEffect(() => {
+    setFormValues({ ...incident, date: formattedDate });
+    return () => {
+      setFormValues({});
+    };
+  }, []);
+
+  // toggle "editing mode"
   const toggleEditor = evt => {
     evt.preventDefault();
     setFormValues({ ...incident, date: formattedDate });
     setEditing(!editing);
   };
 
+  // setting form values on input change
   const handleInputChange = evt => {
     setFormValues({
       ...formValues,
@@ -32,6 +36,7 @@ const CompleteIncident = props => {
     });
   };
 
+  // functions for applying changes to incident
   const applyEdits = evt => {
     evt.preventDefault();
     const [month, day, year] = formValues.date.split('/');
