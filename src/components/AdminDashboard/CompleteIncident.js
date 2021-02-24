@@ -176,7 +176,7 @@ const CompleteIncident = props => {
         )}
 
         {!editing ? (
-          incident.src.map(src => <EmbedSource url={src} />)
+          incident.src.map(src => <EmbedSource key={incident.src} url={src} />)
         ) : (
           <>
             <label htmlFor="src" className="label">

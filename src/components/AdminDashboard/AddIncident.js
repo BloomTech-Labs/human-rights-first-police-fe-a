@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button } from 'antd';
 import axios from 'axios';
 
+import Source from './Source';
+import { stringToBase64Url } from '@okta/okta-auth-js';
+
 const initialFormValues = {
   city: '',
   date: '',
@@ -13,7 +16,7 @@ const initialFormValues = {
   // less_lethal_methods: true,
   // lethal_force: false,
   // long: -121.88931,
-  src: [],
+  //   src: [],
   state: '',
   title: '',
   // uncategorized: false,
@@ -23,10 +26,10 @@ const initialFormValues = {
 const AddIncident = props => {
   const [formValues, setFormValues] = useState(initialFormValues);
   const [srcValue, setSrcValue] = useState('');
+  const [sources, setSources] = useState([]);
 
   const [visible, setVisible] = useState(true);
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState('Content of the modal');
 
   const { setAdding } = props;
 
@@ -67,11 +70,22 @@ const AddIncident = props => {
     setSrcValue(evt.target.value);
   };
 
+  const removeSrc = src => {
+    const updatedSources = sources.filter(source => {
+      return src !== source;
+    });
+    setSources(updatedSources);
+  };
+
   const handleAddSrc = evt => {
     evt.preventDefault();
-    const srcValues = formValues.src;
-    srcValues.push(srcValue);
-    setSrcValue('');
+    if (sources.includes(srcValue)) {
+      setSrcValue('');
+      return;
+    } else {
+      setSources([...sources, srcValue]);
+      setSrcValue('');
+    }
   };
 
   return (
@@ -147,10 +161,19 @@ const AddIncident = props => {
             value={srcValue}
             onChange={handleSrcChange}
           />
-          {formValues.src.map(source => {
-            return <p key={formValues.src.length}>{source}</p>;
+          <br />
+          <button
+            className="add-src"
+            onClick={handleAddSrc}
+            disabled={!srcValue}
+          >
+            Add Source
+          </button>
+          {sources.map(source => {
+            return (
+              <Source source={source} removeSrc={removeSrc} key={source} />
+            );
           })}
-          <button onClick={handleAddSrc}>Add Source</button>
         </label>
         <br />
       </form>
