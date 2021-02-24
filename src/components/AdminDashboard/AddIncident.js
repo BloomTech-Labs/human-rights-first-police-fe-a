@@ -8,29 +8,31 @@ const initialFormValues = {
   city: '',
   date: '',
   desc: '',
-  // empty_hand_hard: false,
-  // empty_hand_soft: false,
-  // incident_id: "ca-sanjose-5",
-  // lat: 37.33532,
-  // less_lethal_methods: true,
-  // lethal_force: false,
-  // long: -121.88931,
-  //   src: [],
+  empty_hand_hard: false,
+  empty_hand_soft: false,
+  lat: 37.33532,
+  less_lethal_methods: true,
+  lethal_force: false,
+  long: -121.88931,
+  src: [],
   state: '',
   title: '',
-  // uncategorized: false,
-  // verbalization: false,
+  uncategorized: false,
+  verbalization: false,
 };
 
 const AddIncident = props => {
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [amPmValue, setAmPmValue] = useState(false);
 
-  //   setting state for src text input on form
+  //   setting state for src and time input on form
   const [srcValue, setSrcValue] = useState('');
+  const [time, setTime] = useState('');
 
   //   setting state for all sources added
   const [sources, setSources] = useState([]);
 
+  const [modalText, setModalText] = useState('');
   const [visible, setVisible] = useState(true);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
@@ -38,8 +40,23 @@ const AddIncident = props => {
 
   //   submitting the form
   const handleOk = () => {
+    let newDateString;
+    if (!formValues.date) {
+      newDateString = new Date().toJSON();
+    } else {
+      const formattedDate = formatDate(formValues.date, amPmValue);
+      const formattedTime = formatTime();
+      newDateString = formattedDate + formattedTime;
+    }
+    const newIncident = {
+      ...formValues,
+      date: newDateString,
+      pending: false,
+      rejected: false,
+    };
+    console.log(newIncident);
     setConfirmLoading(true);
-    // axios.post(`${process.env.REACT_APP_BACKENDURL}/incidents/approved`, formValues)
+    // axios.post(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`, newIncident)
     // .then(res=>{
     //     setModalText('New incident added successfully');
     //     setTimeout(() => {
@@ -48,8 +65,11 @@ const AddIncident = props => {
     //       }, 750);
     // })
     // .catch(err=>{
+    //     setModalText(err.message);
     //     console.log(err);
     // });
+
+    console.log(newIncident);
 
     setTimeout(() => {
       setVisible(false);
@@ -79,10 +99,19 @@ const AddIncident = props => {
 
   //   form value management functions
   const handleChange = evt => {
-    setFormValues({
-      ...formValues,
-      [evt.target.name]: evt.target.value,
-    });
+    const { name, value } = evt.target;
+    if (name === 'src') {
+      setSrcValue(value);
+    } else if (name === 'time') {
+      setTime(value);
+    } else if (name === 'ampm') {
+      setAmPmValue(value);
+    } else {
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      });
+    }
   };
 
   const handleSrcChange = evt => {
@@ -92,6 +121,37 @@ const AddIncident = props => {
   const handleCancel = () => {
     setVisible(false);
     setAdding(false);
+  };
+
+  //   formatting the date and time into date object
+  const formatDate = date => {
+    const [month, day, year] = date.split('/');
+    return `${year}-${month}-${day}`;
+  };
+
+  const formatTime = () => {
+    if (!time) {
+      return 'T00:00:00.000Z';
+    } else {
+      let [hour, minute] = time.split(':');
+
+      if (hour.length === 1 && amPmValue === 'am') {
+        hour = '0' + hour;
+      }
+      if (minute.length === 1) {
+        minute = '0' + minute;
+      }
+      return `T${
+        amPmValue === 'pm' ? Number(hour) + 12 + '' : hour
+      }:${minute}:00.000Z`;
+    }
+  };
+
+  //   clear the time input field/am-pm
+  const handleTimeCancel = evt => {
+    evt.preventDefault();
+    setTime('');
+    setAmPmValue(false);
   };
 
   return (
@@ -126,7 +186,7 @@ const AddIncident = props => {
         </label>
         <br />
         <label htmlFor="date">
-          Date
+          Date (Month/Day/Year)
           <br />
           <input
             type="text"
@@ -134,6 +194,38 @@ const AddIncident = props => {
             value={formValues.date}
             onChange={handleChange}
           />
+        </label>
+        <br />
+        <label htmlFor="time">
+          Time Relative to Location (XX:XX)
+          <br />
+          <input type="text" name="time" value={time} onChange={handleChange} />
+          {time && (
+            <>
+              <br />
+              <label htmlFor="ampm">
+                A.M.
+                <input
+                  type="radio"
+                  value="am"
+                  onChange={handleChange}
+                  name="ampm"
+                />
+              </label>
+              <br />
+              <label htmlFor="ampm">
+                P.M.
+                <input
+                  type="radio"
+                  value="pm"
+                  onChange={handleChange}
+                  name="ampm"
+                />
+              </label>
+              <br />
+              <button onClick={handleTimeCancel}>Cancel</button>
+            </>
+          )}
         </label>
         <br />
         <label htmlFor="desc">
@@ -183,6 +275,7 @@ const AddIncident = props => {
         </label>
         <br />
       </form>
+      {modalText ? modalText : ''}
     </Modal>
   );
 };

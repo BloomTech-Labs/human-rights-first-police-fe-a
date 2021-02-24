@@ -51,7 +51,7 @@ const CompleteIncident = props => {
 
   const updateIncidents = incident => {
     const updatedIncidents = unapprovedIncidents.map(inc => {
-      if (inc.incident_id === incident.incident_id) {
+      if (inc.twitter_incident_id === incident.twitter_incident_id) {
         return incident;
       } else {
         return inc;
@@ -177,13 +177,13 @@ const CompleteIncident = props => {
         )}
 
         {!editing ? (
-          incident.src.map(src => <EmbedSource key={incident.src} url={src} />)
+          incident.src.map(src => <EmbedSource key={src} url={src} />)
         ) : (
           <>
-            <label htmlFor="src" className="label">
+            {/* <label htmlFor="src" className="label">
               Sources
               <br />
-            </label>
+            </label> */}
           </>
         )}
         {!editing ? (
