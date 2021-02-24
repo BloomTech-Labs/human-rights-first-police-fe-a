@@ -23,6 +23,10 @@
   flex-direction: column;
 }
 
+#select-all-label {
+  margin-left: 5%;
+}
+
 #approve-reject-select-text {
   border-style: none;
   margin-right: 25px;
@@ -35,6 +39,21 @@
 
 .confirmation-message-div {
   margin-top: 1%;
+}
+
+.incidents-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#create-incident-button {
+  border: 1px solid #e3e8ee;
+  background-color: rgb(255, 255, 255);
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
+  color: rgb(60, 66, 87);
 }
 
 .confirmation-message {
@@ -54,6 +73,7 @@
   margin-right: 2%;
   margin-bottom: 1%;
   color: rgb(60, 66, 87);
+  height: 28px;
 }
 
 p.approve-reject-select {
@@ -119,6 +139,7 @@ p.page-number-display {
 .pagination div:nth-of-type(2) {
   width: 40%;
   justify-content: space-around;
+  align-items: center;
 }
 
 .items-pp-select {

@@ -191,7 +191,7 @@ const AdminDashboard = () => {
   return (
     <div className="dashboard-container">
       <h2>Admin Dashboard</h2>
-      <button onClick={toggleAddIncident}>Create New Incident</button>
+
       <h3>Statistics</h3>
 
       <div className="statboxes">
@@ -206,7 +206,12 @@ const AdminDashboard = () => {
         </div>
       </div>
       <div className="confirmation-message-div">
-        <h3>Incidents</h3>
+        <div className="incidents-wrap">
+          <h3>Incidents</h3>
+          <button id="create-incident-button" onClick={toggleAddIncident}>
+            Create New Incident
+          </button>
+        </div>
         <p
           className={
             !confirmApprove && !confirmReject
@@ -223,7 +228,6 @@ const AdminDashboard = () => {
         <>
           <div className="dashboard-top-flex">
             <div className="dashboard-top-input">
-              <label htmlFor="select-all">Select All </label>
               <input
                 className="approve-reject-select"
                 type="checkbox"
@@ -231,6 +235,9 @@ const AdminDashboard = () => {
                 onChange={confirmApprove ? () => {} : selectAll}
                 checked={allSelected}
               />
+              <label id="select-all-label" htmlFor="select-all">
+                Select All{' '}
+              </label>
             </div>
 
             <div className="dashboard-top-approve-reject">
@@ -306,11 +313,16 @@ const AdminDashboard = () => {
             </div>
 
             <div className="dashboard-top-page-buttons">
-              <button onClick={handleBackClick} disabled={pageNumber === 1}>
+              <button
+                onClick={handleBackClick}
+                disabled={pageNumber === 1}
+                className="approve-reject-select"
+              >
                 Previous Page
               </button>
 
               <button
+                className="approve-reject-select"
                 onClick={handleNextClick}
                 disabled={
                   pageNumber ===
