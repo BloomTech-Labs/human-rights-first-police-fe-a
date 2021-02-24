@@ -492,7 +492,7 @@ div.timeline-container {
 }
 
 .confirmation-message {
-  margin-left: 25%;
+  margin-left: 18%;
 }
 
 .transparent {
@@ -554,30 +554,34 @@ p.page-number-display {
   width: 45%;
 }
 
-.dashboard-top-page-number {
-  display: flex;
-  align-items: center;
-  width: 30%;
-}
-
-.dashboard-top-page-number p {
-  margin-top: 4%;
-  margin-left: 15%;
-}
-
-.dashboard-top-page-number label {
-  margin-left: 10%;
-  margin-right: 1%;
-}
-
-.dashboard-top-page-buttons {
-  width: 30%;
+.pagination {
   display: flex;
   justify-content: space-between;
+  margin: 2% auto;
 }
 
-.dashboard-top-page-buttons button {
-  width: 45%;
+.pagination div {
+  display: flex;
+}
+
+.pagination div:first-of-type {
+  justify-content: flex-start;
+  align-items: center;
+  width: 55%;
+}
+
+.pagination div:nth-of-type(2) {
+  width: 40%;
+  justify-content: space-around;
+}
+
+.items-pp-select {
+  margin-left: 2%;
+}
+
+.page-number-display {
+  padding-top: 2.5%;
+  margin-left: 20%;
 }
 
 .complete-incident {
