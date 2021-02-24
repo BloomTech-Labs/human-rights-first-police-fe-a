@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import ReactMapGL, { NavigationControl } from 'react-map-gl';
-// components
+// Components
 import ClusterMarkers from './ClusterMarkers';
 import MapSearch from './MapSearch';
 import SearchHeader from './incidentContainer/SearchHeader';
-import useViewport from './../../hooks/useViewport';
+// Hooks
+import useViewport from '../../hooks/useViewport';
+import useCleanMap from '../../hooks/useCleanMap';
 
 function MapContainer() {
-  const maxZoom = 17;
+  // Ensures old transition animation state is cleaned up, prevents a crash
+  useCleanMap();
 
   const { viewport, setViewport } = useViewport();
+
+  const maxZoom = 17;
 
   const incidentsOfInterest = useSelector(
     state => state.map.incidentsOfInterest
