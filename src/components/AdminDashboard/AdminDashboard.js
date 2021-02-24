@@ -82,6 +82,7 @@ const AdminDashboard = () => {
     setAllSelected(false);
     setSelected([]);
     setConfirmApprove(false);
+    setConfirmReject(false);
     setUnapprovedIncidents(unapprovedData);
 
     return approvedData;
@@ -91,9 +92,19 @@ const AdminDashboard = () => {
     incidents.forEach(incident => {
       let updatedIncident;
       if (approved) {
-        updatedIncident = { ...incident, pending: false, rejected: false };
+        updatedIncident = {
+          ...incident,
+          approved,
+          pending: false,
+          rejected: false,
+        };
       } else {
-        updatedIncident = { ...incident, pending: false, rejected: true };
+        updatedIncident = {
+          ...incident,
+          approved,
+          pending: false,
+          rejected: true,
+        };
       }
       console.log(updatedIncident);
       axios
@@ -220,7 +231,7 @@ const AdminDashboard = () => {
             </div>
 
             <div className="dashboard-top-approve-reject">
-              {!confirmApprove ? (
+              {!confirmApprove && !confirmReject ? (
                 <button
                   disabled={selected.length < 1}
                   onClick={confirmApproveHandler}
@@ -236,7 +247,7 @@ const AdminDashboard = () => {
                   Yes
                 </button>
               )}
-              {!confirmApprove ? (
+              {!confirmApprove && !confirmReject ? (
                 <button
                   disabled={selected.length < 1}
                   onClick={confirmRejectHandler}

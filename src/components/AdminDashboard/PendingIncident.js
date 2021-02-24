@@ -23,7 +23,7 @@ const PendingIncident = props => {
     changeSelected(incident);
   };
 
-  const isSelected = selected.includes(incident.incident_id);
+  const isSelected = selected.includes(incident.twitter_incident_id);
 
   //   changing the date into a more readable format
   const [year, month, day] = incident.date.split('-');
