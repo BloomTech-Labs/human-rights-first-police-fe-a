@@ -81,7 +81,7 @@ const Incidents = () => {
     <>
       <div className="incidents-page">
         <header>
-          <h1 className="title"> Expanded Timeline of Events </h1>
+          <h2 className="incidents-title">Browse Incidents</h2>
           <section className="user-input">
             <SearchBar setUsState={setUsState} />
             <RangePicker onCalendarChange={onDateSelection} />
