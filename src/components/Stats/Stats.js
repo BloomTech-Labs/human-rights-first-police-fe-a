@@ -4,10 +4,10 @@ import { useIncidents } from '../../hooks/legacy/useIncidents';
 import { newData } from '../../components/map/GetFunctions';
 import { CountUpAnimation } from './StatsFunction';
 import { ArrowUpOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
 
 const Stats = () => {
-  const [gasAndSpray, setGasAndSpray] = useState();
+  const [gasAndSpray, setGasAndSpray] = useState(0);
+  const [arrests, setArrests] = useState(0);
 
   const incidentsQuery = useIncidents();
 
@@ -30,30 +30,37 @@ const Stats = () => {
     let totalCities = dataList.map(city => {
       return city.city;
     });
+    let totalArrests = newCat.flat().filter((filters, index) => {
+      return filters == 'arrest';
+    });
 
     setGasAndSpray(pepperSpray.length + tearGas.length);
-
-    let car = [];
+    setArrests(totalArrests.length);
   }, [dataList]);
 
   return (
     <div className="stats">
-      <div className="Total-incidents">
-        <h1>Total Incidents</h1>
-        <h1>
+      <div className="stat incidents">
+        <h2>Total Incidents</h2>
+        <h2>
           <CountUpAnimation duration={1000}>{dataList.length}</CountUpAnimation>
           &nbsp;&nbsp; <ArrowUpOutlined />
-        </h1>
+        </h2>
       </div>
-      <Divider style={{ borderWidth: '1px' }} />
-      <div className="Total-spray-gas">
-        <h1> Uses of Pepper-Spray & Tear-Gas </h1>
-        <h1>
+      <div className="stat spray-gas">
+        <h2> Uses of Pepper-Spray & Tear-Gas </h2>
+        <h2>
           <CountUpAnimation duration={1000}>{gasAndSpray}</CountUpAnimation>
           &nbsp;&nbsp; <ArrowUpOutlined />
-        </h1>
+        </h2>
       </div>
-      <Divider style={{ borderWidth: '1px' }} />
+      <div className="stat arrests">
+        <h2> Total Arrests </h2>
+        <h2>
+          <CountUpAnimation duration={1000}>{arrests}</CountUpAnimation>
+          &nbsp;&nbsp; <ArrowUpOutlined />
+        </h2>
+      </div>
     </div>
   );
 };

@@ -168,7 +168,17 @@ const CompleteIncident = props => {
               name="src"
               value={formValues.src.join(' ')}
             />
-            <br />
+          </>
+        )}
+
+        {!editing ? (
+          incident.src.map(src => <EmbedSource url={src} />)
+        ) : (
+          <>
+            <label htmlFor="src" className="label">
+              Sources
+              <br />
+            </label>
           </>
         )}
         {!editing ? (
