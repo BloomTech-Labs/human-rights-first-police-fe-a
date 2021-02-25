@@ -127,6 +127,11 @@ p.page-number-display {
   width: 45%;
 }
 
+.column-headers {
+  display: flex;
+  justify-content: space-around;
+}
+
 .pagination {
   display: flex;
   justify-content: center;

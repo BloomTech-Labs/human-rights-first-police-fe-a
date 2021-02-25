@@ -54,20 +54,20 @@ const AdminDashboard = () => {
   const selectAll = () => {
     setAllSelected(!allSelected);
     if (!allSelected) {
-      setSelected(currentSet.map(data => data.twitter_incident_id));
+      setSelected(currentSet.map(data => data.server_id));
     } else {
       setSelected([]);
     }
   };
 
   const changeSelected = incident => {
-    if (selected.includes(incident.twitter_incident_id)) {
+    if (selected.includes(incident.server_id)) {
       const newSelected = selected.filter(id => {
-        return id !== incident.twitter_incident_id;
+        return id !== incident.server_id;
       });
       setSelected(newSelected);
     } else {
-      setSelected([...selected, incident.twitter_incident_id]);
+      setSelected([...selected, incident.server_id]);
     }
   };
 
@@ -76,7 +76,7 @@ const AdminDashboard = () => {
     const approvedData = [];
     const unapprovedData = [];
     unapprovedIncidents.forEach(dataObj => {
-      if (selected.includes(dataObj.twitter_incident_id)) {
+      if (selected.includes(dataObj.server_id)) {
         approvedData.push(dataObj);
       } else {
         unapprovedData.push(dataObj);
@@ -112,7 +112,7 @@ const AdminDashboard = () => {
       }
       axios
         .put(
-          `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.twitter_incident_id}`,
+          `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.server_id}`,
           updatedIncident
         )
         .then(res => {
@@ -292,12 +292,18 @@ const AdminDashboard = () => {
             </div>
           </div>
 
+          <div className="column-headers">
+            <h4>Description</h4>
+            <h4>Location</h4>
+            <h4>Date</h4>
+          </div>
+
           <div className="incidents">
             {currentSet.map(incident => {
               return (
                 <PendingIncident
                   confirmApprove={confirmApprove}
-                  key={incident.twitter_incident_id}
+                  key={incident.server_id}
                   incident={incident}
                   selected={selected}
                   changeSelected={changeSelected}
