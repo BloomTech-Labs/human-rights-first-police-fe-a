@@ -242,14 +242,22 @@ const AdminDashboard = () => {
                 <button
                   disabled={selected.length < 1}
                   onClick={confirmApproveHandler}
-                  className="approve-reject-select"
+                  className={
+                    selected.length > 0
+                      ? 'approve-reject-select'
+                      : 'hidden-button'
+                  }
                 >
                   Approve
                 </button>
               ) : (
                 <button
                   onClick={confirmApprove ? approveHandler : rejectHandler}
-                  className="approve-reject-select"
+                  className={
+                    selected.length > 0
+                      ? 'approve-reject-select'
+                      : 'hidden-button'
+                  }
                 >
                   Yes
                 </button>
@@ -258,14 +266,22 @@ const AdminDashboard = () => {
                 <button
                   disabled={selected.length < 1}
                   onClick={confirmRejectHandler}
-                  className="approve-reject-select"
+                  className={
+                    selected.length > 0
+                      ? 'approve-reject-select'
+                      : 'hidden-button'
+                  }
                 >
                   Reject
                 </button>
               ) : (
                 <button
                   onClick={confirmCancel}
-                  className="approve-reject-select"
+                  className={
+                    selected.length > 0
+                      ? 'approve-reject-select'
+                      : 'hidden-button'
+                  }
                 >
                   No
                 </button>

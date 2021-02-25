@@ -659,6 +659,10 @@ p.page-number-display {
   opacity: 45%;
 }
 
+.hidden-button {
+  display: none;
+}
+
 .complete-incident {
   text-align: left;
   border: solid #e3e8ee 1px;
