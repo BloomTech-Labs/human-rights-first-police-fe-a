@@ -111,6 +111,7 @@ const LastIncident = () => {
                   <div
                     className="incident-container"
                     style={renderStyles(categories)}
+                    key={category}
                   >
                     <h3
                       className="incident-categories"
