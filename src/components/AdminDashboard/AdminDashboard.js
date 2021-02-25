@@ -4,6 +4,9 @@ import axios from 'axios';
 import PendingIncident from './PendingIncident';
 import AddIncident from './AddIncident';
 
+import { DoubleRightOutlined } from '@ant-design/icons';
+import { DoubleLeftOutlined } from '@ant-design/icons';
+
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
   const [selected, setSelected] = useState([]);
@@ -54,20 +57,20 @@ const AdminDashboard = () => {
   const selectAll = () => {
     setAllSelected(!allSelected);
     if (!allSelected) {
-      setSelected(currentSet.map(data => data.twitter_incident_id));
+      setSelected(currentSet.map(data => data.server_id));
     } else {
       setSelected([]);
     }
   };
 
   const changeSelected = incident => {
-    if (selected.includes(incident.twitter_incident_id)) {
+    if (selected.includes(incident.server_id)) {
       const newSelected = selected.filter(id => {
-        return id !== incident.twitter_incident_id;
+        return id !== incident.server_id;
       });
       setSelected(newSelected);
     } else {
-      setSelected([...selected, incident.twitter_incident_id]);
+      setSelected([...selected, incident.server_id]);
     }
   };
 
@@ -76,7 +79,7 @@ const AdminDashboard = () => {
     const approvedData = [];
     const unapprovedData = [];
     unapprovedIncidents.forEach(dataObj => {
-      if (selected.includes(dataObj.twitter_incident_id)) {
+      if (selected.includes(dataObj.server_id)) {
         approvedData.push(dataObj);
       } else {
         unapprovedData.push(dataObj);
@@ -112,7 +115,7 @@ const AdminDashboard = () => {
       }
       axios
         .put(
-          `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.twitter_incident_id}`,
+          `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.server_id}`,
           updatedIncident
         )
         .then(res => {
@@ -168,12 +171,16 @@ const AdminDashboard = () => {
   //   pagination functions
   const handleNextClick = evt => {
     evt.preventDefault();
-    setPageNumber(pageNumber + 1);
+    if (pageNumber < Math.ceil(unapprovedIncidents.length / incidentsPerPage)) {
+      setPageNumber(pageNumber + 1);
+    }
   };
 
   const handleBackClick = evt => {
     evt.preventDefault();
-    setPageNumber(pageNumber - 1);
+    if (pageNumber > 1) {
+      setPageNumber(pageNumber - 1);
+    }
   };
 
   const handlePerPageChange = evt => {
@@ -235,14 +242,22 @@ const AdminDashboard = () => {
                 <button
                   disabled={selected.length < 1}
                   onClick={confirmApproveHandler}
-                  className="approve-reject-select"
+                  className={
+                    selected.length > 0
+                      ? 'approve-reject-select'
+                      : 'hidden-button'
+                  }
                 >
                   Approve
                 </button>
               ) : (
                 <button
                   onClick={confirmApprove ? approveHandler : rejectHandler}
-                  className="approve-reject-select"
+                  className={
+                    selected.length > 0
+                      ? 'approve-reject-select'
+                      : 'hidden-button'
+                  }
                 >
                   Yes
                 </button>
@@ -251,14 +266,22 @@ const AdminDashboard = () => {
                 <button
                   disabled={selected.length < 1}
                   onClick={confirmRejectHandler}
-                  className="approve-reject-select"
+                  className={
+                    selected.length > 0
+                      ? 'approve-reject-select'
+                      : 'hidden-button'
+                  }
                 >
                   Reject
                 </button>
               ) : (
                 <button
                   onClick={confirmCancel}
-                  className="approve-reject-select"
+                  className={
+                    selected.length > 0
+                      ? 'approve-reject-select'
+                      : 'hidden-button'
+                  }
                 >
                   No
                 </button>
@@ -292,12 +315,21 @@ const AdminDashboard = () => {
             </div>
           </div>
 
+          <div className="column-headers">
+            <input className="hidden-input" type="checkbox" />
+            <div className="column-headers-flex">
+              <h4 className="description">Description</h4>
+              <h4 className="location">Location</h4>
+              <h4 className="date">Date</h4>
+            </div>
+          </div>
+
           <div className="incidents">
             {currentSet.map(incident => {
               return (
                 <PendingIncident
                   confirmApprove={confirmApprove}
-                  key={incident.twitter_incident_id}
+                  key={incident.server_id}
                   incident={incident}
                   selected={selected}
                   changeSelected={changeSelected}
@@ -308,27 +340,29 @@ const AdminDashboard = () => {
             })}
           </div>
           <div className="pagination">
-            <button
+            <DoubleLeftOutlined
               onClick={handleBackClick}
-              disabled={pageNumber === 1}
-              className="approve-reject-select"
+              className={
+                pageNumber === 1 ? 'prev-arrow shaded-arrow' : 'prev-arrow'
+              }
             >
               Previous Page
-            </button>
+            </DoubleLeftOutlined>
             <p className="page-number-display">
               Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
               {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
             </p>
-            <button
-              className="approve-reject-select"
-              onClick={handleNextClick}
-              disabled={
+            <DoubleRightOutlined
+              className={
                 pageNumber ===
                 Math.ceil(unapprovedIncidents.length / incidentsPerPage)
+                  ? 'next-arrow shaded-arrow'
+                  : 'next-arrow'
               }
+              onClick={handleNextClick}
             >
               Next Page
-            </button>
+            </DoubleRightOutlined>
           </div>
         </>
       )}
