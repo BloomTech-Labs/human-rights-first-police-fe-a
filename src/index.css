@@ -468,6 +468,10 @@ div.timeline-container {
   flex-direction: column;
 }
 
+#select-all-label {
+  margin-left: 5%;
+}
+
 #approve-reject-select-text {
   border-style: none;
   margin-right: 25px;
@@ -482,8 +486,24 @@ div.timeline-container {
   margin-top: 1%;
 }
 
+.incidents-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#create-incident-button {
+  border: 1px solid #e3e8ee;
+  background-color: white;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
+  color: #3c4257;
+}
+
 .confirmation-message {
-  margin-left: 18%;
+  width: 90%;
+  text-align: center;
 }
 
 .transparent {
@@ -499,6 +519,13 @@ div.timeline-container {
   margin-right: 2%;
   margin-bottom: 1%;
   color: #3c4257;
+  height: 4%;
+}
+
+.dashboard-top-page-number {
+  display: flex;
+  width: 75%;
+  justify-content: flex-end;
 }
 
 p.approve-reject-select {
@@ -547,8 +574,9 @@ p.page-number-display {
 
 .pagination {
   display: flex;
-  justify-content: space-between;
-  margin: 2% auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
 }
 
 .pagination div {
@@ -558,21 +586,25 @@ p.page-number-display {
 .pagination div:first-of-type {
   justify-content: flex-start;
   align-items: center;
-  width: 55%;
+  width: 12%;
 }
 
 .pagination div:nth-of-type(2) {
   width: 40%;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
 
 .items-pp-select {
   margin-left: 2%;
 }
 
+#items-per-page {
+  margin-left: 2%;
+}
+
 .page-number-display {
-  padding-top: 2.5%;
-  margin-left: 20%;
+  margin-right: 2%;
 }
 
 .complete-incident {
@@ -605,7 +637,23 @@ p.page-number-display {
 
 #dropdown-edit-button {
   margin-left: 0px;
-  margin-top: 1%;
+}
+
+.dropdown-text-wrap {
+  display: flex;
+}
+
+.complete-incident-dropdown-titles-bold {
+  font-weight: bold;
+  margin-right: 0.3%;
+}
+
+.location-dropdown-wrap {
+  display: flex;
+}
+
+.link-button {
+  margin-left: 0.5%;
 }
 
 .pending-incident {
