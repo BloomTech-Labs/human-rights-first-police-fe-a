@@ -316,13 +316,10 @@ const AdminDashboard = () => {
           </div>
 
           <div className="column-headers">
-            <div>
+            <input className="hidden-input" type="checkbox" />
+            <div className="column-headers-flex">
               <h4 className="description">Description</h4>
-            </div>
-            <div>
               <h4 className="location">Location</h4>
-            </div>
-            <div>
               <h4 className="date">Date</h4>
             </div>
           </div>

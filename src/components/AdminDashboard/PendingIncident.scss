@@ -29,7 +29,7 @@
 .incident-info-text-wrap {
   display: flex;
   text-align: left;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
   align-items: center;
   color: #3c4257;
@@ -44,6 +44,7 @@
 
 .incident-info:nth-child(2) {
   width: 18%;
+  margin-left: 1%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -51,13 +52,14 @@
 
 .incident-info:nth-child(3) {
   width: 15%;
+  margin-left: 7%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .incident-info:last-child {
-  margin-right: 1%;
+  margin-left: 5%;
 }
 
 .more-info {
