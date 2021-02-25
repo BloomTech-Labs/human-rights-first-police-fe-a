@@ -212,15 +212,6 @@ const AdminDashboard = () => {
             Create New Incident
           </button>
         </div>
-        <p
-          className={
-            !confirmApprove && !confirmReject
-              ? 'confirmation-message transparent'
-              : 'confirmation-message'
-          }
-        >
-          Are you sure?
-        </p>
       </div>
       {adding ? (
         <AddIncident setAdding={setAdding} />
@@ -229,7 +220,6 @@ const AdminDashboard = () => {
           <div className="dashboard-top-flex">
             <div className="dashboard-top-input">
               <input
-                className="approve-reject-select"
                 type="checkbox"
                 name="select-all"
                 onChange={confirmApprove ? () => {} : selectAll}
@@ -273,6 +263,32 @@ const AdminDashboard = () => {
                   No
                 </button>
               )}
+              <p
+                className={
+                  !confirmApprove && !confirmReject
+                    ? 'confirmation-message transparent'
+                    : 'confirmation-message'
+                }
+              >
+                Are you sure?
+              </p>
+            </div>
+            <div className="dashboard-top-page-number">
+              <label id="items-per-page" htmlFor="per-page-selector">
+                Items Per Page
+              </label>
+              <select
+                className="items-pp-select"
+                name="per-page-selector"
+                onChange={handlePerPageChange}
+              >
+                <option value="2">2</option>
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+              </select>
             </div>
           </div>
 
@@ -292,48 +308,27 @@ const AdminDashboard = () => {
             })}
           </div>
           <div className="pagination">
-            <div className="dashboard-top-page-number">
-              <label id="items-per-page" htmlFor="per-page-selector">
-                Items Per Page
-              </label>
-              <select
-                className="items-pp-select"
-                name="per-page-selector"
-                onChange={handlePerPageChange}
-              >
-                <option value="2">2</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-              <p className="page-number-display">
-                Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
-                {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
-              </p>
-            </div>
-
-            <div className="dashboard-top-page-buttons">
-              <button
-                onClick={handleBackClick}
-                disabled={pageNumber === 1}
-                className="approve-reject-select"
-              >
-                Previous Page
-              </button>
-
-              <button
-                className="approve-reject-select"
-                onClick={handleNextClick}
-                disabled={
-                  pageNumber ===
-                  Math.ceil(unapprovedIncidents.length / incidentsPerPage)
-                }
-              >
-                Next Page
-              </button>
-            </div>
+            <button
+              onClick={handleBackClick}
+              disabled={pageNumber === 1}
+              className="approve-reject-select"
+            >
+              Previous Page
+            </button>
+            <p className="page-number-display">
+              Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
+              {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
+            </p>
+            <button
+              className="approve-reject-select"
+              onClick={handleNextClick}
+              disabled={
+                pageNumber ===
+                Math.ceil(unapprovedIncidents.length / incidentsPerPage)
+              }
+            >
+              Next Page
+            </button>
           </div>
         </>
       )}

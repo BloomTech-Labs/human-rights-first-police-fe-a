@@ -57,7 +57,8 @@
 }
 
 .confirmation-message {
-  margin-left: 18%;
+  width: 90%;
+  text-align: center;
 }
 
 .transparent {
@@ -73,7 +74,13 @@
   margin-right: 2%;
   margin-bottom: 1%;
   color: rgb(60, 66, 87);
-  height: 28px;
+  height: 4%;
+}
+
+.dashboard-top-page-number {
+  display: flex;
+  width: 75%;
+  justify-content: flex-end;
 }
 
 p.approve-reject-select {
@@ -122,8 +129,9 @@ p.page-number-display {
 
 .pagination {
   display: flex;
-  justify-content: space-between;
-  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
 }
 
 .pagination div {
@@ -133,12 +141,12 @@ p.page-number-display {
 .pagination div:first-of-type {
   justify-content: flex-start;
   align-items: center;
-  width: 55%;
+  width: 12%;
 }
 
 .pagination div:nth-of-type(2) {
   width: 40%;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
@@ -147,10 +155,9 @@ p.page-number-display {
 }
 
 #items-per-page {
-  margin-left: 1%;
+  margin-left: 2%;
 }
 
 .page-number-display {
-  padding-top: 2.5%;
-  margin-left: 20%;
+  margin-right: 2%;
 }
