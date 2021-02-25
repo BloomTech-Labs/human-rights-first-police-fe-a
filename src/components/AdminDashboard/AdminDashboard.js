@@ -293,9 +293,15 @@ const AdminDashboard = () => {
           </div>
 
           <div className="column-headers">
-            <h4>Description</h4>
-            <h4>Location</h4>
-            <h4>Date</h4>
+            <div>
+              <h4 className="description">Description</h4>
+            </div>
+            <div>
+              <h4 className="location">Location</h4>
+            </div>
+            <div>
+              <h4 className="date">Date</h4>
+            </div>
           </div>
 
           <div className="incidents">

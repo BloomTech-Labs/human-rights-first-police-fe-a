@@ -129,7 +129,40 @@ p.page-number-display {
 
 .column-headers {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+  width: 79%;
+}
+
+.column-headers div {
+  margin-top: 2%;
+}
+
+.column-headers div h4 {
+  font-weight: bold;
+}
+
+.column-headers div:first-of-type {
+  margin-left: 3.6%;
+}
+
+.column-headers div:nth-of-type(2) {
+  margin-left: 55.5%;
+}
+
+.column-headers div:last-of-type {
+  margin-left: 23.25%;
+}
+
+.description {
+  grid-area: 'description';
+}
+
+.location {
+  grid-area: 'location';
+}
+
+.date {
+  grid-area: 'date';
 }
 
 .pagination {
