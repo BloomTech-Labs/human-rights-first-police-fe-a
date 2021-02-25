@@ -1,7 +1,12 @@
+// entire component
+
 .dashboard-container {
   width: 98%;
   margin: auto;
 }
+
+// top of component
+
 .statboxes {
   display: flex;
   flex-direction: row;
@@ -18,10 +23,9 @@
   margin-right: 20px;
 }
 
-.incidents {
-  display: flex;
-  flex-direction: column;
-}
+// dashboard
+
+// dashboard top controls
 
 #select-all-label {
   margin-left: 5%;
@@ -77,12 +81,6 @@
   height: 4%;
 }
 
-.dashboard-top-page-number {
-  display: flex;
-  width: 75%;
-  justify-content: flex-end;
-}
-
 p.approve-reject-select {
   display: inline;
   margin-right: 0.25%;
@@ -127,6 +125,13 @@ p.page-number-display {
   width: 45%;
 }
 
+// dashboard pending incidents
+
+.incidents {
+  display: flex;
+  flex-direction: column;
+}
+
 .column-headers {
   display: flex;
   justify-content: flex-start;
@@ -165,6 +170,8 @@ p.page-number-display {
   grid-area: 'date';
 }
 
+// pagination
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -192,6 +199,12 @@ p.page-number-display {
   margin-left: 2%;
 }
 
+.dashboard-top-page-number {
+  display: flex;
+  width: 75%;
+  justify-content: flex-end;
+}
+
 #items-per-page {
   margin-left: 2%;
 }
@@ -200,6 +213,8 @@ p.page-number-display {
   padding-top: 0.7%;
   margin-right: 2%;
 }
+
+// prev/next arrows
 
 .prev-arrow {
   transform: scale(2.2);

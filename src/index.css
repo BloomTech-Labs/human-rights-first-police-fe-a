@@ -463,11 +463,6 @@ div.timeline-container {
   margin-right: 20px;
 }
 
-.incidents {
-  display: flex;
-  flex-direction: column;
-}
-
 #select-all-label {
   margin-left: 5%;
 }
@@ -522,12 +517,6 @@ div.timeline-container {
   height: 4%;
 }
 
-.dashboard-top-page-number {
-  display: flex;
-  width: 75%;
-  justify-content: flex-end;
-}
-
 p.approve-reject-select {
   display: inline;
   margin-right: 0.25%;
@@ -570,6 +559,11 @@ p.page-number-display {
 .dashboard-top-approve-reject button {
   margin: auto 2%;
   width: 45%;
+}
+
+.incidents {
+  display: flex;
+  flex-direction: column;
 }
 
 .column-headers {
@@ -635,6 +629,12 @@ p.page-number-display {
 
 .items-pp-select {
   margin-left: 2%;
+}
+
+.dashboard-top-page-number {
+  display: flex;
+  width: 75%;
+  justify-content: flex-end;
 }
 
 #items-per-page {
