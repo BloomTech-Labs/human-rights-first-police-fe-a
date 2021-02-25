@@ -48,7 +48,7 @@ function MapContainer() {
         maxZoom={maxZoom}
         minZoom={2.75}
         width={'fit'}
-        height={'80vh'}
+        height={'calc(90vh - 59px)'}
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle="mapbox://styles/mikeybz2/ckjkr7gz207a819pd888lmd43"
         onViewportChange={newViewport => {
