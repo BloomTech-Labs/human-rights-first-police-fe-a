@@ -46,6 +46,11 @@ const slice = createSlice({
     setSearch: (state, action) => {
       state.search = action.payload;
     },
+    cleanTransition: (state, action) => {
+      if (state.viewport.transitionDuration) {
+        state.viewport.transitionDuration = 0;
+      }
+    },
   },
 });
 
