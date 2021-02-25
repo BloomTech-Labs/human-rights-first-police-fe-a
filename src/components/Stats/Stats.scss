@@ -11,18 +11,9 @@
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  min-height: 15vh;
+  height: 15vh;
 }
 
-.stat {
-  margin: 0 10%;
-}
-
-.stat h2,
-.stat h3 {
+.stat h2 {
   color: white;
-
-  :hover {
-    font-weight: bolder;
-  }
 }
