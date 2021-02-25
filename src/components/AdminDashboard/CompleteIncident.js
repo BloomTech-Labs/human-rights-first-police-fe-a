@@ -51,7 +51,7 @@ const CompleteIncident = props => {
 
   const updateIncidents = incident => {
     const updatedIncidents = unapprovedIncidents.map(inc => {
-      if (inc.twitter_incident_id === incident.twitter_incident_id) {
+      if (inc.server_id === incident.server_id) {
         return incident;
       } else {
         return inc;
