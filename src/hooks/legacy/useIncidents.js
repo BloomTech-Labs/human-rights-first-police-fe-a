@@ -20,7 +20,6 @@ export function useIncidents() {
     const { data } = await axios.get(
       `${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`
     );
-    console.log(data);
     return data;
   }, []);
 
