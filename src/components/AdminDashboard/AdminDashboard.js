@@ -4,6 +4,9 @@ import axios from 'axios';
 import PendingIncident from './PendingIncident';
 import AddIncident from './AddIncident';
 
+import { DoubleRightOutlined } from '@ant-design/icons';
+import { DoubleLeftOutlined } from '@ant-design/icons';
+
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
   const [selected, setSelected] = useState([]);
@@ -168,12 +171,16 @@ const AdminDashboard = () => {
   //   pagination functions
   const handleNextClick = evt => {
     evt.preventDefault();
-    setPageNumber(pageNumber + 1);
+    if (pageNumber < Math.ceil(unapprovedIncidents.length / incidentsPerPage)) {
+      setPageNumber(pageNumber + 1);
+    }
   };
 
   const handleBackClick = evt => {
     evt.preventDefault();
-    setPageNumber(pageNumber - 1);
+    if (pageNumber > 1) {
+      setPageNumber(pageNumber - 1);
+    }
   };
 
   const handlePerPageChange = evt => {
@@ -320,27 +327,29 @@ const AdminDashboard = () => {
             })}
           </div>
           <div className="pagination">
-            <button
+            <DoubleLeftOutlined
               onClick={handleBackClick}
-              disabled={pageNumber === 1}
-              className="approve-reject-select"
+              className={
+                pageNumber === 1 ? 'prev-arrow shaded-arrow' : 'prev-arrow'
+              }
             >
               Previous Page
-            </button>
+            </DoubleLeftOutlined>
             <p className="page-number-display">
               Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
               {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
             </p>
-            <button
-              className="approve-reject-select"
-              onClick={handleNextClick}
-              disabled={
+            <DoubleRightOutlined
+              className={
                 pageNumber ===
                 Math.ceil(unapprovedIncidents.length / incidentsPerPage)
+                  ? 'next-arrow shaded-arrow'
+                  : 'next-arrow'
               }
+              onClick={handleNextClick}
             >
               Next Page
-            </button>
+            </DoubleRightOutlined>
           </div>
         </>
       )}

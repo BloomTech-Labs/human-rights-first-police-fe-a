@@ -197,5 +197,19 @@ p.page-number-display {
 }
 
 .page-number-display {
+  padding-top: 0.7%;
   margin-right: 2%;
+}
+
+.prev-arrow {
+  transform: scale(2.2);
+  margin-right: 1.7%;
+}
+
+.next-arrow {
+  transform: scale(2.2);
+}
+
+.shaded-arrow {
+  opacity: 45%;
 }
