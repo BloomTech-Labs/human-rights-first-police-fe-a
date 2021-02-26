@@ -44,11 +44,9 @@ const MapSearch = () => {
           <Panel
             bordered={false}
             style={{ color: 'white', padding: '6px' }}
-            header="Incidents of Police Use of Force "
             key="1"
           >
             <div className="incident-content">
-              <Divider style={{ margin: '0px' }} />
               <List>
                 {!incidentsOfInterest && searchText === '' ? (
                   <LastIncident lastIncident={lastIncident} key={nanoid()} />

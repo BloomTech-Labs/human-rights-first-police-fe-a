@@ -2,23 +2,12 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { mapActions } from '../../../store';
 import useViewport from './../../../hooks/useViewport';
-import questionMark from '../iconImg/question-mark.png';
-import { Divider } from 'antd';
+import { Divider, Popover, Button, Tag } from 'antd';
 import { FlyToInterpolator } from 'react-map-gl';
-import { iconPicker } from '../GetFunctions';
-import {
-  minStyles,
-  imgMinStyle,
-  incidentTitle,
-  incidentLocation,
-  incidentInfo,
-  incidentCategory,
-  maxIncidentCategories,
-  incidentCategories,
-  categories,
-  incidentHeader,
-  maxIncidentHeader,
-} from './Styles';
+import { nanoid } from 'nanoid';
+import { DateTime } from 'luxon';
+import { incidentInfo, incidentHeader, maxIncidentHeader } from './Styles';
+import sourceListHelper from '../../../utils/sourceListHelper';
 import { useMediaQuery } from 'react-responsive';
 
 const ClusterIncident = ({ incidents, i }) => {
@@ -30,7 +19,7 @@ const ClusterIncident = ({ incidents, i }) => {
   const { setViewport } = useViewport();
 
   const desktopOrMobile = useMediaQuery({
-    query: '(min-device-width: 800px',
+    query: '(min-device-width: 800px)',
   });
 
   const renderStyles = (style1, style2) => {
@@ -50,77 +39,58 @@ const ClusterIncident = ({ incidents, i }) => {
 
   return (
     <div
-      className="incident-card"
+      className="map-incident-card"
       key={i}
       onMouseEnter={() => {
         setLat(incidents.properties.incident?.lat);
         setLong(incidents.properties.incident?.long);
       }}
+      onClick={() => {
+        FlyTo();
+      }}
     >
-      <h4 className="incident-location" style={renderStyles(incidentLocation)}>
-        {' '}
-        {incidents.properties.incident?.city},{' '}
-        {incidents.properties.incident?.state}
-      </h4>
-      <div className="HeaderInfo" style={renderStyles(minStyles)}>
-        <img
-          className="icon-img"
-          onClick={() => {
-            FlyTo();
-          }}
-          style={renderStyles(imgMinStyle)}
-          src={
-            iconPicker(incidents.properties.incident)
-              ? iconPicker(incidents.properties.incident)
-              : questionMark
-          }
-          alt="?"
-        />
-        <div
-          className="incidentHeader"
-          style={renderStyles(incidentHeader, maxIncidentHeader)}
-        >
-          <h2 className="incident-header" style={renderStyles(incidentTitle)}>
-            {incidents.properties.incident?.title}
-          </h2>
-        </div>
+      <div className="card-title">
+        <h4>
+          {DateTime.fromISO(incidents.properties.incident?.date)
+            .plus({ days: 1 })
+            .toLocaleString(DateTime.DATE_MED)}
+        </h4>
+        <h4>
+          {incidents.properties.incident?.city},{' '}
+          {incidents.properties.incident?.state}
+        </h4>
       </div>
-
-      <div className="incident-info" style={renderStyles(incidentInfo)}>
+      <div
+        className="incidentHeader"
+        style={renderStyles(incidentHeader, maxIncidentHeader)}
+      >
+        <h2>{incidents.properties.incident?.title}</h2>
+      </div>
+      {incidents.properties.incident?.categories.map(cat => {
+        return (
+          <Tag key={nanoid()}>
+            {cat.charAt(0).toUpperCase() + cat.slice(1).replaceAll('-', ' ')}
+          </Tag>
+        );
+      })}
+      <div className="map-incident-info" style={renderStyles(incidentInfo)}>
+        <br />
         <h3 className="incident-discription">
           {incidents.properties.incident?.desc}
         </h3>
-        <div>
-          <h2
-            className="incident-category"
-            style={renderStyles(incidentCategory)}
+        <Popover
+          content={sourceListHelper(incidents.properties.incident)}
+          placement="rightTop"
+        >
+          <Button
+            type="primary"
+            style={{ backgroundColor: '#003767', border: 'none' }}
           >
-            Category:
-          </h2>
-          <div className="categories" style={renderStyles(categories)}>
-            {incidents.properties.incident?.categories.map((category, i) => {
-              return (
-                <div
-                  className="incident-container"
-                  style={renderStyles(categories)}
-                  key={category}
-                >
-                  <h3
-                    className="incident-categories"
-                    style={renderStyles(
-                      incidentCategories,
-                      maxIncidentCategories
-                    )}
-                  >
-                    - {category.charAt(0).toUpperCase() + category.slice(1)}
-                  </h3>
-                </div>
-              );
-            })}
-            <Divider style={{ margin: '0px' }} />
-          </div>
-        </div>
+            Sources
+          </Button>
+        </Popover>
       </div>
+      <Divider style={{ borderWidth: '1px' }} />
     </div>
   );
 };

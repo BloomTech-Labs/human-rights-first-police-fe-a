@@ -2,6 +2,7 @@
   width: 100%;
   margin: auto;
 }
+
 @media (max-width: 768px) {
   .mapDiv {
     width: 100%;
@@ -10,14 +11,18 @@
 
 .search-header {
   width: 500px;
-  padding-bottom: 2%;
+  left: 24px;
+  display: flex;
+  position: absolute;
+  top: 24px;
 }
 
 .map-menu-background {
   position: absolute;
-  top: -25px;
-  right: 0px;
+  top: 84px;
+  right: 24px;
   z-index: 1;
+  cursor: pointer;
 }
 
 @media (max-width: 800px) {
@@ -33,6 +38,7 @@
     flex-direction: column;
   }
 }
+
 @media (max-width: 900px) {
   .search-header {
     width: 350px;

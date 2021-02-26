@@ -197,6 +197,11 @@ section ul {
   flex-wrap: wrap;
 }
 
+.card-title {
+  display: flex;
+  justify-content: space-between;
+}
+
 .card-box {
   width: 30%;
   height: 375px;
@@ -270,14 +275,18 @@ h3.incident-container {
 }
 .search-header {
   width: 500px;
-  padding-bottom: 2%;
+  left: 24px;
+  display: flex;
+  position: absolute;
+  top: 24px;
 }
 
 .map-menu-background {
   position: absolute;
-  top: -25px;
-  right: 0px;
+  top: 84px;
+  right: 24px;
   z-index: 1;
+  cursor: pointer;
 }
 
 @media (max-width: 800px) {
@@ -301,15 +310,13 @@ h3.incident-container {
   }
 }
 .map-menu {
-  margin-top: 20px;
   background-color: #fafafa;
   padding-left: 2%;
   width: 375px;
 }
 
-.search-header {
-  display: flex;
-  position: absolute;
+.map-incident-card {
+  cursor: pointer !important;
 }
 
 button.ant-btn.ant-btn-primary.ant-input-search-button {
