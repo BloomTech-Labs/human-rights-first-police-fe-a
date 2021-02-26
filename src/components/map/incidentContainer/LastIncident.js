@@ -1,27 +1,16 @@
 import React from 'react';
-import questionMark from '../iconImg/question-mark.png';
 import { FlyToInterpolator } from 'react-map-gl';
-import { iconPicker, newData } from '../GetFunctions';
+import { nanoid } from 'nanoid';
+import { DateTime } from 'luxon';
+import { newData } from '../GetFunctions';
 import { useIncidents } from '../../../hooks/legacy/useIncidents';
-import { Divider } from 'antd';
-import {
-  minStyles,
-  imgMinStyle,
-  incidentTitle,
-  incidentLocation,
-  incidentInfo,
-  incidentCategory,
-  maxIncidentCategories,
-  incidentCategories,
-  categories,
-  incidentHeader,
-  maxIncidentHeader,
-} from './Styles';
+import { Divider, Popover, Button, Tag } from 'antd';
+import { incidentInfo, incidentHeader, maxIncidentHeader } from './Styles';
 import { useMediaQuery } from 'react-responsive';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { mapActions } from '../../../store';
 import useViewport from './../../../hooks/useViewport';
+import sourceListHelper from '../../../utils/sourceListHelper';
 
 const LastIncident = () => {
   const dispatch = useDispatch();
@@ -32,7 +21,7 @@ const LastIncident = () => {
   const { setViewport } = useViewport();
 
   const desktopOrMobile = useMediaQuery({
-    query: '(min-device-width: 800px',
+    query: '(min-device-width: 800px)',
   });
 
   const renderStyles = (style1, style2) => {
@@ -57,79 +46,58 @@ const LastIncident = () => {
   const lastIncident = dataList.shift();
 
   return (
-    <div>
-      <div
-        className="incident-card"
-        onMouseEnter={() => {
-          setLat(lastIncident?.lat);
-          setLong(lastIncident?.long);
-        }}
-        onClick={() => {
-          FlyTo();
-        }}
-      >
-        <h4
-          className="incident-location"
-          style={renderStyles(incidentLocation)}
-        >
-          {' '}
+    <div
+      className="map-incident-card"
+      onMouseEnter={() => {
+        setLat(lastIncident?.lat);
+        setLong(lastIncident?.long);
+      }}
+      onClick={() => {
+        FlyTo();
+      }}
+    >
+      <div className="card-title">
+        <h4>
+          {lastIncident
+            ? // Prevents a DateTime error from being displayed in the page when
+              // lastIncident is undefined because fetching failed or is incomplete.
+              // Just a temporary fix - We should revise this to clearly communicate
+              // error state to users, but for now here's no ghost error when all is well.
+              DateTime.fromISO(lastIncident?.date)
+                .plus({ days: 1 })
+                .toLocaleString(DateTime.DATE_MED)
+            : ''}
+        </h4>
+        <h4>
           {lastIncident?.city}, {lastIncident?.state}
         </h4>
-        <div className="HeaderInfo" style={renderStyles(minStyles)}>
-          <img
-            className="icon-img"
-            style={renderStyles(imgMinStyle)}
-            src={
-              iconPicker(lastIncident) ? iconPicker(lastIncident) : questionMark
-            }
-            alt="?"
-          />
-          <div
-            className="incidentHeader"
-            style={renderStyles(incidentHeader, maxIncidentHeader)}
-          >
-            <h2 className="incident-header" style={renderStyles(incidentTitle)}>
-              {lastIncident?.title}
-            </h2>
-          </div>
-        </div>
-        <Divider style={{ borderWidth: '1px' }} />
-        <div className="incident-info" style={renderStyles(incidentInfo)}>
-          <h3 className="incident-discription">{lastIncident?.desc}</h3>
-          <Divider style={{ borderWidth: '1px' }} />
-
-          <div>
-            <h2
-              className="incident-category"
-              style={renderStyles(incidentCategory)}
-            >
-              Category:
-            </h2>
-            <div className="categories" style={renderStyles(categories)}>
-              {lastIncident?.categories.map((category, i) => {
-                return (
-                  <div
-                    className="incident-container"
-                    style={renderStyles(categories)}
-                  >
-                    <h3
-                      className="incident-categories"
-                      style={renderStyles(
-                        incidentCategories,
-                        maxIncidentCategories
-                      )}
-                    >
-                      {category.charAt(0).toUpperCase() +
-                        category.slice(1).replaceAll('-', ' ')}
-                      &nbsp;&nbsp;
-                    </h3>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
       </div>
+      <div
+        className="incidentHeader"
+        style={renderStyles(incidentHeader, maxIncidentHeader)}
+      >
+        <h2>{lastIncident?.title}</h2>
+      </div>
+      {lastIncident?.categories.map(cat => {
+        return (
+          <Tag key={nanoid()}>
+            {cat.charAt(0).toUpperCase() + cat.slice(1).replaceAll('-', ' ')}
+          </Tag>
+        );
+      })}
+      <div className="map-incident-info" style={renderStyles(incidentInfo)}>
+        <br />
+        <h3 className="incident-discription">{lastIncident?.desc}</h3>
+        <Popover content={sourceListHelper(lastIncident)} placement="rightTop">
+          <Button
+            type="primary"
+            style={{ backgroundColor: '#003767', border: 'none' }}
+          >
+            Sources
+          </Button>
+        </Popover>
+      </div>
+      <Divider style={{ borderWidth: '1px' }} />
     </div>
   );
 };
