@@ -220,6 +220,10 @@ section ul {
   margin: 15px 0;
 }
 
+.card-force {
+  margin-bottom: 12px;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -250,6 +254,14 @@ div.HeaderInfo {
 
 h3.incident-container {
   color: blue;
+}
+
+.incidentHeader h2 {
+  line-height: normal;
+}
+
+.incident-description {
+  margin-top: 6px;
 }
 
 .cluster-marker {
@@ -310,7 +322,7 @@ h3.incident-container {
   }
 }
 .map-menu {
-  background-color: #fafafa;
+  background-color: white;
   padding-left: 2%;
   width: 375px;
 }

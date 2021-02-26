@@ -78,6 +78,7 @@ const LastIncident = () => {
       >
         <h2>{lastIncident?.title}</h2>
       </div>
+      <h4>{lastIncident?.force_rank}</h4>
       {lastIncident?.categories.map(cat => {
         return (
           <Tag key={nanoid()}>
@@ -86,8 +87,7 @@ const LastIncident = () => {
         );
       })}
       <div className="map-incident-info" style={renderStyles(incidentInfo)}>
-        <br />
-        <h3 className="incident-discription">{lastIncident?.desc}</h3>
+        <p className="incident-description">{lastIncident?.desc}</p>
         <Popover content={sourceListHelper(lastIncident)} placement="rightTop">
           <Button
             type="primary"
