@@ -8,6 +8,8 @@ const CompleteIncident = props => {
   const [editing, setEditing] = useState(false);
 
   const [formValues, setFormValues] = useState({});
+  const [src, setSrc] = useState('');
+  const [categories, setCategories] = useState('');
 
   console.log(formValues);
 
@@ -22,12 +24,12 @@ const CompleteIncident = props => {
   console.log(incident);
   useEffect(() => {
     setFormValues({ ...incident, date: formattedDate });
-    // const srcString = createString(formValues.src);
-    // const categoriesString = createString(formValues.categories);
+    setSrc(formValues.src);
+    setCategories(formValues.categories);
     return () => {
       setFormValues({});
     };
-  }, []);
+  }, [editing]);
 
   // toggle "editing mode"
   const toggleEditor = evt => {
@@ -39,11 +41,16 @@ const CompleteIncident = props => {
   // setting form values on input change
   const handleInputChange = evt => {
     const { name, value } = evt.target;
-    console.log(name, value);
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
+    if (name === 'src') {
+      setSrc(value);
+    } else if (name === 'categories') {
+      setCategories(value);
+    } else {
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      });
+    }
   };
 
   const createArray = string => {
@@ -64,18 +71,6 @@ const CompleteIncident = props => {
     return array;
   };
 
-  const createString = array => {
-    let string = '';
-    for (let i = 0; i < array.length; i++) {
-      if (i < array.length - 1) {
-        string += ',' + array[i];
-      } else {
-        string += array[i];
-      }
-    }
-    return string;
-  };
-
   // functions for applying changes to incident
   const applyEdits = evt => {
     evt.preventDefault();
@@ -85,10 +80,10 @@ const CompleteIncident = props => {
     let categoriesArray = [];
     let srcArray = [];
     if (formValues.categories) {
-      categoriesArray = createArray(formValues.categories);
+      categoriesArray = createArray(categories);
     }
     if (formValues.src) {
-      srcArray = createArray(formValues.src);
+      srcArray = createArray(src);
     }
     const updatedIncident = {
       ...formValues,
@@ -96,7 +91,6 @@ const CompleteIncident = props => {
       categories: categoriesArray,
       src: srcArray,
     };
-    console.log(updatedIncident);
     axios
       .put(
         `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.server_id}`,
@@ -115,18 +109,6 @@ const CompleteIncident = props => {
         getData();
       });
   };
-
-  // const updateIncidents = incident => {
-  //   const updatedIncidents = unapprovedIncidents.map(inc => {
-  //     if (inc.twitter_incident_id === incident.twitter_incident_id) {
-  //       return incident;
-  //     } else {
-  //       return inc;
-  //     }
-  //   });
-  //   setUnapprovedIncidents(updatedIncidents);
-  //   setEditing(!editing);
-  // };
 
   return (
     <div className="complete-incident">
@@ -213,7 +195,7 @@ const CompleteIncident = props => {
             <p className="complete-incident-dropdown-titles-bold">
               Categories:
             </p>
-            <p>{incident.categories.join(' ')}</p>
+            <p>{incident.categories}</p>
           </div>
         ) : (
           <>
@@ -230,7 +212,7 @@ const CompleteIncident = props => {
               onChange={handleInputChange}
               type="text"
               name="categories"
-              value={formValues.categories}
+              value={categories}
             />
             <br />
           </>
@@ -286,7 +268,7 @@ const CompleteIncident = props => {
               onChange={handleInputChange}
               type="textarea"
               name="src"
-              value={formValues.src}
+              value={src}
             />
           </>
         )}
