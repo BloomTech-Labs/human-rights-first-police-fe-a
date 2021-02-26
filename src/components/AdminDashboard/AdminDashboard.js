@@ -41,8 +41,6 @@ const AdminDashboard = () => {
       });
   }, []);
 
-  console.log(unapprovedIncidents);
-
   // setting up pagination display on dashboard
   useEffect(() => {
     const start = incidentsPerPage * pageNumber - incidentsPerPage;
@@ -194,6 +192,8 @@ const AdminDashboard = () => {
     evt.preventDefault();
     setAdding(true);
   };
+
+  console.log(unapprovedIncidents);
 
   return (
     <div className="dashboard-container">
