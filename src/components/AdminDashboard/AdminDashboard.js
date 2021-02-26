@@ -29,8 +29,16 @@ const AdminDashboard = () => {
   // setting state to toggle whether or not the modal pop up (addIncident) is rendered
   const [adding, setAdding] = useState(false);
 
+  const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
+
+  console.log(unapprovedIncidents);
+
   // getting unapproved/pending incidents from the database
   useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
     axios
       .get(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`)
       .then(res => {
@@ -39,7 +47,7 @@ const AdminDashboard = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  };
 
   // setting up pagination display on dashboard
   useEffect(() => {
@@ -53,22 +61,26 @@ const AdminDashboard = () => {
 
   // incident selection (checkbox) functions
   const selectAll = () => {
-    setAllSelected(!allSelected);
-    if (!allSelected) {
-      setSelected(currentSet.map(data => data.server_id));
-    } else {
-      setSelected([]);
+    if (!confirmApprove && !confirmReject) {
+      setAllSelected(!allSelected);
+      if (!allSelected) {
+        setSelected(currentSet.map(data => data.server_id));
+      } else {
+        setSelected([]);
+      }
     }
   };
 
   const changeSelected = incident => {
-    if (selected.includes(incident.server_id)) {
-      const newSelected = selected.filter(id => {
-        return id !== incident.server_id;
-      });
-      setSelected(newSelected);
-    } else {
-      setSelected([...selected, incident.server_id]);
+    if (!confirmApprove && !confirmReject) {
+      if (selected.includes(incident.server_id)) {
+        const newSelected = selected.filter(id => {
+          return id !== incident.server_id;
+        });
+        setSelected(newSelected);
+      } else {
+        setSelected([...selected, incident.server_id]);
+      }
     }
   };
 
@@ -169,7 +181,7 @@ const AdminDashboard = () => {
   //   pagination functions
   const handleNextClick = evt => {
     evt.preventDefault();
-    if (pageNumber < Math.ceil(unapprovedIncidents.length / incidentsPerPage)) {
+    if (pageNumber < lastPage) {
       setPageNumber(pageNumber + 1);
     }
   };
@@ -221,7 +233,11 @@ const AdminDashboard = () => {
         </div>
       </div>
       {adding ? (
-        <AddIncident setAdding={setAdding} />
+        <AddIncident
+          setPageNumber={setPageNumber}
+          getData={getData}
+          setAdding={setAdding}
+        />
       ) : (
         <>
           <div className="dashboard-top-flex">
@@ -328,6 +344,7 @@ const AdminDashboard = () => {
             {currentSet.map(incident => {
               return (
                 <PendingIncident
+                  getData={getData}
                   confirmApprove={confirmApprove}
                   key={incident.server_id}
                   incident={incident}
@@ -335,6 +352,7 @@ const AdminDashboard = () => {
                   changeSelected={changeSelected}
                   setUnapprovedIncidents={setUnapprovedIncidents}
                   unapprovedIncidents={unapprovedIncidents}
+                  setPageNumber={setPageNumber}
                 />
               );
             })}
@@ -354,8 +372,7 @@ const AdminDashboard = () => {
             </p>
             <DoubleRightOutlined
               className={
-                pageNumber ===
-                Math.ceil(unapprovedIncidents.length / incidentsPerPage)
+                pageNumber === lastPage
                   ? 'next-arrow shaded-arrow'
                   : 'next-arrow'
               }
