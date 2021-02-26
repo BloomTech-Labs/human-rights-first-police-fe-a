@@ -95,16 +95,14 @@ const SearchHeader = () => {
   };
 
   return (
-    <div>
-      <div className="search-header">
-        <Search
-          style={{ color: 'white' }}
-          placeholder="Location, Type, etc..."
-          enterButton="Search"
-          onSearch={onSearch}
-        />
-        <RangePicker onCalendarChange={onDateSelection} />
-      </div>
+    <div className="search-header">
+      <Search
+        style={{ color: 'white' }}
+        placeholder="Location, Type, etc..."
+        enterButton="Search"
+        onSearch={onSearch}
+      />
+      <RangePicker onCalendarChange={onDateSelection} />
     </div>
   );
 };
