@@ -28,7 +28,7 @@ const AddIncident = props => {
   const [srcValue, setSrcValue] = useState('');
   const [time, setTime] = useState('');
 
-  //   setting state for all sources added
+  //   setting state for all sources/categories added
   const [sources, setSources] = useState([]);
 
   // setting state for add incident pop up
