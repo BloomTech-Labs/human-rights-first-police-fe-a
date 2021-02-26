@@ -14,13 +14,6 @@ button.ant-btn.ant-btn-primary.ant-input-search-button {
   color: black;
 }
 
-.icon-img {
-  width: 50px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  z-index: 1;
-}
-
 .ant-collapse {
   background-color: rgb(255, 255, 255);
   border: none;
@@ -61,7 +54,7 @@ div.ant-collapse-header {
 
 div.ant-collapse>.ant-collapse-item>.ant-collapse-header {
   padding: 5px 0px 5px 0px;
-  font-size: 1.5rem;
+  font-size: .6rem;
   text-align: left;
   margin-left: 15px;
   font-weight: 500;
@@ -70,23 +63,12 @@ div.ant-collapse>.ant-collapse-item>.ant-collapse-header {
 @media (max-width: 800px) {
   div.ant-collapse>.ant-collapse-item>.ant-collapse-header {
     font-size: 1.1rem;
-  }
-
-  div.ant-collapse>.ant-collapse-item>.ant-collapse-header {
     padding: 3px 0px 1px 0px;
     font-size: 0.9rem;
     text-align: left;
     margin-left: 15px;
     font-weight: 500;
   }
-}
-
-.incident-location {
-  font-weight: lighter;
-}
-
-.incident-date {
-  font-weight: lighter;
 }
 
 .incident-container {
