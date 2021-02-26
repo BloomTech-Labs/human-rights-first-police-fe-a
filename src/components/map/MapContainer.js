@@ -35,9 +35,8 @@ function MapContainer() {
 
   const navStyle = {
     position: 'absolute',
-    top: 82,
-    left: 0,
-    padding: '10px',
+    top: '82px',
+    left: '26px',
   };
 
   return (
@@ -59,13 +58,9 @@ function MapContainer() {
         <div style={navStyle}>
           <NavigationControl />
         </div>
-        <div className="search-header">
+        <div>
           <SearchHeader />
         </div>
-        <div className="map-menu-background">
-          <MapSearch />
-        </div>
-
         <ClusterMarkers
           mapRef={mapRef}
           viewport={viewport}
