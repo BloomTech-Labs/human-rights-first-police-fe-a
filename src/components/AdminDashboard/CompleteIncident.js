@@ -51,7 +51,7 @@ const CompleteIncident = props => {
 
   const updateIncidents = incident => {
     const updatedIncidents = unapprovedIncidents.map(inc => {
-      if (inc.twitter_incident_id === incident.twitter_incident_id) {
+      if (inc.server_id === incident.server_id) {
         return incident;
       } else {
         return inc;
@@ -65,7 +65,10 @@ const CompleteIncident = props => {
     <div className="complete-incident">
       <div className="complete-incident-dropdown">
         {!editing ? (
-          <p>{formattedDate}</p>
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Date:</p>
+            <p>{formattedDate}</p>
+          </div>
         ) : (
           <>
             <label htmlFor="date" className="label">
@@ -83,9 +86,12 @@ const CompleteIncident = props => {
           </>
         )}
         {!editing ? (
-          <p>
-            {incident.city}, {incident.state}
-          </p>
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Location:</p>
+            <p className="location-dropdown-wrap">
+              {incident.city}, {incident.state}
+            </p>
+          </div>
         ) : (
           <>
             <label htmlFor="city" className="label">
@@ -115,7 +121,10 @@ const CompleteIncident = props => {
           </>
         )}
         {!editing ? (
-          <p>{incident.title}</p>
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Title:</p>
+            <p>{incident.title}</p>
+          </div>
         ) : (
           <>
             <label htmlFor="title" className="label">
@@ -133,7 +142,12 @@ const CompleteIncident = props => {
           </>
         )}
         {!editing ? (
-          <p>{incident.categories.join(' ')}</p>
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">
+              Categories:
+            </p>
+            <p>{incident.categories.join(' ')}</p>
+          </div>
         ) : (
           <>
             <label htmlFor="categories" className="label">
@@ -154,8 +168,42 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
+
+        {/* Does this need to be here? */}
+        {/*         
         {!editing ? (
-          <p>{incident.src.join(' ')}</p>
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Sources:</p>
+            <p>{incident.src.join(' ')}</p>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="src" className="label">
+              Sources
+              <br />
+              (Separated by commas)
+            </label>
+            <br />
+            <textarea
+              cols="25"
+              rows="5"
+              className="edit-input text-area"
+              onChange={handleInputChange}
+              type="textarea"
+              name="src"
+              value={formValues.src.join(' ')}
+            />
+          </>
+        )} */}
+
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Sources:</p>
+
+            {incident.src.map(src => (
+              <EmbedSource key={src} url={src} />
+            ))}
+          </div>
         ) : (
           <>
             <label htmlFor="src" className="label">
@@ -176,17 +224,8 @@ const CompleteIncident = props => {
           </>
         )}
 
-        {!editing ? (
-          incident.src.map(src => <EmbedSource key={src} url={src} />)
-        ) : (
-          <>
-            {/* <label htmlFor="src" className="label">
-              Sources
-              <br />
-            </label> */}
-          </>
-        )}
-        {!editing ? (
+        {/* Does this need to be here? */}
+        {/* {!editing ? (
           incident.src.map(src => <EmbedSource url={src} />)
         ) : (
           <>
@@ -195,8 +234,8 @@ const CompleteIncident = props => {
             </label>
             <br />
           </>
-        )}
-        <br />
+        )} */}
+
         <button
           id="dropdown-edit-button"
           className="approve-reject-select"

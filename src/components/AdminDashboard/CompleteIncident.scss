@@ -29,5 +29,23 @@
 
 #dropdown-edit-button {
   margin-left: 0px;
-  margin-top: 1%;
+  // margin-top: 1%;
+}
+
+.dropdown-text-wrap {
+  display: flex;
+}
+
+.complete-incident-dropdown-titles-bold {
+  font-weight: bold;
+  margin-right: 0.3%;
+}
+
+.location-dropdown-wrap {
+  display: flex;
+}
+
+//this is from EmbedSource.js
+.link-button {
+  margin-left: 0.5%;
 }

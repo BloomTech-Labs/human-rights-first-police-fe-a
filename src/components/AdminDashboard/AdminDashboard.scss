@@ -1,7 +1,12 @@
+// entire component
+
 .dashboard-container {
   width: 98%;
   margin: auto;
 }
+
+// top of component
+
 .statboxes {
   display: flex;
   flex-direction: row;
@@ -18,9 +23,12 @@
   margin-right: 20px;
 }
 
-.incidents {
-  display: flex;
-  flex-direction: column;
+// dashboard
+
+// dashboard top controls
+
+#select-all-label {
+  margin-left: 5%;
 }
 
 #approve-reject-select-text {
@@ -37,8 +45,24 @@
   margin-top: 1%;
 }
 
+.incidents-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#create-incident-button {
+  border: 1px solid #e3e8ee;
+  background-color: rgb(255, 255, 255);
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
+  color: rgb(60, 66, 87);
+}
+
 .confirmation-message {
-  margin-left: 18%;
+  width: 90%;
+  text-align: center;
 }
 
 .transparent {
@@ -54,6 +78,7 @@
   margin-right: 2%;
   margin-bottom: 1%;
   color: rgb(60, 66, 87);
+  height: 4%;
 }
 
 p.approve-reject-select {
@@ -100,10 +125,70 @@ p.page-number-display {
   width: 45%;
 }
 
-.pagination {
+// dashboard pending incidents
+
+.incidents {
+  display: flex;
+  flex-direction: column;
+}
+
+.column-headers {
   display: flex;
   justify-content: space-between;
-  margin: 2% auto;
+  border: solid #e3e8ee 1px;
+  width: 100%;
+  align-items: center;
+  margin-bottom: 0px;
+  border-radius: 5px;
+}
+
+.column-headers div h4 {
+  font-weight: bold;
+}
+
+.hidden-input {
+  opacity: 0;
+  text-align: left;
+  margin: auto 1%;
+}
+
+.column-headers-flex {
+  display: flex;
+  text-align: left;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+  color: #3c4257;
+  margin: 0 auto;
+}
+
+h4 {
+  padding-top: 0.5%;
+}
+
+.description {
+  margin-left: 0px;
+  text-align: left;
+  width: 45%;
+}
+
+.location {
+  width: 18%;
+  margin-left: 2%;
+}
+
+.date {
+  width: 15%;
+  margin-left: 7%;
+}
+
+// pagination
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
 }
 
 .pagination div {
@@ -113,19 +198,49 @@ p.page-number-display {
 .pagination div:first-of-type {
   justify-content: flex-start;
   align-items: center;
-  width: 55%;
+  width: 12%;
 }
 
 .pagination div:nth-of-type(2) {
   width: 40%;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
 }
 
 .items-pp-select {
   margin-left: 2%;
 }
 
+.dashboard-top-page-number {
+  display: flex;
+  width: 75%;
+  justify-content: flex-end;
+}
+
+#items-per-page {
+  margin-left: 2%;
+}
+
 .page-number-display {
-  padding-top: 2.5%;
-  margin-left: 20%;
+  padding-top: 0.7%;
+  margin-right: 2%;
+}
+
+// prev/next arrows
+
+.prev-arrow {
+  transform: scale(2.2);
+  margin-right: 1.7%;
+}
+
+.next-arrow {
+  transform: scale(2.2);
+}
+
+.shaded-arrow {
+  opacity: 45%;
+}
+
+.hidden-button {
+  display: none;
 }
