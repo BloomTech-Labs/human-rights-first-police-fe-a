@@ -10,36 +10,85 @@ const initialFormValues = {
   desc: '',
   empty_hand_hard: false,
   empty_hand_soft: false,
-  lat: 37.33532,
   less_lethal_methods: true,
   lethal_force: false,
-  long: -121.88931,
   src: [],
   state: '',
   title: '',
+  categories: [],
   uncategorized: false,
   verbalization: false,
 };
 
 const AddIncident = props => {
+  // setting state for form management
   const [formValues, setFormValues] = useState(initialFormValues);
   const [amPmValue, setAmPmValue] = useState(false);
-
-  //   setting state for src and time input on form
+  const [address, setAddress] = useState('');
   const [srcValue, setSrcValue] = useState('');
   const [time, setTime] = useState('');
 
   //   setting state for all sources added
   const [sources, setSources] = useState([]);
 
+  // setting state for add incident pop up
   const [modalText, setModalText] = useState('');
   const [visible, setVisible] = useState(true);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const { setAdding } = props;
+  const { setAdding, getData, setPageNumber } = props;
 
-  //   submitting the form
+  // gets latitude and longitude of given city/state
+  const getLatAndLong = new Promise((resolve, reject) => {
+    axios
+      .get(
+        `http://open.mapquestapi.com/geocoding/v1/address?key=${
+          process.env.REACT_APP_MAPQUEST_API_KEY
+        }&location=${address}${formValues.address ? ' ' : ''}${
+          formValues.city
+        }, ${formValues.state}`
+      )
+      .then(res => {
+        const { lat, lng } = res.data.results[0].locations[0].latLng;
+        resolve([lat, lng]);
+      })
+      .catch(err => {
+        reject(err.message);
+      });
+  });
+
+  // posts new incident to database
+  const postIncident = newIncident => {
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
+        newIncident
+      )
+      .then(res => {
+        console.log(res);
+        setModalText('New incident added successfully');
+        setTimeout(() => {
+          // modal is unmounted, admin is redirected to first page of dashboard
+          setVisible(false);
+          setConfirmLoading(false);
+          setAdding(false);
+          setPageNumber(1);
+          getData();
+        }, 1500);
+      })
+      .catch(err => {
+        setModalText('Something went wrong');
+        setTimeout(() => {
+          setVisible(false);
+          setConfirmLoading(false);
+          setAdding(false);
+        }, 2000);
+      });
+  };
+
+  // submitting form
   const handleOk = () => {
+    // formatting date
     let newDateString;
     if (!formValues.date) {
       newDateString = new Date().toJSON();
@@ -48,34 +97,30 @@ const AddIncident = props => {
       const formattedTime = formatTime();
       newDateString = formattedDate + formattedTime;
     }
-    const newIncident = {
-      ...formValues,
-      date: newDateString,
-      pending: false,
-      rejected: false,
-    };
-    console.log(newIncident);
-    setConfirmLoading(true);
-    // axios.post(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`, newIncident)
-    // .then(res=>{
-    //     setModalText('New incident added successfully');
-    //     setTimeout(() => {
-    //         setVisible(false);
-    //         setConfirmLoading(false);
-    //       }, 750);
-    // })
-    // .catch(err=>{
-    //     setModalText(err.message);
-    //     console.log(err);
-    // });
-
-    console.log(newIncident);
-
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-      setAdding(false);
-    }, 750);
+    // getting long and lat
+    getLatAndLong
+      .then(res => {
+        const [lat, lng] = res;
+        // creating updated/new incident object to be posted
+        const newIncident = {
+          ...formValues,
+          lat,
+          long: lng,
+          date: newDateString,
+          pending: false,
+          rejected: false,
+          src: sources,
+        };
+        postIncident(newIncident);
+      })
+      .catch(err => {
+        setModalText('Something went wrong');
+        setTimeout(() => {
+          setVisible(false);
+          setConfirmLoading(false);
+          setAdding(false);
+        }, 2000);
+      });
   };
 
   // adding and removing sources
@@ -97,7 +142,7 @@ const AddIncident = props => {
     }
   };
 
-  //   form value management functions
+  //   form management functions
   const handleChange = evt => {
     const { name, value } = evt.target;
     if (name === 'src') {
@@ -106,6 +151,8 @@ const AddIncident = props => {
       setTime(value);
     } else if (name === 'ampm') {
       setAmPmValue(value);
+    } else if (name === 'address') {
+      setAddress(value);
     } else {
       setFormValues({
         ...formValues,
@@ -133,7 +180,7 @@ const AddIncident = props => {
     if (!time) {
       return 'T00:00:00.000Z';
     } else {
-      let [hour, minute] = time.split(':');
+      let [hour, minute] = time.split(/\W/);
 
       if (hour.length === 1 && amPmValue === 'am') {
         hour = '0' + hour;
@@ -181,6 +228,17 @@ const AddIncident = props => {
             type="text"
             name="state"
             value={formValues.state}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <label htmlFor="address">
+          Street Address
+          <br />
+          <input
+            type="text"
+            name="address"
+            value={address}
             onChange={handleChange}
           />
         </label>

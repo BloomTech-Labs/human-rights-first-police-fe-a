@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import EmbedSource from '../EmbedSource';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const CompleteIncident = props => {
   // setting state to toggle "editing mode"
@@ -7,15 +9,21 @@ const CompleteIncident = props => {
 
   const [formValues, setFormValues] = useState({});
 
+  console.log(formValues);
+
   const {
     incident,
     formattedDate,
-    unapprovedIncidents,
-    setUnapprovedIncidents,
+    setMoreInfo,
+    getData,
+    setPageNumber,
   } = props;
 
+  console.log(incident);
   useEffect(() => {
     setFormValues({ ...incident, date: formattedDate });
+    // const srcString = createString(formValues.src);
+    // const categoriesString = createString(formValues.categories);
     return () => {
       setFormValues({});
     };
@@ -30,10 +38,42 @@ const CompleteIncident = props => {
 
   // setting form values on input change
   const handleInputChange = evt => {
+    const { name, value } = evt.target;
+    console.log(name, value);
     setFormValues({
       ...formValues,
-      [evt.target.name]: evt.target.value,
+      [name]: value,
     });
+  };
+
+  const createArray = string => {
+    let item = '';
+    let array = [];
+    for (let i = 0; i < string.length; i++) {
+      const char = string[i];
+      if (char === ',') {
+        array.push(item);
+        item = '';
+      } else if (i === string.length - 1) {
+        item += char;
+        array.push(item);
+      } else {
+        item += string[i];
+      }
+    }
+    return array;
+  };
+
+  const createString = array => {
+    let string = '';
+    for (let i = 0; i < array.length; i++) {
+      if (i < array.length - 1) {
+        string += ',' + array[i];
+      } else {
+        string += array[i];
+      }
+    }
+    return string;
   };
 
   // functions for applying changes to incident
@@ -42,24 +82,51 @@ const CompleteIncident = props => {
     const [month, day, year] = formValues.date.split('/');
     const [date, time] = incident.date.split('T');
     const newDate = `${year}-${month}-${day}T${time}`;
+    let categoriesArray = [];
+    let srcArray = [];
+    if (formValues.categories) {
+      categoriesArray = createArray(formValues.categories);
+    }
+    if (formValues.src) {
+      srcArray = createArray(formValues.src);
+    }
     const updatedIncident = {
       ...formValues,
       date: newDate,
+      categories: categoriesArray,
+      src: srcArray,
     };
-    updateIncidents(updatedIncident);
+    console.log(updatedIncident);
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.server_id}`,
+        updatedIncident
+      )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(res => {
+        setEditing(!editing);
+        setMoreInfo(false);
+        setPageNumber(1);
+        getData();
+      });
   };
 
-  const updateIncidents = incident => {
-    const updatedIncidents = unapprovedIncidents.map(inc => {
-      if (inc.server_id === incident.server_id) {
-        return incident;
-      } else {
-        return inc;
-      }
-    });
-    setUnapprovedIncidents(updatedIncidents);
-    setEditing(!editing);
-  };
+  // const updateIncidents = incident => {
+  //   const updatedIncidents = unapprovedIncidents.map(inc => {
+  //     if (inc.twitter_incident_id === incident.twitter_incident_id) {
+  //       return incident;
+  //     } else {
+  //       return inc;
+  //     }
+  //   });
+  //   setUnapprovedIncidents(updatedIncidents);
+  //   setEditing(!editing);
+  // };
 
   return (
     <div className="complete-incident">
@@ -161,7 +228,7 @@ const CompleteIncident = props => {
               cols="25"
               rows="5"
               onChange={handleInputChange}
-              type="textarea"
+              type="text"
               name="categories"
               value={formValues.categories}
             />
@@ -219,7 +286,7 @@ const CompleteIncident = props => {
               onChange={handleInputChange}
               type="textarea"
               name="src"
-              value={formValues.src.join(' ')}
+              value={formValues.src}
             />
           </>
         )}

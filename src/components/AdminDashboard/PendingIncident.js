@@ -13,6 +13,8 @@ const PendingIncident = props => {
     unapprovedIncidents,
     setUnapprovedIncidents,
     confirmApprove,
+    getData,
+    setPageNumber,
   } = props;
 
   const toggleMoreInfo = () => {
@@ -58,10 +60,11 @@ const PendingIncident = props => {
       </div>
       {moreInfo && (
         <CompleteIncident
-          unapprovedIncidents={unapprovedIncidents}
-          setUnapprovedIncidents={setUnapprovedIncidents}
           incident={incident}
           formattedDate={formattedDate}
+          setMoreInfo={setMoreInfo}
+          getData={getData}
+          setPageNumber={setPageNumber}
         />
       )}
     </div>
