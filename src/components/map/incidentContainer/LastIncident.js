@@ -58,9 +58,15 @@ const LastIncident = () => {
     >
       <div className="card-title">
         <h4>
-          {DateTime.fromISO(lastIncident?.date)
-            .plus({ days: 1 })
-            .toLocaleString(DateTime.DATE_MED)}
+          {lastIncident
+            ? // Prevents a DateTime error from being displayed in the page when
+              // lastIncident is undefined because fetching failed or is incomplete.
+              // Just a temporary fix - We should revise this to clearly communicate
+              // error state to users, but for now here's no ghost error when all is well.
+              DateTime.fromISO(lastIncident?.date)
+                .plus({ days: 1 })
+                .toLocaleString(DateTime.DATE_MED)
+            : ''}
         </h4>
         <h4>
           {lastIncident?.city}, {lastIncident?.state}
