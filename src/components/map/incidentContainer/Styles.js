@@ -1,5 +1,7 @@
 import React from 'react';
 
+// This is barely in use, but was previously applied to ClusterIncident, FilteredIncident, LastIncident for mobile/desktop styles. It wasn't actually being used where I removed it from those files due to a typo in where it was called, so I assume it won't be missed.
+
 export const maxStyles = {
   width: 200,
   height: 50,
@@ -40,7 +42,7 @@ export const incidentCategories = {
 };
 export const categories = {
   display: 'flex',
-  justifyContent: 'flex-start',
+  // justifyContent: 'flex-start',
   justifyContent: 'space-between',
 };
 export const incidentHeader = {

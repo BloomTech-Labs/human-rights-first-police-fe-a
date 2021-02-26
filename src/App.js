@@ -13,6 +13,7 @@ import NavBar from './components/NavBar/NavBar';
 import Stats from './components/Stats/Stats';
 import LoginContainer from './components/Login/LoginContainer';
 import Dashboard from './components/AdminDashboard/AdminDashboard';
+import MapSearch from './components/map/MapSearch';
 
 import useOktaRedux from './hooks/useOktaRedux';
 
@@ -27,6 +28,9 @@ export default function App() {
         <Route exact path="/">
           <div className="Map">
             <MapContainer />
+          </div>
+          <div className="map-menu-background">
+            <MapSearch />
           </div>
           <div className="bottom-section">
             <Stats />

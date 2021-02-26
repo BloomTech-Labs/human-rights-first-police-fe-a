@@ -28,6 +28,11 @@
   flex-wrap: wrap;
 }
 
+.card-title {
+  display: flex;
+  justify-content: space-between;
+}
+
 .card-box {
   width: 30%;
   height: 375px;
