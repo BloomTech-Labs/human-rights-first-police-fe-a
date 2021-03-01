@@ -14,9 +14,7 @@ const AdminDashboard = () => {
 
   //   setting state necessary for pagination
   const [pageNumber, setPageNumber] = useState(1);
-  const [incidentsPerPage, setIncidentsPerPage] = useState(
-    2
-  ); /*<---!!!!!change this eventually!!!!!*/
+  const [incidentsPerPage, setIncidentsPerPage] = useState(5);
   const [currentSet, setCurrentSet] = useState([]);
 
   //   setting state for confirmation buttons of confirming/rejecting
@@ -32,6 +30,7 @@ const AdminDashboard = () => {
   const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
 
   console.log(unapprovedIncidents);
+  console.log(unapprovedIncidents.filter(inc => inc.coordinates));
 
   // getting unapproved/pending incidents from the database
   useEffect(() => {
@@ -66,7 +65,7 @@ const AdminDashboard = () => {
     if (!confirmApprove && !confirmReject) {
       setAllSelected(!allSelected);
       if (!allSelected) {
-        setSelected(currentSet.map(data => data.server_id));
+        setSelected(...currentSet);
       } else {
         setSelected([]);
       }
@@ -75,93 +74,87 @@ const AdminDashboard = () => {
 
   const changeSelected = incident => {
     if (!confirmApprove && !confirmReject) {
-      if (selected.includes(incident.server_id)) {
+      if (selected.includes(incident.id)) {
         const newSelected = selected.filter(id => {
-          return id !== incident.server_id;
+          return id !== incident.id;
         });
         setSelected(newSelected);
       } else {
-        setSelected([...selected, incident.server_id]);
+        setSelected([...selected, incident.id]);
       }
     }
   };
 
   //   approving/rejecting incidents
   const sortApproved = () => {
-    const approvedData = [];
-    const unapprovedData = [];
+    const reviewedData = [];
+    const unreviewedData = [];
     unapprovedIncidents.forEach(dataObj => {
-      if (selected.includes(dataObj.server_id)) {
-        approvedData.push(dataObj);
+      if (selected.includes(dataObj.id)) {
+        reviewedData.push(dataObj);
       } else {
-        unapprovedData.push(dataObj);
+        unreviewedData.push(dataObj);
       }
     });
+    return [reviewedData, unreviewedData];
+  };
 
+  const putIncidents = (incidents, approved) => {
+    const reviewedIncidents = incidents.map(incident => {
+      return {
+        ...incident,
+        approved,
+        pending: false,
+        rejected: !approved,
+      };
+    });
+    // incidents.forEach(incident => {
+    //   let updatedIncident = {
+    //     ...incident,
+    //     approved,
+    //     pending: false
+    //   };
+    //   if (approved) {
+    //     updatedIncident.rejected = false;
+    //   } else {
+    //     updatedIncident.rejected = true;
+    //   }
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
+        reviewedIncidents
+      )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const approveAndRejectHandler = evt => {
+    evt.preventDefault();
+    const [reviewedIncidents, unreviewedIncidents] = sortApproved();
+    putIncidents(reviewedIncidents, confirmApprove);
+    setUnapprovedIncidents(unreviewedIncidents);
     setAllSelected(false);
     setSelected([]);
     setConfirmApprove(false);
     setConfirmReject(false);
-    setUnapprovedIncidents(unapprovedData);
-
-    return approvedData;
-  };
-
-  const putIncidents = (incidents, approved) => {
-    incidents.forEach(incident => {
-      let updatedIncident;
-      if (approved) {
-        updatedIncident = {
-          ...incident,
-          approved,
-          pending: false,
-          rejected: false,
-        };
-      } else {
-        updatedIncident = {
-          ...incident,
-          approved,
-          pending: false,
-          rejected: true,
-        };
-      }
-      axios
-        .put(
-          `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.server_id}`,
-          updatedIncident
-        )
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    });
-  };
-
-  const approveHandler = evt => {
-    evt.preventDefault();
-    const reviewedIncidents = sortApproved();
-    putIncidents(reviewedIncidents, true);
-    if (
-      pageNumber >
-      Math.ceil(unapprovedIncidents.length / incidentsPerPage) - 1
-    ) {
+    if (pageNumber > lastPage) {
       setPageNumber(pageNumber - 1);
     }
   };
 
-  const rejectHandler = evt => {
-    evt.preventDefault();
-    const reviewedIncidents = sortApproved();
-    putIncidents(reviewedIncidents, false);
-    if (
-      pageNumber >
-      Math.ceil(unapprovedIncidents.length / incidentsPerPage) - 1
-    ) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
+  // const rejectHandler = evt => {
+  //   evt.preventDefault();
+  //   const reviewedIncidents = sortApproved();
+  //   putIncidents(reviewedIncidents, false);
+  //   if (pageNumber > lastPage - 1) {
+  //     setPageNumber(pageNumber - 1);
+  //   }
+  // };
 
   // toggling confirmation of approve/reject buttons
   const confirmApproveHandler = evt => {
@@ -268,7 +261,7 @@ const AdminDashboard = () => {
                 </button>
               ) : (
                 <button
-                  onClick={confirmApprove ? approveHandler : rejectHandler}
+                  onClick={approveAndRejectHandler}
                   className={
                     selected.length > 0
                       ? 'approve-reject-select'
@@ -321,7 +314,6 @@ const AdminDashboard = () => {
                 name="per-page-selector"
                 onChange={handlePerPageChange}
               >
-                <option value="2">2</option>
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
@@ -346,7 +338,7 @@ const AdminDashboard = () => {
                 <PendingIncident
                   getData={getData}
                   confirmApprove={confirmApprove}
-                  key={incident.server_id}
+                  key={incident.incident_id}
                   incident={incident}
                   selected={selected}
                   changeSelected={changeSelected}
@@ -386,5 +378,4 @@ const AdminDashboard = () => {
     </div>
   );
 };
-//remove this comment
 export default AdminDashboard;

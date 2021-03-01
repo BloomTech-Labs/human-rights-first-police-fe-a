@@ -5,31 +5,27 @@ import axios from 'axios';
 import Source from './Source';
 
 const initialFormValues = {
-  city: '',
+  approved: true,
+  coordinates: null,
   date: '',
   desc: '',
-  empty_hand_hard: false,
-  empty_hand_soft: false,
-  less_lethal_methods: true,
-  lethal_force: false,
-  src: [],
-  state: '',
-  title: '',
-  categories: [],
-  uncategorized: false,
-  verbalization: false,
+  force_rank: '',
+  geo: null,
+  language: 'en',
+  pending: false,
+  rejected: false,
+  src: '',
+  user_description: '',
+  user_location: '',
+  user_name: '',
 };
 
 const AddIncident = props => {
   // setting state for form management
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [amPmValue, setAmPmValue] = useState(false);
-  const [address, setAddress] = useState('');
-  const [srcValue, setSrcValue] = useState('');
-  const [time, setTime] = useState('');
+  const [twitterSrc, setTwitterSrc] = useState('');
 
   //   setting state for all sources/categories added
-  const [sources, setSources] = useState([]);
 
   // setting state for add incident pop up
   const [modalText, setModalText] = useState('');
@@ -42,11 +38,7 @@ const AddIncident = props => {
   const getLatAndLong = new Promise((resolve, reject) => {
     axios
       .get(
-        `http://open.mapquestapi.com/geocoding/v1/address?key=${
-          process.env.REACT_APP_MAPQUEST_API_KEY
-        }&location=${address}${formValues.address ? ' ' : ''}${
-          formValues.city
-        }, ${formValues.state}`
+        `http://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAPQUEST_API_KEY}&location=${formValues.location}`
       )
       .then(res => {
         const { lat, lng } = res.data.results[0].locations[0].latLng;
@@ -93,9 +85,8 @@ const AddIncident = props => {
     if (!formValues.date) {
       newDateString = new Date().toJSON();
     } else {
-      const formattedDate = formatDate(formValues.date, amPmValue);
-      const formattedTime = formatTime();
-      newDateString = formattedDate + formattedTime;
+      const formattedDate = formatDate(formValues.date);
+      newDateString = formattedDate + 'T00:00:00.000Z';
     }
     // getting long and lat
     getLatAndLong
@@ -109,7 +100,6 @@ const AddIncident = props => {
           date: newDateString,
           pending: false,
           rejected: false,
-          src: sources,
         };
         postIncident(newIncident);
       })
@@ -123,46 +113,17 @@ const AddIncident = props => {
       });
   };
 
-  // adding and removing sources
-  const removeSrc = src => {
-    const updatedSources = sources.filter(source => {
-      return src !== source;
-    });
-    setSources(updatedSources);
-  };
-
-  const handleAddSrc = evt => {
-    evt.preventDefault();
-    if (sources.includes(srcValue)) {
-      setSrcValue('');
-      return;
-    } else {
-      setSources([...sources, srcValue]);
-      setSrcValue('');
-    }
-  };
-
   //   form management functions
   const handleChange = evt => {
     const { name, value } = evt.target;
-    if (name === 'src') {
-      setSrcValue(value);
-    } else if (name === 'time') {
-      setTime(value);
-    } else if (name === 'ampm') {
-      setAmPmValue(value);
-    } else if (name === 'address') {
-      setAddress(value);
+    if (name === 'tweet') {
+      setTwitterSrc(value);
     } else {
       setFormValues({
         ...formValues,
         [name]: value,
       });
     }
-  };
-
-  const handleSrcChange = evt => {
-    setSrcValue(evt.target.value);
   };
 
   const handleCancel = () => {
@@ -176,31 +137,6 @@ const AddIncident = props => {
     return `${year}-${month}-${day}`;
   };
 
-  const formatTime = () => {
-    if (!time) {
-      return 'T00:00:00.000Z';
-    } else {
-      let [hour, minute] = time.split(/\W/);
-
-      if (hour.length === 1 && amPmValue === 'am') {
-        hour = '0' + hour;
-      }
-      if (minute.length === 1) {
-        minute = '0' + minute;
-      }
-      return `T${
-        amPmValue === 'pm' ? Number(hour) + 12 + '' : hour
-      }:${minute}:00.000Z`;
-    }
-  };
-
-  //   clear the time input field/am-pm
-  const handleTimeCancel = evt => {
-    evt.preventDefault();
-    setTime('');
-    setAmPmValue(false);
-  };
-
   return (
     <Modal
       title="Title"
@@ -210,35 +146,13 @@ const AddIncident = props => {
       onCancel={handleCancel}
     >
       <form>
-        <label htmlFor="city">
-          City
+        <label htmlFor="location">
+          Location
           <br />
           <input
             type="text"
-            name="city"
-            value={formValues.city}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label htmlFor="state">
-          State
-          <br />
-          <input
-            type="text"
-            name="state"
-            value={formValues.state}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <label htmlFor="address">
-          Street Address
-          <br />
-          <input
-            type="text"
-            name="address"
-            value={address}
+            name="location"
+            value={formValues.location}
             onChange={handleChange}
           />
         </label>
@@ -254,38 +168,6 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label htmlFor="time">
-          Time Relative to Location (XX:XX)
-          <br />
-          <input type="text" name="time" value={time} onChange={handleChange} />
-          {time && (
-            <>
-              <br />
-              <label htmlFor="ampm">
-                A.M.
-                <input
-                  type="radio"
-                  value="am"
-                  onChange={handleChange}
-                  name="ampm"
-                />
-              </label>
-              <br />
-              <label htmlFor="ampm">
-                P.M.
-                <input
-                  type="radio"
-                  value="pm"
-                  onChange={handleChange}
-                  name="ampm"
-                />
-              </label>
-              <br />
-              <button onClick={handleTimeCancel}>Cancel</button>
-            </>
-          )}
-        </label>
-        <br />
         <label htmlFor="desc">
           Description
           <br />
@@ -297,43 +179,28 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label htmlFor="title">
-          Title for This Incident Report
-          <br />
+        <label htmlFor="tweet">
+          Tweet URL
           <input
             type="text"
-            name="title"
-            value={formValues.title}
+            value={twitterSrc}
             onChange={handleChange}
+            name="tweet"
           />
         </label>
-        <br />
         <label htmlFor="src">
-          Link(s) to Media Source
+          Additional Source
           <br />
           <input
             type="text"
             name="src"
-            value={srcValue}
-            onChange={handleSrcChange}
+            value={formValues.src}
+            onChange={handleChange}
           />
-          <br />
-          <button
-            className="add-src"
-            onClick={handleAddSrc}
-            disabled={!srcValue}
-          >
-            Add Source
-          </button>
-          {sources.map(source => {
-            return (
-              <Source source={source} removeSrc={removeSrc} key={source} />
-            );
-          })}
         </label>
         <br />
       </form>
-      {modalText ? modalText : ''}
+      {modalText || ''}
     </Modal>
   );
 };
