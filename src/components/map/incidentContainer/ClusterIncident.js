@@ -66,6 +66,7 @@ const ClusterIncident = ({ incidents, i }) => {
       >
         <h2>{incidents.properties.incident?.title}</h2>
       </div>
+      <h4>{incidents.properties.incident?.force_rank}</h4>
       {incidents.properties.incident?.categories.map(cat => {
         return (
           <Tag key={nanoid()}>
@@ -74,10 +75,9 @@ const ClusterIncident = ({ incidents, i }) => {
         );
       })}
       <div className="map-incident-info" style={renderStyles(incidentInfo)}>
-        <br />
-        <h3 className="incident-discription">
+        <p className="incident-description">
           {incidents.properties.incident?.desc}
-        </h3>
+        </p>
         <Popover
           content={sourceListHelper(incidents.properties.incident)}
           placement="rightTop"

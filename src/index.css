@@ -220,6 +220,10 @@ section ul {
   margin: 15px 0;
 }
 
+.card-force {
+  margin-bottom: 12px;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -250,6 +254,14 @@ div.HeaderInfo {
 
 h3.incident-container {
   color: blue;
+}
+
+.incidentHeader h2 {
+  line-height: normal;
+}
+
+.incident-description {
+  margin-top: 6px;
 }
 
 .cluster-marker {
@@ -310,7 +322,7 @@ h3.incident-container {
   }
 }
 .map-menu {
-  background-color: #fafafa;
+  background-color: white;
   padding-left: 2%;
   width: 375px;
 }
@@ -323,13 +335,6 @@ button.ant-btn.ant-btn-primary.ant-input-search-button {
   visibility: visible;
   background-color: white;
   color: black;
-}
-
-.icon-img {
-  width: 50px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  z-index: 1;
 }
 
 .ant-collapse {
@@ -370,7 +375,7 @@ div.ant-collapse-header {
 
 div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
   padding: 5px 0px 5px 0px;
-  font-size: 1.5rem;
+  font-size: 0.6rem;
   text-align: left;
   margin-left: 15px;
   font-weight: 500;
@@ -379,9 +384,6 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
 @media (max-width: 800px) {
   div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
     font-size: 1.1rem;
-  }
-
-  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
     padding: 3px 0px 1px 0px;
     font-size: 0.9rem;
     text-align: left;
@@ -389,14 +391,6 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
     font-weight: 500;
   }
 }
-.incident-location {
-  font-weight: lighter;
-}
-
-.incident-date {
-  font-weight: lighter;
-}
-
 .incident-container {
   display: flex;
   flex-direction: row;
