@@ -1,11 +1,16 @@
 // entire component
 
 .dashboard-container {
-  width: 98%;
+  padding-top: 3%;
+  width: 90%;
   margin: auto;
 }
 
 // top of component
+
+#admin-dashboard-title {
+  margin-bottom: 2%;
+}
 
 .statboxes {
   display: flex;
@@ -15,12 +20,14 @@
 
 .statbox {
   border: 2px solid #e3e8ee;
-  padding: 1%;
-  width: 18%;
+  padding: 2%;
+  width: 99%;
   color: #3c4257;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 400;
   margin-right: 20px;
+  margin-bottom: 1%;
+  background-image: linear-gradient(to right, rgb(247, 250, 252), white);
 }
 
 // dashboard
@@ -49,15 +56,17 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 2%;
 }
 
 #create-incident-button {
   border: 1px solid #e3e8ee;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(82, 105, 211);
   border-width: 2px;
   border-style: outset;
-  border-radius: 5px;
-  color: rgb(60, 66, 87);
+  border-radius: 7.5px;
+  color: white;
+  height: 45px;
 }
 
 .confirmation-message {
@@ -213,7 +222,7 @@ h4 {
 
 .dashboard-top-page-number {
   display: flex;
-  width: 75%;
+  width: 71%;
   justify-content: flex-end;
 }
 

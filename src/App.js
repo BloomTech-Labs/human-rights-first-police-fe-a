@@ -22,7 +22,7 @@ export default function App() {
   useOktaRedux();
 
   return (
-    <>
+    <div>
       <NavBar />
       <Switch>
         <Route exact path="/">
@@ -55,6 +55,6 @@ export default function App() {
         <OktaRoute path="/admin-dashboard" component={Dashboard} />
         <Route path="/implicit/callback" component={LoginCallback} />
       </Switch>
-    </>
+    </div>
   );
 }
