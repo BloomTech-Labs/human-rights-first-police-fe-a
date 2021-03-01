@@ -444,8 +444,13 @@ div.timeline-container {
 }
 
 .dashboard-container {
-  width: 98%;
+  padding-top: 3%;
+  width: 90%;
   margin: auto;
+}
+
+#admin-dashboard-title {
+  margin-bottom: 2%;
 }
 
 .statboxes {
@@ -456,12 +461,14 @@ div.timeline-container {
 
 .statbox {
   border: 2px solid #e3e8ee;
-  padding: 1%;
-  width: 18%;
+  padding: 2%;
+  width: 99%;
   color: #3c4257;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 400;
   margin-right: 20px;
+  margin-bottom: 1%;
+  background-image: linear-gradient(to right, #f7fafc, white);
 }
 
 #select-all-label {
@@ -486,15 +493,17 @@ div.timeline-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 2%;
 }
 
 #create-incident-button {
   border: 1px solid #e3e8ee;
-  background-color: white;
+  background-color: #5269d3;
   border-width: 2px;
   border-style: outset;
-  border-radius: 5px;
-  color: #3c4257;
+  border-radius: 7.5px;
+  color: white;
+  height: 45px;
 }
 
 .confirmation-message {
@@ -646,7 +655,7 @@ h4 {
 
 .dashboard-top-page-number {
   display: flex;
-  width: 75%;
+  width: 71%;
   justify-content: flex-end;
 }
 
@@ -796,17 +805,65 @@ h4 {
 form {
   text-align: center;
   margin: auto;
+  width: 100%;
+  color: #3c4257;
+  margin: 0 auto;
+}
+
+input {
+  border: 1px solid #e3e8ee;
+  border-radius: 5px;
 }
 
 form label {
   font-weight: bold;
 }
 
+.add-incident-label {
+  font-weight: 400;
+  color: #3c4257;
+}
+
+.add-incident-label label {
+  margin-left: 0.5%;
+}
+
+.add-src {
+  border: 1px solid #e3e8ee;
+  font-weight: 400;
+  margin-top: 1%;
+  background-color: white;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
+  color: #3c4257;
+}
+
+#pm-input {
+  margin-left: 1%;
+}
+
 .source {
-  border: solid black 1px;
-  width: 60%;
+  border: 1px solid #e3e8ee;
+  width: 100%;
   margin: auto;
   padding-bottom: 1%;
+  margin-top: 1%;
+}
+
+.remove-src {
+  border: 1px solid #e3e8ee;
+  font-weight: 400;
+  margin-top: 1%;
+  background-color: white;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
+  color: #3c4257;
+  margin-bottom: 1%;
+}
+
+.source-text-toggled {
   margin-top: 1%;
 }
 

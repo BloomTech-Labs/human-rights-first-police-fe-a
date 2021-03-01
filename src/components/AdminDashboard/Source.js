@@ -11,7 +11,7 @@ const Source = props => {
 
   return (
     <div className="source">
-      <p>{source}</p>
+      <p className="source-text-toggled">{source}</p>
       <button className="remove-src" onClick={removeSrcHandler}>
         Remove Source
       </button>

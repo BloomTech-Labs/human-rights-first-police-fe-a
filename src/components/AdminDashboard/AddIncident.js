@@ -51,23 +51,27 @@ const AddIncident = props => {
     const newIncident = {
       ...formValues,
       date: newDateString,
-      pending: false,
+      pending: true,
       rejected: false,
     };
     console.log(newIncident);
     setConfirmLoading(true);
-    // axios.post(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`, newIncident)
-    // .then(res=>{
-    //     setModalText('New incident added successfully');
-    //     setTimeout(() => {
-    //         setVisible(false);
-    //         setConfirmLoading(false);
-    //       }, 750);
-    // })
-    // .catch(err=>{
-    //     setModalText(err.message);
-    //     console.log(err);
-    // });
+    axios
+      .post(
+        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
+        newIncident
+      )
+      .then(res => {
+        setModalText('New incident added successfully');
+        setTimeout(() => {
+          setVisible(false);
+          setConfirmLoading(false);
+        }, 750);
+      })
+      .catch(err => {
+        setModalText(err.message);
+        console.log(err);
+      });
 
     console.log(newIncident);
 
@@ -156,14 +160,14 @@ const AddIncident = props => {
 
   return (
     <Modal
-      title="Title"
+      title="Add a source"
       visible={visible}
       onOk={handleOk}
       confirmLoading={confirmLoading}
       onCancel={handleCancel}
     >
       <form>
-        <label htmlFor="city">
+        <label className="add-incident-label" htmlFor="city">
           City
           <br />
           <input
@@ -174,7 +178,7 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label htmlFor="state">
+        <label className="add-incident-label" htmlFor="state">
           State
           <br />
           <input
@@ -185,7 +189,7 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label htmlFor="date">
+        <label className="add-incident-label" htmlFor="date">
           Date (Month/Day/Year)
           <br />
           <input
@@ -196,39 +200,41 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label htmlFor="time">
+        <label className="add-incident-label" htmlFor="time">
           Time Relative to Location (XX:XX)
           <br />
           <input type="text" name="time" value={time} onChange={handleChange} />
           {time && (
             <>
               <br />
-              <label htmlFor="ampm">
+              <input
+                type="radio"
+                value="am"
+                onChange={handleChange}
+                name="ampm"
+              />
+              <label className="add-incident-label" htmlFor="ampm">
                 A.M.
-                <input
-                  type="radio"
-                  value="am"
-                  onChange={handleChange}
-                  name="ampm"
-                />
               </label>
-              <br />
-              <label htmlFor="ampm">
+              <input
+                id="pm-input"
+                type="radio"
+                value="pm"
+                onChange={handleChange}
+                name="ampm"
+              />
+              <label className="add-incident-label" htmlFor="ampm">
                 P.M.
-                <input
-                  type="radio"
-                  value="pm"
-                  onChange={handleChange}
-                  name="ampm"
-                />
               </label>
               <br />
-              <button onClick={handleTimeCancel}>Cancel</button>
+              <button className="add-src" onClick={handleTimeCancel}>
+                Cancel
+              </button>
             </>
           )}
         </label>
         <br />
-        <label htmlFor="desc">
+        <label className="add-incident-label" htmlFor="desc">
           Description
           <br />
           <input
@@ -239,7 +245,7 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label htmlFor="title">
+        <label className="add-incident-label" htmlFor="title">
           Title for This Incident Report
           <br />
           <input
@@ -250,7 +256,7 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label htmlFor="src">
+        <label className="add-incident-label" htmlFor="src">
           Link(s) to Media Source
           <br />
           <input

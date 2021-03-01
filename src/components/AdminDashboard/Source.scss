@@ -1,7 +1,23 @@
 .source {
-  border: solid black 1px;
-  width: 60%;
+  border: 1px solid #e3e8ee;
+  width: 100%;
   margin: auto;
   padding-bottom: 1%;
+  margin-top: 1%;
+}
+
+.remove-src {
+  border: 1px solid #e3e8ee;
+  font-weight: 400;
+  margin-top: 1%;
+  background-color: white;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
+  color: #3c4257;
+  margin-bottom: 1%;
+}
+
+.source-text-toggled {
   margin-top: 1%;
 }
