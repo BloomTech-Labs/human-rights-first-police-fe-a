@@ -146,7 +146,7 @@ const CompleteIncident = props => {
             <p className="complete-incident-dropdown-titles-bold">
               Categories:
             </p>
-            <p>{incident.categories.join(' ')}</p>
+            <p>{incident.categories?.join(' ')}</p>
           </div>
         ) : (
           <>
