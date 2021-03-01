@@ -51,6 +51,7 @@ const IncidentsCard = props => {
           <h4>{cityState}</h4>
         </div>
         <h3>{props.incident.title}</h3>
+        <h5 className="card-force">{props.incident.force_rank}</h5>
         {props.incident.categories.map(cat => {
           return <Tag key={nanoid()}>{cat}</Tag>;
         })}

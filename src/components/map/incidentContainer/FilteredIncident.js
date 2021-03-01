@@ -70,6 +70,7 @@ const FilteredIncident = () => {
             >
               <h2>{data?.title}</h2>
             </div>
+            <h4>{data?.force_rank}</h4>
             {data?.categories.map(cat => {
               return (
                 <Tag key={nanoid()}>
@@ -82,8 +83,7 @@ const FilteredIncident = () => {
               className="map-incident-info"
               style={renderStyles(incidentInfo)}
             >
-              <br />
-              <h3 className="incident-discription">{data?.desc}</h3>
+              <p className="incident-description">{data?.desc}</p>
               <Popover content={sourceListHelper(data)} placement="rightTop">
                 <Button
                   type="primary"

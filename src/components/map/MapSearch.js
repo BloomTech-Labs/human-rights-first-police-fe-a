@@ -33,7 +33,7 @@ const MapSearch = () => {
     <div>
       <div className="map-menu">
         <Collapse
-          style={{ color: 'white' }}
+          style={{ color: 'white', paddingBottom: '10px' }}
           defaultActiveKey={['1']}
           onChange={callback}
           bordered={false}
@@ -43,8 +43,9 @@ const MapSearch = () => {
         >
           <Panel
             bordered={false}
-            style={{ color: 'white', padding: '6px' }}
+            style={{ color: 'white' }}
             key="1"
+            header=" &nbsp; "
           >
             <div className="incident-content">
               <List>
