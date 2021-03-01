@@ -49,9 +49,9 @@ export default function TimelineItems({ details }) {
     <TimelineItem
       key={nanoid()}
       description={details.desc}
-      dateText={DateTime.fromISO(details.date).toLocaleString(
-        DateTime.DATE_FULL
-      )}
+      dateText={DateTime.fromISO(details.date)
+        .plus({ days: 1 })
+        .toLocaleString(DateTime.DATE_FULL)}
       style={{ color: '#BC541E' }}
       dateInnerStyle={{ color: 'white', backgroundColor: '#003767' }}
     >
@@ -63,6 +63,7 @@ export default function TimelineItems({ details }) {
           <h3>{details.title}</h3>
           {isInfoVisible ? (
             <div>
+              <h5>{details.force_rank}</h5>
               <div>
                 {details.categories.map(element => (
                   <Tag key={nanoid()}>
