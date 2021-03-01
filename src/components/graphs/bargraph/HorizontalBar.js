@@ -4,11 +4,11 @@ import { useIncidents } from '../../../hooks/legacy/useIncidents';
 import { newData } from '../../map/GetFunctions';
 
 const Horizontalbar = () => {
-  const [emptyHandSoft, setEmptyHandSoft] = useState();
-  const [emptyHandHard, setEmptyHandHard] = useState();
-  const [officerPresence, setOfficerPresence] = useState();
-  const [verbalization, setVerbalization] = useState();
-  const [lessLethalMethods, setLessLethalMethods] = useState();
+  const [noPresence, setNoPresence] = useState();
+  const [policePresence, setPolicePresence] = useState();
+  const [emptyHand, setEmptyHand] = useState();
+  const [bluntForce, setBluntForce] = useState();
+  const [chemicalElectric, setChemicalElectric] = useState();
   const [lethalForce, setLethalForce] = useState();
 
   const incidentsQuery = useIncidents();
@@ -19,12 +19,12 @@ const Horizontalbar = () => {
 
   const data = {
     labels: [
-      'Empty-Hand-Soft',
-      'Empty-Hand-Hard',
-      'Officer Presence',
-      'Verbalization',
-      'Less-Lethal Methods',
-      'Lethal-force',
+      'Rank 0 - No Police Presence',
+      'Rank 1 - Police Presence',
+      'Rank 2 - Empty-hand',
+      'Rank 3 - Blunt Force',
+      'Rank 4 - Chemical & Electric',
+      'Rank 5 - Lethal Force',
     ],
     datasets: [
       {
@@ -34,41 +34,46 @@ const Horizontalbar = () => {
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [emptyHandSoft, 59, 80, 81, 56, 55, 40],
+        data: [
+          noPresence,
+          policePresence,
+          emptyHand,
+          bluntForce,
+          chemicalElectric,
+          lethalForce,
+        ],
       },
     ],
   };
 
   useEffect(() => {
-    const emptyhandsoftTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+    const noPresenceTotal = dataList.filter((x, index) => {
+      return x.force_rank === 'Rank 0 - No Police Presence';
     }).length;
-    //   const emptyhandsoftLength = emptyhandsoftTotal.length;
-    setEmptyHandSoft(emptyhandsoftTotal);
+    setNoPresence(noPresenceTotal);
 
-    const emptyHandHardTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+    const policePresenceTotal = dataList.filter((x, index) => {
+      return x.force_rank === 'Rank 1 - Police Presence';
     }).length;
+    setPolicePresence(policePresenceTotal);
 
-    setEmptyHandHard(emptyHandHardTotal);
-
-    const officerPresenceTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+    const emptyHandTotal = dataList.filter((x, index) => {
+      return x.force_rank === 'Rank 2 - Empty-hand';
     }).length;
-    setOfficerPresence(officerPresenceTotal);
+    setEmptyHand(emptyHandTotal);
 
-    const verbalizationTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+    const bluntForceTotal = dataList.filter((x, index) => {
+      return x.force_rank === 'Rank 3 - Blunt Force';
     }).length;
-    setVerbalization(verbalizationTotal);
+    setBluntForce(bluntForceTotal);
 
-    const lessLethalMethodsTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+    const chemicalElectricTotal = dataList.filter((x, index) => {
+      return x.force_rank === 'Rank 4 - Chemical & Electric';
     }).length;
-    setLessLethalMethods(lessLethalMethodsTotal);
+    setChemicalElectric(chemicalElectricTotal);
 
     const lethalforceMethodsTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+      return x.force_rank === 'Rank 5 - Lethal Force';
     }).length;
     setLethalForce(lethalforceMethodsTotal);
   }, [dataList]);
