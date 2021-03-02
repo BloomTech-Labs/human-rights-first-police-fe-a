@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 
-import Horizontalbar from '../bargraph/HorizontalBar';
 import colorShader from './colorShader';
 
 const incrementor = (incident, type, types) => {
@@ -120,7 +119,6 @@ const PieGraph = ({ data, usState }) => {
       <Pie data={graphData} />
       {/* Key is removed pending correct copy from the DS team about the new categories */}
       {/* <Key /> */}
-      <Horizontalbar />
     </>
   );
 };

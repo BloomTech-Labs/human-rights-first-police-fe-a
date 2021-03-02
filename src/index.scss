@@ -31,3 +31,13 @@
   flex-wrap: wrapgit;
   // ^ This seems to be a typo?
 }
+
+.bottom-section-wrap {
+  display: flex;
+  justify-content: space-around;
+}
+
+.horizontal-graph {
+  width: 42.5vw;
+  margin-top: 61px;
+}

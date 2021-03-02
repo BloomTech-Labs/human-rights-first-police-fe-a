@@ -49,15 +49,16 @@ nav {
   width: 100%;
 }
 
+.active-nav-link {
+  font-weight: bold;
+}
+
 .layout {
   border: none;
 }
 .layout a {
   color: white !important;
   font-size: 1.2rem;
-}
-.layout a:focus {
-  font-weight: bold;
 }
 
 .undefined-submenu {
@@ -220,6 +221,10 @@ section ul {
   margin: 15px 0;
 }
 
+.card-force {
+  margin-bottom: 12px;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -250,6 +255,14 @@ div.HeaderInfo {
 
 h3.incident-container {
   color: blue;
+}
+
+.incidentHeader h2 {
+  line-height: normal;
+}
+
+.incident-description {
+  margin-top: 6px;
 }
 
 .cluster-marker {
@@ -310,7 +323,7 @@ h3.incident-container {
   }
 }
 .map-menu {
-  background-color: #fafafa;
+  background-color: white;
   padding-left: 2%;
   width: 375px;
 }
@@ -323,13 +336,6 @@ button.ant-btn.ant-btn-primary.ant-input-search-button {
   visibility: visible;
   background-color: white;
   color: black;
-}
-
-.icon-img {
-  width: 50px;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  z-index: 1;
 }
 
 .ant-collapse {
@@ -370,7 +376,7 @@ div.ant-collapse-header {
 
 div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
   padding: 5px 0px 5px 0px;
-  font-size: 1.5rem;
+  font-size: 0.6rem;
   text-align: left;
   margin-left: 15px;
   font-weight: 500;
@@ -379,9 +385,6 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
 @media (max-width: 800px) {
   div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
     font-size: 1.1rem;
-  }
-
-  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
     padding: 3px 0px 1px 0px;
     font-size: 0.9rem;
     text-align: left;
@@ -389,14 +392,6 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
     font-weight: 500;
   }
 }
-.incident-location {
-  font-weight: lighter;
-}
-
-.incident-date {
-  font-weight: lighter;
-}
-
 .incident-container {
   display: flex;
   flex-direction: row;
@@ -450,8 +445,13 @@ div.timeline-container {
 }
 
 .dashboard-container {
-  width: 98%;
+  padding-top: 3%;
+  width: 90%;
   margin: auto;
+}
+
+#admin-dashboard-title {
+  margin-bottom: 2%;
 }
 
 .statboxes {
@@ -462,12 +462,14 @@ div.timeline-container {
 
 .statbox {
   border: 2px solid #e3e8ee;
-  padding: 1%;
-  width: 18%;
+  padding: 2%;
+  width: 99%;
   color: #3c4257;
   border-radius: 5px;
-  font-weight: 500;
+  font-weight: 400;
   margin-right: 20px;
+  margin-bottom: 1%;
+  background-image: linear-gradient(to right, #f7fafc, white);
 }
 
 .dashboard-top-flex {
@@ -519,15 +521,17 @@ div.timeline-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 2%;
 }
 
 #create-incident-button {
   border: 1px solid #e3e8ee;
-  background-color: white;
+  background-color: #003767;
   border-width: 2px;
   border-style: outset;
-  border-radius: 5px;
-  color: #3c4257;
+  border-radius: 7.5px;
+  color: white;
+  height: 45px;
 }
 
 .confirmation-message {
@@ -640,7 +644,7 @@ h4 {
 
 .dashboard-top-page-number {
   display: flex;
-  width: 75%;
+  width: 71%;
   justify-content: flex-end;
 }
 
@@ -803,17 +807,65 @@ p.page-number-display {
 form {
   text-align: center;
   margin: auto;
+  width: 100%;
+  color: #3c4257;
+  margin: 0 auto;
+}
+
+input {
+  border: 1px solid #e3e8ee;
+  border-radius: 5px;
 }
 
 form label {
   font-weight: bold;
 }
 
+.add-incident-label {
+  font-weight: 400;
+  color: #3c4257;
+}
+
+.add-incident-label label {
+  margin-left: 0.5%;
+}
+
+.add-src {
+  border: 1px solid #e3e8ee;
+  font-weight: 400;
+  margin-top: 1%;
+  background-color: white;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
+  color: #3c4257;
+}
+
+#pm-input {
+  margin-left: 1%;
+}
+
 .source {
-  border: solid black 1px;
-  width: 60%;
+  border: 1px solid #e3e8ee;
+  width: 100%;
   margin: auto;
   padding-bottom: 1%;
+  margin-top: 1%;
+}
+
+.remove-src {
+  border: 1px solid #e3e8ee;
+  font-weight: 400;
+  margin-top: 1%;
+  background-color: white;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
+  color: #3c4257;
+  margin-bottom: 1%;
+}
+
+.source-text-toggled {
   margin-top: 1%;
 }
 
@@ -829,6 +881,16 @@ form label {
   display: flex;
   justify-content: space-around;
   flex-wrap: wrapgit;
+}
+
+.bottom-section-wrap {
+  display: flex;
+  justify-content: space-around;
+}
+
+.horizontal-graph {
+  width: 42.5vw;
+  margin-top: 61px;
 }
 
 /*# sourceMappingURL=index.css.map */

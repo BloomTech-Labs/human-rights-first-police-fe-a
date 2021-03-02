@@ -173,26 +173,28 @@ const AdminDashboard = () => {
     setAdding(true);
   };
 
+  console.log(unapprovedIncidents);
+
   return (
     <div className="dashboard-container">
-      <h2>Admin Dashboard</h2>
-
-      <h3>Statistics</h3>
+      <h2 id="admin-dashboard-title">Admin Dashboard</h2>
 
       <div className="statboxes">
         <div className="statbox">
-          <p>{unapprovedIncidents.length} unapproved incidents</p>
-        </div>
-        <div className="statbox">
-          <p>stats</p>
-        </div>
-        <div className="statbox">
-          <p>STATS!</p>
+          <p>
+            There are currently {unapprovedIncidents.length} unapproved
+            incidents are awaiting your review. 'Select All' to approve all
+            incidents with the click of a button or alternatively, select 'More
+            Info' to inspect, edit, approve or disapprove incidents 1 by 1.{' '}
+          </p>
+          <p>
+            You can manually create an incident by using the 'Create New
+            Incident' button
+          </p>
         </div>
       </div>
       <div className="confirmation-message-div">
         <div className="incidents-wrap">
-          <h3>Incidents</h3>
           <button id="create-incident-button" onClick={toggleAddIncident}>
             Create New Incident
           </button>
