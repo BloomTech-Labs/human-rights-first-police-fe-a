@@ -1,110 +1,190 @@
-import React, { useState, useContext, useEffect } from 'react';
-import { useIncidents } from '../../../hooks/legacy/useIncidents';
-import {
-  filterDataByState,
-  filterDataByDate,
-  createRange,
-} from '../../incidents/IncidentFilter';
-import { Input, DatePicker } from 'antd';
-import { newData } from '../GetFunctions';
-
-import { DateTime } from 'luxon';
-
+import { useEffect, useMemo } from 'react';
+// State
 import { useSelector, useDispatch } from 'react-redux';
 import { mapActions } from '../../../store';
-
-const { Search } = Input;
+// Mapbox
+import useViewport from '../../../hooks/useViewport';
+import { FlyToInterpolator, WebMercatorViewport } from 'react-map-gl';
+// Utility
+import axios from 'axios';
+import moment from 'moment';
+import { nanoid } from 'nanoid';
+import _ from 'lodash';
+// Components
+import { AutoComplete, DatePicker } from 'antd';
+const { Option } = AutoComplete;
 const { RangePicker } = DatePicker;
 
-const SearchHeader = () => {
+const {
+  setSearchQuery,
+  setSearchGeoRes,
+  setSearchGeoBounds,
+  setSearchDateRange,
+  resetViewport,
+  resetSearchGeo,
+  resetSearchDate,
+  setFilterData,
+} = mapActions;
+
+const geocode = axios.create({
+  baseURL: 'https://api.mapbox.com/geocoding/v5/mapbox.places/',
+  params: {
+    country: 'us',
+    types: 'region,postcode,district,place,locality,neighborhood',
+    access_token: process.env.REACT_APP_MAPBOX_TOKEN,
+  },
+});
+
+// Configure how many characters after which the app begins querying Mapbox geocoding autocomplete
+const MIN_QUERY_LENGTH = 3;
+
+export default function SearchHeader() {
   const dispatch = useDispatch();
-  const setFilterDataList = d => dispatch(mapActions.setFilterData(d));
-  const dates = useSelector(state => state.map.dates);
-  const setDates = d => dispatch(mapActions.setDates(d));
-  const setSearchText = t => dispatch(mapActions.setSearch(t));
+  const incidents = useSelector(state => state.incident);
+  const incidentsArray = useMemo(() => Object.values(incidents), [incidents]);
 
-  const [usState, setUsState] = useState(null);
-  // load incident data using custom react-query hook (see state >> query_hooks)
-  const incidentsQuery = useIncidents();
+  const searchDateRange = useSelector(state => state.map.search.dateRange);
 
-  const incidents =
-    incidentsQuery.data && !incidentsQuery.isError ? incidentsQuery.data : [];
-  // console.log(incidentsQuery)
+  // ** Filter by location **
+  const query = useSelector(state => state.map.search.query);
+  const geoRes = useSelector(state => state.map.search.geoRes); // Mapbox autocomplete response data
+  const searchGeoBounds = useSelector(state => state.map.search.geoBounds); // Coordinate boundaries for filtering incidents
+  const { viewport, setViewport } = useViewport();
 
-  const dataList = newData(incidents);
-
-  //List everything to exclude with filtering
-  const exclude = ['incident_id'];
-  //////////// Set up Search Filter
-  const filterData = value => {
-    const lowercasedValue = value.toLowerCase().trim();
-    if (lowercasedValue === '') setFilterDataList([]);
-    else {
-      const filteredData = dataList.filter(item => {
-        return Object.keys(item).some(key =>
-          exclude.includes(key)
-            ? false
-            : item[key]
-                .toString()
-                .toLowerCase()
-                .includes(lowercasedValue)
-        );
-      });
-
-      setFilterDataList(filteredData);
+  const handleChange = input => {
+    if (typeof input === 'string') {
+      dispatch(setSearchQuery(input));
     }
   };
-
-  const onSearch = value => {
-    setSearchText(value);
-    filterData(value);
-  };
-  ///////// Set up Date Selector
-
-  // const range = dates && createRange(dates);
 
   useEffect(() => {
-    const range = dates && createRange(dates);
-
-    if (usState && dates) {
-      const copyOfData = [...incidents];
-      let filteredData = filterDataByState(copyOfData, usState);
-      let dateAndStateFilteredData = filterDataByDate(filteredData, range);
-
-      setFilterDataList(dateAndStateFilteredData);
-    } else if (usState && !dates) {
-      const copyOfData = [...incidents];
-      let filteredByState = filterDataByState(copyOfData, usState);
-      setFilterDataList(filteredByState);
-    } else if (!usState && dates) {
-      const copyOfData = [...incidents];
-
-      let filteredByDate = filterDataByDate(copyOfData, range);
-      setFilterDataList(filteredByDate);
-    } else {
-      setFilterDataList(dataList);
+    if (query.length >= MIN_QUERY_LENGTH) {
+      // Relevant Mapbox docs: https://docs.mapbox.com/api/search/geocoding/#forward-geocoding
+      geocode
+        .get(`${query}.json`)
+        .then(r => dispatch(setSearchGeoRes(r.data)))
+        .catch(e => console.error(e));
     }
-  }, [usState, dates]);
+  }, [query, dispatch]);
 
-  const onDateSelection = (dates, dateStrings) => {
-    setDates(
-      dateStrings[0] && dateStrings[1]
-        ? [DateTime.fromISO(dateStrings[0]), DateTime.fromISO(dateStrings[1])]
-        : null
+  const handleSelect = index => {
+    dispatch(setSearchQuery(geoRes.features[index].place_name));
+
+    const [minLon, minLat, maxLon, maxLat] = geoRes.features[index].bbox;
+    dispatch(setSearchGeoBounds({ minLon, minLat, maxLon, maxLat }));
+
+    // Automatically navigate the location selected by the user
+    const {
+      latitude,
+      longitude,
+      zoom,
+      altitude,
+      bearing,
+      pitch,
+      height,
+      width,
+    } = new WebMercatorViewport({
+      width: viewport.width,
+      height: viewport.height,
+    }).fitBounds(
+      [
+        [maxLon, minLat],
+        [minLon, maxLat],
+      ],
+      { padding: 20, offset: [0, -100] }
+    );
+
+    setViewport({
+      latitude,
+      longitude,
+      zoom,
+      altitude,
+      bearing,
+      pitch,
+      height,
+      width,
+      transitionInterpolator: new FlyToInterpolator(),
+      transitionDuration: 'auto',
+    });
+  };
+
+  // Memoized list of incident IDs that meet geographic criteria
+  const geoFilter = useMemo(() => {
+    const { minLon, minLat, maxLon, maxLat } = searchGeoBounds;
+    return incidentsArray
+      .filter(
+        ({ lat, long }) =>
+          lat >= minLat && lat <= maxLat && long >= minLon && long <= maxLon
+      )
+      .map(item => item.incident_id);
+  }, [searchGeoBounds, incidentsArray]);
+
+  // ** Filter by date **
+  const disableFutureDates = current => current > moment().endOf('day');
+
+  const handleCalendarChange = dates => {
+    // If a date is not selected, use 1/1/1970 for start and/or the current time for end
+    const start = dates?.[0] ? dates[0] : moment(0);
+    const end = dates?.[1] ? dates[1] : moment();
+    dispatch(
+      setSearchDateRange({ start: start.toISOString(), end: end.toISOString() })
     );
   };
 
+  // Memoized list of incident IDs within the selected date range
+  const dateFilter = useMemo(() => {
+    const start = moment(searchDateRange.start);
+    const end = moment(searchDateRange.end);
+
+    return incidentsArray
+      .filter(({ date }) => moment(date).isBetween(start, end))
+      .map(item => item.incident_id);
+  }, [searchDateRange, incidentsArray]);
+
+  // ** Filter data across both data and geographic criteria and dispatch for use by other components
+  // Memoized list of incident IDs that meet both filter criteria
+  const combinedFilter = useMemo(() => {
+    return _.intersection(geoFilter, dateFilter);
+  }, [geoFilter, dateFilter]);
+
+  // When the list of filtered IDs changes, dispatch the new list of incidents
+  useEffect(() => {
+    // This should be optimized later by configuring other components to select incidents from the store on their own
+    // from a list of IDs. We're currently storing these large incident objects twice in the store
+    const filtered = combinedFilter.map(id => incidents[id]);
+    dispatch(setFilterData(filtered));
+  }, [combinedFilter, incidents, dispatch]);
+
+  // ** Reset both search filters on component unmount
+  useEffect(() => {
+    return () => {
+      dispatch(resetViewport());
+      dispatch(resetSearchGeo());
+      dispatch(resetSearchDate());
+    };
+  }, [dispatch]);
+
   return (
     <div className="search-header">
-      <Search
-        style={{ color: 'white' }}
-        placeholder="Location, Type, etc..."
-        enterButton="Search"
-        onSearch={onSearch}
+      <AutoComplete
+        style={{ width: '100%' }}
+        value={query}
+        onChange={handleChange}
+        onSelect={handleSelect}
+      >
+        {geoRes.features && query.length >= MIN_QUERY_LENGTH
+          ? geoRes.features.map((f, i) => (
+              <Option key={nanoid()} value={`${i}`}>
+                {f.place_name}
+              </Option>
+            ))
+          : ''}
+      </AutoComplete>
+      <RangePicker
+        style={{ width: '100%' }}
+        disabledDate={disableFutureDates}
+        onCalendarChange={handleCalendarChange}
       />
-      <RangePicker onCalendarChange={onDateSelection} />
     </div>
   );
-};
-
-export default SearchHeader;
+}
