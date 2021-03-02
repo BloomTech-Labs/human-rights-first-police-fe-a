@@ -14,6 +14,7 @@ import Stats from './components/Stats/Stats';
 import LoginContainer from './components/Login/LoginContainer';
 import Dashboard from './components/AdminDashboard/AdminDashboard';
 import MapSearch from './components/map/MapSearch';
+import HorizontalBar from './components/graphs/bargraph/HorizontalBar';
 
 import useOktaRedux from './hooks/useOktaRedux';
 
@@ -34,8 +35,13 @@ export default function App() {
           </div>
           <div className="bottom-section">
             <Stats />
-            <div className="Timeline">
-              <RecentTimeline />
+            <div className="bottom-section-wrap">
+              <div className="Timeline">
+                <RecentTimeline />
+              </div>
+              <div className="horizontal-graph">
+                <HorizontalBar />
+              </div>
             </div>
           </div>
         </Route>

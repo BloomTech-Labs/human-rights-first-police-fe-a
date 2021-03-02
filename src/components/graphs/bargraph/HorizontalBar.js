@@ -81,7 +81,7 @@ const Horizontalbar = () => {
   return (
     <div>
       <h1>Total Incidents By Category</h1>
-      <HorizontalBar style={{ width: '100%', height: '600px' }} data={data} />
+      <HorizontalBar style={{ width: '100%', height: '450px' }} data={data} />
     </div>
   );
 };
