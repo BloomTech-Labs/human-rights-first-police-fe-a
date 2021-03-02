@@ -116,7 +116,7 @@ export default function SearchHeader() {
         ({ lat, long }) =>
           lat >= minLat && lat <= maxLat && long >= minLon && long <= maxLon
       )
-      .map(item => item.id);
+      .map(item => item.incident_id);
   }, [searchGeoBounds, incidentsArray]);
 
   // ** Filter by date **
@@ -138,7 +138,7 @@ export default function SearchHeader() {
 
     return incidentsArray
       .filter(({ date }) => moment(date).isBetween(start, end))
-      .map(item => item.id);
+      .map(item => item.incident_id);
   }, [searchDateRange, incidentsArray]);
 
   // ** Filter data across both data and geographic criteria and dispatch for use by other components
