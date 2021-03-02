@@ -653,6 +653,11 @@ h4 {
   margin-right: 2%;
 }
 
+.page-number-display::selection {
+  background: transparent;
+  color: black;
+}
+
 p.page-number-display {
   display: inline;
 }
@@ -748,6 +753,9 @@ p.page-number-display {
   width: 45%;
   text-align: left;
   padding: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .incident-info {
@@ -774,9 +782,6 @@ p.page-number-display {
 .incident-info:nth-child(2) {
   width: 18%;
   margin-left: 1%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .incident-info:nth-child(3) {

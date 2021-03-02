@@ -16,9 +16,13 @@ const CompleteIncident = props => {
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
 
-  const [twitterSrc, setTwitterSrc] = useState('https' + tweetSrc);
+  const [twitterSrc, setTwitterSrc] = useState(
+    tweetSrc ? 'https' + tweetSrc : ''
+  );
 
   const [formValues, setFormValues] = useState({});
+
+  console.log(twitterSrc);
 
   console.log(incident);
   useEffect(() => {
@@ -53,44 +57,20 @@ const CompleteIncident = props => {
     }
   };
 
-  // const createArray = string => {
-  //   let item = '';
-  //   let array = [];
-  //   for (let i = 0; i < string.length; i++) {
-  //     const char = string[i];
-  //     if (char === ',') {
-  //       array.push(item);
-  //       item = '';
-  //     } else if (i === string.length - 1) {
-  //       item += char;
-  //       array.push(item);
-  //     } else {
-  //       item += string[i];
-  //     }
-  //   }
-  //   return array;
-  // };
-
   // functions for applying changes to incident
   const applyEdits = evt => {
     evt.preventDefault();
     const [month, day, year] = formValues.date.split('/');
     const [date, time] = incident.date.split('T');
     const newDate = `${year}-${month}-${day}T${time}`;
-    // let srcArray = [];
-    // if (formValues.src) {
-    //   srcArray = createArray(src);
-    // }
     const updatedIncident = {
       ...formValues,
       date: newDate,
-      // src: srcArray,
     };
     axios
-      .put(
-        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.id}`,
-        updatedIncident
-      )
+      .put(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`, [
+        { ...updatedIncident },
+      ])
       .then(res => {
         console.log(res);
       })
@@ -175,7 +155,9 @@ const CompleteIncident = props => {
         )}
         {!editing ? (
           <div className="dropdown-text-wrap">
-            <p className="complete-incident-dropdown-titles-bold">Force Rank</p>
+            <p className="complete-incident-dropdown-titles-bold">
+              Force Rank:
+            </p>
             <p>{incident.force_rank}</p>
           </div>
         ) : (
@@ -189,6 +171,9 @@ const CompleteIncident = props => {
               onChange={handleInputChange}
               name="force-rank"
             >
+              <option value="Rank 0 - No Police Presence">
+                Rank 0 - No Police Presence
+              </option>
               <option value="Rank 1 - Police Presence">
                 Rank 1 - Police Presence
               </option>
@@ -205,43 +190,16 @@ const CompleteIncident = props => {
           </>
         )}
 
-        {/* Does this need to be here? */}
-        {/*         
-        {!editing ? (
-          <div className="dropdown-text-wrap">
-            <p className="complete-incident-dropdown-titles-bold">Sources:</p>
-            <p>{incident.src.join(' ')}</p>
-          </div>
-        ) : (
-          <>
-            <label htmlFor="src" className="label">
-              Sources
-              <br />
-              (Separated by commas)
-            </label>
-            <br />
-            <textarea
-              cols="25"
-              rows="5"
-              className="edit-input text-area"
-              onChange={handleInputChange}
-              type="textarea"
-              name="src"
-              value={formValues.src.join(' ')}
-            />
-          </>
-        )} */}
-
         {!editing ? (
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">Tweet</p>
             <br />
-            <EmbedSource key={twitterSrc} url={twitterSrc} />
+            {twitterSrc && <EmbedSource key={twitterSrc} url={twitterSrc} />}
           </div>
         ) : (
           <>
             <label htmlFor="twitter-src" className="label">
-              Tweet URL
+              Tweet
               <br />
               <input
                 type="text"
@@ -280,19 +238,6 @@ const CompleteIncident = props => {
             />
           </>
         )}
-
-        {/* Does this need to be here? */}
-        {/* {!editing ? (
-          incident.src.map(src => <EmbedSource url={src} />)
-        ) : (
-          <>
-            <label htmlFor="src" className="label">
-              Sources
-            </label>
-            <br />
-          </>
-        )} */}
-
         <button
           id="dropdown-edit-button"
           className="approve-reject-select"

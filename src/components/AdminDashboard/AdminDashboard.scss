@@ -214,6 +214,11 @@ h4 {
   margin-right: 2%;
 }
 
+.page-number-display::selection {
+  background: transparent;
+  color: black;
+}
+
 p.page-number-display {
   display: inline;
 }
