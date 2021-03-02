@@ -13,6 +13,8 @@ const store = configureStore({
     timeline: timelineSlice.reducer,
     user: userSlice.reducer,
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({ immutableCheck: false, serializableCheck: false }),
 });
 
 export default store;

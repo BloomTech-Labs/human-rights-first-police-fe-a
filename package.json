@@ -21,6 +21,7 @@
     "craco-less": "^1.17.0",
     "dotenv": "^8.2.0",
     "framer-motion": "^2.9.5",
+    "lodash": "^4.17.21",
     "luxon": "^1.25.0",
     "moment": "^2.29.1",
     "nanoid": "^3.1.20",
