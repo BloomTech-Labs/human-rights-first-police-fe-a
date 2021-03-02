@@ -883,6 +883,7 @@ form label {
 
 .bottom-section-wrap {
   display: flex;
+  justify-content: space-around;
 }
 
 .horizontal-graph {
