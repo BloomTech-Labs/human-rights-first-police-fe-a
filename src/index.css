@@ -472,6 +472,37 @@ div.timeline-container {
   background-image: linear-gradient(to right, #f7fafc, white);
 }
 
+.dashboard-top-flex {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dashboard-top-flex div {
+  margin: auto 1%;
+}
+
+.dashboard-top-input {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 7%;
+}
+
+.dashboard-top-input input {
+  margin-left: 2%;
+}
+
+.dashboard-top-approve-reject {
+  display: flex;
+  width: 22%;
+}
+
+.dashboard-top-approve-reject button {
+  margin: auto 2%;
+  width: 45%;
+}
+
 #select-all-label {
   margin-left: 5%;
 }
@@ -484,10 +515,6 @@ div.timeline-container {
 
 #approve-reject-select-checkbox {
   margin-right: 10px;
-}
-
-.confirmation-message-div {
-  margin-top: 1%;
 }
 
 .incidents-wrap {
@@ -531,45 +558,6 @@ div.timeline-container {
 p.approve-reject-select {
   display: inline;
   margin-right: 0.25%;
-}
-
-p.page-number-display {
-  display: inline;
-}
-
-#page-number-display {
-  margin: auto 2%;
-}
-
-.dashboard-top-flex {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.dashboard-top-flex div {
-  margin: auto 1%;
-}
-
-.dashboard-top-input {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  width: 7%;
-}
-
-.dashboard-top-input input {
-  margin-left: 2%;
-}
-
-.dashboard-top-approve-reject {
-  display: flex;
-  width: 22%;
-}
-
-.dashboard-top-approve-reject button {
-  margin: auto 2%;
-  width: 45%;
 }
 
 .incidents {
@@ -669,6 +657,19 @@ h4 {
   margin-right: 2%;
 }
 
+.page-number-display::selection {
+  background: transparent;
+  color: black;
+}
+
+p.page-number-display {
+  display: inline;
+}
+
+#page-number-display {
+  margin: auto 2%;
+}
+
 .prev-arrow {
   transform: scale(2.2);
   margin-right: 1.7%;
@@ -750,12 +751,15 @@ h4 {
   background-color: #f7fafc;
 }
 
-#incident-title {
+#incident-description {
   margin-left: 0px;
   font-weight: 500;
   width: 45%;
   text-align: left;
   padding: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .incident-info {
@@ -782,9 +786,6 @@ h4 {
 .incident-info:nth-child(2) {
   width: 18%;
   margin-left: 1%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
 }
 
 .incident-info:nth-child(3) {

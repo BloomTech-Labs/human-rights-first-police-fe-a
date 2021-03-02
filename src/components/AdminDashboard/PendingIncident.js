@@ -10,9 +10,9 @@ const PendingIncident = props => {
     incident,
     selected,
     changeSelected,
-    unapprovedIncidents,
-    setUnapprovedIncidents,
     confirmApprove,
+    getData,
+    setPageNumber,
   } = props;
 
   const toggleMoreInfo = () => {
@@ -23,7 +23,7 @@ const PendingIncident = props => {
     changeSelected(incident);
   };
 
-  const isSelected = selected.includes(incident.server_id);
+  const isSelected = selected.includes(incident.id);
 
   //   changing the date into a more readable format
   const [year, month, day] = incident.date.split('-');
@@ -41,13 +41,11 @@ const PendingIncident = props => {
           onChange={confirmApprove ? () => {} : toggleCheck}
         />
         <div className="incident-info-text-wrap">
-          <p className="incident-info" id="incident-title">
-            {incident.title}
+          <p className="incident-info" id="incident-description">
+            {incident.desc.split('http')[0]}
           </p>
 
-          <p className="incident-info">
-            {incident.city}, {incident.state}
-          </p>
+          <p className="incident-info">{incident.user_location}</p>
 
           <p className="incident-info">{formattedDate}</p>
 
@@ -58,10 +56,11 @@ const PendingIncident = props => {
       </div>
       {moreInfo && (
         <CompleteIncident
-          unapprovedIncidents={unapprovedIncidents}
-          setUnapprovedIncidents={setUnapprovedIncidents}
           incident={incident}
           formattedDate={formattedDate}
+          setMoreInfo={setMoreInfo}
+          getData={getData}
+          setPageNumber={setPageNumber}
         />
       )}
     </div>
