@@ -882,4 +882,13 @@ form label {
   flex-wrap: wrapgit;
 }
 
+.bottom-section-wrap {
+  display: flex;
+}
+
+.horizontal-graph {
+  width: 42.5vw;
+  margin-top: 61px;
+}
+
 /*# sourceMappingURL=index.css.map */
