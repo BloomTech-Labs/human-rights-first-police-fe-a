@@ -29,9 +29,6 @@ const AdminDashboard = () => {
 
   const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
 
-  console.log(unapprovedIncidents);
-  console.log(unapprovedIncidents.filter(inc => inc.coordinates));
-
   // getting unapproved/pending incidents from the database
   useEffect(() => {
     getData();
@@ -60,13 +57,11 @@ const AdminDashboard = () => {
 
   // incident selection (checkbox) functions
   const selectAll = () => {
-    if (!confirmApprove && !confirmReject) {
-      setAllSelected(!allSelected);
-      if (!allSelected) {
-        setSelected(...currentSet);
-      } else {
-        setSelected([]);
-      }
+    setAllSelected(!allSelected);
+    if (!allSelected) {
+      setSelected(currentSet.map(data => data.id));
+    } else {
+      setSelected([]);
     }
   };
 
@@ -106,17 +101,6 @@ const AdminDashboard = () => {
         rejected: !approved,
       };
     });
-    // incidents.forEach(incident => {
-    //   let updatedIncident = {
-    //     ...incident,
-    //     approved,
-    //     pending: false
-    //   };
-    //   if (approved) {
-    //     updatedIncident.rejected = false;
-    //   } else {
-    //     updatedIncident.rejected = true;
-    //   }
 
     axios
       .put(
@@ -144,15 +128,6 @@ const AdminDashboard = () => {
       setPageNumber(pageNumber - 1);
     }
   };
-
-  // const rejectHandler = evt => {
-  //   evt.preventDefault();
-  //   const reviewedIncidents = sortApproved();
-  //   putIncidents(reviewedIncidents, false);
-  //   if (pageNumber > lastPage - 1) {
-  //     setPageNumber(pageNumber - 1);
-  //   }
-  // };
 
   // toggling confirmation of approve/reject buttons
   const confirmApproveHandler = evt => {
@@ -338,7 +313,7 @@ const AdminDashboard = () => {
                 <PendingIncident
                   getData={getData}
                   confirmApprove={confirmApprove}
-                  key={incident.incident_id}
+                  key={incident.id}
                   incident={incident}
                   selected={selected}
                   changeSelected={changeSelected}
