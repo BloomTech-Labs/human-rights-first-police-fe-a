@@ -1,51 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import MapContainer from './components/map/MapContainer';
 import { LoginCallback } from '@okta/okta-react';
-import OktaRoute from './components/OktaRoute';
-
-import RecentTimeline from './components/timeline/RecentTimeline';
+import useOktaRedux from './hooks/useOktaRedux';
+import useFetchIncidents from './hooks/useFetchIncidents';
+import Home from './components/Home';
 import Incidents from './components/incidents/Incidents';
 import About from './components/about/About';
-
 import GraphContainer from './components/graphs/GraphContainer';
 import NavBar from './components/NavBar/NavBar';
-import Stats from './components/Stats/Stats';
 import LoginContainer from './components/Login/LoginContainer';
 import Dashboard from './components/AdminDashboard/AdminDashboard';
-import MapSearch from './components/map/MapSearch';
-import HorizontalBar from './components/graphs/bargraph/HorizontalBar';
-
-import useOktaRedux from './hooks/useOktaRedux';
+import OktaRoute from './components/OktaRoute';
 
 export default function App() {
   // Keeps Okta and Redux in sync
   useOktaRedux();
+  const { fetch } = useFetchIncidents();
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
 
   return (
     <div>
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <div className="Map">
-            <MapContainer />
-          </div>
-          <div className="map-menu-background">
-            <MapSearch />
-          </div>
-          <div className="bottom-section">
-            <Stats />
-            <div className="bottom-section-wrap">
-              <div className="Timeline">
-                <RecentTimeline />
-              </div>
-              <div className="horizontal-graph">
-                <HorizontalBar />
-              </div>
-            </div>
-          </div>
+          <Home />
         </Route>
-
         <Route path="/graph">
           <GraphContainer />
         </Route>

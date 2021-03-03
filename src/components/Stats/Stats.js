@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-import { useIncidents } from '../../hooks/legacy/useIncidents';
+import { useSelector } from 'react-redux';
 import { newData } from '../../components/map/GetFunctions';
 import { CountUpAnimation } from './StatsFunction';
 import { Carousel } from 'antd';
@@ -10,8 +9,6 @@ const Stats = () => {
   const [arrests, setArrests] = useState(0);
   const [numCities, setNumCities] = useState(0);
 
-  const incidentsQuery = useIncidents();
-
   const contentStyle = {
     height: '10vh',
     color: '#fff',
@@ -20,9 +17,7 @@ const Stats = () => {
     background: '#003767',
   };
 
-  const incidents =
-    incidentsQuery.data && !incidentsQuery.isError ? incidentsQuery.data : [];
-  const dataList = newData(incidents);
+  const dataList = useSelector(state => Object.values(state.incident.data));
 
   useEffect(() => {
     let newCat = [];
