@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Modal } from 'antd';
-import axios from 'axios';
+import React, { useState } from 'react';
 
-import Source from './Source';
+import { Modal } from 'antd';
+
+import {
+  getLatAndLong,
+  postIncident,
+  formatDate,
+} from '../../utils/DashboardHelperFunctions';
 
 const initialFormValues = {
   approved: true,
@@ -35,55 +39,11 @@ const AddIncident = props => {
   const [visible, setVisible] = useState(true);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const { setAdding, getData, setPageNumber } = props;
-
-  // gets latitude and longitude of given city/state
-  const getLatAndLong = new Promise((resolve, reject) => {
-    axios
-      .get(
-        `http://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAPQUEST_API_KEY}&location=${formValues.city},${formValues.state}`
-      )
-      .then(res => {
-        const { lat, lng } = res.data.results[0].locations[0].latLng;
-        resolve([lat, lng]);
-      })
-      .catch(err => {
-        reject(err.message);
-      });
-  });
-
-  // posts new incident to database
-  const postIncident = newIncident => {
-    console.log(newIncident);
-    axios
-      .post(
-        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
-        newIncident
-      )
-      .then(res => {
-        console.log(res);
-        setModalText('New incident added successfully');
-        setTimeout(() => {
-          // modal is unmounted, admin is redirected to first page of dashboard
-          setVisible(false);
-          setConfirmLoading(false);
-          setAdding(false);
-          setPageNumber(1);
-          getData();
-        }, 1500);
-      })
-      .catch(err => {
-        setModalText('Something went wrong');
-        setTimeout(() => {
-          setVisible(false);
-          setConfirmLoading(false);
-          setAdding(false);
-        }, 2000);
-      });
-  };
+  const { setAdding, setPageNumber } = props;
 
   // submitting form
-  const handleOk = () => {
+  const handleOk = async evt => {
+    evt.preventDefault();
     // formatting date
     let newDateString;
     if (!formValues.date) {
@@ -92,28 +52,31 @@ const AddIncident = props => {
       const formattedDate = formatDate(formValues.date);
       newDateString = formattedDate + 'T00:00:00.000Z';
     }
-    // getting long and lat
-    getLatAndLong
-      .then(res => {
-        const [lat, lng] = res;
-        // creating updated/new incident object to be posted
-        const newIncident = {
-          ...formValues,
-          desc: formValues.desc + ' ' + twitterSrc,
-          lat,
-          long: lng,
-          date: newDateString,
-        };
-        postIncident(newIncident);
-      })
-      .catch(err => {
-        setModalText('Something went wrong');
-        setTimeout(() => {
-          setVisible(false);
-          setConfirmLoading(false);
-          setAdding(false);
-        }, 2000);
-      });
+
+    // getting coordinates
+    const [lat, long] = await getLatAndLong(formValues);
+
+    // creating new incident object to be posted
+    const newIncident = {
+      ...formValues,
+      desc: formValues.desc + ' ' + twitterSrc,
+      date: newDateString,
+      lat,
+      long,
+    };
+
+    // posting new incident to database
+    const modalMessage = await postIncident(newIncident);
+
+    setModalText(modalMessage);
+
+    setTimeout(() => {
+      // modal is unmounted, admin is redirected to first page of dashboard
+      setVisible(false);
+      setConfirmLoading(false);
+      setAdding(false);
+      setPageNumber(1);
+    }, 1750);
   };
 
   //   form management functions
@@ -132,12 +95,6 @@ const AddIncident = props => {
   const handleCancel = () => {
     setVisible(false);
     setAdding(false);
-  };
-
-  //   formatting the date and time into date object
-  const formatDate = date => {
-    const [month, day, year] = date.split('/');
-    return `${year}-${month}-${day}`;
   };
 
   return (

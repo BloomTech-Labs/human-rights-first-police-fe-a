@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import CompleteIncident from './CompleteIncident';
 
+import { getData } from '../../utils/DashboardHelperFunctions';
+
 const PendingIncident = props => {
   // using local state to determine whether the "complete incident" information is toggled
   const [moreInfo, setMoreInfo] = useState(false);
@@ -11,8 +13,8 @@ const PendingIncident = props => {
     selected,
     changeSelected,
     confirmApprove,
-    getData,
     setPageNumber,
+    setUnapprovedIncidents,
   } = props;
 
   const toggleMoreInfo = () => {
@@ -61,6 +63,7 @@ const PendingIncident = props => {
           setMoreInfo={setMoreInfo}
           getData={getData}
           setPageNumber={setPageNumber}
+          setUnapprovedIncidents={setUnapprovedIncidents}
         />
       )}
     </div>
