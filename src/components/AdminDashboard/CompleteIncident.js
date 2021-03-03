@@ -1,18 +1,21 @@
 import React, { useState, useEffect } from 'react';
+
 import EmbedSource from '../EmbedSource';
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+
+import { applyEdits, getData } from '../../utils/DashboardHelperFunctions';
 
 const CompleteIncident = props => {
   const {
     incident,
     formattedDate,
     setMoreInfo,
-    getData,
     setPageNumber,
+    setUnapprovedIncidents,
   } = props;
 
+  // separating the description and the tweet url
   const [trimmedDescription, tweetSrc] = incident.desc.split('https');
+
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
 
@@ -22,9 +25,6 @@ const CompleteIncident = props => {
 
   const [formValues, setFormValues] = useState({});
 
-  console.log(twitterSrc);
-
-  console.log(incident);
   useEffect(() => {
     setFormValues({
       ...incident,
@@ -35,7 +35,6 @@ const CompleteIncident = props => {
       setFormValues({});
     };
   }, [editing]);
-  console.log(twitterSrc);
 
   // toggle "editing mode"
   const toggleEditor = evt => {
@@ -44,7 +43,7 @@ const CompleteIncident = props => {
     setEditing(!editing);
   };
 
-  // setting form values on input change
+  // form control functions
   const handleInputChange = evt => {
     const { name, value } = evt.target;
     if (name === 'twitter-src') {
@@ -57,20 +56,9 @@ const CompleteIncident = props => {
     }
   };
 
-  // functions for applying changes to incident
-  const applyEdits = evt => {
+  const handleSubmit = evt => {
     evt.preventDefault();
-    const [month, day, year] = formValues.date.split('/');
-    const [date, time] = incident.date.split('T');
-    const newDate = `${year}-${month}-${day}T${time}`;
-    const updatedIncident = {
-      ...formValues,
-      date: newDate,
-    };
-    axios
-      .put(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`, [
-        { ...updatedIncident },
-      ])
+    applyEdits(formValues, incident)
       .then(res => {
         console.log(res);
       })
@@ -81,7 +69,7 @@ const CompleteIncident = props => {
         setEditing(!editing);
         setMoreInfo(false);
         setPageNumber(1);
-        getData();
+        getData(setUnapprovedIncidents);
       });
   };
 
@@ -246,7 +234,7 @@ const CompleteIncident = props => {
           {editing ? 'Cancel' : 'Edit'}
         </button>
         {editing && (
-          <button className="approve-reject-select" onClick={applyEdits}>
+          <button className="approve-reject-select" onClick={handleSubmit}>
             Apply Changes
           </button>
         )}

@@ -6,178 +6,26 @@
   margin: auto;
 }
 
-// top of component
-
-#admin-dashboard-title {
-  margin-bottom: 2%;
-}
-
-.statboxes {
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-}
-
-.statbox {
-  border: 2px solid #e3e8ee;
-  padding: 2%;
-  width: 99%;
-  color: #3c4257;
-  border-radius: 5px;
-  font-weight: 400;
-  margin-right: 20px;
-  margin-bottom: 1%;
-  background-image: linear-gradient(to right, rgb(247, 250, 252), white);
-}
-
 // dashboard
 
 // dashboard top controls
 
-.dashboard-top-flex {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
+// #approve-reject-select-text {
+//   border-style: none;
+//   margin-right: 25px;
+//   margin-bottom: 1%;
+// }
 
-.dashboard-top-flex div {
-  margin: auto 1%;
-}
+// #approve-reject-select-checkbox {
+//   margin-right: 10px;
+// }
 
-.dashboard-top-input {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-  width: 7%;
-}
-
-.dashboard-top-input input {
-  margin-left: 2%;
-}
-
-.dashboard-top-approve-reject {
-  display: flex;
-  width: 22%;
-}
-
-.dashboard-top-approve-reject button {
-  margin: auto 2%;
-  width: 45%;
-}
-
-#select-all-label {
-  margin-left: 5%;
-}
-
-#approve-reject-select-text {
-  border-style: none;
-  margin-right: 25px;
-  margin-bottom: 1%;
-}
-
-#approve-reject-select-checkbox {
-  margin-right: 10px;
-}
-
-.incidents-wrap {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 2%;
-}
-
-#create-incident-button {
-  border: 1px solid #e3e8ee;
-  background-color: rgb(0, 55, 103);
-  border-width: 2px;
-  border-style: outset;
-  border-radius: 7.5px;
-  color: white;
-  height: 45px;
-}
-
-.confirmation-message {
-  width: 90%;
-  text-align: center;
-}
-
-.transparent {
-  opacity: 0;
-}
-
-.approve-reject-select {
-  border: 1px solid #e3e8ee;
-  background-color: rgb(255, 255, 255);
-  border-width: 2px;
-  border-style: outset;
-  border-radius: 5px;
-  margin-right: 2%;
-  margin-bottom: 1%;
-  color: rgb(60, 66, 87);
-  height: 4%;
-}
-
-p.approve-reject-select {
-  display: inline;
-  margin-right: 0.25%;
-}
+// p.approve-reject-select {
+//   display: inline;
+//   margin-right: 0.25%;
+// }
 
 // dashboard pending incidents
-
-.incidents {
-  display: flex;
-  flex-direction: column;
-}
-
-.column-headers {
-  display: flex;
-  justify-content: space-between;
-  border: solid #e3e8ee 1px;
-  width: 100%;
-  align-items: center;
-  margin-bottom: 0px;
-  border-radius: 5px;
-}
-
-.column-headers div h4 {
-  font-weight: bold;
-}
-
-.hidden-input {
-  opacity: 0;
-  text-align: left;
-  margin: auto 1%;
-}
-
-.column-headers-flex {
-  display: flex;
-  text-align: left;
-  justify-content: flex-start;
-  width: 100%;
-  align-items: center;
-  color: #3c4257;
-  margin: 0 auto;
-}
-
-h4 {
-  padding-top: 0.5%;
-}
-
-.description {
-  margin-left: 0px;
-  text-align: left;
-  width: 45%;
-}
-
-.location {
-  width: 18%;
-  margin-left: 2%;
-}
-
-.date {
-  width: 15%;
-  margin-left: 7%;
-}
 
 // pagination
 
@@ -202,20 +50,6 @@ h4 {
   width: 40%;
   justify-content: center;
   align-items: center;
-}
-
-.items-pp-select {
-  margin-left: 2%;
-}
-
-.dashboard-top-page-number {
-  display: flex;
-  width: 71%;
-  justify-content: flex-end;
-}
-
-#items-per-page {
-  margin-left: 2%;
 }
 
 .page-number-display {
@@ -249,8 +83,4 @@ p.page-number-display {
 
 .shaded-arrow {
   opacity: 45%;
-}
-
-.hidden-button {
-  display: none;
 }
