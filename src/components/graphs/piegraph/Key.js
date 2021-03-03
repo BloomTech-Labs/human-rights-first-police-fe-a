@@ -2,26 +2,25 @@ import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 const keyData = {
-  'Rank I: Officer Presence': {
-    desc: 'Police are present, but no force detected.',
+  'Officer Presence': {
+    desc: 'No force is used',
   },
-  'Rank II: Empty-Hand': {
+  Verbalization: {
+    desc: 'Force is not-physical',
+  },
+  'Empty-Hand Control': {
+    desc: 'Officers use bodily force to gain control of a situation',
+    soft:
+      'Officers use grabs, holds and joint locks to restrain an individual.',
+    hard: 'Officers use punches and kicks to restrain an individual',
+  },
+  'Less-Lethal Methods': {
     desc:
-      'Officers use bodily force to gain control of a situation. Officers may use grabs, holds, joint locks, punches and kicks to restrain an individual.',
+      ' Officers use less-lethal technologies to gain control of a situation',
   },
-  'Rank III: Blunt Force Methods': {
+  'Lethal Force': {
     desc:
-      'Officers use less-lethal technologies to gain control of a situation. For example, a baton or projectile may be used to immobilize a combative person.',
-  },
-  'Rank IV: Chemical & Electric': {
-    desc:
-      'Officers use less-lethal technologies to gain control of a situation, such as chemical sprays, projectiles embedded with chemicals, or tasers.',
-  },
-  'Rank V: Lethal Force': {
-    desc: 'Officers use lethal weapons to gain control of a situation.',
-  },
-  Uncategorized: {
-    desc: 'An incident was detected but we were not able to categorize it.',
+      'Officers use lethal weapons to gain control of a situation. Should only be used if a suspect poses a serious threat to the officer or another individual.',
   },
 };
 
@@ -29,26 +28,36 @@ const Key = props => {
   const [data] = useState(keyData);
 
   return (
-    <>
-      <h3>Legend</h3>
-      <ul
-        style={{
-          flexFlow: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'flex-start',
-          margin: 0,
-        }}
-      >
-        {Object.keys(data).map((type, index) => {
+    <ul
+      style={{
+        flexFlow: 'column',
+        alignItems: 'flex-start',
+        justifyContent: 'flex-start',
+        margin: 0,
+      }}
+    >
+      {Object.keys(data).map((type, index) => {
+        if (type === 'Empty-Hand Control') {
           return (
-            <li key={nanoid()}>
-              <h4>{type}</h4>
-              <p>{data[type]['desc']}</p>
-            </li>
+            <React.Fragment key={nanoid()}>
+              <li key={nanoid()}> {`${type}: ${data[type]['desc']}`} </li>
+              <ul
+                style={{
+                  flexFlow: 'column',
+                  alignItems: 'flex-start',
+                  justifyContent: 'flex-start',
+                }}
+              >
+                <li key={nanoid()}> {`Soft: ${data[type]['soft']}`} </li>
+                <li key={nanoid()}> {`Hard: ${data[type]['hard']}`} </li>
+              </ul>
+            </React.Fragment>
           );
-        })}
-      </ul>
-    </>
+        } else {
+          return <li key={nanoid()}> {`${type}: ${data[type]['desc']}`} </li>;
+        }
+      })}
+    </ul>
   );
 };
 

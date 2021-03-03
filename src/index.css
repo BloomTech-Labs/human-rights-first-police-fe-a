@@ -93,20 +93,22 @@ div canvas {
 
 .link-container {
   display: flex;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: flex-end;
+  width: 60%;
+  min-width: 60%;
 }
 
 .link-container .graph-buttons {
   list-style-type: none;
   padding: 0;
-  width: 100%;
+  width: 50%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-end;
 }
 
 .link-container .graph-buttons .link-item {
+  width: 120px;
   height: 48px;
   line-height: 46px;
   text-size-adjust: 100%;
@@ -114,8 +116,7 @@ div canvas {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   color: #1890ff;
   display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   cursor: pointer;
 }
@@ -132,7 +133,6 @@ div canvas {
 
 .link-container .search-bar-container {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
 }
 
@@ -156,17 +156,8 @@ section ul {
 
 .graph-container header {
   display: flex;
-  flex-flow: column nowrap;
   align-items: center;
   justify-content: space-between;
-}
-
-.graph-container header div {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-  align-items: flex-start;
-  width: 100%;
 }
 
 .graph-container header .ant-menu-item-group-title {
@@ -305,7 +296,7 @@ h3.incident-container {
 
 .map-menu-background {
   position: absolute;
-  top: 24px;
+  top: 84px;
   right: 24px;
   z-index: 1;
   cursor: pointer;
