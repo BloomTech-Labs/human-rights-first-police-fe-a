@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const slice = createSlice({
   name: 'incident',
-  initialState: {},
+  initialState: { data: {}, ids: [], timeline: [] },
   reducers: {
-    setAllIncidents: (state, action) => {
-      action.payload.forEach(x => {
-        state[x.incident_id] = x;
-      });
+    onInitialFetch: (state, action) => {
+      state.data = action.payload.incidents;
+      state.ids = action.payload.ids;
+      state.timeline = action.payload.timeline;
     },
   },
 });
