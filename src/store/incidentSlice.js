@@ -9,6 +9,11 @@ const slice = createSlice({
       state.ids = action.payload.ids;
       state.timeline = action.payload.timeline;
     },
+    setAllIncidents: (state, action) => {
+      action.payload.forEach(x => {
+        state[x.incident_id] = x;
+      });
+    },
   },
 });
 

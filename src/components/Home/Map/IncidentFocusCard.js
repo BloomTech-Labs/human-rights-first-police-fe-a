@@ -19,7 +19,7 @@ export default function IncidentFocusCard({ id, zoomOnCluster }) {
   const incident = useSelector(state => state.incident.data[id]);
 
   const date = useMemo(() => {
-    if (incident?.date) {
+    if (incident.date) {
       const dt = DateTime.fromISO(incident.date);
       return dt.isValid
         ? dt.plus({ days: 1 }).toLocaleString(DateTime.DATE_MED)
@@ -27,11 +27,11 @@ export default function IncidentFocusCard({ id, zoomOnCluster }) {
     } else {
       return '';
     }
-  }, [incident]);
+  }, [incident?.date]);
 
   const zoomOnIncident = useCallback(() => {
     zoomOnCluster(INCIDENT_ZOOM_LEVEL, incident.long, incident.lat);
-  }, [incident, zoomOnCluster]);
+  }, [incident.long, incident.lat, zoomOnCluster]);
 
   return (
     <div className="map-incident-card">
