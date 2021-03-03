@@ -19,7 +19,7 @@ Please delete options that are not relevant.
 
 # How Has This Been Tested?
 
-- [ ] `npm run test`
+- [ ] `npm test`
 
 # Checklist
 
