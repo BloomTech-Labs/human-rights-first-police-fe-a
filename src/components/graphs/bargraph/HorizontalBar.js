@@ -93,9 +93,7 @@ const Horizontalbar = () => {
         <li>
           Rank III Blunt Force Methods — Officers use less-lethal technologies
           to gain control of a situation. Baton or projectile may be used to
-          immobilize a combative person for example.Chemical. Officers may use
-          chemical sprays or projectiles embedded with chemicals to restrain an
-          individual (e.g., pepper spray).
+          immobilize a combative person for example.
         </li>
         <li>
           Rank IV Chemical & Electric - Officers use less-lethal technologies to
