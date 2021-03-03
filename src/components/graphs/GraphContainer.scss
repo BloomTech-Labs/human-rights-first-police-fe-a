@@ -3,9 +3,6 @@
   margin: 0 auto;
 }
 
-.graph-container header {
-}
-
 .link-container[role='menu'] {
   height: 60px;
   border: none;
@@ -17,8 +14,17 @@
 
 .graph-container header {
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: space-between;
+}
+
+.graph-container header div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .graph-container header .ant-menu-item-group-title {
