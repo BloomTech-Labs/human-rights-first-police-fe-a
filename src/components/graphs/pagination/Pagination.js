@@ -10,18 +10,14 @@ import {
 } from '@ant-design/icons';
 import { nanoid } from 'nanoid';
 
-const names = [
-  'Incidents Per Month',
-  'Incidents Per State',
-  'Incident Categories',
-];
+const names = ['Line', 'Bar', 'Pie'];
 
 const generateButtons = onClick => {
   const buttons = names.map(name => {
     let icon;
-    if (name === 'Incidents Per Month') {
+    if (name === 'Line') {
       icon = <LineChartOutlined className="line icon" />;
-    } else if (name === 'Incidents Per State') {
+    } else if (name === 'Bar') {
       icon = <BarChartOutlined className="bar icon" />;
     } else {
       icon = <PieChartOutlined className="pie icon" />;

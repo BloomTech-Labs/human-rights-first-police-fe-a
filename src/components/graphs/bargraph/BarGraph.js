@@ -33,17 +33,7 @@ const BarGraph = ({ count }) => {
     }
   }, [incidentCount]);
 
-  return (
-    <>
-      <Bar data={barData} />
-      <br />
-      <p className="graph-disclaimer">
-        Note: This graph relies on open source data from multiple sources and a
-        machine learning model that is still in beta. These categories may not
-        accurately represent the circumstances of each incident.{' '}
-      </p>
-    </>
-  );
+  return <Bar data={barData} />;
 };
 
 export default BarGraph;

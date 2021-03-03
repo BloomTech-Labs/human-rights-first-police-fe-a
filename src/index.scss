@@ -5,10 +5,10 @@
 @import './components/graphs/piegraph/Key.scss';
 @import './components/graphs/GraphContainer.scss';
 @import './components/incidents/Incidents.scss';
-@import './components/Home/Map/IncidentFocusCard.scss';
-@import './components/Home/Map/Clusters.scss';
-@import './components/Home/Map/Map.scss';
-@import './components/Home/Map/Search.scss';
+@import './components/map/incidentContainer/LastIncident.scss';
+@import './components/map/ClusterMarker.scss';
+@import './components/map/MapContainer.scss';
+@import './components/map/MapSearch.scss';
 @import './components/Stats/Stats.scss';
 @import './components/timeline/RecentTimeline.scss';
 @import './components/AdminDashboard/AdminDashboard.scss';

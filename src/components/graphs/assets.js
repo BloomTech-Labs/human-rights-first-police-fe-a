@@ -27,7 +27,7 @@ const defaultData = {
 const options = {
   responsive: true,
   legend: {
-    display: false,
+    display: true,
     labels: {
       fontSize: 16,
       padding: 32,
