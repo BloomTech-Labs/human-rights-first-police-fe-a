@@ -1,19 +1,21 @@
 import React from 'react';
 import { Timeline } from 'vertical-timeline-component-for-react';
-import { useTimeline } from '../../hooks/legacy/useTimeline';
+import { useSelector } from 'react-redux';
 import { nanoid } from 'nanoid';
 import TimelineItems from './TimelineItems';
 
 export function RecentTimeline() {
-  const timelineQuery = useTimeline();
+  const timeline = useSelector(state =>
+    state.incident.timeline.map(id => state.incident.data[id])
+  );
 
-  return timelineQuery.isSuccess ? (
+  return (
     <Timeline lineColor={'#</Timeline>ddd'}>
-      {timelineQuery.data.map(details => {
+      {timeline.map(details => {
         return <TimelineItems details={details} key={nanoid()} />;
       })}
     </Timeline>
-  ) : null;
+  );
 }
 
 export default RecentTimeline;

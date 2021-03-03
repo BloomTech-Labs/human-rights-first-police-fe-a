@@ -52,16 +52,16 @@ div.ant-collapse-header {
   padding-bottom: 4%;
 }
 
-div.ant-collapse>.ant-collapse-item>.ant-collapse-header {
+div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
   padding: 5px 0px 5px 0px;
-  font-size: .6rem;
+  font-size: 0.6rem;
   text-align: left;
   margin-left: 15px;
   font-weight: 500;
 }
 
 @media (max-width: 800px) {
-  div.ant-collapse>.ant-collapse-item>.ant-collapse-header {
+  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
     font-size: 1.1rem;
     padding: 3px 0px 1px 0px;
     font-size: 0.9rem;

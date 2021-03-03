@@ -1,15 +1,15 @@
 import React from 'react';
 import { render, cleanup } from '../../utils/test-utils';
-import MapContainer from './MapContainer';
+import Home from './Home';
 
 afterEach(() => {
   cleanup();
   jest.clearAllMocks();
 });
 
-describe('<MapContainer />', () => {
+describe('/components/Home: <Home />', () => {
   test('Component renders', async () => {
-    const { container } = await render(<MapContainer />);
+    const { container } = await render(<Home />);
     expect(container).toContainElement(container.firstChild);
   });
 });
