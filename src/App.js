@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import MapContainer from './components/map/MapContainer';
 import { LoginCallback } from '@okta/okta-react';
 import useOktaRedux from './hooks/useOktaRedux';
 import useFetchIncidents from './hooks/useFetchIncidents';
@@ -38,7 +37,6 @@ export default function App() {
           <About />
         </Route>
         <Route path="/login" component={LoginContainer} />
-        <Route path="/" exact component={() => <MapContainer />} />
         {/* Bandaid fix to prevent production from crashing due to unspecified Okta environment variables */}
         <OktaRoute path="/admin-dashboard" component={Dashboard} />
         <Route path="/implicit/callback" component={LoginCallback} />

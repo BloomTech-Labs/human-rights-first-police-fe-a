@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
-import { useIncidents } from '../../../hooks/legacy/useIncidents';
-import { newData } from '../../map/GetFunctions';
+import { useSelector } from 'react-redux';
 
 const Horizontalbar = () => {
   const [noPresence, setNoPresence] = useState();
@@ -11,11 +10,7 @@ const Horizontalbar = () => {
   const [chemicalElectric, setChemicalElectric] = useState();
   const [lethalForce, setLethalForce] = useState();
 
-  const incidentsQuery = useIncidents();
-
-  const incidents =
-    incidentsQuery.data && !incidentsQuery.isError ? incidentsQuery.data : [];
-  const dataList = newData(incidents);
+  const dataList = useSelector(state => Object.values(state.incident.data));
 
   const data = {
     labels: [
