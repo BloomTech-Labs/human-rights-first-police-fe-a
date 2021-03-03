@@ -1,15 +1,15 @@
 import React from 'react';
-import { render, cleanup } from '../../utils/test-utils';
-import MapSearch from './MapSearch';
+import { render, cleanup } from '../../../utils/test-utils';
+import Map from './Map';
 
 afterEach(() => {
   cleanup();
   jest.clearAllMocks();
 });
 
-describe('<MapSearch />', () => {
+describe('/components/Home/Map: <Map />', () => {
   test('Component renders', async () => {
-    const { container } = await render(<MapSearch />);
+    const { container } = await render(<Map />);
     expect(container).toContainElement(container.firstChild);
   });
 });

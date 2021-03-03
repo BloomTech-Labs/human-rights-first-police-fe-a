@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
-import { useIncidents } from '../../hooks/legacy/useIncidents';
-import { newData } from '../../components/map/GetFunctions';
+import { useSelector } from 'react-redux';
 import { CountUpAnimation } from './StatsFunction';
 import { Carousel } from 'antd';
 
@@ -9,8 +7,6 @@ const Stats = () => {
   const [gasAndSpray, setGasAndSpray] = useState(0);
   const [arrests, setArrests] = useState(0);
   const [numCities, setNumCities] = useState(0);
-
-  const incidentsQuery = useIncidents();
 
   const contentStyle = {
     height: '10vh',
@@ -20,9 +16,7 @@ const Stats = () => {
     background: '#003767',
   };
 
-  const incidents =
-    incidentsQuery.data && !incidentsQuery.isError ? incidentsQuery.data : [];
-  const dataList = newData(incidents);
+  const dataList = useSelector(state => Object.values(state.incident.data));
 
   useEffect(() => {
     let newCat = [];
@@ -53,30 +47,20 @@ const Stats = () => {
     <Carousel autoplay>
       <div className="stat incidents">
         <h2 style={contentStyle}>
-          We have identified &nbsp;
-          <CountUpAnimation duration={1000}>{dataList.length}</CountUpAnimation>
-          &nbsp; incidents of police use of force
+          We have identified {dataList.length} incidents of police use of force
         </h2>
       </div>
       <div className="stat spray-gas">
         <h2 style={contentStyle}>
-          Including &nbsp;
-          <CountUpAnimation duration={1000}>{gasAndSpray}</CountUpAnimation>
-          &nbsp; uses of pepper-spray or tear-gas
+          Including {gasAndSpray} uses of pepper-spray or tear-gas
         </h2>
       </div>
       <div className="stat arrests">
-        <h2 style={contentStyle}>
-          Resulting in &nbsp;
-          <CountUpAnimation duration={1000}>{arrests}</CountUpAnimation>&nbsp;
-          total arrests
-        </h2>
+        <h2 style={contentStyle}>Resulting in {arrests} total arrests</h2>
       </div>
       <div className="stat cities">
         <h2 style={contentStyle}>
-          In &nbsp;
-          <CountUpAnimation duration={1000}>{numCities}</CountUpAnimation>&nbsp;
-          cities across the United States
+          In {numCities} cities across the United States
         </h2>
       </div>
       <div className="stat description">
