@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { newData } from '../../components/map/GetFunctions';
 import { CountUpAnimation } from './StatsFunction';
 import { Carousel } from 'antd';
 
