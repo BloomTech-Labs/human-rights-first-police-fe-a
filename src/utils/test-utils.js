@@ -47,17 +47,9 @@ jest.mock('antd', () => {
     __esModule: true,
     ...antd,
     Modal: () => <div></div>,
+    List: () => <div></div>,
   };
 });
-
-jest.mock('../hooks/legacy/useTimeline', () => ({
-  useTimeline: () => ({
-    data: [],
-    isLoading: false,
-    isSuccess: true,
-    isError: false,
-  }),
-}));
 
 Object.defineProperty(window, 'matchMedia', {
   writable: true,
