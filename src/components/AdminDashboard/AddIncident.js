@@ -5,121 +5,128 @@ import axios from 'axios';
 import Source from './Source';
 
 const initialFormValues = {
+  approved: true,
   city: '',
+  coordinates: '',
   date: '',
   desc: '',
-  empty_hand_hard: false,
-  empty_hand_soft: false,
-  lat: 37.33532,
-  less_lethal_methods: true,
-  lethal_force: false,
-  long: -121.88931,
-  src: [],
+  force_rank: '',
+  geo: null,
+  language: 'en',
+  lat: null,
+  long: null,
+  pending: false,
+  rejected: false,
+  src: '',
   state: '',
   title: '',
-  uncategorized: false,
-  verbalization: false,
+  user_description: '',
+  user_location: '',
+  user_name: '',
 };
 
 const AddIncident = props => {
+  // setting state for form management
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [amPmValue, setAmPmValue] = useState(false);
+  const [twitterSrc, setTwitterSrc] = useState('');
 
-  //   setting state for src and time input on form
-  const [srcValue, setSrcValue] = useState('');
-  const [time, setTime] = useState('');
-
-  //   setting state for all sources added
-  const [sources, setSources] = useState([]);
-
+  // setting state for add incident pop up
   const [modalText, setModalText] = useState('');
   const [visible, setVisible] = useState(true);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const { setAdding } = props;
+  const { setAdding, getData, setPageNumber } = props;
 
-  //   submitting the form
-  const handleOk = () => {
-    let newDateString;
-    if (!formValues.date) {
-      newDateString = new Date().toJSON();
-    } else {
-      const formattedDate = formatDate(formValues.date, amPmValue);
-      const formattedTime = formatTime();
-      newDateString = formattedDate + formattedTime;
-    }
-    const newIncident = {
-      ...formValues,
-      date: newDateString,
-      pending: true,
-      rejected: false,
-    };
+  // gets latitude and longitude of given city/state
+  const getLatAndLong = new Promise((resolve, reject) => {
+    axios
+      .get(
+        `http://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAPQUEST_API_KEY}&location=${formValues.city},${formValues.state}`
+      )
+      .then(res => {
+        const { lat, lng } = res.data.results[0].locations[0].latLng;
+        resolve([lat, lng]);
+      })
+      .catch(err => {
+        reject(err.message);
+      });
+  });
+
+  // posts new incident to database
+  const postIncident = newIncident => {
     console.log(newIncident);
-    setConfirmLoading(true);
     axios
       .post(
         `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
         newIncident
       )
       .then(res => {
+        console.log(res);
         setModalText('New incident added successfully');
+        setTimeout(() => {
+          // modal is unmounted, admin is redirected to first page of dashboard
+          setVisible(false);
+          setConfirmLoading(false);
+          setAdding(false);
+          setPageNumber(1);
+          getData();
+        }, 1500);
+      })
+      .catch(err => {
+        setModalText('Something went wrong');
         setTimeout(() => {
           setVisible(false);
           setConfirmLoading(false);
-        }, 750);
+          setAdding(false);
+        }, 2000);
+      });
+  };
+
+  // submitting form
+  const handleOk = () => {
+    // formatting date
+    let newDateString;
+    if (!formValues.date) {
+      newDateString = new Date().toJSON();
+    } else {
+      const formattedDate = formatDate(formValues.date);
+      newDateString = formattedDate + 'T00:00:00.000Z';
+    }
+    // getting long and lat
+    getLatAndLong
+      .then(res => {
+        const [lat, lng] = res;
+        // creating updated/new incident object to be posted
+        const newIncident = {
+          ...formValues,
+          desc: formValues.desc + ' ' + twitterSrc,
+          lat,
+          long: lng,
+          date: newDateString,
+        };
+        postIncident(newIncident);
       })
       .catch(err => {
-        setModalText(err.message);
-        console.log(err);
+        setModalText('Something went wrong');
+        setTimeout(() => {
+          setVisible(false);
+          setConfirmLoading(false);
+          setAdding(false);
+        }, 2000);
       });
-
-    console.log(newIncident);
-
-    setTimeout(() => {
-      setVisible(false);
-      setConfirmLoading(false);
-      setAdding(false);
-    }, 750);
   };
 
-  // adding and removing sources
-  const removeSrc = src => {
-    const updatedSources = sources.filter(source => {
-      return src !== source;
-    });
-    setSources(updatedSources);
-  };
-
-  const handleAddSrc = evt => {
-    evt.preventDefault();
-    if (sources.includes(srcValue)) {
-      setSrcValue('');
-      return;
-    } else {
-      setSources([...sources, srcValue]);
-      setSrcValue('');
-    }
-  };
-
-  //   form value management functions
+  //   form management functions
   const handleChange = evt => {
     const { name, value } = evt.target;
-    if (name === 'src') {
-      setSrcValue(value);
-    } else if (name === 'time') {
-      setTime(value);
-    } else if (name === 'ampm') {
-      setAmPmValue(value);
+    if (name === 'tweet') {
+      setTwitterSrc(value);
     } else {
       setFormValues({
         ...formValues,
         [name]: value,
       });
     }
-  };
-
-  const handleSrcChange = evt => {
-    setSrcValue(evt.target.value);
   };
 
   const handleCancel = () => {
@@ -133,41 +140,40 @@ const AddIncident = props => {
     return `${year}-${month}-${day}`;
   };
 
-  const formatTime = () => {
-    if (!time) {
-      return 'T00:00:00.000Z';
-    } else {
-      let [hour, minute] = time.split(':');
-
-      if (hour.length === 1 && amPmValue === 'am') {
-        hour = '0' + hour;
-      }
-      if (minute.length === 1) {
-        minute = '0' + minute;
-      }
-      return `T${
-        amPmValue === 'pm' ? Number(hour) + 12 + '' : hour
-      }:${minute}:00.000Z`;
-    }
-  };
-
-  //   clear the time input field/am-pm
-  const handleTimeCancel = evt => {
-    evt.preventDefault();
-    setTime('');
-    setAmPmValue(false);
-  };
-
   return (
     <Modal
-      title="Add a source"
+      title="Create New Incident"
       visible={visible}
       onOk={handleOk}
       confirmLoading={confirmLoading}
       onCancel={handleCancel}
     >
       <form>
-        <label className="add-incident-label" htmlFor="city">
+        <label htmlFor="title">
+          Title of Incident
+          <br />
+          <input
+            type="text"
+            name="title"
+            value={formValues.title}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label htmlFor="desc">
+          Description of Incident
+          <br />
+          <input
+            type="text"
+            name="desc"
+            value={formValues.desc}
+            onChange={handleChange}
+          />
+        </label>
+        <br />
+        <br />
+        <label htmlFor="city">
           City
           <br />
           <input
@@ -178,7 +184,8 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label className="add-incident-label" htmlFor="state">
+        <br />
+        <label htmlFor="state">
           State
           <br />
           <input
@@ -189,7 +196,8 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label className="add-incident-label" htmlFor="date">
+        <br />
+        <label htmlFor="date">
           Date (Month/Day/Year)
           <br />
           <input
@@ -200,88 +208,52 @@ const AddIncident = props => {
           />
         </label>
         <br />
-        <label className="add-incident-label" htmlFor="time">
-          Time Relative to Location (XX:XX)
+        <br />
+        <label htmlFor="force_rank">
+          Force Rank
           <br />
-          <input type="text" name="time" value={time} onChange={handleChange} />
-          {time && (
-            <>
-              <br />
-              <input
-                type="radio"
-                value="am"
-                onChange={handleChange}
-                name="ampm"
-              />
-              <label className="add-incident-label" htmlFor="ampm">
-                A.M.
-              </label>
-              <input
-                id="pm-input"
-                type="radio"
-                value="pm"
-                onChange={handleChange}
-                name="ampm"
-              />
-              <label className="add-incident-label" htmlFor="ampm">
-                P.M.
-              </label>
-              <br />
-              <button className="add-src" onClick={handleTimeCancel}>
-                Cancel
-              </button>
-            </>
-          )}
+          <select onChange={handleChange} name="force_rank">
+            <option value="Rank 0 - No Police Presence">
+              Rank 0 - No Police Presence
+            </option>
+            <option value="Rank 1 - Police Presence">
+              Rank 1 - Police Presence
+            </option>
+            <option value="Rank 2 - Empty-hand">Rank 2 - Empty-hand</option>
+            <option value="Rank 3 - Blunt Force">Rank 3 - Blunt Force</option>
+            <option value="Rank 4 - Chemical &amp; Electric">
+              Rank 4 - Chemical &amp; Electric
+            </option>
+            <option value="Rank 5 - Lethal Force">Rank 5 - Lethal Force</option>
+          </select>
         </label>
         <br />
-        <label className="add-incident-label" htmlFor="desc">
-          Description
+        <br />
+        <label htmlFor="tweet">
+          Tweet URL
           <br />
           <input
             type="text"
-            name="desc"
-            value={formValues.desc}
+            value={twitterSrc}
             onChange={handleChange}
+            name="tweet"
           />
         </label>
         <br />
-        <label className="add-incident-label" htmlFor="title">
-          Title for This Incident Report
-          <br />
-          <input
-            type="text"
-            name="title"
-            value={formValues.title}
-            onChange={handleChange}
-          />
-        </label>
         <br />
-        <label className="add-incident-label" htmlFor="src">
-          Link(s) to Media Source
+        <label htmlFor="src">
+          Additional Source
           <br />
           <input
             type="text"
             name="src"
-            value={srcValue}
-            onChange={handleSrcChange}
+            value={formValues.src}
+            onChange={handleChange}
           />
-          <br />
-          <button
-            className="add-src"
-            onClick={handleAddSrc}
-            disabled={!srcValue}
-          >
-            Add Source
-          </button>
-          {sources.map(source => {
-            return (
-              <Source source={source} removeSrc={removeSrc} key={source} />
-            );
-          })}
         </label>
         <br />
       </form>
-      {modalText ? modalText : ''}
+      {modalText || ''}
     </Modal>
   );
 };

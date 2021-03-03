@@ -14,9 +14,7 @@ const AdminDashboard = () => {
 
   //   setting state necessary for pagination
   const [pageNumber, setPageNumber] = useState(1);
-  const [incidentsPerPage, setIncidentsPerPage] = useState(
-    2
-  ); /*<---!!!!!change this eventually!!!!!*/
+  const [incidentsPerPage, setIncidentsPerPage] = useState(5);
   const [currentSet, setCurrentSet] = useState([]);
 
   //   setting state for confirmation buttons of confirming/rejecting
@@ -29,8 +27,14 @@ const AdminDashboard = () => {
   // setting state to toggle whether or not the modal pop up (addIncident) is rendered
   const [adding, setAdding] = useState(false);
 
+  const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
+
   // getting unapproved/pending incidents from the database
   useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = () => {
     axios
       .get(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`)
       .then(res => {
@@ -39,7 +43,7 @@ const AdminDashboard = () => {
       .catch(err => {
         console.log(err);
       });
-  }, []);
+  };
 
   // setting up pagination display on dashboard
   useEffect(() => {
@@ -55,96 +59,72 @@ const AdminDashboard = () => {
   const selectAll = () => {
     setAllSelected(!allSelected);
     if (!allSelected) {
-      setSelected(currentSet.map(data => data.server_id));
+      setSelected(currentSet.map(data => data.id));
     } else {
       setSelected([]);
     }
   };
 
   const changeSelected = incident => {
-    if (selected.includes(incident.server_id)) {
-      const newSelected = selected.filter(id => {
-        return id !== incident.server_id;
-      });
-      setSelected(newSelected);
-    } else {
-      setSelected([...selected, incident.server_id]);
+    if (!confirmApprove && !confirmReject) {
+      if (selected.includes(incident.id)) {
+        const newSelected = selected.filter(id => {
+          return id !== incident.id;
+        });
+        setSelected(newSelected);
+      } else {
+        setSelected([...selected, incident.id]);
+      }
     }
   };
 
   //   approving/rejecting incidents
   const sortApproved = () => {
-    const approvedData = [];
-    const unapprovedData = [];
+    const reviewedData = [];
+    const unreviewedData = [];
     unapprovedIncidents.forEach(dataObj => {
-      if (selected.includes(dataObj.server_id)) {
-        approvedData.push(dataObj);
+      if (selected.includes(dataObj.id)) {
+        reviewedData.push(dataObj);
       } else {
-        unapprovedData.push(dataObj);
+        unreviewedData.push(dataObj);
       }
     });
+    return [reviewedData, unreviewedData];
+  };
 
+  const putIncidents = (incidents, approved) => {
+    const reviewedIncidents = incidents.map(incident => {
+      return {
+        ...incident,
+        approved,
+        pending: false,
+        rejected: !approved,
+      };
+    });
+
+    axios
+      .put(
+        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
+        reviewedIncidents
+      )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const approveAndRejectHandler = evt => {
+    evt.preventDefault();
+    const [reviewedIncidents, unreviewedIncidents] = sortApproved();
+    putIncidents(reviewedIncidents, confirmApprove);
+    setUnapprovedIncidents(unreviewedIncidents);
     setAllSelected(false);
     setSelected([]);
     setConfirmApprove(false);
     setConfirmReject(false);
-    setUnapprovedIncidents(unapprovedData);
-
-    return approvedData;
-  };
-
-  const putIncidents = (incidents, approved) => {
-    incidents.forEach(incident => {
-      let updatedIncident;
-      if (approved) {
-        updatedIncident = {
-          ...incident,
-          approved,
-          pending: false,
-          rejected: false,
-        };
-      } else {
-        updatedIncident = {
-          ...incident,
-          approved,
-          pending: false,
-          rejected: true,
-        };
-      }
-      axios
-        .put(
-          `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents/${incident.server_id}`,
-          updatedIncident
-        )
-        .then(res => {
-          console.log(res);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    });
-  };
-
-  const approveHandler = evt => {
-    evt.preventDefault();
-    const reviewedIncidents = sortApproved();
-    putIncidents(reviewedIncidents, true);
-    if (
-      pageNumber >
-      Math.ceil(unapprovedIncidents.length / incidentsPerPage) - 1
-    ) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  const rejectHandler = evt => {
-    evt.preventDefault();
-    const reviewedIncidents = sortApproved();
-    putIncidents(reviewedIncidents, false);
-    if (
-      pageNumber >
-      Math.ceil(unapprovedIncidents.length / incidentsPerPage) - 1
-    ) {
+    if (pageNumber > lastPage) {
       setPageNumber(pageNumber - 1);
     }
   };
@@ -169,7 +149,7 @@ const AdminDashboard = () => {
   //   pagination functions
   const handleNextClick = evt => {
     evt.preventDefault();
-    if (pageNumber < Math.ceil(unapprovedIncidents.length / incidentsPerPage)) {
+    if (pageNumber < lastPage) {
       setPageNumber(pageNumber + 1);
     }
   };
@@ -221,7 +201,11 @@ const AdminDashboard = () => {
         </div>
       </div>
       {adding ? (
-        <AddIncident setAdding={setAdding} />
+        <AddIncident
+          setPageNumber={setPageNumber}
+          getData={getData}
+          setAdding={setAdding}
+        />
       ) : (
         <>
           <div className="dashboard-top-flex">
@@ -252,7 +236,7 @@ const AdminDashboard = () => {
                 </button>
               ) : (
                 <button
-                  onClick={confirmApprove ? approveHandler : rejectHandler}
+                  onClick={approveAndRejectHandler}
                   className={
                     selected.length > 0
                       ? 'approve-reject-select'
@@ -305,7 +289,6 @@ const AdminDashboard = () => {
                 name="per-page-selector"
                 onChange={handlePerPageChange}
               >
-                <option value="2">2</option>
                 <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="25">25</option>
@@ -328,13 +311,15 @@ const AdminDashboard = () => {
             {currentSet.map(incident => {
               return (
                 <PendingIncident
+                  getData={getData}
                   confirmApprove={confirmApprove}
-                  key={incident.server_id}
+                  key={incident.id}
                   incident={incident}
                   selected={selected}
                   changeSelected={changeSelected}
                   setUnapprovedIncidents={setUnapprovedIncidents}
                   unapprovedIncidents={unapprovedIncidents}
+                  setPageNumber={setPageNumber}
                 />
               );
             })}
@@ -354,8 +339,7 @@ const AdminDashboard = () => {
             </p>
             <DoubleRightOutlined
               className={
-                pageNumber ===
-                Math.ceil(unapprovedIncidents.length / incidentsPerPage)
+                pageNumber === lastPage
                   ? 'next-arrow shaded-arrow'
                   : 'next-arrow'
               }
@@ -369,5 +353,4 @@ const AdminDashboard = () => {
     </div>
   );
 };
-//remove this comment
 export default AdminDashboard;
