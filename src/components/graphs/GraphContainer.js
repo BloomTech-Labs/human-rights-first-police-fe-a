@@ -47,7 +47,7 @@ const GraphContainer = () => {
   const [usState, setUsState] = useState(null);
   const [today] = useState(DateTime.local());
   // const [elevenMonths] = useState(28927182167); // Milliseconds
-  const [graph, setGraph] = useState('Line');
+  const [graph, setGraph] = useState('Incidents Per Month');
   const [filtered, setFiltered] = useState([]); // Data filtered by user
   const [counts, setCounts] = useState({});
   const [barCounts, setBarCounts] = useState({});
@@ -112,35 +112,48 @@ const GraphContainer = () => {
     setBarCounts(newBarCounts);
   }, [filtered, usState]);
 
-  if (graph === 'Line') {
+  if (graph === 'Incidents Per Month') {
     return (
       <section className="graph-container">
         <header>
-          <h2>Incidents per Month</h2>
           <Pagination setGraph={setGraph} setUsState={setUsState} />
+          <div>
+            <h2>
+              Incidents identified by our data collection methods per month
+            </h2>
+            <h4>April 2020 - Present</h4>
+          </div>
         </header>
         <LineGraph data={counts} months={months} />
       </section>
     );
-  } else if (graph === 'Bar') {
+  } else if (graph === 'Incidents Per State') {
     return (
       <section className="graph-container">
         <header>
-          <h2>Incidents per State</h2>
           <Pagination setGraph={setGraph} setUsState={setUsState} />
+          <div>
+            <h2>
+              Total incidents identified by our data collection methods by state
+            </h2>
+            <h4>April 2020 - Present</h4>
+          </div>
         </header>
         <BarGraph count={barCounts} />
       </section>
     );
-  } else if (graph === 'Pie') {
+  } else if (graph === 'Incident Categories') {
     return (
       <section className="graph-container">
         <header>
-          <div className="pie-head">
-            <h2>Percentages of Total Types of Force</h2>
-            <h6>Apr 2020 - Present</h6>
-          </div>
           <Pagination setGraph={setGraph} setUsState={setUsState} />
+          <div>
+            <h2>
+              Prevalence of Force Ranks as identified by our data collection
+              methods
+            </h2>
+            <h4>April 2020 - Present</h4>
+          </div>
         </header>
         <PieGraph data={filtered} />
       </section>
