@@ -81,6 +81,26 @@ const Horizontalbar = () => {
   return (
     <div>
       <h1>Total Incidents By Category</h1>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Sit amet consectetur
+        adipiscing elit pellentesque. Nisi scelerisque eu ultrices vitae auctor.
+        Pellentesque id nibh tortor id aliquet. Sed odio morbi quis commodo.
+        Cursus eget nunc scelerisque viverra mauris in aliquam. Eget arcu dictum
+        varius duis at consectetur lorem. Non blandit massa enim nec dui nunc.
+        In vitae turpis massa sed. Cursus turpis massa tincidunt dui ut ornare.
+        Faucibus in ornare quam viverra orci sagittis eu volutpat odio. Sed
+        viverra ipsum nunc aliquet bibendum. Sit amet dictum sit amet justo.
+        Maecenas ultricies mi eget mauris pharetra. Pulvinar proin gravida
+        hendrerit lectus a. Tempus quam pellentesque nec nam aliquam sem et
+        tortor consequat. Consectetur a erat nam at lectus urna duis.
+      </p>
+      <h2>Data Science Stuff Below</h2>
+      <p>
+        <li>Important disclaimer 1</li>
+        <li>Important disclaimer 2</li>
+        <li>Important disclaimer 3</li>
+      </p>
       <HorizontalBar style={{ width: '100%', height: '450px' }} data={data} />
     </div>
   );
