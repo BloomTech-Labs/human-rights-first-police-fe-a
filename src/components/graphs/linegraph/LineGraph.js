@@ -28,31 +28,38 @@ const LineGraph = ({ data, months }) => {
   }, [data, labels]);
 
   return (
-    <div
-      style={{
-        backgroundColor: '#191A1A',
-        margin: '0 auto',
-        maxWidth: '1550px',
-      }}
-    >
-      <Line
-        data={{
-          labels: labels,
-          datasets: [
-            {
-              incidentId: incidentID,
-              label: label,
-              data: lineData,
-              borderColor: '#003767',
-              backgroundColor: '#ededed',
-              pointBackgroundColor: '#e63946',
-              pointBorderColor: '#95363d',
-            },
-          ],
+    <>
+      <div
+        style={{
+          backgroundColor: '#191A1A',
+          margin: '0 auto',
+          maxWidth: '1550px',
         }}
-        options={options}
-      />
-    </div>
+      >
+        <Line
+          data={{
+            labels: labels,
+            datasets: [
+              {
+                incidentId: incidentID,
+                label: label,
+                data: lineData,
+                borderColor: '#003767',
+                backgroundColor: '#ededed',
+                pointBackgroundColor: '#e63946',
+                pointBorderColor: '#95363d',
+              },
+            ],
+          }}
+          options={options}
+        />
+      </div>
+      <p className="graph-disclaimer">
+        Note: This graph relies on open source data from multiple sources and a
+        machine learning model that is still in beta. These categories may not
+        accurately represent the circumstances of each incident.{' '}
+      </p>
+    </>
   );
 };
 
