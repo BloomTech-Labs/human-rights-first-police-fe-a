@@ -70,6 +70,19 @@ p.page-number-display {
   margin: auto 2%;
 }
 
+.page-number-display::selection {
+  background: transparent;
+  color: black;
+}
+
+p.page-number-display {
+  display: inline;
+}
+
+#page-number-display {
+  margin: auto 2%;
+}
+
 // prev/next arrows
 
 .prev-arrow {
