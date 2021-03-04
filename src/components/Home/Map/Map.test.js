@@ -10,6 +10,7 @@ afterEach(() => {
 describe('/components/Home/Map: <Map />', () => {
   test('Component renders', async () => {
     const { container } = await render(<Map />);
+
     expect(container).toContainElement(container.firstChild);
   });
 });

@@ -1,8 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
-import PendingIncident from './PendingIncident';
 import AddIncident from './AddIncident';
+import DashboardTop from './DashboardTop';
+import Incidents from './Incidents';
+
+import {
+  getData,
+  sortApproved,
+  putIncidents,
+} from '../../utils/DashboardHelperFunctions.js';
 
 import { DoubleRightOutlined } from '@ant-design/icons';
 import { DoubleLeftOutlined } from '@ant-design/icons';
@@ -31,19 +37,8 @@ const AdminDashboard = () => {
 
   // getting unapproved/pending incidents from the database
   useEffect(() => {
-    getData();
+    getData(setUnapprovedIncidents);
   }, []);
-
-  const getData = () => {
-    axios
-      .get(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`)
-      .then(res => {
-        setUnapprovedIncidents(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
 
   // setting up pagination display on dashboard
   useEffect(() => {
@@ -78,46 +73,12 @@ const AdminDashboard = () => {
     }
   };
 
-  //   approving/rejecting incidents
-  const sortApproved = () => {
-    const reviewedData = [];
-    const unreviewedData = [];
-    unapprovedIncidents.forEach(dataObj => {
-      if (selected.includes(dataObj.id)) {
-        reviewedData.push(dataObj);
-      } else {
-        unreviewedData.push(dataObj);
-      }
-    });
-    return [reviewedData, unreviewedData];
-  };
-
-  const putIncidents = (incidents, approved) => {
-    const reviewedIncidents = incidents.map(incident => {
-      return {
-        ...incident,
-        approved,
-        pending: false,
-        rejected: !approved,
-      };
-    });
-
-    axios
-      .put(
-        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
-        reviewedIncidents
-      )
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-
   const approveAndRejectHandler = evt => {
     evt.preventDefault();
-    const [reviewedIncidents, unreviewedIncidents] = sortApproved();
+    const [reviewedIncidents, unreviewedIncidents] = sortApproved(
+      unapprovedIncidents,
+      selected
+    );
     putIncidents(reviewedIncidents, confirmApprove);
     setUnapprovedIncidents(unreviewedIncidents);
     setAllSelected(false);
@@ -173,33 +134,12 @@ const AdminDashboard = () => {
     setAdding(true);
   };
 
-  console.log(unapprovedIncidents);
-
   return (
     <div className="dashboard-container">
-      <h2 id="admin-dashboard-title">Admin Dashboard</h2>
-
-      <div className="statboxes">
-        <div className="statbox">
-          <p>
-            There are currently {unapprovedIncidents.length} unapproved
-            incidents are awaiting your review. 'Select All' to approve all
-            incidents with the click of a button or alternatively, select 'More
-            Info' to inspect, edit, approve or disapprove incidents 1 by 1.{' '}
-          </p>
-          <p>
-            You can manually create an incident by using the 'Create New
-            Incident' button
-          </p>
-        </div>
-      </div>
-      <div className="confirmation-message-div">
-        <div className="incidents-wrap">
-          <button id="create-incident-button" onClick={toggleAddIncident}>
-            Create New Incident
-          </button>
-        </div>
-      </div>
+      <DashboardTop
+        unapprovedIncidents={unapprovedIncidents}
+        toggleAddIncident={toggleAddIncident}
+      />
       {adding ? (
         <AddIncident
           setPageNumber={setPageNumber}
@@ -208,122 +148,22 @@ const AdminDashboard = () => {
         />
       ) : (
         <>
-          <div className="dashboard-top-flex">
-            <div className="dashboard-top-input">
-              <input
-                type="checkbox"
-                name="select-all"
-                onChange={confirmApprove ? () => {} : selectAll}
-                checked={allSelected}
-              />
-              <label id="select-all-label" htmlFor="select-all">
-                Select All{' '}
-              </label>
-            </div>
-
-            <div className="dashboard-top-approve-reject">
-              {!confirmApprove && !confirmReject ? (
-                <button
-                  disabled={selected.length < 1}
-                  onClick={confirmApproveHandler}
-                  className={
-                    selected.length > 0
-                      ? 'approve-reject-select'
-                      : 'hidden-button'
-                  }
-                >
-                  Approve
-                </button>
-              ) : (
-                <button
-                  onClick={approveAndRejectHandler}
-                  className={
-                    selected.length > 0
-                      ? 'approve-reject-select'
-                      : 'hidden-button'
-                  }
-                >
-                  Yes
-                </button>
-              )}
-              {!confirmApprove && !confirmReject ? (
-                <button
-                  disabled={selected.length < 1}
-                  onClick={confirmRejectHandler}
-                  className={
-                    selected.length > 0
-                      ? 'approve-reject-select'
-                      : 'hidden-button'
-                  }
-                >
-                  Reject
-                </button>
-              ) : (
-                <button
-                  onClick={confirmCancel}
-                  className={
-                    selected.length > 0
-                      ? 'approve-reject-select'
-                      : 'hidden-button'
-                  }
-                >
-                  No
-                </button>
-              )}
-              <p
-                className={
-                  !confirmApprove && !confirmReject
-                    ? 'confirmation-message transparent'
-                    : 'confirmation-message'
-                }
-              >
-                Are you sure?
-              </p>
-            </div>
-            <div className="dashboard-top-page-number">
-              <label id="items-per-page" htmlFor="per-page-selector">
-                Items Per Page
-              </label>
-              <select
-                className="items-pp-select"
-                name="per-page-selector"
-                onChange={handlePerPageChange}
-              >
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="column-headers">
-            <input className="hidden-input" type="checkbox" />
-            <div className="column-headers-flex">
-              <h4 className="description">Description</h4>
-              <h4 className="location">Location</h4>
-              <h4 className="date">Date</h4>
-            </div>
-          </div>
-
-          <div className="incidents">
-            {currentSet.map(incident => {
-              return (
-                <PendingIncident
-                  getData={getData}
-                  confirmApprove={confirmApprove}
-                  key={incident.id}
-                  incident={incident}
-                  selected={selected}
-                  changeSelected={changeSelected}
-                  setUnapprovedIncidents={setUnapprovedIncidents}
-                  unapprovedIncidents={unapprovedIncidents}
-                  setPageNumber={setPageNumber}
-                />
-              );
-            })}
-          </div>
+          <Incidents
+            confirmApprove={confirmApprove}
+            confirmReject={confirmReject}
+            confirmApproveHandler={confirmApproveHandler}
+            confirmRejectHandler={confirmRejectHandler}
+            approveAndRejectHandler={approveAndRejectHandler}
+            confirmCancel={confirmCancel}
+            selected={selected}
+            selectAll={selectAll}
+            allSelected={allSelected}
+            changeSelected={changeSelected}
+            handlePerPageChange={handlePerPageChange}
+            currentSet={currentSet}
+            setUnapprovedIncidents={setUnapprovedIncidents}
+            setPageNumber={setPageNumber}
+          />
           <div className="pagination">
             <DoubleLeftOutlined
               onClick={handleBackClick}
