@@ -12,15 +12,14 @@ const CompleteIncident = props => {
     setUnapprovedIncidents,
   } = props;
 
-  // separating the description and the tweet url
-  const [trimmedDescription, twitterUrl] = incident.desc.split('https');
-
-  // setting state to toggle "editing mode"
-  const [editing, setEditing] = useState(false);
-
+  // separating the description and the tweet url to display in tweet URL form field when editing (for incidents that have a tweet URL included in the description)
+  const [description, twitterUrl] = incident.desc.split('https');
   const [twitterSrc, setTwitterSrc] = useState(
     twitterUrl ? 'https' + twitterUrl : ''
   );
+
+  // setting state to toggle "editing mode"
+  const [editing, setEditing] = useState(false);
 
   const [formValues, setFormValues] = useState({});
 
@@ -28,7 +27,7 @@ const CompleteIncident = props => {
     setFormValues({
       ...incident,
       date: formattedDate,
-      desc: trimmedDescription,
+      desc: description,
     });
 
     return () => {
@@ -64,7 +63,11 @@ const CompleteIncident = props => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    applyEdits(formValues, incident)
+    const editedIncident = {
+      ...formValues,
+      desc: formValues.desc + ' ' + twitterSrc,
+    };
+    applyEdits(editedIncident, incident)
       .then(res => {
         console.log(res);
       })
@@ -128,7 +131,7 @@ const CompleteIncident = props => {
             <p className="complete-incident-dropdown-titles-bold">
               Description:
             </p>
-            <p>{trimmedDescription}</p>
+            <p>{description}</p>
           </div>
         ) : (
           <>
@@ -194,7 +197,6 @@ const CompleteIncident = props => {
                 tweetId={incident.incident_id}
                 tweetUrl={twitterSrc}
               />
-              // <TweetEmbed id={incident.incident_id} />
             )}
           </div>
         ) : (
