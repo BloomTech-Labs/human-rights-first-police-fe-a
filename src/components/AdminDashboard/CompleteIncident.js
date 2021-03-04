@@ -9,18 +9,17 @@ const CompleteIncident = props => {
     incident,
     formattedDate,
     setMoreInfo,
-    setPageNumber,
     setUnapprovedIncidents,
   } = props;
 
   // separating the description and the tweet url
-  const [trimmedDescription, tweetSrc] = incident.desc.split('https');
+  const [trimmedDescription, twitterUrl] = incident.desc.split('https');
 
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
 
   const [twitterSrc, setTwitterSrc] = useState(
-    tweetSrc ? 'https' + tweetSrc : ''
+    twitterUrl ? 'https' + twitterUrl : ''
   );
 
   const [formValues, setFormValues] = useState({});
@@ -31,6 +30,7 @@ const CompleteIncident = props => {
       date: formattedDate,
       desc: trimmedDescription,
     });
+
     return () => {
       setFormValues({});
     };
@@ -48,6 +48,12 @@ const CompleteIncident = props => {
     const { name, value } = evt.target;
     if (name === 'twitter-src') {
       setTwitterSrc(value);
+      const splitUrl = value.split('/');
+      const tweetId = splitUrl[splitUrl.length - 1];
+      setFormValues({
+        ...formValues,
+        incident_id: tweetId,
+      });
     } else {
       setFormValues({
         ...formValues,
@@ -66,9 +72,8 @@ const CompleteIncident = props => {
         console.log(err);
       })
       .finally(res => {
-        setEditing(!editing);
+        setEditing(false);
         setMoreInfo(false);
-        setPageNumber(1);
         getData(setUnapprovedIncidents);
       });
   };
@@ -157,7 +162,8 @@ const CompleteIncident = props => {
             <select
               className="edit-input"
               onChange={handleInputChange}
-              name="force-rank"
+              name="force_rank"
+              value={formValues.force_rank}
             >
               <option value="Rank 0 - No Police Presence">
                 Rank 0 - No Police Presence
@@ -182,12 +188,19 @@ const CompleteIncident = props => {
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">Tweet</p>
             <br />
-            {twitterSrc && <EmbedSource key={twitterSrc} url={twitterSrc} />}
+            {incident.incident_id && (
+              <EmbedSource
+                key={incident.incident_id}
+                tweetId={incident.incident_id}
+                tweetUrl={twitterSrc}
+              />
+              // <TweetEmbed id={incident.incident_id} />
+            )}
           </div>
         ) : (
           <>
             <label htmlFor="twitter-src" className="label">
-              Tweet
+              Tweet URL
               <br />
               <input
                 type="text"

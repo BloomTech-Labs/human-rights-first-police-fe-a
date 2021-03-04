@@ -13,7 +13,7 @@ const urlDomain = url => {
 };
 
 export default function EmbedSource(props) {
-  const { url } = props;
+  const { tweetId, tweetUrl } = props;
 
   const [source, setSource] = useState('pending');
   const [childProp, setChildProp] = useState('');
@@ -21,21 +21,26 @@ export default function EmbedSource(props) {
   useEffect(() => {
     let isMatch = false;
 
-    for (const r in regex) {
-      const match = url.match(regex[r]);
+    // for (const r in regex) {
+    //   const match = url.match(regex[r]);
 
-      if (match) {
-        setSource(r);
-        setChildProp(match[0]);
-        isMatch = true;
-        break;
-      }
+    //   if (match) {
+    //     setSource(r);
+    //     setChildProp(match[0]);
+    //     isMatch = true;
+    //     break;
+    //   }
+    // }
+    if (tweetId) {
+      setSource('tweet');
+      setChildProp(tweetId);
+      isMatch = true;
     }
 
     if (!isMatch) {
       setSource(null);
     }
-  }, [url]);
+  }, [tweetUrl]);
 
   return source === 'pending' ? (
     <Spin />
@@ -43,12 +48,12 @@ export default function EmbedSource(props) {
     <TwitterTweetEmbed tweetId={childProp} />
   ) : (
     <a
-      href={url}
+      href={tweetUrl}
       target="_blank"
       rel="noopener noreferrer"
       className="link-button"
     >
-      {urlDomain(url)}
+      {urlDomain(tweetUrl)}
     </a>
   );
 }
