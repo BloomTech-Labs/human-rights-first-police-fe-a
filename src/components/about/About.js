@@ -1,4 +1,5 @@
 import React from 'react';
+import StudentCredits from './StudentCredits';
 
 // component imports
 import DataExportForm from './DataExportForm';
@@ -66,6 +67,7 @@ const About = () => {
         Rights First's Innovation Lab and Lambda School. It represents nearly
         seven months of work by Lambda School students.
       </p>
+      <StudentCredits />
       <img
         className="lambda-logo"
         src={lambdalogo}
