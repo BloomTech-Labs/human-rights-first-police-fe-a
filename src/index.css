@@ -18,7 +18,7 @@ root:hover {
 .nav-container nav .layout {
   width: 70%;
 }
-.nav-container nav .layout [role=menu] {
+.nav-container nav .layout [role='menu'] {
   background-color: var(--blue);
   height: 60px;
   display: flex;
@@ -93,30 +93,31 @@ div canvas {
 
 .link-container {
   display: flex;
-  justify-content: flex-end;
-  width: 60%;
-  min-width: 60%;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .link-container .graph-buttons {
   list-style-type: none;
   padding: 0;
-  width: 50%;
+  width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: flex-end;
 }
 
 .link-container .graph-buttons .link-item {
-  width: 120px;
   height: 48px;
   line-height: 46px;
   text-size-adjust: 100%;
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   color: #1890ff;
   display: flex;
-  justify-content: center;
+  flex-flow: row nowrap;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
 }
@@ -133,6 +134,7 @@ div canvas {
 
 .link-container .search-bar-container {
   display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 
@@ -145,19 +147,28 @@ section ul {
   margin: 0 auto;
 }
 
-.link-container[role=menu] {
+.link-container[role='menu'] {
   height: 60px;
   border: none;
 }
 
-.graph-menu-item [role=menu-item] {
+.graph-menu-item [role='menu-item'] {
   height: 48px;
 }
 
 .graph-container header {
   display: flex;
+  flex-flow: column nowrap;
   align-items: center;
   justify-content: space-between;
+}
+
+.graph-container header div {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .graph-container header .ant-menu-item-group-title {
@@ -296,7 +307,7 @@ h3.incident-container {
 
 .map-menu-background {
   position: absolute;
-  top: 84px;
+  top: 24px;
   right: 24px;
   z-index: 1;
   cursor: pointer;
@@ -476,6 +487,19 @@ div.timeline-container {
 .page-number-display {
   padding-top: 0.7%;
   margin-right: 2%;
+}
+
+.page-number-display::selection {
+  background: transparent;
+  color: black;
+}
+
+p.page-number-display {
+  display: inline;
+}
+
+#page-number-display {
+  margin: auto 2%;
 }
 
 .page-number-display::selection {
