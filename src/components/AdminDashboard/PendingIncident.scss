@@ -1,18 +1,43 @@
 .pending-incident {
   display: flex;
   justify-content: space-between;
-  border: solid black 2px;
+  border: solid #e3e8ee 1px;
   width: 100%;
   align-items: center;
+  margin-bottom: 0px;
+  border-radius: 5px;
 }
 
 .toggled {
   border-bottom: none;
+  background-color: rgb(247, 250, 252);
+}
+
+#incident-description {
+  margin-left: 0px;
+  font-weight: 500;
+  width: 45%;
+  text-align: left;
+  padding: 0px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .incident-info {
   text-align: left;
   padding-top: 1%;
+}
+
+.incident-info-text-wrap {
+  display: flex;
+  text-align: left;
+  justify-content: flex-start;
+  width: 100%;
+  align-items: center;
+  color: #3c4257;
+  font-weight: 500;
+  margin: 0 auto;
 }
 
 .incident-info:first-child {
@@ -21,21 +46,20 @@
 }
 
 .incident-info:nth-child(2) {
-  width: 45%;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  width: 18%;
+  margin-left: 1%;
 }
 
 .incident-info:nth-child(3) {
   width: 15%;
+  margin-left: 7%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
 }
 
 .incident-info:last-child {
-  margin-right: 1%;
+  margin-left: 5%;
 }
 
 .more-info {

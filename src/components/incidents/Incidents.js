@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useIncidents } from '../../hooks/legacy/useIncidents';
 import IncidentsCard from '../incidents/IncidentsCard';
 import {
   falsiesRemoved,
@@ -8,6 +7,7 @@ import {
   createRange,
 } from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
+import { useSelector } from 'react-redux';
 
 // Time Imports
 import { DateTime } from 'luxon';
@@ -28,15 +28,17 @@ const Incidents = () => {
   const [dates, setDates] = useState(null);
   const [data, setData] = useState([]);
 
-  // Async Data Call
-  const dataQuery = useIncidents();
-  const incidents = dataQuery.data && !dataQuery.isError ? dataQuery.data : [];
+  // Get incident data from Redux
+  const incidents = useSelector(state => Object.values(state.incident.data));
+  const fetchStatus = useSelector(
+    state => state.api.incidents.getincidents.status
+  );
 
   useEffect(() => {
-    !dataQuery.isLoading &&
-      !dataQuery.isError &&
-      setData(falsiesRemoved(dataQuery.data));
-  }, [dataQuery.isLoading, dataQuery.isError, dataQuery.data]);
+    fetchStatus === 'success' &&
+      data.length === 0 &&
+      setData(falsiesRemoved(incidents));
+  }, [fetchStatus, data.length, incidents]);
 
   useEffect(() => {
     const range = dates && createRange(dates);
@@ -81,7 +83,7 @@ const Incidents = () => {
     <>
       <div className="incidents-page">
         <header>
-          <h1 className="title"> Expanded Timeline of Events </h1>
+          <h2 className="incidents-title">Browse Incidents</h2>
           <section className="user-input">
             <SearchBar setUsState={setUsState} />
             <RangePicker onCalendarChange={onDateSelection} />

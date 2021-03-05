@@ -1,49 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import MapContainer from './components/map/MapContainer';
 import { LoginCallback } from '@okta/okta-react';
-import OktaRoute from './components/OktaRoute';
-
-import RecentTimeline from './components/timeline/RecentTimeline';
+import useOktaRedux from './hooks/useOktaRedux';
+import useFetchIncidents from './hooks/useFetchIncidents';
+import Home from './components/Home';
 import Incidents from './components/incidents/Incidents';
 import About from './components/about/About';
-
 import GraphContainer from './components/graphs/GraphContainer';
 import NavBar from './components/NavBar/NavBar';
-import HorizontalBar from './components/graphs/bargraph/HorizontalBar';
-import Stats from './components/Stats/Stats';
 import LoginContainer from './components/Login/LoginContainer';
 import Dashboard from './components/AdminDashboard/AdminDashboard';
-
-import useOktaRedux from './hooks/useOktaRedux';
+import OktaRoute from './components/OktaRoute';
 
 export default function App() {
   // Keeps Okta and Redux in sync
   useOktaRedux();
+  const { fetch } = useFetchIncidents();
+  useEffect(() => {
+    fetch();
+  }, [fetch]);
 
   return (
-    <>
+    <div>
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <div className="Map">
-            <MapContainer />
-          </div>
-          <div className="bottom-section">
-            <div className="Timeline">
-              <RecentTimeline />
-              <div className="Info-Section">
-                <div className="Stats">
-                  <Stats />
-                </div>
-                <div className="H-bar">
-                  <HorizontalBar />
-                </div>
-              </div>
-            </div>
-          </div>
+          <Home />
         </Route>
-
         <Route path="/graph">
           <GraphContainer />
         </Route>
@@ -54,11 +37,10 @@ export default function App() {
           <About />
         </Route>
         <Route path="/login" component={LoginContainer} />
-        <Route path="/" exact component={() => <MapContainer />} />
         {/* Bandaid fix to prevent production from crashing due to unspecified Okta environment variables */}
         <OktaRoute path="/admin-dashboard" component={Dashboard} />
         <Route path="/implicit/callback" component={LoginCallback} />
       </Switch>
-    </>
+    </div>
   );
 }

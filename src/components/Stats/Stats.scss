@@ -1,11 +1,19 @@
-.stats {
-  margin-top: 10px;
-  text-align: center;
+:root {
+  --blue: #003767;
+  --orange: #bc541e;
+  --light-blue: #7f9bb3;
 }
 
-.Total-incidents {
-  margin-bottom: 10%;
+.stats {
+  background-color: var(--blue);
+  text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  height: 15vh;
 }
-.Total-spray-gas {
-  margin-bottom: 10%;
+
+.stat h2 {
+  color: white;
 }

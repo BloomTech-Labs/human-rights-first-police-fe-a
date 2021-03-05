@@ -1,19 +1,22 @@
 import React, { useEffect, useState } from 'react';
-
-import { useIncidents } from '../../hooks/legacy/useIncidents';
-import { newData } from '../../components/map/GetFunctions';
+import { useSelector } from 'react-redux';
 import { CountUpAnimation } from './StatsFunction';
-import { ArrowUpOutlined } from '@ant-design/icons';
-import { Divider } from 'antd';
+import { Carousel } from 'antd';
 
 const Stats = () => {
-  const [gasAndSpray, setGasAndSpray] = useState();
+  const [gasAndSpray, setGasAndSpray] = useState(0);
+  const [arrests, setArrests] = useState(0);
+  const [numCities, setNumCities] = useState(0);
 
-  const incidentsQuery = useIncidents();
+  const contentStyle = {
+    height: '10vh',
+    color: '#fff',
+    lineHeight: '10vh',
+    textAlign: 'center',
+    background: '#003767',
+  };
 
-  const incidents =
-    incidentsQuery.data && !incidentsQuery.isError ? incidentsQuery.data : [];
-  const dataList = newData(incidents);
+  const dataList = useSelector(state => Object.values(state.incident.data));
 
   useEffect(() => {
     let newCat = [];
@@ -30,31 +33,42 @@ const Stats = () => {
     let totalCities = dataList.map(city => {
       return city.city;
     });
+    let reducedCities = [...new Set(totalCities)];
+    let totalArrests = newCat.flat().filter((filters, index) => {
+      return filters === 'arrest';
+    });
 
     setGasAndSpray(pepperSpray.length + tearGas.length);
-
-    let car = [];
+    setArrests(totalArrests.length);
+    setNumCities(reducedCities.length);
   }, [dataList]);
 
   return (
-    <div className="stats">
-      <div className="Total-incidents">
-        <h1>Total Incidents</h1>
-        <h1>
-          <CountUpAnimation duration={1000}>{dataList.length}</CountUpAnimation>
-          &nbsp;&nbsp; <ArrowUpOutlined />
-        </h1>
+    <Carousel autoplay>
+      <div className="stat incidents">
+        <h2 style={contentStyle}>
+          We have identified {dataList.length} incidents of police use of force
+        </h2>
       </div>
-      <Divider style={{ borderWidth: '1px' }} />
-      <div className="Total-spray-gas">
-        <h1> Uses of Pepper-Spray & Tear-Gas </h1>
-        <h1>
-          <CountUpAnimation duration={1000}>{gasAndSpray}</CountUpAnimation>
-          &nbsp;&nbsp; <ArrowUpOutlined />
-        </h1>
+      <div className="stat spray-gas">
+        <h2 style={contentStyle}>
+          Including {gasAndSpray} uses of pepper-spray or tear-gas
+        </h2>
       </div>
-      <Divider style={{ borderWidth: '1px' }} />
-    </div>
+      <div className="stat arrests">
+        <h2 style={contentStyle}>Resulting in {arrests} total arrests</h2>
+      </div>
+      <div className="stat cities">
+        <h2 style={contentStyle}>
+          In {numCities} cities across the United States
+        </h2>
+      </div>
+      <div className="stat description">
+        <h2 style={contentStyle}>
+          By collecting and processing crowdsourced data from Reddit and Twitter
+        </h2>
+      </div>
+    </Carousel>
   );
 };
 

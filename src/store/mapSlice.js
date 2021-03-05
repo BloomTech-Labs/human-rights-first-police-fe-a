@@ -1,50 +1,62 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const initViewport = {
+  latitude: 41.850033,
+  longitude: -97.6500523,
+  zoom: 3.2,
+  bbox: [-179.9, 18.8163608007951, -66.8847646185949, 71.4202919997506],
+};
+
+const initFocus = {
+  cluster: { list: [] },
+  query: {
+    list: [],
+    geoFilter: { list: [], active: false },
+    dateFilter: { list: [], active: false },
+  },
+  active: null,
+};
+
 const slice = createSlice({
   name: 'map',
   initialState: {
-    viewport: { latitude: 41.850033, longitude: -97.6500523, zoom: 3.2 },
-    cluster: {
-      type: 'Feature',
-      geometry: {
-        type: 'Point',
-        coordinates: [],
-        properties: {
-          incident: null,
-          cluster: false,
-          incident_id: null,
-        },
-      },
-    },
-    search: '',
-    latitude: 41.850033,
-    longitude: -97.6500523,
-    filters: null,
-    incidentsOfInterest: null,
-    filterData: {},
-    dates: null,
+    viewport: initViewport,
+    focus: initFocus,
   },
   reducers: {
     setViewport: (state, action) => {
       state.viewport = action.payload;
     },
-    setIncidentsOfInterest: (state, action) => {
-      state.incidentsOfInterest = action.payload;
+    cleanTransition: (state, action) => {
+      if (state.viewport.transitionDuration) {
+        state.viewport.transitionDuration = 0;
+      }
     },
-    setLatitude: (state, action) => {
-      state.latitude = action.payload;
+    resetViewport: state => {
+      state.viewport = initViewport;
+      state.latitude = initViewport.latitude;
+      state.longitude = initViewport.longitude;
     },
-    setLongitude: (state, action) => {
-      state.longitude = action.payload;
+    setFocusCluster: (state, action) => {
+      if (Array.isArray(action.payload)) {
+        state.focus.cluster.list = action.payload;
+        state.focus.active = 'cluster';
+      }
     },
-    setFilterData: (state, action) => {
-      state.filterData = action.payload;
+    setFocusGeoFilter: (state, action) => {
+      state.focus.query.geoFilter.list = action.payload;
+      state.focus.query.geoFilter.active = true;
     },
-    setDates: (state, action) => {
-      state.dates = action.payload;
+    setFocusDateFilter: (state, action) => {
+      state.focus.query.dateFilter.list = action.payload;
+      state.focus.query.dateFilter.active = true;
     },
-    setSearch: (state, action) => {
-      state.search = action.payload;
+    setFocusQuery: (state, action) => {
+      state.focus.query.list = action.payload;
+      state.focus.active = 'query';
+    },
+    resetFocus: state => {
+      state.focus = initFocus;
     },
   },
 });

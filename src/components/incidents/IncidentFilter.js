@@ -1,25 +1,28 @@
-import { DateTime } from 'luxon';
-import Interval from 'luxon/src/interval.js';
+import { DateTime, Interval } from 'luxon';
 
 // When raw data from the back end is received, remove any key/value pairs from the object that resolve to undefined or null
 const falsiesRemoved = data => {
-  const nullRemoved = data.map(incident =>
-    Object.keys(incident)
-      .filter(key => incident[key] !== null)
-      .reduce((newIncident, key) => {
-        newIncident[key] = incident[key];
-        return newIncident;
-      }, {})
-  );
+  let undefinedRemoved = [];
 
-  const undefinedRemoved = nullRemoved.map(incident =>
-    Object.keys(incident)
-      .filter(key => incident[key] !== undefined)
-      .reduce((newIncident, key) => {
-        newIncident[key] = incident[key];
-        return newIncident;
-      }, {})
-  );
+  if (data) {
+    const nullRemoved = data.map(incident =>
+      Object.keys(incident)
+        .filter(key => incident[key] !== null)
+        .reduce((newIncident, key) => {
+          newIncident[key] = incident[key];
+          return newIncident;
+        }, {})
+    );
+
+    undefinedRemoved = nullRemoved.map(incident =>
+      Object.keys(incident)
+        .filter(key => incident[key] !== undefined)
+        .reduce((newIncident, key) => {
+          newIncident[key] = incident[key];
+          return newIncident;
+        }, {})
+    );
+  }
 
   return undefinedRemoved;
 };

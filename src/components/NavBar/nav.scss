@@ -24,32 +24,37 @@ root:hover {
     background-color: var(--blue);
     height: 60px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    align-items: center;
   }
   .logo-container {
-    width: 15%;
+    width: 11%;
     height: 59px;
     background-color: var(--blue);
   }
   .lambda-container {
     max-height: 2.5rem;
-    margin-top: 6px;
-    width: 15%;
 
     .lambda {
       max-height: 2.5rem;
     }
   }
   .logo {
-    padding: 0 6px;
-    float: right;
-    max-height: 3.5rem;
+    max-height: 3rem;
+    position: absolute;
+    z-index: +1;
+    margin-top: 0.25%;
+    margin-left: 0.25%;
   }
 }
 
 nav {
   display: inline;
-  min-width: 100%;
+  width: 100%;
+}
+
+.active-nav-link {
+  font-weight: bold;
 }
 
 .layout {
@@ -57,11 +62,7 @@ nav {
 
   a {
     color: white !important;
-    font-size: 1.5rem;
-  }
-
-  a:focus {
-    font-weight: bold;
+    font-size: 1.2rem;
   }
 }
 

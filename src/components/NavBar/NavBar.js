@@ -1,6 +1,6 @@
 import React from 'react';
 import 'antd/dist/antd.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/hrf-logo.png';
 import lambda from '../../assets/LambdaAssets/Built by lambda.png';
@@ -19,27 +19,45 @@ const NavBar = () => {
         <Layout className="layout">
           <Menu mode="horizontal">
             <Menu.Item key="1">
-              <Link to="/">Home</Link>
+              <NavLink
+                to="/"
+                exact
+                className="nav-link"
+                activeClassName="active-nav-link"
+              >
+                Home
+              </NavLink>
             </Menu.Item>
 
             <Menu.Item key="2">
-              <Link to="/incidents">Incidents</Link>
+              <NavLink to="/incidents" activeClassName="active-nav-link">
+                Incidents
+              </NavLink>
             </Menu.Item>
 
             <Menu.Item key="3">
-              <Link to="/graph">Graphs</Link>
+              <NavLink to="/graph" activeClassName="active-nav-link">
+                Graphs
+              </NavLink>
             </Menu.Item>
 
             <Menu.Item key="4">
-              <Link to="/about">About </Link>
+              <NavLink to="/about" activeClassName="active-nav-link">
+                About{' '}
+              </NavLink>
             </Menu.Item>
 
             <Menu.Item key="5">
-              <Link to="/admin-dashboard">Admin Dashboard</Link>
+              <NavLink to="/admin-dashboard" activeClassName="active-nav-link">
+                Admin Dashboard
+              </NavLink>
             </Menu.Item>
-            <div className="lambda-container">
-              <img src={lambda} alt="Built By Lambda" className="lambda" />
-            </div>
+
+            <Menu.Item key="6">
+              <div className="lambda-container">
+                <img src={lambda} alt="Built By Lambda" className="lambda" />
+              </div>
+            </Menu.Item>
           </Menu>
         </Layout>
       </nav>

@@ -1,8 +1,11 @@
 .complete-incident {
-  text-align: center;
-  border: solid black 2px;
+  text-align: left;
+  border: solid #e3e8ee 1px;
   border-top: none;
   padding-bottom: 2%;
+  margin-top: 0px;
+  background-color: rgb(247, 250, 252);
+  border-radius: 5px;
 
   button {
     margin: auto 1%;
@@ -11,8 +14,38 @@
 
 .edit-input {
   margin-bottom: 2%;
+  border: solid #e3e8ee 1px;
+  width: 97%;
 }
 
 .label {
   font-weight: bold;
+}
+
+.complete-incident-dropdown {
+  margin-top: 0px;
+  margin-left: 3%;
+}
+
+#dropdown-edit-button {
+  margin-left: 0px;
+  // margin-top: 1%;
+}
+
+.dropdown-text-wrap {
+  display: flex;
+}
+
+.complete-incident-dropdown-titles-bold {
+  font-weight: bold;
+  margin-right: 0.3%;
+}
+
+.location-dropdown-wrap {
+  display: flex;
+}
+
+//this is from EmbedSource.js
+.link-button {
+  margin-left: 0.5%;
 }

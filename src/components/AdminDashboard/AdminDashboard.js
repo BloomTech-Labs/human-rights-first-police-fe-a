@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from 'react';
 
-import PendingIncident from './PendingIncident';
+import AddIncident from './AddIncident';
+import DashboardTop from './DashboardTop';
+import Incidents from './Incidents';
 
-import { useIncidents } from '../../hooks/legacy/useIncidents';
+import {
+  getData,
+  sortApproved,
+  putIncidents,
+} from '../../utils/DashboardHelperFunctions.js';
 
-import { falsiesRemoved } from '../incidents/IncidentFilter';
+import { DoubleRightOutlined } from '@ant-design/icons';
+import { DoubleLeftOutlined } from '@ant-design/icons';
 
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
@@ -13,23 +20,27 @@ const AdminDashboard = () => {
 
   //   setting state necessary for pagination
   const [pageNumber, setPageNumber] = useState(1);
-  const [incidentsPerPage, setIncidentsPerPage] = useState(2);
+  const [incidentsPerPage, setIncidentsPerPage] = useState(5);
   const [currentSet, setCurrentSet] = useState([]);
 
   //   setting state for confirmation buttons of confirming/rejecting
   const [confirmApprove, setConfirmApprove] = useState(false);
+  const [confirmReject, setConfirmReject] = useState(false);
 
+  // setting state for unapproved/pending incidents from the database
   const [unapprovedIncidents, setUnapprovedIncidents] = useState([]);
 
-  const dataQuery = useIncidents();
-  const incidents = dataQuery.data && !dataQuery.isError ? dataQuery.data : [];
+  // setting state to toggle whether or not the modal pop up (addIncident) is rendered
+  const [adding, setAdding] = useState(false);
 
+  const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
+
+  // getting unapproved/pending incidents from the database
   useEffect(() => {
-    !dataQuery.isLoading &&
-      !dataQuery.isError &&
-      setUnapprovedIncidents(falsiesRemoved(incidents));
-  }, [dataQuery.isLoading, dataQuery.isError, dataQuery.data]);
+    getData(setUnapprovedIncidents);
+  }, []);
 
+  // setting up pagination display on dashboard
   useEffect(() => {
     const start = incidentsPerPage * pageNumber - incidentsPerPage;
     const newCurrentSet = unapprovedIncidents.slice(
@@ -43,64 +54,72 @@ const AdminDashboard = () => {
   const selectAll = () => {
     setAllSelected(!allSelected);
     if (!allSelected) {
-      setSelected(currentSet.map(data => data.incident_id));
+      setSelected(currentSet.map(data => data.id));
     } else {
       setSelected([]);
     }
   };
 
   const changeSelected = incident => {
-    if (selected.includes(incident.incident_id)) {
-      const newSelected = selected.filter(id => {
-        return id !== incident.incident_id;
-      });
-      setSelected(newSelected);
-    } else {
-      setSelected([...selected, incident.incident_id]);
+    if (!confirmApprove && !confirmReject) {
+      if (selected.includes(incident.id)) {
+        const newSelected = selected.filter(id => {
+          return id !== incident.id;
+        });
+        setSelected(newSelected);
+      } else {
+        setSelected([...selected, incident.id]);
+      }
     }
   };
 
-  //   approving/rejecting incidents
+  const approveAndRejectHandler = evt => {
+    evt.preventDefault();
+    const [reviewedIncidents, unreviewedIncidents] = sortApproved(
+      unapprovedIncidents,
+      selected
+    );
+    putIncidents(reviewedIncidents, confirmApprove);
+    setUnapprovedIncidents(unreviewedIncidents);
+    setAllSelected(false);
+    setSelected([]);
+    setConfirmApprove(false);
+    setConfirmReject(false);
+    if (pageNumber > lastPage) {
+      setPageNumber(pageNumber - 1);
+    }
+  };
+
+  // toggling confirmation of approve/reject buttons
   const confirmApproveHandler = evt => {
     evt.preventDefault();
     setConfirmApprove(true);
   };
 
-  const approveHandler = evt => {
+  const confirmRejectHandler = evt => {
     evt.preventDefault();
-    const [approvedData, unapprovedData] = sortApproved();
-    setUnapprovedIncidents(unapprovedData);
-    setSelected([]);
-    setConfirmApprove(false);
+    setConfirmReject(true);
   };
 
   const confirmCancel = evt => {
     evt.preventDefault();
     setConfirmApprove(false);
+    setConfirmReject(false);
   };
 
-  const sortApproved = () => {
-    const approvedData = [];
-    const unapprovedData = [];
-    incidents.forEach(dataObj => {
-      if (selected.includes(dataObj.incident_id)) {
-        approvedData.push(dataObj);
-      } else {
-        unapprovedData.push(dataObj);
-      }
-    });
-    return [approvedData, unapprovedData];
-  };
-
-  //   page number functions
+  //   pagination functions
   const handleNextClick = evt => {
     evt.preventDefault();
-    setPageNumber(pageNumber + 1);
+    if (pageNumber < lastPage) {
+      setPageNumber(pageNumber + 1);
+    }
   };
 
   const handleBackClick = evt => {
     evt.preventDefault();
-    setPageNumber(pageNumber - 1);
+    if (pageNumber > 1) {
+      setPageNumber(pageNumber - 1);
+    }
   };
 
   const handlePerPageChange = evt => {
@@ -109,142 +128,69 @@ const AdminDashboard = () => {
     setPageNumber(1);
   };
 
+  // toggling rendering of AddIncident pop up modal
+  const toggleAddIncident = evt => {
+    evt.preventDefault();
+    setAdding(true);
+  };
+
   return (
     <div className="dashboard-container">
-      <h2>Admin Dashboard</h2>
-      <h3>Statistics</h3>
-
-      <div className="statboxes">
-        <div className="statbox">
-          <p>{unapprovedIncidents.length} unapproved incidents</p>
-        </div>
-        <div className="statbox">
-          <p>stats</p>
-        </div>
-        <div className="statbox">
-          <p>STATS!</p>
-        </div>
-      </div>
-      <div className="confirmation-message-div">
-        <h3>Incidents</h3>
-        <p
-          className={
-            !confirmApprove
-              ? 'confirmation-message transparent'
-              : 'confirmation-message'
-          }
-        >
-          Are you sure?
-        </p>
-      </div>
-      {unapprovedIncidents.length === 0 ? (
-        <p>There are no incidents awaiting approval</p>
+      <DashboardTop
+        unapprovedIncidents={unapprovedIncidents}
+        toggleAddIncident={toggleAddIncident}
+      />
+      {adding ? (
+        <AddIncident
+          setPageNumber={setPageNumber}
+          getData={getData}
+          setAdding={setAdding}
+        />
       ) : (
         <>
-          <div className="dashboard-top-flex">
-            <div className="dashboard-top-input">
-              <label htmlFor="select-all">Select All </label>
-              <input
-                className="approve-reject-select"
-                type="checkbox"
-                name="select-all"
-                onChange={confirmApprove ? () => {} : selectAll}
-                checked={allSelected}
-              />
-            </div>
-
-            <div className="dashboard-top-approve-reject">
-              {!confirmApprove ? (
-                <button
-                  disabled={selected.length < 1}
-                  onClick={confirmApproveHandler}
-                  className="approve-reject-select"
-                >
-                  Approve
-                </button>
-              ) : (
-                <button
-                  onClick={approveHandler}
-                  className="approve-reject-select"
-                >
-                  Yes
-                </button>
-              )}
-              {!confirmApprove ? (
-                <button
-                  disabled={selected.length < 1}
-                  onClick={confirmApproveHandler}
-                  className="approve-reject-select"
-                >
-                  Reject
-                </button>
-              ) : (
-                <button
-                  onClick={confirmCancel}
-                  className="approve-reject-select"
-                >
-                  No
-                </button>
-              )}
-            </div>
-
-            <div className="dashboard-top-page-number">
-              <p className="page-number-display">
-                Page {pageNumber} of{' '}
-                {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
-              </p>
-              <label htmlFor="per-page-selector">Items Per Page</label>
-              <select name="per-page-selector" onChange={handlePerPageChange}>
-                <option value="2">2</option>
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="25">25</option>
-                <option value="50">50</option>
-                <option value="100">100</option>
-              </select>
-            </div>
-
-            <div className="dashboard-top-page-buttons">
-              {pageNumber > 1 && (
-                <button
-                  onClick={handleBackClick}
-                  className="page-number-display"
-                >
-                  Previous Page
-                </button>
-              )}
-
-              {pageNumber <
-                Math.ceil(unapprovedIncidents.length / incidentsPerPage) && (
-                <button
-                  onClick={handleNextClick}
-                  className="page-number-display"
-                >
-                  Next Page
-                </button>
-              )}
-            </div>
-          </div>
-
-          <div className="incidents">
-            {currentSet.map(incident => {
-              return (
-                <PendingIncident
-                  confirmApprove={confirmApprove}
-                  key={incident.incident_id}
-                  incident={incident}
-                  selected={selected}
-                  changeSelected={changeSelected}
-                  setUnapprovedIncidents={setUnapprovedIncidents}
-                  unapprovedIncidents={unapprovedIncidents}
-                />
-              );
-            })}
+          <Incidents
+            confirmApprove={confirmApprove}
+            confirmReject={confirmReject}
+            confirmApproveHandler={confirmApproveHandler}
+            confirmRejectHandler={confirmRejectHandler}
+            approveAndRejectHandler={approveAndRejectHandler}
+            confirmCancel={confirmCancel}
+            selected={selected}
+            selectAll={selectAll}
+            allSelected={allSelected}
+            changeSelected={changeSelected}
+            handlePerPageChange={handlePerPageChange}
+            currentSet={currentSet}
+            setUnapprovedIncidents={setUnapprovedIncidents}
+            setPageNumber={setPageNumber}
+          />
+          <div className="pagination">
+            <DoubleLeftOutlined
+              onClick={handleBackClick}
+              className={
+                pageNumber === 1 ? 'prev-arrow shaded-arrow' : 'prev-arrow'
+              }
+            >
+              Previous Page
+            </DoubleLeftOutlined>
+            <p className="page-number-display">
+              Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
+              {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
+            </p>
+            <DoubleRightOutlined
+              className={
+                pageNumber === lastPage
+                  ? 'next-arrow shaded-arrow'
+                  : 'next-arrow'
+              }
+              onClick={handleNextClick}
+            >
+              Next Page
+            </DoubleRightOutlined>
           </div>
         </>
       )}
     </div>
   );
 };
-
 export default AdminDashboard;

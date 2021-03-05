@@ -1,0 +1,77 @@
+.map-menu {
+  background-color: white;
+  padding-left: 2%;
+  width: 375px;
+}
+
+.map-incident-card {
+  cursor: pointer !important;
+}
+
+button.ant-btn.ant-btn-primary.ant-input-search-button {
+  visibility: visible;
+  background-color: rgb(255, 255, 255);
+  color: black;
+}
+
+.ant-collapse {
+  background-color: rgb(255, 255, 255);
+  border: none;
+}
+
+.ant-collapse-content-box {
+  background-color: rgb(255, 255, 255);
+  overflow: auto;
+}
+
+@media (max-width: 800px) {
+  .ant-collapse-content-box {
+    background-color: rgb(255, 255, 255);
+  }
+
+  div.incident-content {
+    height: 17vh;
+  }
+
+  .search-header {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+  }
+}
+
+.incident-content {
+  height: 50vh;
+  z-index: 1;
+}
+
+div.ant-collapse-header {
+  padding: 4;
+  text-align: center;
+
+  padding-bottom: 4%;
+}
+
+div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 5px 0px 5px 0px;
+  font-size: 0.6rem;
+  text-align: left;
+  margin-left: 15px;
+  font-weight: 500;
+}
+
+@media (max-width: 800px) {
+  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+    font-size: 1.1rem;
+    padding: 3px 0px 1px 0px;
+    font-size: 0.9rem;
+    text-align: left;
+    margin-left: 15px;
+    font-weight: 500;
+  }
+}
+
+.incident-container {
+  display: flex;
+  flex-direction: row;
+}

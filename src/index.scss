@@ -5,32 +5,51 @@
 @import './components/graphs/piegraph/Key.scss';
 @import './components/graphs/GraphContainer.scss';
 @import './components/incidents/Incidents.scss';
-@import './components/map/incidentContainer/LastIncident.scss';
-@import './components/map/ClusterMarker.scss';
-@import './components/map/MapContainer.scss';
-@import './components/map/MapSearch.scss';
+@import './components/Home/Map/IncidentFocusCard.scss';
+@import './components/Home/Map/Clusters.scss';
+@import './components/Home/Map/Map.scss';
+@import './components/Home/Map/Search.scss';
 @import './components/Stats/Stats.scss';
 @import './components/timeline/RecentTimeline.scss';
 @import './components/AdminDashboard/AdminDashboard.scss';
 @import './components/AdminDashboard/CompleteIncident.scss';
 @import './components/AdminDashboard/PendingIncident.scss';
+@import './components/AdminDashboard/AddIncident.scss';
+@import './components/AdminDashboard/DashboardTop.scss';
+@import './components/AdminDashboard/Incidents.scss';
 
 .Map {
   position: relative;
   width: 100%;
-  height: 80vh;
+  min-height: calc(90vh - 59px);
   margin-top: -1px;
 }
 
 .Timeline {
   background-color: #ffff;
-
   display: flex;
   justify-content: space-around;
   flex-wrap: wrapgit;
+  // ^ This seems to be a typo?
 }
 
-.H-bar {
-  margin-top: 10px;
-  width: 500px;
+.bottom-section-wrap {
+  display: flex;
+  justify-content: space-around;
+}
+
+.horizontal-graph {
+  width: 42.5vw;
+  margin-top: 61px;
+}
+
+.graph-legend-wrap {
+  margin-bottom: 6%;
+}
+
+.graph-disclaimer {
+  color: #666;
+  font-size: 10px;
+  line-height: 1.2;
+  margin-top: 2%;
 }

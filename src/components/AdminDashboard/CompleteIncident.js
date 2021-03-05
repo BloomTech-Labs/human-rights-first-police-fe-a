@@ -1,182 +1,259 @@
 import React, { useState, useEffect } from 'react';
 
+import EmbedSource from '../EmbedSource';
+
+import { applyEdits, getData } from '../../utils/DashboardHelperFunctions';
+
 const CompleteIncident = props => {
-  const [editing, setEditing] = useState(false);
-  const [formValues, setFormValues] = useState({});
-
-  useEffect(() => {
-    setFormValues({ ...incident, date: formattedDate });
-    return () => {
-      setFormValues({});
-    };
-  }, []);
-
   const {
     incident,
     formattedDate,
-    unapprovedIncidents,
+    setMoreInfo,
     setUnapprovedIncidents,
   } = props;
 
+  // separating the description and the tweet url to display in tweet URL form field when editing (for incidents that have a tweet URL included in the description)
+  const [description, twitterUrl] = incident.desc.split('https');
+  const [twitterSrc, setTwitterSrc] = useState(
+    twitterUrl ? 'https' + twitterUrl : ''
+  );
+
+  // setting state to toggle "editing mode"
+  const [editing, setEditing] = useState(false);
+
+  const [formValues, setFormValues] = useState({});
+
+  useEffect(() => {
+    setFormValues({
+      ...incident,
+      date: formattedDate,
+      desc: description,
+    });
+
+    return () => {
+      setFormValues({});
+    };
+  }, [editing]);
+
+  // toggle "editing mode"
   const toggleEditor = evt => {
     evt.preventDefault();
     setFormValues({ ...incident, date: formattedDate });
     setEditing(!editing);
   };
 
+  // form control functions
   const handleInputChange = evt => {
-    setFormValues({
-      ...formValues,
-      [evt.target.name]: evt.target.value,
-    });
+    const { name, value } = evt.target;
+    if (name === 'twitter-src') {
+      setTwitterSrc(value);
+      const splitUrl = value.split('/');
+      const tweetId = splitUrl[splitUrl.length - 1];
+      setFormValues({
+        ...formValues,
+        incident_id: tweetId,
+      });
+    } else {
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      });
+    }
   };
 
-  const applyEdits = evt => {
+  const handleSubmit = evt => {
     evt.preventDefault();
-    const [month, day, year] = formValues.date.split('/');
-    const [date, time] = incident.date.split('T');
-    const newDate = `${year}-${month}-${day}T${time}`;
-    const updatedIncident = {
+    const editedIncident = {
       ...formValues,
-      date: newDate,
+      desc: formValues.desc + ' ' + twitterSrc,
     };
-    updateIncidents(updatedIncident);
-  };
-
-  const updateIncidents = incident => {
-    const updatedIncidents = unapprovedIncidents.map(inc => {
-      if (inc.incident_id === incident.incident_id) {
-        return incident;
-      } else {
-        return inc;
-      }
-    });
-    setUnapprovedIncidents(updatedIncidents);
-    setEditing(!editing);
-    console.log(unapprovedIncidents);
+    applyEdits(editedIncident, incident)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .finally(res => {
+        setEditing(false);
+        setMoreInfo(false);
+        getData(setUnapprovedIncidents);
+      });
   };
 
   return (
     <div className="complete-incident">
-      {!editing ? (
-        <p>{formattedDate}</p>
-      ) : (
-        <>
-          <label htmlFor="date" className="label">
-            Date
-          </label>
-          <br />
-          <input
-            className="edit-input"
-            onChange={handleInputChange}
-            type="text"
-            name="date"
-            value={formValues.date}
-          />
-          <br />
-        </>
-      )}
-
-      {!editing ? (
-        <p>
-          {incident.city}, {incident.state}
-        </p>
-      ) : (
-        <>
-          <label htmlFor="city" className="label">
-            City
-          </label>
-          <br />
-          <input
-            className="edit-input"
-            onChange={handleInputChange}
-            type="text"
-            name="city"
-            value={formValues.city}
-          />
-          <br />
-          <label htmlFor="state" className="label">
-            State
-          </label>
-          <br />
-          <input
-            className="edit-input"
-            onChange={handleInputChange}
-            type="text"
-            name="state"
-            value={formValues.state}
-          />
-          <br />
-        </>
-      )}
-
-      {!editing ? (
-        <p>{incident.title}</p>
-      ) : (
-        <>
-          <label htmlFor="title" className="label">
-            Title
-          </label>
-          <br />
-          <input
-            className="edit-input"
-            onChange={handleInputChange}
-            type="text"
-            name="title"
-            value={formValues.title}
-          />
-          <br />
-        </>
-      )}
-
-      {!editing ? (
-        <p>{incident.categories.join(' ')}</p>
-      ) : (
-        <>
-          <label htmlFor="categories" className="label">
-            Categories
+      <div className="complete-incident-dropdown">
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Date:</p>
+            <p>{formattedDate}</p>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="date" className="label">
+              Date
+            </label>
             <br />
-            (Separated by commas)
-          </label>
-          <br />
-          <textarea
-            className="edit-input"
-            cols="25"
-            rows="5"
-            onChange={handleInputChange}
-            type="textarea"
-            name="categories"
-            value={formValues.categories}
-          />
-          <br />
-        </>
-      )}
-
-      {!editing ? (
-        <p>{incident.src.join(' ')}</p>
-      ) : (
-        <>
-          <label htmlFor="src" className="label">
-            Sources
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="date"
+              value={formValues.date}
+            />
             <br />
-            (Separated by commas)
-          </label>
-          <br />
-          <textarea
-            cols="25"
-            rows="5"
-            className="edit-input text-area"
-            onChange={handleInputChange}
-            type="textarea"
-            name="src"
-            value={formValues.src.join(' ')}
-          />
-          <br />
-        </>
-      )}
+          </>
+        )}
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Location:</p>
+            <p className="location-dropdown-wrap">{incident.location}</p>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="city" className="label">
+              Location
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="city"
+              value={formValues.location}
+            />
+            <br />
+          </>
+        )}
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">
+              Description:
+            </p>
+            <p>{description}</p>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="desc" className="label">
+              Description
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="desc"
+              value={formValues.desc}
+            />
+            <br />
+          </>
+        )}
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">
+              Force Rank:
+            </p>
+            <p>{incident.force_rank}</p>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="force-rank" className="label">
+              Force Rank
+            </label>
+            <br />
+            <select
+              className="edit-input"
+              onChange={handleInputChange}
+              name="force_rank"
+              value={formValues.force_rank}
+            >
+              <option value="Rank 0 - No Police Presence">
+                Rank 0 - No Police Presence
+              </option>
+              <option value="Rank 1 - Police Presence">
+                Rank 1 - Police Presence
+              </option>
+              <option value="Rank 2 - Empty-hand">Rank 2 - Empty-hand</option>
+              <option value="Rank 3 - Blunt Force">Rank 3 - Blunt Force</option>
+              <option value="Rank 4 - Chemical &amp; Electric">
+                Rank 4 - Chemical &amp; Electric
+              </option>
+              <option value="Rank 5 - Lethal Force">
+                Rank 5 - Lethal Force
+              </option>
+            </select>
+            <br />
+          </>
+        )}
 
-      <button onClick={toggleEditor}>{editing ? 'Cancel' : 'Edit'}</button>
-      {editing && <button onClick={applyEdits}>Apply Changes</button>}
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Tweet</p>
+            <br />
+            {incident.incident_id && (
+              <EmbedSource
+                key={incident.incident_id}
+                tweetId={incident.incident_id}
+                tweetUrl={twitterSrc}
+              />
+            )}
+          </div>
+        ) : (
+          <>
+            <label htmlFor="twitter-src" className="label">
+              Tweet URL
+              <br />
+              <input
+                type="text"
+                name="twitter-src"
+                value={twitterSrc}
+                onChange={handleInputChange}
+                className="edit-input"
+              />
+            </label>
+            <br />
+          </>
+        )}
+
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">
+              Additional Source
+            </p>
+            <a href={incident.src} target="_blank">
+              {incident.src}
+            </a>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="src" className="label">
+              Additional Source
+              <br />
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="src"
+              value={formValues.src || ' '}
+            />
+          </>
+        )}
+        <button
+          id="dropdown-edit-button"
+          className="approve-reject-select"
+          onClick={toggleEditor}
+        >
+          {editing ? 'Cancel' : 'Edit'}
+        </button>
+        {editing && (
+          <button className="approve-reject-select" onClick={handleSubmit}>
+            Apply Changes
+          </button>
+        )}
+      </div>
     </div>
   );
 };

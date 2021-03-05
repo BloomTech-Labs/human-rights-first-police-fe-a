@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 
-import Key from './Key';
+import Horizontalbar from '../bargraph/HorizontalBar';
 import colorShader from './colorShader';
+
+import Key from './Key';
 
 const incrementor = (incident, type, types) => {
   if (type in types) {
@@ -16,29 +18,29 @@ const getTypesOfForce = data => {
   let types = {};
 
   data.forEach(incident => {
-    switch (true) {
-      case incident.verbalization:
-        incrementor(incident, 'verbalization', types);
+    switch (incident.force_rank) {
+      case 'Rank 0 - No Police Presence':
+        incrementor(incident, 'Uncategorized', types);
         break;
 
-      case incident.empty_hand_soft:
-        incrementor(incident, 'empty_hand_soft', types);
+      case 'Rank 1 - Police Presence':
+        incrementor(incident, 'Police Presence', types);
         break;
 
-      case incident.empty_hand_hard:
-        incrementor(incident, 'empty_hand_hard', types);
+      case 'Rank 2 - Empty-hand':
+        incrementor(incident, 'Empty Hand', types);
         break;
 
-      case incident.less_lethal_methods:
-        incrementor(incident, 'less_lethal_methods', types);
+      case 'Rank 3 - Blunt Force':
+        incrementor(incident, 'Blunt Force', types);
         break;
 
-      case incident.lethal_force:
-        incrementor(incident, 'lethal_force', types);
+      case 'Rank 4 - Chemical & Electric':
+        incrementor(incident, 'Chemical & Electric', types);
         break;
 
-      case incident.uncategorized:
-        incrementor(incident, 'uncategorized', types);
+      case 'Rank 5 - Lethal Force':
+        incrementor(incident, 'Lethal Force', types);
         break;
 
       default:
@@ -118,6 +120,12 @@ const PieGraph = ({ data, usState }) => {
   return (
     <>
       <Pie data={graphData} />
+      <br />
+      <p className="graph-disclaimer">
+        Note: This graph relies on open source data from multiple sources and a
+        machine learning model that is still in beta. These categories may not
+        accurately represent the circumstances of each incident.{' '}
+      </p>
       <Key />
     </>
   );

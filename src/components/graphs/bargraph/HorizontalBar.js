@@ -1,82 +1,116 @@
 import React, { useState, useEffect } from 'react';
 import { HorizontalBar } from 'react-chartjs-2';
-import { useIncidents } from '../../../hooks/legacy/useIncidents';
-import { newData } from '../../map/GetFunctions';
+import { useSelector } from 'react-redux';
 
 const Horizontalbar = () => {
-  const [emptyHandSoft, setEmptyHandSoft] = useState();
-  const [emptyHandHard, setEmptyHandHard] = useState();
-  const [officerPresence, setOfficerPresence] = useState();
-  const [verbalization, setVerbalization] = useState();
-  const [lessLethalMethods, setLessLethalMethods] = useState();
+  // const [noPresence, setNoPresence] = useState();
+  const [policePresence, setPolicePresence] = useState();
+  const [emptyHand, setEmptyHand] = useState();
+  const [bluntForce, setBluntForce] = useState();
+  const [chemicalElectric, setChemicalElectric] = useState();
   const [lethalForce, setLethalForce] = useState();
 
-  const incidentsQuery = useIncidents();
-
-  const incidents =
-    incidentsQuery.data && !incidentsQuery.isError ? incidentsQuery.data : [];
-  const dataList = newData(incidents);
+  const dataList = useSelector(state => Object.values(state.incident.data));
 
   const data = {
     labels: [
-      'Empty-Hand-Soft',
-      'Empty-Hand-Hard',
-      'Officer Presence',
-      'Verbalization',
-      'Less-Lethal Methods',
-      'Lethal-force',
+      // 'Rank 0 - No Police Presence',
+      'Rank 1 - Police Presence',
+      'Rank 2 - Empty-hand',
+      'Rank 3 - Blunt Force',
+      'Rank 4 - Chemical & Electric',
+      'Rank 5 - Lethal Force',
     ],
     datasets: [
       {
-        label: 'Incidents',
+        label: 'Number of Incidents',
         backgroundColor: 'rgba(255,99,132,0.2)',
         borderColor: 'rgba(255,99,132,1)',
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [emptyHandSoft, 59, 80, 81, 56, 55, 40],
+        data: [
+          // noPresence,
+          policePresence,
+          emptyHand,
+          bluntForce,
+          chemicalElectric,
+          lethalForce,
+        ],
       },
     ],
   };
 
   useEffect(() => {
-    const emptyhandsoftTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
-    }).length;
-    //   const emptyhandsoftLength = emptyhandsoftTotal.length;
-    setEmptyHandSoft(emptyhandsoftTotal);
+    // const noPresenceTotal = dataList.filter((x, index) => {
+    //   return x.force_rank === 'Rank 0 - No Police Presence';
+    // }).length;
+    // setNoPresence(noPresenceTotal);
 
-    const emptyHandHardTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+    const policePresenceTotal = dataList.filter((x, index) => {
+      return x.force_rank === 'Rank 1 - Police Presence';
     }).length;
+    setPolicePresence(policePresenceTotal);
 
-    setEmptyHandHard(emptyHandHardTotal);
-
-    const officerPresenceTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+    const emptyHandTotal = dataList.filter((x, index) => {
+      return x.force_rank === 'Rank 2 - Empty-hand';
     }).length;
-    setOfficerPresence(officerPresenceTotal);
+    setEmptyHand(emptyHandTotal);
 
-    const verbalizationTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+    const bluntForceTotal = dataList.filter((x, index) => {
+      return x.force_rank === 'Rank 3 - Blunt Force';
     }).length;
-    setVerbalization(verbalizationTotal);
+    setBluntForce(bluntForceTotal);
 
-    const lessLethalMethodsTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+    const chemicalElectricTotal = dataList.filter((x, index) => {
+      return x.force_rank === 'Rank 4 - Chemical & Electric';
     }).length;
-    setLessLethalMethods(lessLethalMethodsTotal);
+    setChemicalElectric(chemicalElectricTotal);
 
     const lethalforceMethodsTotal = dataList.filter((x, index) => {
-      return x.empty_hand_soft === true;
+      return x.force_rank === 'Rank 5 - Lethal Force';
     }).length;
     setLethalForce(lethalforceMethodsTotal);
   }, [dataList]);
 
   return (
     <div>
-      <h1>Total Incidents By Category</h1>
-      <HorizontalBar style={{ width: '100%', height: '600px' }} data={data} />
+      <h1>Incidents Grouped by Level of Police Force</h1>
+      <p>
+        This graph is intended to provide an at-a-glance understanding of the
+        types and volume of incidents that are being cataloged.
+      </p>
+      <h3>Graph Legend</h3>
+      <p className="graph-legend-wrap">
+        <li>
+          Rank I Officer Presence — Police are present, but no force detected.
+        </li>
+        <li>
+          Rank II Empty-Hand — Officers use bodily force to gain control of a
+          situation. Officers may use grabs, holds, joint locks, punches and
+          kicks to restrain an individual.
+        </li>
+        <li>
+          Rank III Blunt Force Methods — Officers use less-lethal technologies
+          to gain control of a situation. Baton or projectile may be used to
+          immobilize a combative person for example.
+        </li>
+        <li>
+          Rank IV Chemical & Electric - Officers use less-lethal technologies to
+          gain control of a situation, such as chemical sprays, projectiles
+          embedded with chemicals, or tasers to restrain an individual.
+        </li>
+        <li>
+          Rank V Lethal Force — Officers use lethal weapons to gain control of a
+          situation.
+        </li>
+      </p>
+      <HorizontalBar style={{ width: '100%', height: '450px' }} data={data} />
+      <p className="graph-disclaimer">
+        Note: This graph relies on open source data from multiple sources and a
+        machine learning model that is still in beta. These categories may not
+        accurately represent the circumstances of each incident.{' '}
+      </p>
     </div>
   );
 };

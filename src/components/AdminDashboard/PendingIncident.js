@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import CompleteIncident from './CompleteIncident';
 
+import { getData } from '../../utils/DashboardHelperFunctions';
+
 const PendingIncident = props => {
   // using local state to determine whether the "complete incident" information is toggled
   const [moreInfo, setMoreInfo] = useState(false);
@@ -10,9 +12,9 @@ const PendingIncident = props => {
     incident,
     selected,
     changeSelected,
-    unapprovedIncidents,
-    setUnapprovedIncidents,
     confirmApprove,
+    setPageNumber,
+    setUnapprovedIncidents,
   } = props;
 
   const toggleMoreInfo = () => {
@@ -23,7 +25,7 @@ const PendingIncident = props => {
     changeSelected(incident);
   };
 
-  const isSelected = selected.includes(incident.incident_id);
+  const isSelected = selected.includes(incident.id);
 
   //   changing the date into a more readable format
   const [year, month, day] = incident.date.split('-');
@@ -40,25 +42,28 @@ const PendingIncident = props => {
           checked={isSelected}
           onChange={confirmApprove ? () => {} : toggleCheck}
         />
+        <div className="incident-info-text-wrap">
+          <p className="incident-info" id="incident-description">
+            {incident.desc.split('http')[0]}
+          </p>
 
-        <p className="incident-info">{incident.title}</p>
+          <p className="incident-info">{incident.user_location}</p>
 
-        <p className="incident-info">
-          {incident.city}, {incident.state}
-        </p>
+          <p className="incident-info">{formattedDate}</p>
 
-        <p className="incident-info">{formattedDate}</p>
-
-        <p className="incident-info more-info" onClick={toggleMoreInfo}>
-          {moreInfo ? 'Less Info' : 'More Info'}
-        </p>
+          <p className="incident-info more-info" onClick={toggleMoreInfo}>
+            {moreInfo ? 'Less Info' : 'More Info'}
+          </p>
+        </div>
       </div>
       {moreInfo && (
         <CompleteIncident
-          unapprovedIncidents={unapprovedIncidents}
-          setUnapprovedIncidents={setUnapprovedIncidents}
           incident={incident}
           formattedDate={formattedDate}
+          setMoreInfo={setMoreInfo}
+          getData={getData}
+          setPageNumber={setPageNumber}
+          setUnapprovedIncidents={setUnapprovedIncidents}
         />
       )}
     </div>
