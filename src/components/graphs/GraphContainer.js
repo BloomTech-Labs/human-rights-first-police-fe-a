@@ -112,8 +112,8 @@ const GraphContainer = () => {
     setBarCounts(newBarCounts);
   }, [filtered, usState]);
 
-  if (graph === 'Incidents Per Month') {
-    return (
+  return (
+    <>
       <section className="graph-container">
         <header>
           <Pagination setGraph={setGraph} setUsState={setUsState} />
@@ -126,12 +126,8 @@ const GraphContainer = () => {
         </header>
         <LineGraph data={counts} months={months} />
       </section>
-    );
-  } else if (graph === 'Incidents Per State') {
-    return (
       <section className="graph-container">
         <header>
-          <Pagination setGraph={setGraph} setUsState={setUsState} />
           <div>
             <h2>
               Total incidents identified by our data collection methods by state
@@ -141,12 +137,8 @@ const GraphContainer = () => {
         </header>
         <BarGraph count={barCounts} />
       </section>
-    );
-  } else if (graph === 'Incident Categories') {
-    return (
       <section className="graph-container">
         <header>
-          <Pagination setGraph={setGraph} setUsState={setUsState} />
           <div>
             <h2>
               Prevalence of Force Ranks as identified by our data collection
@@ -157,8 +149,8 @@ const GraphContainer = () => {
         </header>
         <PieGraph data={filtered} />
       </section>
-    );
-  }
+    </>
+  );
 };
 
 export default GraphContainer;

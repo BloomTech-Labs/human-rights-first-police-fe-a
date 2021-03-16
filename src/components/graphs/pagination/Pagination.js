@@ -50,8 +50,7 @@ const Pagination = ({ setGraph, setUsState }) => {
   };
 
   return (
-    <nav className="link-container">
-      <ul className="graph-buttons">{generateButtons(onClick)}</ul>
+    <nav style={{ marginTop: '1rem' }} className="link-container">
       <div className="search-bar-container">
         <SearchBar setUsState={setUsState} className="search-bar" />
       </div>
