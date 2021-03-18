@@ -17,7 +17,7 @@ const NavBar = () => {
       </div>
       <nav>
         <Layout className="layout">
-          <Menu mode="horizontal">
+          <Menu mode="horizontal" className="override">
             <Menu.Item key="1">
               <NavLink
                 to="/"
