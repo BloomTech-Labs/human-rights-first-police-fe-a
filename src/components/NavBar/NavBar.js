@@ -47,11 +47,11 @@ const NavBar = () => {
               </NavLink>
             </Menu.Item>
 
-            <Menu.Item key="5">
+            {/* <Menu.Item key="5">
               <NavLink to="/admin-dashboard" activeClassName="active-nav-link">
                 Admin Dashboard
               </NavLink>
-            </Menu.Item>
+            </Menu.Item> */}
 
             <Menu.Item key="6">
               <div className="lambda-container">

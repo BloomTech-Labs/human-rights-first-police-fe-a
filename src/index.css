@@ -142,7 +142,9 @@ div canvas {
       -ms-text-size-adjust: 100%;
           text-size-adjust: 100%;
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+ 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+ 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   color: #1890ff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1094,6 +1096,50 @@ form label {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+root {
+  --blue: #003767;
+  --orange: #fff;
+  --light-blue: #7f9bb3;
+}
+
+root:hover {
+  color: yellow;
+}
+
+.footer-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.footer-container .layout {
+  width: 70%;
+  background-color: var(--blue);
+}
+
+.footer-container .admin-dash-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 1rem;
+  margin-left: 3rem;
+}
+
+.footer-container .copyright-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.footer-container .copyright-container p {
+  color: white;
+  text-align: center;
+
 }
 
 .Map {
