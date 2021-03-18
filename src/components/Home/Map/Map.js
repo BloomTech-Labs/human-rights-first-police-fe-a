@@ -37,6 +37,7 @@ export default function Map() {
   });
 
   // Mapbox interactive settings
+
   const [settings, setsettings] = useState({
     dragPan: true,
     dragRotate: true,
@@ -46,6 +47,7 @@ export default function Map() {
     keyboard: false,
     doubleClickZoom: true,
   });
+
 
   useEffect(() => {
     const serializable = { ...viewport }; // keep non-serializable data out of Redux
