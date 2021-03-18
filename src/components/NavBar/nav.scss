@@ -54,7 +54,7 @@ nav {
 }
 
 .active-nav-link {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .layout {
@@ -70,7 +70,9 @@ nav {
   color: #fff;
 }
 
-// override for ant design
+
+/* overrides for ant design */
+
 
 .ant-menu-horizontal.override {
   line-height: 52px;

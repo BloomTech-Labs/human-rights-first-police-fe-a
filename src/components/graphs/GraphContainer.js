@@ -112,13 +112,13 @@ const GraphContainer = () => {
     setBarCounts(newBarCounts);
   }, [filtered, usState]);
 
-  if (graph === 'Incidents Per Month') {
-    return (
-      <section className="graph-container">
+  return (
+    <>
+      <section id="lineGraph" className="graph-container">
         <header>
           <Pagination setGraph={setGraph} setUsState={setUsState} />
           <div>
-            <h2>
+            <h2 style={{ marginTop: '1rem' }}>
               Incidents identified by our data collection methods per month
             </h2>
             <h4>April 2020 - Present</h4>
@@ -126,14 +126,10 @@ const GraphContainer = () => {
         </header>
         <LineGraph data={counts} months={months} />
       </section>
-    );
-  } else if (graph === 'Incidents Per State') {
-    return (
-      <section className="graph-container">
+      <section id="barGraph" className="graph-container">
         <header>
-          <Pagination setGraph={setGraph} setUsState={setUsState} />
           <div>
-            <h2>
+            <h2 style={{ marginTop: '5rem' }}>
               Total incidents identified by our data collection methods by state
             </h2>
             <h4>April 2020 - Present</h4>
@@ -141,14 +137,10 @@ const GraphContainer = () => {
         </header>
         <BarGraph count={barCounts} />
       </section>
-    );
-  } else if (graph === 'Incident Categories') {
-    return (
-      <section className="graph-container">
+      <section id="pieGraph" className="graph-container">
         <header>
-          <Pagination setGraph={setGraph} setUsState={setUsState} />
           <div>
-            <h2>
+            <h2 style={{ marginTop: '5rem' }}>
               Prevalence of Force Ranks as identified by our data collection
               methods
             </h2>
@@ -157,8 +149,8 @@ const GraphContainer = () => {
         </header>
         <PieGraph data={filtered} />
       </section>
-    );
-  }
+    </>
+  );
 };
 
 export default GraphContainer;
