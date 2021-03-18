@@ -1,0 +1,101 @@
+.dashboard-container {
+  padding-top: 3%;
+  width: 90%;
+  margin: auto;
+}
+
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-top: 1%;
+}
+
+.pagination div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.pagination div:first-of-type {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 12%;
+}
+
+.pagination div:nth-of-type(2) {
+  width: 40%;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.page-number-display {
+  padding-top: 0.7%;
+  margin-right: 2%;
+}
+
+.page-number-display::-moz-selection {
+  background: transparent;
+  color: black;
+}
+
+.page-number-display::selection {
+  background: transparent;
+  color: black;
+}
+
+p.page-number-display {
+  display: inline;
+}
+
+#page-number-display {
+  margin: auto 2%;
+}
+
+.page-number-display::-moz-selection {
+  background: transparent;
+  color: black;
+}
+
+.page-number-display::selection {
+  background: transparent;
+  color: black;
+}
+
+p.page-number-display {
+  display: inline;
+}
+
+#page-number-display {
+  margin: auto 2%;
+}
+
+.prev-arrow {
+  -webkit-transform: scale(2.2);
+          transform: scale(2.2);
+  margin-right: 1.7%;
+}
+
+.next-arrow {
+  -webkit-transform: scale(2.2);
+          transform: scale(2.2);
+}
+
+.shaded-arrow {
+  opacity: 45%;
+}
+/*# sourceMappingURL=AdminDashboard.css.map */

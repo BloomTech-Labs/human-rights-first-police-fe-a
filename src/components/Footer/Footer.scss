@@ -1,0 +1,34 @@
+root {
+  --blue: #003767;
+  --orange: #fff;
+  --light-blue: #7f9bb3;
+}
+
+root:hover {
+  color: yellow;
+}
+
+.footer-container {
+  display: flex;
+
+  .layout {
+    width: 70%;
+    background-color: var(--blue);
+  }
+
+  .admin-dash-container {
+    display: flex;
+    margin-top: 1rem;
+    margin-left: 3rem;
+  }
+
+  .copyright-container {
+    display: flex;
+    justify-content: center;
+
+    p {
+      color: white;
+      text-align: center;
+    }
+  }
+}

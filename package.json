@@ -6,11 +6,11 @@
   "repository": "github:Lambda-School-Labs/human-rights-first-fe-a",
   "dependencies": {
     "@ant-design/icons": "^4.5.0",
-    "@okta/okta-auth-js": "^4.7.1",
+    "@okta/okta-auth-js": "^4.8.0",
     "@okta/okta-react": "^4.1.0",
     "@okta/okta-signin-widget": "^4.1.2",
     "@reduxjs/toolkit": "^1.5.0",
-    "antd": "^4.9.4",
+    "antd": "^4.14.0",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
     "craco": "0.0.3",
@@ -18,7 +18,7 @@
     "lodash": "^4.17.21",
     "luxon": "^1.25.0",
     "moment": "^2.29.1",
-    "nanoid": "^3.1.20",
+    "nanoid": "^3.1.22",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.11.1",
     "react-dom": "^16.13.1",
@@ -103,10 +103,10 @@
     "jest-prop-type-error": "^1.1.0",
     "kleur": "^4.1.1",
     "lint-staged": "^10.2.11",
-    "prettier-eslint-cli": "^5.0.0",
+    "prettier-eslint-cli": "^5.0.1",
     "prompts": "^2.3.2",
     "sass": "^1.32.5",
     "webpack": "4.44.2",
-    "yaml": "^1.10.0"
+    "yaml": "^1.10.2"
   }
 }

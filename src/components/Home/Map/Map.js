@@ -36,6 +36,17 @@ export default function Map() {
     zoom: 3.2,
   });
 
+  // Mapbox interactive settings
+  const [settings, setsettings] = useState({
+    dragPan: true,
+    dragRotate: true,
+    scrollZoom: false,
+    touchZoom: false,
+    touchRotate: false,
+    keyboard: false,
+    doubleClickZoom: true,
+  });
+
   useEffect(() => {
     const serializable = { ...viewport }; // keep non-serializable data out of Redux
     delete serializable.transitionEasing; // function
@@ -74,6 +85,7 @@ export default function Map() {
       <div className="mapDiv">
         <ReactMapGL
           {...viewport}
+          {...settings}
           onViewportChange={vp => {
             setViewport(vp);
           }}

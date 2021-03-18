@@ -1,0 +1,58 @@
+#admin-dashboard-title {
+  margin-bottom: 2%;
+}
+
+.statboxes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.statbox {
+  border: 2px solid #e3e8ee;
+  padding: 2%;
+  width: 99%;
+  color: #3c4257;
+  border-radius: 5px;
+  font-weight: 400;
+  margin-right: 20px;
+  margin-bottom: 1%;
+  background-image: -webkit-gradient(linear, left top, right top, from(#f7fafc), to(white));
+  background-image: linear-gradient(to right, #f7fafc, white);
+}
+
+.confirmation-message {
+  width: 90%;
+  text-align: center;
+}
+
+.incidents-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 2%;
+}
+
+#create-incident-button {
+  border: 1px solid #e3e8ee;
+  background-color: #003767;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 7.5px;
+  color: white;
+  height: 45px;
+}
+/*# sourceMappingURL=DashboardTop.css.map */

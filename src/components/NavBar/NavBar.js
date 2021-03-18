@@ -2,7 +2,7 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 
-import logo from '../../assets/hrf-logo.png';
+import logo from '../../assets/HRF white-01.png';
 import lambda from '../../assets/LambdaAssets/Built by lambda.png';
 
 import { Layout, Menu } from 'antd';
@@ -47,11 +47,11 @@ const NavBar = () => {
               </NavLink>
             </Menu.Item>
 
-            <Menu.Item key="5">
+            {/* <Menu.Item key="5">
               <NavLink to="/admin-dashboard" activeClassName="active-nav-link">
                 Admin Dashboard
               </NavLink>
-            </Menu.Item>
+            </Menu.Item> */}
 
             <Menu.Item key="6">
               <div className="lambda-container">
