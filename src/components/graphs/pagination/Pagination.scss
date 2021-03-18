@@ -1,3 +1,5 @@
+$medium: 1000px;
+
 .link-container {
   display: flex;
   justify-content: space-between;
@@ -37,6 +39,9 @@
 
 .link-container .graph-buttons .link-item .text {
   margin-right: 8px;
+  @media screen and (max-width: 800px) {
+    display: none;
+  }
 }
 
 .link-container .search-bar-container {
