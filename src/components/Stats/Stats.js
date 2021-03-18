@@ -11,7 +11,7 @@ const Stats = () => {
   const contentStyle = {
     height: '13vh',
     color: '#fff',
-    lineHeight: '12vh',
+    lineHeight: '10vh',
     textAlign: 'center',
     background: '#003767',
   };
