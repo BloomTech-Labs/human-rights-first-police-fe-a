@@ -1,0 +1,41 @@
+form {
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  color: #3c4257;
+  margin: 0 auto;
+}
+
+input {
+  border: 1px solid #e3e8ee;
+  border-radius: 5px;
+}
+
+form label {
+  font-weight: bold;
+}
+
+.add-incident-label {
+  font-weight: 400;
+  color: #3c4257;
+}
+
+.add-incident-label label {
+  margin-left: 0.5%;
+}
+
+.add-src {
+  border: 1px solid #e3e8ee;
+  font-weight: 400;
+  margin-top: 1%;
+  background-color: white;
+  border-width: 2px;
+  border-style: outset;
+  border-radius: 5px;
+  color: #3c4257;
+}
+
+#pm-input {
+  margin-left: 1%;
+}
+/*# sourceMappingURL=AddIncident.css.map */

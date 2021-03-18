@@ -1,0 +1,54 @@
+.complete-incident {
+  text-align: left;
+  border: solid #e3e8ee 1px;
+  border-top: none;
+  padding-bottom: 2%;
+  margin-top: 0px;
+  background-color: #f7fafc;
+  border-radius: 5px;
+}
+
+.complete-incident button {
+  margin: auto 1%;
+}
+
+.edit-input {
+  margin-bottom: 2%;
+  border: solid #e3e8ee 1px;
+  width: 97%;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.complete-incident-dropdown {
+  margin-top: 0px;
+  margin-left: 3%;
+}
+
+#dropdown-edit-button {
+  margin-left: 0px;
+}
+
+.dropdown-text-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.complete-incident-dropdown-titles-bold {
+  font-weight: bold;
+  margin-right: 0.3%;
+}
+
+.location-dropdown-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.link-button {
+  margin-left: 0.5%;
+}
+/*# sourceMappingURL=CompleteIncident.css.map */

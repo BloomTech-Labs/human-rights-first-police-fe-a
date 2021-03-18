@@ -58,7 +58,7 @@ export const applyEdits = (formValues, incident) => {
   };
   const putRequest = new Promise((resolve, reject) => {
     axios
-      .put(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`, [
+      .put(`http://localhost:8000/dashboard/incidents`, [
         { ...updatedIncident },
       ])
       .then(res => {

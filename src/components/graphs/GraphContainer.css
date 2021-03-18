@@ -1,0 +1,55 @@
+.graph-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.link-container[role='menu'] {
+  height: 60px;
+  border: none;
+}
+
+.graph-menu-item [role='menu-item'] {
+  height: 48px;
+}
+
+.graph-container header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.graph-container header div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 100%;
+}
+
+.graph-container header .ant-menu-item-group-title {
+  padding: 0;
+}
+
+.graph-container canvas {
+  background-color: #fff;
+}
+/*# sourceMappingURL=GraphContainer.css.map */
