@@ -11,9 +11,15 @@
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  height: 15vh;
+  height: 13vh;
 }
 
 .stat h2 {
   color: white;
+}
+
+/* ant design changes */
+
+.ant-carousel .slick-dots {
+  margin-bottom: 35px;
 }
