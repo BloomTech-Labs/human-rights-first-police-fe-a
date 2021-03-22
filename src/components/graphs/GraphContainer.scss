@@ -34,3 +34,13 @@
 .graph-container canvas {
   background-color: #fff;
 }
+
+.no-data-container .no-data {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  width: 50vw;
+  margin: auto;
+}

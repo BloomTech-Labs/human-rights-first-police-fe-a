@@ -7,6 +7,7 @@ import {
   LineChartOutlined,
   BarChartOutlined,
   PieChartOutlined,
+  FilterFilled,
 } from '@ant-design/icons';
 import { nanoid } from 'nanoid';
 
@@ -43,7 +44,7 @@ const generateButtons = onClick => {
   return buttons;
 };
 
-const Pagination = ({ setGraph, setUsState }) => {
+const Pagination = ({ setGraph, setUsState, filtered }) => {
   const onClick = e => {
     e.persist();
     setGraph(e.currentTarget.dataset.key);
@@ -60,7 +61,9 @@ const Pagination = ({ setGraph, setUsState }) => {
 
   return (
     <nav style={{ marginTop: '1rem' }} className="link-container">
-      <ul className="graph-buttons">{generateButtons(onClick)}</ul>
+      <ul className="graph-buttons">
+        {filtered.length > 0 ? generateButtons(onClick) : null}
+      </ul>
       <div className="search-bar-container">
         <SearchBar setUsState={setUsState} className="search-bar" />
       </div>

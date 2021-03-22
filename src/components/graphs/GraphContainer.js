@@ -114,11 +114,34 @@ const GraphContainer = () => {
     setBarCounts(newBarCounts);
   }, [filtered, usState]);
 
+  const noDataDisplay = () => {
+    return (
+      <div className="no-data-container">
+        <Empty
+          className="no-data"
+          imageStyle={{
+            height: 200,
+          }}
+          description={
+            <span>
+              Our database has no data for{' '}
+              <span style={{ color: '#1890ff' }}>{usState}</span>
+            </span>
+          }
+        />
+      </div>
+    );
+  };
+
   return (
     <>
       <section id="lineGraph" className="graph-container">
         <header>
-          <Pagination setGraph={setGraph} setUsState={setUsState} />
+          <Pagination
+            setGraph={setGraph}
+            setUsState={setUsState}
+            filtered={filtered}
+          />
           {filtered.length > 0 ? (
             <div>
               <h2 style={{ marginTop: '1rem' }}>
@@ -131,14 +154,7 @@ const GraphContainer = () => {
         {filtered.length > 0 ? (
           <LineGraph data={counts} months={months} />
         ) : (
-          <Empty
-            description={
-              <span>
-                Our database has no data for{' '}
-                <span style={{ color: '#1890ff' }}>{usState}</span>
-              </span>
-            }
-          />
+          noDataDisplay()
         )}
       </section>
       {filtered.length > 0 ? (
