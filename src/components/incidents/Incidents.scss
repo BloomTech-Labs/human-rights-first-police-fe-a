@@ -3,7 +3,9 @@
   --orange: #bc541e;
   --light-blue: #7f9bb3;
 }
-
+.incidents-container {
+  min-height: calc(100vh - (60px + 82px + 32px + 4vh));
+}
 .incidents-page {
   max-width: 1200px;
   margin: 32px auto 0;
