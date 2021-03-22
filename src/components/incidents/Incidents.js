@@ -80,7 +80,7 @@ const Incidents = () => {
   };
 
   return (
-    <>
+    <div className="incidents-container">
       <div className="incidents-page">
         <header>
           <h2 className="incidents-title">Browse Incidents</h2>
@@ -106,7 +106,7 @@ const Incidents = () => {
           showSizeChanger={false}
         />
       </section>
-    </>
+    </div>
   );
 };
 

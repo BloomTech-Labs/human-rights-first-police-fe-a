@@ -10,25 +10,21 @@ root:hover {
 
 .footer-container {
   display: flex;
+  flex-direction: column;
 
   .layout {
-    width: 70%;
+    width: 100%;
     background-color: var(--blue);
+    margin-top: 4vh;
   }
 
   .admin-dash-container {
-    display: flex;
     margin-top: 1rem;
     margin-left: 3rem;
   }
 
-  .copyright-container {
-    display: flex;
-    justify-content: center;
-
-    p {
-      color: white;
-      text-align: center;
-    }
+  .copyright-container p {
+    color: white;
+    text-align: center;
   }
 }
