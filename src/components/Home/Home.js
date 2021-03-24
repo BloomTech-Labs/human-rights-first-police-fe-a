@@ -20,12 +20,12 @@ export default function Home() {
         <Map />
         {/* Scroll down for latest reported incidents */}
       </div>
-      <Alert
+      {/* <Alert
         message="Scroll Down for Latest Reported Incidents"
         type="info"
         closable
         onClose={onClose}
-      />
+      /> */}
       <div className="bottom-section">
         {fetchStatus === 'success' ? (
           <>
