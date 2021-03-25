@@ -17,12 +17,16 @@ div.timeline-container {
 .timeline-box {
   width: 100%;
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
-  overflow-y: scroll;
+  //overflow-y: scroll;
 }
 
 .timeline-button {
   width: 100%;
   font-size: large;
+}
+
+.timeline-wrapper {
+  width: 40vw;
 }
 
 // .categories {
