@@ -8,7 +8,7 @@ const Footer = () => {
     <div className="footer-container">
       <Layout className="layout">
         <div className="admin-dash-container">
-          <Link to="/admin-dashboard">Admin Dashboard</Link>
+          <Link to="/admin-dashboard">Administration</Link>
         </div>
         <div className="copyright-container">
           <p>Human Rights First &copy;2021</p>
