@@ -30,13 +30,14 @@
   background-color: #ffff;
   display: flex;
   justify-content: space-around;
+  padding-right: 100px;
   flex-wrap: wrapgit;
   // ^ This seems to be a typo?
 }
 
 .bottom-section-wrap {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
 }
 
 .horizontal-graph {

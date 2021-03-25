@@ -24,7 +24,10 @@ export default function TimelineItems({ details }) {
         .plus({ days: 1 })
         .toLocaleString(DateTime.DATE_FULL)}
       style={{ color: '#BC541E' }}
-      dateInnerStyle={{ color: 'white', backgroundColor: '#003767' }}
+      dateInnerStyle={{
+        color: 'white',
+        backgroundColor: '#003767',
+      }}
     >
       <div className="timeline-box">
         <Card>
