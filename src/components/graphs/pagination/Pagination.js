@@ -7,6 +7,7 @@ import {
   LineChartOutlined,
   BarChartOutlined,
   PieChartOutlined,
+  FilterFilled,
 } from '@ant-design/icons';
 import { nanoid } from 'nanoid';
 
@@ -43,15 +44,26 @@ const generateButtons = onClick => {
   return buttons;
 };
 
-const Pagination = ({ setGraph, setUsState }) => {
+const Pagination = ({ setGraph, setUsState, filtered }) => {
   const onClick = e => {
     e.persist();
     setGraph(e.currentTarget.dataset.key);
+    if (e.currentTarget.dataset.key === 'Incidents Per Month') {
+      document.getElementById('lineGraph').scrollIntoView();
+    }
+    if (e.currentTarget.dataset.key === 'Incidents Per State') {
+      document.getElementById('barGraph').scrollIntoView();
+    }
+    if (e.currentTarget.dataset.key === 'Incident Categories') {
+      document.getElementById('pieGraph').scrollIntoView();
+    }
   };
 
   return (
-    <nav className="link-container">
-      <ul className="graph-buttons">{generateButtons(onClick)}</ul>
+    <nav style={{ marginTop: '1rem' }} className="link-container">
+      <ul className="graph-buttons">
+        {filtered.length > 0 ? generateButtons(onClick) : null}
+      </ul>
       <div className="search-bar-container">
         <SearchBar setUsState={setUsState} className="search-bar" />
       </div>

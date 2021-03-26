@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { Empty } from 'antd';
 
 // Graphs
 import LineGraph from './linegraph/LineGraph';
@@ -49,6 +50,7 @@ const GraphContainer = () => {
   // const [elevenMonths] = useState(28927182167); // Milliseconds
   const [graph, setGraph] = useState('Incidents Per Month');
   const [filtered, setFiltered] = useState([]); // Data filtered by user
+  console.log('>>>>', filtered);
   const [counts, setCounts] = useState({});
   const [barCounts, setBarCounts] = useState({});
   const [months, setmonths] = useState([]);
@@ -112,53 +114,73 @@ const GraphContainer = () => {
     setBarCounts(newBarCounts);
   }, [filtered, usState]);
 
-  if (graph === 'Incidents Per Month') {
+  const noDataDisplay = () => {
     return (
-      <section className="graph-container">
-        <header>
-          <Pagination setGraph={setGraph} setUsState={setUsState} />
-          <div>
-            <h2>
-              Incidents identified by our data collection methods per month
-            </h2>
-            <h4>April 2020 - Present</h4>
-          </div>
-        </header>
-        <LineGraph data={counts} months={months} />
-      </section>
+      <div className="no-data-container">
+        <Empty
+          className="no-data"
+          imageStyle={{
+            height: 200,
+          }}
+          description={
+            <span>
+              Our database has no data for{' '}
+              <span style={{ color: '#1890ff' }}>{usState}</span>
+            </span>
+          }
+        />
+      </div>
     );
-  } else if (graph === 'Incidents Per State') {
-    return (
-      <section className="graph-container">
+  };
+
+  return (
+    <>
+      <section id="lineGraph" className="graph-container">
         <header>
-          <Pagination setGraph={setGraph} setUsState={setUsState} />
-          <div>
-            <h2>
-              Total incidents identified by our data collection methods by state
-            </h2>
-            <h4>April 2020 - Present</h4>
-          </div>
+          <Pagination
+            setGraph={setGraph}
+            setUsState={setUsState}
+            filtered={filtered}
+          />
+          {filtered.length > 0 ? (
+            <div>
+              <h2 style={{ marginTop: '1rem' }}>
+                Incidents identified by our data collection methods per month
+              </h2>
+              <h4>April 2020 - Present</h4>
+            </div>
+          ) : null}
         </header>
-        <BarGraph count={barCounts} />
+        {filtered.length > 0 ? (
+          <LineGraph data={counts} months={months} />
+        ) : (
+          noDataDisplay()
+        )}
       </section>
-    );
-  } else if (graph === 'Incident Categories') {
-    return (
-      <section className="graph-container">
-        <header>
-          <Pagination setGraph={setGraph} setUsState={setUsState} />
-          <div>
-            <h2>
-              Prevalence of Force Ranks as identified by our data collection
-              methods
-            </h2>
-            <h4>April 2020 - Present</h4>
-          </div>
-        </header>
-        <PieGraph data={filtered} />
-      </section>
-    );
-  }
+      {filtered.length > 0 ? (
+        <div>
+          <section id="barGraph" className="graph-container">
+            <div>
+              <h2 style={{ marginTop: '5rem' }}>
+                Total incidents identified by our data collection methods by
+                state
+              </h2>
+            </div>
+            <BarGraph count={barCounts} />
+          </section>
+          <section id="pieGraph" className="graph-container">
+            <div>
+              <h2 style={{ marginTop: '5rem' }}>
+                Prevalence of Force Ranks as identified by our data collection
+                methods
+              </h2>
+            </div>
+            <PieGraph data={filtered} />
+          </section>
+        </div>
+      ) : null}
+    </>
+  );
 };
 
 export default GraphContainer;

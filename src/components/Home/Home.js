@@ -3,6 +3,7 @@ import Map from './Map';
 import Stats from '../Stats/Stats';
 import RecentTimeline from '../timeline/RecentTimeline';
 import HorizontalBar from '../graphs/bargraph/HorizontalBar';
+import { Alert } from 'antd';
 
 export default function Home() {
   const fetchStatus = useSelector(

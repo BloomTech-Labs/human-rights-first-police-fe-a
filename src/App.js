@@ -10,6 +10,7 @@ import GraphContainer from './components/graphs/GraphContainer';
 import NavBar from './components/NavBar/NavBar';
 import LoginContainer from './components/Login/LoginContainer';
 import Dashboard from './components/AdminDashboard/AdminDashboard';
+import Footer from './components/Footer/Footer';
 import OktaRoute from './components/OktaRoute';
 
 export default function App() {
@@ -41,6 +42,7 @@ export default function App() {
         <OktaRoute path="/admin-dashboard" component={Dashboard} />
         <Route path="/implicit/callback" component={LoginCallback} />
       </Switch>
+      <Footer />
     </div>
   );
 }

@@ -10,11 +10,13 @@ export function RecentTimeline() {
   );
 
   return (
-    <Timeline lineColor={'#</Timeline>ddd'}>
-      {timeline.map(details => {
-        return <TimelineItems details={details} key={nanoid()} />;
-      })}
-    </Timeline>
+    <div className="timeline-wrapper">
+      <Timeline lineColor={'#</Timeline>ddd'}>
+        {timeline.map(details => {
+          return <TimelineItems details={details} key={nanoid()} />;
+        })}
+      </Timeline>
+    </div>
   );
 }
 

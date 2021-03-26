@@ -1,5 +1,19 @@
 import axios from 'axios';
 
+const postToApproved = reviewedIncidents => {
+  axios
+    .post(
+      `${process.env.REACT_APP_BACKENDURL}/data/createincidents`,
+      reviewedIncidents
+    )
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+};
+
 export const putIncidents = (incidents, approved) => {
   const reviewedIncidents = incidents.map(incident => {
     return {
@@ -9,6 +23,8 @@ export const putIncidents = (incidents, approved) => {
       rejected: !approved,
     };
   });
+
+  postToApproved(reviewedIncidents);
 
   axios
     .put(

@@ -9,7 +9,7 @@ const Stats = () => {
   const [numCities, setNumCities] = useState(0);
 
   const contentStyle = {
-    height: '10vh',
+    height: '13vh',
     color: '#fff',
     lineHeight: '10vh',
     textAlign: 'center',
@@ -66,6 +66,11 @@ const Stats = () => {
       <div className="stat description">
         <h2 style={contentStyle}>
           By collecting and processing crowdsourced data from Reddit and Twitter
+        </h2>
+      </div>
+      <div className="stat alert">
+        <h2 style={contentStyle}>
+          Scroll Down To See Latest Reported Incidents!
         </h2>
       </div>
     </Carousel>

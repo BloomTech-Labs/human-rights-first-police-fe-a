@@ -1,7 +1,6 @@
 .about-container {
   margin: auto;
   max-width: 50%;
-  min-height: calc(100vh - (60px + 82px + 4vh));
 }
 
 .about-container h1 {
@@ -20,3 +19,4 @@ h2 {
 .lambda-logo {
   max-height: 4rem;
 }
+/*# sourceMappingURL=About.css.map */
