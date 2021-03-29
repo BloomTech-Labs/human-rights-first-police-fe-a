@@ -10,6 +10,11 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Contributors
 
+### labs 32
+[Michael Maton](https://github.com/michael-maton)
+[Brett McAdams](https://github.com/BrettMcAdams)
+[Christopher Barrett](https://gist.github.com/Christopher-Barrett)
+
 ### Labs 31
 
 [Victoria Mount](https://github.com/victoriamount)
