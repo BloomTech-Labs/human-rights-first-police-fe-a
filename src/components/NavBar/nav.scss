@@ -33,9 +33,13 @@ root:hover {
     background-color: var(--blue);
   }
   .lambda-container {
-    max-height: 2.5rem;
+    // max-height: 2.5rem;
+    display: flex;
+    align-items: center;
 
     .lambda {
+      margin-top: 5px;
+      margin-left: 3px;
       max-height: 2.5rem;
     }
   }
@@ -70,10 +74,13 @@ nav {
   color: #fff;
 }
 
-
 /* overrides for ant design */
-
 
 .ant-menu-horizontal.override {
   line-height: 52px;
+  box-shadow: 15px;
+}
+
+.ant-menu-horizontal.ant-menu-item:hover {
+  border-bottom: 6px solid;
 }

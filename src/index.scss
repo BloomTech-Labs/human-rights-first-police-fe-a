@@ -30,14 +30,21 @@
   background-color: #ffff;
   display: flex;
   justify-content: space-around;
-  padding-right: 100px;
+  padding-right: 50px;
   flex-wrap: wrapgit;
   // ^ This seems to be a typo?
+}
+
+@media (max-width: 1500px) {
+  .Timeline {
+    padding-right: 0px;
+  }
 }
 
 .bottom-section-wrap {
   display: flex;
   justify-content: center;
+  // border: 1px solid black;
 }
 
 .horizontal-graph {

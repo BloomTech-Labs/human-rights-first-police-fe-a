@@ -1,9 +1,9 @@
 {
-    "version": 3,
-    "mappings": "AAAA,AAAA,GAAG,AAAA,WAAW,CAAC;EACb,KAAK,EAAE,IAAI;CACZ;;AAED,AAAA,EAAE,AAAA,mBAAmB,CAAC;EACpB,KAAK,EAAE,IAAI;CACZ;;AAED,AAAA,eAAe,CAAC,EAAE,CAAC;EACjB,WAAW,EAAE,MAAM;CACpB;;AAED,AAAA,qBAAqB,CAAC;EACpB,UAAU,EAAE,GAAG;CAChB",
-    "sources": [
-        "IncidentFocusCard.scss"
-    ],
-    "names": [],
-    "file": "IncidentFocusCard.css"
+  "version": 3,
+  "mappings": "AAAA,AAAA,GAAG,AAAA,WAAW,CAAC;EACb,KAAK,EAAE,IAAI;CACZ;;AAED,AAAA,EAAE,AAAA,mBAAmB,CAAC;EACpB,KAAK,EAAE,IAAI;CACZ;;AAED,AAAA,eAAe,CAAC,EAAE,CAAC;EACjB,WAAW,EAAE,MAAM;CACpB;;AAED,AAAA,qBAAqB,CAAC;EACpB,UAAU,EAAE,GAAG;CAChB",
+  "sources": [
+    "IncidentFocusCard.scss"
+  ],
+  "names": [],
+  "file": "IncidentFocusCard.css"
 }

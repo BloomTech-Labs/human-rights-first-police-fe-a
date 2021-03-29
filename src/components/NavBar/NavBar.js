@@ -53,11 +53,9 @@ const NavBar = () => {
               </NavLink>
             </Menu.Item> */}
 
-            <Menu.Item key="6">
-              <div className="lambda-container">
-                <img src={lambda} alt="Built By Lambda" className="lambda" />
-              </div>
-            </Menu.Item>
+            <div className="lambda-container">
+              <img src={lambda} alt="Built By Lambda" className="lambda" />
+            </div>
           </Menu>
         </Layout>
       </nav>

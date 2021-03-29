@@ -18,10 +18,11 @@
   color: white;
 }
 
-
 // ant design carousel override
-
 
 .ant-carousel .slick-dots {
   margin-bottom: 35px;
+  @media (min-width: 1080px) {
+    margin-bottom: 55px;
+  }
 }
