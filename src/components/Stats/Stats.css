@@ -20,10 +20,20 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  height: 15vh;
+  height: 13vh;
 }
 
 .stat h2 {
   color: white;
+}
+
+.ant-carousel .slick-dots {
+  margin-bottom: 35px;
+}
+
+@media (min-width: 1080px) {
+  .ant-carousel .slick-dots {
+    margin-bottom: 55px;
+  }
 }
 /*# sourceMappingURL=Stats.css.map */
