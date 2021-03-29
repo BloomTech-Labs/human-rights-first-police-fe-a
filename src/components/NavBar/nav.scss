@@ -80,3 +80,7 @@ nav {
   line-height: 52px;
   box-shadow: 15px;
 }
+
+.ant-menu-horizontal.ant-menu-item:hover {
+  border-bottom: 6px solid;
+}
