@@ -70,7 +70,7 @@ const Stats = () => {
       </div>
       <div className="stat alert">
         <h2 style={contentStyle}>
-          Scroll Down To See Latest Reported Incidents!
+          Scroll down to see latest reported incidents!
         </h2>
       </div>
     </Carousel>

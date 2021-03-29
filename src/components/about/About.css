@@ -1,6 +1,7 @@
 .about-container {
   margin: auto;
   max-width: 50%;
+  min-height: calc(100vh - (60px + 77px + 4vh));
 }
 
 .about-container h1 {
