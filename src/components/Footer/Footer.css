@@ -12,32 +12,35 @@ root:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.footer-container a {
+  font-size: 1rem;
 }
 
 .footer-container .layout {
-  width: 70%;
+  width: 100%;
   background-color: var(--blue);
+  margin-top: 4vh;
 }
 
 .footer-container .admin-dash-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   margin-top: 1rem;
   margin-left: 3rem;
 }
 
-.footer-container .copyright-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .footer-container .copyright-container p {
   color: white;
+  background-color: var(--blue);
   text-align: center;
+  margin-bottom: 0;
+}
+
+.footer-container .override {
+  background-color: var(--blue);
 }
 /*# sourceMappingURL=Footer.css.map */
