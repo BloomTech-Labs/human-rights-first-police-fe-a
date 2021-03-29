@@ -2,6 +2,7 @@
   padding-top: 3%;
   width: 90%;
   margin: auto;
+  min-height: calc(100vh - (60px + 82px + 4vh));
 }
 
 .pagination {
