@@ -9,7 +9,7 @@ const Stats = () => {
   const [numCities, setNumCities] = useState(0);
 
   const contentStyle = {
-    height: '13vh',
+    height: '10vh',
     color: '#fff',
     lineHeight: '10vh',
     textAlign: 'center',
