@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import AddIncident from './AddIncident';
 import DashboardTop from './DashboardTop';
 import Incidents from './Incidents';
+import ApprovedIncidents from './ApprovedIncidents';
 
 import {
   getData,
@@ -13,10 +14,13 @@ import {
 import { DoubleRightOutlined } from '@ant-design/icons';
 import { DoubleLeftOutlined } from '@ant-design/icons';
 
+import axios from 'axios';
+
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
   const [selected, setSelected] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
+  const [incidents, setIncidents] = useState([]);
 
   //   setting state necessary for pagination
   const [pageNumber, setPageNumber] = useState(1);
@@ -33,11 +37,22 @@ const AdminDashboard = () => {
   // setting state to toggle whether or not the modal pop up (addIncident) is rendered
   const [adding, setAdding] = useState(false);
 
+  // setting state to change between approved and unapproved incidents
+  const [unapproved, setUnapproved] = useState(true);
+
   const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
 
   // getting unapproved/pending incidents from the database
   useEffect(() => {
     getData(setUnapprovedIncidents);
+  }, []);
+
+  React.useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
+      .then(res => {
+        setIncidents(res.data);
+      });
   }, []);
 
   // setting up pagination display on dashboard
@@ -135,62 +150,83 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="dashboard-container">
-      <DashboardTop
-        unapprovedIncidents={unapprovedIncidents}
-        toggleAddIncident={toggleAddIncident}
-      />
-      {adding ? (
-        <AddIncident
-          setPageNumber={setPageNumber}
-          getData={getData}
-          setAdding={setAdding}
-        />
+    <>
+      <div className="dashboard-buttons-container">
+        <button onClick={() => setUnapproved(true)}>
+          Unapproved Incidents
+        </button>
+        <button onClick={() => setUnapproved(false)}>Approved Incidents</button>
+      </div>
+      {unapproved ? (
+        <div className="dashboard-container">
+          <DashboardTop
+            unapprovedIncidents={unapprovedIncidents}
+            toggleAddIncident={toggleAddIncident}
+            unapproved={unapproved}
+          />
+          {adding ? (
+            <AddIncident
+              setPageNumber={setPageNumber}
+              getData={getData}
+              setAdding={setAdding}
+            />
+          ) : (
+            <>
+              <Incidents
+                confirmApprove={confirmApprove}
+                confirmReject={confirmReject}
+                confirmApproveHandler={confirmApproveHandler}
+                confirmRejectHandler={confirmRejectHandler}
+                approveAndRejectHandler={approveAndRejectHandler}
+                confirmCancel={confirmCancel}
+                selected={selected}
+                selectAll={selectAll}
+                allSelected={allSelected}
+                changeSelected={changeSelected}
+                handlePerPageChange={handlePerPageChange}
+                currentSet={currentSet}
+                setUnapprovedIncidents={setUnapprovedIncidents}
+                setPageNumber={setPageNumber}
+              />
+              <div className="pagination">
+                <DoubleLeftOutlined
+                  onClick={handleBackClick}
+                  className={
+                    pageNumber === 1 ? 'prev-arrow shaded-arrow' : 'prev-arrow'
+                  }
+                >
+                  Previous Page
+                </DoubleLeftOutlined>
+                <p className="page-number-display">
+                  Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
+                  {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
+                </p>
+                <DoubleRightOutlined
+                  className={
+                    pageNumber === lastPage
+                      ? 'next-arrow shaded-arrow'
+                      : 'next-arrow'
+                  }
+                  onClick={handleNextClick}
+                >
+                  Next Page
+                </DoubleRightOutlined>
+              </div>
+            </>
+          )}
+        </div>
       ) : (
         <>
-          <Incidents
-            confirmApprove={confirmApprove}
-            confirmReject={confirmReject}
-            confirmApproveHandler={confirmApproveHandler}
-            confirmRejectHandler={confirmRejectHandler}
-            approveAndRejectHandler={approveAndRejectHandler}
-            confirmCancel={confirmCancel}
-            selected={selected}
-            selectAll={selectAll}
-            allSelected={allSelected}
-            changeSelected={changeSelected}
-            handlePerPageChange={handlePerPageChange}
-            currentSet={currentSet}
-            setUnapprovedIncidents={setUnapprovedIncidents}
-            setPageNumber={setPageNumber}
-          />
-          <div className="pagination">
-            <DoubleLeftOutlined
-              onClick={handleBackClick}
-              className={
-                pageNumber === 1 ? 'prev-arrow shaded-arrow' : 'prev-arrow'
-              }
-            >
-              Previous Page
-            </DoubleLeftOutlined>
-            <p className="page-number-display">
-              Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
-              {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
-            </p>
-            <DoubleRightOutlined
-              className={
-                pageNumber === lastPage
-                  ? 'next-arrow shaded-arrow'
-                  : 'next-arrow'
-              }
-              onClick={handleNextClick}
-            >
-              Next Page
-            </DoubleRightOutlined>
+          <div className="dashboard-container">
+            <DashboardTop
+              unapprovedIncidents={unapprovedIncidents}
+              toggleAddIncident={toggleAddIncident}
+            />
+            <ApprovedIncidents incidents={incidents} />
           </div>
         </>
       )}
-    </div>
+    </>
   );
 };
 export default AdminDashboard;

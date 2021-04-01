@@ -1,10 +1,12 @@
 import React from 'react';
 
 const DashboardTop = props => {
-  const { unapprovedIncidents, toggleAddIncident } = props;
+  const { unapprovedIncidents, toggleAddIncident, unapproved } = props;
   return (
     <div>
-      <h2 id="admin-dashboard-title">Admin Dashboard</h2>
+      <h2 id="admin-dashboard-title">
+        {unapproved ? 'Unapproved Incidents' : 'Approved Incidents'}
+      </h2>
       <div className="statboxes">
         <div className="statbox">
           <p>

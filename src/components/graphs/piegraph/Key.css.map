@@ -1,9 +1,9 @@
 {
-  "version": 3,
-  "mappings": "AAAA,AAAA,OAAO,CAAC,EAAE,CAAC;EACT,MAAM,EAAE,YAAY;CACrB",
-  "sources": [
-    "Key.scss"
-  ],
-  "names": [],
-  "file": "Key.css"
+    "version": 3,
+    "mappings": "AAAA,AAAA,OAAO,CAAC,EAAE,CAAC;EACT,MAAM,EAAE,YAAY;CACrB",
+    "sources": [
+        "Key.scss"
+    ],
+    "names": [],
+    "file": "Key.css"
 }
