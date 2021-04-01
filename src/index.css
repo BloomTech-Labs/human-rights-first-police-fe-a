@@ -685,6 +685,10 @@ div.timeline-container {
   font-size: large;
 }
 
+.timeline-wrapper {
+  padding: 82px 0 0 30px;
+}
+
 @media (max-width: 2560px) {
   .timeline-wrapper {
     width: 40vw;
