@@ -11,6 +11,7 @@ Our team is developing an interactive map that identifies potential instances of
 ## Contributors
 
 ### labs 32
+[Samuel Lee](https://github.com/AgentSamSA)
 [Michael Maton](https://github.com/michael-maton)
 [Brett McAdams](https://github.com/BrettMcAdams)
 [Christopher Barrett](https://gist.github.com/Christopher-Barrett)
