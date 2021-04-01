@@ -1,14 +1,14 @@
 .dashboard-container {
-  padding-top: 3%;
+  padding-top: 3rem;
   width: 90%;
   margin: auto;
-  min-height: calc(100vh - (60px + 77px + 4vh));
+  min-height: calc(100vh - (60px + 74px + 4vh + 5rem));
 }
 
 .dashboard-buttons-container {
-  padding-top: 3%;
+  padding-top: 3rem;
   width: 90%;
-  margin: auto;
+  margin-left: 5rem;
 }
 
 .dashboard-buttons-container button {
@@ -17,6 +17,7 @@
   background-color: white;
   text-decoration: underline;
   font-size: 1.1rem;
+  cursor: pointer;
 }
 
 .dashboard-buttons-container button:focus {
@@ -33,7 +34,7 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 1%;
+  margin-top: 1rem;
 }
 
 .pagination div {
@@ -63,7 +64,7 @@
 }
 
 .page-number-display {
-  padding-top: 0.7%;
+  padding-top: 0.7rem;
   margin-right: 2%;
 }
 
