@@ -162,6 +162,7 @@ const AdminDashboard = () => {
           <DashboardTop
             unapprovedIncidents={unapprovedIncidents}
             toggleAddIncident={toggleAddIncident}
+            unapproved={unapproved}
           />
           {adding ? (
             <AddIncident

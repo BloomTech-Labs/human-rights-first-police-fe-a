@@ -7,6 +7,23 @@
   min-height: calc(100vh - (60px + 82px + 4vh));
 }
 
+.dashboard-buttons-container {
+  padding-top: 3%;
+  width: 90%;
+  margin: auto;
+
+  button {
+    color: blue;
+    border: none;
+    background-color: white;
+    text-decoration: underline;
+    font-size: 1.1rem;
+  }
+  button:focus {
+    outline: 0;
+  }
+}
+
 // dashboard
 
 // dashboard top controls

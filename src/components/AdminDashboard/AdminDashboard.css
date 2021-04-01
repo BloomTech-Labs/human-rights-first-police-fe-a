@@ -5,6 +5,24 @@
   min-height: calc(100vh - (60px + 82px + 4vh));
 }
 
+.dashboard-buttons-container {
+  padding-top: 3%;
+  width: 90%;
+  margin: auto;
+}
+
+.dashboard-buttons-container button {
+  color: blue;
+  border: none;
+  background-color: white;
+  text-decoration: underline;
+  font-size: 1.1rem;
+}
+
+.dashboard-buttons-container button:focus {
+  outline: 0;
+}
+
 .pagination {
   display: -webkit-box;
   display: -ms-flexbox;
