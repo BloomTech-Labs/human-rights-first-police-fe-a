@@ -12,8 +12,11 @@ Our team is developing an interactive map that identifies potential instances of
 
 ### labs 32
 [Samuel Lee](https://github.com/AgentSamSA)
+
 [Michael Maton](https://github.com/michael-maton)
+
 [Brett McAdams](https://github.com/BrettMcAdams)
+
 [Christopher Barrett](https://gist.github.com/Christopher-Barrett)
 
 ### Labs 31
@@ -40,7 +43,7 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Deployed Product
 
-[Front End Deployed Site](https://a-30.humanrightsfirst.dev/)
+[Front End Deployed Site](https://a.humanrightsfirst.dev/)
 
 ## Related Repos
 
