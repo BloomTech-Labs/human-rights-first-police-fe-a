@@ -52,14 +52,14 @@
   padding: 20px;
 }
 
-.ant-card-body p {
+.ant-card-body .incident-desc {
   margin-top: 30px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
-.ant-card-body:hover p {
+.ant-card-body:hover .incident-desc {
   overflow: initial;
   white-space: pre-wrap;
   text-overflow: initial;

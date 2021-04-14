@@ -27,7 +27,7 @@ const IncidentsCard = props => {
           })}
         </div>
 
-        <p>{props.incident.desc}</p>
+        <p className="incident-desc">{props.incident.desc}</p>
         <Popover
           content={sourceListHelper(props.incident)}
           placement="rightTop"
