@@ -58,7 +58,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-s .ant-card-body:hover .incident-desc {
+.ant-card-body:hover .incident-desc {
   overflow: initial;
   white-space: pre-wrap;
   text-overflow: initial;
@@ -100,8 +100,8 @@ s .ant-card-body:hover .incident-desc {
 }
 
 .card-box {
-  width: 400px;
-  height: 400px;
+  width: 360px;
+  height: 360px;
   margin: 24px 16px;
   -webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
