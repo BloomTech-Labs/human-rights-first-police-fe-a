@@ -58,8 +58,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
-.ant-card-body:hover .incident-desc {
+s .ant-card-body:hover .incident-desc {
   overflow: initial;
   white-space: pre-wrap;
   text-overflow: initial;
