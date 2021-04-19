@@ -651,17 +651,6 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
   margin-bottom: 10px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 @media (min-height: 900px) {
   .ant-carousel .slick-dots {
     padding-bottom: 2px;
@@ -1310,7 +1299,6 @@ root:hover {
   margin: 0 auto;
 }
 
-
 .bottom-section-wrap {
   width: 100%;
   display: -webkit-box;
@@ -1325,7 +1313,6 @@ root:hover {
 }
 
 .Timeline {
-  
   background-color: #ffff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1334,7 +1321,6 @@ root:hover {
       justify-content: space-between;
   -ms-flex-wrap: wrapgit;
       flex-wrap: wrapgit;
-  
 }
 
 @media (max-width: 1500px) {
@@ -1345,7 +1331,6 @@ root:hover {
 
 .horizontal-graph {
   width: 40%;
-  /* width: 42.5vw; */
   margin-top: 61px;
 }
 
@@ -1360,5 +1345,30 @@ root:hover {
   font-size: 10px;
   line-height: 1.2;
   margin-top: 2%;
+}
+
+@media (max-width: 800px) {
+  .ant-collapse {
+    top: 100px;
+  }
+  .bottom-section-wrap {
+    display: block;
+  }
+  .timeline-wrapper {
+    margin-top: -20px;
+    width:100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .horizontal-graph {
+    width: 95%;
+    justify-content: center;
+    padding-top: -25px;
+    margin: 0 auto;
+  }
+  .graph-disclaimer {
+    font-size: .9rem;
+    text-align: center;
+  }
 }
 /*# sourceMappingURL=index.css.map */
