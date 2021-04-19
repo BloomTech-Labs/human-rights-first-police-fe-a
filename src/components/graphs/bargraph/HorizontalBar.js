@@ -14,8 +14,6 @@ const Horizontalbar = () => {
 
   const data = {
     labels: [
-      // 'Rank 0 - No Police Presence',
-      'Rank 1 - Police Presence',
       'Rank 2 - Empty-hand',
       'Rank 3 - Blunt Force',
       'Rank 4 - Chemical & Electric',
@@ -29,29 +27,12 @@ const Horizontalbar = () => {
         borderWidth: 1,
         hoverBackgroundColor: 'rgba(255,99,132,0.4)',
         hoverBorderColor: 'rgba(255,99,132,1)',
-        data: [
-          // noPresence,
-          policePresence,
-          emptyHand,
-          bluntForce,
-          chemicalElectric,
-          lethalForce,
-        ],
+        data: [emptyHand, bluntForce, chemicalElectric, lethalForce],
       },
     ],
   };
 
   useEffect(() => {
-    // const noPresenceTotal = dataList.filter((x, index) => {
-    //   return x.force_rank === 'Rank 0 - No Police Presence';
-    // }).length;
-    // setNoPresence(noPresenceTotal);
-
-    const policePresenceTotal = dataList.filter((x, index) => {
-      return x.force_rank === 'Rank 1 - Police Presence';
-    }).length;
-    setPolicePresence(policePresenceTotal);
-
     const emptyHandTotal = dataList.filter((x, index) => {
       return x.force_rank === 'Rank 2 - Empty-hand';
     }).length;
@@ -84,26 +65,33 @@ const Horizontalbar = () => {
         <h3>Graph Legend</h3>
         <p className="graph-legend-wrap">
           <li>
-            Rank I Officer Presence — Police are present, but no force detected.
+            Rank 1{/* Officer Presence   -- removed due to too much in legend*/}
+            — Police are present, but no force detected. This is not shown on
+            the graph.
           </li>
           <li>
-            Rank II Empty-Hand — Officers use bodily force to gain control of a
-            situation. Officers may use grabs, holds, joint locks, punches and
-            kicks to restrain an individual.
+            Rank 2{/* Empty-Hand    -- removed due to too much in legend*/}—
+            Officers use bodily force to gain control of a situation. Officers
+            may use grabs, holds, joint locks, punches and kicks to restrain an
+            individual.
           </li>
           <li>
-            Rank III Blunt Force Methods — Officers use less-lethal technologies
-            to gain control of a situation. Baton or projectile may be used to
-            immobilize a combative person for example.
+            Rank 3
+            {/* Blunt Force Methods    -- removed due to too much in legend*/}—
+            Officers use less-lethal technologies to gain control of a
+            situation. Baton or projectile may be used to immobilize a combative
+            person for example.
           </li>
           <li>
-            Rank IV Chemical & Electric - Officers use less-lethal technologies
-            to gain control of a situation, such as chemical sprays, projectiles
-            embedded with chemicals, or tasers to restrain an individual.
+            Rank 4
+            {/* Chemical & Electric    -- removed due to too much in legend*/}—
+            Officers use less-lethal technologies to gain control of a
+            situation, such as chemical sprays, projectiles embedded with
+            chemicals, or tasers to restrain an individual.
           </li>
           <li>
-            Rank V Lethal Force — Officers use lethal weapons to gain control of
-            a situation.
+            Rank 5{/* Lethal Force    -- removed due to too much in legend*/}—
+            Officers use lethal weapons to gain control of a situation.
           </li>
         </p>
         <HorizontalBar style={{ width: '100%', height: '450px' }} data={data} />

@@ -162,7 +162,9 @@ div canvas {
       -ms-text-size-adjust: 100%;
           text-size-adjust: 100%;
   font-size: 14px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+ 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+ 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   color: #1890ff;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -461,6 +463,8 @@ h3.incident-container {
   display: flex;
   position: absolute;
   top: 24px;
+  z-index: 99;
+  /* search on top of map */
 }
 
 .map-menu-background {
@@ -632,7 +636,31 @@ div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
 
 .ant-carousel .slick-dots {
   margin: 0px;
+  padding-bottom: 10px;
 }
+.ant-carousel .slick-slider .slick-dots li button {
+    height: .8rem;
+    width: .8rem;
+    margin-bottom: 20px;
+}
+.ant-carousel .slick-slider {
+  background-color:#003767;
+  padding-bottom: 20px;
+}
+.ant-carousel {
+  margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 @media (min-height: 900px) {
   .ant-carousel .slick-dots {
@@ -1276,21 +1304,37 @@ root:hover {
 
 .Map {
   position: relative;
-  width: 100%;
+  width: 99%;
   min-height: calc(90vh - 59px);
   margin-top: -1px;
+  margin: 0 auto;
+}
+
+
+.bottom-section-wrap {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.bottom-section-wrap h3 {
+  text-align: center;
 }
 
 .Timeline {
+  
   background-color: #ffff;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: distribute;
-      justify-content: space-around;
-  padding-right: 50px;
+      justify-content: space-between;
   -ms-flex-wrap: wrapgit;
       flex-wrap: wrapgit;
+  
 }
 
 @media (max-width: 1500px) {
@@ -1299,22 +1343,16 @@ root:hover {
   }
 }
 
-.bottom-section-wrap {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
 .horizontal-graph {
-  width: 42.5vw;
+  width: 40%;
+  /* width: 42.5vw; */
   margin-top: 61px;
 }
 
 .graph-legend-wrap {
   margin-bottom: 6%;
+  padding: 20px;
+  border: 1px solid rgba(255,99,132,1);
 }
 
 .graph-disclaimer {

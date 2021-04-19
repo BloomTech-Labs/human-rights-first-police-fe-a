@@ -22,6 +22,8 @@ const NavControlContainer = styled.div`
   position: absolute;
   top: 82px;
   left: 26px;
+  z-index: 99;
+  //nav controls on top of map
 `;
 
 // See relevant react-map-gl docs: http://visgl.github.io/react-map-gl/docs/api-reference/interactive-map
@@ -31,20 +33,21 @@ export default function Map() {
     state => state.api.incidents.getincidents.status
   );
   const [viewport, setViewport] = useState({
-    latitude: 41.850033,
+    latitude: 39.850033,
     longitude: -97.6500523,
-    zoom: 3.2,
+    zoom: 3.0,
   });
 
   // Mapbox interactive settings
   const settings = {
     dragPan: true,
     dragRotate: true,
+    //map can be zoomed in and out mouse scroll
     scrollZoom: false,
     touchZoom: false,
     touchRotate: false,
     keyboard: false,
-    doubleClickZoom: true,
+    doubleClickZoom: false,
   };
 
   useEffect(() => {
