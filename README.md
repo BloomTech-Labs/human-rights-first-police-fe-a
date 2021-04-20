@@ -10,6 +10,18 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Contributors
 
+### Labs 33
+[Lindsay Deaton](https://github.com/lindsay-deaton)
+
+>>
+
+>>
+
+>>
+
+>>
+
+
 ### labs 32
 [Samuel Lee](https://github.com/AgentSamSA)
 
