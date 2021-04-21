@@ -11,16 +11,12 @@ Our team is developing an interactive map that identifies potential instances of
 ## Contributors
 
 ### Labs 33
+
 [Lindsay Deaton](https://github.com/lindsay-deaton)
 
->>
+[Will Mondal](https://github.com/willmond-al)
 
->>
-
->>
-
->>
-
+[Paul Kim](https://github.com/Ibu0413)
 
 ### labs 32
 [Samuel Lee](https://github.com/AgentSamSA)
