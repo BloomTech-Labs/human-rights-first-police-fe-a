@@ -103,6 +103,15 @@ root:hover {
     font-size: 1.8rem;
     cursor: pointer;
   }
+
+  .lambda-logo {
+    width: 100px;
+    margin-right: 20px;
+  }
+
+  .hrf-logo {
+    width: 200px;
+  }
 }
 
 /*# sourceMappingURL=nav.css.map */
