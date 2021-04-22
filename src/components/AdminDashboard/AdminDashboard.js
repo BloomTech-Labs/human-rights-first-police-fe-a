@@ -48,6 +48,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     setShowModal(true);
+    window.scrollTo(0, 0);
   }, []);
 
   const modalHandler = () => {
@@ -170,7 +171,7 @@ const AdminDashboard = () => {
         modalHandler={modalHandler}
         unapprovedIncidents={unapprovedIncidents}
       />
-      {/* { showModal ? <div className="back-drop"></div> : null } */}
+      {showModal ? <div className="back-drop"></div> : null}
 
       <div className="dashboard-buttons-container">
         <button className="approve-btn" onClick={() => setUnapproved(true)}>

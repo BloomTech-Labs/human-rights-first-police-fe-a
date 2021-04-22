@@ -65,6 +65,5 @@ root {
   position: fixed;
   background-color: rgba(63, 61, 61, 0.692);
   height: 100%;
-  transition: all 1.3s ease;
   width: 100%;
 }
