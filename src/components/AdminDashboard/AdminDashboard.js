@@ -4,6 +4,8 @@ import AddIncident from './AddIncident';
 import DashboardTop from './DashboardTop';
 import Incidents from './Incidents';
 import ApprovedIncidents from './ApprovedIncidents';
+import './AdminDashboard.css';
+import { Modal } from './Modal';
 
 import {
   getData,
@@ -39,6 +41,19 @@ const AdminDashboard = () => {
 
   // setting state to change between approved and unapproved incidents
   const [unapproved, setUnapproved] = useState(true);
+
+  // modal
+
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    setShowModal(true);
+    window.scrollTo(0, 0);
+  }, []);
+
+  const modalHandler = () => {
+    setShowModal(false);
+  };
 
   const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
 
@@ -151,11 +166,20 @@ const AdminDashboard = () => {
 
   return (
     <>
+      <Modal
+        showModal={showModal}
+        modalHandler={modalHandler}
+        unapprovedIncidents={unapprovedIncidents}
+      />
+      {showModal ? <div className="back-drop"></div> : null}
+
       <div className="dashboard-buttons-container">
-        <button onClick={() => setUnapproved(true)}>
+        <button className="approve-btn" onClick={() => setUnapproved(true)}>
           Unapproved Incidents
         </button>
-        <button onClick={() => setUnapproved(false)}>Approved Incidents</button>
+        <button className="approve-btn" onClick={() => setUnapproved(false)}>
+          Approved Incidents
+        </button>
       </div>
       {unapproved ? (
         <div className="dashboard-container">
@@ -164,6 +188,7 @@ const AdminDashboard = () => {
             toggleAddIncident={toggleAddIncident}
             unapproved={unapproved}
           />
+
           {adding ? (
             <AddIncident
               setPageNumber={setPageNumber}
