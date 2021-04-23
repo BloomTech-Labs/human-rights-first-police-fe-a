@@ -20,7 +20,6 @@ root:hover {
 .nav-menu {
   display: grid;
   grid-template-columns: repeat(4, auto);
-  gird-gap: 10px;
   list-style: none;
   text-align: center;
   width: 70vw;
@@ -81,7 +80,7 @@ root:hover {
     z-index: 2;
   }
   .nav-link {
-    test-align: center;
+    text-align: center;
     padding: 2rem;
     width: 100%;
     display: table;
