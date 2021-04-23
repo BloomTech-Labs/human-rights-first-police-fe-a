@@ -24,7 +24,7 @@ const AdminDashboard = () => {
 
   //   setting state necessary for pagination
   const [pageNumber, setPageNumber] = useState(1);
-  const [incidentsPerPage, setIncidentsPerPage] = useState(5);
+  const [incidentsPerPage, setIncidentsPerPage] = useState(10);
   const [currentSet, setCurrentSet] = useState([]);
 
   //   setting state for confirmation buttons of confirming/rejecting

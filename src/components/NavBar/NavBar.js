@@ -3,7 +3,6 @@ import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/HRF white-01.png';
-import lambda from '../../assets/LambdaAssets/Built by lambda.png';
 
 import { Layout, Menu, Sider } from 'antd';
 
@@ -36,7 +35,6 @@ const NavBar = () => {
           About
         </NavLink>
       </ul>
-      <img className="lambda-logo" alt="hrf-logo" src={lambda}></img>
     </nav>
   );
 };

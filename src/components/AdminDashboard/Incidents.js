@@ -109,6 +109,7 @@ const DashboardIncidents = props => {
           <h4 className="description">Description</h4>
           <h4 className="location">Location</h4>
           <h4 className="date">Date</h4>
+          <h4>Estimated Accuracy</h4>
         </div>
       </div>
 
