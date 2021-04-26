@@ -47,7 +47,9 @@ const PendingIncident = props => {
             {incident.desc.split('http')[0]}
           </p>
 
-          <p className="incident-info">{incident.user_location}</p>
+          <p className="incident-info">
+            {incident.city}, {incident.state}
+          </p>
 
           <p className="incident-info">{formattedDate}</p>
 
