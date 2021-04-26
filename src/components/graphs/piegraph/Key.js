@@ -3,7 +3,7 @@ import { nanoid } from 'nanoid';
 
 const keyData = {
   'Rank I: Officer Presence': {
-    desc: 'Police are present, but no force detected.',
+    desc: 'Police are present, but no force detected; not imaged.',
   },
   'Rank II: Empty-Hand': {
     desc:
@@ -33,6 +33,7 @@ const Key = props => {
       <h3>Legend</h3>
       <ul
         style={{
+          border: '1px solid black',
           flexFlow: 'column',
           alignItems: 'flex-start',
           justifyContent: 'flex-start',

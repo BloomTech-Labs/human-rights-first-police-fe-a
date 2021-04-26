@@ -19,9 +19,9 @@ const getTypesOfForce = data => {
 
   data.forEach(incident => {
     switch (incident.force_rank) {
-      case 'Rank 0 - No Police Presence':
-        incrementor(incident, 'Uncategorized', types);
-        break;
+      // case 'Rank 0 - No Police Presence':
+      //   incrementor(incident, 'Uncategorized', types);
+      //   break;
 
       case 'Rank 1 - Police Presence':
         incrementor(incident, 'Police Presence', types);
@@ -56,7 +56,7 @@ const getPercentages = (types, policeData) => {
     const num = types[key];
     types[key] = {
       num,
-      percent: ((num / policeData.length) * 100).toPrecision(3),
+      percent: Math.ceil((num / policeData.length) * 100).toPrecision(2),
     };
   });
   return types;
