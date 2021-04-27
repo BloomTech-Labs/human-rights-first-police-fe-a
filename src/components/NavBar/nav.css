@@ -52,6 +52,7 @@ root:hover {
 
 .lambda-logo {
   width: 150px;
+  margin: 0;
 }
 
 .hrf-logo {
@@ -98,6 +99,8 @@ root:hover {
   } */
   .menu-icon {
     display: flex;
+    flex-direction: row-reverse;
+    margin-right: 20px;
     width: 100%;
     font-size: 1.8rem;
     cursor: pointer;
