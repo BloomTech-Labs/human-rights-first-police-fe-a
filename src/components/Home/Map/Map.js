@@ -11,6 +11,7 @@ import _ from 'lodash';
 import Search from './Search';
 import Clusters from './Clusters';
 import IncidentFocus from './IncidentFocus';
+import HomeIcon from './HomeIcon';
 
 const {
   setViewport: setReduxViewport,
@@ -22,9 +23,13 @@ const NavControlContainer = styled.div`
   position: absolute;
   top: 82px;
   left: 26px;
-  z-index: 99;
-  //nav controls on top of map
+  z-index: 1;
 `;
+const initialPosition = {
+  latitude: 39.850033,
+  longitude: -97.6500523,
+  zoom: 3.0,
+};
 
 // See relevant react-map-gl docs: http://visgl.github.io/react-map-gl/docs/api-reference/interactive-map
 export default function Map() {
@@ -32,11 +37,7 @@ export default function Map() {
   const fetchStatus = useSelector(
     state => state.api.incidents.getincidents.status
   );
-  const [viewport, setViewport] = useState({
-    latitude: 39.850033,
-    longitude: -97.6500523,
-    zoom: 3.0,
-  });
+  const [viewport, setViewport] = useState(initialPosition);
 
   // Mapbox interactive settings
   const settings = {
@@ -104,6 +105,10 @@ export default function Map() {
               <Search zoomOnCluster={zoomOnCluster} />
               <NavControlContainer>
                 <NavigationControl />
+                <HomeIcon
+                  initialPosition={initialPosition}
+                  setViewport={setViewport}
+                />
               </NavControlContainer>
               <Clusters zoomOnCluster={zoomOnCluster} />
             </>

@@ -83,6 +83,7 @@ export default function Search({ zoomOnCluster }) {
         value={geoInput}
         onChange={handleGeoInput}
         onSelect={handleGeoSelect}
+        placeholder="Enter a City or State"
       >
         {geoRes.features && geoInput.length >= MIN_QUERY_LENGTH
           ? geoRes.features.map((f, i) => (

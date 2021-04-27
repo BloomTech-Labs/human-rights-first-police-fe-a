@@ -3,7 +3,6 @@ import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/HRF white-01.png';
-import lambda from '../../assets/LambdaAssets/Built by lambda.png';
 
 
 // import { useOktaAuth } from '@okta/okta-react';
@@ -44,7 +43,6 @@ const NavBar = () => {
             Admin
         </NavLink> : <div></div>}
       </ul>
-      <img className="lambda-logo" alt="hrf-logo" src={lambda}></img>
     </nav>
   );
 };

@@ -3,6 +3,8 @@ import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
+import lambda from '../../assets/LambdaAssets/Built by lambda.png';
+
 const Footer = () => {
 
   const logout = () => {
@@ -37,6 +39,7 @@ const Footer = () => {
                     Administration
                   </NavLink>
                 </Menu.Item>
+
                 <Menu.Item key="3" className="logout" onClick={logout}>
                   <NavLink
                     to="/"
@@ -45,7 +48,13 @@ const Footer = () => {
                     Log out
                   </NavLink>
                 </Menu.Item>
+
+                <a href="https://www.lambdaschool.com" target="Lambda School">
+                  <img className="lambda-logo" alt="lambda-logo" src={lambda} />
+                </a>
+
               </Menu>
+
               <p>Human Rights First &copy;2021</p>
             </div>
           </Layout>
