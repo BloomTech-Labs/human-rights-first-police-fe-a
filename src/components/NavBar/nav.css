@@ -18,9 +18,9 @@ root:hover {
 }
 
 .nav-menu {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  list-style: none;
+  display: flex;
+  /* grid-template-columns: repeat(5, auto); */
+  /* list-style: none; */
   text-align: center;
   width: 70vw;
   justify-content: space-around;
