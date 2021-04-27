@@ -32,6 +32,28 @@ const Horizontalbar = () => {
     ],
   };
 
+  const options = {
+    responsive: true,
+    scales: {
+      xAxes: [
+        {
+          //stacked and begin at zero must be 'true' for bar graph to start at 0
+          stacked: true,
+          beginAtZero: true,
+          scaleLabel: {
+            fontSize: 14,
+            lineHeight: 2,
+            display: true,
+            labelString: 'Number of Incidents',
+          },
+          ticks: {
+            autoSkip: false,
+          },
+        },
+      ],
+    },
+  };
+
   useEffect(() => {
     const emptyHandTotal = dataList.filter((x, index) => {
       return x.force_rank === 'Rank 2 - Empty-hand';
@@ -93,13 +115,18 @@ const Horizontalbar = () => {
             Rank 5{/* Lethal Force    -- removed due to too much in legend*/}—
             Officers use lethal weapons to gain control of a situation.
           </li>
+          <br />
+          <p className="graph-disclaimer">
+            Note: This graph relies on open source data from multiple sources
+            and a machine learning model that is still in beta. These categories
+            may not accurately represent the circumstances of each incident.{' '}
+          </p>
         </p>
-        <HorizontalBar style={{ width: '100%', height: '450px' }} data={data} />
-        <p className="graph-disclaimer">
-          Note: This graph relies on open source data from multiple sources and
-          a machine learning model that is still in beta. These categories may
-          not accurately represent the circumstances of each incident.{' '}
-        </p>
+        <HorizontalBar
+          style={{ width: '100%', height: '450px' }}
+          data={data}
+          options={options}
+        />
       </div>
     </div>
   );
