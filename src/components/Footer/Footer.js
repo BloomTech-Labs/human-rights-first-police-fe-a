@@ -4,6 +4,12 @@ import { Link, NavLink } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
 const Footer = () => {
+
+  const logout = () => {
+    localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
+    window.location.reload();
+  };
+
   return (
     <div className="footer-container">
       <div className="nav-footer">
@@ -31,6 +37,19 @@ const Footer = () => {
                     Administration
                   </NavLink>
                 </Menu.Item>
+                <Menu.Item key="3" className="logout" onClick={logout}>
+                  <NavLink
+                    to="/"
+                    activeClassName="active-nav-link"
+                  >
+                    Log out
+                  </NavLink>
+                </Menu.Item>
+
+                <a href="https://www.lambdaschool.com" target="Lambda School">
+                  <img className="lambda-logo" alt="lambda-logo" src={lambda} />
+                </a>
+
               </Menu>
 
               <p>Human Rights First &copy;2021</p>

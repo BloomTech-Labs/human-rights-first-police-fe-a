@@ -4,6 +4,8 @@ import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/HRF white-01.png';
 
+
+// import { useOktaAuth } from '@okta/okta-react';
 import { Layout, Menu, Sider } from 'antd';
 
 import './nav.css';
@@ -34,6 +36,12 @@ const NavBar = () => {
         <NavLink onClick={handleClick} className="nav-link" to="/about">
           About
         </NavLink>
+        {localStorage.getItem('okta-token-storage') ?
+          <NavLink onClick={handleClick}
+            className="nav-link"
+            to="/admin-dashboard">
+            Admin
+        </NavLink> : <div></div>}
       </ul>
     </nav>
   );

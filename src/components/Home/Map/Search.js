@@ -87,10 +87,10 @@ export default function Search({ zoomOnCluster }) {
       >
         {geoRes.features && geoInput.length >= MIN_QUERY_LENGTH
           ? geoRes.features.map((f, i) => (
-              <Option key={nanoid()} value={`${i}`}>
-                {f.place_name}
-              </Option>
-            ))
+            <Option key={nanoid()} value={`${i}`}>
+              {f.place_name}
+            </Option>
+          ))
           : ''}
       </AutoComplete>
       <RangePicker
