@@ -6,33 +6,27 @@ function Legend() {
       <h3>Graph Legend</h3>
       <p className="graph-legend-wrap">
         <li>
-          Rank 1{/* Officer Presence   -- removed due to too much in legend*/}—
-          Police are present, but no force detected. This is not shown on the
-          graph.
+          Rank 1 — Officer Presence: Police are present, but no force detected.
+          This is not shown on the graph.
         </li>
         <li>
-          Rank 2{/* Empty-Hand    -- removed due to too much in legend*/}—
-          Officers use bodily force to gain control of a situation. Officers may
-          use grabs, holds, joint locks, punches and kicks to restrain an
-          individual.
+          Rank 2 — Empty-hand: Officers use bodily force to gain control of a
+          situation. Officers may use grabs, holds, joint locks, punches and
+          kicks to restrain an individual.
         </li>
         <li>
-          Rank 3
-          {/* Blunt Force Methods    -- removed due to too much in legend*/}—
-          Officers use less-lethal technologies to gain control of a situation.
-          Baton or projectile may be used to immobilize a combative person for
-          example.
+          Rank 3 — Blunt Force: Officers use less-lethal technologies to gain
+          control of a situation. Baton or projectile may be used to immobilize
+          a combative person for example.
         </li>
         <li>
-          Rank 4
-          {/* Chemical & Electric    -- removed due to too much in legend*/}—
-          Officers use less-lethal technologies to gain control of a situation,
-          such as chemical sprays, projectiles embedded with chemicals, or
-          tasers to restrain an individual.
+          Rank 4 — Chemical & Electric: Officers use less-lethal technologies to
+          gain control of a situation, such as chemical sprays, projectiles
+          embedded with chemicals, or tasers to restrain an individual.
         </li>
         <li>
-          Rank 5{/* Lethal Force    -- removed due to too much in legend*/}—
-          Officers use lethal weapons to gain control of a situation.
+          Rank 5 — Lethal Force: Officers use lethal weapons to gain control of
+          a situation.
         </li>
         <br />
         <p className="graph-disclaimer">

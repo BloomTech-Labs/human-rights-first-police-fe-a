@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
-
+//this component may need to be deleted all together
 const keyData = {
   'Rank I: Officer Presence': {
     desc: 'Police are present, but no force detected; not imaged.',
