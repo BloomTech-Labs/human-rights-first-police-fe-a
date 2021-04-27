@@ -7,7 +7,7 @@ const def = {
   datasets: [
     {
       type: 'horizontalBar',
-      label: 'Number of incidents',
+      label: 'Number of Incidents',
       backgroundColor: 'rgb(103,183,220)',
       borderColor: 'rgb(103,183,220)',
       borderWidth: 1,

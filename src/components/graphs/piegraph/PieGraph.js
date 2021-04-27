@@ -4,7 +4,7 @@ import { Pie } from 'react-chartjs-2';
 import Horizontalbar from '../bargraph/HorizontalBar';
 import colorShader from './colorShader';
 
-import Key from './Key';
+import Legend from '../assets/Legend';
 
 const incrementor = (incident, type, types) => {
   if (type in types) {
@@ -19,12 +19,12 @@ const getTypesOfForce = data => {
 
   data.forEach(incident => {
     switch (incident.force_rank) {
-      case 'Rank 0 - No Police Presence':
-        incrementor(incident, 'Uncategorized', types);
-        break;
+      // case 'Rank 0 - No Police Presence':
+      //   incrementor(incident, 'Uncategorized', types);
+      //   break;
 
-      case 'Rank 1 - Police Presence':
-        incrementor(incident, 'Police Presence', types);
+      case 'Rank 1 - Officer Presence':
+        incrementor(incident, 'Officer Presence', types);
         break;
 
       case 'Rank 2 - Empty-hand':
@@ -56,7 +56,7 @@ const getPercentages = (types, policeData) => {
     const num = types[key];
     types[key] = {
       num,
-      percent: ((num / policeData.length) * 100).toPrecision(3),
+      percent: Math.ceil((num / policeData.length) * 100).toPrecision(3),
     };
   });
   return types;
@@ -69,9 +69,9 @@ const createDataPoints = data => {
       {
         data: Object.keys(data).map(key => data[key]['percent']),
         backgroundColor: [
-          '#8067dc',
           '#dc6967',
-          '#67b7dc',
+          '#8067dc',
+          '#4a9c4f',
           '#dcaf67',
           '#6771dc',
           '#dc67ab',
@@ -118,16 +118,16 @@ const PieGraph = ({ data, usState }) => {
   }, [types]);
 
   return (
-    <>
+    <div>
       <Pie data={graphData} />
-      <br />
+      {/* <br />
       <p className="graph-disclaimer">
         Note: This graph relies on open source data from multiple sources and a
         machine learning model that is still in beta. These categories may not
         accurately represent the circumstances of each incident.{' '}
-      </p>
-      <Key />
-    </>
+      </p> */}
+      {/* <Key /> */}
+    </div>
   );
 };
 

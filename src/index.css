@@ -1295,14 +1295,34 @@ root:hover {
 .graph-legend-wrap {
   margin-bottom: 6%;
   padding: 20px;
-  border: 1px solid rgba(255,99,132,1);
+  border: 1px solid rgba(255,99,132,0.4);
 }
 
 .graph-disclaimer {
   color: #666;
-  font-size: 10px;
+  font-size: .7rem;
   line-height: 1.2;
   margin-top: 2%;
+}
+.all-graphs {
+  width: 1600px;
+  display: block;
+  margin: 0 auto;
+}
+.pie-holder {
+  width: 1300px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.pie {
+  width: 800px;
+  margin-top: 20px;
+}
+.pie-legend {
+  margin-bottom: 6%;
+  padding: 20px;
+  width: 500px;
 }
 
 @media (max-width: 800px) {

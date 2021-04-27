@@ -33,7 +33,7 @@ const CompleteIncident = props => {
     return () => {
       setFormValues({});
     };
-  }, [editing]);
+  }, [editing, incident]);
 
   // toggle "editing mode"
   const toggleEditor = evt => {
@@ -67,9 +67,9 @@ const CompleteIncident = props => {
       ...formValues,
       desc: formValues.desc + ' ' + twitterSrc,
     };
-    console.log({ editedIncident });
     applyEdits(editedIncident, incident)
       .then(res => {
+        window.location.reload();
         console.log(res);
       })
       .catch(err => {

@@ -3,8 +3,6 @@ import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
-import lambda from '../../assets/LambdaAssets/Built by lambda.png';
-
 const Footer = () => {
   return (
     <div className="footer-container">
@@ -33,9 +31,6 @@ const Footer = () => {
                     Administration
                   </NavLink>
                 </Menu.Item>
-                <a href="https://www.lambdaschool.com" target="Lambda School">
-                  <img className="lambda-logo" alt="lambda-logo" src={lambda} />
-                </a>
               </Menu>
 
               <p>Human Rights First &copy;2021</p>

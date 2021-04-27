@@ -54,7 +54,7 @@ const PendingIncident = props => {
           <p className="incident-info">{formattedDate}</p>
 
           <p className="incident-info more-info" onClick={toggleMoreInfo}>
-            {moreInfo ? 'Less Info' : 'More Info'}
+            {moreInfo ? 'Less Info' : 'Edit Info'}
           </p>
         </div>
       </div>
