@@ -51,7 +51,7 @@ root:hover {
 }
 
 .lambda-logo {
-  width: 150px;
+  width: 100px;
   margin: 0;
 }
 
@@ -66,7 +66,7 @@ root:hover {
     display: flex;
     flex-direction: column;
     width: 100%;
-    height: 500px;
+    height: 600px;
     position: absolute;
     top: 80px;
     left: -100%;
@@ -78,8 +78,11 @@ root:hover {
     left: 0;
     opacity: 1;
     transition: all 0.5s ease;
-    z-index: 2;
+    width: 100%;
+    padding-bottom: 20px;
+    z-index: 10;
   }
+
   .nav-link {
     text-align: center;
     padding: 2rem;

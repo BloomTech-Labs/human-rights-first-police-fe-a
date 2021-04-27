@@ -167,6 +167,9 @@
     height: 100%;
     margin-bottom: 10px;
   }
+  .nav-menu.active .incidents-page {
+    overflow: hidden;
+  }
 }
 
 /*# sourceMappingURL=Incidents.css.map */

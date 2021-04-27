@@ -43,7 +43,7 @@ const Footer = () => {
                 </Menu.Item>
 
                 <a href="https://www.lambdaschool.com" target="Lambda School">
-                  {/* <img className="lambda-logo" alt="lambda-logo" src={lambda-lgo} /> */}
+                  {/* <img className="lambda-logo" alt="lambda-logo" src={lambda-logo} /> */}
                 </a>
               </Menu>
 
