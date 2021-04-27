@@ -3,8 +3,6 @@ import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
-import lambda from '../../assets/LambdaAssets/Built by lambda.png';
-
 const Footer = () => {
 
   const logout = () => {
@@ -39,7 +37,6 @@ const Footer = () => {
                     Administration
                   </NavLink>
                 </Menu.Item>
-
                 <Menu.Item key="3" className="logout" onClick={logout}>
                   <NavLink
                     to="/"

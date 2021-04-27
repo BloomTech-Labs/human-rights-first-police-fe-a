@@ -16,10 +16,12 @@ const StyledHome = styled.div`
   }
 `;
 
-function HomeIcon({ setViewport, initialPosition }) {
+function HomeIcon({ initialPosition, zoomOnCluster }) {
+  const { latitude, longitude, zoom } = initialPosition;
+
   const onClick = e => {
     e.preventDefault();
-    setViewport(initialPosition);
+    zoomOnCluster(zoom, longitude, latitude);
   };
 
   return (

@@ -40,7 +40,7 @@ const ApprovedIncident = ({ item }) => {
         <p className="incident-info">{formattedDate}</p>
 
         <p className="incident-info more-info" onClick={toggleMoreInfo}>
-          {moreInfo ? 'Less Info' : 'More Info'}
+          {moreInfo ? 'Less Info' : 'Edit Info'}
         </p>
         <button
           style={{

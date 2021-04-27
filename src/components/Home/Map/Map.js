@@ -106,6 +106,7 @@ export default function Map() {
               <NavControlContainer>
                 <NavigationControl />
                 <HomeIcon
+                  zoomOnCluster={zoomOnCluster}
                   initialPosition={initialPosition}
                   setViewport={setViewport}
                 />

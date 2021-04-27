@@ -8,10 +8,9 @@ const labsCohorts = [
       {
         name: 'Lindsay Deaton',
         githubUser: 'lindsay-deaton',
-        roles: ['be'],
+        roles: ['full stack'],
       },
       { name: 'Paul Kim', githubUser: 'lbu0413', roles: ['fe'] },
-      { name: 'AJ Gambino', githubUser: 'ajGambino', roles: ['fe'] },
       { name: 'Ashley Brooks', githubUser: 'AshleyBrooks213', roles: ['ds'] },
       { name: 'Max Moore', githubUser: 'max-moore', roles: ['ds'] },
       { name: 'Austin Francis', githubUser: 'austincfrancis', roles: ['ds'] },
