@@ -892,6 +892,9 @@ p.page-number-display {
 .incident-info {
   text-align: left;
   padding-top: 1%;
+   text-decoration: underline;
+  text-decoration-color: #1890ff;
+  cursor: pointer;
 }
 
 .incident-info-text-wrap {
@@ -909,6 +912,7 @@ p.page-number-display {
   color: #3c4257;
   font-weight: 500;
   margin: 0 auto;
+  justify-content: space-between;
 }
 
 .incident-info:first-child {
@@ -935,6 +939,10 @@ p.page-number-display {
 
 .more-info {
   cursor: pointer;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-right: 2rem;
 }
 
 form {
@@ -1132,16 +1140,20 @@ form label {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  border: solid #e3e8ee 1px;
+  text-align: left;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  
   width: 100%;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-bottom: 0px;
+  font-weight: 500;
+  margin: 0 auto;
   border-radius: 5px;
+border: solid #e3e8ee 1px;
+justify-content: space-between;
 }
 
 .hidden-input {
@@ -1157,7 +1169,7 @@ form label {
   text-align: left;
   -webkit-box-pack: start;
       -ms-flex-pack: start;
-          justify-content: flex-start;
+          justify-content: space-between;
   width: 100%;
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -1172,20 +1184,24 @@ form label {
 }
 
 .description {
-  margin-left: 0px;
+  width: 630px;
   text-align: left;
-  width: 28rem;
 }
 
 .location {
-  width: 14rem;
-  /* margin-left: 2%; */
+  width: 305px;
 }
 
 .date {
-  width: 10rem;
-  /* margin-left: 7%; */
+  width: 100px;
 }
+
+.edit {
+  width: 100px;
+  margin-right: 30px;
+text-align: right;
+}
+
 
 .incidents {
   display: -webkit-box;

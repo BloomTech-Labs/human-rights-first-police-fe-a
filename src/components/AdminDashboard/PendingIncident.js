@@ -20,7 +20,6 @@ const PendingIncident = props => {
   const toggleMoreInfo = () => {
     setMoreInfo(!moreInfo);
   };
-
   const toggleCheck = () => {
     changeSelected(incident);
   };
@@ -42,7 +41,7 @@ const PendingIncident = props => {
           checked={isSelected}
           onChange={confirmApprove ? () => {} : toggleCheck}
         />
-        <div className="incident-info-text-wrap">
+        <div className="incident-info-text-wrap" onClick={toggleMoreInfo}>
           <p className="incident-info" id="incident-description">
             {incident.desc.split('http')[0]}
           </p>
@@ -52,10 +51,10 @@ const PendingIncident = props => {
           </p>
 
           <p className="incident-info">{formattedDate}</p>
+          {/* placeholder below for accuracy estimate 
+          <p className="incident-info">{incident.est_acc}</p>*/}
 
-          <p className="incident-info more-info" onClick={toggleMoreInfo}>
-            {moreInfo ? 'Less Info' : 'Edit Info'}
-          </p>
+          <p className="incident-info more-info">{moreInfo ? '-' : '+'}</p>
         </div>
       </div>
       {moreInfo && (
