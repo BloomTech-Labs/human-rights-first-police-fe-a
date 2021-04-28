@@ -6,13 +6,14 @@ root {
 
 .modal-wrapper {
   display: flex;
-  background-color: rgba(63, 61, 61, 0.692);
-  width: 90%;
+  width: 100%;
   max-width: 800px;
   margin-top: 10rem;
   margin-left: auto;
   margin-right: auto;
   border: 1px solid black;
+  box-shadow: 0 3px 7px rgba(0, 2, 2, 0.9);
+  margin-bottom: 500px;
 }
 
 .modal-header p {
@@ -37,6 +38,7 @@ root {
 .modal-content {
   padding: 2rem 2rem;
   background-color: white;
+  z-index: 2;
 }
 
 .modal-body {
@@ -52,6 +54,19 @@ root {
   font-size: 1rem;
 }
 
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.modal-checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
 .modal-footer button {
   display: block;
   font-size: 1rem;
@@ -62,8 +77,9 @@ root {
 }
 
 .back-drop {
-  position: fixed;
-  background-color: rgba(63, 61, 61, 0.692);
-  height: 100%;
+  position: absolute;
+  background-color: rgba(63, 61, 61, 0.9);
+  height: 100vh;
   width: 100%;
+  z-index: -3;
 }
