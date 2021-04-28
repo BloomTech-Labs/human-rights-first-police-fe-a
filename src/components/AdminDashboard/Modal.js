@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Modal.css';
 
 export const Modal = props => {
@@ -39,6 +39,14 @@ export const Modal = props => {
           <button onClick={modalHandler} className="btn-cancel">
             Close
           </button>
+          {/* <div className="modal-checkbox">
+            <label>Do not show this again</label>
+            <input
+              type="checkbox"
+              value={checked}
+              onChange={() => setChecked(checked => !checked)}
+            />
+          </div> */}
         </div>
       </div>
     </div>

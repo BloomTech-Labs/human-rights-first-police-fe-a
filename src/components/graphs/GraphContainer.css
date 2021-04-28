@@ -1,6 +1,6 @@
 .graph-container {
   max-width: 1200px;
-  margin: 0 auto;
+  margin: 0 5%;
 }
 
 .link-container[role='menu'] {
@@ -71,4 +71,9 @@
   width: 50vw;
   margin: auto;
 }
+
+.all-graphs{
+  display: inline;
+}
+
 /*# sourceMappingURL=GraphContainer.css.map */

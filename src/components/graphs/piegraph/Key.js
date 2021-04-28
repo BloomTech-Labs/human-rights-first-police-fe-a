@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
+import './Key.css'
 //this component may need to be deleted all together
 const keyData = {
   'Rank I: Officer Presence': {
