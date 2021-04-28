@@ -5,12 +5,12 @@ const labsCohorts = [
     number: 33,
     students: [
       { name: 'Will Mondal', githubUser: 'willmond-al', roles: ['fe'] },
+      { name: 'Paul Kim', githubUser: 'lbu0413', roles: ['fe'] },
       {
         name: 'Lindsay Deaton',
         githubUser: 'lindsay-deaton',
-        roles: ['full stack'],
+        roles: ['fe', 'be'],
       },
-      { name: 'Paul Kim', githubUser: 'lbu0413', roles: ['fe'] },
       { name: 'Ashley Brooks', githubUser: 'AshleyBrooks213', roles: ['ds'] },
       { name: 'Max Moore', githubUser: 'max-moore', roles: ['ds'] },
       { name: 'Austin Francis', githubUser: 'austincfrancis', roles: ['ds'] },

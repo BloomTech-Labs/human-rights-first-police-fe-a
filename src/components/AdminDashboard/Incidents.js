@@ -1,6 +1,8 @@
 import React from 'react';
 
 import PendingIncident from './PendingIncident';
+import AdminTable from './AdminTable';
+// import AntTable from './AntTableComponents/AntTable';
 
 const DashboardIncidents = props => {
   const {
@@ -19,6 +21,7 @@ const DashboardIncidents = props => {
     setUnapprovedIncidents,
     setPageNumber,
   } = props;
+
   return (
     <>
       <div className="dashboard-top-flex">
@@ -103,15 +106,7 @@ const DashboardIncidents = props => {
         </div>
       </div>
 
-      <div className="column-headers">
-        <input className="hidden-input" type="checkbox" />
-        <div className="column-headers-flex">
-          <h4 className="description">Description</h4>
-          <h4 className="location">Location</h4>
-          <h4 className="date">Date</h4>
-          <h4>Estimated Accuracy</h4>
-        </div>
-      </div>
+      <AdminTable />
 
       <div className="incidents">
         {currentSet.map(incident => {
@@ -128,6 +123,8 @@ const DashboardIncidents = props => {
           );
         })}
       </div>
+
+      {/* <AntTable /> */}
     </>
   );
 };

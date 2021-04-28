@@ -41,10 +41,6 @@ const Footer = () => {
                     Log out
                   </NavLink>
                 </Menu.Item>
-
-                <a href="https://www.lambdaschool.com" target="Lambda School">
-                  {/* <img className="lambda-logo" alt="lambda-logo" src={lambda-logo} /> */}
-                </a>
               </Menu>
 
               <p>Human Rights First &copy;2021</p>
