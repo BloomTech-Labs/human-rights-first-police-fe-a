@@ -138,7 +138,8 @@ div canvas {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  width: 100%;
+  width: 95%;
+  margin: 0 auto !important;
 }
 
 .link-container .graph-buttons {
@@ -1024,32 +1025,6 @@ form label {
   margin-bottom: 2rem;
 }
 
-.statboxes {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: start;
-}
-
-.statbox {
-  border: 2px solid #e3e8ee;
-  padding: 2%;
-  width: 99%;
-  color: #3c4257;
-  border-radius: 5px;
-  font-weight: 400;
-  margin-right: 20px;
-  margin-bottom: 1%;
-  background-image: -webkit-gradient(linear, left top, right top, from(#f7fafc), to(white));
-  background-image: linear-gradient(to right, #f7fafc, white);
-}
-
 .confirmation-message {
   width: 90%;
   text-align: center;
@@ -1361,19 +1336,19 @@ root:hover {
   margin: 0 auto;
 }
 .pie-holder {
-  width: 1300px;
+  width: 1200px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .pie {
-  width: 800px;
+  width: 750px;
   margin-top: 20px;
 }
 .pie-legend {
   margin-bottom: 6%;
   padding: 20px;
-  width: 500px;
+  width: 600px;
 }
 
 @media (max-width: 800px) {
