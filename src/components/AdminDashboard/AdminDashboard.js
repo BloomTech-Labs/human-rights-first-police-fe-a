@@ -45,11 +45,23 @@ const AdminDashboard = () => {
   // modal
 
   const [showModal, setShowModal] = useState(false);
+  const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');
 
   useEffect(() => {
-    setShowModal(true);
+    const handleShowModal = () => {
+      if (HAS_VISITED_BEFORE && HAS_VISITED_BEFORE > new Date()) {
+        return;
+      }
+      if (!HAS_VISITED_BEFORE) {
+        setShowModal(true);
+        let expires = new Date();
+        expires = expires.setHours(expires.getHours() + 24);
+        localStorage.setItem('hasVisitedBefore', expires);
+      }
+    };
+    window.setTimeout(handleShowModal, 2000);
     window.scrollTo(0, 0);
-  }, []);
+  }, [HAS_VISITED_BEFORE]);
 
   const modalHandler = () => {
     setShowModal(false);
@@ -166,12 +178,12 @@ const AdminDashboard = () => {
 
   return (
     <>
+      {showModal ? <div className="back-drop"></div> : null}
       <Modal
         showModal={showModal}
         modalHandler={modalHandler}
         unapprovedIncidents={unapprovedIncidents}
       />
-      {showModal ? <div className="back-drop"></div> : null}
 
       <div className="dashboard-buttons-container">
         <button className="approve-btn" onClick={() => setUnapproved(true)}>

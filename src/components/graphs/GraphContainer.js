@@ -17,6 +17,8 @@ import Pagination from './pagination/Pagination';
 import { stateData } from './assets/bargraphAssets';
 import Legend from './assets/Legend';
 
+import "./GraphContainer.css";
+
 const filterDataByState = (state, data) => {
   return data.filter(incident => incident.state === state);
 };
