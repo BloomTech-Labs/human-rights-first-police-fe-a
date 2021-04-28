@@ -3,6 +3,8 @@ import React from 'react';
 // Search Bar
 import SearchBar from '../searchbar/SearchBar';
 
+import "./Pagination.css";
+
 import {
   LineChartOutlined,
   BarChartOutlined,
@@ -29,15 +31,17 @@ const generateButtons = onClick => {
     }
 
     return (
-      <li
-        className="link-item"
-        data-key={`${name}`}
-        onClick={e => onClick(e)}
-        key={nanoid()}
-      >
-        {icon}
-        <span className="text">{name}</span>
-      </li>
+      <div className="container">
+        <li
+          className="link-item"
+          data-key={`${name}`}
+          onClick={e => onClick(e)}
+          key={nanoid()}
+        >
+          {icon}
+          <span className="text">{name}</span>
+        </li>
+      </div>
     );
   });
 
