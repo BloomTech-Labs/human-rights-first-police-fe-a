@@ -33,7 +33,7 @@ const CompleteIncident = props => {
     return () => {
       setFormValues({});
     };
-  }, [editing]);
+  }, [editing, incident]);
 
   // toggle "editing mode"
   const toggleEditor = evt => {
@@ -69,6 +69,7 @@ const CompleteIncident = props => {
     };
     applyEdits(editedIncident, incident)
       .then(res => {
+        window.location.reload();
         console.log(res);
       })
       .catch(err => {
@@ -108,12 +109,14 @@ const CompleteIncident = props => {
         {!editing ? (
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">Location:</p>
-            <p className="location-dropdown-wrap">{incident.location}</p>
+            <p className="location-dropdown-wrap">
+              {incident.city}, {incident.state}
+            </p>
           </div>
         ) : (
           <>
             <label htmlFor="city" className="label">
-              Location
+              City
             </label>
             <br />
             <input
@@ -121,7 +124,19 @@ const CompleteIncident = props => {
               onChange={handleInputChange}
               type="text"
               name="city"
-              value={formValues.location}
+              value={formValues.city}
+            />
+            <br />
+            <label htmlFor="state" className="label">
+              State
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="state"
+              value={formValues.state}
             />
             <br />
           </>

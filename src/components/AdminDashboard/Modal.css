@@ -1,0 +1,85 @@
+root {
+  --blue: #003767;
+  --orange: #fff;
+  --light-blue: #7f9bb3;
+}
+
+.modal-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 800px;
+  margin-top: 10rem;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  box-shadow: 0 3px 7px rgba(0, 2, 2, 0.9);
+  margin-bottom: 500px;
+}
+
+.modal-header p {
+  margin: 0;
+}
+
+.modal-header {
+  background: var(--blue);
+  color: white;
+  font-size: 1.3rem;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header span {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.modal-content {
+  padding: 2rem 2rem;
+  background-color: white;
+  z-index: 2;
+}
+
+.modal-body {
+  margin-bottom: 1rem;
+}
+
+.modal-body h4 {
+  font-size: 1.8rem;
+  color: var(--blue);
+}
+
+.modal-body p {
+  font-size: 1rem;
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.modal-checkbox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+.modal-footer button {
+  display: block;
+  font-size: 1rem;
+  margin-left: auto;
+  padding: 0.5rem 1.8rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.back-drop {
+  position: absolute;
+  background-color: rgba(63, 61, 61, 0.9);
+  height: 100vh;
+  width: 100%;
+  z-index: -3;
+}

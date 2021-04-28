@@ -10,6 +10,14 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Contributors
 
+### Labs 33
+[Lindsay Deaton](https://github.com/lindsay-deaton)
+
+[Will Mondal](https://github.com/willmond-al)
+
+[Paul Kim](https://github.com/lbu0413)
+
+
 ### labs 32
 [Samuel Lee](https://github.com/AgentSamSA)
 
@@ -77,7 +85,7 @@ REACT_APP_MAPBOX_TOKEN=""
 
 - User can see clusters of incidents on a map that breaks apart as they scroll in so that they can see more specifically where each incident in the cluster occurred.
 - User is able to click on a data point within the map and view more details including date, description, tags, and sources.
-- User can view charts by state or by use of force tags to see where incidents are more prevelant and what type of force is most commonly used.
+- User can view charts by state or by use of force tags to see where incidents are more prevalent and what type of force is most commonly used.
 - User can view incident data and browse through them using pagination
 - User can view trends in data with data visualizations in the form of graphs
 - User can download the publicly available data in CSV or JSON format
@@ -90,6 +98,8 @@ Where to find important files in this project:
 
 - `index.js` <- project entry
 
+- `index.css`
+
 - `App.js`
 
 - `📂 components`
@@ -98,7 +108,11 @@ Where to find important files in this project:
 
   - `📂 AdminDashboard`
 
-  - `📂 graphs`
+      - `📂 AntTable`
+
+  - `📂 Footer`
+
+  - `📂 graphs` <- this has multiple sets of assets for the graphs
 
   - `📂 Home`
 
@@ -135,6 +149,8 @@ Where to find important files in this project:
   - `test-utils.js` <- Jest/React Testing Library setup
 
 - `📂 assets`
+
+    - `📂 LambdaAssets` <- Lambda Logos
 
 - `📂 styles`
 

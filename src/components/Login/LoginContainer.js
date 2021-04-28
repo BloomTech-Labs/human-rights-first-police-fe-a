@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { StyledLogin } from './LoginContainerStyled';
 import OktaSignIn from '@okta/okta-signin-widget';
+// import NavBar from '../NavBar/NavBar';
 import '@okta/okta-signin-widget/dist/css/okta-sign-in.min.css';
 // Below is the Human Rights logo
 import hrfLogo from './hrf-logo.png';
@@ -8,6 +9,7 @@ import hrfLogo from './hrf-logo.png';
 import config from '../../utils/oktaConfig';
 
 const LoginContainer = () => {
+
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
 
@@ -40,6 +42,7 @@ const LoginContainer = () => {
          * In this flow, the success handler will not be called because we redirect
          * to the Okta org for the authentication workflow.
          */
+        window.location.reload();
       },
       err => {
         throw err;

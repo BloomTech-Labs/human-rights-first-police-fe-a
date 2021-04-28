@@ -15,6 +15,9 @@ import Pagination from './pagination/Pagination';
 
 // Assets
 import { stateData } from './assets/bargraphAssets';
+import Legend from './assets/Legend';
+
+import "./GraphContainer.css";
 
 const filterDataByState = (state, data) => {
   return data.filter(incident => incident.state === state);
@@ -134,23 +137,27 @@ const GraphContainer = () => {
   };
 
   return (
-    <>
+    <div>
+      <header>
+        <Pagination
+          setGraph={setGraph}
+          setUsState={setUsState}
+          filtered={filtered}
+        />
+      </header>
+
       <section id="lineGraph" className="graph-container">
-        <header>
-          <Pagination
-            setGraph={setGraph}
-            setUsState={setUsState}
-            filtered={filtered}
-          />
-          {filtered.length > 0 ? (
-            <div>
-              <h2 style={{ marginTop: '1rem' }}>
-                Incidents identified by our data collection methods per month
-              </h2>
+        {filtered.length > 0 ? (
+          <div className="all-graphs">
+            <h2 style={{ marginTop: '2rem' }}>
+              Incidents identified by our data collection methods per month
+            </h2>
+            <p>
               <h4>April 2020 - Present</h4>
-            </div>
-          ) : null}
-        </header>
+            </p>
+          </div>
+        ) : null}
+
         {filtered.length > 0 ? (
           <LineGraph data={counts} months={months} />
         ) : (
@@ -168,18 +175,25 @@ const GraphContainer = () => {
             </div>
             <BarGraph count={barCounts} />
           </section>
+
           <section id="pieGraph" className="graph-container">
-            <div>
-              <h2 style={{ marginTop: '5rem' }}>
-                Prevalence of Force Ranks as identified by our data collection
-                methods
-              </h2>
+            <h2 style={{ marginTop: '5rem' }}>
+              Prevalence of Force Ranks as identified by our data collection
+              methods
+            </h2>
+
+            <div className="pie-holder">
+              <div className="pie">
+                <PieGraph data={filtered} />
+              </div>
+              <div className="pie-legend">
+                <Legend />
+              </div>
             </div>
-            <PieGraph data={filtered} />
           </section>
         </div>
       ) : null}
-    </>
+    </div>
   );
 };
 

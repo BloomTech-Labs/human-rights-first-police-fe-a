@@ -1,65 +1,55 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/HRF white-01.png';
-import lambda from '../../assets/LambdaAssets/Built by lambda.png';
+import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
 
-import { Layout, Menu } from 'antd';
+// import { useOktaAuth } from '@okta/okta-react';
+import { Layout, Menu, Sider } from 'antd';
+
+import './nav.css';
 
 const NavBar = () => {
+  const [navState, setNavState] = useState(false);
+
+  let handleClick = () => {
+    setNavState(!navState);
+  };
+
   return (
-    <div className="nav-container">
-      <div className="logo-container">
-        <Link to="/">
-          <img src={logo} alt="Human Rights First" className="logo" />
-        </Link>
+    <nav className="NavbarItems">
+      <img className="hrf-logo" alt="hrf-logo" src={logo}></img>
+      <div className="menu-icon" onClick={handleClick}>
+        <i className={navState ? 'fas fa-times' : 'fas fa-bars'}></i>
       </div>
-      <nav>
-        <Layout className="layout">
-          <Menu mode="horizontal" className="override">
-            <Menu.Item key="1">
-              <NavLink
-                to="/"
-                exact
-                className="nav-link"
-                activeClassName="active-nav-link"
-              >
-                Home
-              </NavLink>
-            </Menu.Item>
-
-            <Menu.Item key="2">
-              <NavLink to="/incidents" activeClassName="active-nav-link">
-                Incidents
-              </NavLink>
-            </Menu.Item>
-
-            <Menu.Item key="3">
-              <NavLink to="/graph" activeClassName="active-nav-link">
-                Graphs
-              </NavLink>
-            </Menu.Item>
-
-            <Menu.Item key="4">
-              <NavLink to="/about" activeClassName="active-nav-link">
-                About{' '}
-              </NavLink>
-            </Menu.Item>
-
-            {/* <Menu.Item key="5">
-              <NavLink to="/admin-dashboard" activeClassName="active-nav-link">
-                Admin Dashboard
-              </NavLink>
-            </Menu.Item> */}
-
-            <div className="lambda-container">
-              <img src={lambda} alt="Built By Lambda" className="lambda" />
-            </div>
-          </Menu>
-        </Layout>
-      </nav>
-    </div>
+      <ul className={navState ? 'nav-menu active' : 'nav-menu'}>
+        <NavLink onClick={handleClick} className="nav-link" exact to="/">
+          Home
+        </NavLink>
+        <NavLink onClick={handleClick} className="nav-link" to="/incidents">
+          Incidents
+        </NavLink>
+        <NavLink onClick={handleClick} className="nav-link" to="/graph">
+          Graphs
+        </NavLink>
+        <NavLink onClick={handleClick} className="nav-link" to="/about">
+          About
+        </NavLink>
+        {localStorage.getItem('okta-token-storage') ? (
+          <NavLink
+            onClick={handleClick}
+            className="nav-link"
+            to="/admin-dashboard"
+          >
+            Admin
+          </NavLink>
+        ) : (
+          <div></div>
+        )}
+        <img className="lambda-logo" src={lambdaLogo} alt="lambda-logo" />
+      </ul>
+    </nav>
   );
 };
 export default NavBar;

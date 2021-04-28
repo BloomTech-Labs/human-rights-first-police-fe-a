@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { CaretRightOutlined } from '@ant-design/icons';
 import { useSelector } from 'react-redux';
 import { Collapse, List } from 'antd';
 import IncidentFocusCard from './IncidentFocusCard';
@@ -22,18 +23,23 @@ export default function IncidentFocus({ zoomOnCluster }) {
     <div className="map-menu-background">
       <div className="map-menu">
         <Collapse
-          style={{ color: 'white', paddingBottom: '10px' }}
-          defaultActiveKey={['1']}
+          className="collapserMap"
+          style={{ color: 'white' }}
+          defaultActiveKey={['0']}
           bordered={false}
+          expandIcon={({ isActive }) => (
+            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+          )}
           expandIconPosition="right"
           ghost
           accordion={true}
         >
           <Panel
+            className="collapseText"
+            header="Select to view Incidents"
             bordered={false}
             style={{ color: 'white' }}
             key="1"
-            header=" &nbsp; "
           >
             <div className="incident-content">
               <List>

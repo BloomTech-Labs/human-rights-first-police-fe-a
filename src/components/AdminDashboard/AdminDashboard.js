@@ -4,6 +4,8 @@ import AddIncident from './AddIncident';
 import DashboardTop from './DashboardTop';
 import Incidents from './Incidents';
 import ApprovedIncidents from './ApprovedIncidents';
+import './AdminDashboard.css';
+import { Modal } from './Modal';
 
 import {
   getData,
@@ -24,7 +26,7 @@ const AdminDashboard = () => {
 
   //   setting state necessary for pagination
   const [pageNumber, setPageNumber] = useState(1);
-  const [incidentsPerPage, setIncidentsPerPage] = useState(5);
+  const [incidentsPerPage, setIncidentsPerPage] = useState(10);
   const [currentSet, setCurrentSet] = useState([]);
 
   //   setting state for confirmation buttons of confirming/rejecting
@@ -39,6 +41,31 @@ const AdminDashboard = () => {
 
   // setting state to change between approved and unapproved incidents
   const [unapproved, setUnapproved] = useState(true);
+
+  // modal
+
+  const [showModal, setShowModal] = useState(false);
+  const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');
+
+  useEffect(() => {
+    const handleShowModal = () => {
+      if (HAS_VISITED_BEFORE && HAS_VISITED_BEFORE > new Date()) {
+        return;
+      }
+      if (!HAS_VISITED_BEFORE) {
+        setShowModal(true);
+        let expires = new Date();
+        expires = expires.setHours(expires.getHours() + 24);
+        localStorage.setItem('hasVisitedBefore', expires);
+      }
+    };
+    window.setTimeout(handleShowModal, 2000);
+    window.scrollTo(0, 0);
+  }, [HAS_VISITED_BEFORE]);
+
+  const modalHandler = () => {
+    setShowModal(false);
+  };
 
   const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
 
@@ -151,11 +178,20 @@ const AdminDashboard = () => {
 
   return (
     <>
+      {showModal ? <div className="back-drop"></div> : null}
+      <Modal
+        showModal={showModal}
+        modalHandler={modalHandler}
+        unapprovedIncidents={unapprovedIncidents}
+      />
+
       <div className="dashboard-buttons-container">
-        <button onClick={() => setUnapproved(true)}>
+        <button className="approve-btn" onClick={() => setUnapproved(true)}>
           Unapproved Incidents
         </button>
-        <button onClick={() => setUnapproved(false)}>Approved Incidents</button>
+        <button className="approve-btn" onClick={() => setUnapproved(false)}>
+          Approved Incidents
+        </button>
       </div>
       {unapproved ? (
         <div className="dashboard-container">
@@ -164,6 +200,7 @@ const AdminDashboard = () => {
             toggleAddIncident={toggleAddIncident}
             unapproved={unapproved}
           />
+
           {adding ? (
             <AddIncident
               setPageNumber={setPageNumber}
