@@ -30,6 +30,12 @@ const NavControlContainer = styled.div`
     left: 26px;
     z-index: 1;
   }
+  @media (max-width: 414px) {
+    position: absolute;
+    top: 540px;
+    left: 26px;
+    z-index: 1;
+  }
 `;
 const initialPosition = {
   latitude: 39.850033,
