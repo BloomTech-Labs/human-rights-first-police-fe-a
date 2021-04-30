@@ -17,7 +17,7 @@ import Pagination from './pagination/Pagination';
 import { stateData } from './assets/bargraphAssets';
 import Legend from './assets/Legend';
 
-import "./GraphContainer.css";
+import './GraphContainer.css';
 
 const filterDataByState = (state, data) => {
   return data.filter(incident => incident.state === state);
@@ -137,7 +137,7 @@ const GraphContainer = () => {
   };
 
   return (
-    <div>
+    <div className="mobile-issue">
       <header>
         <Pagination
           setGraph={setGraph}
