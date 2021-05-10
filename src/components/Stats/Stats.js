@@ -47,7 +47,8 @@ const Stats = () => {
     <Carousel autoplay>
       <div className="stat incidents">
         <h2 style={contentStyle}>
-          We have identified {dataList.length} incidents of police use of force
+          We have identified {dataList.length} incident reports of police use of
+          force
         </h2>
       </div>
       <div className="stat spray-gas">
