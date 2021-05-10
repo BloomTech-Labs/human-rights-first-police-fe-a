@@ -4,10 +4,10 @@ import { Link, NavLink } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 
 const Footer = () => {
-  const logout = () => {
-    localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
-    window.location.reload();
-  };
+  // const logout = () => {
+  //   localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
+  //   window.location.reload();
+  // };
 
   return (
     <div className="footer-container">
@@ -23,6 +23,7 @@ const Footer = () => {
                     exact
                     className="nav-link"
                     activeClassName="active-nav-link"
+                    rel="noreferrer"
                   >
                     Human Rights First
                   </a>
@@ -36,11 +37,11 @@ const Footer = () => {
                     Administration
                   </NavLink>
                 </Menu.Item>
-                <Menu.Item key="3" className="logout" onClick={logout}>
+                {/* <Menu.Item key="3" className="logout" onClick={logout}>
                   <NavLink to="/" activeClassName="active-nav-link">
                     Log out
                   </NavLink>
-                </Menu.Item>
+                </Menu.Item> */}
               </Menu>
 
               <p>Human Rights First &copy;2021</p>
