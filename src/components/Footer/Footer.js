@@ -2,12 +2,19 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
+import { useOktaAuth } from '@okta/okta-react';
+import { useHistory } from 'react-router-dom';
 
 const Footer = () => {
-  // const logout = () => {
-  //   localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
-  //   window.location.reload();
-  // };
+  const { push } = useHistory();
+
+  const { authState } = useOktaAuth();
+
+  const logout = () => {
+    localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
+    push('/');
+    window.location.reload();
+  };
 
   return (
     <div className="footer-container">
@@ -37,13 +44,14 @@ const Footer = () => {
                     Administration
                   </NavLink>
                 </Menu.Item>
-                {/* <Menu.Item key="3" className="logout" onClick={logout}>
-                  <NavLink to="/" activeClassName="active-nav-link">
-                    Log out
-                  </NavLink>
-                </Menu.Item> */}
+                {authState.isAuthenticated && (
+                  <Menu.Item key="3" className="logout" onClick={logout}>
+                    <NavLink to="/" activeClassName="active-nav-link">
+                      Log out
+                    </NavLink>
+                  </Menu.Item>
+                )}
               </Menu>
-
               <p>Human Rights First &copy;2021</p>
             </div>
           </Layout>
