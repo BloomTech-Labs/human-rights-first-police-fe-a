@@ -1291,10 +1291,11 @@ root:hover {
   margin: 0 auto;
 }
 .pie-holder {
-  width: 1200px;
+  width: 95%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 .pie {
   width: 750px;
