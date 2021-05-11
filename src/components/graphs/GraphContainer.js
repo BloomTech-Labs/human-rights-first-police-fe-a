@@ -23,6 +23,7 @@ const filterDataByState = (state, data) => {
   return data.filter(incident => incident.state === state);
 };
 
+//not being used
 const changeDataDatesToMillis = data => {
   return data.map(incident => ({
     ...incident,
