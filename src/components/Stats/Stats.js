@@ -10,14 +10,14 @@ const Stats = () => {
   const [gasAndSpray, setGasAndSpray] = useState(0);
   const [arrests, setArrests] = useState(0);
   const [numCities, setNumCities] = useState(0);
-
+  // Banner Style settings
   const contentStyle = {
     padding: '6rem',
     color: 'white',
     textAlign: 'center',
     background: '#2f54eb',
   };
-
+  // Documents the reports of incidents and sores them in a state in which it can be displayed on the Banner
   const dataList = useSelector(state => Object.values(state.incident.data));
 
   useEffect(() => {
