@@ -36,7 +36,7 @@ export default function IncidentFocus({ zoomOnCluster }) {
         >
           <Panel
             className="collapseText"
-            header="Select to view Incidents"
+            header="View Incident Reports"
             bordered={false}
             style={{ color: 'white' }}
             key="1"
