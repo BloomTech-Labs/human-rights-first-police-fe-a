@@ -5,6 +5,7 @@ import {
   filterDataByState,
   filterDataByDate,
   createRange,
+  filterByStateAndDate,
 } from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
@@ -43,24 +44,37 @@ const Incidents = () => {
   useEffect(() => {
     const range = dates && createRange(dates);
 
-    if (usState && dates) {
-      const copyOfData = [...incidents];
-      let filteredData = filterDataByState(copyOfData, usState);
-      let dateAndStateFilteredData = filterDataByDate(filteredData, range);
-
-      setData(dateAndStateFilteredData);
-    } else if (usState && !dates) {
-      const copyOfData = [...incidents];
-      let filteredByState = filterDataByState(copyOfData, usState);
-      setData(filteredByState);
-    } else if (!usState && dates) {
-      const copyOfData = [...incidents];
-
-      let filteredByDate = filterDataByDate(copyOfData, range);
-      setData(filteredByDate);
-    } else {
-      setData(falsiesRemoved(incidents));
+    let filtered = [...incidents];
+    if (usState) {
+      filtered = filterDataByState(filtered, usState);
     }
+    if (dates) {
+      filtered = filterDataByDate(filtered, range);
+    }
+    //in progress
+    // if (usState && dates) {
+    //   filtered = filterByStateAndDate(filtered, usState, range);
+    // }
+    setData(falsiesRemoved(filtered));
+
+    // if (usState && dates) {
+    //   const copyOfData = [...incidents];
+    //   let filteredData = filterDataByState(copyOfData, usState);
+    //   let dateAndStateFilteredData = filterDataByDate(filteredData, range);
+
+    //   setData(dateAndStateFilteredData);
+    // } else if (usState && !dates) {
+    //   const copyOfData = [...incidents];
+    //   let filteredByState = filterDataByState(copyOfData, usState);
+    //   setData(filteredByState);
+    // } else if (!usState && dates) {
+    //   const copyOfData = [...incidents];
+
+    //   let filteredByDate = filterDataByDate(copyOfData, range);
+    //   setData(filteredByDate);
+    // } else {
+    //   setData(falsiesRemoved(incidents));
+    // }
   }, [usState, dates]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
@@ -83,7 +97,7 @@ const Incidents = () => {
     <div className="incidents-container">
       <div className="incidents-page">
         <header>
-          <h2 className="incidents-title">Browse Incidents</h2>
+          <h2 className="incidents-title">Browse Incident Reports</h2>
           <section className="user-input">
             <SearchBar setUsState={setUsState} />
             <RangePicker onCalendarChange={onDateSelection} />

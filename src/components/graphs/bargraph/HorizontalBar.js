@@ -23,7 +23,7 @@ const Horizontalbar = () => {
     ],
     datasets: [
       {
-        label: 'Number of Incidents',
+        label: 'Number of Incident Reports',
         backgroundColor: 'rgba(255,99,132,0.2)',
         borderColor: 'rgba(255,99,132,1)',
         borderWidth: 1,
@@ -72,10 +72,10 @@ const Horizontalbar = () => {
   return (
     <div>
       <div className="home-bar-graph">
-        <h1>Incidents Grouped by Level of Police Force</h1>
+        <h1>Incident Reports Grouped by Level of Police Force</h1>
         <p>
           This graph is intended to provide an at-a-glance understanding of the
-          types and volume of incidents that are being cataloged.
+          types and volume of incident reports that are being cataloged.
         </p>
         <Legend />
         <HorizontalBar
