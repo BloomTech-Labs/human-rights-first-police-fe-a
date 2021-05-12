@@ -28,10 +28,7 @@ const Incidents = () => {
   // Data State
   const [usState, setUsState] = useState(null);
   const [dates, setDates] = useState(null);
-  const [data, setData] = useState([]);
-
-  // User Search Filter State
-  const [filteredCards, setFilteredCards] = useState([]);
+  const [data, setData] = useState([]); // State for User Searches
 
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
@@ -54,7 +51,6 @@ const Incidents = () => {
     if (dates) {
       filtered = filterDataByDate(filtered, range);
     }
-
     setData(falsiesRemoved(filtered));
   }, [usState, dates]);
 
@@ -97,7 +93,7 @@ const Incidents = () => {
     <div className="incidents-container">
       <div className="incidents-page">
         <header>
-          <Pagination setUsState={setUsState} filteredCards={filteredCards} />
+          <Pagination setUsState={setUsState} />
           <h2 className="incidents-title">Browse Incidents</h2>
           <section className="user-input">
             <SearchBar setUsState={setUsState} />
@@ -105,12 +101,7 @@ const Incidents = () => {
           </section>
         </header>
         <section>
-          {/* <ul>
-            {currentPosts.map(incident => {
-              return <IncidentsCard key={nanoid()} incident={incident} />;
-            })}
-          </ul> */}
-          {filteredCards.length > 0 ? (
+          {data.length > 0 ? (
             <ul>
               {currentPosts.map(incident => {
                 return <IncidentsCard key={nanoid()} incident={incident} />;
