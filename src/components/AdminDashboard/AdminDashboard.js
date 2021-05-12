@@ -17,6 +17,7 @@ import { DoubleRightOutlined } from '@ant-design/icons';
 import { DoubleLeftOutlined } from '@ant-design/icons';
 
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
@@ -46,6 +47,10 @@ const AdminDashboard = () => {
 
   const [showModal, setShowModal] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');
+
+  //variable to push to homepage for logout button
+
+  const { push } = useHistory();
 
   useEffect(() => {
     const handleShowModal = () => {
@@ -176,6 +181,12 @@ const AdminDashboard = () => {
     setAdding(true);
   };
 
+  const logout = () => {
+    localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
+    push('/');
+    window.location.reload();
+  };
+
   return (
     <>
       {showModal ? <div className="back-drop"></div> : null}
@@ -186,12 +197,19 @@ const AdminDashboard = () => {
       />
 
       <div className="dashboard-buttons-container">
-        <button className="approve-btn" onClick={() => setUnapproved(true)}>
-          Unapproved Incidents
-        </button>
-        <button className="approve-btn" onClick={() => setUnapproved(false)}>
-          Approved Incidents
-        </button>
+        <div className="incident-btn-container">
+          <button className="approve-btn" onClick={() => setUnapproved(true)}>
+            Unapproved Incidents
+          </button>
+          <button className="approve-btn" onClick={() => setUnapproved(false)}>
+            Approved Incidents
+          </button>
+        </div>
+        <div className="logout-container">
+          <button className="approve-btn" onClick={logout}>
+            Log Out
+          </button>
+        </div>
       </div>
       {unapproved ? (
         <div className="dashboard-container">

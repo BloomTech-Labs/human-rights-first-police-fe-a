@@ -19,7 +19,9 @@ const NavBar = () => {
 
   return (
     <nav className="NavbarItems">
-      <img className="hrf-logo" alt="hrf-logo" src={logo}></img>
+      <NavLink onClick={handleClick} className="nav-link" exact to="/">
+        <img className="hrf-logo" alt="hrf-logo" src={logo}></img>
+      </NavLink>
       <div className="menu-icon" onClick={handleClick}>
         <i className={navState ? 'fas fa-times' : 'fas fa-bars'}></i>
       </div>
@@ -47,7 +49,9 @@ const NavBar = () => {
         ) : (
           <div></div>
         )}
-        <img className="lambda-logo" src={lambdaLogo} alt="lambda-logo" />
+        <a href="https://lambdaschool.com/">
+          <img className="lambda-logo" src={lambdaLogo} alt="lambda-logo" />
+        </a>
       </ul>
     </nav>
   );
