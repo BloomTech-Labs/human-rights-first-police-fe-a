@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,AAAA,eAAe,CAAC;EACd,KAAK,EAAE,KAAK;EACZ,UAAU,EAAE,OAAO;EACnB,aAAa,EAAE,GAAG;EAClB,OAAO,EAAE,IAAI;EACb,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,OAAO,EAAE,GAAG;CACb",
-    "sources": [
-        "Clusters.scss"
-    ],
-    "names": [],
-    "file": "Clusters.css"
-}

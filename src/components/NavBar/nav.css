@@ -1,8 +1,4 @@
-root {
-  --blue: #003767;
-  --orange: #fff;
-  --light-blue: #7f9bb3;
-}
+
 
 root:hover {
   color: yellow;
