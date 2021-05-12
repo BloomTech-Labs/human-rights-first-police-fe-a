@@ -6,10 +6,14 @@ import logo from '../../assets/HRF white-01.png';
 import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
 
 // import { useOktaAuth } from '@okta/okta-react';
-import { Layout, Menu, Sider } from 'antd';
+import { Layout, Menu, Sider, Input, Space, Typography } from 'antd';
+import { AudioOutlined } from '@ant-design/icons';
 
 import './nav.css';
+const { Search } = Input;
 
+const { SubMenu } = Menu;
+const { Title, Paragraph } = Typography;
 const NavBar = () => {
   const [navState, setNavState] = useState(false);
 
@@ -18,38 +22,86 @@ const NavBar = () => {
   };
 
   return (
-    <nav className="NavbarItems">
-      <img className="hrf-logo" alt="hrf-logo" src={logo}></img>
-      <div className="menu-icon" onClick={handleClick}>
-        <i className={navState ? 'fas fa-times' : 'fas fa-bars'}></i>
-      </div>
-      <ul className={navState ? 'nav-menu active' : 'nav-menu'}>
-        <NavLink onClick={handleClick} className="nav-link" exact to="/">
-          Home
-        </NavLink>
-        <NavLink onClick={handleClick} className="nav-link" to="/incidents">
-          Incidents
-        </NavLink>
-        <NavLink onClick={handleClick} className="nav-link" to="/graph">
-          Graphs
-        </NavLink>
-        <NavLink onClick={handleClick} className="nav-link" to="/about">
-          About
-        </NavLink>
-        {localStorage.getItem('okta-token-storage') ? (
-          <NavLink
-            onClick={handleClick}
-            className="nav-link"
-            to="/admin-dashboard"
+    <div>
+      <Menu mode="horizontal" style={{ background: '#2f54eb' }}>
+        <Space>
+          <Title style={{ color: 'white' }}>human rights first</Title>
+          <Search placeholder="Search incidents" />
+        </Space>
+        <Menu.Item key="1">
+          <a
+            href="https://ant.design"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'white' }}
           >
-            Admin
-          </NavLink>
-        ) : (
-          <div></div>
-        )}
-        <img className="lambda-logo" src={lambdaLogo} alt="lambda-logo" />
-      </ul>
-    </nav>
+            Home
+          </a>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <a
+            href="https://ant.design"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'white' }}
+          >
+            Incidents
+          </a>
+        </Menu.Item>
+        <Menu.Item key="3">
+          <a
+            href="https://ant.design"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'white' }}
+          >
+            Graph
+          </a>
+        </Menu.Item>
+        <Menu.Item key="4">
+          <a
+            href="https://ant.design"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'white' }}
+          >
+            About
+          </a>
+        </Menu.Item>
+      </Menu>
+    </div>
+    // <nav className="NavbarItems">
+    //   <img className="hrf-logo" alt="hrf-logo" src={logo}></img>
+    //   <div className="menu-icon" onClick={handleClick}>
+    //     <i className={navState ? 'fas fa-times' : 'fas fa-bars'}></i>
+    //   </div>
+    //   <ul className={navState ? 'nav-menu active' : 'nav-menu'}>
+    //     <NavLink onClick={handleClick} className="nav-link" exact to="/">
+    //       Home
+    //     </NavLink>
+    //     <NavLink onClick={handleClick} className="nav-link" to="/incidents">
+    //       Incidents
+    //     </NavLink>
+    //     <NavLink onClick={handleClick} className="nav-link" to="/graph">
+    //       Graphs
+    //     </NavLink>
+    //     <NavLink onClick={handleClick} className="nav-link" to="/about">
+    //       About
+    //     </NavLink>
+    //     {localStorage.getItem('okta-token-storage') ? (
+    //       <NavLink
+    //         onClick={handleClick}
+    //         className="nav-link"
+    //         to="/admin-dashboard"
+    //       >
+    //         Admin
+    //       </NavLink>
+    //     ) : (
+    //       <div></div>
+    //     )}
+    //     <img className="lambda-logo" src={lambdaLogo} alt="lambda-logo" />
+    //   </ul>
+    // </nav>
   );
 };
 export default NavBar;
