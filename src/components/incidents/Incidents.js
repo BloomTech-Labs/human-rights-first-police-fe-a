@@ -9,6 +9,8 @@ import {
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 
+import { Empty } from 'antd';
+
 // Time Imports
 import { DateTime } from 'luxon';
 
@@ -28,6 +30,9 @@ const Incidents = () => {
   const [dates, setDates] = useState(null);
   const [data, setData] = useState([]);
 
+  // User Search Filter State
+  const [filteredCards, setFilteredCards] = useState([]);
+
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
   const fetchStatus = useSelector(
@@ -42,25 +47,15 @@ const Incidents = () => {
 
   useEffect(() => {
     const range = dates && createRange(dates);
-
-    if (usState && dates) {
-      const copyOfData = [...incidents];
-      let filteredData = filterDataByState(copyOfData, usState);
-      let dateAndStateFilteredData = filterDataByDate(filteredData, range);
-
-      setData(dateAndStateFilteredData);
-    } else if (usState && !dates) {
-      const copyOfData = [...incidents];
-      let filteredByState = filterDataByState(copyOfData, usState);
-      setData(filteredByState);
-    } else if (!usState && dates) {
-      const copyOfData = [...incidents];
-
-      let filteredByDate = filterDataByDate(copyOfData, range);
-      setData(filteredByDate);
-    } else {
-      setData(falsiesRemoved(incidents));
+    let filtered = [...incidents];
+    if (usState) {
+      filtered = filterDataByState(filtered, usState);
     }
+    if (dates) {
+      filtered = filterDataByDate(filtered, range);
+    }
+
+    setData(falsiesRemoved(filtered));
   }, [usState, dates]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
@@ -79,10 +74,30 @@ const Incidents = () => {
     );
   };
 
+  const noDataDisplay = () => {
+    return (
+      <div className="no-data-container">
+        <Empty
+          className="no-data"
+          imageStyle={{
+            height: 200,
+          }}
+          description={
+            <span>
+              Our database has no data for{' '}
+              <span style={{ color: '#1890ff' }}>{usState}</span>
+            </span>
+          }
+        />
+      </div>
+    );
+  };
+
   return (
     <div className="incidents-container">
       <div className="incidents-page">
         <header>
+          <Pagination setUsState={setUsState} filteredCards={filteredCards} />
           <h2 className="incidents-title">Browse Incidents</h2>
           <section className="user-input">
             <SearchBar setUsState={setUsState} />
@@ -90,11 +105,20 @@ const Incidents = () => {
           </section>
         </header>
         <section>
-          <ul>
+          {/* <ul>
             {currentPosts.map(incident => {
               return <IncidentsCard key={nanoid()} incident={incident} />;
             })}
-          </ul>
+          </ul> */}
+          {filteredCards.length > 0 ? (
+            <ul>
+              {currentPosts.map(incident => {
+                return <IncidentsCard key={nanoid()} incident={incident} />;
+              })}
+            </ul>
+          ) : (
+            noDataDisplay()
+          )}
         </section>
       </div>
       <section className="pagination">
