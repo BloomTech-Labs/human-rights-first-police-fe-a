@@ -1,21 +1,11 @@
-root {
-  --blue: #003767;
-  --orange: #fff;
-  --light-blue: #7f9bb3;
-}
-
-root:hover {
-  color: yellow;
-}
-
 .footer-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 .footer-container a {
