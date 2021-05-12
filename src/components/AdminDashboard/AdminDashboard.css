@@ -13,6 +13,7 @@ root {
 
 .dashboard-buttons-container {
   display: flex;
+  justify-content: space-between;
   padding-top: 3rem;
   width: 90%;
   margin: auto;
