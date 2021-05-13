@@ -10,7 +10,7 @@
     "@okta/okta-react": "^4.1.0",
     "@okta/okta-signin-widget": "^4.1.2",
     "@reduxjs/toolkit": "^1.5.0",
-    "antd": "^4.14.0",
+    "antd": "^4.15.5",
     "axios": "^0.21.1",
     "chart.js": "^2.9.4",
     "craco": "0.0.3",

@@ -5,6 +5,7 @@ import {
   filterDataByState,
   filterDataByDate,
   createRange,
+  filterByStateAndDate,
 } from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
@@ -98,7 +99,7 @@ const Incidents = () => {
     <div className="incidents-container">
       <div className="incidents-page">
         <header>
-          <h2 className="incidents-title">Browse Incidents</h2>
+          <h2 className="incidents-title">Browse Incident Reports</h2>
           <section className="user-input">
             <SearchBar setUsState={setUsState} />
             <RangePicker onCalendarChange={onDateSelection} />

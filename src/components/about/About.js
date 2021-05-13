@@ -29,16 +29,16 @@ const About = () => {
           <li>
             Twitter - We continually search Twitter for evidence of police
             intervention using a technique called Natural Language Processing.
-            After an identified incident has been approved by a member of the
-            Blue Witness team, it is added to the incident database.
+            After an identified incident report has been approved by a member of
+            the Blue Witness team, it is added to the incident reports database.
           </li>
           <li>Manually input data by Blue Witness team members.</li>
         </ol>
         Because our system is in beta, there may be some false positives (e.g.,
-        incidents where law enforcement were present but no use-of-force
-        incidents actually occurred) and some false negatives (e.g., incidents
-        where use-of-force occurred and were reported but do not make it into
-        our system).
+        incident reports where law enforcement were present but no use-of-force
+        incidents actually occurred) and some false negatives (e.g., incident
+        reports where use-of-force occurred and were reported but do not make it
+        into our system).
       </p>
       {/* 
       To be updated when DS API updates are corrected
