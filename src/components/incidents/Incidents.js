@@ -9,7 +9,7 @@ import {
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 
-import { Empty } from 'antd';
+import { Empty, Button } from 'antd';
 
 // Time Imports
 import { DateTime } from 'luxon';
@@ -62,6 +62,11 @@ const Incidents = () => {
     setCurrentPage(page);
   };
 
+  const onSubmit = e => {
+    e.preventDefault();
+    setCurrentPage();
+  };
+
   const onDateSelection = (dates, dateStrings) => {
     setDates(
       dateStrings[0] && dateStrings[1]
@@ -80,7 +85,7 @@ const Incidents = () => {
           }}
           description={
             <span>
-              Our database has no data for{' '}
+              There are no incident reports matching these search criteria.
               <span style={{ color: '#1890ff' }}>{usState}</span>
             </span>
           }
@@ -93,15 +98,15 @@ const Incidents = () => {
     <div className="incidents-container">
       <div className="incidents-page">
         <header>
-          <Pagination setUsState={setUsState} />
           <h2 className="incidents-title">Browse Incidents</h2>
           <section className="user-input">
             <SearchBar setUsState={setUsState} />
             <RangePicker onCalendarChange={onDateSelection} />
+            <Button onSubmit={onSubmit}>Begin Search</Button>
           </section>
         </header>
         <section>
-          {data.length > 0 ? (
+          {data.length > 0 ? ( //needs work
             <ul>
               {currentPosts.map(incident => {
                 return <IncidentsCard key={nanoid()} incident={incident} />;
