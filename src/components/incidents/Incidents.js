@@ -10,6 +10,8 @@ import {
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 
+import { Empty, Button } from 'antd';
+
 // Time Imports
 import { DateTime } from 'luxon';
 
@@ -27,7 +29,7 @@ const Incidents = () => {
   // Data State
   const [usState, setUsState] = useState(null);
   const [dates, setDates] = useState(null);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([]); // State for User Searches
 
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
@@ -43,7 +45,6 @@ const Incidents = () => {
 
   useEffect(() => {
     const range = dates && createRange(dates);
-
     let filtered = [...incidents];
     if (usState) {
       filtered = filterDataByState(filtered, usState);
@@ -51,30 +52,7 @@ const Incidents = () => {
     if (dates) {
       filtered = filterDataByDate(filtered, range);
     }
-    //in progress
-    // if (usState && dates) {
-    //   filtered = filterByStateAndDate(filtered, usState, range);
-    // }
     setData(falsiesRemoved(filtered));
-
-    // if (usState && dates) {
-    //   const copyOfData = [...incidents];
-    //   let filteredData = filterDataByState(copyOfData, usState);
-    //   let dateAndStateFilteredData = filterDataByDate(filteredData, range);
-
-    //   setData(dateAndStateFilteredData);
-    // } else if (usState && !dates) {
-    //   const copyOfData = [...incidents];
-    //   let filteredByState = filterDataByState(copyOfData, usState);
-    //   setData(filteredByState);
-    // } else if (!usState && dates) {
-    //   const copyOfData = [...incidents];
-
-    //   let filteredByDate = filterDataByDate(copyOfData, range);
-    //   setData(filteredByDate);
-    // } else {
-    //   setData(falsiesRemoved(incidents));
-    // }
   }, [usState, dates]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
@@ -85,11 +63,35 @@ const Incidents = () => {
     setCurrentPage(page);
   };
 
+  const onSubmit = e => {
+    e.preventDefault();
+    setCurrentPage();
+  };
+
   const onDateSelection = (dates, dateStrings) => {
     setDates(
       dateStrings[0] && dateStrings[1]
         ? [DateTime.fromISO(dateStrings[0]), DateTime.fromISO(dateStrings[1])]
         : null
+    );
+  };
+
+  const noDataDisplay = () => {
+    return (
+      <div className="no-data-container">
+        <Empty
+          className="no-data"
+          imageStyle={{
+            height: 200,
+          }}
+          description={
+            <span>
+              There are no incident reports matching these search criteria.
+              <span style={{ color: '#1890ff' }}>{usState}</span>
+            </span>
+          }
+        />
+      </div>
     );
   };
 
@@ -101,14 +103,19 @@ const Incidents = () => {
           <section className="user-input">
             <SearchBar setUsState={setUsState} />
             <RangePicker onCalendarChange={onDateSelection} />
+            <Button onSubmit={onSubmit}>Begin Search</Button>
           </section>
         </header>
         <section>
-          <ul>
-            {currentPosts.map(incident => {
-              return <IncidentsCard key={nanoid()} incident={incident} />;
-            })}
-          </ul>
+          {data.length > 0 ? ( //needs work
+            <ul>
+              {currentPosts.map(incident => {
+                return <IncidentsCard key={nanoid()} incident={incident} />;
+              })}
+            </ul>
+          ) : (
+            noDataDisplay()
+          )}
         </section>
       </div>
       <section className="pagination">
