@@ -4,11 +4,10 @@ import { Link, NavLink } from 'react-router-dom';
 
 import logo from '../../assets/HRF white-01.png';
 import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
-
+import IncidentFocus from '../Home/Map/IncidentFocus';
 // import { useOktaAuth } from '@okta/okta-react';
 import { Layout, Menu, Sider, Input, Space, Typography } from 'antd';
 import { AudioOutlined } from '@ant-design/icons';
-
 import './nav.css';
 const { Search } = Input;
 
@@ -23,51 +22,35 @@ const NavBar = () => {
 
   return (
     <div>
-      <Menu mode="horizontal" style={{ background: '#2f54eb' }}>
+      <Menu
+        mode="horizontal"
+        style={{ background: '#2f54eb', padding: '1rem' }}
+      >
         <Space>
           <Title style={{ color: 'white' }}>human rights first</Title>
           <Search placeholder="Search incidents" />
         </Space>
         <Menu.Item key="1">
-          <a
-            href="https://ant.design"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'white' }}
-          >
+          <Link to="/" style={{ color: 'white' }}>
             Home
-          </a>
+          </Link>
         </Menu.Item>
         <Menu.Item key="2">
-          <a
-            href="https://ant.design"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'white' }}
-          >
+          <Link to="/incidents" style={{ color: 'white' }}>
             Incidents
-          </a>
+          </Link>
         </Menu.Item>
         <Menu.Item key="3">
-          <a
-            href="https://ant.design"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'white' }}
-          >
+          <Link to="/graph" style={{ color: 'white' }}>
             Graph
-          </a>
+          </Link>
         </Menu.Item>
         <Menu.Item key="4">
-          <a
-            href="https://ant.design"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: 'white' }}
-          >
+          <Link to="/about" style={{ color: 'white' }}>
             About
-          </a>
+          </Link>
         </Menu.Item>
+        <IncidentFocus />
       </Menu>
     </div>
     // <nav className="NavbarItems">
