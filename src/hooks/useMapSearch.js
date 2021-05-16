@@ -65,6 +65,7 @@ export default function useMapSearch() {
       // If a date is not selected, use 1/1/1970 for start and/or the current time for end
       const start = dates?.[0] ? dates[0] : moment(0);
       const end = dates?.[1] ? dates[1] : moment();
+
       //const matches = dateIncidentList.filter(incident => moment(incident.date).isBetween(start, end)).map(incident => incident.id))
       //Issue look into DATE_RESULTS_LIMIT
       const matches = [];
