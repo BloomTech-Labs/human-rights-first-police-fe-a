@@ -1,7 +1,12 @@
 @import '~antd/dist/antd.css';
 
+.header-top {
+  display: flex;
+  justify-content: space-between;
+}
 .incidents-container {
   max-width: 92vw;
+  margin: auto;
 }
 .incidents-page {
   max-width: 92vw;
@@ -18,7 +23,9 @@
   align-items: center;
   padding: 0 19px;
 }
-
+.collapse-content {
+  display: flex;
+}
 .incidents-page header .user-input {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -27,10 +34,22 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-
-.extra {
+.tag-group {
+}
+.ant-collapse-header {
   display: inline-block;
-  width: 70%;
+  width: 100%;
+}
+
+.panel {
+}
+.extra {
+  display: flex;
+  justify-content: space-between;
+}
+
+.panel-date {
+  width: auto;
 }
 
 .pagination {
@@ -51,33 +70,11 @@
   }
 }
 
-@media screen and (max-width: 640px) {
-  .card-box {
-    width: 75%;
-  }
-}
-
 @media screen and (max-width: 400px) {
-  .incidents-page header .user-input {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-flow: column;
-    flex-flow: column;
-  }
-  .incidents-page header .user-input .ant-select {
-    width: 100% !important;
-  }
-
-  .card-box .card-title {
+  .header-top {
+    display: flex;
+    justify-content: space-between;
     flex-direction: column;
-  }
-
-  .incident-title {
-    height: 100%;
-    margin-bottom: 10px;
-  }
-  .nav-menu.active .incidents-page {
-    overflow: hidden;
   }
 }
 

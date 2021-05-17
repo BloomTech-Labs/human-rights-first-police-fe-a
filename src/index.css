@@ -1155,15 +1155,6 @@ form label {
     top: 210px;
   }
 
-  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
-    font-size: 1.1rem;
-    padding: 3px 0px 1px 0px;
-    font-size: 0.9rem;
-    text-align: left;
-    margin-left: 15px;
-    font-weight: 500;
-  }
-
   .search-header {
     width: 350px;
     display: -webkit-box;
@@ -1217,17 +1208,6 @@ form label {
 }
 
 @media (max-width: 414px) {
-  .ant-collapse-content-box {
-    position: absolute;
-    top: 40px;
-    height: 50vh;
-    padding-top: -10px;
-    border: 1px solid #a9a9a9;
-    border-radius: 1%;
-  }
-  .ant-collapse-header {
-    color: black;
-  }
   .map-menu {
     position: absolute;
     z-index: 1;
@@ -1236,17 +1216,7 @@ form label {
     color: black;
     margin-bottom: 10px;
   }
-  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
-    width: 335px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    color: black;
-  }
+
   .horizontal-graph {
     padding-bottom: 50px;
   }
@@ -1290,17 +1260,6 @@ form label {
 }
 
 @media (max-width: 375px) {
-  .ant-collapse-content-box {
-    position: absolute;
-    top: 40px;
-    height: 50vh;
-    padding-top: -10px;
-    border: 1px solid #a9a9a9;
-    border-radius: 1%;
-  }
-  .ant-collapse-header {
-    color: black;
-  }
   .map-menu {
     position: absolute;
     z-index: 1;
@@ -1308,17 +1267,6 @@ form label {
     right: -10px;
     color: black;
     margin-bottom: 10px;
-  }
-  div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
-    width: 335px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    color: black;
   }
 }
 

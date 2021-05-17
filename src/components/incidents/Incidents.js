@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Incidents.css';
-
+import sourceListHelper from '../../utils/sourceListHelper';
 import {
   falsiesRemoved,
   filterDataByState,
@@ -11,7 +11,7 @@ import {
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 
-import { Empty, Button, Collapse, Tag, Checkbox } from 'antd';
+import { Empty, Button, Collapse, Tag, Checkbox, Popover } from 'antd';
 
 // Time Imports
 import { DateTime } from 'luxon';
@@ -24,22 +24,26 @@ import { Pagination, DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
 const { Panel } = Collapse;
 
-const genExtra = incident => {
+const header = incident => {
   return (
-    <div className="extra">
-      <div>
-        <Tag>{incident.categories[0]}</Tag>
-        <Tag>{incident.categories[1]}</Tag>
-        <Tag>{incident.categories[2]}</Tag>
+    <div className="header-top">
+      <p>{incident.title}</p>
+      <div className="extra">
+        <div className="tag-group">
+          <Tag>{incident.categories[0]}</Tag>
+          <Tag>{incident.categories[1]}</Tag>
+          <Tag>{incident.categories[2]}</Tag>
+          <Tag>Rank 2</Tag>
+        </div>
+
+        <p>{incident.city}, </p>
+        <p className="panel-date">
+          {DateTime.fromISO(incident.date)
+            .plus({ days: 1 })
+            .toLocaleString(DateTime.DATE_MED)}
+        </p>
+        <Checkbox>Add To List</Checkbox>
       </div>
-      <Tag>Rank 2</Tag>
-      <p>{incident.city}</p>
-      <p className="panel-date">
-        {DateTime.fromISO(incident.date)
-          .plus({ days: 1 })
-          .toLocaleString(DateTime.DATE_MED)}
-      </p>
-      <Checkbox>Add To List</Checkbox>
     </div>
   );
 };
@@ -133,12 +137,25 @@ const Incidents = () => {
             {currentPosts.map(incident => {
               return (
                 <Panel
-                  header={<h3>{incident.title}</h3>}
-                  extra={genExtra(incident)}
+                  header={header(incident)}
                   className="panel"
                   expandIconPosition="left"
                 >
-                  {<p>{incident.desc}</p>}
+                  <div className="collapse-content">
+                    <p>{incident.desc}</p>
+
+                    <Popover
+                      content={sourceListHelper(incident)}
+                      placement="rightTop"
+                    >
+                      <Button
+                        type="primary"
+                        style={{ backgroundColor: '#003767', border: 'none' }}
+                      >
+                        Sources
+                      </Button>
+                    </Popover>
+                  </div>
                 </Panel>
               );
             })}
