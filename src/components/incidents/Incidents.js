@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import IncidentsCard from '../incidents/IncidentsCard';
+import './Incidents.css';
+
 import {
   falsiesRemoved,
   filterDataByState,
@@ -128,13 +129,14 @@ const Incidents = () => {
           </section>
         </header>
         <section>
-          <Collapse key={nanoid()}>
+          <Collapse key={nanoid()} className="collapse">
             {currentPosts.map(incident => {
               return (
                 <Panel
-                  showArrow={true}
-                  header={incident.title}
+                  header={<h3>{incident.title}</h3>}
                   extra={genExtra(incident)}
+                  className="panel"
+                  expandIconPosition="left"
                 >
                   {<p>{incident.desc}</p>}
                 </Panel>

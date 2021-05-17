@@ -1,14 +1,11 @@
 @import '~antd/dist/antd.css';
 
 .incidents-container {
-  min-height: calc(100vh - (60px + 77px + 32px + 4vh));
+  max-width: 92vw;
 }
-
 .incidents-page {
-  max-width: 1200px;
-  margin: 32px auto 0;
+  max-width: 92vw;
 }
-
 .incidents-page header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -31,91 +28,9 @@
   justify-content: space-between;
 }
 
-.incidents-page section ul {
-  padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-}
-
-.ant-card-body {
-  padding: 20px;
-}
-
-.ant-card-body .incident-desc {
-  margin-top: 30px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.ant-card-body:hover .incident-desc {
-  overflow: initial;
-  white-space: pre-wrap;
-  text-overflow: initial;
-}
-
-.card-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.tag-container {
-  display: flex;
-  flex-flow: row;
-  justify-content: flex-start;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  width: 100%;
-  height: 40px;
-}
-
-.ant-tag {
-  margin: 3px;
-}
-
-.incident-title {
-  margin: 0 auto;
-  width: 100%;
-  height: 10vh;
-  padding: 10px;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  color: var(--blue);
-}
-
-.card-box {
-  width: 360px;
-  height: 360px;
-  margin: 24px 16px;
-  -webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-.card-box .card-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.card-force {
-  margin-bottom: 12px;
+.extra {
+  display: inline-block;
+  width: 70%;
 }
 
 .pagination {
@@ -126,9 +41,7 @@
   -ms-flex-pack: center;
   justify-content: center;
 }
-.extra {
-  display: inline;
-}
+
 @media screen and (max-width: 1081px) {
   .incidents-page header {
     -webkit-box-orient: vertical;
