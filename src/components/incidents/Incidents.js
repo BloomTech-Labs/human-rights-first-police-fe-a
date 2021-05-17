@@ -10,7 +10,7 @@ import {
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 
-import { Empty, Button } from 'antd';
+import { Empty, Button, Collapse, Tag, Checkbox } from 'antd';
 
 // Time Imports
 import { DateTime } from 'luxon';
@@ -21,9 +21,30 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 // Ant Design Imports:
 import { Pagination, DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
+const { Panel } = Collapse;
+
+const genExtra = incident => {
+  return (
+    <div className="extra">
+      <div>
+        <Tag>{incident.categories[0]}</Tag>
+        <Tag>{incident.categories[1]}</Tag>
+        <Tag>{incident.categories[2]}</Tag>
+      </div>
+      <Tag>Rank 2</Tag>
+      <p>{incident.city}</p>
+      <p className="panel-date">
+        {DateTime.fromISO(incident.date)
+          .plus({ days: 1 })
+          .toLocaleString(DateTime.DATE_MED)}
+      </p>
+      <Checkbox>Add To List</Checkbox>
+    </div>
+  );
+};
 
 const Incidents = () => {
-  const [itemsPerPage] = useState(12);
+  const [itemsPerPage] = useState(8);
   const [currentPage, setCurrentPage] = useState(1);
 
   // Data State
@@ -107,15 +128,19 @@ const Incidents = () => {
           </section>
         </header>
         <section>
-          {data.length > 0 ? ( //needs work
-            <ul>
-              {currentPosts.map(incident => {
-                return <IncidentsCard key={nanoid()} incident={incident} />;
-              })}
-            </ul>
-          ) : (
-            noDataDisplay()
-          )}
+          <Collapse key={nanoid()}>
+            {currentPosts.map(incident => {
+              return (
+                <Panel
+                  showArrow={true}
+                  header={incident.title}
+                  extra={genExtra(incident)}
+                >
+                  {<p>{incident.desc}</p>}
+                </Panel>
+              );
+            })}
+          </Collapse>
         </section>
       </div>
       <section className="pagination">

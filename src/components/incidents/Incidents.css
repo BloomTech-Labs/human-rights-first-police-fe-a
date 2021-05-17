@@ -126,7 +126,9 @@
   -ms-flex-pack: center;
   justify-content: center;
 }
-
+.extra {
+  display: inline;
+}
 @media screen and (max-width: 1081px) {
   .incidents-page header {
     -webkit-box-orient: vertical;
