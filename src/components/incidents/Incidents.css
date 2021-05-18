@@ -1,11 +1,5 @@
 @import '~antd/dist/antd.css';
 
-:root {
-  --blue: #003767;
-  --orange: #bc541e;
-  --light-blue: #7f9bb3;
-}
-
 .incidents-container {
   min-height: calc(100vh - (60px + 77px + 32px + 4vh));
 }

@@ -23,6 +23,7 @@ const filterDataByState = (state, data) => {
   return data.filter(incident => incident.state === state);
 };
 
+//not being used
 const changeDataDatesToMillis = data => {
   return data.map(incident => ({
     ...incident,
@@ -150,7 +151,8 @@ const GraphContainer = () => {
         {filtered.length > 0 ? (
           <div className="all-graphs">
             <h2 style={{ marginTop: '2rem' }}>
-              Incidents identified by our data collection methods per month
+              Incident reports identified by our data collection methods per
+              month
             </h2>
             <p>
               <h4>April 2020 - Present</h4>
@@ -169,8 +171,8 @@ const GraphContainer = () => {
           <section id="barGraph" className="graph-container">
             <div>
               <h2 style={{ marginTop: '5rem' }}>
-                Total incidents identified by our data collection methods by
-                state
+                Total incident reports identified by our data collection methods
+                by state
               </h2>
             </div>
             <BarGraph count={barCounts} />
