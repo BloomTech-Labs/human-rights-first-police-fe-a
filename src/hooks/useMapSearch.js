@@ -65,30 +65,17 @@ export default function useMapSearch() {
       // If a date is not selected, use 1/1/1970 for start and/or the current time for end
       const start = dates?.[0] ? dates[0] : moment(0);
       const end = dates?.[1] ? dates[1] : moment();
+      const matches = dateIncidentList
+        .filter(incident => moment(incident.date).isBetween(start, end))
+        .map(incident => incident.id);
+
       //const matches = dateIncidentList.filter(incident => moment(incident.date).isBetween(start, end)).map(incident => incident.id))
       //Issue look into DATE_RESULTS_LIMIT
-      const matches = [];
-
-      // There may be a more efficient way to implement this if incident data coming in from the back end are
-      // sorted strictly chronologically using binary search - not sure if this is the case so went with linear
-      for (let i = dateIncidentList.length - 1; i > 0; i--) {
-        if (matches.length >= DATE_RESULTS_LIMIT) {
-          break;
-        }
-
-        const { id, date } = dateIncidentList[i];
-        if (moment(date).isBetween(start, end)) {
-          matches.push(id);
-        }
-      }
 
       dispatch(setFocusDateFilter(matches));
     },
     [dateIncidentList, dispatch]
   );
-
-  //30 days button: filterDate([moment() - 30 days, moment()])
-  //10 days button: filterDate([moment() - 10 days, moment()])
 
   // Combine geographic and date filter lists and dispatch the results to Redux
   const geoFilterState = useSelector(state => state.map.focus.query.geoFilter);

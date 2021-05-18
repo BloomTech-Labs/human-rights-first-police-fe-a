@@ -1,11 +1,20 @@
 :root {
-  --blue: #003767;
-  --orange: #fff;
-  --light-blue: #7f9bb3;
+  --primary-blue: #2f54eb;
+  --hover-blue: #597ef7;
+  --active-blue: #1d39c4;
+  --primary-black: rgba(0, 0, 0, 0.85);
+  --secondary-black: rgba(0, 0, 0, 0.45);
+  --disabled--black: rgba(0, 0, 0, 0.25);
+  --primary-white: rgba(255, 255, 255, 0.85);
+  --secondary-white: rgba(255, 255, 255, 0.45);
+  --disabled--white: rgba(255, 255, 255, 0.25);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
+    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
 root:hover {
-  color: yellow;
+  color: var(--hover-blue);
 }
 
 .nav-container {
@@ -218,8 +227,9 @@ section ul {
 }
 
 .graph-container {
-  max-width: 1200px;
+  max-width: 90vw;
   margin: 0 auto;
+  text-align: center;
 }
 
 .link-container[role='menu'] {
@@ -1286,20 +1296,32 @@ root:hover {
   display: block;
   margin: 0 auto;
 }
-.pie-holder {
-  width: 1200px;
+#pieGraph {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+}
+.pie-holder {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 .pie {
-  width: 750px;
+  width: 60vw;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .pie-legend {
   margin-bottom: 6%;
   padding: 20px;
-  width: 600px;
+  width: 60vw;
+}
+.all-graphs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 800px) {

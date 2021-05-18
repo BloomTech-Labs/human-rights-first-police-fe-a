@@ -5,7 +5,6 @@ import {
   filterDataByState,
   filterDataByDate,
   createRange,
-  filterByStateAndDate,
 } from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
@@ -38,12 +37,6 @@ const Incidents = () => {
   );
 
   useEffect(() => {
-    fetchStatus === 'success' &&
-      data.length === 0 &&
-      setData(falsiesRemoved(incidents));
-  }, [fetchStatus, data.length, incidents]);
-
-  useEffect(() => {
     const range = dates && createRange(dates);
     let filtered = [...incidents];
     if (usState) {
@@ -53,7 +46,7 @@ const Incidents = () => {
       filtered = filterDataByDate(filtered, range);
     }
     setData(falsiesRemoved(filtered));
-  }, [usState, dates]);
+  }, [fetchStatus, usState, dates]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
@@ -63,9 +56,9 @@ const Incidents = () => {
     setCurrentPage(page);
   };
 
+  //not functional, not sure what to do
   const onSubmit = e => {
     e.preventDefault();
-    setCurrentPage();
   };
 
   const onDateSelection = (dates, dateStrings) => {
@@ -107,7 +100,7 @@ const Incidents = () => {
           </section>
         </header>
         <section>
-          {data.length > 0 ? ( //needs work
+          {data.length > 0 ? (
             <ul>
               {currentPosts.map(incident => {
                 return <IncidentsCard key={nanoid()} incident={incident} />;
