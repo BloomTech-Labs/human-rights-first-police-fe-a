@@ -44,7 +44,6 @@ const NavBar = () => {
           placeholder="Search incidents"
         />
       </div>
-
       <Menu
         mode="horizontal"
         style={{ background: '#2f54eb', paddingTop: '1rem' }}
@@ -56,8 +55,8 @@ const NavBar = () => {
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
-          <Link to="/incidents" style={{ color: 'white' }}>
-            Incidents
+          <Link to="/incident-reports" style={{ color: 'white' }}>
+            Reports
           </Link>
         </Menu.Item>
         <Menu.Item key="3">

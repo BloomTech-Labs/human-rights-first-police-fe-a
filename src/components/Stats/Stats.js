@@ -64,7 +64,7 @@ const Stats = () => {
           type="primary"
           shape="round"
         >
-          <Link to="/incidents">Incidents</Link>
+          <Link to="/incident-reports">Reports</Link>
         </Button>
         <Button shape="round" ghost>
           <Link to="/about">About</Link>
