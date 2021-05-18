@@ -11,17 +11,17 @@
 .incidents-page {
   max-width: 92vw;
 }
-.incidents-page header {
-  display: -webkit-box;
-  display: -ms-flexbox;
+
+.export-form {
+  width: 100%;
+  border: rgba(131, 84, 84, 0.15) 1px solid;
+  padding: 16px;
+  margin: 16px 0;
+}
+.form-top {
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 0 19px;
+  margin-bottom: 16px;
 }
 .collapse-content {
   display: flex;

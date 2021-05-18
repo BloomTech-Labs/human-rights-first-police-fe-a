@@ -11,7 +11,7 @@ import {
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 
-import { Empty, Button, Collapse, Tag, Checkbox, Popover } from 'antd';
+import { Empty, Button, Collapse, Tag, Checkbox, Popover, Select } from 'antd';
 
 // Time Imports
 import { DateTime } from 'luxon';
@@ -23,7 +23,23 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 import { Pagination, DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
 const { Panel } = Collapse;
+const { Option } = Select;
 
+const searchTags = [
+  'arrest',
+  'baton',
+  'journalist',
+  'protester',
+  'push',
+  'shove',
+  'tackle',
+  'bike',
+  'strike',
+  'punch',
+  'less-lethal',
+  'explosive',
+  'bystander',
+];
 const header = incident => {
   return (
     <div className="header-top">
@@ -33,7 +49,7 @@ const header = incident => {
           <Tag>{incident.categories[0]}</Tag>
           <Tag>{incident.categories[1]}</Tag>
           <Tag>{incident.categories[2]}</Tag>
-          <Tag>Rank 2</Tag>
+          <Tag>{incident.force_rank.slice(0, 6)}</Tag>
         </div>
 
         <p>{incident.city}, </p>
@@ -125,12 +141,41 @@ const Incidents = () => {
     <div className="incidents-container">
       <div className="incidents-page">
         <header>
-          <h2 className="incidents-title">Browse Incident Reports</h2>
-          <section className="user-input">
-            <SearchBar setUsState={setUsState} />
-            <RangePicker onCalendarChange={onDateSelection} />
-            <Button onSubmit={onSubmit}>Begin Search</Button>
-          </section>
+          <form className="export-form">
+            <fieldset className="form-top">
+              <label>
+                Rank:
+                <Select showSearch placeholder="Any Rank">
+                  <Option value="1">Rank: 1</Option>
+                  <Option value="2">Rank: 2</Option>
+                  <Option value="3">Rank: 3</Option>
+                  <Option value="4">Rank: 4</Option>
+                  <Option value="5">Rank: 5</Option>
+                </Select>
+              </label>
+
+              <label>
+                Location: <SearchBar setUsState={setUsState} />{' '}
+              </label>
+
+              <label>
+                Date: <RangePicker onCalendarChange={onDateSelection} />
+              </label>
+
+              <Button onSubmit={onSubmit} type="primary">
+                Export List
+              </Button>
+            </fieldset>
+            <fieldset className="form-bottom">
+              <label>
+                Categories:
+                <Tag.CheckableTag checked>All</Tag.CheckableTag>
+                {searchTags.map(tag => {
+                  return <Tag.CheckableTag>{tag}</Tag.CheckableTag>;
+                })}
+              </label>
+            </fieldset>
+          </form>
         </header>
         <section>
           <Collapse key={nanoid()} className="collapse">
