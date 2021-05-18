@@ -227,8 +227,9 @@ section ul {
 }
 
 .graph-container {
-  max-width: 1200px;
+  max-width: 90vw;
   margin: 0 auto;
+  text-align: center;
 }
 
 .link-container[role='menu'] {
@@ -1295,20 +1296,32 @@ root:hover {
   display: block;
   margin: 0 auto;
 }
-.pie-holder {
-  width: 1200px;
+#pieGraph {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+}
+.pie-holder {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 .pie {
-  width: 750px;
+  width: 60vw;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .pie-legend {
   margin-bottom: 6%;
   padding: 20px;
-  width: 600px;
+  width: 60vw;
+}
+.all-graphs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 800px) {
