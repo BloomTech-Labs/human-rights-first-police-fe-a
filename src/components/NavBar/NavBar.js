@@ -29,8 +29,12 @@ const NavBar = () => {
         <NavLink onClick={handleClick} className="nav-link" exact to="/">
           Home
         </NavLink>
-        <NavLink onClick={handleClick} className="nav-link" to="/incidents">
-          Incidents
+        <NavLink
+          onClick={handleClick}
+          className="nav-link"
+          to="/incident-reports"
+        >
+          Reports
         </NavLink>
         <NavLink onClick={handleClick} className="nav-link" to="/graph">
           Graphs
