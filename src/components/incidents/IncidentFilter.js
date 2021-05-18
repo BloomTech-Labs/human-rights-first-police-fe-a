@@ -43,19 +43,4 @@ const filterDataByDate = (data, range) => {
   );
 };
 
-// in progress
-// const filterByStateAndDate = (data, state, range) => {
-//   return data.filter(
-//     incident =>
-//       incident.state === state &&
-//       range.contains(DateTime.fromISO(incident.date).plus({ day: 1 }))
-//   );
-// };
-
-export {
-  falsiesRemoved,
-  filterDataByState,
-  createRange,
-  filterDataByDate,
-  //filterByStateAndDate,
-};
+export { falsiesRemoved, filterDataByState, createRange, filterDataByDate };

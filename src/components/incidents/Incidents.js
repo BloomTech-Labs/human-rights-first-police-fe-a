@@ -56,9 +56,9 @@ const Incidents = () => {
     setCurrentPage(page);
   };
 
+  //not functional, not sure what to do
   const onSubmit = e => {
     e.preventDefault();
-    setCurrentPage();
   };
 
   const onDateSelection = (dates, dateStrings) => {
