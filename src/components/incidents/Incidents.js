@@ -21,10 +21,11 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 
 // Ant Design Imports:
 import { Pagination, DatePicker } from 'antd';
+import { set } from 'lodash-es';
 const { RangePicker } = DatePicker;
 const { Panel } = Collapse;
 const { Option } = Select;
-
+const { CheckableTag } = Tag;
 const searchTags = [
   'arrest',
   'baton',
@@ -72,12 +73,14 @@ const Incidents = () => {
   const [usState, setUsState] = useState(null);
   const [dates, setDates] = useState(null);
   const [data, setData] = useState([]); // State for User Searches
-
+  const [selectedTags, setSelectedTags] = useState(['All']);
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
+  const tagIndex = useSelector(state => state.incident.tagIndex);
   const fetchStatus = useSelector(
     state => state.api.incidents.getincidents.status
   );
+  console.log(tagIndex);
 
   useEffect(() => {
     fetchStatus === 'success' &&
@@ -103,6 +106,14 @@ const Incidents = () => {
 
   const onChange = page => {
     setCurrentPage(page);
+  };
+
+  const onToggle = (tag, checked) => {
+    const nextSelectedTags = checked
+      ? [...selectedTags, tag]
+      : selectedTags.filter(t => t !== tag);
+    console.log('You are interested in: ', nextSelectedTags);
+    setSelectedTags(nextSelectedTags);
   };
 
   const onSubmit = e => {
@@ -171,7 +182,15 @@ const Incidents = () => {
                 Categories:
                 <Tag.CheckableTag checked>All</Tag.CheckableTag>
                 {searchTags.map(tag => {
-                  return <Tag.CheckableTag>{tag}</Tag.CheckableTag>;
+                  return (
+                    <CheckableTag
+                      key={tag}
+                      checked={selectedTags.indexOf(tag) > -1}
+                      onChange={checked => onToggle(tag, checked)}
+                    >
+                      {tag}
+                    </CheckableTag>
+                  );
                 })}
               </label>
             </fieldset>
