@@ -1,4 +1,4 @@
-.about-container {
+/* .about-container {
   margin: auto;
   max-width: 50%;
   min-height: calc(100vh - (60px + 77px + 4vh));
@@ -19,5 +19,68 @@ h2 {
 
 .lambda-logo {
   max-height: 4rem;
-}
+} */
 /*# sourceMappingURL=About.css.map */
+
+.about-page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.about-top-container {
+  background-color: var(--primary-blue);
+  color: var(--primary-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vh;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+.about-top-container h2, h1{
+  color: var(--primary-white);
+  text-decoration: bold;
+}
+
+.h1-text {
+  font-size: 1.1rem;
+}
+
+.about-top-container h2 {
+  padding-top: 1.5vh;
+}
+
+.about-links {
+  color: var(--primary-white);
+  text-decoration: underline;
+}
+
+.data-description-container {
+  width: 50vw;
+  text-align: center;
+}
+
+.data-info-container {
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 5vh;
+}
+
+.info-container {
+  width: 20vw;
+  text-align: center;
+}
+
+.icons {
+  height: 8vh;
+}
+
+.confirm-icon {
+  height: 9vh;
+}
