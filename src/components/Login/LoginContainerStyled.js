@@ -30,5 +30,11 @@ export const StyledLogin = styled.div`
       background: #d39460;
       border: 1px solid #d39460;
     }
+    .auth-footer {
+      display: none;
+    }
+    .content-container {
+      display: none;
+    }
   }
 `;
