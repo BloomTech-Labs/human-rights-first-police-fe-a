@@ -66,5 +66,3 @@ const LoginContainer = () => {
 };
 
 export default LoginContainer;
-
-//might haveto go inside okta to get rid of the "sign-up". This is where it seems to be held inside of our custom wigdet
