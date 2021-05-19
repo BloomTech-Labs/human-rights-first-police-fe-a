@@ -5,12 +5,14 @@ import { Collapse, List } from 'antd';
 import IncidentFocusCard from './IncidentFocusCard';
 const { Panel } = Collapse;
 
+//useSelectors for getting state for map
 export default function IncidentFocus({ zoomOnCluster }) {
   const activeFocus = useSelector(state => state.map.focus.active);
   const clusterList = useSelector(state => state.map.focus.cluster.list);
   const queryList = useSelector(state => state.map.focus.query.list);
   const defaultList = useSelector(state => [state.incident.timeline[0]]); // most recent incident
 
+  //Focuses the map into specified region
   const activeList = useMemo(() => {
     return activeFocus === 'cluster'
       ? clusterList
