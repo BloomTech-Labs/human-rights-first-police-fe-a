@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { CountUpAnimation } from './StatsFunction';
-import { Carousel } from 'antd';
+import { Layout, Button, Typography } from 'antd';
+import { Link } from 'react-router-dom';
+const { Title, Paragraph } = Typography;
+const { Content } = Layout;
 
 const Stats = () => {
   const [gasAndSpray, setGasAndSpray] = useState(0);
   const [arrests, setArrests] = useState(0);
   const [numCities, setNumCities] = useState(0);
-
+  // Banner Style settings
   const contentStyle = {
-    height: '10vh',
-    color: '#fff',
-    lineHeight: '10vh',
+    padding: '6rem',
+    color: 'white',
     textAlign: 'center',
-    background: '#003767',
+    background: '#2f54eb',
   };
-
+  // Documents the reports of incidents and sores them in a state in which it can be displayed on the Banner
   const dataList = useSelector(state => Object.values(state.incident.data));
 
   useEffect(() => {
@@ -44,36 +46,31 @@ const Stats = () => {
   }, [dataList]);
 
   return (
-    <Carousel autoplay>
-      <div className="stat incidents">
-        <h2 style={contentStyle}>
-          We have identified {dataList.length} incidents of police use of force
-        </h2>
+    <Content Dark="On" type="Primary">
+      <div className="site-layout-background" style={contentStyle}>
+        <Title style={{ color: 'white', fontWeight: 'normal' }}>
+          Blue Witness
+        </Title>
+        <Paragraph style={{ color: 'white' }}>
+          {dataList.length} incidents of police use of force. {gasAndSpray} uses
+          of pepper-spray or tear-gas. {numCities} cities across the United
+          States By
+        </Paragraph>
+        <Paragraph style={{ color: 'white' }}>
+          collecting and processing crowdsourced data from Reddit and Twitter
+        </Paragraph>
+        <Button
+          style={{ border: 'grey', margin: '1rem', backgroundColor: '#2f54eb' }}
+          type="primary"
+          shape="round"
+        >
+          <Link to="/incident-reports">Reports</Link>
+        </Button>
+        <Button shape="round" ghost>
+          <Link to="/about">About</Link>
+        </Button>
       </div>
-      <div className="stat spray-gas">
-        <h2 style={contentStyle}>
-          Including {gasAndSpray} uses of pepper-spray or tear-gas
-        </h2>
-      </div>
-      <div className="stat arrests">
-        <h2 style={contentStyle}>Resulting in {arrests} total arrests</h2>
-      </div>
-      <div className="stat cities">
-        <h2 style={contentStyle}>
-          In {numCities} cities across the United States
-        </h2>
-      </div>
-      <div className="stat description">
-        <h2 style={contentStyle}>
-          By collecting and processing crowdsourced data from Reddit and Twitter
-        </h2>
-      </div>
-      <div className="stat alert">
-        <h2 style={contentStyle}>
-          Scroll down to see latest reported incidents!
-        </h2>
-      </div>
-    </Carousel>
+    </Content>
   );
 };
 

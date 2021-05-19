@@ -28,6 +28,9 @@ export default function Search({ zoomOnCluster }) {
   const [geoInput, setGeoInput] = useState('');
   const [geoRes, setGeoRes] = useState([]);
 
+  // **Quick Select **
+  const [quickSelect, setQuickSelect] = useState('');
+
   // Necessary to recalculate the viewport on location selection
   const { width, height } = useSelector(state => ({
     width: state.map.viewport.width,
@@ -76,6 +79,14 @@ export default function Search({ zoomOnCluster }) {
     filterDate(dates);
   };
 
+  // QuickSelect - uses same filterDate function as handleCalendarChange
+  const onChange = e => {
+    const { value } = e.target;
+    setQuickSelect(value);
+    const dates = [moment().subtract(value, 'days'), moment()];
+    filterDate(dates);
+  };
+
   return (
     <div className="search-header">
       <AutoComplete
@@ -87,10 +98,10 @@ export default function Search({ zoomOnCluster }) {
       >
         {geoRes.features && geoInput.length >= MIN_QUERY_LENGTH
           ? geoRes.features.map((f, i) => (
-            <Option key={nanoid()} value={`${i}`}>
-              {f.place_name}
-            </Option>
-          ))
+              <Option key={nanoid()} value={`${i}`}>
+                {f.place_name}
+              </Option>
+            ))
           : ''}
       </AutoComplete>
       <RangePicker
@@ -98,6 +109,17 @@ export default function Search({ zoomOnCluster }) {
         disabledDate={disableFutureDates}
         onCalendarChange={handleCalendarChange}
       />
+      <div>
+        <label>
+          {/* Revisit time values -one week instead? */}
+          Quick Search
+          <select onChange={onChange} value={quickSelect} name="quicksearch">
+            <option value="">- Search Recent Reports -</option>
+            <option value="30">Within Past 30 Days</option>
+            <option value="10">Within Past 10 Days</option>
+          </select>
+        </label>
+      </div>
     </div>
   );
 }

@@ -33,7 +33,7 @@ export default function App() {
         <Route path="/graph">
           <GraphContainer />
         </Route>
-        <Route path="/incidents">
+        <Route path="/incident-reports">
           <Incidents />
         </Route>
         <Route path="/about">

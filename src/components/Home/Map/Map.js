@@ -55,7 +55,7 @@ export default function Map() {
   const settings = {
     dragPan: true,
     dragRotate: true,
-    //map can be zoomed in and out mouse scroll
+    //map can be zoomed in and out mouse scroll, revisit this scroll (Stakeholder asked for map not to scroll)
     scrollZoom: false,
     touchZoom: false,
     touchRotate: false,
