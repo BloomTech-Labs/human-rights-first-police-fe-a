@@ -14,11 +14,11 @@ export default function IncidentFocus({ zoomOnCluster }) {
 
   //Focuses the map into specified region
   const activeList = useMemo(() => {
-    return activeFocus === 'cluster'
-      ? clusterList
-      : activeFocus === 'query'
-      ? queryList
-      : defaultList;
+    return activeFocus === 'cluster' ? clusterList : defaultList;
+
+    // : activeFocus === 'query'
+    // ? queryList
+    // : defaultList;
   }, [activeFocus, clusterList, queryList, defaultList]);
 
   return (
