@@ -90,6 +90,7 @@ export default function useMapSearch() {
   const dateFilterState = useSelector(
     state => state.map.focus.query.dateFilter
   );
+  //potential refactor(get to this first)
   useEffect(() => {
     if (geoFilterState.active && !dateFilterState.active) {
       dispatch(setFocusQuery(geoFilterState.list));
