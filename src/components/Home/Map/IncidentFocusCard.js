@@ -6,6 +6,7 @@ import { Divider, Popover, Button, Tag } from 'antd';
 import sourceListHelper from '../../../utils/sourceListHelper';
 import { nanoid } from 'nanoid';
 
+// styled incident card on map
 const MapIncidentInfo = styled.div`
   margin-left: '8%';
   @media (min-device-width: 800px) {
@@ -14,7 +15,7 @@ const MapIncidentInfo = styled.div`
 `;
 
 const INCIDENT_ZOOM_LEVEL = 12;
-
+// searches incident by cluster
 export default function IncidentFocusCard({ id, zoomOnCluster }) {
   const incident = useSelector(state => state.incident.data[id]);
 
