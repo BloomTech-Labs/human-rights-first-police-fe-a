@@ -11,6 +11,7 @@ const labsCohorts = [
         roles: ['fe'],
       },
       { name: 'Robert Petersen', githubUser: 'robert-petersen', roles: ['fe'] },
+      { name: 'Rafael Molina', githubUser: 'rafmolina', roles: ['fe'] },
       { name: 'Mohammed Dawod', githubUser: 'stop0', roles: ['fe'] },
       { name: 'Brandon Santos', githubUser: 'Brandonx1123', roles: ['fe'] },
       { name: 'John Chamberlin', githubUser: 'john-chamberlin', roles: ['fe'] },
