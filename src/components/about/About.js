@@ -206,7 +206,7 @@ const About = () => {
         </div>
         <div className="inside-bottom-container lambda-credits-container">
           <div className="lambda-credits">
-            <h2>Who Made This Website</h2>
+            <h2>Who Built This Website</h2>
             <p>
               This project was designed and built in partnership between Human
               Rights First's Innovation Lab and Lambda School. It represents
@@ -217,6 +217,8 @@ const About = () => {
           </div>
           <div className="student-credits-container">
             <StudentCredits />
+          </div>
+          <div className="about-logo-container">
             <img
               className="about-lambda-logo"
               src={lambdalogo}

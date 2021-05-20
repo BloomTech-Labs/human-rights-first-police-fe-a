@@ -28,7 +28,7 @@ const labsCohorts = [
       {
         name: 'Lindsay Deaton',
         githubUser: 'lindsay-deaton',
-        roles: ['fe', 'be'],
+        roles: ['fs'],
       },
       { name: 'Ashley Brooks', githubUser: 'AshleyBrooks213', roles: ['ds'] },
       { name: 'Max Moore', githubUser: 'max-moore', roles: ['ds'] },
@@ -84,8 +84,6 @@ const labsCohorts = [
         githubUser: 'anthony2698',
         roles: ['web'],
       },
-      { name: 'Dondré Jordan', githubUser: 'dondreojordan', roles: ['ds'] },
-      { name: 'Santiago Berniz', githubUser: 'sberniz', roles: ['ds'] },
       { name: 'MariaPaula Trujillo', githubUser: 'mtruj013', roles: ['web'] },
       { name: 'Nic Lehman', githubUser: 'npm-nic', roles: ['web'] },
       {
@@ -94,6 +92,8 @@ const labsCohorts = [
         roles: ['web'],
       },
       { name: 'Idong Essien', githubUser: 'idongessien', roles: ['web'] },
+      { name: 'Dondré Jordan', githubUser: 'dondreojordan', roles: ['ds'] },
+      { name: 'Santiago Berniz', githubUser: 'sberniz', roles: ['ds'] },
     ],
   },
 ];
