@@ -155,7 +155,56 @@ const About = () => {
         </div>
       </div>
 
-      <div className="about-bottom-container"></div>
+      <div className="about-bottom-container">
+        <div className="about-bw-container">
+          <div className="about-bw">
+            <h2>Blue Witness</h2>
+            <p>
+              Doggo ipsum pats big ol pupper mlem doggorino super chub doge,
+              aqua doggo bork smol. Smol borking doggo with a long snoot for
+              pats pupper long doggo shoober, pupper. Stop it fren mlem you are
+              doing me the shock much ruin diet h*ck, tungg long woofer floofs.
+              Very jealous pupper puggorino extremely cuuuuuute sub woofer, very
+              good spot. Shibe doing me a frighten borking doggo h*ck maximum
+              borkdrive, noodle horse smol. Doggorino I am bekom fat puggorino
+              pupperino, pupper. What a nice floof puggo wow very biscit,
+              boofers. Fat boi doggo dat tungg tho vvv puggorino bork, ur givin
+              me a spook shoob pats. Shoober blep thicc porgo mlem, lotsa pats
+              stop it fren corgo.
+            </p>
+          </div>
+          <div className="about-hrf">
+            <h2>Human Rights First</h2>
+            <p>
+              Doggo ipsum pats big ol pupper mlem doggorino super chub doge,
+              aqua doggo bork smol. Smol borking doggo with a long snoot for
+              pats pupper long doggo shoober, pupper. Stop it fren mlem you are
+              doing me the shock much ruin diet h*ck, tungg long woofer floofs.
+              Very jealous pupper puggorino extremely cuuuuuute sub woofer, very
+              good spot. Shibe doing me a frighten borking doggo h*ck maximum
+              borkdrive, noodle horse smol. Doggorino I am bekom fat puggorino
+              pupperino, pupper. What a nice floof puggo wow very biscit,
+              boofers. Fat boi doggo dat tungg tho vvv puggorino bork, ur givin
+              me a spook shoob pats. Shoober blep thicc porgo mlem, lotsa pats
+              stop it fren corgo.
+            </p>
+          </div>
+          <div className="about-bot-container"></div>
+        </div>
+        <div className="lambda-credit-container">
+          <div className="lambda-credits">
+            <h2>Who made this website</h2>
+            <p>
+              This project was designed and built in partnership between Human
+              Rights First's Innovation Lab and Lambda School. It represents
+              nearly seven months of work by Lambda School students.
+            </p>
+          </div>
+          <div className="student-credits-container">
+            <StudentCredits />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
