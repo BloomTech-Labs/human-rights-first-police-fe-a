@@ -156,7 +156,7 @@ const About = () => {
       </div>
 
       <div className="about-bottom-container">
-        <div className="about-bw-container">
+        <div className="inside-bottom-container about-bw-container">
           <div className="about-bw">
             <h2>Blue Witness</h2>
             <p>
@@ -191,13 +191,15 @@ const About = () => {
           </div>
           <div className="about-bot-container"></div>
         </div>
-        <div className="lambda-credit-container">
+        <div className="inside-bottom-container lambda-credits-container">
           <div className="lambda-credits">
-            <h2>Who made this website</h2>
+            <h2>Who Made This Website</h2>
             <p>
               This project was designed and built in partnership between Human
               Rights First's Innovation Lab and Lambda School. It represents
-              nearly seven months of work by Lambda School students.
+              nearly seven months of work by Lambda School students. Below are
+              all the students, and their Github profiles, that have ever worked
+              on this website.
             </p>
           </div>
           <div className="student-credits-container">
