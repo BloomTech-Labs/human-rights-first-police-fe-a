@@ -122,6 +122,16 @@ h1 {
   max-height: 2rem;
 }
 
+.about-logo-container {
+  display: flex;
+  justify-content: center;
+  max-height: 2rem;
+}
+
 .bot-css {
   padding-left: 8px;
+}
+
+.lambda-credits {
+  text-align: center;
 }
