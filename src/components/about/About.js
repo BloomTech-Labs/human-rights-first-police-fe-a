@@ -89,9 +89,9 @@ const About = () => {
         <div className="data-description-container">
           <h1>How Our Data Is Collected</h1>
           <p className="h1-text">
-            The data for this website is crowdsourced from multiple sources and
-            is categorized by ML techs and approved by a member of the Blue
-            Witness Administrative Team.
+            The data for this website is crowdsourced from multiple sources,
+            categorized by ML techs, and is then approved by a member of the
+            Blue Witness Administrative Team.
           </p>
         </div>
 
@@ -158,47 +158,49 @@ const About = () => {
       <div className="about-bottom-container">
         <div className="inside-bottom-container about-bw-container">
           <div className="about-bw">
-            <h2>Blue Witness</h2>
+            <h2>The Blue Witness Project</h2>
             <p>
-              Doggo ipsum pats big ol pupper mlem doggorino super chub doge,
-              aqua doggo bork smol. Smol borking doggo with a long snoot for
-              pats pupper long doggo shoober, pupper. Stop it fren mlem you are
-              doing me the shock much ruin diet h*ck, tungg long woofer floofs.
-              Very jealous pupper puggorino extremely cuuuuuute sub woofer, very
-              good spot. Shibe doing me a frighten borking doggo h*ck maximum
-              borkdrive, noodle horse smol. Doggorino I am bekom fat puggorino
-              pupperino, pupper. What a nice floof puggo wow very biscit,
-              boofers. Fat boi doggo dat tungg tho vvv puggorino bork, ur givin
-              me a spook shoob pats. Shoober blep thicc porgo mlem, lotsa pats
-              stop it fren corgo.
+              The Blue Witness project is a movement to give the public access
+              to reports of police brutality related incidents. By crowdsourcing
+              incident reports from twitter and reddit we create a platform
+              where people can contribute to a greater cause. Our database
+              allows our users to export report data for their own use. We
+              strive to provide a single source of truth on the topic of Police
+              Brutality, that the public can use to inform themselves in the
+              current state of the issue.
             </p>
           </div>
           <div className="about-hrf">
-            <h2>Human Rights First</h2>
+            <h2>Human Rights First Mission</h2>
             <p>
-              Doggo ipsum pats big ol pupper mlem doggorino super chub doge,
-              aqua doggo bork smol. Smol borking doggo with a long snoot for
-              pats pupper long doggo shoober, pupper. Stop it fren mlem you are
-              doing me the shock much ruin diet h*ck, tungg long woofer floofs.
-              Very jealous pupper puggorino extremely cuuuuuute sub woofer, very
-              good spot. Shibe doing me a frighten borking doggo h*ck maximum
-              borkdrive, noodle horse smol. Doggorino I am bekom fat puggorino
-              pupperino, pupper. What a nice floof puggo wow very biscit,
-              boofers. Fat boi doggo dat tungg tho vvv puggorino bork, ur givin
-              me a spook shoob pats. Shoober blep thicc porgo mlem, lotsa pats
-              stop it fren corgo.
+              Human Rights First is an independent advocacy and action
+              organization that challenges America to live up to its ideals. We
+              believe American leadership is essential in the global struggle
+              for human rights, so we press the U.S. government and private
+              companies to respect human rights and the rule of law. When they
+              fail, we step in to demand reform, accountability and justice.
+              Around the world, we work where we can best harness American
+              influence to secure core freedoms.
             </p>
           </div>
           <div className="about-bot-container">
             <h2>Our Twitter Bot</h2>
-            <p></p>
+            <p>
+              We have created a twitter bot to interact with the everyday user.
+              When an instance of police brutality is tweeted about by a user,
+              this bot will recongize this and ask the user for more information
+              on the topic.The bot can connect with our database and store each
+              incident report by rank. We hope to continue to update and make
+              the bot more functional in the future, so our users recieve
+              accurate data on police brutality incidents.
+            </p>
             <div className="twitter-icon-container">
               <img
                 className="twitter-icon"
                 src="https://img.icons8.com/android/24/ffffff/twitter.png"
                 alt="twitter icon"
               />
-              <h2>Meet The Bot</h2>
+              <span className="bot-css">Meet The Bot</span>
             </div>
           </div>
         </div>
@@ -215,6 +217,11 @@ const About = () => {
           </div>
           <div className="student-credits-container">
             <StudentCredits />
+            <img
+              className="about-lambda-logo"
+              src={lambdalogo}
+              alt="lambda logo"
+            ></img>
           </div>
         </div>
       </div>

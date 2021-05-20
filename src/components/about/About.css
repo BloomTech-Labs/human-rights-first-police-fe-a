@@ -17,10 +17,7 @@ h2 {
   font-size: 14px;
 }
 
-.lambda-logo {
-  max-height: 4rem;
-} */
-/*# sourceMappingURL=About.css.map */
+ */
 
 .about-page-container {
   display: flex;
@@ -42,7 +39,8 @@ h1 {
   font-size: 1.8rem;
 }
 
-.about-top-container h2, h1{
+.about-top-container h2,
+h1 {
   color: var(--primary-white);
   text-decoration: bold;
 }
@@ -115,6 +113,15 @@ h1 {
   color: var(--primary-white);
 }
 
-.about-bw-container h2, h1{
+.about-bw-container h2,
+h1 {
   color: var(--primary-white);
+}
+
+.about-lambda-logo {
+  max-height: 2rem;
+}
+
+.bot-css {
+  padding-left: 8px;
 }
