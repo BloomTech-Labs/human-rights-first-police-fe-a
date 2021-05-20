@@ -189,7 +189,18 @@ const About = () => {
               stop it fren corgo.
             </p>
           </div>
-          <div className="about-bot-container"></div>
+          <div className="about-bot-container">
+            <h2>Our Twitter Bot</h2>
+            <p></p>
+            <div className="twitter-icon-container">
+              <img
+                className="twitter-icon"
+                src="https://img.icons8.com/android/24/ffffff/twitter.png"
+                alt="twitter icon"
+              />
+              <h2>Meet The Bot</h2>
+            </div>
+          </div>
         </div>
         <div className="inside-bottom-container lambda-credits-container">
           <div className="lambda-credits">
