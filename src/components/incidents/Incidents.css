@@ -14,7 +14,7 @@
 
 .export-form {
   width: 100%;
-  border: rgba(131, 84, 84, 0.15) 1px solid;
+  border: rgba(131, 84, 84, 0.25) 1px solid;
   padding: 16px;
   margin: 16px 0;
 }
@@ -45,11 +45,14 @@
 }
 .extra {
   display: flex;
-  justify-content: space-between;
+  width: 50%;
+  justify-content: flex-end;
 }
-
 .panel-date {
-  width: auto;
+  float: right;
+}
+.incidentDate {
+  display: inline-flex;
 }
 
 .pagination {

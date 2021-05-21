@@ -43,6 +43,18 @@ const filterDataByDate = (data, range) => {
   );
 };
 
+const filterByTags = (data, tags) => {
+  let filtered = [];
+  tags.forEach(tag => {
+    data.filter(incident => {
+      if (incident.categories.indexOf(tag) > 0) {
+        filtered.push(incident);
+      }
+    });
+  });
+  return filtered;
+};
+
 // in progress
 // const filterByStateAndDate = (data, state, range) => {
 //   return data.filter(
@@ -57,5 +69,5 @@ export {
   filterDataByState,
   createRange,
   filterDataByDate,
-  //filterByStateAndDate,
+  filterByTags,
 };

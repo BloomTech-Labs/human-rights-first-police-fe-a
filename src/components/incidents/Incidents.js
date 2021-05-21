@@ -6,11 +6,11 @@ import {
   filterDataByState,
   filterDataByDate,
   createRange,
-  filterByStateAndDate,
+  filterByTags,
 } from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
-
+import axios from 'axios';
 import { Empty, Button, Collapse, Tag, Checkbox, Popover, Select } from 'antd';
 
 // Time Imports
@@ -21,49 +21,11 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 
 // Ant Design Imports:
 import { Pagination, DatePicker } from 'antd';
-import { set } from 'lodash-es';
+
 const { RangePicker } = DatePicker;
 const { Panel } = Collapse;
 const { Option } = Select;
 const { CheckableTag } = Tag;
-const searchTags = [
-  'arrest',
-  'baton',
-  'journalist',
-  'protester',
-  'push',
-  'shove',
-  'tackle',
-  'bike',
-  'strike',
-  'punch',
-  'less-lethal',
-  'explosive',
-  'bystander',
-];
-const header = incident => {
-  return (
-    <div className="header-top">
-      <p>{incident.title}</p>
-      <div className="extra">
-        <div className="tag-group">
-          <Tag>{incident.categories[0]}</Tag>
-          <Tag>{incident.categories[1]}</Tag>
-          <Tag>{incident.categories[2]}</Tag>
-          <Tag>{incident.force_rank.slice(0, 6)}</Tag>
-        </div>
-
-        <p>{incident.city}, </p>
-        <p className="panel-date">
-          {DateTime.fromISO(incident.date)
-            .plus({ days: 1 })
-            .toLocaleString(DateTime.DATE_MED)}
-        </p>
-        <Checkbox>Add To List</Checkbox>
-      </div>
-    </div>
-  );
-};
 
 const Incidents = () => {
   const [itemsPerPage] = useState(8);
@@ -74,13 +36,48 @@ const Incidents = () => {
   const [dates, setDates] = useState(null);
   const [data, setData] = useState([]); // State for User Searches
   const [selectedTags, setSelectedTags] = useState(['All']);
+  const [queryString, setQueryString] = useState('');
+  const [selectedIncidents, setSelectedIncidents] = useState([]);
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
-  const tagIndex = useSelector(state => state.incident.tagIndex);
+  const tagIndex = useSelector(state => Object.keys(state.incident.tagIndex));
   const fetchStatus = useSelector(
     state => state.api.incidents.getincidents.status
   );
-  console.log(tagIndex);
+
+  const header = incident => {
+    return (
+      <div className="header-top">
+        <p>{incident.title}</p>
+        <div className="extra">
+          <div className="tag-group">
+            <Tag>{incident.categories[0]}</Tag>
+            <Tag>{incident.categories[1]}</Tag>
+            <Tag>{incident.categories[2]}</Tag>
+          </div>
+          <div>
+            <Tag>{incident.force_rank.slice(0, 6)}</Tag>
+          </div>
+
+          <div className="incidentDate">
+            <p>{incident.city}, </p>
+            <p className="panel-date">
+              {DateTime.fromISO(incident.date)
+                .plus({ days: 1 })
+                .toLocaleString(DateTime.DATE_MED)}
+            </p>
+          </div>
+
+          <Checkbox
+            checked={selectedIncidents.indexOf(incident.id) > -1}
+            onChange={checked => onSelect(incident.id, checked)}
+          >
+            Add To List
+          </Checkbox>
+        </div>
+      </div>
+    );
+  };
 
   useEffect(() => {
     fetchStatus === 'success' &&
@@ -95,30 +92,73 @@ const Incidents = () => {
       filtered = filterDataByState(filtered, usState);
     }
     if (dates) {
+      const startDate = `${dates[0].c.year}-${dates[0].c.month}-${dates[0].c.day}`;
+      const endDate = `${dates[1].c.year}-${dates[1].c.month}-${dates[1].c.day}`;
+      setQueryString(`?state=${usState}&start=${startDate}&end=${endDate}`);
       filtered = filterDataByDate(filtered, range);
     }
+    if (selectedTags !== ['All']) {
+      filtered = filterByTags(filtered, selectedTags);
+    }
+
     setData(falsiesRemoved(filtered));
-  }, [usState, dates]);
+  }, [usState, dates, selectedTags]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
   const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+
+  const onSelect = (id, checked) => {
+    let nextSelectedIncident = checked
+      ? [...selectedIncidents, id]
+      : selectedIncidents.filter(i => i !== id);
+    setSelectedIncidents(nextSelectedIncident);
+  };
 
   const onChange = page => {
     setCurrentPage(page);
   };
 
   const onToggle = (tag, checked) => {
-    const nextSelectedTags = checked
+    let nextSelectedTags = checked
       ? [...selectedTags, tag]
-      : selectedTags.filter(t => t !== tag);
-    console.log('You are interested in: ', nextSelectedTags);
+      : selectedTags.filter(t => t !== tag || t === 'All');
+    if (tag === 'All') {
+      setSelectedTags(['All']);
+      return;
+    }
+    if (nextSelectedTags[0] === 'All') {
+      setSelectedTags(nextSelectedTags.slice(1));
+      return;
+    }
     setSelectedTags(nextSelectedTags);
   };
 
   const onSubmit = e => {
     e.preventDefault();
     setCurrentPage();
+  };
+  const downloadCSV = () => {
+    axios
+      .get(
+        `${process.env.REACT_APP_BACKENDURL}/incidents/download${queryString}`,
+        selectedIncidents
+      )
+      .then(response => {
+        let link = document.createElement('a');
+        link.href = window.URL.createObjectURL(
+          new Blob([response.data], { type: 'application/octet-stream' })
+        );
+        link.download = 'reports.csv';
+
+        document.body.appendChild(link);
+
+        link.click();
+        setTimeout(function() {
+          window.URL.revokeObjectURL(link);
+        }, 200);
+      })
+      .catch(error => {});
   };
 
   const onDateSelection = (dates, dateStrings) => {
@@ -173,15 +213,21 @@ const Incidents = () => {
                 Date: <RangePicker onCalendarChange={onDateSelection} />
               </label>
 
-              <Button onSubmit={onSubmit} type="primary">
+              <Button onClick={downloadCSV} type="primary">
                 Export List
               </Button>
             </fieldset>
             <fieldset className="form-bottom">
               <label>
                 Categories:
-                <Tag.CheckableTag checked>All</Tag.CheckableTag>
-                {searchTags.map(tag => {
+                <Tag.CheckableTag
+                  key={'All'}
+                  checked={selectedTags.indexOf('All') > -1}
+                  onChange={checked => onToggle('All', checked)}
+                >
+                  All
+                </Tag.CheckableTag>
+                {tagIndex.map(tag => {
                   return (
                     <CheckableTag
                       key={tag}
