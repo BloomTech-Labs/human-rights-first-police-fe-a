@@ -27,6 +27,7 @@ const NavBar = () => {
         background: '#2f54eb',
         textAlign: 'center',
         justifyContent: 'space-around',
+        height: '64px',
       }}
     >
       <div>
@@ -35,13 +36,6 @@ const NavBar = () => {
           alt="hrf-logo"
           src={logo}
           style={{ width: '20rem', paddingLeft: '1rem' }}
-        />
-        <span style={{ color: 'white', paddingTop: '10rem' }}>|</span>
-        <Input
-          prefix={<SearchOutlined style={{ color: 'white' }} />}
-          size="small"
-          style={{ width: '10rem', background: 'transparent', border: 'none' }}
-          placeholder="Search incidents"
         />
       </div>
       <Menu

@@ -9,7 +9,6 @@ import hrfLogo from './hrf-logo.png';
 import config from '../../utils/oktaConfig';
 
 const LoginContainer = () => {
-
   useEffect(() => {
     const { pkce, issuer, clientId, redirectUri, scopes } = config;
 

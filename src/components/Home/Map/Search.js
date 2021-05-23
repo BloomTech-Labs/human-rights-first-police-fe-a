@@ -79,6 +79,7 @@ export default function Search({ zoomOnCluster }) {
     filterDate(dates);
   };
 
+  // QuickSelect - uses same filterDate function as handleCalendarChange
   const onChange = e => {
     const { value } = e.target;
     setQuickSelect(value);
@@ -110,9 +111,10 @@ export default function Search({ zoomOnCluster }) {
       />
       <div>
         <label>
+          {/* Revisit time values -one week instead? */}
           Quick Search
           <select onChange={onChange} value={quickSelect} name="quicksearch">
-            <option value="">- Select an option -</option>
+            <option value="">- Search Recent Reports -</option>
             <option value="30">Within Past 30 Days</option>
             <option value="10">Within Past 10 Days</option>
           </select>
