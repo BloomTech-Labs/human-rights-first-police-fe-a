@@ -1,13 +1,13 @@
 import { CaretRightOutlined } from '@ant-design/icons';
 import { Collapse, List } from 'antd';
 import IncidentFocusCard from './IncidentFocusCard';
-//import { activeList } from '../../../hooks/useIncidentFilter';
+import useIncidentFilter from '../../../hooks/useIncidentFilter';
 
 const { Panel } = Collapse;
 
 //Filtering by date for incidents
 export default function IncidentFocus({ zoomOnCluster }) {
-  //activeList()
+  const filteredIncidents = useIncidentFilter();
 
   return (
     <div className="map-menu-background">
@@ -32,8 +32,8 @@ export default function IncidentFocus({ zoomOnCluster }) {
             key="1"
           >
             <div className="incident-content">
-              {/* <List>
-                {activeList.map(id => (
+              <List>
+                {filteredIncidents.map(id => (
                   <IncidentFocusCard
                     id={id}
                     key={id}
