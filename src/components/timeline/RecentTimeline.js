@@ -11,7 +11,7 @@ export function RecentTimeline() {
 
   return (
     <div className="timeline-wrapper">
-      <Timeline lineColor={'#</Timeline>ddd'}>
+      <Timeline lineColor={'#000000'}>
         {timeline.map(details => {
           return <TimelineItems details={details} key={nanoid()} />;
         })}

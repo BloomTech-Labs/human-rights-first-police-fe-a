@@ -23,10 +23,10 @@ export default function TimelineItems({ details }) {
       dateText={DateTime.fromISO(details.date)
         .plus({ days: 1 })
         .toLocaleString(DateTime.DATE_FULL)}
-      style={{ color: '#BC541E' }}
+      style={{ color: '#e63946' }}
       dateInnerStyle={{
         color: 'white',
-        backgroundColor: '#003767',
+        backgroundColor: '#2f54eb',
       }}
     >
       <div className="timeline-box">
@@ -49,7 +49,7 @@ export default function TimelineItems({ details }) {
               <Popover content={sourceListHelper(details)} placement="rightTop">
                 <Button
                   type="primary"
-                  style={{ backgroundColor: '#003767', border: 'none' }}
+                  style={{ backgroundColor: '#2f54eb', border: 'none' }}
                 >
                   Sources
                 </Button>

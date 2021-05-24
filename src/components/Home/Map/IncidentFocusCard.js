@@ -60,7 +60,7 @@ export default function IncidentFocusCard({ id, zoomOnCluster }) {
         <Popover content={sourceListHelper(incident)} placement="rightTop">
           <Button
             type="primary"
-            style={{ backgroundColor: '#003767', border: 'none' }}
+            style={{ backgroundColor: '#2f54eb', border: 'none' }}
           >
             Sources
           </Button>
