@@ -69,9 +69,6 @@ export default function useMapSearch() {
         .filter(incident => moment(incident.date).isBetween(start, end))
         .map(incident => incident.id);
 
-      //const matches = dateIncidentList.filter(incident => moment(incident.date).isBetween(start, end)).map(incident => incident.id))
-      //Issue look into DATE_RESULTS_LIMIT
-
       dispatch(setFocusDateFilter(matches));
     },
     [dateIncidentList, dispatch]

@@ -39,6 +39,7 @@ export default function IncidentFocusCard({ id, zoomOnCluster }) {
       <div className="card-title">
         <h4>{date}</h4>
         <h4
+          className="location"
           onClick={zoomOnIncident}
         >{`${incident?.city}, ${incident?.state}`}</h4>
       </div>

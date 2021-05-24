@@ -490,7 +490,7 @@ h3.incident-container {
   border: 1px solid lightgrey;
 }
 
-.map-incident-card {
+.map-incident-card .location {
   cursor: pointer !important;
 }
 
