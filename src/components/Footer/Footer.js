@@ -120,11 +120,13 @@ const Footer = () => {
           </div>
         </div>
         <div className="built-by-lambda-container">
-          <img
-            className="built-by-lambda"
-            src={builtByLambda}
-            alt="built by lambda logo"
-          />
+          <a href="https://lambdaschool.com/" target="_blank">
+            <img
+              className="built-by-lambda"
+              src={builtByLambda}
+              alt="built by lambda logo"
+            />
+          </a>
         </div>
       </div>
       <div className="copyright-container">

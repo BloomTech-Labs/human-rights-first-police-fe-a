@@ -31,12 +31,14 @@ const NavBar = () => {
       }}
     >
       <div>
-        <img
-          className="hrf-logo"
-          alt="hrf-logo"
-          src={logo}
-          style={{ width: '20rem', paddingLeft: '1rem' }}
-        />
+        <Link to="/" style={{ color: 'white' }}>
+          <img
+            className="hrf-logo"
+            alt="hrf-logo"
+            src={logo}
+            style={{ width: '20rem', paddingLeft: '1rem' }}
+          />
+        </Link>
       </div>
       <Menu
         mode="horizontal"
