@@ -50,7 +50,7 @@ const NavBar = () => {
         </Menu.Item>
         <Menu.Item key="2">
           <Link to="/incident-reports" style={{ color: 'white' }}>
-            Reports
+            Incident Reports
           </Link>
         </Menu.Item>
         <Menu.Item key="3">

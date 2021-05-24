@@ -69,7 +69,6 @@ export default function useMapSearch() {
         .filter(incident => moment(incident.date).isBetween(start, end))
         .map(incident => incident.id);
 
-      //const matches = dateIncidentList.filter(incident => moment(incident.date).isBetween(start, end)).map(incident => incident.id))
       //Issue look into DATE_RESULTS_LIMIT
 
       dispatch(setFocusDateFilter(matches));
@@ -77,11 +76,15 @@ export default function useMapSearch() {
     [dateIncidentList, dispatch]
   );
 
+  //30 days button: filterDate([moment() - 30 days, moment()])
+  //10 days button: filterDate([moment() - 10 days, moment()])
+
   // Combine geographic and date filter lists and dispatch the results to Redux
   const geoFilterState = useSelector(state => state.map.focus.query.geoFilter);
   const dateFilterState = useSelector(
     state => state.map.focus.query.dateFilter
   );
+  //potential refactor(get to this first)
   useEffect(() => {
     if (geoFilterState.active && !dateFilterState.active) {
       dispatch(setFocusQuery(geoFilterState.list));

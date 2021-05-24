@@ -5,8 +5,9 @@ import axios from 'axios';
 import moment from 'moment';
 import { nanoid } from 'nanoid';
 import useMapSearch from '../../../hooks/useMapSearch';
-import { AutoComplete, DatePicker } from 'antd';
-const { Option } = AutoComplete;
+import { AutoComplete, DatePicker, Select } from 'antd';
+
+const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 const geocode = axios.create({
@@ -80,10 +81,9 @@ export default function Search({ zoomOnCluster }) {
   };
 
   // QuickSelect - uses same filterDate function as handleCalendarChange
-  const onChange = e => {
-    const { value } = e.target;
+  const onChange = value => {
     setQuickSelect(value);
-    const dates = [moment().subtract(value, 'days'), moment()];
+    const dates = value ? [moment().subtract(value, 'days'), moment()] : [];
     filterDate(dates);
   };
 
@@ -109,17 +109,12 @@ export default function Search({ zoomOnCluster }) {
         disabledDate={disableFutureDates}
         onCalendarChange={handleCalendarChange}
       />
-      <div>
-        <label>
-          {/* Revisit time values -one week instead? */}
-          Quick Search
-          <select onChange={onChange} value={quickSelect} name="quicksearch">
-            <option value="">- Search Recent Reports -</option>
-            <option value="30">Within Past 30 Days</option>
-            <option value="10">Within Past 10 Days</option>
-          </select>
-        </label>
-      </div>
+
+      <Select onChange={onChange} value={quickSelect} name="quicksearch">
+        <Option value="">- Search Recent Reports -</Option>
+        <Option value="30">Within Past 30 Days</Option>
+        <Option value="10">Within Past 10 Days</Option>
+      </Select>
     </div>
   );
 }

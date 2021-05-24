@@ -490,7 +490,7 @@ h3.incident-container {
   border: 1px solid lightgrey;
 }
 
-.map-incident-card {
+.map-incident-card .location {
   cursor: pointer !important;
 }
 
@@ -1192,7 +1192,7 @@ root {
 root:hover {
   color: yellow;
 }
-
+/* 
 .footer-container {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1229,7 +1229,7 @@ root:hover {
 
 .footer-container .override {
   background-color: var(--blue);
-}
+} */
 .ant-menu .ant-menu-light {
   margin: 0 auto;
   justify-content: space-between;
@@ -1394,13 +1394,13 @@ root:hover {
     font-size: 0.9rem;
     text-align: center;
   }
-  .footer-container {
+  /* .footer-container {
     width: 100%;
     text-align: center;
-  }
-  .nav-footer {
+  } */
+  /* .nav-footer {
     /* display: none; */
-  }
+  /* } */
   .nav-menu {
     width: 375px;
   }
