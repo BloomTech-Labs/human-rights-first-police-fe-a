@@ -28,7 +28,6 @@ export default function Clusters({ zoomOnCluster }) {
   const dispatch = useDispatch();
   const incident = useSelector(state => state.incident);
   const incidents = useIncidentFilter();
-  console.log(incidents);
   const points = incidents.map(id => incident.data[id].geoJSON);
 
   // See for supercluster usage and config: https://github.com/mapbox/supercluster

@@ -33,14 +33,14 @@ export default function IncidentFocus({ zoomOnCluster }) {
           >
             <div className="incident-content">
               <List>
-                {filteredIncidents.map(id => (
+                {filteredIncidents.slice(0, 15).map(id => (
                   <IncidentFocusCard
                     id={id}
                     key={id}
                     zoomOnCluster={zoomOnCluster}
                   />
                 ))}
-              </List> */}
+              </List>{' '}
             </div>
           </Panel>
         </Collapse>
