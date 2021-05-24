@@ -1,13 +1,11 @@
-import { useMemo } from 'react';
 import { CaretRightOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
 import { Collapse, List } from 'antd';
 import IncidentFocusCard from './IncidentFocusCard';
 import useIncidentFilter from '../../../hooks/useIncidentFilter';
 
 const { Panel } = Collapse;
 
-//useSelectors for getting state for map
+//Filtering by date for incidents
 export default function IncidentFocus({ zoomOnCluster }) {
   const filteredIncidents = useIncidentFilter();
 
@@ -42,7 +40,7 @@ export default function IncidentFocus({ zoomOnCluster }) {
                     zoomOnCluster={zoomOnCluster}
                   />
                 ))}
-              </List>
+              </List> */}
             </div>
           </Panel>
         </Collapse>

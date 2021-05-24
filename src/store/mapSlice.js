@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+// reset coordinates to the map
 const initViewport = {
   latitude: 41.850033,
   longitude: -97.6500523,
   zoom: 3.2,
   bbox: [-179.9, 18.8163608007951, -66.8847646185949, 71.4202919997506],
 };
-
+// using this to set geoFilter and dateFilter
 const initFocus = {
   cluster: { list: [] },
   query: {
@@ -47,6 +47,7 @@ const slice = createSlice({
       state.focus.query.geoFilter.list = action.payload;
       state.focus.query.geoFilter.active = true;
     },
+    //geoFilter works but setFocusDateFilter does not seem to be working. (check back into why it isn't working)
     setFocusDateFilter: (state, action) => {
       state.focus.query.dateFilter.list = action.payload;
       state.focus.query.dateFilter.active = true;
