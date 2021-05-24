@@ -1,25 +1,13 @@
-import { useMemo } from 'react';
 import { CaretRightOutlined } from '@ant-design/icons';
-import { useSelector } from 'react-redux';
 import { Collapse, List } from 'antd';
 import IncidentFocusCard from './IncidentFocusCard';
+//import { activeList } from '../../../hooks/useIncidentFilter';
+
 const { Panel } = Collapse;
 
-//useSelectors for getting state for map
+//Filtering by date for incidents
 export default function IncidentFocus({ zoomOnCluster }) {
-  const activeFocus = useSelector(state => state.map.focus.active);
-  const clusterList = useSelector(state => state.map.focus.cluster.list);
-  const queryList = useSelector(state => state.map.focus.query.list);
-  const defaultList = useSelector(state => [state.incident.timeline[0]]); // most recent incident
-
-  //Focuses the map into specified region
-  const activeList = useMemo(() => {
-    return activeFocus === 'cluster'
-      ? clusterList
-      : activeFocus === 'query'
-      ? queryList
-      : defaultList;
-  }, [activeFocus, clusterList, queryList, defaultList]);
+  //activeList()
 
   return (
     <div className="map-menu-background">
@@ -44,7 +32,7 @@ export default function IncidentFocus({ zoomOnCluster }) {
             key="1"
           >
             <div className="incident-content">
-              <List>
+              {/* <List>
                 {activeList.map(id => (
                   <IncidentFocusCard
                     id={id}
@@ -52,7 +40,7 @@ export default function IncidentFocus({ zoomOnCluster }) {
                     zoomOnCluster={zoomOnCluster}
                   />
                 ))}
-              </List>
+              </List> */}
             </div>
           </Panel>
         </Collapse>
