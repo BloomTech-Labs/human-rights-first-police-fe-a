@@ -7,9 +7,6 @@ import categorizeIcon from '../../assets/categorize-icon.png';
 import StudentCredits from './StudentCredits';
 import lambdalogo from '../../assets/LambdaAssets/Lambda-Logo-Red 1.png';
 
-// component imports
-// import DataExportForm from './DataExportForm';
-
 const About = () => {
   return (
     <div className="about-page-container">
@@ -28,33 +25,31 @@ const About = () => {
             <img className="icons" src={gatherIcon} alt="" />
             <h2>Gather</h2>
             <p>
-              The data used for this website originates from multiple sources:
+              <span className="tab-span"></span>The data used for this website
+              originates from multiple sources. The first being the
+              <a
+                className="about-links"
+                href="https://github.com/2020PB/police-brutality"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {' '}
+                PB2020/police-brutality GitHub Repository
+              </a>
+              {'. '}
+              This repository accumulates and contextualizes crowdsourced
+              evidence of police use of force from various sources. Our second
+              resource is Twitter. We continually search Twitter for evidence of
+              police use of force with a twitter bot using a technique called
+              Natural Language Processing.
             </p>
-            <ul>
-              <li>
-                <a
-                  className="about-links"
-                  href="https://github.com/2020PB/police-brutality"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  PB2020/police-brutality GitHub Repository
-                </a>{' '}
-                - This repository accumulates and contextualizes crowdsourced
-                evidence of police brutality from various sources.{' '}
-              </li>
-              <li>
-                Twitter - We continually search Twitter for evidence of police
-                intervention with a twitter bot using a technique called Natural
-                Language Processing.
-              </li>
-            </ul>
           </div>
 
           <div className="info-container">
             <img className="icons" src={categorizeIcon} alt="" />
             <h2>Categorize</h2>
             <p>
+              <span className="tab-span"></span>
               We have generated a model with in our data base to catergorize
               each incident report we recive. Because our system is in beta,
               there may be some false positives (e.g.,incident reports where law
@@ -67,17 +62,14 @@ const About = () => {
           </div>
 
           <div className="info-container">
-            <img
-              className="confirm-icon"
-              src={confirmIcon}
-              alt="confirm icon"
-            />
+            <img className="icons" src={confirmIcon} alt="confirm icon" />
             <h2>Confirm</h2>
             <p>
-              If a gathered incident report meets the criteria of a valid
-              "police brutallity" incident, then it's marked to be reviewed.
-              After an identified incident report has been approved, it is added
-              to the incident reports database.
+              <span className="tab-span"></span>
+              If a gathered incident report meets the criteria of a valid police
+              use of force incident, then it's marked to be reviewed. After an
+              identified incident report has been approved, it is added to the
+              incident reports database.
             </p>
           </div>
         </div>
@@ -89,12 +81,12 @@ const About = () => {
             <h2>The Blue Witness Project</h2>
             <p>
               The Blue Witness project is a movement to give the public access
-              to reports of police brutality related incidents. By crowdsourcing
+              to reports of police use of force incidents. By crowdsourcing
               incident reports from twitter and reddit we create a platform
               where people can contribute to a greater cause. Our database
               allows our users to export report data for their own use. We
-              strive to provide a single source of truth on the topic of Police
-              Brutality, that the public can use to inform themselves in the
+              strive to provide a single source of truth on the topic of police
+              use of force, that the public can use to inform themselves in the
               current state of the issue.
             </p>
           </div>
