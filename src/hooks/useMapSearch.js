@@ -67,17 +67,13 @@ export default function useMapSearch() {
       const end = dates?.[1] ? dates[1] : moment();
       const matches = dateIncidentList
         .filter(incident => moment(incident.date).isBetween(start, end))
+        .sort((a, b) => (a.date > b.date ? -1 : 1))
         .map(incident => incident.id);
-
-      //Issue look into DATE_RESULTS_LIMIT
 
       dispatch(setFocusDateFilter(matches));
     },
     [dateIncidentList, dispatch]
   );
-
-  //30 days button: filterDate([moment() - 30 days, moment()])
-  //10 days button: filterDate([moment() - 10 days, moment()])
 
   // Combine geographic and date filter lists and dispatch the results to Redux
   const geoFilterState = useSelector(state => state.map.focus.query.geoFilter);

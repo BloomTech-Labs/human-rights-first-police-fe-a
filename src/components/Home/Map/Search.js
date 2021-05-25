@@ -111,7 +111,8 @@ export default function Search({ zoomOnCluster }) {
       />
 
       <Select onChange={onChange} value={quickSelect} name="quicksearch">
-        <Option value="90">- Search Recent Reports -</Option>
+        <Option value="">- Search Recent Reports -</Option>
+        <Option value="90">Within Past 90 Days</Option>
         <Option value="30">Within Past 30 Days</Option>
         <Option value="7">Within Past 7 Days</Option>
       </Select>

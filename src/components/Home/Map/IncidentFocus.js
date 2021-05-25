@@ -10,41 +10,39 @@ export default function IncidentFocus({ zoomOnCluster }) {
   const filteredIncidents = useIncidentFilter();
 
   return (
-    <div className="map-menu-background">
-      <div className="map-menu">
-        <Collapse
-          className="collapserMap"
-          style={{ color: 'white' }}
-          defaultActiveKey={['0']}
+    <div className="map-menu">
+      <Collapse
+        className="collapserMap"
+        style={{ color: 'white' }}
+        defaultActiveKey={['0']}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+        expandIconPosition="right"
+        ghost
+        accordion={true}
+      >
+        <Panel
+          className="collapseText"
+          header="View Incident Reports"
           bordered={false}
-          expandIcon={({ isActive }) => (
-            <CaretRightOutlined rotate={isActive ? 90 : 0} />
-          )}
-          expandIconPosition="right"
-          ghost
-          accordion={true}
+          style={{ background: 'white' }}
+          key="1"
         >
-          <Panel
-            className="collapseText"
-            header="View Incident Reports"
-            bordered={false}
-            style={{ color: 'white' }}
-            key="1"
-          >
-            <div className="incident-content">
-              <List>
-                {filteredIncidents.slice(0, 15).map(id => (
-                  <IncidentFocusCard
-                    id={id}
-                    key={id}
-                    zoomOnCluster={zoomOnCluster}
-                  />
-                ))}
-              </List>{' '}
-            </div>
-          </Panel>
-        </Collapse>
-      </div>
+          <div className="incident-content">
+            <List>
+              {filteredIncidents.slice(0, 15).map(id => (
+                <IncidentFocusCard
+                  id={id}
+                  key={id}
+                  zoomOnCluster={zoomOnCluster}
+                />
+              ))}
+            </List>{' '}
+          </div>
+        </Panel>
+      </Collapse>
     </div>
   );
 }

@@ -474,20 +474,17 @@ h3.incident-container {
   /* search on top of map */
 }
 
-.map-menu-background {
-  position: absolute;
-  top: 28px;
-  right: 24px;
-  z-index: 1;
-  /* cursor: pointer; */
-}
-
 .map-menu {
-  background-color: white;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: transparent;
   padding-left: 2%;
-  width: 350px;
-  height: 35px;
-  border: 1px solid lightgrey;
+  width: 25vw;
+  height: 4.8vh;
 }
 
 .map-incident-card .location {
@@ -533,7 +530,6 @@ div.ant-collapse-header {
 
 div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
   padding: 8px;
-  margin-left: 133px;
   font-size: 1rem;
   text-align: left;
   font-weight: 400;
@@ -1369,7 +1365,7 @@ root:hover {
     flex-direction: column;
     position: absolute;
   }
-  .map-menu-background {
+  .map-menu {
     position: absolute;
     top: 48%;
     right: 0px;
