@@ -28,7 +28,7 @@ export default function IncidentFocus({ zoomOnCluster }) {
             className="collapseText"
             header="View Incident Reports"
             bordered={false}
-            style={{ color: 'white' }}
+            style={{ backgroundColor: 'transparent' }}
             key="1"
           >
             <div className="incident-content">
