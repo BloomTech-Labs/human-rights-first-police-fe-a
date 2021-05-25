@@ -37,11 +37,12 @@ export default function IncidentFocusCard({ id, zoomOnCluster }) {
   return (
     <div className="map-incident-card">
       <div className="card-title">
-        <h4>{date}</h4>
-        <h4
-          className="location"
-          onClick={zoomOnIncident}
-        >{`${incident?.city}, ${incident?.state}`}</h4>
+        <h4 className=".date">{date}</h4>
+        <h4>
+          <span className="location" onClick={zoomOnIncident}>
+            {`${incident?.city}, ${incident?.state}`}
+          </span>
+        </h4>
       </div>
       <div className="incidentHeader">
         <h2>{incident?.title}</h2>
