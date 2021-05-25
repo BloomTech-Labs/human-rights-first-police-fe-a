@@ -47,13 +47,13 @@ const Footer = () => {
   //                   Administration
   //                 </NavLink>
   //               </Menu.Item>
-  //               {authState.isAuthenticated && (
-  //                 <Menu.Item key="3" className="logout" onClick={logout}>
-  //                   <NavLink to="/" activeClassName="active-nav-link">
-  //                     Log out
-  //                   </NavLink>
-  //                 </Menu.Item>
-  //               )}
+  // {authState.isAuthenticated && (
+  //   <Menu.Item key="3" className="logout" onClick={logout}>
+  //     <NavLink to="/" activeClassName="active-nav-link">
+  //       Log out
+  //     </NavLink>
+  //   </Menu.Item>
+  // )}
   //             </Menu>
   //             <p>Human Rights First &copy;2021</p>
   //           </div>
@@ -82,21 +82,30 @@ const Footer = () => {
               href="https://www.humanrightsfirst.org"
               target="_blank"
               alt="Human Rights First"
+              rel="noreferrer"
             >
               Human Rights First
-            </a>
-            <br />
-            <a href="" target="_blank" alt="Twitter Bot">
-              Twitter Bot
             </a>
             <br />
             <a
               href="https://www.humanrightsfirst.org"
               target="_blank"
-              alt="Admin Dashboard"
+              rel="noreferrer"
+              alt="Twitter Bot"
             >
-              Admin Dashboard
+              Twitter Bot
             </a>
+            <br />
+            <NavLink to="/admin-dashboard" activeClassName="active-nav-link">
+              Admin Dashboard
+            </NavLink>
+            {authState.isAuthenticated && (
+              <div className="logout" onClick={logout}>
+                <NavLink to="/" activeClassName="active-nav-link">
+                  Log out
+                </NavLink>
+              </div>
+            )}
             <br />
           </div>
           <div className="right-links">
@@ -105,22 +114,24 @@ const Footer = () => {
               href="https://lambdaschool.com/"
               target="_blank"
               alt="Lambda School"
+              rel="noreferrer"
             >
               Lambda School
             </a>
             <br />
-            <a
+            {/* <a
               href="https://github.com/Lambda-School-Labs"
               target="_blank"
               alt="Lambda Labs GitHub"
+              rel="noreferrer"
             >
               Lambda Labs GitHub
-            </a>
+            </a> */}
             <br />
           </div>
         </div>
         <div className="built-by-lambda-container">
-          <a href="https://lambdaschool.com/" target="_blank">
+          <a href="https://lambdaschool.com/" target="_blank" rel="noreferrer">
             <img
               className="built-by-lambda"
               src={builtByLambda}
