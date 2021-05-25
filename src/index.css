@@ -479,7 +479,7 @@ h3.incident-container {
   top: 28px;
   right: 24px;
   z-index: 1;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .map-menu {
@@ -492,6 +492,16 @@ h3.incident-container {
 
 .map-incident-card .location {
   cursor: pointer !important;
+  color: var(--active-blue);
+}
+
+.map-incident-card .location:hover {
+  color: var(--hover-blue);
+  font-weight: bold;
+}
+
+.map-incident-card .date {
+  padding-bottom: 10px;
 }
 
 button.ant-btn.ant-btn-primary.ant-input-search-button {
