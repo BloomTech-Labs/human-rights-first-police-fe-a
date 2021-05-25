@@ -23,27 +23,26 @@ export default function IncidentFocus({ zoomOnCluster }) {
         ghost
         accordion={true}
       >
-          <Panel
-            className="collapseText"
-            header="View Incident Reports"
-            bordered={false}
-            style={{ color: 'white' }}
-            key="1"
-          >
-            <div className="incident-content">
-              <List>
-                {filteredIncidents.slice(0, 15).map(id => (
-                  <IncidentFocusCard
-                    id={id}
-                    key={id}
-                    zoomOnCluster={zoomOnCluster}
-                  />
-                ))}
-              </List>{' '}
-            </div>
-          </Panel>
-        </Collapse>
-      </div>
+        <Panel
+          className="collapseText"
+          header="View Incident Reports"
+          bordered={false}
+          style={{ background: 'white' }}
+          key="1"
+        >
+          <div className="incident-content">
+            <List>
+              {filteredIncidents.slice(0, 15).map(id => (
+                <IncidentFocusCard
+                  id={id}
+                  key={id}
+                  zoomOnCluster={zoomOnCluster}
+                />
+              ))}
+            </List>{' '}
+          </div>
+        </Panel>
+      </Collapse>
     </div>
   );
 }
