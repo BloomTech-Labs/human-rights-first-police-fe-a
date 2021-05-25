@@ -25,8 +25,8 @@ const About = () => {
             <img className="icons" src={gatherIcon} alt="" />
             <h2>Gather</h2>
             <p>
-              <span className="tab-span"></span>The data used for this website
-              originates from multiple sources. The first being the
+              The data used for this website originates from multiple sources.
+              The first being the
               <a
                 className="about-links"
                 href="https://github.com/2020PB/police-brutality"
@@ -49,7 +49,6 @@ const About = () => {
             <img className="icons" src={categorizeIcon} alt="" />
             <h2>Categorize</h2>
             <p>
-              <span className="tab-span"></span>
               We have generated a model with in our data base to catergorize
               each incident report we recive. Because our system is in beta,
               there may be some false positives (e.g.,incident reports where law
@@ -65,7 +64,6 @@ const About = () => {
             <img className="icons" src={confirmIcon} alt="confirm icon" />
             <h2>Confirm</h2>
             <p>
-              <span className="tab-span"></span>
               If a gathered incident report meets the criteria of a valid police
               use of force incident, then it's marked to be reviewed. After an
               identified incident report has been approved, it is added to the
