@@ -6,7 +6,7 @@ const useIncidentFilter = () => {
   const activeFocus = useSelector(state => state.map.focus.active);
   const clusterList = useSelector(state => state.map.focus.cluster.list);
   const queryList = useSelector(state => state.map.focus.query.list);
-  const defaultList = useSelector(state => state.incident.timeline); // most recent incident
+  const defaultList = useSelector(state => state.incident.ids); // all incidents
 
   return useMemo(() => {
     return activeFocus === 'cluster'

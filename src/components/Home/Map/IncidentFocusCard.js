@@ -37,11 +37,12 @@ export default function IncidentFocusCard({ id, zoomOnCluster }) {
   return (
     <div className="map-incident-card">
       <div className="card-title">
-        <h4>{date}</h4>
-        <h4
-          className="location"
-          onClick={zoomOnIncident}
-        >{`${incident?.city}, ${incident?.state}`}</h4>
+        <h4 className=".date">{date}</h4>
+        <h4>
+          <span className="location" onClick={zoomOnIncident}>
+            {`${incident?.city}, ${incident?.state}`}
+          </span>
+        </h4>
       </div>
       <div className="incidentHeader">
         <h2>{incident?.title}</h2>
@@ -60,7 +61,7 @@ export default function IncidentFocusCard({ id, zoomOnCluster }) {
         <Popover content={sourceListHelper(incident)} placement="rightTop">
           <Button
             type="primary"
-            style={{ backgroundColor: '#003767', border: 'none' }}
+            style={{ backgroundColor: '#2f54eb', border: 'none' }}
           >
             Sources
           </Button>

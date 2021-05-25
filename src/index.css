@@ -481,7 +481,6 @@ h3.incident-container {
   top: 0;
   right: 0;
   z-index: 1;
-  cursor: pointer;
   background-color: transparent;
   padding-left: 2%;
   width: 25vw;
@@ -490,6 +489,16 @@ h3.incident-container {
 
 .map-incident-card .location {
   cursor: pointer !important;
+  color: var(--active-blue);
+}
+
+.map-incident-card .location:hover {
+  color: var(--hover-blue);
+  font-weight: bold;
+}
+
+.map-incident-card .date {
+  padding-bottom: 10px;
 }
 
 button.ant-btn.ant-btn-primary.ant-input-search-button {
@@ -1274,12 +1283,6 @@ root:hover {
 .horizontal-graph {
   width: 40%;
   margin-top: 61px;
-}
-
-.graph-legend-wrap {
-  margin-bottom: 6%;
-  padding: 20px;
-  border: 1px solid rgba(255, 99, 132, 0.4);
 }
 
 .graph-disclaimer {

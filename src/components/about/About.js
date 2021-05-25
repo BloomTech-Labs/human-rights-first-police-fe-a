@@ -7,9 +7,6 @@ import categorizeIcon from '../../assets/categorize-icon.png';
 import StudentCredits from './StudentCredits';
 import lambdalogo from '../../assets/LambdaAssets/Lambda-Logo-Red 1.png';
 
-// component imports
-// import DataExportForm from './DataExportForm';
-
 const About = () => {
   return (
     <div className="about-page-container">
@@ -28,27 +25,24 @@ const About = () => {
             <img className="icons" src={gatherIcon} alt="" />
             <h2>Gather</h2>
             <p>
-              The data used for this website originates from multiple sources:
+              The data used for this website originates from multiple sources.
+              The first being the
+              <a
+                className="about-links"
+                href="https://github.com/2020PB/police-brutality"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {' '}
+                PB2020/police-brutality GitHub Repository
+              </a>
+              {'. '}
+              This repository accumulates and contextualizes crowdsourced
+              evidence of police use of force from various sources. Our second
+              resource is Twitter. We continually search Twitter for evidence of
+              police use of force with a twitter bot using a technique called
+              Natural Language Processing.
             </p>
-            <ul>
-              <li>
-                <a
-                  className="about-links"
-                  href="https://github.com/2020PB/police-brutality"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  PB2020/police-brutality GitHub Repository
-                </a>{' '}
-                - This repository accumulates and contextualizes crowdsourced
-                evidence of police brutality from various sources.{' '}
-              </li>
-              <li>
-                Twitter - We continually search Twitter for evidence of police
-                intervention with a twitter bot using a technique called Natural
-                Language Processing.
-              </li>
-            </ul>
           </div>
 
           <div className="info-container">
@@ -67,17 +61,13 @@ const About = () => {
           </div>
 
           <div className="info-container">
-            <img
-              className="confirm-icon"
-              src={confirmIcon}
-              alt="confirm icon"
-            />
+            <img className="icons" src={confirmIcon} alt="confirm icon" />
             <h2>Confirm</h2>
             <p>
-              If a gathered incident report meets the criteria of a valid
-              "police brutallity" incident, then it's marked to be reviewed.
-              After an identified incident report has been approved, it is added
-              to the incident reports database.
+              If a gathered incident report meets the criteria of a valid police
+              use of force incident, then it's marked to be reviewed. After an
+              identified incident report has been approved, it is added to the
+              incident reports database.
             </p>
           </div>
         </div>
@@ -89,12 +79,12 @@ const About = () => {
             <h2>The Blue Witness Project</h2>
             <p>
               The Blue Witness project is a movement to give the public access
-              to reports of police brutality related incidents. By crowdsourcing
+              to reports of police use of force incidents. By crowdsourcing
               incident reports from twitter and reddit we create a platform
               where people can contribute to a greater cause. Our database
               allows our users to export report data for their own use. We
-              strive to provide a single source of truth on the topic of Police
-              Brutality, that the public can use to inform themselves in the
+              strive to provide a single source of truth on the topic of police
+              use of force, that the public can use to inform themselves in the
               current state of the issue.
             </p>
           </div>
@@ -114,13 +104,20 @@ const About = () => {
           <div className="about-bot-container">
             <h2>Our Twitter Bot</h2>
             <p>
-              We have created a twitter bot to interact with the everyday user.
-              When an instance of police brutality is tweeted about by a user,
-              this bot will recongize this and ask the user for more information
-              on the topic.The bot can connect with our database and store each
-              incident report by rank. We hope to continue to update and make
-              the bot more functional in the future, so our users recieve
-              accurate data on police brutality incidents.
+              The goal of the Twitterbot on the Blue Witness project is to
+              adequately scrape twitter for reports of incidents of police
+              violence. This is a complicated process, and inevitably some data
+              is gathered that is at the very least difficult to verify or at
+              the very worst simply not related to police incidents at all. As
+              the Blue Witness project grows, the team is refining the training
+              of this model to not only more accurately reflect individual
+              incidents on twitter but to reach out to people posting those
+              incidents and automatically ask some follow-up questions,
+              enhancing the Human Rights First administrative teams ability to
+              quickly update the incident map as well as the data available for
+              download to researchers, journalists, students and activists. If
+              you'd like to know more, feel free to reach out to HRF on our
+              contact page.
             </p>
             <div className="twitter-icon-container">
               <img

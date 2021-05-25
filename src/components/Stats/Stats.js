@@ -49,24 +49,17 @@ const Stats = () => {
     <Content Dark="On" type="Primary">
       <div className="site-layout-background" style={contentStyle}>
         <Title style={{ color: 'white', fontWeight: 'normal' }}>
-          Blue Witness
+          Blue Witness Statistics
         </Title>
         <Paragraph style={{ color: 'white' }}>
           {dataList.length} incidents of police use of force. {gasAndSpray} uses
           of pepper-spray or tear-gas. {numCities} cities across the United
-          States By
+          States.
         </Paragraph>
-        <Paragraph style={{ color: 'white' }}>
-          collecting and processing crowdsourced data from Reddit and Twitter
-        </Paragraph>
-        <Button
-          style={{ border: 'grey', margin: '1rem', backgroundColor: '#2f54eb' }}
-          type="primary"
-          shape="round"
-        >
+        <Button style={{ margin: '.5rem' }} shape="round" ghost>
           <Link to="/incident-reports">Incident Reports</Link>
         </Button>
-        <Button shape="round" ghost>
+        <Button style={{ margin: '.5rem' }} shape="round" ghost>
           <Link to="/about">About</Link>
         </Button>
       </div>
