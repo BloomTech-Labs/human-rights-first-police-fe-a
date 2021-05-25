@@ -34,7 +34,7 @@ const IncidentsCard = props => {
         >
           <Button
             type="primary"
-            style={{ backgroundColor: '#003767', border: 'none' }}
+            style={{ backgroundColor: '#2f54eb', border: 'none' }}
           >
             Sources
           </Button>
