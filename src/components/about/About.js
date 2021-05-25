@@ -114,13 +114,20 @@ const About = () => {
           <div className="about-bot-container">
             <h2>Our Twitter Bot</h2>
             <p>
-              We have created a twitter bot to interact with the everyday user.
-              When an instance of police brutality is tweeted about by a user,
-              this bot will recongize this and ask the user for more information
-              on the topic.The bot can connect with our database and store each
-              incident report by rank. We hope to continue to update and make
-              the bot more functional in the future, so our users recieve
-              accurate data on police brutality incidents.
+              The goal of the Twitterbot on the Blue Witness project is to
+              adequately scrape twitter for reports of incidents of police
+              violence. This is a complicated process, and inevitably some data
+              is gathered that is at the very least difficult to verify or at
+              the very worst simply not related to police incidents at all. As
+              the Blue Witness project grows, the team is refining the training
+              of this model to not only more accurately reflect individual
+              incidents on twitter but to reach out to people posting those
+              incidents and automatically ask some follow-up questions,
+              enhancing the Human Rights First administrative teams ability to
+              quickly update the incident map as well as the data available for
+              download to researchers, journalists, students and activists. If
+              you'd like to know more, feel free to reach out to HRF on our
+              contact page.
             </p>
             <div className="twitter-icon-container">
               <img
