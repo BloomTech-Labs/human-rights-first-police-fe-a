@@ -10,20 +10,19 @@ export default function IncidentFocus({ zoomOnCluster }) {
   const filteredIncidents = useIncidentFilter();
 
   return (
-    <div className="map-menu-background">
-      <div className="map-menu">
-        <Collapse
-          className="collapserMap"
-          style={{ color: 'white' }}
-          defaultActiveKey={['0']}
-          bordered={false}
-          expandIcon={({ isActive }) => (
-            <CaretRightOutlined rotate={isActive ? 90 : 0} />
-          )}
-          expandIconPosition="right"
-          ghost
-          accordion={true}
-        >
+    <div className="map-menu">
+      <Collapse
+        className="collapserMap"
+        style={{ color: 'white' }}
+        defaultActiveKey={['0']}
+        bordered={false}
+        expandIcon={({ isActive }) => (
+          <CaretRightOutlined rotate={isActive ? 90 : 0} />
+        )}
+        expandIconPosition="right"
+        ghost
+        accordion={true}
+      >
           <Panel
             className="collapseText"
             header="View Incident Reports"
