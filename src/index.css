@@ -528,6 +528,45 @@ div.timeline-container {
   }
 }
 
+.ant-collapse {
+  background-color: white;
+  border: none;
+}
+
+.ant-collapse-content-box {
+  background-color: white;
+  overflow: auto;
+}
+
+.incident-content {
+  height: 50vh;
+  z-index: 1;
+}
+
+div.ant-collapse-header {
+  padding: 4;
+  text-align: center;
+  padding-bottom: 4%;
+}
+
+div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 8px;
+  font-size: 1rem;
+  text-align: left;
+  font-weight: 400;
+  color: #a9a9a9;
+}
+
+.incident-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
 .dashboard-container {
   padding-top: 3rem;
   width: 90%;
@@ -1042,34 +1081,7 @@ form label {
   flex-direction: column;
 }
 
-.footer-container a {
-  font-size: 1rem;
-  margin: 0 auto;
-}
-
-.footer-container .layout {
-  width: 100%;
-  background-color: var(--blue);
-  margin-top: 1rem;
-  padding-top: 1rem;
-}
-
-.footer-container .admin-dash-container {
-  margin-top: 1rem;
-  margin-left: 3rem;
-}
-
-.footer-container .copyright-container p {
-  color: white;
-  background-color: var(--blue);
-  text-align: center;
-  margin-bottom: 0;
-}
-
-.footer-container .override {
-  background-color: var(--blue);
-}
-*/ .ant-menu .ant-menu-light {
+.ant-menu .ant-menu-light {
   margin: 0 auto;
   justify-content: space-between;
   text-align: center;

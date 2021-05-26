@@ -110,7 +110,12 @@ export default function Search({ zoomOnCluster }) {
         onCalendarChange={handleCalendarChange}
       />
 
-      <Select onChange={onChange} value={quickSelect} name="quicksearch">
+      <Select
+        style={{ color: '#C0C0C0' }}
+        onChange={onChange}
+        value={quickSelect}
+        name="quicksearch"
+      >
         <Option value="">- Search Recent Reports -</Option>
         <Option value="90">Within Past 90 Days</Option>
         <Option value="30">Within Past 30 Days</Option>
