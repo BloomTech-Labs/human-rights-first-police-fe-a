@@ -1,27 +1,31 @@
 @import '~antd/dist/antd.css';
 
-.incidents-container {
-  min-height: calc(100vh - (60px + 77px + 32px + 4vh));
-}
-
-.incidents-page {
-  max-width: 1200px;
-  margin: 32px auto 0;
-}
-
-.incidents-page header {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.header-top {
   display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
   justify-content: space-between;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  padding: 0 19px;
+}
+.incidents-container {
+  max-width: 92vw;
+  margin: auto;
+}
+.incidents-page {
+  max-width: 92vw;
 }
 
+.export-form {
+  width: 100%;
+  border: rgba(131, 84, 84, 0.25) 1px solid;
+  padding: 16px;
+  margin: 16px 0;
+}
+.form-top {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.collapse-content {
+  display: flex;
+}
 .incidents-page header .user-input {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -30,92 +34,26 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-
-.incidents-page section ul {
-  padding: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-  justify-content: space-around;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
+.tag-group {
 }
-
-.ant-card-body {
-  padding: 20px;
-}
-
-.ant-card-body .incident-desc {
-  margin-top: 30px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.ant-card-body:hover .incident-desc {
-  overflow: initial;
-  white-space: pre-wrap;
-  text-overflow: initial;
-}
-
-.card-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.tag-container {
-  display: flex;
-  flex-flow: row;
-  justify-content: flex-start;
-  align-content: flex-start;
-  flex-wrap: wrap;
+.ant-collapse-header {
+  display: inline-block;
   width: 100%;
-  height: 40px;
 }
 
-.ant-tag {
-  margin: 3px;
+.panel {
 }
-
-.incident-title {
-  margin: 0 auto;
-  width: 100%;
-  height: 10vh;
-  padding: 10px;
+.extra {
   display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  color: var(--blue);
+  width: 60%;
+  justify-content: flex-end;
 }
-
-.card-box {
-  width: 360px;
-  height: 360px;
-  margin: 24px 16px;
-  -webkit-box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
-  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
+.rank-select {
+  width: 64px;
 }
-
-.card-box .card-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-  -ms-flex-flow: row nowrap;
-  flex-flow: row nowrap;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-}
-
-.card-force {
-  margin-bottom: 12px;
+.incidentDate {
+  display: inline-flex;
+  margin: 0px 8px;
 }
 
 .pagination {
@@ -137,33 +75,11 @@
   }
 }
 
-@media screen and (max-width: 640px) {
-  .card-box {
-    width: 75%;
-  }
-}
-
 @media screen and (max-width: 400px) {
-  .incidents-page header .user-input {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-flow: column;
-    flex-flow: column;
-  }
-  .incidents-page header .user-input .ant-select {
-    width: 100% !important;
-  }
-
-  .card-box .card-title {
+  .header-top {
+    display: flex;
+    justify-content: space-between;
     flex-direction: column;
-  }
-
-  .incident-title {
-    height: 100%;
-    margin-bottom: 10px;
-  }
-  .nav-menu.active .incidents-page {
-    overflow: hidden;
   }
 }
 

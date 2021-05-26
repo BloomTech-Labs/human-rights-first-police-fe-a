@@ -26,22 +26,35 @@ export default function useFetchIncidents() {
       );
 
       const incidents = {};
-      incidentsRes.forEach(
-        item =>
-          (incidents[item.id] = {
-            ...item,
-            geoJSON: {
-              type: 'Feature',
-              incidentId: item.id,
-              geometry: { type: 'Point', coordinates: [item.long, item.lat] },
-            },
-          })
-      );
+      const tagIndex = {};
+      incidentsRes.forEach(item => {
+        incidents[item.id] = {
+          ...item,
+          geoJSON: {
+            type: 'Feature',
+            incidentId: item.id,
+            geometry: { type: 'Point', coordinates: [item.long, item.lat] },
+          },
+        };
 
+        item.categories.forEach(category => {
+          if (tagIndex.hasOwnProperty(category)) {
+            tagIndex[category].add(item.id);
+          } else {
+            tagIndex[category] = new Set([item.id]);
+          }
+        });
+      });
+      console.log(tagIndex);
       const timeline = timelineRes.map(item => item.id);
 
       dispatch(
-        onInitialFetch({ incidents, ids: Object.keys(incidents), timeline })
+        onInitialFetch({
+          incidents,
+          ids: Object.keys(incidents),
+          timeline,
+          tagIndex,
+        })
       );
       dispatch(
         setInitialFetchStatus({
