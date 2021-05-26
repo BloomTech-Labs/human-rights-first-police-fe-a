@@ -5,6 +5,7 @@ import Supercluster from 'supercluster';
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { mapActions } from '../../../store';
+import useIncidentFilter from '../../../hooks/useIncidentFilter';
 const { setFocusCluster } = mapActions;
 
 const ClusterMarker = styled.div`
@@ -25,10 +26,10 @@ const LEAVES_LIMIT = 10; // Max # of incidents to display in IncidentFocus
 
 export default function Clusters({ zoomOnCluster }) {
   const dispatch = useDispatch();
+  const incident = useSelector(state => state.incident);
+  const incidents = useIncidentFilter();
+  const points = incidents.map(id => incident.data[id].geoJSON);
 
-  const points = useSelector(state =>
-    state.incident.ids.map(id => state.incident.data[id].geoJSON)
-  );
   // See for supercluster usage and config: https://github.com/mapbox/supercluster
   const supercluster = useMemo(() => {
     const sc = new Supercluster({ radius: 40, maxZoom: 17 });

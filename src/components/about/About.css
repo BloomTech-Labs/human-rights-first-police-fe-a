@@ -1,23 +1,124 @@
-.about-container {
-  margin: auto;
-  max-width: 50%;
-  min-height: calc(100vh - (60px + 77px + 4vh));
+.about-page-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.about-container h1 {
+.about-top-container {
+  width: 100%;
+  background-color: var(--primary-blue);
+  color: var(--primary-white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10vh;
+  padding-bottom: 5vh;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+.about-top-container h2,
+h1 {
+  color: var(--primary-white);
+  text-decoration: bold;
+}
+
+.h1-text {
+  font-size: 1.1rem;
+}
+
+.about-top-container h2 {
+  padding-top: 1.5vh;
+}
+
+.about-links {
+  color: var(--primary-white);
+  text-decoration: underline;
+}
+
+.data-description-container {
+  width: 50vw;
+  text-align: center;
+}
+
+.data-info-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 5vh;
+}
+
+.info-container {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gather-container{
   text-align: left;
 }
 
-h2 {
-  font-size: 24px;
+.info-container h2{
+  text-align: center;
 }
 
-.about-container p {
-  margin-bottom: 2rem;
-  font-size: 14px;
+.icons {
+  height: 80px;
+  width: 80px;
 }
 
-.lambda-logo {
-  max-height: 4rem;
+.about-bottom-container {
+  background-color: lightgray;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
 }
-/*# sourceMappingURL=About.css.map */
+
+.inside-bottom-container {
+  width: 45%;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  padding-right: 3vw;
+  padding-left: 3vw;
+}
+
+.lambda-credits-container {
+  background-color: var(--primary-white);
+}
+
+.about-bw-container {
+  background-color: var(--primary-blue);
+  color: var(--primary-white);
+}
+
+.about-bw-container h2,
+h1 {
+  color: var(--primary-white);
+}
+
+.about-lambda-logo {
+  max-height: 2rem;
+}
+
+.about-logo-container {
+  display: flex;
+  justify-content: center;
+  max-height: 2rem;
+}
+
+.bot-css {
+  padding-left: 8px;
+}
+
+.lambda-credits {
+  text-align: center;
+}

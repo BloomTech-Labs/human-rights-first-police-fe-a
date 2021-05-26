@@ -89,12 +89,6 @@ const Incidents = () => {
   };
 
   useEffect(() => {
-    fetchStatus === 'success' &&
-      data.length === 0 &&
-      setData(falsiesRemoved(incidents));
-  }, [fetchStatus, data.length, incidents]);
-
-  useEffect(() => {
     const range = dates && createRange(dates);
     let filtered = [...incidents];
 
@@ -111,12 +105,9 @@ const Incidents = () => {
       setQueryString(`&state=${usState}&start=${startDate}&end=${endDate}`);
       filtered = filterDataByDate(filtered, range);
     }
-    if (rank !== 'All') {
+    if (rank !== 'Any') {
+      console.log(rank);
       filtered = incidents.filter(incident => {
-        console.log(
-          incident.force_rank.trim(),
-          ranks[parseInt(rank) - 1].trim()
-        );
         return incident.force_rank.trim() === ranks[parseInt(rank) - 1].trim();
       });
     }

@@ -1,5 +1,5 @@
-import { useEffect, useCallback, useMemo } from 'react';
-import { useSelector, useDispatch, batch } from 'react-redux';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 import axios from 'axios';
 
 import { apiActions, incidentActions } from '../store';

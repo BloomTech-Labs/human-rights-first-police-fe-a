@@ -5,8 +5,9 @@ import axios from 'axios';
 import moment from 'moment';
 import { nanoid } from 'nanoid';
 import useMapSearch from '../../../hooks/useMapSearch';
-import { AutoComplete, DatePicker } from 'antd';
-const { Option } = AutoComplete;
+import { AutoComplete, DatePicker, Select } from 'antd';
+
+const { Option } = Select;
 const { RangePicker } = DatePicker;
 
 const geocode = axios.create({
@@ -27,6 +28,9 @@ export default function Search({ zoomOnCluster }) {
   // ** Filter by location **
   const [geoInput, setGeoInput] = useState('');
   const [geoRes, setGeoRes] = useState([]);
+
+  // **Quick Select **
+  const [quickSelect, setQuickSelect] = useState('');
 
   // Necessary to recalculate the viewport on location selection
   const { width, height } = useSelector(state => ({
@@ -76,6 +80,13 @@ export default function Search({ zoomOnCluster }) {
     filterDate(dates);
   };
 
+  // QuickSelect - uses same filterDate function as handleCalendarChange
+  const onChange = value => {
+    setQuickSelect(value);
+    const dates = value ? [moment().subtract(value, 'days'), moment()] : [];
+    filterDate(dates);
+  };
+
   return (
     <div className="search-header">
       <AutoComplete
@@ -87,10 +98,10 @@ export default function Search({ zoomOnCluster }) {
       >
         {geoRes.features && geoInput.length >= MIN_QUERY_LENGTH
           ? geoRes.features.map((f, i) => (
-            <Option key={nanoid()} value={`${i}`}>
-              {f.place_name}
-            </Option>
-          ))
+              <Option key={nanoid()} value={`${i}`}>
+                {f.place_name}
+              </Option>
+            ))
           : ''}
       </AutoComplete>
       <RangePicker
@@ -98,6 +109,17 @@ export default function Search({ zoomOnCluster }) {
         disabledDate={disableFutureDates}
         onCalendarChange={handleCalendarChange}
       />
+
+      <Select
+        style={{ color: '#C0C0C0' }}
+        onChange={onChange}
+        value={quickSelect}
+        name="quicksearch"
+      >
+        <Option value="">- Search Recent Reports -</Option>
+        <Option value="30">Within Past 30 Days</Option>
+        <Option value="10">Within Past 10 Days</Option>
+      </Select>
     </div>
   );
 }

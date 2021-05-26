@@ -223,8 +223,9 @@ div canvas {
 }
 
 .graph-container {
-  max-width: 1200px;
+  max-width: 90vw;
   margin: 0 auto;
+  text-align: center;
 }
 
 .link-container[role='menu'] {
@@ -361,24 +362,31 @@ div.HeaderInfo {
   /* search on top of map */
 }
 
-.map-menu-background {
-  position: absolute;
-  top: 28px;
-  right: 24px;
-  z-index: 1;
-  cursor: pointer;
-}
-
 .map-menu {
-  background-color: white;
+  margin-top: 1rem;
+  margin-right: 1rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 1;
+  background-color: transparent;
   padding-left: 2%;
-  width: 350px;
-  height: 35px;
-  border: 1px solid lightgrey;
+  width: 25vw;
+  height: 4.8vh;
 }
 
-.map-incident-card {
+.map-incident-card .location {
   cursor: pointer !important;
+  color: var(--active-blue);
+}
+
+.map-incident-card .location:hover {
+  color: var(--hover-blue);
+  font-weight: bold;
+}
+
+.map-incident-card .date {
+  padding-bottom: 10px;
 }
 
 button.ant-btn.ant-btn-primary.ant-input-search-button {
@@ -1061,7 +1069,7 @@ form label {
 .footer-container .override {
   background-color: var(--blue);
 }
-.ant-menu .ant-menu-light {
+*/ .ant-menu .ant-menu-light {
   margin: 0 auto;
   justify-content: space-between;
   text-align: center;
@@ -1110,12 +1118,6 @@ form label {
   margin-top: 61px;
 }
 
-.graph-legend-wrap {
-  margin-bottom: 6%;
-  padding: 20px;
-  border: 1px solid rgba(255, 99, 132, 0.4);
-}
-
 .graph-disclaimer {
   color: #666;
   font-size: 0.7rem;
@@ -1127,20 +1129,32 @@ form label {
   display: block;
   margin: 0 auto;
 }
-.pie-holder {
-  width: 1200px;
+#pieGraph {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
+}
+.pie-holder {
+  width: 60vw;
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  align-items: center;
 }
 .pie {
-  width: 750px;
+  width: 60vw;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .pie-legend {
   margin-bottom: 6%;
   padding: 20px;
-  width: 600px;
+  width: 60vw;
+}
+.all-graphs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 @media (max-width: 800px) {
@@ -1175,7 +1189,7 @@ form label {
     flex-direction: column;
     position: absolute;
   }
-  .map-menu-background {
+  .map-menu {
     position: absolute;
     top: 48%;
     right: 0px;
@@ -1204,13 +1218,13 @@ form label {
     font-size: 0.9rem;
     text-align: center;
   }
-  .footer-container {
+  /* .footer-container {
     width: 100%;
     text-align: center;
-  }
-  .nav-footer {
+  } */
+  /* .nav-footer {
     /* display: none; */
-  }
+  /* } */
   .nav-menu {
     width: 375px;
   }
@@ -1290,6 +1304,13 @@ form label {
     -ms-flex-direction: column;
     flex-direction: column;
   }
+}
+
+.student-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 1.25rem;
 }
 
 /*# sourceMappingURL=index.css.map */

@@ -27,24 +27,19 @@ const NavBar = () => {
         background: '#2f54eb',
         textAlign: 'center',
         justifyContent: 'space-around',
+        height: '64px',
       }}
     >
       <div>
-        <img
-          className="hrf-logo"
-          alt="hrf-logo"
-          src={logo}
-          style={{ width: '20rem', paddingLeft: '1rem' }}
-        />
-        <span style={{ color: 'white', paddingTop: '10rem' }}>|</span>
-        <Input
-          prefix={<SearchOutlined style={{ color: 'white' }} />}
-          size="small"
-          style={{ width: '10rem', background: 'transparent', border: 'none' }}
-          placeholder="Search incidents"
-        />
+        <Link to="/" style={{ color: 'white' }}>
+          <img
+            className="hrf-logo"
+            alt="hrf-logo"
+            src={logo}
+            style={{ width: '20rem', paddingLeft: '1rem' }}
+          />
+        </Link>
       </div>
-
       <Menu
         mode="horizontal"
         style={{ background: '#2f54eb', paddingTop: '1rem' }}
@@ -56,8 +51,8 @@ const NavBar = () => {
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
-          <Link to="/incidents" style={{ color: 'white' }}>
-            Incidents
+          <Link to="/incident-reports" style={{ color: 'white' }}>
+            Incident Reports
           </Link>
         </Menu.Item>
         <Menu.Item key="3">

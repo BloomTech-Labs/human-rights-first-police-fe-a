@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Pie } from 'react-chartjs-2';
 
-import Horizontalbar from '../bargraph/HorizontalBar';
 import colorShader from './colorShader';
-
-import Legend from '../assets/Legend';
 
 const incrementor = (incident, type, types) => {
   if (type in types) {
