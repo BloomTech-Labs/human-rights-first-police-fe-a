@@ -46,7 +46,7 @@ const filterDataByDate = (data, range) => {
 const filterByTags = (data, tags) => {
   let filtered = [];
   tags.forEach(tag => {
-    data.filter(incident => {
+    data.forEach(incident => {
       if (incident.categories.indexOf(tag) > 0) {
         filtered.push(incident);
       }

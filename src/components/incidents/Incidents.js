@@ -22,6 +22,14 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 // Ant Design Imports:
 import { Pagination, DatePicker } from 'antd';
 
+let ranks = [
+  'Rank 1 - Police Presence',
+  'Rank 2 - Empty-hand',
+  'Rank 3 - Blunt Force',
+  'Rank 4 - Chemical & Electric',
+  'Rank 5 - Lethal Force',
+];
+
 const { RangePicker } = DatePicker;
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -38,6 +46,7 @@ const Incidents = () => {
   const [selectedTags, setSelectedTags] = useState(['All']);
   const [queryString, setQueryString] = useState('');
   const [selectedIncidents, setSelectedIncidents] = useState([]);
+  const [rank, setRank] = useState('Any');
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
   const tagIndex = useSelector(state => Object.keys(state.incident.tagIndex));
@@ -88,31 +97,44 @@ const Incidents = () => {
   useEffect(() => {
     const range = dates && createRange(dates);
     let filtered = [...incidents];
+
+    if (selectedTags.indexOf('All') === -1) {
+      console.log('test');
+      filtered = filterByTags(filtered, selectedTags);
+    }
     if (usState) {
       filtered = filterDataByState(filtered, usState);
     }
     if (dates) {
       const startDate = `${dates[0].c.year}-${dates[0].c.month}-${dates[0].c.day}`;
       const endDate = `${dates[1].c.year}-${dates[1].c.month}-${dates[1].c.day}`;
-      setQueryString(`?state=${usState}&start=${startDate}&end=${endDate}`);
+      setQueryString(`&state=${usState}&start=${startDate}&end=${endDate}`);
       filtered = filterDataByDate(filtered, range);
     }
-    if (selectedTags !== ['All']) {
-      filtered = filterByTags(filtered, selectedTags);
+    if (rank !== 'All') {
+      filtered = incidents.filter(incident => {
+        console.log(
+          incident.force_rank.trim(),
+          ranks[parseInt(rank) - 1].trim()
+        );
+        return incident.force_rank.trim() === ranks[parseInt(rank) - 1].trim();
+      });
     }
-
     setData(falsiesRemoved(filtered));
-  }, [usState, dates, selectedTags]);
+  }, [usState, dates, selectedTags, rank]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
   const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
 
-  const onSelect = (id, checked) => {
-    let nextSelectedIncident = checked
-      ? [...selectedIncidents, id]
-      : selectedIncidents.filter(i => i !== id);
-    setSelectedIncidents(nextSelectedIncident);
+  const onSelect = id => {
+    let newSelectedIncidents = [];
+    if (selectedIncidents.indexOf(id) > -1) {
+      newSelectedIncidents = selectedIncidents.filter(i => i !== id);
+    } else {
+      newSelectedIncidents = [...selectedIncidents, id];
+    }
+    setSelectedIncidents(newSelectedIncidents);
   };
 
   const onChange = page => {
@@ -134,17 +156,27 @@ const Incidents = () => {
     setSelectedTags(nextSelectedTags);
   };
 
-  const onSubmit = e => {
-    e.preventDefault();
-    setCurrentPage();
+  const onRank = e => {
+    setRank(e);
   };
   const downloadCSV = () => {
+    console.log(
+      `${
+        process.env.REACT_APP_BACKENDURL
+      }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
+        ','
+      )}`}`
+    );
     axios
       .get(
-        `${process.env.REACT_APP_BACKENDURL}/incidents/download${queryString}`,
-        selectedIncidents
+        `${
+          process.env.REACT_APP_BACKENDURL
+        }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
+          ','
+        )}`}`
       )
       .then(response => {
+        console.log(response);
         let link = document.createElement('a');
         link.href = window.URL.createObjectURL(
           new Blob([response.data], { type: 'application/octet-stream' })
@@ -196,7 +228,14 @@ const Incidents = () => {
             <fieldset className="form-top">
               <label>
                 Rank:
-                <Select showSearch placeholder="Any Rank">
+                <Select
+                  onChange={onRank}
+                  showSearch
+                  defaultValue="All"
+                  className="rank-select"
+                  style={{ width: 120 }}
+                >
+                  <Option value="All">All</Option>
                   <Option value="1">Rank: 1</Option>
                   <Option value="2">Rank: 2</Option>
                   <Option value="3">Rank: 3</Option>
@@ -243,33 +282,38 @@ const Incidents = () => {
           </form>
         </header>
         <section>
-          <Collapse key={nanoid()} className="collapse">
-            {currentPosts.map(incident => {
-              return (
-                <Panel
-                  header={header(incident)}
-                  className="panel"
-                  expandIconPosition="left"
-                >
-                  <div className="collapse-content">
-                    <p>{incident.desc}</p>
+          {data.length ? (
+            <Collapse key={nanoid()} className="collapse">
+              {currentPosts.map(incident => {
+                return (
+                  <Panel
+                    header={header(incident)}
+                    className="panel"
+                    expandIconPosition="left"
+                    key={incident.id}
+                  >
+                    <div className="collapse-content">
+                      <p>{incident.desc}</p>
 
-                    <Popover
-                      content={sourceListHelper(incident)}
-                      placement="rightTop"
-                    >
-                      <Button
-                        type="primary"
-                        style={{ backgroundColor: '#003767', border: 'none' }}
+                      <Popover
+                        content={sourceListHelper(incident)}
+                        placement="rightTop"
                       >
-                        Sources
-                      </Button>
-                    </Popover>
-                  </div>
-                </Panel>
-              );
-            })}
-          </Collapse>
+                        <Button
+                          type="primary"
+                          style={{ backgroundColor: '#003767', border: 'none' }}
+                        >
+                          Sources
+                        </Button>
+                      </Popover>
+                    </div>
+                  </Panel>
+                );
+              })}
+            </Collapse>
+          ) : (
+            noDataDisplay()
+          )}
         </section>
       </div>
       <section className="pagination">

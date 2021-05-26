@@ -45,14 +45,15 @@
 }
 .extra {
   display: flex;
-  width: 50%;
+  width: 60%;
   justify-content: flex-end;
 }
-.panel-date {
-  float: right;
+.rank-select {
+  width: 64px;
 }
 .incidentDate {
   display: inline-flex;
+  margin: 0px 8px;
 }
 
 .pagination {
