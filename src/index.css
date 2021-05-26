@@ -1081,7 +1081,7 @@ form label {
   flex-direction: column;
 }
 
-*/ .ant-menu .ant-menu-light {
+.ant-menu .ant-menu-light {
   margin: 0 auto;
   justify-content: space-between;
   text-align: center;
