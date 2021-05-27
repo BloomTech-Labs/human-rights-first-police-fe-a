@@ -12,7 +12,7 @@ Our team is developing an interactive map that identifies potential instances of
 
 ### Labs 34 
 
-[Brandon Santos] (https://github.com/Brandonx1123)
+[Brandon Santos](https://github.com/Brandonx1123)
 
 ### Labs 33
 [Lindsay Deaton](https://github.com/lindsay-deaton)
