@@ -296,7 +296,10 @@ const Incidents = () => {
                       >
                         <Button
                           type="primary"
-                          style={{ backgroundColor: '#003767', border: 'none' }}
+                          style={{
+                            backgroundColor: 'rgb(47, 84, 235)',
+                            border: 'none',
+                          }}
                         >
                           Sources
                         </Button>
