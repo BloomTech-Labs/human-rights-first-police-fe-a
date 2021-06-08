@@ -174,21 +174,15 @@ const GraphContainer = () => {
             noDataDisplay()
           )}
         </section>
-        {filtered.length > 0 ? (
-          <div>
-            {/* if user selects U.S. State bar graph disappears*/}
-            {!usState && (
-              <section id="barGraph" className="graph-container">
-                <div>
-                  <h2 style={{ marginTop: '5rem' }}>
-                    Total incident reports identified by our data collection
-                    methods by state
-                  </h2>
-                </div>
-                <BarGraph count={barCounts} />
-              </section>
-            )}
-          </div>
+        {/* if user selects U.S. State bar graph disappears*/}
+        {filtered.length > 0 && !usState ? (
+          <section id="barGraph" className="graph-container">
+            <h2 style={{ marginTop: '5rem' }}>
+              Total incident reports identified by our data collection methods
+              by state
+            </h2>
+            <BarGraph count={barCounts} />
+          </section>
         ) : null}
         {filtered.length > 0 ? (
           <div>
