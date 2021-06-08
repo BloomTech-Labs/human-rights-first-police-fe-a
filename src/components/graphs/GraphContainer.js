@@ -148,6 +148,13 @@ const GraphContainer = () => {
       </header>
 
       <div className="all-graphs-container">
+        {/* if user selects U.S. State display total # of incidents */}
+        {usState && (
+          <h2 id="selectedTotal">
+            {' '}
+            The Total Number of Incidents in {usState} is {filtered.length}
+          </h2>
+        )}
         <section id="lineGraph" className="graph-container">
           {filtered.length > 0 ? (
             <div className="all-graphs">
@@ -169,15 +176,22 @@ const GraphContainer = () => {
         </section>
         {filtered.length > 0 ? (
           <div>
-            <section id="barGraph" className="graph-container">
-              <div>
-                <h2 style={{ marginTop: '5rem' }}>
-                  Total incident reports identified by our data collection
-                  methods by state
-                </h2>
-              </div>
-              <BarGraph count={barCounts} />
-            </section>
+            {/* if user selects U.S. State bar graph disappears*/}
+            {!usState && (
+              <section id="barGraph" className="graph-container">
+                <div>
+                  <h2 style={{ marginTop: '5rem' }}>
+                    Total incident reports identified by our data collection
+                    methods by state
+                  </h2>
+                </div>
+                <BarGraph count={barCounts} />
+              </section>
+            )}
+          </div>
+        ) : null}
+        {filtered.length > 0 ? (
+          <div>
             <section id="pieGraph" className="graph-container">
               <h2 style={{ marginTop: '5rem' }}>
                 Prevalence of Force Ranks as identified by our data collection
