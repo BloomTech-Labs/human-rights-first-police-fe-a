@@ -20,7 +20,7 @@ import { DateTime } from 'luxon';
 import SearchBar from '../graphs/searchbar/SearchBar';
 
 // Ant Design Imports:
-import { Pagination, DatePicker } from 'antd';
+import { AutoComplete, Pagination, DatePicker } from 'antd';
 
 let ranks = [
   'Rank 1 - Police Presence',
@@ -233,6 +233,24 @@ const Incidents = () => {
     );
   };
 
+  const onCategoryChange = data => {
+    setValue(data);
+  };
+  const onCategorySelect = data => {
+    if (activeCategories.includes(data)) {
+      return;
+    } else {
+      setActiveCategories([...activeCategories, data]);
+      setValue('');
+    }
+  };
+  const filterOption = (inputValue, option) => {
+    return inputValue.slice(0, inputValue.length).toLowerCase() ===
+      option.value.slice(0, inputValue.length).toLowerCase()
+      ? option
+      : null;
+  };
+
   return (
     <div className="incidents-container">
       <div className="incidents-page">
@@ -272,24 +290,29 @@ const Incidents = () => {
             <fieldset className="form-bottom">
               <label>
                 Categories:
-                <Tag.CheckableTag
-                  key={'All'}
-                  checked={selectedTags.indexOf('All') > -1}
-                  onChange={checked => onToggle('All', checked)}
-                >
-                  All
-                </Tag.CheckableTag>
-                {tagIndex.map(tag => {
-                  return (
-                    <CheckableTag
-                      key={tag}
-                      checked={selectedTags.indexOf(tag) > -1}
-                      onChange={checked => onToggle(tag, checked)}
-                    >
-                      {tag}
-                    </CheckableTag>
-                  );
-                })}
+                <AutoComplete
+                  value={value}
+                  options={categoriesData}
+                  onSelect={onCategorySelect}
+                  onChange={onCategoryChange}
+                  style={{ width: 200 }}
+                  allowClear={true}
+                  filterOption={filterOption}
+                  placeholder="Browse Categories"
+                  notFoundContent="Category Not Found"
+                />
+                {activeCategories &&
+                  activeCategories.map(tag => {
+                    return (
+                      <CheckableTag
+                        key={tag}
+                        checked={activeCategories.indexOf(tag) > -1}
+                        onChange={checked => onToggle(tag, checked)}
+                      >
+                        {tag}
+                      </CheckableTag>
+                    );
+                  })}
               </label>
             </fieldset>
           </form>
