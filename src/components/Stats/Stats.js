@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CountUpAnimation } from './StatsFunction';
 import { Layout, Button, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 const { Title, Paragraph } = Typography;
@@ -12,7 +11,7 @@ const Stats = () => {
   const [numCities, setNumCities] = useState(0);
   // Banner Style settings
   const contentStyle = {
-    padding: '6rem',
+    padding: '3rem',
     color: 'white',
     textAlign: 'center',
     background: '#2f54eb',
