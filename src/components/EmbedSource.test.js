@@ -7,7 +7,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-const props = { url: 'http://www.example.com' };
+const props = { tweetUrl: 'http://www.example.com' };
 
 describe('<EmbedSource />', () => {
   test('Component renders', async () => {
