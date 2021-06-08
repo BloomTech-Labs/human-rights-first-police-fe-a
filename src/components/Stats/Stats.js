@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { CountUpAnimation } from './StatsFunction';
 import { Layout, Button, Typography } from 'antd';
 import { Link } from 'react-router-dom';
 const { Title, Paragraph } = Typography;
