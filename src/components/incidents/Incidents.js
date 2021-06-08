@@ -54,6 +54,28 @@ const Incidents = () => {
     state => state.api.incidents.getincidents.status
   );
 
+  const [value, setValue] = useState('');
+  const [activeCategories, setActiveCategories] = useState([]);
+
+  const categoriesData = [];
+
+  const allObj = {
+    value: 'All',
+  };
+
+  categoriesData.push(allObj);
+
+  for (let tag of tagIndex) {
+    if (tag.length < 3) {
+      continue;
+    } else {
+      const item = {
+        value: tag,
+      };
+      categoriesData.push(item);
+    }
+  }
+
   const header = incident => {
     return (
       <div className="header-top">
@@ -105,7 +127,7 @@ const Incidents = () => {
       setQueryString(`&state=${usState}&start=${startDate}&end=${endDate}`);
       filtered = filterDataByDate(filtered, range);
     }
-    if (rank !== 'Any') {
+    if (rank !== 'All') {
       console.log(rank);
       filtered = incidents.filter(incident => {
         return incident.force_rank.trim() === ranks[parseInt(rank) - 1].trim();
