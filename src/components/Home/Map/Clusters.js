@@ -68,6 +68,10 @@ export default function Clusters({ zoomOnCluster }) {
             }
           : { isCluster: false, pointCount: 1 };
 
+        if (longitude === 0 && latitude === 0) {
+          return null;
+        }
+
         return (
           <Marker
             key={nanoid()}
