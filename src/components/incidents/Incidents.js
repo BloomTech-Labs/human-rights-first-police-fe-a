@@ -113,10 +113,8 @@ const Incidents = () => {
   useEffect(() => {
     const range = dates && createRange(dates);
     let filtered = [...incidents];
-
-    if (selectedTags.indexOf('All') === -1) {
-      console.log('test');
-      filtered = filterByTags(filtered, selectedTags);
+    if (activeCategories.indexOf('All') === -1) {
+      filtered = filterByTags(filtered, activeCategories);
     }
     if (usState) {
       filtered = filterDataByState(filtered, usState);
@@ -127,14 +125,14 @@ const Incidents = () => {
       setQueryString(`&state=${usState}&start=${startDate}&end=${endDate}`);
       filtered = filterDataByDate(filtered, range);
     }
-    if (rank !== 'All') {
+    if (rank !== 'Any') {
       console.log(rank);
       filtered = incidents.filter(incident => {
         return incident.force_rank.trim() === ranks[parseInt(rank) - 1].trim();
       });
     }
     setData(falsiesRemoved(filtered));
-  }, [usState, dates, selectedTags, rank]);
+  }, [usState, dates, activeCategories, rank]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
@@ -156,17 +154,17 @@ const Incidents = () => {
 
   const onToggle = (tag, checked) => {
     let nextSelectedTags = checked
-      ? [...selectedTags, tag]
-      : selectedTags.filter(t => t !== tag || t === 'All');
+      ? [...activeCategories, tag]
+      : activeCategories.filter(t => t !== tag || t === 'All');
     if (tag === 'All') {
-      setSelectedTags(['All']);
+      setActiveCategories([]);
       return;
     }
     if (nextSelectedTags[0] === 'All') {
-      setSelectedTags(nextSelectedTags.slice(1));
+      setActiveCategories(nextSelectedTags.slice(1));
       return;
     }
-    setSelectedTags(nextSelectedTags);
+    setActiveCategories(nextSelectedTags);
   };
 
   const onRank = e => {
@@ -238,6 +236,7 @@ const Incidents = () => {
   };
   const onCategorySelect = data => {
     if (activeCategories.includes(data)) {
+      setValue('');
       return;
     } else {
       setActiveCategories([...activeCategories, data]);
