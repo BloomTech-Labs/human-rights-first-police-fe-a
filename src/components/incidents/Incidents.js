@@ -203,7 +203,7 @@ const Incidents = () => {
           description={
             <span>
               There are no incident reports matching these search criteria.
-              <span style={{ color: '#1890ff' }}>{usState}</span>
+              <span style={{ color: 'rgb(47, 84, 235)' }}>{usState}</span>
             </span>
           }
         />
@@ -243,7 +243,11 @@ const Incidents = () => {
                 Date: <RangePicker onCalendarChange={onDateSelection} />
               </label>
 
-              <Button onClick={downloadCSV} type="primary">
+              <Button
+                onClick={downloadCSV}
+                type="primary"
+                style={{ background: 'rgb(47, 84, 235)' }}
+              >
                 Export List
               </Button>
             </fieldset>

@@ -66,6 +66,28 @@
   padding-bottom: 2.5vh;
 }
 
+span.ant-tag.ant-tag-checkable:hover {
+  color: rgb(47, 84, 235);
+}
+
+.ant-tag-checkable-checked {
+  background-color: rgb(47, 84, 235);
+}
+
+span.ant-tag.ant-tag-checkable-checked:hover {
+  color: #ffffff;
+}
+
+.ant-pagination-item a:hover {
+  color: rgb(47, 84, 235);
+  border-color: rgb(47, 84, 235);
+}
+
+.ant-pagination-item-active a {
+  color: rgb(47, 84, 235);
+  border-color: rgb(47, 84, 235);
+}
+
 @media screen and (max-width: 1081px) {
   .incidents-page header {
     -webkit-box-orient: vertical;
