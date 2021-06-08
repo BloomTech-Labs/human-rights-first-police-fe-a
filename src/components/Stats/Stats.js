@@ -12,7 +12,7 @@ const Stats = () => {
   const [numCities, setNumCities] = useState(0);
   // Banner Style settings
   const contentStyle = {
-    padding: '6rem',
+    padding: '3rem',
     color: 'white',
     textAlign: 'center',
     background: '#2f54eb',
