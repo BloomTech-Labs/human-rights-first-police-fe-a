@@ -10,21 +10,24 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Contributors
 
-### Labs 34 
+### Labs 34
+
 [Robert Petersen](https://github.com/robert-petersen)
 
 [Brandon Santos](https://github.com/Brandonx1123)
 
+[John Chamberlin](https://github.com/john-chamberlin)
 
 ### Labs 33
+
 [Lindsay Deaton](https://github.com/lindsay-deaton)
 
 [Will Mondal](https://github.com/willmond-al)
 
 [Paul Kim](https://github.com/lbu0413)
 
-
 ### labs 32
+
 [Samuel Lee](https://github.com/AgentSamSA)
 
 [Michael Maton](https://github.com/michael-maton)
@@ -114,7 +117,7 @@ Where to find important files in this project:
 
   - `📂 AdminDashboard`
 
-      - `📂 AntTable`
+    - `📂 AntTable`
 
   - `📂 Footer`
 
@@ -156,7 +159,7 @@ Where to find important files in this project:
 
 - `📂 assets`
 
-    - `📂 LambdaAssets` <- Lambda Logos
+  - `📂 LambdaAssets` <- Lambda Logos
 
 - `📂 styles`
 
