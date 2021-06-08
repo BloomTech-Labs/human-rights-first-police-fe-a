@@ -46,7 +46,7 @@ const Incidents = () => {
   const [selectedTags, setSelectedTags] = useState(['All']);
   const [queryString, setQueryString] = useState('');
   const [selectedIncidents, setSelectedIncidents] = useState([]);
-  const [rank, setRank] = useState('Any');
+  const [rank, setRank] = useState('All');
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
   const tagIndex = useSelector(state => Object.keys(state.incident.tagIndex));
@@ -105,7 +105,7 @@ const Incidents = () => {
       setQueryString(`&state=${usState}&start=${startDate}&end=${endDate}`);
       filtered = filterDataByDate(filtered, range);
     }
-    if (rank !== 'Any') {
+    if (rank !== 'All') {
       console.log(rank);
       filtered = incidents.filter(incident => {
         return incident.force_rank.trim() === ranks[parseInt(rank) - 1].trim();
