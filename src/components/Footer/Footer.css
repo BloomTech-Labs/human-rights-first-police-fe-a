@@ -7,7 +7,7 @@
 }
 
 .footer-container h3 {
-  color: white;
+  color: var(--blue);
   font-weight: bold;
 }
 
