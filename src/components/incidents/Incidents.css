@@ -4,6 +4,10 @@
   display: flex;
   justify-content: space-between;
 }
+#title {
+  margin-top: 2px;
+  margin-left: 25px;
+}
 .incidents-container {
   max-width: 92vw;
   margin: auto;
@@ -26,6 +30,7 @@
 .collapse-content {
   display: flex;
 }
+
 .incidents-page header .user-input {
   display: -webkit-box;
   display: -ms-flexbox;
