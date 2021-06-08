@@ -32,7 +32,7 @@
 }
 
 .footer-links-container a:hover {
-  color: var(--hover-blue);
+  color: rgb(47, 84, 235);
   text-decoration: underline;
 }
 .right-links h3 {
