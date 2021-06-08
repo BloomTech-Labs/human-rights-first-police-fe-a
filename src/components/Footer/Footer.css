@@ -7,7 +7,7 @@
 }
 
 .footer-container h3 {
-  color: var(--blue);
+  color: rgb(47, 84, 235);
   font-weight: bold;
 }
 
@@ -32,7 +32,7 @@
 }
 
 .footer-links-container a:hover {
-  color: rgb(47, 84, 235);
+  color: var(--hover-blue);
   text-decoration: underline;
 }
 .right-links h3 {
