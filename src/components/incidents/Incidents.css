@@ -11,6 +11,9 @@
 .incidents-page {
   max-width: 92vw;
 }
+.incidentDate {
+  color: rgb(47, 84, 235) ;
+}
 
 .export-form {
   width: 100%;

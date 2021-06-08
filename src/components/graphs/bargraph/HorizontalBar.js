@@ -75,7 +75,7 @@ const Horizontalbar = () => {
         <h1>Incident Reports Grouped by Level of Police Force</h1>
         <p>
           This graph is intended to provide an at-a-glance understanding of the
-          types and volume of incident reports that are being cataloged.
+          types and volume of incident reports that are being catalogued.
         </p>
         <Legend />
         <HorizontalBar
