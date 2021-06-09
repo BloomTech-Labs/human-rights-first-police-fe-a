@@ -14,7 +14,7 @@ const Stats = () => {
     padding: '3rem',
     color: 'white',
     textAlign: 'center',
-    background: '#2f54eb',
+    background: '#003767',
   };
   // Documents the reports of incidents and sores them in a state in which it can be displayed on the Banner
   const dataList = useSelector(state => Object.values(state.incident.data));

@@ -16,7 +16,7 @@
   max-width: 92vw;
 }
 .incidentDate {
-  color: rgb(47, 84, 235) ;
+  color: #003767;
 }
 
 .export-form {
@@ -75,11 +75,11 @@
 }
 
 span.ant-tag.ant-tag-checkable:hover {
-  color: rgb(47, 84, 235);
+  color: #003767;
 }
 
 .ant-tag-checkable-checked {
-  background-color: rgb(47, 84, 235);
+  background-color: #003767;
 }
 
 span.ant-tag.ant-tag-checkable-checked:hover {
@@ -87,13 +87,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
 }
 
 .ant-pagination-item a:hover {
-  color: rgb(47, 84, 235);
-  border-color: rgb(47, 84, 235);
+  color: #003767;
+  border-color: #003767;
 }
 
 .ant-pagination-item-active a {
-  color: rgb(47, 84, 235);
-  border-color: rgb(47, 84, 235);
+  color: #003767;
+  border-color: #003767;
 }
 
 @media screen and (max-width: 1081px) {

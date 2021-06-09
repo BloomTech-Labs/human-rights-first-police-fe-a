@@ -26,7 +26,7 @@ export default function TimelineItems({ details }) {
       style={{ color: '#e63946' }}
       dateInnerStyle={{
         color: 'white',
-        backgroundColor: '#2f54eb',
+        backgroundColor: '#003767',
       }}
     >
       <div className="timeline-box">
@@ -49,7 +49,7 @@ export default function TimelineItems({ details }) {
               <Popover content={sourceListHelper(details)} placement="rightTop">
                 <Button
                   type="primary"
-                  style={{ backgroundColor: '#2f54eb', border: 'none' }}
+                  style={{ backgroundColor: '#003767', border: 'none' }}
                 >
                   Sources
                 </Button>
