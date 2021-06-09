@@ -20,7 +20,7 @@ import { DateTime } from 'luxon';
 import SearchBar from '../graphs/searchbar/SearchBar';
 
 // Ant Design Imports:
-import { Pagination, DatePicker } from 'antd';
+import { AutoComplete, Pagination, DatePicker } from 'antd';
 
 let ranks = [
   'Rank 1 - Police Presence',
@@ -53,6 +53,28 @@ const Incidents = () => {
   const fetchStatus = useSelector(
     state => state.api.incidents.getincidents.status
   );
+
+  const [value, setValue] = useState('');
+  const [activeCategories, setActiveCategories] = useState([]);
+
+  const categoriesData = [];
+
+  const allObj = {
+    value: 'All',
+  };
+
+  categoriesData.push(allObj);
+
+  for (let tag of tagIndex) {
+    if (tag.length < 3) {
+      continue;
+    } else {
+      const item = {
+        value: tag,
+      };
+      categoriesData.push(item);
+    }
+  }
 
   const header = incident => {
     return (
@@ -91,10 +113,8 @@ const Incidents = () => {
   useEffect(() => {
     const range = dates && createRange(dates);
     let filtered = [...incidents];
-
-    if (selectedTags.indexOf('All') === -1) {
-      console.log('test');
-      filtered = filterByTags(filtered, selectedTags);
+    if (activeCategories.indexOf('All') === -1) {
+      filtered = filterByTags(filtered, activeCategories);
     }
     if (usState) {
       filtered = filterDataByState(filtered, usState);
@@ -112,7 +132,7 @@ const Incidents = () => {
       });
     }
     setData(falsiesRemoved(filtered));
-  }, [usState, dates, selectedTags, rank]);
+  }, [usState, dates, activeCategories, rank]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
@@ -134,17 +154,17 @@ const Incidents = () => {
 
   const onToggle = (tag, checked) => {
     let nextSelectedTags = checked
-      ? [...selectedTags, tag]
-      : selectedTags.filter(t => t !== tag || t === 'All');
+      ? [...activeCategories, tag]
+      : activeCategories.filter(t => t !== tag || t === 'All');
     if (tag === 'All') {
-      setSelectedTags(['All']);
+      setActiveCategories([]);
       return;
     }
     if (nextSelectedTags[0] === 'All') {
-      setSelectedTags(nextSelectedTags.slice(1));
+      setActiveCategories(nextSelectedTags.slice(1));
       return;
     }
-    setSelectedTags(nextSelectedTags);
+    setActiveCategories(nextSelectedTags);
   };
 
   const onRank = e => {
@@ -211,6 +231,25 @@ const Incidents = () => {
     );
   };
 
+  const onCategoryChange = data => {
+    setValue(data);
+  };
+  const onCategorySelect = data => {
+    if (activeCategories.includes(data)) {
+      setValue('');
+      return;
+    } else {
+      setActiveCategories([...activeCategories, data]);
+      setValue('');
+    }
+  };
+  const filterOption = (inputValue, option) => {
+    return inputValue.slice(0, inputValue.length).toLowerCase() ===
+      option.value.slice(0, inputValue.length).toLowerCase()
+      ? option
+      : null;
+  };
+
   return (
     <div className="incidents-container">
       <div className="incidents-page">
@@ -254,24 +293,29 @@ const Incidents = () => {
             <fieldset className="form-bottom">
               <label>
                 Categories:
-                <Tag.CheckableTag
-                  key={'All'}
-                  checked={selectedTags.indexOf('All') > -1}
-                  onChange={checked => onToggle('All', checked)}
-                >
-                  All
-                </Tag.CheckableTag>
-                {tagIndex.map(tag => {
-                  return (
-                    <CheckableTag
-                      key={tag}
-                      checked={selectedTags.indexOf(tag) > -1}
-                      onChange={checked => onToggle(tag, checked)}
-                    >
-                      {tag}
-                    </CheckableTag>
-                  );
-                })}
+                <AutoComplete
+                  value={value}
+                  options={categoriesData}
+                  onSelect={onCategorySelect}
+                  onChange={onCategoryChange}
+                  style={{ width: 200 }}
+                  allowClear={true}
+                  filterOption={filterOption}
+                  placeholder="Browse Categories"
+                  notFoundContent="Category Not Found"
+                />
+                {activeCategories &&
+                  activeCategories.map(tag => {
+                    return (
+                      <CheckableTag
+                        key={tag}
+                        checked={activeCategories.indexOf(tag) > -1}
+                        onChange={checked => onToggle(tag, checked)}
+                      >
+                        {tag}
+                      </CheckableTag>
+                    );
+                  })}
               </label>
             </fieldset>
           </form>
