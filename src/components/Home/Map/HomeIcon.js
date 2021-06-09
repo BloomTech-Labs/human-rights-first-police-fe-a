@@ -1,6 +1,7 @@
 import React from 'react';
 import homeIcon from '../../../assets/home.png';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
 
 const StyledHome = styled.div`
   position: absolute;
@@ -16,12 +17,14 @@ const StyledHome = styled.div`
   }
 `;
 
-function HomeIcon({ initialPosition, zoomOnCluster }) {
+function HomeIcon({ initialPosition, zoomOnCluster, resetFocus }) {
   const { latitude, longitude, zoom } = initialPosition;
+  const dispatch = useDispatch();
 
   const onClick = e => {
     e.preventDefault();
     zoomOnCluster(zoom, longitude, latitude);
+    dispatch(resetFocus());
   };
 
   return (
