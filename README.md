@@ -70,6 +70,10 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Getting Started
 
+## Test Coverage
+- To check test coverage run 'npm run coverage'
+- Current coverage 51%
+
 ### Environment variables:
 
 - A sample `.env` file named `.env.sample` is provided:
