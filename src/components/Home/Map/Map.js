@@ -84,7 +84,7 @@ export default function Map() {
       transitionInterpolator: new FlyToInterpolator(),
       transitionEasing: x =>
         x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2, // Quadratic easing function
-      transitionDuration: 2000,
+      transitionDuration: 1500,
     });
   };
 
