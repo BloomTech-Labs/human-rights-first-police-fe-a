@@ -28,10 +28,6 @@
   color: white !important;
 }
 
-.menu-link:hover {
-  border-bottom: 1px solid white !important;
-}
-
 .NavbarItems {
   display: flex;
   justify-content: space-between;
