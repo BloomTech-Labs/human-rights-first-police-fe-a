@@ -120,7 +120,7 @@ export default function Map() {
                 <HomeIcon
                   zoomOnCluster={zoomOnCluster}
                   initialPosition={initialPosition}
-                  setViewport={setViewport}
+                  resetFocus={resetFocus}
                 />
               </NavControlContainer>
               <Clusters zoomOnCluster={zoomOnCluster} />
