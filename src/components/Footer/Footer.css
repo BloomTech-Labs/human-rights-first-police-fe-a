@@ -35,6 +35,9 @@
   color: var(--hover-blue);
   text-decoration: underline;
 }
+.right-links h3 {
+  color: #ec3944;
+}
 
 .built-by-lambda-container {
   width: 50vw;
