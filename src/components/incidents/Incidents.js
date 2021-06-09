@@ -57,7 +57,7 @@ const Incidents = () => {
   const header = incident => {
     return (
       <div className="header-top">
-        <p>{incident.title}</p>
+        <p id="title">{incident.title}</p>
         <div className="extra">
           <div className="tag-group">
             <Tag>{incident.categories[0]}</Tag>
