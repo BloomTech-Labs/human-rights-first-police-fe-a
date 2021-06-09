@@ -3,7 +3,6 @@ import apiSlice from './apiSlice';
 import incidentSlice from './incidentSlice';
 import mapSlice from './mapSlice';
 import userSlice from './userSlice';
-import logger from 'redux-logger';
 
 const store = configureStore({
   reducer: {
@@ -16,7 +15,7 @@ const store = configureStore({
     getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,
-    }).concat(logger),
+    }),
 });
 
 export default store;
