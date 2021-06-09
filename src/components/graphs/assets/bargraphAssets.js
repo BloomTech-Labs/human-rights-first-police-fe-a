@@ -32,10 +32,6 @@ const states = [
     abbreviation: 'DE',
   },
   {
-    name: 'Washington DC',
-    abbreviation: 'DC',
-  },
-  {
     name: 'Florida',
     abbreviation: 'FL',
   },
@@ -192,6 +188,10 @@ const states = [
     abbreviation: 'WA',
   },
   {
+    name: 'Washington DC',
+    abbreviation: 'DC',
+  },
+  {
     name: 'West Virginia',
     abbreviation: 'WV',
   },
@@ -214,10 +214,10 @@ for (let i = 0; i < states.length - 1; i++) {
   };
 }
 
-stateData['Unknown'] = {
-  abbreviation: '???',
-  count: 0,
-};
+// stateData['Unknown'] = {
+//   abbreviation: '???',
+//   count: 0,
+// };
 
 const createDataSet = data => {
   const result = {

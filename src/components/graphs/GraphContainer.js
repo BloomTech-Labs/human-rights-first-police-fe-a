@@ -110,9 +110,10 @@ const GraphContainer = () => {
     data.forEach(incident => {
       if (incident.state in newBarCounts) {
         newBarCounts[incident.state]['count'] += 1;
-      } else {
-        newBarCounts['Unknown']['count'] += 1;
       }
+      // else {
+      //   newBarCounts['Unknown']['count'] += 1;
+      // }
     });
 
     setBarCounts(newBarCounts);
