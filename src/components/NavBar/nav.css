@@ -1,5 +1,26 @@
-root:hover {
-  color: yellow;
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  background: #2f54eb;
+  text-align: center;
+  height: 64px;
+}
+
+/* .logo-container {
+
+} */
+
+.hrf-logo {
+  width: 20rem;
+}
+
+.menu {
+  background: #2f54eb;
+  padding-top: 1rem;
+}
+
+.menu-link {
+  color: white !important;
 }
 
 .NavbarItems {
@@ -49,9 +70,6 @@ root:hover {
   margin: 0;
 }
 
-.hrf-logo {
-  width: 250px;
-}
 @media screen and (max-width: 800px) {
   .NavbarItems {
     position: relative;
@@ -112,5 +130,3 @@ root:hover {
     width: 200px;
   }
 }
-
-

@@ -21,47 +21,31 @@ const NavBar = () => {
   };
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        background: '#2f54eb',
-        textAlign: 'center',
-        justifyContent: 'space-around',
-        height: '64px',
-      }}
-    >
-      <div>
-        <Link to="/" style={{ color: 'white' }}>
-          <img
-            className="hrf-logo"
-            alt="hrf-logo"
-            src={logo}
-            style={{ width: '20rem', paddingLeft: '1rem' }}
-          />
+    <div className="navbar-container">
+      <div className="logo-container">
+        <Link to="/">
+          <img className="hrf-logo" alt="hrf-logo" src={logo} />
         </Link>
       </div>
-      <Menu
-        mode="horizontal"
-        style={{ background: '#2f54eb', paddingTop: '1rem' }}
-      >
+      <Menu className="menu" mode="horizontal">
         <Space></Space>
         <Menu.Item key="1">
-          <Link to="/" style={{ color: 'white' }}>
+          <Link className="menu-link" to="/">
             Home
           </Link>
         </Menu.Item>
         <Menu.Item key="2">
-          <Link to="/incident-reports" style={{ color: 'white' }}>
+          <Link className="menu-link" to="/incident-reports">
             Incident Reports
           </Link>
         </Menu.Item>
         <Menu.Item key="3">
-          <Link to="/graph" style={{ color: 'white' }}>
+          <Link className="menu-link" to="/graph">
             Graph
           </Link>
         </Menu.Item>
         <Menu.Item key="4">
-          <Link to="/about" style={{ color: 'white' }}>
+          <Link className="menu-link" to="/about">
             About
           </Link>
         </Menu.Item>
