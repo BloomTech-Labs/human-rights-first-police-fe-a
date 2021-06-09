@@ -58,7 +58,11 @@ const Stats = () => {
         <Button style={{ margin: '.5rem' }} shape="round" ghost>
           <Link to="/incident-reports">Incident Reports</Link>
         </Button>
-        <Button style={{ margin: '.5rem' }} shape="round" ghost>
+        <Button
+          style={{ marginLeft: '3rem', padding: '0 3rem' }}
+          shape="round"
+          ghost
+        >
           <Link to="/about">About</Link>
         </Button>
       </div>
