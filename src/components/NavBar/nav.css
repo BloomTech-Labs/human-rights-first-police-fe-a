@@ -1,7 +1,7 @@
 .navbar-container {
   display: flex;
   justify-content: space-between;
-  background: #2f54eb;
+  background: #003767;
   text-align: center;
   height: 64px;
 }
@@ -16,7 +16,7 @@
 }
 
 .menu {
-  background: #2f54eb;
+  background: #003767;
   padding-top: 1rem;
   width: 40%;
   margin-top: -0.3rem;

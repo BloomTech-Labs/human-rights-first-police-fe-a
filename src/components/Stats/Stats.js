@@ -14,7 +14,7 @@ const Stats = () => {
     padding: '3rem',
     color: 'white',
     textAlign: 'center',
-    background: '#2f54eb',
+    background: '#003767',
   };
   // Documents the reports of incidents and sores them in a state in which it can be displayed on the Banner
   const dataList = useSelector(state => Object.values(state.incident.data));
@@ -58,7 +58,11 @@ const Stats = () => {
         <Button style={{ margin: '.5rem' }} shape="round" ghost>
           <Link to="/incident-reports">Incident Reports</Link>
         </Button>
-        <Button style={{ margin: '.5rem' }} shape="round" ghost>
+        <Button
+          style={{ marginLeft: '3rem', padding: '0 3rem' }}
+          shape="round"
+          ghost
+        >
           <Link to="/about">About</Link>
         </Button>
       </div>
