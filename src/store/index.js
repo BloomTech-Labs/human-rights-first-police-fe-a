@@ -20,7 +20,7 @@ const persistConfig = {
   whitelist: ['incident'],
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer); // this helps to prevent empty page when we refresh incident reports page
 
 const store = configureStore({
   reducer: persistedReducer,
