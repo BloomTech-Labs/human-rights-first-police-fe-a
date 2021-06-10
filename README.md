@@ -72,7 +72,7 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Test Coverage
 - To check test coverage run 'npm run coverage'
-- Current coverage 51%
+- Current coverage 55%
 
 ### Environment variables:
 

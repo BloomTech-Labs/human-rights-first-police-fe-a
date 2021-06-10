@@ -10,8 +10,10 @@ afterEach(() => {
 describe('<Stats />', () => {
   test('Component renders', async () => {
     const { container } = await render(<Stats />);
-    const title = screen.getByText(/blue witness/i);
-    expect(title).toBeInTheDocument();
+    const headings = screen.getAllByRole('heading');
+    expect(headings[0]).toBeInTheDocument();
+    const buttons = screen.getAllByRole('button');
+    expect(buttons[0]).toBeInTheDocument();
     expect(container).toContainElement(container.firstChild);
   });
 });
