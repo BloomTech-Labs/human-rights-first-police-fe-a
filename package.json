@@ -30,6 +30,7 @@
     "react-twitter-embed": "^3.0.3",
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "scss": "^0.2.4",
     "styled-components": "^5.2.1",
     "supercluster": "^7.1.0",

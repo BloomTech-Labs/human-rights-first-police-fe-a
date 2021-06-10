@@ -113,7 +113,10 @@ const Incidents = () => {
   useEffect(() => {
     const range = dates && createRange(dates);
     let filtered = [...incidents];
-    if (activeCategories.indexOf('All') === -1) {
+    if (
+      activeCategories.length !== 0 &&
+      activeCategories.indexOf('All') === -1
+    ) {
       filtered = filterByTags(filtered, activeCategories);
     }
     if (usState) {
@@ -126,8 +129,7 @@ const Incidents = () => {
       filtered = filterDataByDate(filtered, range);
     }
     if (rank !== 'All') {
-      console.log(rank);
-      filtered = incidents.filter(incident => {
+      filtered = filtered.filter(incident => {
         return incident.force_rank.trim() === ranks[parseInt(rank) - 1].trim();
       });
     }
