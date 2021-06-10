@@ -28,7 +28,7 @@ const store = configureStore({
     getDefaultMiddleware({
       immutableCheck: false,
       serializableCheck: false,
-    }).concat(logger),
+    }),
 });
 
 export default store;
