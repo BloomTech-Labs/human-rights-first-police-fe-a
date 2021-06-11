@@ -113,7 +113,10 @@ const Incidents = () => {
   useEffect(() => {
     const range = dates && createRange(dates);
     let filtered = [...incidents];
-    if (activeCategories.indexOf('All') === -1) {
+    if (
+      activeCategories.length !== 0 &&
+      activeCategories.indexOf('All') === -1
+    ) {
       filtered = filterByTags(filtered, activeCategories);
     }
     if (usState) {
@@ -126,8 +129,7 @@ const Incidents = () => {
       filtered = filterDataByDate(filtered, range);
     }
     if (rank !== 'All') {
-      console.log(rank);
-      filtered = incidents.filter(incident => {
+      filtered = filtered.filter(incident => {
         return incident.force_rank.trim() === ranks[parseInt(rank) - 1].trim();
       });
     }
@@ -223,7 +225,7 @@ const Incidents = () => {
           description={
             <span>
               There are no incident reports matching these search criteria.
-              <span style={{ color: 'rgb(47, 84, 235)' }}>{usState}</span>
+              <span style={{ color: '#003767' }}>{usState}</span>
             </span>
           }
         />
@@ -285,7 +287,7 @@ const Incidents = () => {
               <Button
                 onClick={downloadCSV}
                 type="primary"
-                style={{ background: 'rgb(47, 84, 235)' }}
+                style={{ background: '#003767' }}
               >
                 Export List
               </Button>
@@ -341,7 +343,7 @@ const Incidents = () => {
                         <Button
                           type="primary"
                           style={{
-                            backgroundColor: 'rgb(47, 84, 235)',
+                            backgroundColor: '#003767',
                             border: 'none',
                           }}
                         >
@@ -349,6 +351,9 @@ const Incidents = () => {
                         </Button>
                       </Popover>
                     </div>
+                    {incident.categories.map(i => {
+                      return <Tag>{i}</Tag>;
+                    })}
                   </Panel>
                 );
               })}

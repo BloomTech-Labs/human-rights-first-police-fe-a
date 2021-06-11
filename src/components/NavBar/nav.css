@@ -1,5 +1,31 @@
-root:hover {
-  color: yellow;
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  background: #003767;
+  text-align: center;
+  height: 64px;
+}
+
+.logo-container {
+  width: 40%;
+  margin-top: -0.5rem;
+}
+
+.hrf-logo {
+  width: 20rem;
+}
+
+.menu {
+  background: #05315e;
+  padding-top: 1rem;
+  width: 40%;
+  margin-top: -0.3rem;
+  height: 64px;
+  border-bottom: none !important;
+}
+
+.menu-link {
+  color: white !important ;
 }
 
 .NavbarItems {
@@ -49,10 +75,20 @@ root:hover {
   margin: 0;
 }
 
-.hrf-logo {
-  width: 250px;
-}
 @media screen and (max-width: 800px) {
+  .menu-link {
+    background-color:#003767 ;
+    width: 20%;
+    padding-left: 16%;
+    
+    padding-top: 40%;
+    padding-bottom: 60%;
+    padding-right: 80%;
+    color:whitesmoke !important;
+
+  };
+
+     
   .NavbarItems {
     position: relative;
   }
@@ -66,6 +102,7 @@ root:hover {
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
+    
   }
   .nav-menu.active {
     background-color: var(--blue);
@@ -82,10 +119,11 @@ root:hover {
     padding: 2rem;
     width: 100%;
     display: table;
+    
   }
 
   .nav-link:hover {
-    background-color: var(--lightblue);
+    background-color:whitesmoke;
     border-radius: 0;
   }
   /* .hrf-logo {
@@ -101,6 +139,7 @@ root:hover {
     width: 100%;
     font-size: 1.8rem;
     cursor: pointer;
+    
   }
 
   .lambda-logo {
@@ -112,5 +151,3 @@ root:hover {
     width: 200px;
   }
 }
-
-
