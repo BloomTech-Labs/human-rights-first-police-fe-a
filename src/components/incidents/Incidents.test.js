@@ -22,6 +22,6 @@ describe('<Incidents />', () => {
     await act(async () => {
       fireEvent.change(rankSelect, { target: { value: 2 } });
     });
-    const rank2s = screen.getAllByText(/add to list/i);
+    const rank2s = screen.getAllByText(/rank 2/i);
   });
 });
