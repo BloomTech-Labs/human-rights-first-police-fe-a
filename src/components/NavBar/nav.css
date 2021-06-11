@@ -16,7 +16,7 @@
 }
 
 .menu {
-  background: #003767;
+  background: #05315e;
   padding-top: 1rem;
   width: 40%;
   margin-top: -0.3rem;
@@ -25,7 +25,7 @@
 }
 
 .menu-link {
-  color: white !important;
+  color: white !important ;
 }
 
 .NavbarItems {
@@ -76,6 +76,19 @@
 }
 
 @media screen and (max-width: 800px) {
+  .menu-link {
+    background-color:#003767 ;
+    width: 20%;
+    padding-left: 16%;
+    
+    padding-top: 40%;
+    padding-bottom: 60%;
+    padding-right: 80%;
+    color:whitesmoke !important;
+
+  };
+
+     
   .NavbarItems {
     position: relative;
   }
@@ -89,6 +102,7 @@
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
+    
   }
   .nav-menu.active {
     background-color: var(--blue);
@@ -105,10 +119,11 @@
     padding: 2rem;
     width: 100%;
     display: table;
+    
   }
 
   .nav-link:hover {
-    background-color: var(--lightblue);
+    background-color:whitesmoke;
     border-radius: 0;
   }
   /* .hrf-logo {
@@ -124,6 +139,7 @@
     width: 100%;
     font-size: 1.8rem;
     cursor: pointer;
+    
   }
 
   .lambda-logo {
