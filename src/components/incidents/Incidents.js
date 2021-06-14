@@ -11,7 +11,16 @@ import {
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { Empty, Button, Collapse, Tag, Checkbox, Popover, Select } from 'antd';
+import {
+  Empty,
+  Button,
+  Collapse,
+  Tag,
+  Checkbox,
+  Popover,
+  Select,
+  Form,
+} from 'antd';
 
 // Time Imports
 import { DateTime } from 'luxon';
@@ -81,17 +90,13 @@ const Incidents = () => {
       <div className="header-top">
         <p id="title">{incident.title}</p>
         <div className="extra">
-          <div className="tag-group">
-            <Tag>{incident.categories[0]}</Tag>
-            <Tag>{incident.categories[1]}</Tag>
-            <Tag>{incident.categories[2]}</Tag>
+          <div className="incident-rank">
+            <Tag className="panel-tags">{incident.force_rank.slice(0, 6)}</Tag>
           </div>
-          <div>
-            <Tag>{incident.force_rank.slice(0, 6)}</Tag>
+          <div className="incident-city">
+            {incident.city}, {incident.state}
           </div>
-
-          <div className="incidentDate">
-            <p>{incident.city}, </p>
+          <div className="incident-date">
             <p className="panel-date">
               {DateTime.fromISO(incident.date)
                 .plus({ days: 1 })
@@ -100,6 +105,7 @@ const Incidents = () => {
           </div>
 
           <Checkbox
+            className="add-to-list"
             checked={selectedIncidents.indexOf(incident.id) > -1}
             onChange={checked => onSelect(incident.id, checked)}
           >
@@ -251,78 +257,76 @@ const Incidents = () => {
       ? option
       : null;
   };
-
   return (
-    <div className="incidents-container">
-      <div className="incidents-page">
-        <header>
-          <form className="export-form">
-            <fieldset className="form-top">
-              <label>
-                Rank:
-                <Select
-                  onChange={onRank}
-                  showSearch
-                  defaultValue="All"
-                  className="rank-select"
-                  style={{ width: 120 }}
+    <div className="incident-search-container">
+      <Form className="export-form">
+        <div className="rank-select">
+          <label htmlFor="ranks" className="rank">
+            Ranks
+          </label>
+          <Select
+            onChange={onRank}
+            showSearch
+            defaultValue="All"
+            style={{ width: 278 }}
+          >
+            <Option value="All">All</Option>
+            <Option value="1">Rank: 1</Option>
+            <Option value="2">Rank: 2</Option>
+            <Option value="3">Rank: 3</Option>
+            <Option value="4">Rank: 4</Option>
+            <Option value="5">Rank: 5</Option>
+          </Select>
+        </div>
+        <div className="state-search">
+          <label htmlFor="location" className="locations">
+            Location
+          </label>
+          <SearchBar setUsState={setUsState} />{' '}
+        </div>
+        <div className="category-select">
+          <label htmlFor="category" className="categories">
+            Categories
+          </label>
+          <AutoComplete
+            value={value}
+            options={categoriesData}
+            onSelect={onCategorySelect}
+            onChange={onCategoryChange}
+            style={{ width: 278 }}
+            allowClear={true}
+            filterOption={filterOption}
+            placeholder="Browse Categories"
+            notFoundContent="Category Not Found"
+          />
+          {activeCategories &&
+            activeCategories.map(tag => {
+              return (
+                <CheckableTag
+                  key={tag}
+                  checked={activeCategories.indexOf(tag) > -1}
+                  onChange={checked => onToggle(tag, checked)}
                 >
-                  <Option value="All">All</Option>
-                  <Option value="1">Rank: 1</Option>
-                  <Option value="2">Rank: 2</Option>
-                  <Option value="3">Rank: 3</Option>
-                  <Option value="4">Rank: 4</Option>
-                  <Option value="5">Rank: 5</Option>
-                </Select>
-              </label>
-
-              <label>
-                Location: <SearchBar setUsState={setUsState} />{' '}
-              </label>
-
-              <label>
-                Date: <RangePicker onCalendarChange={onDateSelection} />
-              </label>
-
-              <Button
-                onClick={downloadCSV}
-                type="primary"
-                style={{ background: '#003767' }}
-              >
-                Export List
-              </Button>
-            </fieldset>
-            <fieldset className="form-bottom">
-              <label>
-                Categories:
-                <AutoComplete
-                  value={value}
-                  options={categoriesData}
-                  onSelect={onCategorySelect}
-                  onChange={onCategoryChange}
-                  style={{ width: 200 }}
-                  allowClear={true}
-                  filterOption={filterOption}
-                  placeholder="Browse Categories"
-                  notFoundContent="Category Not Found"
-                />
-                {activeCategories &&
-                  activeCategories.map(tag => {
-                    return (
-                      <CheckableTag
-                        key={tag}
-                        checked={activeCategories.indexOf(tag) > -1}
-                        onChange={checked => onToggle(tag, checked)}
-                      >
-                        {tag}
-                      </CheckableTag>
-                    );
-                  })}
-              </label>
-            </fieldset>
-          </form>
-        </header>
-        <section>
+                  {tag}
+                </CheckableTag>
+              );
+            })}
+        </div>
+        <div className="date-select">
+          <label htmlFor="date" className="dates">
+            Date
+          </label>
+          <RangePicker onCalendarChange={onDateSelection} />
+        </div>
+        <div className="export-select">
+          <Button onClick={downloadCSV} className="export-button">
+            Export List
+          </Button>
+        </div>
+      </Form>
+      <div className="incidents-container">
+        <div className="reports-table"></div>
+        <div className="reports">
           {data.length ? (
             <Collapse key={nanoid()} className="collapse">
               {currentPosts.map(incident => {
@@ -361,17 +365,17 @@ const Incidents = () => {
           ) : (
             noDataDisplay()
           )}
+        </div>
+        <section className="pagination">
+          <Pagination
+            onChange={onChange}
+            current={currentPage}
+            pageSize={itemsPerPage}
+            total={data.length}
+            showSizeChanger={false}
+          />
         </section>
       </div>
-      <section className="pagination">
-        <Pagination
-          onChange={onChange}
-          current={currentPage}
-          pageSize={itemsPerPage}
-          total={data.length}
-          showSizeChanger={false}
-        />
-      </section>
     </div>
   );
 };
