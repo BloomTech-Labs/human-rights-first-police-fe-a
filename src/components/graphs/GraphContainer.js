@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Empty } from 'antd';
+import { filterDataByDate, createRange } from '../incidents/IncidentFilter';
 
 // Graphs
 import LineGraph from './linegraph/LineGraph';
@@ -87,9 +88,18 @@ const GraphContainer = () => {
   useEffect(() => {
     const counts = {};
     months.forEach(month => (counts[month] = 0));
-
-    filtered.forEach(incident => {
-      let month = DateTime.fromISO(incident?.date).toFormat('MMM');
+    let filtered12m = filterDataByDate(
+      filtered,
+      createRange([
+        DateTime.fromISO(today)
+          .minus({ months: 12 })
+          .set({ day: 1 }),
+        today,
+      ])
+    );
+    filtered12m.forEach(incident => {
+      let month = new DateTime.fromISO(incident?.date).toFormat('MMM');
+      console.log(DateTime.fromISO(incident.date), incident.id);
       if (month in counts) {
         counts[month]++;
       }
@@ -164,7 +174,15 @@ const GraphContainer = () => {
                 month
               </h2>
               <p>
-                <h4>April 2020 - Present</h4>
+                <h4>
+                  {DateTime.fromISO(today)
+                    .minus({ months: 12 })
+                    .toFormat('MMMM yyyy')}{' '}
+                  -{' '}
+                  {DateTime.fromISO(today)
+                    .minus({ months: 1 })
+                    .toFormat('MMMM yyyy')}
+                </h4>
               </p>
             </div>
           ) : null}
