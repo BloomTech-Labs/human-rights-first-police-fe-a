@@ -6,17 +6,14 @@ import 'jest-canvas-mock';
 import OktaWrapper from '../components/OktaWrapper';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
-// Redux store
-// import store from '../store';
-import { incidentsData } from './mockStore';
+// Mock Redux store
+import { incidentsData, initViewport, initFocus } from './mockStoreData';
 import configureMockStore from 'redux-mock-store';
 
-import * as antd from 'antd';
-import { fromPairs } from 'lodash-es';
 // Provides a custom render function for tests that makes Redux, React Router,
 // and Okta available to components
 
-// Configure Mock Store *currently empty middleware
+// Configure Mock Store with no middleware
 const middlewares = [];
 const mockStore = configureMockStore(middlewares);
 
@@ -27,17 +24,17 @@ let state = {
       gettimeline: { status: 'idle', error: null },
     },
   },
-  incident: { data: [...incidentsData], ids: [], timeline: [], tagIndex: {} },
+  incident: { data: incidentsData, ids: [], timeline: [], tagIndex: {} },
   user: {
     status: { authenticated: false, pending: false },
     tokens: { access: null, id: null },
     info: null,
   },
+  map: { viewport: initViewport, focus: initFocus },
 };
 
 const store = mockStore(() => state);
 
-console.log(store);
 function Wrapper(props) {
   return (
     <Provider store={store}>

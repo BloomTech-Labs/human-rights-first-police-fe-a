@@ -20,17 +20,16 @@ describe('<Incidents />', () => {
   });
 });
 
-// describe('Incidents Page Renders with Incidents', () => {
-//   test('Component renders with incidents', async () => {
-//     const { container } = await render(<MockProvider mockStore={mockStore}>
-//     <Incidents />
-//     </MockProvider>);
-//     expect(container).toContainElement(container.firstChild);
-//     const rankSelect = screen.getByLabelText(/rank/i);
-//     console.log(rankSelect);
-//     await act(async () => {
-//       fireEvent.change(rankSelect, { target: { value: 2 } });
-//     });
-//     const rank2s = screen.getAllByText(/rank 2/i);
-//   });
-// });
+describe('Incidents Page Renders with Incidents', () => {
+  test('Component renders with incidents', async () => {
+    const { container } = await render(<Incidents />);
+    expect(container).toContainElement(container.firstChild);
+    const rankSelect = screen.getByLabelText(/rank/i);
+    await act(async () => {
+      fireEvent.change(rankSelect, { target: { value: 2 } });
+    });
+    const rank2s = screen.getAllByText(/rank 1/i);
+    console.log(rank2s);
+    expect(rank2s[0]).toBeInTheDocument();
+  });
+});

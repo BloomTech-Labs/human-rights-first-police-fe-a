@@ -7,7 +7,7 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-const props = { id: 0, zoomOnCluster: jest.fn() };
+const props = { id: 1331, zoomOnCluster: jest.fn() };
 
 describe('/components/Home/Map: <IncidentFocusCard />', () => {
   test('Component renders', async () => {
