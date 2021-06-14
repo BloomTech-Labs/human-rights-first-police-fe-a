@@ -49,7 +49,8 @@ const Incidents = () => {
   const [selectedIncidents, setSelectedIncidents] = useState([]);
   const [rank, setRank] = useState('All');
   const [added, setAdded] = useState([]); // data where all checked cases stored(from checkboxes)
-  const [sam, setSam] = useState([]); // in progress, created for multi state switch(needs to discuss)
+  // const [sam, setSam] = useState([]); // in progress, created for multi state switch(needs to discuss)
+
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
   const tagIndex = useSelector(state => Object.keys(state.incident.tagIndex));
@@ -139,7 +140,7 @@ const Incidents = () => {
     setData(falsiesRemoved(filtered));
     setAdded([]); // it cleans checked data when we change the filtered data
     setSelectedIncidents([]);
-    console.log('sam', sam);
+    // console.log('sam', sam);
   }, [usState, dates, activeCategories, rank]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
@@ -150,10 +151,10 @@ const Incidents = () => {
     let newSelectedIncidents = [];
     if (selectedIncidents.indexOf(id) > -1) {
       newSelectedIncidents = selectedIncidents.filter(i => i !== id);
-      setSam(sam.filter(i => i !== id)); //in progress(for multi state switch data)
+      // setSam(sam.filter(i => i !== id)); //in progress(for multi state switch data)
     } else {
       newSelectedIncidents = [...selectedIncidents, id];
-      setSam([...sam, id]); //in progress(for multi state switch data)
+      // setSam([...sam, id]); //in progress(for multi state switch data)
     }
     setSelectedIncidents(newSelectedIncidents);
   };
@@ -189,21 +190,6 @@ const Incidents = () => {
     i.added_on = i.added_on.slice(0, 10); // removes unreadable timestamps
   });
 
-  // const headers = [
-  //   { label: "id", key: "id" },
-  //   { label: "date", key: "date" },
-  //   { label: "added_on", key: "added_on" },
-  //   { label: "src", key: "src" },
-  //   { label: "incident_id", key: "incident_id" },
-  //   { label: "city", key: "city" },
-  //   { label: "state", key: "state" },
-  //   { label: "lat", key: "lat" },
-  //   { label: "long", key: "long" },
-  //   { label: "title", key: "title" },
-  //   { label: "desc", key: "desc" },
-  //   { label: "categories", key: "categories" },
-  //   { label: "force_rank", key: "force_rank" },
-  // ];
   const headers = [
     { label: 'id', key: 'id' },
     { label: 'Date', key: 'date' },
@@ -230,7 +216,6 @@ const Incidents = () => {
     });
     setAdded(k);
   }, [selectedIncidents]);
-  console.log(added);
   const csvReport = {
     // stores all data for CSV report
     data: selectedIncidents.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
@@ -239,13 +224,13 @@ const Incidents = () => {
   };
 
   const downloadCSV = () => {
-    console.log(
-      `${
-        process.env.REACT_APP_BACKENDURL
-      }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
-        ','
-      )}`}`
-    );
+    // console.log(
+    //   `${
+    //     process.env.REACT_APP_BACKENDURL
+    //   }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
+    //     ','
+    //   )}`}`
+    // );
     axios
       .get(
         `${
@@ -255,8 +240,6 @@ const Incidents = () => {
         )}`}`
       )
       .then(response => {
-        console.log(response);
-        console.log(rec);
         let link = document.createElement('a');
         link.href = window.URL.createObjectURL(
           new Blob([response.data], { type: 'application/octet-stream' })
