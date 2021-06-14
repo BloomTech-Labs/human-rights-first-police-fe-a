@@ -22,7 +22,7 @@ const ClusterMarker = styled.div`
 `;
 
 const INCIDENT_ZOOM_LEVEL = 12;
-const LEAVES_LIMIT = 10; // Max # of incidents to display in IncidentFocus
+const LEAVES_LIMIT = 500; // Max # of incidents to display in IncidentFocus
 
 export default function Clusters({ zoomOnCluster }) {
   const dispatch = useDispatch();
@@ -77,8 +77,8 @@ export default function Clusters({ zoomOnCluster }) {
             key={nanoid()}
             longitude={longitude}
             latitude={latitude}
-            offsetLeft={-(10 + (pointCount / points.length) * 600) / 2}
-            offsetTop={-(10 + (pointCount / points.length) * 600) / 2}
+            offsetLeft={-(10 + (pointCount / points.length) * 300) / 2}
+            offsetTop={-(10 + (pointCount / points.length) * 300) / 2}
             onClick={() => {
               if (isCluster) {
                 handleClusterClick(c.id, longitude, latitude);
@@ -87,7 +87,7 @@ export default function Clusters({ zoomOnCluster }) {
               }
             }}
           >
-            <ClusterMarker size={10 + (pointCount / points.length) * 600}>
+            <ClusterMarker size={10 + (pointCount / points.length) * 300}>
               {pointCount}
             </ClusterMarker>
           </Marker>
