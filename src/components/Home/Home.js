@@ -4,11 +4,14 @@ import Stats from '../Stats/Stats';
 import RecentTimeline from '../timeline/RecentTimeline';
 import HorizontalBar from '../graphs/bargraph/HorizontalBar';
 import './Home.css';
+import { notification, Button } from 'antd';
 
 export default function Home() {
   const fetchStatus = useSelector(
     state => state.api.incidents.getincidents.status
   );
+
+
 
   return (
     <div>
@@ -32,6 +35,6 @@ export default function Home() {
           ''
         )}
       </div>
-    </div>
+    </div >
   );
 }

@@ -16,7 +16,7 @@
 }
 
 .menu {
-  background: #05315e;
+  background: #003767;
   padding-top: 1rem;
   width: 40%;
   margin-top: -0.3rem;
@@ -84,11 +84,9 @@
     padding-top: 40%;
     padding-bottom: 60%;
     padding-right: 80%;
-    color:whitesmoke !important;
+    color: whitesmoke !important;
+  }
 
-  };
-
-     
   .NavbarItems {
     position: relative;
   }
@@ -102,7 +100,6 @@
     left: -100%;
     opacity: 1;
     transition: all 0.5s ease;
-    
   }
   .nav-menu.active {
     background-color: var(--blue);
@@ -119,7 +116,6 @@
     padding: 2rem;
     width: 100%;
     display: table;
-    
   }
 
   .nav-link:hover {
@@ -139,7 +135,6 @@
     width: 100%;
     font-size: 1.8rem;
     cursor: pointer;
-    
   }
 
   .lambda-logo {
