@@ -352,15 +352,16 @@ const Incidents = () => {
               </label>
 
               <Button
-                onClick={downloadCSV}
+                // onClick={downloadCSV}
                 type="primary"
                 style={{ background: '#003767' }}
               >
-                Export List
+                <CSVLink {...csvReport} target="_blank">
+                  {' '}
+                  {/* exports CSV file*/}
+                  Export List
+                </CSVLink>
               </Button>
-              <CSVLink {...csvReport} target="_blank">
-                ddsad
-              </CSVLink>
             </fieldset>
             <fieldset className="form-bottom">
               <label>
