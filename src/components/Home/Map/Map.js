@@ -116,7 +116,7 @@ export default function Map() {
             <>
               <Search zoomOnCluster={zoomOnCluster} />
               <NavControlContainer>
-                <NavigationControl />
+                <NavigationControl showCompass={null} />
                 <HomeIcon
                   zoomOnCluster={zoomOnCluster}
                   initialPosition={initialPosition}
