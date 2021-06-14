@@ -21,6 +21,7 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 
 // Ant Design Imports:
 import { AutoComplete, Pagination, DatePicker } from 'antd';
+import { CSVLink } from 'react-csv';
 
 let ranks = [
   'Rank 1 - Police Presence',
@@ -47,6 +48,8 @@ const Incidents = () => {
   const [queryString, setQueryString] = useState('');
   const [selectedIncidents, setSelectedIncidents] = useState([]);
   const [rank, setRank] = useState('All');
+  const [added, setAdded] = useState([]);
+  const [sam, setSam] = useState([]);
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
   const tagIndex = useSelector(state => Object.keys(state.incident.tagIndex));
@@ -134,6 +137,9 @@ const Incidents = () => {
       });
     }
     setData(falsiesRemoved(filtered));
+    setAdded([]);
+    setSelectedIncidents([]);
+    console.log('sam', sam);
   }, [usState, dates, activeCategories, rank]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
@@ -144,8 +150,10 @@ const Incidents = () => {
     let newSelectedIncidents = [];
     if (selectedIncidents.indexOf(id) > -1) {
       newSelectedIncidents = selectedIncidents.filter(i => i !== id);
+      setSam(sam.filter(i => i !== id));
     } else {
       newSelectedIncidents = [...selectedIncidents, id];
+      setSam([...sam, id]);
     }
     setSelectedIncidents(newSelectedIncidents);
   };
@@ -172,6 +180,61 @@ const Incidents = () => {
   const onRank = e => {
     setRank(e);
   };
+
+  let rec = [...data];
+  rec.forEach(i => {
+    i.desc = i.desc.split('"').join("'");
+    i.date = i.date.slice(0, 10);
+    i.added_on = i.added_on.slice(0, 10);
+  });
+
+  // const headers = [
+  //   { label: "id", key: "id" },
+  //   { label: "date", key: "date" },
+  //   { label: "added_on", key: "added_on" },
+  //   { label: "src", key: "src" },
+  //   { label: "incident_id", key: "incident_id" },
+  //   { label: "city", key: "city" },
+  //   { label: "state", key: "state" },
+  //   { label: "lat", key: "lat" },
+  //   { label: "long", key: "long" },
+  //   { label: "title", key: "title" },
+  //   { label: "desc", key: "desc" },
+  //   { label: "categories", key: "categories" },
+  //   { label: "force_rank", key: "force_rank" },
+  // ];
+  const headers = [
+    { label: 'id', key: 'id' },
+    { label: 'Date', key: 'date' },
+    { label: 'Title', key: 'title' },
+    { label: 'Force Rank', key: 'force_rank' },
+    { label: 'Categories', key: 'categories' },
+    { label: 'City', key: 'city' },
+    { label: 'State', key: 'state' },
+    { label: 'Source', key: 'src' },
+    { label: 'Description', key: 'desc' },
+    { label: 'Latitude', key: 'lat' },
+    { label: 'Longitude', key: 'long' },
+    { label: 'Added On', key: 'added_on' },
+    { label: 'Incident id', key: 'incident_id' },
+  ];
+
+  let k = [];
+  useEffect(() => {
+    let f = [];
+    selectedIncidents.forEach(i => {
+      [f] = rec.filter(inc => inc.id === i);
+      k.push(f);
+    });
+    setAdded(k);
+  }, [selectedIncidents]);
+  console.log(added);
+  const csvReport = {
+    data: selectedIncidents.length === 0 ? rec : added,
+    headers: headers,
+    filename: 'report.csv',
+  };
+
   const downloadCSV = () => {
     console.log(
       `${
@@ -190,6 +253,7 @@ const Incidents = () => {
       )
       .then(response => {
         console.log(response);
+        console.log(rec);
         let link = document.createElement('a');
         link.href = window.URL.createObjectURL(
           new Blob([response.data], { type: 'application/octet-stream' })
@@ -291,6 +355,9 @@ const Incidents = () => {
               >
                 Export List
               </Button>
+              <CSVLink {...csvReport} target="_blank">
+                ddsad
+              </CSVLink>
             </fieldset>
             <fieldset className="form-bottom">
               <label>
@@ -351,6 +418,9 @@ const Incidents = () => {
                         </Button>
                       </Popover>
                     </div>
+                    {incident.categories.map(i => {
+                      return <Tag>{i}</Tag>;
+                    })}
                   </Panel>
                 );
               })}
