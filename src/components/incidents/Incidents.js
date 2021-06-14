@@ -351,6 +351,9 @@ const Incidents = () => {
                         </Button>
                       </Popover>
                     </div>
+                    {incident.categories.map(i => {
+                      return <Tag>{i}</Tag>;
+                    })}
                   </Panel>
                 );
               })}
