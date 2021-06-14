@@ -220,8 +220,9 @@ const Incidents = () => {
     { label: 'Incident id', key: 'incident_id' },
   ];
 
-  let k = [];
   useEffect(() => {
+    // handles any changes with checked/unchecked incidents
+    let k = [];
     let f = [];
     selectedIncidents.forEach(i => {
       [f] = rec.filter(inc => inc.id === i);
@@ -231,7 +232,8 @@ const Incidents = () => {
   }, [selectedIncidents]);
   console.log(added);
   const csvReport = {
-    data: selectedIncidents.length === 0 ? rec : added,
+    // stores all data for CSV report
+    data: selectedIncidents.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
     headers: headers,
     filename: 'report.csv',
   };
