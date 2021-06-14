@@ -19,8 +19,17 @@ const middlewares = [];
 const mockStore = configureMockStore(middlewares);
 
 let state = {
-  players: {
-    'audio-player-1': { paused: false },
+  api: {
+    incidents: {
+      getincidents: { status: 'idle', error: null },
+      gettimeline: { status: 'idle', error: null },
+    },
+  },
+  incident: { data: {}, ids: [], timeline: [], tagIndex: {} },
+  user: {
+    status: { authenticated: false, pending: false },
+    tokens: { access: null, id: null },
+    info: null,
   },
 };
 
