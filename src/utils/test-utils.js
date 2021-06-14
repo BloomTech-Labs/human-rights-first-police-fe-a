@@ -7,12 +7,26 @@ import OktaWrapper from '../components/OktaWrapper';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 // Redux store
-import store from '../store';
+// import store from '../store';
+import configureMockStore from 'redux-mock-store';
 
 import * as antd from 'antd';
-
 // Provides a custom render function for tests that makes Redux, React Router,
 // and Okta available to components
+
+// Configure Mock Store *currently empty middleware
+const middlewares = [];
+const mockStore = configureMockStore(middlewares);
+
+let state = {
+  players: {
+    'audio-player-1': { paused: false },
+  },
+};
+
+const store = mockStore(() => state);
+
+console.log(store);
 function Wrapper(props) {
   return (
     <Provider store={store}>
