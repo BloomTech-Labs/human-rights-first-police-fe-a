@@ -21,7 +21,7 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 
 // Ant Design Imports:
 import { AutoComplete, Pagination, DatePicker } from 'antd';
-import { CSVLink } from 'react-csv';
+import { CSVLink } from 'react-csv'; // helper for export CSV from current State
 
 let ranks = [
   'Rank 1 - Police Presence',
@@ -48,8 +48,8 @@ const Incidents = () => {
   const [queryString, setQueryString] = useState('');
   const [selectedIncidents, setSelectedIncidents] = useState([]);
   const [rank, setRank] = useState('All');
-  const [added, setAdded] = useState([]);
-  const [sam, setSam] = useState([]);
+  const [added, setAdded] = useState([]); // data where all checked cases stored(from checkboxes)
+  const [sam, setSam] = useState([]); // in progress, created for multi state switch(needs to discuss)
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
   const tagIndex = useSelector(state => Object.keys(state.incident.tagIndex));
@@ -137,7 +137,7 @@ const Incidents = () => {
       });
     }
     setData(falsiesRemoved(filtered));
-    setAdded([]);
+    setAdded([]); // it cleans checked data when we change the filtered data
     setSelectedIncidents([]);
     console.log('sam', sam);
   }, [usState, dates, activeCategories, rank]);
@@ -150,10 +150,10 @@ const Incidents = () => {
     let newSelectedIncidents = [];
     if (selectedIncidents.indexOf(id) > -1) {
       newSelectedIncidents = selectedIncidents.filter(i => i !== id);
-      setSam(sam.filter(i => i !== id));
+      setSam(sam.filter(i => i !== id)); //in progress(for multi state switch data)
     } else {
       newSelectedIncidents = [...selectedIncidents, id];
-      setSam([...sam, id]);
+      setSam([...sam, id]); //in progress(for multi state switch data)
     }
     setSelectedIncidents(newSelectedIncidents);
   };
@@ -181,11 +181,12 @@ const Incidents = () => {
     setRank(e);
   };
 
-  let rec = [...data];
+  let rec = [...data]; // copies the current data to avoid manipulating with the main state
   rec.forEach(i => {
-    i.desc = i.desc.split('"').join("'");
-    i.date = i.date.slice(0, 10);
-    i.added_on = i.added_on.slice(0, 10);
+    // makes the current data prettier
+    i.desc = i.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
+    i.date = i.date.slice(0, 10); // removes unreadable timestamps
+    i.added_on = i.added_on.slice(0, 10); // removes unreadable timestamps
   });
 
   // const headers = [
