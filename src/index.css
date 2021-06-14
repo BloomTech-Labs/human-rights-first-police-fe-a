@@ -502,7 +502,8 @@ div.timeline-container {
 }
 
 .timeline-wrapper {
-  padding: 82px 0 0 30px;
+  padding: 82px 20px 0 0;
+  margin: 0 38px 0 0;
 }
 
 @media (max-width: 2560px) {
