@@ -8,9 +8,11 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 // Redux store
 // import store from '../store';
+import { incidentsData } from './mockStore';
 import configureMockStore from 'redux-mock-store';
 
 import * as antd from 'antd';
+import { fromPairs } from 'lodash-es';
 // Provides a custom render function for tests that makes Redux, React Router,
 // and Okta available to components
 
@@ -25,7 +27,7 @@ let state = {
       gettimeline: { status: 'idle', error: null },
     },
   },
-  incident: { data: {}, ids: [], timeline: [], tagIndex: {} },
+  incident: { data: [...incidentsData], ids: [], timeline: [], tagIndex: {} },
   user: {
     status: { authenticated: false, pending: false },
     tokens: { access: null, id: null },
