@@ -4,8 +4,8 @@ import {
   render,
   cleanup,
   screen,
-  fireEvent,
   act,
+  fireEvent,
 } from '../../utils/test-utils';
 import Incidents from './Incidents';
 import userEvent from '@testing-library/user-event';
@@ -41,29 +41,41 @@ describe('Incidents are displayed upon render', () => {
 describe('Filter functions by rank correctly', () => {
   test('Filter by rank displays events with specific rank', async () => {
     await render(<Incidents />);
-    const rankFilter = screen.getByLabelText(/rank:/i);
-    fireEvent.click(rankFilter);
-    screen.debug();
-    // const rankTwo = screen.getByText(/rank: 2/i);
-    // fireEvent.click(rankTwo);
+    const rankFilter = screen.getByLabelText(/rank/i);
+    userEvent.click(rankFilter);
+
+    const rank2 = screen.getByText(/rank: 2/i);
+    await act(async () => {
+      userEvent.click(rank2);
+    });
+
     const rank2s = screen.getAllByText(/rank 2/i);
-    const rank1s = screen.getAllByText(/rank 1/i);
+    const rank1s = screen.queryByText(/rank 1/i);
     expect(rank2s.length).toBeGreaterThanOrEqual(2);
-    expect(rank1s.length).toBeLessThanOrEqual(1);
+    expect(rank1s).toBe(null);
+  });
+
+  test('Filter by rank removes extra pages of results', async () => {
+    const page2 = screen.queryByTitle('2');
+    expect(page2).toBe(null);
   });
 });
 
-describe('Filter functions by location correctly', () => {
-  test('Filter by rank displays events with specific rank', async () => {
-    await render(<Incidents />);
-    const rankFilter = screen.getByLabelText(/rank:/i);
-    fireEvent.click(rankFilter);
-    screen.debug();
-    // const rankTwo = screen.getByText(/rank: 2/i);
-    // fireEvent.click(rankTwo);
-    const rank2s = screen.getAllByText(/rank 2/i);
-    const rank1s = screen.getAllByText(/rank 1/i);
-    expect(rank2s.length).toBeGreaterThanOrEqual(2);
-    expect(rank1s.length).toBeLessThanOrEqual(1);
-  });
-});
+// describe('Location filter works correctly', () => {
+//   test('Location filter returns correct results', async () => {
+//     await render(<Incidents />);
+//     const locationFilter = screen.getByLabelText(/location/i);
+//     await act(async () => {
+//       await userEvent.click(locationFilter);
+//     });
+//     await act(async () => {
+//       await userEvent.type(locationFilter, 'Minneso');
+//     });
+//     const MinnesotaSelect = screen.getAllByText(/minnesota/i);
+//     await act(async () => {
+//       await userEvent.click(MinnesotaSelect[1]);
+//     });
+//     const listedIncidents = screen.getAllByText(/add to list/i);
+//     expect(listedIncidents.length).toEqual(2);
+//   });
+// });

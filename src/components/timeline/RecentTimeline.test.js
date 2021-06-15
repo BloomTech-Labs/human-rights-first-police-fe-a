@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '../../utils/test-utils';
+import { render, cleanup, screen } from '../../utils/test-utils';
 import { RecentTimeline } from './RecentTimeline';
 
 afterEach(() => {
