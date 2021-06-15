@@ -61,14 +61,17 @@ describe('Filter functions by rank correctly', () => {
   });
 });
 
-// describe('Location filter works correctly', () => {
-//   test('Location filter properly updates UsState', async () => {
-//     // await render(<Incidents />);
-//   });
-//   test('Location filter returns correct results');
-//   // Finding the button to remove state filter:
-//   // class="anticon-close-circle"
-//   //
-//   test('Removing State filter resets UsState');
-//   test('Removing State filter returns all incidents');
-// });
+describe('Location filter works correctly', () => {
+  test('Location filter returns correct results', async () => {
+    await render(<Incidents />);
+    const locationFilter = screen.getByLabelText(/location/i);
+
+    userEvent.click(locationFilter);
+    await act(async () => {
+      userEvent.type('Minn');
+      const Minny = screen.getByText(/minnesota/i);
+      userEvent.click(Minny);
+    });
+  });
+  // test('Removing State filter returns all incidents');
+});
