@@ -8,6 +8,7 @@ import {
   act,
 } from '../../utils/test-utils';
 import Incidents from './Incidents';
+import userEvent from '@testing-library/user-event';
 
 afterEach(() => {
   cleanup();
@@ -27,6 +28,14 @@ describe('Incidents are displayed upon render', () => {
     const listedIncidents = screen.getAllByText(/add to list/i);
     expect(listedIncidents.length).toBeGreaterThanOrEqual(1);
   });
+
+  test('Displays 2nd page of unfiltered incidents', async () => {
+    await render(<Incidents />);
+    const page2 = screen.getByTitle('2');
+    userEvent.click(page2);
+    const listedIncidents = screen.getAllByText(/add to list/i);
+    expect(listedIncidents.length).toEqual(1);
+  });
 });
 
 describe('Filter functions by rank correctly', () => {
@@ -43,12 +52,14 @@ describe('Filter functions by rank correctly', () => {
   });
 });
 
-describe('Location filter works correctly', () => {
-  test('Location filter properly updates UsState');
-  test('Location filter returns correct results');
-  // Finding the button to remove state filter:
-  // class="anticon-close-circle"
-  //
-  test('Removing State filter resets UsState');
-  test('Removing State filter returns all incidents');
-});
+// describe('Location filter works correctly', () => {
+//   test('Location filter properly updates UsState', async () => {
+//     // await render(<Incidents />);
+//   });
+//   test('Location filter returns correct results');
+//   // Finding the button to remove state filter:
+//   // class="anticon-close-circle"
+//   //
+//   test('Removing State filter resets UsState');
+//   test('Removing State filter returns all incidents');
+// });
