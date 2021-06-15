@@ -26,7 +26,14 @@ describe('Incidents are displayed upon render', () => {
     await render(<Incidents />);
     const listedIncidents = screen.getAllByText(/add to list/i);
     expect(listedIncidents.length).toEqual(8);
+  });
+
+  test('Displays 2nd page of unfiltered incidents', async () => {
+    await render(<Incidents />);
     const page2 = screen.getByTitle('2');
+    userEvent.click(page2);
+    const listedIncidents = screen.getAllByText(/add to list/i);
+    expect(listedIncidents.length).toEqual(1);
   });
 });
 
