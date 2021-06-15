@@ -6,8 +6,7 @@ export const StyledLogin = styled.div`
   justify-content: space-between;
   .background-image {
     background-image: url(${statueOfLiberty});
-    width: 55vw;
-    height: 100vh;
+    width: 60vw;
     background-position: center;
     background-size: cover;
   }
