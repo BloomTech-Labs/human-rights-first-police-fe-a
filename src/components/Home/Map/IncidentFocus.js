@@ -8,7 +8,6 @@ const { Panel } = Collapse;
 //Filtering by date for incidents
 export default function IncidentFocus({ zoomOnCluster }) {
   const filteredIncidents = useIncidentFilter();
-
   return (
     <div className="map-menu">
       <Collapse

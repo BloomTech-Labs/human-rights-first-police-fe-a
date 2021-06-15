@@ -69,11 +69,7 @@ describe('Filter functions by rank correctly', () => {
 //       await userEvent.click(locationFilter);
 //     });
 //     await act(async () => {
-//       await userEvent.type(locationFilter, 'Minneso');
-//     });
-//     const MinnesotaSelect = screen.getAllByText(/minnesota/i);
-//     await act(async () => {
-//       await userEvent.click(MinnesotaSelect[1]);
+//       await userEvent.type(locationFilter, 'Minnesota{arrowdown}{enter}');
 //     });
 //     const listedIncidents = screen.getAllByText(/add to list/i);
 //     expect(listedIncidents.length).toEqual(2);
