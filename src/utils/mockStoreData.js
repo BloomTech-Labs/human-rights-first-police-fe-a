@@ -1,12 +1,15 @@
 // Initial state for mock store
-export const initViewport = {
+
+// Place initial state objects below
+
+const initViewport = {
   latitude: 41.850033,
   longitude: -97.6500523,
   zoom: 3.2,
   bbox: [-179.9, 18.8163608007951, -66.8847646185949, 71.4202919997506],
 };
 
-export const initFocus = {
+const initFocus = {
   cluster: { list: [] },
   query: {
     list: [],
@@ -16,7 +19,7 @@ export const initFocus = {
   active: null,
 };
 
-export const incidentsData = [
+const incidentsData = [
   {
     id: 1331,
     date: '2021-05-01T00:00:00.000Z',
@@ -143,3 +146,19 @@ export const incidentsData = [
     force_rank: 'Rank 2 - Empty-hand',
   },
 ];
+
+export const mockInitialState = {
+  api: {
+    incidents: {
+      getincidents: { status: 'idle', error: null },
+      gettimeline: { status: 'idle', error: null },
+    },
+  },
+  incident: { data: incidentsData, ids: [], timeline: [], tagIndex: {} },
+  user: {
+    status: { authenticated: false, pending: false },
+    tokens: { access: null, id: null },
+    info: null,
+  },
+  map: { viewport: initViewport, focus: initFocus },
+};

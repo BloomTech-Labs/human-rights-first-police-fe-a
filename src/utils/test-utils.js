@@ -7,34 +7,18 @@ import OktaWrapper from '../components/OktaWrapper';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 // Mock Redux store
-import { incidentsData, initViewport, initFocus } from './mockStoreData';
 import configureMockStore from 'redux-mock-store';
-
-// Provides a custom render function for tests that makes Redux, React Router,
-// and Okta available to components
+import { mockInitialState } from './mockStoreData';
 
 // Configure Mock Store with no middleware
 const middlewares = [];
 const mockStore = configureMockStore(middlewares);
 
-let state = {
-  api: {
-    incidents: {
-      getincidents: { status: 'idle', error: null },
-      gettimeline: { status: 'idle', error: null },
-    },
-  },
-  incident: { data: incidentsData, ids: [], timeline: [], tagIndex: {} },
-  user: {
-    status: { authenticated: false, pending: false },
-    tokens: { access: null, id: null },
-    info: null,
-  },
-  map: { viewport: initViewport, focus: initFocus },
-};
+// Set Initial State for Mock Store
+const store = mockStore(() => mockInitialState);
 
-const store = mockStore(() => state);
-
+// Provides a custom render function for tests that makes Redux, React Router,
+// and Okta available to components
 function Wrapper(props) {
   return (
     <Provider store={store}>
@@ -81,5 +65,5 @@ Object.defineProperty(window, 'matchMedia', {
 // Re-export React Testing Library
 export * from '@testing-library/react';
 
-// Override custom exports
+// Override render with our custom render built above
 export { wrapRender as render };
