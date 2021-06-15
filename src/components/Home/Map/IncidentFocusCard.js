@@ -18,7 +18,6 @@ const INCIDENT_ZOOM_LEVEL = 12;
 // searches incident by cluster
 export default function IncidentFocusCard({ id, zoomOnCluster }) {
   const incident = useSelector(state => state.incident.data[id]);
-  console.log(incident);
   const date = useMemo(() => {
     if (incident?.date) {
       const dt = DateTime.fromISO(incident.date);

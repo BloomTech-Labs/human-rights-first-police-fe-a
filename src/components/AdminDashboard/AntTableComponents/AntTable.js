@@ -13,7 +13,6 @@ function AntTable() {
     axios
       .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
       .then(res => {
-        console.log(res.data);
         setIncidents(res.data);
       });
   }, []);
