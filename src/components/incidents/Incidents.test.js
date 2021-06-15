@@ -7,6 +7,7 @@ import {
   act,
 } from '../../utils/test-utils';
 import Incidents from './Incidents';
+import userEvent from '@testing-library/user-event';
 
 afterEach(() => {
   cleanup();
@@ -24,8 +25,8 @@ describe('Incidents are displayed upon render', () => {
   test('displays unfiltered incidents', async () => {
     await render(<Incidents />);
     const listedIncidents = screen.getAllByText(/add to list/i);
-    console.log(listedIncidents.length);
-    expect(listedIncidents.length).toEqual(6);
+    expect(listedIncidents.length).toEqual(8);
+    const page2 = screen.getByTitle('2');
   });
 });
 
@@ -43,12 +44,14 @@ describe('Filter functions by rank correctly', () => {
   });
 });
 
-describe('Location filter works correctly', () => {
-  test('Location filter properly updates UsState');
-  test('Location filter returns correct results');
-  // Finding the button to remove state filter:
-  // class="anticon-close-circle"
-  //
-  test('Removing State filter resets UsState');
-  test('Removing State filter returns all incidents');
-});
+// describe('Location filter works correctly', () => {
+//   test('Location filter properly updates UsState', async () => {
+//     // await render(<Incidents />);
+//   });
+//   test('Location filter returns correct results');
+//   // Finding the button to remove state filter:
+//   // class="anticon-close-circle"
+//   //
+//   test('Removing State filter resets UsState');
+//   test('Removing State filter returns all incidents');
+// });
