@@ -41,10 +41,11 @@ describe('Incidents are displayed upon render', () => {
 describe('Filter functions by rank correctly', () => {
   test('Filter by rank displays events with specific rank', async () => {
     await render(<Incidents />);
-    const rankSelect = screen.getByLabelText(/rank/i);
-    await act(async () => {
-      fireEvent.change(rankSelect, { target: { value: 2 } });
-    });
+    const rankFilter = screen.getByLabelText(/rank:/i);
+    fireEvent.click(rankFilter);
+    screen.debug();
+    // const rankTwo = screen.getByText(/rank: 2/i);
+    // fireEvent.click(rankTwo);
     const rank2s = screen.getAllByText(/rank 2/i);
     const rank1s = screen.getAllByText(/rank 1/i);
     expect(rank2s.length).toBeGreaterThanOrEqual(2);
@@ -52,14 +53,17 @@ describe('Filter functions by rank correctly', () => {
   });
 });
 
-// describe('Location filter works correctly', () => {
-//   test('Location filter properly updates UsState', async () => {
-//     // await render(<Incidents />);
-//   });
-//   test('Location filter returns correct results');
-//   // Finding the button to remove state filter:
-//   // class="anticon-close-circle"
-//   //
-//   test('Removing State filter resets UsState');
-//   test('Removing State filter returns all incidents');
-// });
+describe('Filter functions by location correctly', () => {
+  test('Filter by rank displays events with specific rank', async () => {
+    await render(<Incidents />);
+    const rankFilter = screen.getByLabelText(/rank:/i);
+    fireEvent.click(rankFilter);
+    screen.debug();
+    // const rankTwo = screen.getByText(/rank: 2/i);
+    // fireEvent.click(rankTwo);
+    const rank2s = screen.getAllByText(/rank 2/i);
+    const rank1s = screen.getAllByText(/rank 1/i);
+    expect(rank2s.length).toBeGreaterThanOrEqual(2);
+    expect(rank1s.length).toBeLessThanOrEqual(1);
+  });
+});
