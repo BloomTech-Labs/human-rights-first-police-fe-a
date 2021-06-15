@@ -42,3 +42,13 @@ describe('Filter functions by rank correctly', () => {
     expect(rank1s.length).toBeLessThanOrEqual(1);
   });
 });
+
+describe('Location filter works correctly', () => {
+  test('Location filter properly updates UsState');
+  test('Location filter returns correct results');
+  // Finding the button to remove state filter:
+  // class="anticon-close-circle"
+  //
+  test('Removing State filter resets UsState');
+  test('Removing State filter returns all incidents');
+});
