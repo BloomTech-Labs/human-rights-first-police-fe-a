@@ -66,12 +66,17 @@ describe('Location filter works correctly', () => {
     await render(<Incidents />);
     const locationFilter = screen.getByLabelText(/location/i);
 
-    userEvent.click(locationFilter);
     await act(async () => {
-      userEvent.type('Minn');
-      const Minny = screen.getByText(/minnesota/i);
+      userEvent.type(locationFilter, 'Minn');
+    });
+
+    await act(async () => {
+      const Minny = screen.getByLabelText(/minnesota/i);
       userEvent.click(Minny);
     });
+
+    const listedIncidents = screen.getAllByText(/add to list/i);
+    expect(listedIncidents.length).toEqual(2);
   });
   // test('Removing State filter returns all incidents');
 });
