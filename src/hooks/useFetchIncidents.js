@@ -45,7 +45,6 @@ export default function useFetchIncidents() {
           }
         });
       });
-      console.log(tagIndex);
       const timeline = timelineRes.map(item => item.id);
 
       dispatch(

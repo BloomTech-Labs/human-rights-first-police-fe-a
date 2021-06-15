@@ -54,7 +54,6 @@ const GraphContainer = () => {
   // const [elevenMonths] = useState(28927182167); // Milliseconds
   const [graph, setGraph] = useState('Incidents Per Month');
   const [filtered, setFiltered] = useState([]); // Data filtered by user
-  console.log('>>>>', filtered);
   const [counts, setCounts] = useState({});
   const [barCounts, setBarCounts] = useState({});
   const [months, setmonths] = useState([]);
