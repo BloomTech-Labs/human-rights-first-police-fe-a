@@ -20,17 +20,25 @@ describe('<Incidents />', () => {
   });
 });
 
-// describe('Incidents Page Renders with Incidents', () => {
-//   test('Component renders with incidents', async () => {
-//     const { container } = await render(<MockProvider mockStore={mockStore}>
-//     <Incidents />
-//     </MockProvider>);
-//     expect(container).toContainElement(container.firstChild);
-//     const rankSelect = screen.getByLabelText(/rank/i);
-//     console.log(rankSelect);
-//     await act(async () => {
-//       fireEvent.change(rankSelect, { target: { value: 2 } });
-//     });
-//     const rank2s = screen.getAllByText(/rank 2/i);
-//   });
-// });
+describe('Incidents are displayed upon render', () => {
+  test('displays unfiltered incidents', async () => {
+    await render(<Incidents />);
+    const listedIncidents = screen.getAllByText(/add to list/i);
+    console.log(listedIncidents.length);
+    expect(listedIncidents.length).toEqual(6);
+  });
+});
+
+describe('Filter functions by rank correctly', () => {
+  test('Filter by rank displays events with specific rank', async () => {
+    await render(<Incidents />);
+    const rankSelect = screen.getByLabelText(/rank/i);
+    await act(async () => {
+      fireEvent.change(rankSelect, { target: { value: 2 } });
+    });
+    const rank2s = screen.getAllByText(/rank 2/i);
+    const rank1s = screen.getAllByText(/rank 1/i);
+    expect(rank2s.length).toBeGreaterThanOrEqual(2);
+    expect(rank1s.length).toBeLessThanOrEqual(1);
+  });
+});
