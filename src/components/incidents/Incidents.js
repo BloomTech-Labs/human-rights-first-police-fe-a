@@ -11,7 +11,16 @@ import {
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
-import { Empty, Button, Collapse, Tag, Checkbox, Popover, Select } from 'antd';
+import {
+  Empty,
+  Button,
+  Collapse,
+  Tag,
+  Checkbox,
+  Popover,
+  Select,
+  Form,
+} from 'antd';
 
 // Time Imports
 import { DateTime } from 'luxon';
@@ -21,7 +30,6 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 
 // Ant Design Imports:
 import { AutoComplete, Pagination, DatePicker } from 'antd';
-import { CSVLink } from 'react-csv'; // helper for export CSV from current State
 
 let ranks = [
   'Rank 1 - Police Presence',
@@ -48,9 +56,6 @@ const Incidents = () => {
   const [queryString, setQueryString] = useState('');
   const [selectedIncidents, setSelectedIncidents] = useState([]);
   const [rank, setRank] = useState('All');
-  const [added, setAdded] = useState([]); // data where all checked cases stored(from checkboxes)
-  // const [sam, setSam] = useState([]); // in progress, created for multi state switch(needs to discuss)
-
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
   const tagIndex = useSelector(state => Object.keys(state.incident.tagIndex));
@@ -85,17 +90,13 @@ const Incidents = () => {
       <div className="header-top">
         <p id="title">{incident.title}</p>
         <div className="extra">
-          <div className="tag-group">
-            <Tag>{incident.categories[0]}</Tag>
-            <Tag>{incident.categories[1]}</Tag>
-            <Tag>{incident.categories[2]}</Tag>
+          <div className="incident-rank">
+            <Tag className="panel-tags">{incident.force_rank.slice(0, 6)}</Tag>
           </div>
-          <div>
-            <Tag>{incident.force_rank.slice(0, 6)}</Tag>
+          <div className="incident-city">
+            {incident.city}, {incident.state}
           </div>
-
-          <div className="incidentDate">
-            <p>{incident.city}, </p>
+          <div className="incident-date">
             <p className="panel-date">
               {DateTime.fromISO(incident.date)
                 .plus({ days: 1 })
@@ -104,6 +105,7 @@ const Incidents = () => {
           </div>
 
           <Checkbox
+            className="add-to-list"
             checked={selectedIncidents.indexOf(incident.id) > -1}
             onChange={checked => onSelect(incident.id, checked)}
           >
@@ -138,9 +140,6 @@ const Incidents = () => {
       });
     }
     setData(falsiesRemoved(filtered));
-    setAdded([]); // it cleans checked data when we change the filtered data
-    setSelectedIncidents([]);
-    // console.log('sam', sam);
   }, [usState, dates, activeCategories, rank]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
@@ -151,10 +150,8 @@ const Incidents = () => {
     let newSelectedIncidents = [];
     if (selectedIncidents.indexOf(id) > -1) {
       newSelectedIncidents = selectedIncidents.filter(i => i !== id);
-      // setSam(sam.filter(i => i !== id)); //in progress(for multi state switch data)
     } else {
       newSelectedIncidents = [...selectedIncidents, id];
-      // setSam([...sam, id]); //in progress(for multi state switch data)
     }
     setSelectedIncidents(newSelectedIncidents);
   };
@@ -181,56 +178,14 @@ const Incidents = () => {
   const onRank = e => {
     setRank(e);
   };
-
-  let rec = [...data]; // copies the current data to avoid manipulating with the main state
-  rec.forEach(i => {
-    // makes the current data prettier
-    i.desc = i.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
-    i.date = i.date.slice(0, 10); // removes unreadable timestamps
-    i.added_on = i.added_on.slice(0, 10); // removes unreadable timestamps
-  });
-
-  const headers = [
-    { label: 'id', key: 'id' },
-    { label: 'Date', key: 'date' },
-    { label: 'Title', key: 'title' },
-    { label: 'Force Rank', key: 'force_rank' },
-    { label: 'Categories', key: 'categories' },
-    { label: 'City', key: 'city' },
-    { label: 'State', key: 'state' },
-    { label: 'Source', key: 'src' },
-    { label: 'Description', key: 'desc' },
-    { label: 'Latitude', key: 'lat' },
-    { label: 'Longitude', key: 'long' },
-    { label: 'Added On', key: 'added_on' },
-    { label: 'Incident id', key: 'incident_id' },
-  ];
-
-  useEffect(() => {
-    // handles any changes with checked/unchecked incidents
-    let k = [];
-    let f = [];
-    selectedIncidents.forEach(i => {
-      [f] = rec.filter(inc => inc.id === i);
-      k.push(f);
-    });
-    setAdded(k);
-  }, [selectedIncidents]);
-  const csvReport = {
-    // stores all data for CSV report
-    data: selectedIncidents.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
-    headers: headers,
-    filename: 'report.csv',
-  };
-
   const downloadCSV = () => {
-    // console.log(
-    //   `${
-    //     process.env.REACT_APP_BACKENDURL
-    //   }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
-    //     ','
-    //   )}`}`
-    // );
+    console.log(
+      `${
+        process.env.REACT_APP_BACKENDURL
+      }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
+        ','
+      )}`}`
+    );
     axios
       .get(
         `${
@@ -240,6 +195,7 @@ const Incidents = () => {
         )}`}`
       )
       .then(response => {
+        console.log(response);
         let link = document.createElement('a');
         link.href = window.URL.createObjectURL(
           new Blob([response.data], { type: 'application/octet-stream' })
@@ -301,82 +257,76 @@ const Incidents = () => {
       ? option
       : null;
   };
-
   return (
-    <div className="incidents-container">
-      <div className="incidents-page">
-        <header>
-          <form className="export-form">
-            <fieldset className="form-top">
-              <label>
-                Rank:
-                <Select
-                  onChange={onRank}
-                  showSearch
-                  defaultValue="All"
-                  className="rank-select"
-                  style={{ width: 120 }}
+    <div className="incident-search-container">
+      <Form className="export-form">
+        <div className="rank-select">
+          <label htmlFor="ranks" className="rank">
+            Ranks
+          </label>
+          <Select
+            onChange={onRank}
+            showSearch
+            defaultValue="All"
+            style={{ width: 278 }}
+          >
+            <Option value="All">All</Option>
+            <Option value="1">Rank: 1</Option>
+            <Option value="2">Rank: 2</Option>
+            <Option value="3">Rank: 3</Option>
+            <Option value="4">Rank: 4</Option>
+            <Option value="5">Rank: 5</Option>
+          </Select>
+        </div>
+        <div className="state-search">
+          <label htmlFor="location" className="locations">
+            Location
+          </label>
+          <SearchBar setUsState={setUsState} />{' '}
+        </div>
+        <div className="category-select">
+          <label htmlFor="category" className="categories">
+            Categories
+          </label>
+          <AutoComplete
+            value={value}
+            options={categoriesData}
+            onSelect={onCategorySelect}
+            onChange={onCategoryChange}
+            style={{ width: 278 }}
+            allowClear={true}
+            filterOption={filterOption}
+            placeholder="Browse Categories"
+            notFoundContent="Category Not Found"
+          />
+          {activeCategories &&
+            activeCategories.map(tag => {
+              return (
+                <CheckableTag
+                  key={tag}
+                  checked={activeCategories.indexOf(tag) > -1}
+                  onChange={checked => onToggle(tag, checked)}
                 >
-                  <Option value="All">All</Option>
-                  <Option value="1">Rank: 1</Option>
-                  <Option value="2">Rank: 2</Option>
-                  <Option value="3">Rank: 3</Option>
-                  <Option value="4">Rank: 4</Option>
-                  <Option value="5">Rank: 5</Option>
-                </Select>
-              </label>
-
-              <label>
-                Location: <SearchBar setUsState={setUsState} />{' '}
-              </label>
-
-              <label>
-                Date: <RangePicker onCalendarChange={onDateSelection} />
-              </label>
-
-              <Button
-                // onClick={downloadCSV}
-                type="primary"
-                style={{ background: '#003767' }}
-              >
-                <CSVLink {...csvReport} target="_blank">
-                  {' '}
-                  {/* exports CSV file*/}
-                  Export List
-                </CSVLink>
-              </Button>
-            </fieldset>
-            <fieldset className="form-bottom">
-              <label>
-                Categories:
-                <AutoComplete
-                  value={value}
-                  options={categoriesData}
-                  onSelect={onCategorySelect}
-                  onChange={onCategoryChange}
-                  style={{ width: 200 }}
-                  allowClear={true}
-                  filterOption={filterOption}
-                  placeholder="Browse Categories"
-                  notFoundContent="Category Not Found"
-                />
-                {activeCategories &&
-                  activeCategories.map(tag => {
-                    return (
-                      <CheckableTag
-                        key={tag}
-                        checked={activeCategories.indexOf(tag) > -1}
-                        onChange={checked => onToggle(tag, checked)}
-                      >
-                        {tag}
-                      </CheckableTag>
-                    );
-                  })}
-              </label>
-            </fieldset>
-          </form>
-        </header>
-        <section>
+                  {tag}
+                </CheckableTag>
+              );
+            })}
+        </div>
+        <div className="date-select">
+          <label htmlFor="date" className="dates">
+            Date
+          </label>
+          <RangePicker onCalendarChange={onDateSelection} />
+        </div>
+        <div className="export-select">
+          <Button onClick={downloadCSV} className="export-button">
+            Export List
+          </Button>
+        </div>
+      </Form>
+      <div className="incidents-container">
+        <div className="reports-table"></div>
+        <div className="reports">
           {data.length ? (
             <Collapse key={nanoid()} className="collapse">
               {currentPosts.map(incident => {
@@ -415,17 +365,17 @@ const Incidents = () => {
           ) : (
             noDataDisplay()
           )}
+        </div>
+        <section className="pagination">
+          <Pagination
+            onChange={onChange}
+            current={currentPage}
+            pageSize={itemsPerPage}
+            total={data.length}
+            showSizeChanger={false}
+          />
         </section>
       </div>
-      <section className="pagination">
-        <Pagination
-          onChange={onChange}
-          current={currentPage}
-          pageSize={itemsPerPage}
-          total={data.length}
-          showSizeChanger={false}
-        />
-      </section>
     </div>
   );
 };
