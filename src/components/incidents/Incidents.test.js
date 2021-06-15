@@ -41,14 +41,19 @@ describe('Incidents are displayed upon render', () => {
 describe('Filter functions by rank correctly', () => {
   test('Filter by rank displays events with specific rank', async () => {
     await render(<Incidents />);
-    const rankSelect = screen.getByLabelText(/rank/i);
+    console.log(screen.getAllByText(/add to list/i).length);
+    const rankFilter = screen.getByLabelText(/rank/i);
+    userEvent.click(rankFilter);
+
     await act(async () => {
-      fireEvent.change(rankSelect, { target: { value: 2 } });
+      const rank2 = screen.getByText(/rank: 2/i);
+      userEvent.click(rank2);
     });
+
     const rank2s = screen.getAllByText(/rank 2/i);
-    const rank1s = screen.getAllByText(/rank 1/i);
+    const rank1s = screen.queryByText(/rank 1/i);
     expect(rank2s.length).toBeGreaterThanOrEqual(2);
-    expect(rank1s.length).toBeLessThanOrEqual(1);
+    expect(rank1s).toBe(null);
   });
 });
 
@@ -63,3 +68,17 @@ describe('Filter functions by rank correctly', () => {
 //   test('Removing State filter resets UsState');
 //   test('Removing State filter returns all incidents');
 // });
+
+// const rankFilter = screen.getByLabelText(/rank/i);
+// userEvent.click(rankFilter);
+
+// await act(async () => {
+//   const selectRank3 = screen.getByText(/rank: 3/i);
+//   userEvent.click(selectRank3);
+// });
+
+// await act(async () => {
+//   const selectRank2 = screen.getByText(/rank: 2/i);
+//   userEvent.click(selectRank2);
+
+// fireEvent.change(rankSelect, { target: { value: '3' } });
