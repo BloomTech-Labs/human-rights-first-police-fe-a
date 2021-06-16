@@ -18,4 +18,6 @@ describe('<LoginContainer />', () => {
     expect(container.querySelector('#sign-in-widget')).toBeTruthy();
     expect(container.querySelector('#okta-sign-in')).toBeTruthy();
   });
+  test.todo('User can input credentials into login form');
+  test.todo('Component responds with error message due to invalid credentials');
 });
