@@ -32,4 +32,9 @@ describe('NavBar options link to correct routes', () => {
     const graphLink = wrapper.getByText(/graph/i);
     expect(graphLink.href).toBe(`${BASE_URL}/graph`);
   });
+  test('About links to /about', async () => {
+    const wrapper = await render(<NavBar />);
+    const aboutLink = wrapper.getByText(/about/i);
+    expect(aboutLink.href).toBe(`${BASE_URL}/about`);
+  });
 });
