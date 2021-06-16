@@ -48,13 +48,13 @@ const Stats = () => {
 
   return (
     <Content Dark="On" type="Primary">
-      <a href="#" className="arrow-container">
-        <div className="arrow"></div>
-        <div className="arrow"></div>
-        <div className="arrow"></div>
-      </a>
       <div className="site-layout-background" style={contentStyle}>
-        <Title style={{ color: 'white', fontWeight: 'normal' }}>
+        <a href="#title" className="arrow-container">
+          <div className="arrow"></div>
+          <div className="arrow"></div>
+          <div className="arrow"></div>
+        </a>
+        <Title id="title" style={{ color: 'white', fontWeight: 'normal' }}>
           Blue Witness Statistics
         </Title>
         <Paragraph style={{ color: 'white' }}>
