@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup, screen } from '../../../utils/test-utils';
+import { render, cleanup } from '../../../utils/test-utils';
 import Map from './Map';
 
 afterEach(() => {
