@@ -16,10 +16,15 @@ describe('<NavBar />', () => {
   });
 });
 
-describe('NavBar Buttons link to correct routes', () => {
+describe('NavBar options link to correct routes', () => {
   test('Home links to /', async () => {
     const wrapper = await render(<NavBar />);
     const homeLink = wrapper.getByText(/home/i);
     expect(homeLink.href).toBe(`${BASE_URL}/`);
+  });
+  test('Incident Reports links to /incident-reports', async () => {
+    const wrapper = await render(<NavBar />);
+    const irLink = wrapper.getByText(/incident reports/i);
+    expect(irLink.href).toBe(`${BASE_URL}/incident-reports`);
   });
 });
