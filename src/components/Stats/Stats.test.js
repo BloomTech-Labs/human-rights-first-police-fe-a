@@ -7,10 +7,14 @@ afterEach(() => {
   jest.clearAllMocks();
 });
 
-describe('<Stats />', () => {
+describe('<Stats /> component tests', () => {
   test('Component renders', async () => {
     const { container } = await render(<Stats />);
     expect(container).toContainElement(container.firstChild);
+  });
+
+  test('Heading and buttons exist in the component', async () => {
+    await render(<Stats />);
     const headings = screen.getAllByRole('heading');
     expect(headings[0]).toBeInTheDocument();
     const buttons = screen.getAllByRole('button');

@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, cleanup } from '../../utils/test-utils';
+import { render, cleanup, screen } from '../../utils/test-utils';
 import TimelineItems from './TimelineItems';
 
 afterEach(() => {
@@ -32,5 +32,13 @@ describe('<TimelineItems />', () => {
   test('Component renders', async () => {
     const { container } = await render(<TimelineItems {...props} />);
     expect(container).toContainElement(container.firstChild);
+  });
+
+  test('Heading and image are rendered in the component', async () => {
+    await render(<TimelineItems {...props} />);
+    const headings = screen.getAllByRole('heading');
+    expect(headings[0]).toBeInTheDocument();
+    const images = screen.getAllByRole('img');
+    expect(images[0]).toBeInTheDocument();
   });
 });

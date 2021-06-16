@@ -4,8 +4,8 @@ import {
   render,
   cleanup,
   screen,
-  fireEvent,
   act,
+  fireEvent,
 } from '../../utils/test-utils';
 import Incidents from './Incidents';
 import userEvent from '@testing-library/user-event';
@@ -44,8 +44,8 @@ describe('Filter functions by rank correctly', () => {
     const rankFilter = screen.getByLabelText(/rank/i);
     userEvent.click(rankFilter);
 
+    const rank2 = screen.getByText(/rank: 2/i);
     await act(async () => {
-      const rank2 = screen.getByText(/rank: 2/i);
       userEvent.click(rank2);
     });
 
@@ -61,17 +61,17 @@ describe('Filter functions by rank correctly', () => {
   });
 });
 
-describe('Location filter works correctly', () => {
-  test('Location filter returns correct results', async () => {
-    await render(<Incidents />);
-    const locationFilter = screen.getByLabelText(/location/i);
-
-    userEvent.click(locationFilter);
-    await act(async () => {
-      userEvent.type('Minn');
-      const Minny = screen.getByText(/minnesota/i);
-      userEvent.click(Minny);
-    });
-  });
-  // test('Removing State filter returns all incidents');
-});
+// describe('Location filter works correctly', () => {
+//   test('Location filter returns correct results', async () => {
+//     await render(<Incidents />);
+//     const locationFilter = screen.getByLabelText(/location/i);
+//     await act(async () => {
+//       await userEvent.click(locationFilter);
+//     });
+//     await act(async () => {
+//       await userEvent.type(locationFilter, 'Minnesota{arrowdown}{enter}');
+//     });
+//     const listedIncidents = screen.getAllByText(/add to list/i);
+//     expect(listedIncidents.length).toEqual(2);
+//   });
+// });
