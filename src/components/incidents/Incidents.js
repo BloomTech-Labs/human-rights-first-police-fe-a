@@ -49,7 +49,7 @@ const Incidents = () => {
   const [selectedIncidents, setSelectedIncidents] = useState([]);
   const [rank, setRank] = useState('All');
   const [added, setAdded] = useState([]); // data where all checked cases stored(from checkboxes)
-  // const [sam, setSam] = useState([]); // in progress, created for multi state switch(needs to discuss)
+  const [sam, setSam] = useState([]); // in progress, created for multi state switch(needs to discuss)
 
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
@@ -100,7 +100,7 @@ const Incidents = () => {
           </div>
 
           <Checkbox
-            checked={selectedIncidents.indexOf(incident.id) > -1}
+            checked={sam.indexOf(incident.id) > -1}
             onChange={checked => onSelect(incident.id, checked)}
           >
             Add To List
@@ -136,7 +136,7 @@ const Incidents = () => {
     setData(falsiesRemoved(filtered));
     setAdded([]); // it cleans checked data when we change the filtered data
     setSelectedIncidents([]);
-    // console.log('sam', sam);
+    console.log('sam', sam);
   }, [usState, dates, activeCategories, rank]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
@@ -145,12 +145,12 @@ const Incidents = () => {
 
   const onSelect = id => {
     let newSelectedIncidents = [];
-    if (selectedIncidents.indexOf(id) > -1) {
+    if (sam.indexOf(id) > -1) {
       newSelectedIncidents = selectedIncidents.filter(i => i !== id);
-      // setSam(sam.filter(i => i !== id)); //in progress(for multi state switch data)
+      setSam(sam.filter(i => i !== id)); //in progress(for multi state switch data)
     } else {
       newSelectedIncidents = [...selectedIncidents, id];
-      // setSam([...sam, id]); //in progress(for multi state switch data)
+      setSam([...sam, id]); //in progress(for multi state switch data)
     }
     setSelectedIncidents(newSelectedIncidents);
   };
@@ -211,6 +211,7 @@ const Incidents = () => {
       k.push(f);
     });
     setAdded(k);
+    console.log('every time', sam);
   }, [selectedIncidents]);
   const csvReport = {
     // stores all data for CSV report
