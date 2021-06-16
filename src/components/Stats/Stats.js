@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Layout, Button, Typography } from 'antd';
 import { Link } from 'react-router-dom';
+import './Stats.css';
+
 const { Title, Paragraph } = Typography;
 const { Content } = Layout;
 
@@ -46,6 +48,11 @@ const Stats = () => {
 
   return (
     <Content Dark="On" type="Primary">
+      <a href="#" className="arrow-container">
+        <div className="arrow"></div>
+        <div className="arrow"></div>
+        <div className="arrow"></div>
+      </a>
       <div className="site-layout-background" style={contentStyle}>
         <Title style={{ color: 'white', fontWeight: 'normal' }}>
           Blue Witness Statistics
