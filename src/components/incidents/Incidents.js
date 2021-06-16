@@ -311,6 +311,8 @@ const Incidents = () => {
             defaultValue="All"
             className="rank-select"
             style={{ width: 278 }}
+            id="ranks"
+            value="ranks"
           >
             <Option value="All">All</Option>
             <Option value="1">Rank: 1</Option>
