@@ -48,7 +48,7 @@ const SearchBar = ({ setUsState }) => {
         options={options}
         onSelect={onSelect}
         onChange={onChange}
-        style={{ width: 200 }}
+        style={{ width: 278 }}
         allowClear={true}
         filterOption={filterOption}
         placeholder="Enter a US State"
