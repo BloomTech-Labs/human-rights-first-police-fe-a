@@ -98,8 +98,15 @@ const GraphContainer = () => {
       ])
     );
     filtered12m.forEach(incident => {
-      let month = new DateTime.fromISO(incident?.date).toFormat('MMM');
-      console.log(DateTime.fromISO(incident.date), incident.id);
+      let month = new DateTime.fromISO(incident?.date)
+        .plus({ day: 1 })
+        .toFormat('MMM');
+      console.log(
+        DateTime.fromISO(incident.date)
+          .plus({ day: 1 })
+          .toFormat('MMMM yyyy'),
+        incident.id
+      );
       if (month in counts) {
         counts[month]++;
       }
