@@ -27,4 +27,9 @@ describe('NavBar options link to correct routes', () => {
     const irLink = wrapper.getByText(/incident reports/i);
     expect(irLink.href).toBe(`${BASE_URL}/incident-reports`);
   });
+  test('Graph links to /graph', async () => {
+    const wrapper = await render(<NavBar />);
+    const graphLink = wrapper.getByText(/graph/i);
+    expect(graphLink.href).toBe(`${BASE_URL}/graph`);
+  });
 });
