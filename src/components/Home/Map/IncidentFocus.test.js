@@ -22,7 +22,7 @@ describe('/components/Home/Map: <IncidentFocus /> Component', () => {
     await render(<IncidentFocus {...props} />);
     const incidentTab = screen.getByText(/view incident reports/i);
     await userEvent.click(incidentTab);
-    // tabpanel exists when dropdown is active
+    // assert tabpanel exists when dropdown is active
     const tabPanels = screen.getAllByRole('tabpanel');
     expect(tabPanels[0]).toBeInTheDocument();
   });
