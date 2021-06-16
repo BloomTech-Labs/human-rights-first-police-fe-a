@@ -312,7 +312,6 @@ const Incidents = () => {
             className="rank-select"
             style={{ width: 278 }}
             id="ranks"
-            value="ranks"
           >
             <Option value="All">All</Option>
             <Option value="1">Rank: 1</Option>
@@ -326,7 +325,7 @@ const Incidents = () => {
           <label htmlFor="locations" className="location">
             Location
           </label>
-          <SearchBar setUsState={setUsState} />{' '}
+          <SearchBar id="locations" setUsState={setUsState} />{' '}
         </div>
 
         <div className="category-select">
@@ -343,6 +342,7 @@ const Incidents = () => {
             filterOption={filterOption}
             placeholder="Browse Categories"
             notFoundContent="Category Not Found"
+            id="categories"
           />
           {activeCategories &&
             activeCategories.map(tag => {
