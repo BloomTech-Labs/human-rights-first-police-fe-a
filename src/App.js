@@ -21,8 +21,6 @@ export default function App() {
     fetch();
   }, [fetch]);
 
-  console.log(process.env.REACT_APP_OKTA_ISSUER_URI);
-
   return (
     <div>
       <NavBar />
