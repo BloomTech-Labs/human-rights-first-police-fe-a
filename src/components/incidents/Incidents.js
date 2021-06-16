@@ -215,7 +215,7 @@ const Incidents = () => {
   }, [selectedIncidents]);
   const csvReport = {
     // stores all data for CSV report
-    data: selectedIncidents.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
+    data: sam.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
     headers: headers,
     filename: 'report.csv',
   };
