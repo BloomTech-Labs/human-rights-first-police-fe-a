@@ -230,7 +230,7 @@ const Incidents = () => {
     // stores marked data for CSV report
     data: added, // uploads marked data
     headers: headers,
-    filename: 'report.csv',
+    filename: 'marked_report.csv',
   };
 
   const clearList = () => {
