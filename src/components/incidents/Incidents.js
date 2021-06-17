@@ -221,7 +221,14 @@ const Incidents = () => {
 
   const csvReport = {
     // stores all data for CSV report
-    data: selectedIncidents.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
+    data: rec, // if nothing checked in checkboxes, uploads all filtered data
+    headers: headers,
+    filename: 'report.csv',
+  };
+
+  const markedReport = {
+    // stores marked data for CSV report
+    data: added, // if nothing checked in checkboxes, uploads all filtered data
     headers: headers,
     filename: 'report.csv',
   };
@@ -342,6 +349,10 @@ const Incidents = () => {
           <RangePicker onCalendarChange={onDateSelection} />
         </div>
         <div className="export-button">
+          <div className="list-items-count">
+            <br />
+            <label>Items in the main list: {rec.length}</label>
+          </div>
           <Button
             type="primary"
             style={{
@@ -350,13 +361,40 @@ const Incidents = () => {
             }}
           >
             <CSVLink {...csvReport} target="_blank">
-              {' '}
               {/* exports CSV file */}
               Export List
             </CSVLink>
           </Button>
-          <div>Items in list: {selectedIncidents.length}</div>
-          <Button onClick={clearList}>Clear list</Button>
+        </div>
+        <br />
+        <div className="additional-list">
+          <label>Items in the secondary list: {added.length}</label>
+          <Button
+            type="primary"
+            disabled={added.length === 0}
+            disable
+            title="Please select an incident"
+            style={{
+              backgroundColor: added.length === 0 ? 'transparent' : '#003767',
+              border: 'none',
+            }}
+          >
+            <CSVLink {...markedReport} target="_blank">
+              Export Secondary List
+            </CSVLink>
+          </Button>
+          <Button
+            onClick={clearList}
+            disabled={added.length === 0}
+            disable
+            title="List is empty"
+            style={{
+              backgroundColor: added.length === 0 ?? 'transparent',
+              border: 'none',
+            }}
+          >
+            Clear List
+          </Button>
         </div>
       </form>
       <div className="incidents-container">
