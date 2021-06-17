@@ -47,17 +47,17 @@ const Stats = () => {
   }, [dataList]);
 
   return (
-    <Content Dark="On" type="Primary">
-      <div className="site-layout-background" style={contentStyle}>
+    <Content className="BW-container" Dark="On" type="Primary">
+      <div className="site-layout-background">
+        <p className="more-info">Click arrows for more infomation</p>
         <a href="#title" className="arrow-container">
           <div className="arrow"></div>
           <div className="arrow"></div>
           <div className="arrow"></div>
         </a>
-        <Title id="title" style={{ color: 'white', fontWeight: 'normal' }}>
-          Blue Witness Statistics
-        </Title>
-        <Paragraph style={{ color: 'white' }}>
+        <div className="line-break"></div>
+        <Title id="title">Blue Witness Statistics</Title>
+        {/* <Paragraph style={{ color: 'white' }}>
           {dataList.length} incidents of police use of force. {gasAndSpray} uses
           of pepper-spray or tear-gas. {numCities} cities across the United
           States.
@@ -71,7 +71,7 @@ const Stats = () => {
           ghost
         >
           <Link to="/about">About</Link>
-        </Button>
+        </Button> */}
       </div>
     </Content>
   );
