@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Incidents.css';
 import sourceListHelper from '../../utils/sourceListHelper';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import {
   falsiesRemoved,
   filterDataByState,
@@ -22,7 +23,6 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 // Ant Design Imports:
 import { AutoComplete, Pagination, DatePicker } from 'antd';
 import { CSVLink } from 'react-csv'; // helper for export CSV from current State
-import { sample } from 'lodash-es';
 
 let ranks = [
   'Rank 1 - Police Presence',
@@ -47,10 +47,12 @@ const Incidents = () => {
   const [data, setData] = useState([]); // State for User Searches
   const [selectedTags, setSelectedTags] = useState(['All']);
   const [queryString, setQueryString] = useState('');
-  const [selectedIncidents, setSelectedIncidents] = useState([]);
+  const [selectedIncidents, setSelectedIncidents] = useLocalStorage(
+    'marked',
+    []
+  );
   const [rank, setRank] = useState('All');
   const [added, setAdded] = useState([]); // data where all checked cases stored(from checkboxes)
-  const [sam, setSam] = useState([]); // in progress, created for multi state switch(needs to discuss)
 
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
@@ -101,7 +103,7 @@ const Incidents = () => {
           </div>
 
           <Checkbox
-            checked={sam.indexOf(incident.id) > -1}
+            checked={selectedIncidents.indexOf(incident.id) > -1}
             onChange={checked => onSelect(incident.id, checked)}
           >
             Add To List
@@ -135,23 +137,23 @@ const Incidents = () => {
       });
     }
     setData(falsiesRemoved(filtered));
+    setCurrentPage(1);
     // setAdded([]); // it cleans checked data when we change the filtered data
     // setSelectedIncidents([]);
-    console.log('sam', sam);
   }, [usState, dates, activeCategories, rank]);
 
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
   const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+  console.log('curr', currentPage);
+  console.log('lastp', indexOfLastPost);
 
   const onSelect = id => {
     let newSelectedIncidents = [];
-    if (sam.indexOf(id) > -1) {
+    if (selectedIncidents.indexOf(id) > -1) {
       newSelectedIncidents = selectedIncidents.filter(i => i !== id);
-      setSam(sam.filter(i => i !== id)); //in progress(for multi state switch data)
     } else {
       newSelectedIncidents = [...selectedIncidents, id];
-      setSam([...sam, id]); //in progress(for multi state switch data)
     }
     setSelectedIncidents(newSelectedIncidents);
   };
@@ -207,8 +209,8 @@ const Incidents = () => {
     // handles any changes with checked/unchecked incidents
     let k = [];
     let f = [];
-    if (sam.length !== 0) {
-      sam.forEach(i => {
+    if (selectedIncidents.length !== 0) {
+      selectedIncidents.forEach(i => {
         [f] = incidents.filter(inc => inc.id === i);
         let cl = JSON.parse(JSON.stringify(f));
         cl.desc = cl.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
@@ -218,57 +220,46 @@ const Incidents = () => {
       });
     }
     setAdded(k);
-    // if (added.length !== 0){
-    //   added.forEach(i => {
-    //     // makes the current data prettier
-    //     i.desc = i.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
-    //     i.date = i.date.slice(0, 10); // removes unreadable timestamps
-    //     i.added_on = i.added_on.slice(0, 10); // removes unreadable timestamps
-    //   });
-    // }
-    console.log('added', added);
-    console.log('every time', sam);
-  }, [sam]);
+  }, [selectedIncidents]);
   const csvReport = {
     // stores all data for CSV report
-    data: sam.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
+    data: selectedIncidents.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
     headers: headers,
     filename: 'report.csv',
   };
-  console.log({ ...csvReport });
 
-  const downloadCSV = () => {
-    // console.log(
-    //   `${
-    //     process.env.REACT_APP_BACKENDURL
-    //   }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
-    //     ','
-    //   )}`}`
-    // );
-    axios
-      .get(
-        `${
-          process.env.REACT_APP_BACKENDURL
-        }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
-          ','
-        )}`}`
-      )
-      .then(response => {
-        let link = document.createElement('a');
-        link.href = window.URL.createObjectURL(
-          new Blob([response.data], { type: 'application/octet-stream' })
-        );
-        link.download = 'reports.csv';
+  // const downloadCSV = () => {
+  // console.log(
+  //   `${
+  //     process.env.REACT_APP_BACKENDURL
+  //   }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
+  //     ','
+  //   )}`}`
+  // );
+  //   axios
+  //     .get(
+  //       `${
+  //         process.env.REACT_APP_BACKENDURL
+  //       }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
+  //         ','
+  //       )}`}`
+  //     )
+  //     .then(response => {
+  //       let link = document.createElement('a');
+  //       link.href = window.URL.createObjectURL(
+  //         new Blob([response.data], { type: 'application/octet-stream' })
+  //       );
+  //       link.download = 'reports.csv';
 
-        document.body.appendChild(link);
+  //       document.body.appendChild(link);
 
-        link.click();
-        setTimeout(function() {
-          window.URL.revokeObjectURL(link);
-        }, 200);
-      })
-      .catch(error => {});
-  };
+  //       link.click();
+  //       setTimeout(function() {
+  //         window.URL.revokeObjectURL(link);
+  //       }, 200);
+  //     })
+  //     .catch(error => {});
+  // };
 
   const onDateSelection = (dates, dateStrings) => {
     setDates(
@@ -317,7 +308,7 @@ const Incidents = () => {
   };
 
   const clearList = () => {
-    setSam([]);
+    setSelectedIncidents([]);
   };
   return (
     <div className="incident-reports-page">
@@ -386,7 +377,6 @@ const Incidents = () => {
         </div>
         <div className="export-button">
           <Button
-            // onClick={downloadCSV}
             type="primary"
             style={{
               backgroundColor: '#003767',
@@ -399,7 +389,7 @@ const Incidents = () => {
               Export List
             </CSVLink>
           </Button>
-          <div>Items in list: {sam.length}</div>
+          <div>Items in list: {selectedIncidents.length}</div>
           <Button onClick={clearList}>Clear list</Button>
         </div>
       </form>
