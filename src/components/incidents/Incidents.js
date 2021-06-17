@@ -311,7 +311,7 @@ const Incidents = () => {
           <label htmlFor="locations" className="location">
             Location
           </label>
-          <SearchBar setUsState={setUsState} />{' '}
+          <SearchBar id="locations" setUsState={setUsState} />{' '}
         </div>
 
         <div className="category-select">
@@ -328,6 +328,7 @@ const Incidents = () => {
             filterOption={filterOption}
             placeholder="Browse Categories"
             notFoundContent="Category Not Found"
+            id="categories"
           />
           {activeCategories &&
             activeCategories.map(tag => {
