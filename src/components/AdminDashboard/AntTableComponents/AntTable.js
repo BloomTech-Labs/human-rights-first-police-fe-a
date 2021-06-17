@@ -4,18 +4,21 @@ import axios from 'axios';
 
 //https://ant.design/components/table/ <---documentation on the table
 
-function AntTable() {
+function AntTable(props) {
   const [incidents, setIncidents] = useState([]);
   const [selectionType, setSelectionType] = useState('checkbox');
+  const { data } = props;
 
   //this axios call should be passed in, not repeated
-  useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
-      .then(res => {
-        setIncidents(res.data);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
+  //     .then(res => {
+  //       console.log(res.data);
+  //       setIncidents(res.data);
+  //     });
+  // }, []);
+  console.log(data);
 
   const columns = [
     //   //When DS provides data for this, uncomment for Admin Table to show %, and move.
@@ -69,13 +72,18 @@ function AntTable() {
 
   return (
     <div>
-      <Divider />
+      {/* <Divider /> */}
 
       <Table
         columns={columns}
-        dataSource={incidents}
+        dataSource={data}
+        rowKey={'id'}
+        expandable={{
+          expandedRowRender: data => <p>{data.id}</p>,
+          rowExpandable: data => data.id !== null,
+        }}
         pagination={{ position: ['topRight', 'bottomCenter'] }}
-        scroll={{ y: 300 }}
+        // scroll={{ y: 800 }}
       />
     </div>
   );
