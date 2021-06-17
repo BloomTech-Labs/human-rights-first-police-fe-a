@@ -179,7 +179,7 @@ const Incidents = () => {
     setRank(e);
   };
 
-  let rec = [...data]; // copies the current data to avoid manipulating with the main state
+  let rec = JSON.parse(JSON.stringify(incidents)); // copies the current data to avoid manipulating with the main state
   rec.forEach(i => {
     // makes the current data prettier
     i.desc = i.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
@@ -210,7 +210,12 @@ const Incidents = () => {
     if (sam.length !== 0) {
       sam.forEach(i => {
         [f] = incidents.filter(inc => inc.id === i);
-        k.push(f);
+        console.log(f);
+        let cl = JSON.parse(JSON.stringify(f));
+        cl.desc = cl.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
+        cl.date = cl.date.slice(0, 10); // removes unreadable timestamps
+        cl.added_on = cl.added_on.slice(0, 10);
+        k.push(cl);
       });
     }
     setAdded(k);
