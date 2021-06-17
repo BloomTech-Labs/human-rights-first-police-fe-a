@@ -56,7 +56,7 @@ export default function Map() {
     dragPan: true,
     dragRotate: true,
     //map can be zoomed in and out mouse scroll, revisit this scroll (Stakeholder asked for map not to scroll)
-    scrollZoom: false,
+    scrollZoom: true,
     touchZoom: false,
     touchRotate: false,
     keyboard: false,
