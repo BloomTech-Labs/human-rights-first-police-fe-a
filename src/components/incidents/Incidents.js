@@ -179,7 +179,7 @@ const Incidents = () => {
     setRank(e);
   };
 
-  let rec = JSON.parse(JSON.stringify(incidents)); // copies the current data to avoid manipulating with the main state
+  let rec = [...data]; // copies the current data to avoid manipulating with the main state
   rec.forEach(i => {
     // makes the current data prettier
     i.desc = i.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
@@ -210,7 +210,6 @@ const Incidents = () => {
     if (sam.length !== 0) {
       sam.forEach(i => {
         [f] = incidents.filter(inc => inc.id === i);
-        console.log(f);
         let cl = JSON.parse(JSON.stringify(f));
         cl.desc = cl.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
         cl.date = cl.date.slice(0, 10); // removes unreadable timestamps
@@ -317,6 +316,9 @@ const Incidents = () => {
       : null;
   };
 
+  const clearList = () => {
+    setSam([]);
+  };
   return (
     <div className="incident-reports-page">
       <form className="export-form">
@@ -397,6 +399,8 @@ const Incidents = () => {
               Export List
             </CSVLink>
           </Button>
+          <div>Items in list: {sam.length}</div>
+          <Button onClick={clearList}>Clear list</Button>
         </div>
       </form>
       <div className="incidents-container">
