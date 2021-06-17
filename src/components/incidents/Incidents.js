@@ -297,7 +297,7 @@ const Incidents = () => {
             className="rank-select"
             style={{ width: 278 }}
             id="ranks"
-            value="ranks"
+            value={rank}
           >
             <Option value="All">All</Option>
             <Option value="1">Rank: 1</Option>
@@ -372,8 +372,6 @@ const Incidents = () => {
           <Button
             type="primary"
             disabled={added.length === 0}
-            disable
-            title="Please select an incident"
             style={{
               backgroundColor: added.length === 0 ? 'transparent' : '#003767',
               border: 'none',
@@ -386,8 +384,6 @@ const Incidents = () => {
           <Button
             onClick={clearList}
             disabled={added.length === 0}
-            disable
-            title="List is empty"
             style={{
               backgroundColor: added.length === 0 ?? 'transparent',
               border: 'none',
