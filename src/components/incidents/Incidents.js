@@ -221,14 +221,14 @@ const Incidents = () => {
 
   const csvReport = {
     // stores all data for CSV report
-    data: rec, // if nothing checked in checkboxes, uploads all filtered data
+    data: rec, // uploads filtered data
     headers: headers,
     filename: 'report.csv',
   };
 
   const markedReport = {
     // stores marked data for CSV report
-    data: added, // if nothing checked in checkboxes, uploads all filtered data
+    data: added, // uploads marked data
     headers: headers,
     filename: 'report.csv',
   };
