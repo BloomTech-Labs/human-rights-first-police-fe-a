@@ -37,7 +37,7 @@ const { Option } = Select;
 const { CheckableTag } = Tag;
 
 const Incidents = () => {
-  const [itemsPerPage] = useState(8);
+  const [itemsPerPage] = useState(15);
   const [currentPage, setCurrentPage] = useState(1);
 
   // Data State
@@ -299,135 +299,155 @@ const Incidents = () => {
   };
 
   return (
-    <div className="incident-reports-page">
-      <form className="export-form">
-        <div className="rank-select">
-          <label htmlFor="ranks" className="rank">
-            Rank
-          </label>
-          <Select
-            onChange={onRank}
-            showSearch
-            defaultValue="All"
-            className="rank-select"
-            style={{ width: 278 }}
-          >
-            <Option value="All">All</Option>
-            <Option value="1">Rank: 1</Option>
-            <Option value="2">Rank: 2</Option>
-            <Option value="3">Rank: 3</Option>
-            <Option value="4">Rank: 4</Option>
-            <Option value="5">Rank: 5</Option>
-          </Select>
-        </div>
-        <div className="state-search">
-          <label htmlFor="locations" className="location">
-            Location
-          </label>
-          <SearchBar setUsState={setUsState} />{' '}
-        </div>
+    <div className="container">
+      <div className="incidents-content">
+        <h1>Incident Reports</h1>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sed vel
+          magni veritatis, expedita cumque, atque maxime quasi quae
+          necessitatibus nam eaque cupiditate dolor blanditiis quia doloribus
+          accusantium dolores obcaecati distinctio harum enim at asperiores.
+          Unde quod tempora commodi amet obcaecati numquam non aliquid nam!
+          Voluptates quis voluptatum in mollitia distinctio.
+        </p>
+      </div>
+      <div className="incident-reports-page">
+        <form className="export-form">
+          <div className="rank-select">
+            <label htmlFor="ranks" className="rank">
+              Rank
+            </label>
+            <Select
+              onChange={onRank}
+              showSearch
+              defaultValue="All"
+              className="rank-select"
+              style={{ width: 278 }}
+            >
+              <Option value="All">All</Option>
+              <Option value="1">Rank: 1</Option>
+              <Option value="2">Rank: 2</Option>
+              <Option value="3">Rank: 3</Option>
+              <Option value="4">Rank: 4</Option>
+              <Option value="5">Rank: 5</Option>
+            </Select>
+          </div>
+          <div className="state-search">
+            <label htmlFor="locations" className="location">
+              Location
+            </label>
+            <SearchBar setUsState={setUsState} />{' '}
+          </div>
 
-        <div className="category-select">
-          <label htmlFor="categories" className="category">
-            Category
-          </label>
-          <AutoComplete
-            value={value}
-            options={categoriesData}
-            onSelect={onCategorySelect}
-            onChange={onCategoryChange}
-            style={{ width: 278 }}
-            allowClear={true}
-            filterOption={filterOption}
-            placeholder="Browse Categories"
-            notFoundContent="Category Not Found"
-          />
-          {activeCategories &&
-            activeCategories.map(tag => {
-              return (
-                <CheckableTag
-                  key={tag}
-                  checked={activeCategories.indexOf(tag) > -1}
-                  onChange={checked => onToggle(tag, checked)}
-                >
-                  {tag}
-                </CheckableTag>
-              );
-            })}
-        </div>
-        <div className="date-select">
-          <label htmlFor="dates" className="date">
-            Date
-          </label>
-          <RangePicker onCalendarChange={onDateSelection} />
-        </div>
-        <div className="export-button">
-          <Button
-            // onClick={downloadCSV}
-            type="primary"
-            style={{
-              backgroundColor: '#003767',
-              border: 'none',
-            }}
-          >
-            <CSVLink {...csvReport} target="_blank">
-              {' '}
-              {/* exports CSV file*/}
-              Export List
-            </CSVLink>
-          </Button>
-        </div>
-      </form>
-      <div className="incidents-container">
-        <div className="reports">
-          {data.length ? (
-            <Collapse key={nanoid()} className="collapse">
-              {currentPosts.map(incident => {
+          <div className="category-select">
+            <label htmlFor="categories" className="category">
+              Category
+            </label>
+            <AutoComplete
+              value={value}
+              options={categoriesData}
+              onSelect={onCategorySelect}
+              onChange={onCategoryChange}
+              style={{ width: 278 }}
+              allowClear={true}
+              filterOption={filterOption}
+              placeholder="Browse Categories"
+              notFoundContent="Category Not Found"
+            />
+            {activeCategories &&
+              activeCategories.map(tag => {
                 return (
-                  <Panel
-                    header={header(incident)}
-                    className="panel"
-                    expandIconPosition="left"
-                    key={incident.id}
+                  <CheckableTag
+                    key={tag}
+                    checked={activeCategories.indexOf(tag) > -1}
+                    onChange={checked => onToggle(tag, checked)}
                   >
-                    <div className="collapse-content">
-                      <p>{incident.desc}</p>
-
-                      <Popover
-                        content={sourceListHelper(incident)}
-                        placement="rightTop"
-                      >
-                        <Button
-                          type="primary"
-                          style={{
-                            backgroundColor: '#003767',
-                            border: 'none',
-                          }}
-                        >
-                          Sources
-                        </Button>
-                      </Popover>
-                    </div>
-                    {incident.categories.map(i => {
-                      return <Tag>{i}</Tag>;
-                    })}
-                  </Panel>
+                    {tag}
+                  </CheckableTag>
                 );
               })}
-            </Collapse>
-          ) : (
-            noDataDisplay()
-          )}
+          </div>
+          <div className="date-select">
+            <label htmlFor="dates" className="date">
+              Date
+            </label>
+            <RangePicker onCalendarChange={onDateSelection} />
+          </div>
+          <div className="export-button">
+            <Button
+              // onClick={downloadCSV}
+              className="btn"
+              type="primary"
+              style={{
+                backgroundColor: '#003767',
+                border: 'none',
+                marginTop: 15,
+                marginLeft: 86,
+              }}
+            >
+              <CSVLink {...csvReport} target="_blank">
+                {' '}
+                {/* exports CSV file*/}
+                Export List
+              </CSVLink>
+            </Button>
+          </div>
+        </form>
+        <div className="incidents-container">
+          <div className="reports">
+            {data.length ? (
+              <Collapse key={nanoid()} className="collapse">
+                {currentPosts.map(incident => {
+                  return (
+                    <Panel
+                      header={header(incident)}
+                      className="panel"
+                      expandIconPosition="left"
+                      key={incident.id}
+                    >
+                      <div className="collapse-content">
+                        <p>{incident.desc}</p>
+
+                        <Popover
+                          content={sourceListHelper(incident)}
+                          placement="rightTop"
+                        >
+                          <div className="source-button">
+                            <Button
+                              type="primary"
+                              style={{
+                                backgroundColor: '#003767',
+                                border: 'none',
+                              }}
+                            >
+                              Sources
+                            </Button>
+                            <div className="collapse-tags">
+                              {incident.categories.map(i => {
+                                return <Tag>{i}</Tag>;
+                              })}
+                            </div>
+                          </div>
+                        </Popover>
+                      </div>
+                    </Panel>
+                  );
+                })}
+              </Collapse>
+            ) : (
+              noDataDisplay()
+            )}
+          </div>
+          <section className="pagination">
+            <Pagination
+              onChange={onChange}
+              current={currentPage}
+              pageSize={itemsPerPage}
+              total={data.length}
+              showSizeChanger={false}
+            />
+          </section>
         </div>
-        <section className="pagination">
-          <Pagination
-            onChange={onChange}
-            current={currentPage}
-            pageSize={itemsPerPage}
-            total={data.length}
-            showSizeChanger={false}
-          />
-        </section>
       </div>
     </div>
   );

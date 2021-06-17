@@ -1,45 +1,48 @@
 @import '~antd/dist/antd.css';
 
+.incidents-content {
+  max-width: 100%;
+  margin-top: 3rem;
+}
+.incidents-content h1 {
+  margin-left: 7.9rem;
+}
+.incidents-content p {
+  margin-left: 7rem;
+  padding: 1rem;
+}
+.incident-reports-page{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  padding: 4rem;
+}
 .export-form {
-  margin:3rem 0 2rem 0;
-  width: 20%;
-  padding: 10px;
+  flex: .25;
+  max-width: 20vw;
+  max-height: 45vh;
+  padding: 1rem;
   background-color: rgba(0, 0, 0, 0.158);
   border: rgba(131, 84, 84, 0.25) 1px solid;
-  margin-left: 11.9rem;
   text-align: left;
 }
 
 .rank-select {
-  width: 278px;;
-  margin-top: 5px;
-}
-.state-search{
-  width: 278px;
-  margin-top: 5px;
-}
-.category-select {
-  width: 278px;
-  margin-top: 5px;
-}
-.date-select {
-  width: fit-content;
-  margin-top: 5px;
-  
-}
-.export-select .export-button {
-  margin-top: 1rem;
-  margin-left: 2.5rem;
-  width: 200px;
-  color: #ffffff;
-  background-color: #003767;
-  padding: 2px;
+  margin-top: .5rem;
 }
 
+.state-search{
+  margin-top: .5rem;
+}
+.category-select {
+  margin-top: .5rem;
+}
+.date-select {
+  margin-top: .5rem;
+}
 .incidents-container {
-  max-width: 69vw;
-  margin-left: 11.9rem;
-  
+  flex: .75;
+  max-width: 65vw;
 }
 .header-top {
   display: flex;
@@ -53,6 +56,12 @@
 }
 .collapse-content {
   display: flex;
+  flex-flow: column;
+}
+.source-button {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
 }
 
 .incidents-page header .user-input {
