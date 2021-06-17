@@ -22,6 +22,7 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 // Ant Design Imports:
 import { AutoComplete, Pagination, DatePicker } from 'antd';
 import { CSVLink } from 'react-csv'; // helper for export CSV from current State
+import { sample } from 'lodash-es';
 
 let ranks = [
   'Rank 1 - Police Presence',
@@ -134,8 +135,8 @@ const Incidents = () => {
       });
     }
     setData(falsiesRemoved(filtered));
-    setAdded([]); // it cleans checked data when we change the filtered data
-    setSelectedIncidents([]);
+    // setAdded([]); // it cleans checked data when we change the filtered data
+    // setSelectedIncidents([]);
     console.log('sam', sam);
   }, [usState, dates, activeCategories, rank]);
 
@@ -206,19 +207,31 @@ const Incidents = () => {
     // handles any changes with checked/unchecked incidents
     let k = [];
     let f = [];
-    selectedIncidents.forEach(i => {
-      [f] = rec.filter(inc => inc.id === i);
-      k.push(f);
-    });
+    if (sam.length !== 0) {
+      sam.forEach(i => {
+        [f] = incidents.filter(inc => inc.id === i);
+        k.push(f);
+      });
+    }
     setAdded(k);
+    // if (added.length !== 0){
+    //   added.forEach(i => {
+    //     // makes the current data prettier
+    //     i.desc = i.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
+    //     i.date = i.date.slice(0, 10); // removes unreadable timestamps
+    //     i.added_on = i.added_on.slice(0, 10); // removes unreadable timestamps
+    //   });
+    // }
+    console.log('added', added);
     console.log('every time', sam);
-  }, [selectedIncidents]);
+  }, [sam]);
   const csvReport = {
     // stores all data for CSV report
     data: sam.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
     headers: headers,
     filename: 'report.csv',
   };
+  console.log({ ...csvReport });
 
   const downloadCSV = () => {
     // console.log(
@@ -375,7 +388,7 @@ const Incidents = () => {
           >
             <CSVLink {...csvReport} target="_blank">
               {' '}
-              {/* exports CSV file*/}
+              {/* exports CSV file */}
               Export List
             </CSVLink>
           </Button>
