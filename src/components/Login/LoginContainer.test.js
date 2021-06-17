@@ -19,7 +19,7 @@ describe('<LoginContainer />', () => {
     expect(container.querySelector('#sign-in-widget')).toBeTruthy();
     expect(container.querySelector('#okta-sign-in')).toBeTruthy();
   });
-  test.only('Component responds with error message due to no credentials provided', async () => {
+  test('Component responds with error message due to no credentials provided', async () => {
     await render(<LoginContainer />);
     const submitButton = await screen.findByText(/sign in/i);
     userEvent.click(submitButton);
