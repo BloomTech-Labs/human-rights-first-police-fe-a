@@ -11,7 +11,6 @@ import {
 } from '../incidents/IncidentFilter';
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
 import { Empty, Button, Collapse, Tag, Checkbox, Popover, Select } from 'antd';
 
 // Time Imports
@@ -50,9 +49,9 @@ const Incidents = () => {
   const [selectedIncidents, setSelectedIncidents] = useLocalStorage(
     'marked',
     []
-  );
-  const [rank, setRank] = useState('All');
+  ); // all marked incidents saved in local storage
   const [added, setAdded] = useState([]); // data where all checked cases stored(from checkboxes)
+  const [rank, setRank] = useState('All');
 
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
@@ -145,8 +144,6 @@ const Incidents = () => {
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
   const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
-  console.log('curr', currentPage);
-  console.log('lastp', indexOfLastPost);
 
   const onSelect = id => {
     let newSelectedIncidents = [];
@@ -212,15 +209,16 @@ const Incidents = () => {
     if (selectedIncidents.length !== 0) {
       selectedIncidents.forEach(i => {
         [f] = incidents.filter(inc => inc.id === i);
-        let cl = JSON.parse(JSON.stringify(f));
+        let cl = JSON.parse(JSON.stringify(f)); // deep copy of read-only file to make data prettier
         cl.desc = cl.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
         cl.date = cl.date.slice(0, 10); // removes unreadable timestamps
-        cl.added_on = cl.added_on.slice(0, 10);
+        cl.added_on = cl.added_on.slice(0, 10); // removes unreadable timestamps
         k.push(cl);
       });
     }
     setAdded(k);
   }, [selectedIncidents]);
+
   const csvReport = {
     // stores all data for CSV report
     data: selectedIncidents.length === 0 ? rec : added, // if nothing checked in checkboxes, uploads all filtered data
@@ -228,38 +226,9 @@ const Incidents = () => {
     filename: 'report.csv',
   };
 
-  // const downloadCSV = () => {
-  // console.log(
-  //   `${
-  //     process.env.REACT_APP_BACKENDURL
-  //   }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
-  //     ','
-  //   )}`}`
-  // );
-  //   axios
-  //     .get(
-  //       `${
-  //         process.env.REACT_APP_BACKENDURL
-  //       }/incidents/download?rank=${rank}${queryString}${`&ids=${selectedIncidents.join(
-  //         ','
-  //       )}`}`
-  //     )
-  //     .then(response => {
-  //       let link = document.createElement('a');
-  //       link.href = window.URL.createObjectURL(
-  //         new Blob([response.data], { type: 'application/octet-stream' })
-  //       );
-  //       link.download = 'reports.csv';
-
-  //       document.body.appendChild(link);
-
-  //       link.click();
-  //       setTimeout(function() {
-  //         window.URL.revokeObjectURL(link);
-  //       }, 200);
-  //     })
-  //     .catch(error => {});
-  // };
+  const clearList = () => {
+    setSelectedIncidents([]);
+  };
 
   const onDateSelection = (dates, dateStrings) => {
     setDates(
@@ -307,9 +276,6 @@ const Incidents = () => {
       : null;
   };
 
-  const clearList = () => {
-    setSelectedIncidents([]);
-  };
   return (
     <div className="incident-reports-page">
       <form className="export-form">
