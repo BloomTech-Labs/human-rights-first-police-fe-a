@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Space, Divider } from 'antd';
 import axios from 'axios';
+import { getData } from '../../../utils/DashboardHelperFunctions';
+import CompleteIncident from '../CompleteIncident';
+import { DateTime } from 'luxon';
 
 //https://ant.design/components/table/ <---documentation on the table
 
 function AntTable(props) {
   const [incidents, setIncidents] = useState([]);
   const [selectionType, setSelectionType] = useState('checkbox');
-  const { data } = props;
+  const { unapprovedIncidents, setUnapprovedIncidents } = props;
+
+  const [selected, setSelected] = useState([]);
 
   //this axios call should be passed in, not repeated
   // useEffect(() => {
@@ -18,7 +23,16 @@ function AntTable(props) {
   //       setIncidents(res.data);
   //     });
   // }, []);
-  console.log(data);
+
+  function formattingDate(inputData) {
+    const [year, month, day] = inputData.date.split('-');
+    return `${month}/${day.slice(0, 2)}/${year}`;
+  }
+
+  const onSelect = selectedIncident => {
+    setSelected(selectedIncident);
+    console.log(selected);
+  };
 
   const columns = [
     //   //When DS provides data for this, uncomment for Admin Table to show %, and move.
@@ -38,7 +52,7 @@ function AntTable(props) {
       title: 'City',
       dataIndex: 'city',
       key: 'city',
-      align: 'right',
+      align: 'left',
       fixed: 'top',
     },
     {
@@ -52,6 +66,13 @@ function AntTable(props) {
       dataIndex: 'date',
       key: 'date',
       fixed: 'top',
+      defaultSortOrder: 'descend',
+      sorter: (a, b) => {
+        let aTime = DateTime.fromISO(a.date.slice(0.1));
+        let bTime = DateTime.fromISO(b.date.slice(0, 10));
+
+        return aTime - bTime;
+      },
     },
     {
       title: 'Changes',
@@ -62,7 +83,6 @@ function AntTable(props) {
       render: (text, record) => (
         <Space size="middle">
           {/* I believe if you create onClick functions, this will work the same but there was not enough documentation to figure it out and pass props to this */}
-          <button>Edit</button>
           <button>Delete</button>
           <button>Approve</button>
         </Space>
@@ -76,13 +96,26 @@ function AntTable(props) {
 
       <Table
         columns={columns}
-        dataSource={data}
+        dataSource={unapprovedIncidents}
         rowKey={'id'}
         expandable={{
-          expandedRowRender: data => <p>{data.id}</p>,
+          expandedRowRender: incident => (
+            <CompleteIncident
+              incident={incident}
+              formattedDate={formattingDate(incident)}
+              getData={getData}
+              setUnapprovedIncidents={setUnapprovedIncidents}
+            />
+          ),
           rowExpandable: data => data.id !== null,
         }}
-        pagination={{ position: ['topRight', 'bottomCenter'] }}
+        rowSelection={{
+          selected,
+          onChange: onSelect,
+        }}
+        pagination={{
+          position: ['topRight', 'bottomCenter'],
+        }}
         // scroll={{ y: 800 }}
       />
     </div>
