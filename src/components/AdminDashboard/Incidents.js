@@ -124,7 +124,10 @@ const DashboardIncidents = props => {
             />
           );
         })} */}
-        <AntTable data={unapprovedIncidents} />
+        <AntTable
+          unapprovedIncidents={unapprovedIncidents}
+          setUnapprovedIncidents={setUnapprovedIncidents}
+        />
       </div>
     </>
   );
