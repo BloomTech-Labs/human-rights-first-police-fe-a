@@ -10,28 +10,20 @@ import { DateTime } from 'luxon';
 function AntTable(props) {
   const [incidents, setIncidents] = useState([]);
   const [selectionType, setSelectionType] = useState('checkbox');
-  const { unapprovedIncidents, setUnapprovedIncidents } = props;
-
-  const [selected, setSelected] = useState([]);
-
-  //this axios call should be passed in, not repeated
-  // useEffect(() => {
-  //   axios
-  //     .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
-  //     .then(res => {
-  //       console.log(res.data);
-  //       setIncidents(res.data);
-  //     });
-  // }, []);
+  const {
+    unapprovedIncidents,
+    setUnapprovedIncidents,
+    selected,
+    setSelected,
+  } = props;
 
   function formattingDate(inputData) {
     const [year, month, day] = inputData.date.split('-');
     return `${month}/${day.slice(0, 2)}/${year}`;
   }
 
-  const onSelect = selectedIncident => {
-    setSelected(selectedIncident);
-    console.log(selected);
+  const onSelect = selectedIncidents => {
+    setSelected(selectedIncidents);
   };
 
   const columns = [
@@ -74,39 +66,25 @@ function AntTable(props) {
         return aTime - bTime;
       },
     },
-    {
-      title: 'Changes',
-      dataIndex: '',
-      key: 'changes',
-      align: 'center',
-      fixed: 'top',
-      render: (text, record) => (
-        <Space size="middle">
-          {/* I believe if you create onClick functions, this will work the same but there was not enough documentation to figure it out and pass props to this */}
-          <button>Delete</button>
-          <button>Approve</button>
-        </Space>
-      ),
-    },
   ];
 
   return (
     <div>
-      {/* <Divider /> */}
-
       <Table
         columns={columns}
         dataSource={unapprovedIncidents}
         rowKey={'id'}
         expandable={{
-          expandedRowRender: incident => (
-            <CompleteIncident
-              incident={incident}
-              formattedDate={formattingDate(incident)}
-              getData={getData}
-              setUnapprovedIncidents={setUnapprovedIncidents}
-            />
-          ),
+          expandedRowRender: incident => {
+            return (
+              <CompleteIncident
+                incident={incident}
+                formattedDate={formattingDate(incident)}
+                getData={getData}
+                setUnapprovedIncidents={setUnapprovedIncidents}
+              />
+            );
+          },
           rowExpandable: data => data.id !== null,
         }}
         rowSelection={{
@@ -116,7 +94,6 @@ function AntTable(props) {
         pagination={{
           position: ['topRight', 'bottomCenter'],
         }}
-        // scroll={{ y: 800 }}
       />
     </div>
   );

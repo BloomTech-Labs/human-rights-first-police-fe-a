@@ -234,10 +234,10 @@ const AdminDashboard = () => {
                 confirmRejectHandler={confirmRejectHandler}
                 approveAndRejectHandler={approveAndRejectHandler}
                 confirmCancel={confirmCancel}
+                setSelected={setSelected}
                 selected={selected}
                 selectAll={selectAll}
                 allSelected={allSelected}
-                changeSelected={changeSelected}
                 handlePerPageChange={handlePerPageChange}
                 currentSet={currentSet}
                 setUnapprovedIncidents={setUnapprovedIncidents}

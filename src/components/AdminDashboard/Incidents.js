@@ -16,12 +16,12 @@ const DashboardIncidents = props => {
     selected,
     selectAll,
     allSelected,
-    changeSelected,
     handlePerPageChange,
     currentSet,
     setUnapprovedIncidents,
     setPageNumber,
     unapprovedIncidents,
+    setSelected,
   } = props;
 
   return (
@@ -127,6 +127,8 @@ const DashboardIncidents = props => {
         <AntTable
           unapprovedIncidents={unapprovedIncidents}
           setUnapprovedIncidents={setUnapprovedIncidents}
+          selected={selected}
+          setSelected={setSelected}
         />
       </div>
     </>
