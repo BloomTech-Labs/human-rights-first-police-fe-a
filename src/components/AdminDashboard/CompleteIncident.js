@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import AntModal from './AntModalComponent/AntModal';
+
 import EmbedSource from '../EmbedSource';
 
 import { applyEdits, getData } from '../../utils/DashboardHelperFunctions';
@@ -268,6 +270,7 @@ const CompleteIncident = props => {
             Apply Changes
           </button>
         )}
+        <AntModal />
       </div>
     </div>
   );
