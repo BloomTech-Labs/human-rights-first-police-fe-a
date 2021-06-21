@@ -5,12 +5,16 @@
 @media (min-width: 1440px) {
   .timeline {
     width: 90%;
-    margin: -4.5% 0% 0% -4.5%;
-    border: solid black;
+    margin: -4.5% 0% 0% -5.5%;
   }
   .horizontal-graph {
-    border: solid red;
-    margin-left: -1%;
+    margin-left: -2%;
     width: 44%;
+  }
+  div.line-break {
+    width: 110.3%;
+  }
+  div.ant-collapse-item {
+    margin-right: 2%;
   }
 }
