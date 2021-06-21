@@ -1,3 +1,16 @@
 .bottom-section {
   padding-bottom: 1vh;
 }
+
+@media (min-width: 1440px) {
+  .timeline {
+    width: 90%;
+    margin: -4.5% 0% 0% -4.5%;
+    border: solid black;
+  }
+  .horizontal-graph {
+    border: solid red;
+    margin-left: -1%;
+    width: 44%;
+  }
+}

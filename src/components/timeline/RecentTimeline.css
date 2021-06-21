@@ -1,11 +1,13 @@
 div.timeline-container {
   padding: 0;
   background-color: white;
+  
 }
 
 .timeline {
   width: 100%;
   margin: 0;
+  border: solid red;
 }
 
 .timeline-box {
