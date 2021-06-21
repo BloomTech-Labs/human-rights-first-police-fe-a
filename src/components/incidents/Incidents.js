@@ -100,13 +100,14 @@ const Incidents = () => {
                 .toLocaleString(DateTime.DATE_MED)}
             </p>
           </div>
-
-          <Checkbox
-            checked={selectedIncidents.indexOf(incident.id) > -1}
-            onChange={checked => onSelect(incident.id, checked)}
-          >
-            Add To List
-          </Checkbox>
+          <div className="header-checkbox">
+            <Checkbox
+              checked={selectedIncidents.indexOf(incident.id) > -1}
+              onChange={checked => onSelect(incident.id, checked)}
+            >
+              Add To List
+            </Checkbox>
+          </div>
         </div>
       </div>
     );
@@ -285,6 +286,7 @@ const Incidents = () => {
 
   return (
     <div className="incident-reports-page">
+      <h1>Report Search Box</h1>
       <form className="export-form">
         <div className="rank-select">
           <label htmlFor="ranks" className="rank">
@@ -295,7 +297,6 @@ const Incidents = () => {
             showSearch
             defaultValue="All"
             className="rank-select"
-            style={{ width: 278 }}
             id="ranks"
             value={rank}
           >
@@ -323,7 +324,6 @@ const Incidents = () => {
             options={categoriesData}
             onSelect={onCategorySelect}
             onChange={onCategoryChange}
-            style={{ width: 278 }}
             allowClear={true}
             filterOption={filterOption}
             placeholder="Browse Categories"
@@ -334,6 +334,10 @@ const Incidents = () => {
             activeCategories.map(tag => {
               return (
                 <CheckableTag
+                  style={{
+                    marginTop: 3,
+                    backgroundColor: '#003767',
+                  }}
                   key={tag}
                   checked={activeCategories.indexOf(tag) > -1}
                   onChange={checked => onToggle(tag, checked)}
@@ -359,6 +363,7 @@ const Incidents = () => {
             style={{
               backgroundColor: '#003767',
               border: 'none',
+              marginTop: 5,
             }}
           >
             <CSVLink {...csvReport} target="_blank">
@@ -376,6 +381,7 @@ const Incidents = () => {
             style={{
               backgroundColor: added.length === 0 ? 'transparent' : '#003767',
               border: 'none',
+              marginTop: 5,
             }}
           >
             <CSVLink {...markedReport} target="_blank">
@@ -395,6 +401,7 @@ const Incidents = () => {
         </div>
       </form>
       <div className="incidents-container">
+        <h1>Report Results</h1>
         <div className="reports">
           {data.length ? (
             <Collapse key={nanoid()} className="collapse">
