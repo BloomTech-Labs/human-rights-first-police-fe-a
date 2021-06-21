@@ -1218,8 +1218,8 @@ form label {
   .timeline-wrapper {
     margin-top: -20px;
     width: 100%;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
   }
   .horizontal-graph {
     width: 80%;
