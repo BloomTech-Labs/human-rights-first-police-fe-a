@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import ApprovedIncident from './ApprovedIncident';
+// import ApprovedIncident from './ApprovedIncident';
 import { DoubleRightOutlined } from '@ant-design/icons';
 import { DoubleLeftOutlined } from '@ant-design/icons';
 import SearchBar from '../graphs/searchbar/SearchBar';
+import AntTable from './AntTableComponents/AntTable';
 import { DatePicker } from 'antd';
 const { RangePicker } = DatePicker;
 
@@ -35,18 +36,19 @@ const ApprovedIncidents = ({ incidents }) => {
     <>
       <SearchBar setUsState={setUsState} />
       <RangePicker onCalendarChange={onDateSelection} />
-      <div style={{ marginTop: 20 }} className="column-headers">
+      {/* <div style={{ marginTop: 20 }} className="column-headers">
         <input className="hidden-input" type="checkbox" />
         <div className="column-headers-flex">
           <h4 className="description">Description</h4>
           <h4 className="location">Location</h4>
           <h4 className="date">Date</h4>
         </div>
-      </div>
+      </div> */}
 
-      {incidents.slice(pageStart, pageEnd).map(item => {
+      {/* {incidents.slice(pageStart, pageEnd).map(item => {
         return <ApprovedIncident item={item} />;
-      })}
+      })} */}
+      <AntTable approvedIncidents={incidents} />
       <div className="pagination">
         <DoubleLeftOutlined
           className={page === 1 ? 'prev-arrow shaded-arrow' : 'prev-arrow'}
