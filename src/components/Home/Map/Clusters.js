@@ -22,7 +22,7 @@ const ClusterMarker = styled.div`
 `;
 
 const INCIDENT_ZOOM_LEVEL = 12;
-const LEAVES_LIMIT = 1000000; // Max # of incidents to display in IncidentFocus
+const LEAVES_LIMIT = 500; // Max # of incidents to display in IncidentFocus
 
 export default function Clusters({ zoomOnCluster }) {
   const dispatch = useDispatch();
@@ -81,8 +81,10 @@ export default function Clusters({ zoomOnCluster }) {
             offsetTop={-(10 + (pointCount / points.length) * 300) / 2}
             onClick={() => {
               if (isCluster) {
+                console.log('check');
                 handleClusterClick(c.id, longitude, latitude);
               } else {
+                console.log('locale');
                 handleIncidentClick(c.incidentId, longitude, latitude);
               }
             }}

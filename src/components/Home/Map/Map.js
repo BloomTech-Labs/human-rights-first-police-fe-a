@@ -56,7 +56,7 @@ export default function Map() {
     dragPan: true,
     dragRotate: true,
     //map can be zoomed in and out mouse scroll, revisit this scroll (Stakeholder asked for map not to scroll)
-    scrollZoom: false,
+    scrollZoom: true,
     touchZoom: false,
     touchRotate: false,
     keyboard: false,
@@ -104,6 +104,11 @@ export default function Map() {
           {...settings}
           onViewportChange={vp => {
             setViewport(vp);
+          }}
+          onClick={() => {
+            console.log('hello');
+            dispatch(resetFocus());
+            // dispatch(resetReduxViewport());
           }}
           width="fit"
           height="calc(90vh - 59px)"
