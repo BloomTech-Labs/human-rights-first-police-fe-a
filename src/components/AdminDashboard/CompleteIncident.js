@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 import AntModal from './AntModalComponent/AntModal';
 
+import { Button } from 'antd';
+
 import EmbedSource from '../EmbedSource';
 
 import { applyEdits, getData } from '../../utils/DashboardHelperFunctions';
+import { AntDesignOutlined } from '@ant-design/icons';
 
 const CompleteIncident = props => {
   const {
@@ -258,17 +261,17 @@ const CompleteIncident = props => {
             />
           </>
         )}
-        <button
+        <Button
           id="dropdown-edit-button"
           className="approve-reject-select"
           onClick={toggleEditor}
         >
           {editing ? 'Cancel' : 'Edit'}
-        </button>
+        </Button>
         {editing && (
-          <button className="approve-reject-select" onClick={handleSubmit}>
+          <Button className="approve-reject-select" onClick={handleSubmit}>
             Apply Changes
-          </button>
+          </Button>
         )}
         <AntModal />
       </div>

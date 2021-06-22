@@ -234,17 +234,17 @@ const AdminDashboard = () => {
                 confirmRejectHandler={confirmRejectHandler}
                 approveAndRejectHandler={approveAndRejectHandler}
                 confirmCancel={confirmCancel}
+                setSelected={setSelected}
                 selected={selected}
                 selectAll={selectAll}
                 allSelected={allSelected}
-                changeSelected={changeSelected}
                 handlePerPageChange={handlePerPageChange}
                 currentSet={currentSet}
                 setUnapprovedIncidents={setUnapprovedIncidents}
                 setPageNumber={setPageNumber}
                 unapprovedIncidents={unapprovedIncidents}
               />
-              <div className="pagination">
+              {/* <div className="pagination">
                 <DoubleLeftOutlined
                   onClick={handleBackClick}
                   className={
@@ -267,7 +267,7 @@ const AdminDashboard = () => {
                 >
                   Next Page
                 </DoubleRightOutlined>
-              </div>
+              </div> */}
             </>
           )}
         </div>
