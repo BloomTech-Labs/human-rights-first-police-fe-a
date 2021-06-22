@@ -2,7 +2,8 @@ import React from 'react';
 
 import PendingIncident from './PendingIncident';
 import AdminTable from './AdminTable';
-// import AntTable from './AntTableComponents/AntTable';
+import AntTable from './AntTableComponents/AntTable';
+import Incidents from '../incidents/Incidents';
 
 const DashboardIncidents = props => {
   const {
@@ -20,6 +21,7 @@ const DashboardIncidents = props => {
     currentSet,
     setUnapprovedIncidents,
     setPageNumber,
+    unapprovedIncidents,
   } = props;
 
   return (
@@ -106,10 +108,10 @@ const DashboardIncidents = props => {
         </div>
       </div>
 
-      <AdminTable />
+      {/* <AdminTable /> */}
 
       <div className="incidents">
-        {currentSet.map(incident => {
+        {/* {currentSet.map(incident => {
           return (
             <PendingIncident
               confirmApprove={confirmApprove}
@@ -121,10 +123,12 @@ const DashboardIncidents = props => {
               setPageNumber={setPageNumber}
             />
           );
-        })}
+        })} */}
+        <AntTable
+          unapprovedIncidents={unapprovedIncidents}
+          setUnapprovedIncidents={setUnapprovedIncidents}
+        />
       </div>
-
-      {/* <AntTable /> */}
     </>
   );
 };
