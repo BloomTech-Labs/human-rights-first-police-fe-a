@@ -27,7 +27,7 @@ const DashboardIncidents = props => {
   return (
     <>
       <div className="dashboard-top-flex">
-        <div className="dashboard-top-input">
+        {/* <div className="dashboard-top-input">
           <input
             type="checkbox"
             name="select-all"
@@ -37,7 +37,7 @@ const DashboardIncidents = props => {
           <label id="select-all-label" htmlFor="select-all">
             Select All{' '}
           </label>
-        </div>
+        </div> */}
 
         <div className="dashboard-top-approve-reject">
           {!confirmApprove && !confirmReject ? (
@@ -90,7 +90,7 @@ const DashboardIncidents = props => {
             Are you sure?
           </p>
         </div>
-        <div className="dashboard-top-page-number">
+        {/* <div className="dashboard-top-page-number">
           <label id="items-per-page" htmlFor="per-page-selector">
             Items Per Page
           </label>
@@ -105,25 +105,10 @@ const DashboardIncidents = props => {
             <option value="50">50</option>
             <option value="100">100</option>
           </select>
-        </div>
+        </div> */}
       </div>
 
-      {/* <AdminTable /> */}
-
       <div className="incidents">
-        {/* {currentSet.map(incident => {
-          return (
-            <PendingIncident
-              confirmApprove={confirmApprove}
-              key={incident.id}
-              incident={incident}
-              selected={selected}
-              changeSelected={changeSelected}
-              setUnapprovedIncidents={setUnapprovedIncidents}
-              setPageNumber={setPageNumber}
-            />
-          );
-        })} */}
         <AntTable
           unapprovedIncidents={unapprovedIncidents}
           setUnapprovedIncidents={setUnapprovedIncidents}
