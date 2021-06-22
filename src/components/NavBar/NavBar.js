@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 
-import logo from '../../assets/HRF white-01.png';
+import logo from '../../assets/blue-witness1.png';
 import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
 import IncidentFocus from '../Home/Map/IncidentFocus';
 // import { useOktaAuth } from '@okta/okta-react';

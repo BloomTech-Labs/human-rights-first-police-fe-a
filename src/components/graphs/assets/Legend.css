@@ -1,5 +1,18 @@
 .graph-legend-wrap {
   margin-bottom: 6%;
-  padding: 20px;
+  padding: 0 0 0 1%;
   border: 1px solid rgba(255, 99, 132, 0.4);
+}
+
+h3.homepage-legend {
+  text-align: left;
+}
+
+li.rank {
+  list-style-type: none;
+  padding: 1% 0 0 0;
+}
+
+p.graph-disclaimer {
+  margin-top: 0;
 }

@@ -10,7 +10,11 @@ import { DateTime } from 'luxon';
 function AntTable(props) {
   const [incidents, setIncidents] = useState([]);
   const [selectionType, setSelectionType] = useState('checkbox');
-  const { unapprovedIncidents, setUnapprovedIncidents } = props;
+  const {
+    unapprovedIncidents,
+    setUnapprovedIncidents,
+    approvedIncidents,
+  } = props;
 
   const [selected, setSelected] = useState([]);
 
@@ -83,8 +87,14 @@ function AntTable(props) {
       render: (text, record) => (
         <Space size="middle">
           {/* I believe if you create onClick functions, this will work the same but there was not enough documentation to figure it out and pass props to this */}
-          <button>Delete</button>
-          <button>Approve</button>
+          {unapprovedIncidents ? (
+            <>
+              <button>Delete</button>
+              <button>Approve</button>
+            </>
+          ) : (
+            <button>Delete</button>
+          )}
         </Space>
       ),
     },
@@ -96,7 +106,9 @@ function AntTable(props) {
 
       <Table
         columns={columns}
-        dataSource={unapprovedIncidents}
+        dataSource={
+          unapprovedIncidents ? unapprovedIncidents : approvedIncidents
+        } // If the unapprovedIncidents component is mounted, the datasource will be unapprovedIncidents, else the data source will be approvedIncidents
         rowKey={'id'}
         expandable={{
           expandedRowRender: incident => (
