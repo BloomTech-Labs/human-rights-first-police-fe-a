@@ -59,6 +59,8 @@ export default function StudentCredits() {
                   <Tag>Front End</Tag>
                 ) : role === 'be' ? (
                   <Tag>Back End</Tag>
+                ) : role === 'design' ? (
+                  <Tag>Design Lead</Tag>
                 ) : role === 'ds' ? (
                   <Tag>Data Science</Tag>
                 ) : role === 'web' ? (
