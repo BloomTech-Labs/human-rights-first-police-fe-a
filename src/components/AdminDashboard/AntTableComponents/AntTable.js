@@ -10,9 +10,11 @@ import { DateTime } from 'luxon';
 function AntTable(props) {
   const [incidents, setIncidents] = useState([]);
   const [selectionType, setSelectionType] = useState('checkbox');
+  const [approvedSelected, setApprovedSelected] = useState([]);
   const {
     unapprovedIncidents,
     setUnapprovedIncidents,
+    approvedIncidents,
     selected,
     setSelected,
   } = props;
@@ -23,7 +25,11 @@ function AntTable(props) {
   }
 
   const onSelect = selectedIncidents => {
-    setSelected(selectedIncidents);
+    if (selected !== undefined) {
+      setSelected(selectedIncidents);
+    } else {
+      setApprovedSelected(selectedIncidents);
+    }
   };
 
   const columns = [
@@ -72,7 +78,9 @@ function AntTable(props) {
     <div>
       <Table
         columns={columns}
-        dataSource={unapprovedIncidents}
+        dataSource={
+          unapprovedIncidents ? unapprovedIncidents : approvedIncidents
+        } // If the unapprovedIncidents component is mounted, the datasource will be unapprovedIncidents, else the data source will be approvedIncidents
         rowKey={'id'}
         expandable={{
           expandedRowRender: incident => {
@@ -88,12 +96,14 @@ function AntTable(props) {
           rowExpandable: data => data.id !== null,
         }}
         rowSelection={{
-          selected,
+          selectedRowKeys: selected !== undefined ? selected : approvedSelected,
           onChange: onSelect,
         }}
         pagination={{
           position: ['topRight', 'bottomCenter'],
-          total: unapprovedIncidents.length,
+          total: unapprovedIncidents
+            ? unapprovedIncidents.length
+            : approvedIncidents.length,
           showTotal(total, range) {
             return `${range[0]}-${range[1]} of ${total} items`;
           },
