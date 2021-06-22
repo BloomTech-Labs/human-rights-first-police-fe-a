@@ -19,24 +19,24 @@ const {
   resetFocus,
 } = mapActions;
 
-const NavControlContainer = styled.div`
-  position: absolute;
-  top: 82px;
-  left: 26px;
-  z-index: 1;
-  @media (max-width: 375px) {
-    position: absolute;
-    top: 490px;
-    left: 26px;
-    z-index: 1;
-  }
-  @media (max-width: 414px) {
-    position: absolute;
-    top: 540px;
-    left: 26px;
-    z-index: 1;
-  }
-`;
+// const NavControlContainer = styled.div`
+//   position: absolute;
+//   top: 82px;
+//   left: 26px;
+//   z-index: 1;
+//   @media (max-width: 375px) {
+//     position: absolute;
+//     top: 490px;
+//     left: 26px;
+//     z-index: 1;
+//   }
+//   @media (max-width: 414px) {
+//     position: absolute;
+//     top: 540px;
+//     left: 26px;
+//     z-index: 1;
+//   }
+// `;
 const initialPosition = {
   latitude: 39.850033,
   longitude: -97.6500523,
@@ -115,14 +115,14 @@ export default function Map() {
           {fetchStatus === 'success' ? (
             <>
               <Search zoomOnCluster={zoomOnCluster} />
-              <NavControlContainer>
-                <NavigationControl />
+              <div className="nav-container">
+                <NavigationControl className="nav-controls" />
                 <HomeIcon
                   zoomOnCluster={zoomOnCluster}
                   initialPosition={initialPosition}
                   resetFocus={resetFocus}
                 />
-              </NavControlContainer>
+              </div>
               <Clusters zoomOnCluster={zoomOnCluster} />
             </>
           ) : (

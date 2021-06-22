@@ -1,8 +1,16 @@
 .bottom-section {
   padding-bottom: 1vh;
 }
+.nav-container {
+  margin-top: 20%;
+  width: 5.5%;
+  position: absolute;
+  top: -180px;
+  left: 23px;
+}
 
-@media (min-width: 1440px) {
+
+@media (max-width: 1440px) {
   .timeline {
     width: 90%;
     margin: -4.5% 0% 0% -5.5%;
@@ -17,9 +25,16 @@
   div.ant-collapse-item {
     margin-right: 2%;
   }
+  .nav-container {
+    margin-top: 20%;
+    width: 5.5%;
+    position: absolute;
+    top: -180px;
+    left: 23px;
+  }
 }
 
-@media (min-width: 1024px) {
+@media (max-width: 1024px) {
   .more-info {
     margin: -2.8% 0% 2.2% 0%;
   }
@@ -49,6 +64,50 @@
     margin-left: -3%;
     width: 42%;
   }
+  .nav-container {
+    margin-top: 20%;
+    width: 5.5%;
+    position: absolute;
+    top: -140px;
+    left: 23px;
+  }
   
 }
 
+@media (max-width: 785px) {
+  div.ant-collapse-item {
+    margin: -166% 6% 0% -20%;
+  }
+  .nav-container {
+    margin-top: 20%;
+    width: 4.7%;
+    position: absolute;
+    top: 140px;
+    left: 25px;
+  }
+  div.line-break {
+    margin-top: 1%;
+    width: 112.5%;
+  }
+  .bottom-section-wrap {
+    display: flex;
+    /* border: solid blue; */
+    width: 100%;
+    margin: 8% 0% 0% 0%;
+  }
+  .timeline {
+    /* border:solid red; */
+    margin: -21.5% 0% 0% 8%;
+    width: 90%;
+    /* margin: -7% 0% 0% 16%;
+    width: 170%; */
+  }
+  .horizontal-graph {
+    /* border: solid black; */
+    margin: 0% 10% 0% 0%;
+    width: 49%;
+    /* margin: 3% 0% 5% 15%;
+    width: 72%; */
+  }
+  
+}
