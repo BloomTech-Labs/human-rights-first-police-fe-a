@@ -8,7 +8,7 @@ import {
   fireEvent,
 } from '../../utils/test-utils';
 import Incidents from './Incidents';
-import userEvent from '@testing-library/user-event';
+import userEvent, { specialChars } from '@testing-library/user-event';
 
 afterEach(() => {
   cleanup();
@@ -69,7 +69,7 @@ describe('Filter functions by rank correctly', () => {
 //       await userEvent.click(locationFilter);
 //     });
 //     await act(async () => {
-//       await userEvent.type(locationFilter, 'Minnesota{arrowdown}{enter}');
+//       await userEvent.type(locationFilter, `Minnesota${arrowDown}${enter}`);
 //     });
 //     const listedIncidents = screen.getAllByText(/add to list/i);
 //     expect(listedIncidents.length).toEqual(2);
