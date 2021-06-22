@@ -130,13 +130,72 @@
     margin-top: 1%;
     width: 114%;
   }
+  .bottom-section-wrap {
+    display: flex;
+    flex-direction: column;
+    /* border: solid blue; */
+    width: 100%;
+    margin: 8% 0% 0% 0%;
+  }
   .timeline {
-    margin: -21.5% 0% 0% -3%;
-    width: 105%;
-  
+    margin: -20% 0% 10% 9%;
+    width: 180%;
+    /* margin: -21.5% 0% 0% 1%;
+    width: 100%; */
+    /* border-bottom: solid black; */
   }
   .horizontal-graph {
-    margin: 0% 6% 0% 0%;
-    
+    margin: 0% 0% 0% 0%;
+    width: 100%;
+    /* margin: 3.3% 8% 0% -4%;
+    width: 110%; */
+    border-top: solid rgb(204, 204, 204);
+    padding: 12%;
   }
 }
+
+@media (max-width: 414px) {
+  div.ant-collapse-item {
+    margin: -210% -16% 0% -250%;
+  }
+  .nav-container {
+    margin-top: 20%;
+    width: 8.5%;
+    position: absolute;
+    top: 380px;
+    left: 25px;
+  }
+  .more-info {
+    margin: -7% 0% 4% 0%;
+  }
+  div.line-break {
+    margin-top: 2%;
+    width: 117%;
+  }
+  .timeline {
+    width: 200%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .search-header {
+    width: 87.5%;
+  }
+  div.ant-collapse-item {
+    margin: -235% 21% 0% -300%;
+  }
+  .more-info {
+    margin: -8% 0% 4% 0%;
+  }
+  div.line-break {
+    margin: 2% 0% 0% -10%;
+    width: 120.3%;
+  }
+  .horizontal-graph {
+    margin: 0% 0% 0% -7%;
+    width: 107%;
+    border-top: solid rgb(204, 204, 204);
+    padding: 15%;
+  }
+}
+
