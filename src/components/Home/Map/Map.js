@@ -105,6 +105,9 @@ export default function Map() {
           onViewportChange={vp => {
             setViewport(vp);
           }}
+          onClick={() => {
+            dispatch(resetFocus());
+          }}
           width="fit"
           height="calc(90vh - 59px)"
           minZoom={2.75}
