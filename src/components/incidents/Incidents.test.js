@@ -5,10 +5,9 @@ import {
   cleanup,
   screen,
   act,
-  fireEvent,
 } from '../../utils/test-utils';
 import Incidents from './Incidents';
-import userEvent, { specialChars } from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 
 afterEach(() => {
   cleanup();
@@ -60,18 +59,3 @@ describe('Filter functions by rank correctly', () => {
     expect(page2).toBe(null);
   });
 });
-
-// describe('Location filter works correctly', () => {
-//   test('Location filter returns correct results', async () => {
-//     await render(<Incidents />);
-//     const locationFilter = screen.getByLabelText(/location/i);
-//     await act(async () => {
-//       await userEvent.click(locationFilter);
-//     });
-//     await act(async () => {
-//       await userEvent.type(locationFilter, `Minnesota${arrowDown}${enter}`);
-//     });
-//     const listedIncidents = screen.getAllByText(/add to list/i);
-//     expect(listedIncidents.length).toEqual(2);
-//   });
-// });
