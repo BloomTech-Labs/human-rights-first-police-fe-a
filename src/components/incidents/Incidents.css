@@ -1,4 +1,120 @@
 @import '~antd/dist/antd.css';
+.incident-reports-page {
+  width: 100%;
+  margin: auto;
+  margin-top: 2rem;
+}
+.incident-reports-page h1{
+  margin-left: 1rem ;
+  font-size: 1.5rem;
+}
+.export-form {
+  width: 96%;
+  text-align: left;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.158);
+}
+.export-form .ant-select{
+  width: 90rem;
+  margin-bottom: 1rem;
+}
+.ant-picker {
+  width: 90rem;
+  margin-bottom: 1rem;
+}
+.incidents-container {
+  width: 98%;
+  margin:auto;
+  padding: .5rem;
+}
+.incidents-container h1 {
+  margin-left: 5rem;
+}
+.header-top {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  width: 100%;
+}
+#title{
+  margin-top: .11rem;
+  margin-left: 1.5rem;
+  font-size: 1rem;
+  color: #000;
+}
+.incidents-page header .user-input {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+.panel {
+  background-color: rgba(0, 0, 0, 0.158);
+}
+.extra {
+  display: flex;
+  flex-flow: column; 
+  width: 100%;
+  text-align: left;
+}
+.incident-location {
+  margin-left: 1.4rem;
+  margin-bottom: .1rem;
+  font-size: .9rem;
+  color: #003767;
+}
+.incident-date {
+  display: flex;
+  flex-direction: row;
+  margin-left: 1.4rem;
+  font-size: .9rem;
+  color: #003767;
+}
+.incident-rank span {
+  margin-left: 1.4rem;
+  margin-bottom: .5rem;
+}
+.header-checkbox {
+  margin-left: 1.4rem;
+}
+.pagination {
+  width: 100%;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 1rem;
+  padding-bottom: 2.5vh;
+}
+
+span.ant-tag.ant-tag-checkable:hover {
+  color: #003767;
+}
+
+.ant-tag-checkable-checked {
+  background-color: #003767;
+}
+
+span.ant-tag.ant-tag-checkable-checked:hover {
+  color: #ffffff;
+}
+
+.ant-pagination-item a:hover {
+  color: #003767;
+  border-color: #003767;
+}
+
+.ant-pagination-item-active a {
+  color: #003767;
+  border-color: #003767;
+}
+
+
 /* Tablets and Lap */
 
 /* Laptop Large */
@@ -18,12 +134,127 @@
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.158);
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 83.5rem;
     margin-bottom: 1rem;
   }
   .ant-picker {
     width: 83.5rem;
+    margin-bottom: 1rem;
+  }
+  .incidents-container {
+    width: 98%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .incidents-container h1 {
+    margin-left: 5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 96%;
+    text-align: left;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .export-form .ant-select{
+    width: 72rem;
+    margin-bottom: 1rem;
+  }
+  .ant-picker {
+    width: 72rem;
     margin-bottom: 1rem;
   }
   .incidents-container {
@@ -134,7 +365,7 @@
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.158);
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 59rem;
     margin-bottom: .2rem;
   }
@@ -247,7 +478,7 @@
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 44rem;
     margin-bottom: .5rem;
   }
@@ -360,7 +591,7 @@
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 33rem;
     margin-bottom: .5rem;
   }
@@ -474,7 +705,7 @@
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 30rem;
     margin-bottom: .2rem;
   }
@@ -586,7 +817,7 @@
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 27rem;
     margin-bottom: .2rem;
   }
@@ -701,7 +932,7 @@
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 22rem;
     margin-bottom: .2rem;
   }
@@ -814,7 +1045,7 @@
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 22rem;
     margin-bottom: .2rem;
   }
@@ -926,7 +1157,7 @@
     text-align: left;
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 20rem ;
     margin-bottom: .2rem;
   }
@@ -1038,7 +1269,7 @@
     text-align: left;
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 19rem;
     margin-bottom: .2rem;
   }
@@ -1153,7 +1384,7 @@
     text-align: left;
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 17.375rem;
     margin-bottom: .2rem;
   }
@@ -1268,7 +1499,7 @@
     text-align: left;
     padding: 1rem;
   }
-  .ant-select{
+  .export-form .ant-select{
     width: 14.5rem;
     margin-bottom: .2rem;
   }
