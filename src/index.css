@@ -1218,8 +1218,6 @@ form label {
   .timeline-wrapper {
     margin-top: -20px;
     width: 100%;
-    /* justify-content: center; */
-    /* align-items: center; */
   }
   .horizontal-graph {
     width: 80%;
@@ -1231,13 +1229,6 @@ form label {
     font-size: 0.9rem;
     text-align: center;
   }
-  /* .footer-container {
-    width: 100%;
-    text-align: center;
-  } */
-  /* .nav-footer {
-    /* display: none; */
-  /* } */
   .nav-menu {
     width: 375px;
   }

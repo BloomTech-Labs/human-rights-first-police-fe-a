@@ -1,6 +1,7 @@
 .graph-legend-wrap {
   margin-bottom: 6%;
-  padding: 0 0 0 1%;
+
+  padding: 4%;
   border: 1px solid rgba(255, 99, 132, 0.4);
 }
 
@@ -15,4 +16,11 @@ li.rank {
 
 p.graph-disclaimer {
   margin-top: 0;
+}
+
+@media (max-width: 320px) {
+   .graph-legend-wrap {
+     padding-bottom: 10%;
+     width: 100%;
+   }
 }
