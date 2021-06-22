@@ -93,6 +93,10 @@ function AntTable(props) {
         }}
         pagination={{
           position: ['topRight', 'bottomCenter'],
+          total: unapprovedIncidents.length,
+          showTotal(total, range) {
+            return `${range[0]}-${range[1]} of ${total} items`;
+          },
         }}
       />
     </div>

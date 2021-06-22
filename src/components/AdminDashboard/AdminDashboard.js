@@ -244,7 +244,7 @@ const AdminDashboard = () => {
                 setPageNumber={setPageNumber}
                 unapprovedIncidents={unapprovedIncidents}
               />
-              <div className="pagination">
+              {/* <div className="pagination">
                 <DoubleLeftOutlined
                   onClick={handleBackClick}
                   className={
@@ -267,7 +267,7 @@ const AdminDashboard = () => {
                 >
                   Next Page
                 </DoubleRightOutlined>
-              </div>
+              </div> */}
             </>
           )}
         </div>
