@@ -21,7 +21,7 @@ const ClusterMarker = styled.div`
   opacity: 55%;
 `;
 
-const INCIDENT_ZOOM_LEVEL = 12;
+const INCIDENT_ZOOM_LEVEL = 18;
 const LEAVES_LIMIT = 500; // Max # of incidents to display in IncidentFocus
 
 export default function Clusters({ zoomOnCluster }) {
