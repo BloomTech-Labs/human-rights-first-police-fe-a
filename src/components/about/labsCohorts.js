@@ -2,6 +2,46 @@
 
 const labsCohorts = [
   {
+    number: 35,
+    students: [
+      { name: 'Damaris Garcia', githubUser: 'didi-codes', roles: ['design'] },
+      { name: 'Alex Ardanov', githubUser: 'aleksandr-ardanov', roles: ['fe'] },
+      {
+        name: 'Alexis Marroquin',
+        githubUser: 'alexismarroquin7',
+        roles: ['fe'],
+      },
+      {
+        name: 'Anas Abdelsalam',
+        githubUser: 'yourpersonaltechguy',
+        roles: ['fe'],
+      },
+      { name: 'Hairo Garcia', githubUser: 'xpeedy', roles: ['fe'] },
+      { name: 'Jonathan Majors', githubUser: 'izzymajors', roles: ['fe'] },
+      { name: 'Jose Robles', githubUser: 'jcrobles1989', roles: ['fe'] },
+      {
+        name: 'Joshua Samaniego',
+        githubUser: 'joshuasamaniego',
+        roles: ['fe'],
+      },
+      { name: 'Kirk Snyder', githubUser: 'krsnyder', roles: ['fe'] },
+      {
+        name: 'Stephanie Enciso',
+        githubUser: 'stephanieenciso',
+        roles: ['fe'],
+      },
+      { name: 'Will Berman', githubUser: 'wberman27', roles: ['fe'] },
+      {
+        name: 'Caroline Lucas',
+        githubUser: 'carolinefallonlucas',
+        roles: ['be'],
+      },
+      { name: 'Max Huckstepp', githubUser: 'mhuckstepp', roles: ['be'] },
+      { name: 'Justin Alirkan', githubUser: 'jalirkan', roles: ['ds'] },
+      { name: 'Nathan Fleck', githubUser: 'njfleck24', roles: ['ds'] },
+    ],
+  },
+  {
     number: 34,
     students: [
       { name: 'Jean Luciano', githubUser: 'jeanluciano', roles: ['fe'] },
