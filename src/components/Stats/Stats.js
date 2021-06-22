@@ -2,7 +2,6 @@ import React from 'react';
 import { Layout } from 'antd';
 import './Stats.css';
 
-// const { Title } = Typography;
 const { Content } = Layout;
 
 const Stats = () => {
