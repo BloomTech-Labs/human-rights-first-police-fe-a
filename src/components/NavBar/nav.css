@@ -2,30 +2,34 @@
   display: flex;
   justify-content: space-between;
   background: #003767;
-  text-align: center;
-  height: 64px;
+  text-align: left;
+  height: 5rem;
 }
 
 .logo-container {
-  width: 40%;
-  margin-top: -0.5rem;
+  width: 10%;
+  margin-top: .3rem;
 }
 
 .hrf-logo {
-  width: 20rem;
+  width: 10rem;
+  margin-left: 2rem;
+  margin-top: .9rem;
 }
 
 .menu {
   background: #003767;
   padding-top: 1rem;
-  width: 40%;
-  margin-top: -0.3rem;
-  height: 64px;
+  width: 90%;
+  margin-top: -.2rem;
+  margin-left: 63rem;
+  font-size: 1rem;
+  height: 1rem;
   border-bottom: none !important;
 }
 
 .menu-link {
-  color: white !important ;
+  color: #fff !important ;
 }
 
 .NavbarItems {
@@ -37,6 +41,9 @@
   margin: 0;
 }
 
+.ant-menu-submenu-title span {
+  color: #fff;
+}
 .nav-menu {
   display: flex;
   /* grid-template-columns: repeat(5, auto); */
@@ -74,75 +81,1182 @@
   width: 100px;
   margin: 0;
 }
-
-@media screen and (max-width: 800px) {
-  .menu-link {
-    background-color: #003767;
-    width: 20%;
-    padding-left: 16%;
-
-    padding-top: 40%;
-    padding-bottom: 60%;
-    padding-right: 80%;
-    color: whitesmoke !important;
+@media only screen and (max-width: 1440px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 5rem;
   }
-
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .3rem;
+  }
+  
+  .hrf-logo {
+    width: 10rem;
+    margin-left: 1.5rem;
+    margin-top: .9rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 90%;
+    margin-top: -.2rem;
+    margin-left: 55rem;
+    font-size: 1rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #fff !important ;
+  }
+  
   .NavbarItems {
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
   }
   .nav-menu {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 600px;
-    position: absolute;
-    top: 80px;
-    left: -100%;
-    opacity: 1;
-    transition: all 0.5s ease;
-  }
-  .nav-menu.active {
-    background-color: var(--blue);
-    left: 0;
-    opacity: 1;
-    transition: all 0.5s ease;
-    width: 100%;
-    padding-bottom: 20px;
-    z-index: 10;
-  }
-
-  .nav-link {
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
     text-align: center;
-    padding: 2rem;
-    width: 100%;
-    display: table;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
   }
-
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
   .nav-link:hover {
-    background-color: whitesmoke;
-    border-radius: 0;
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
   }
-  /* .hrf-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translate(25%, 50%);
-  } */
+  
   .menu-icon {
-    display: flex;
-    flex-direction: row-reverse;
-    margin-right: 20px;
-    width: 100%;
-    font-size: 1.8rem;
-    cursor: pointer;
+    display: none;
   }
-
+  
+  .fas {
+    color: white;
+  }
+  
   .lambda-logo {
     width: 100px;
-    margin-right: 20px;
+    margin: 0;
   }
-
+}
+@media only screen and (max-width: 1280px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4.6rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
   .hrf-logo {
-    width: 200px;
+    width: 8rem;
+    margin-left: 1rem;
+    margin-top:.5rem ;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 90%;
+    font-size: .6rem;
+    margin-top: -.2rem;
+    margin-left: 51rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #fff !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 1440px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4.6rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 8rem;
+    margin-left: 1rem;
+    margin-top:.5rem ;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 90%;
+    font-size: .6rem;
+    margin-top: -.2rem;
+    margin-left: 51rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #fff !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 1024px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4.6rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .3rem;
+  }
+  
+  .hrf-logo {
+    width: 10rem;
+    margin-left: 1rem;
+    margin-top: .7rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 90%;
+    margin-top: -.2rem;
+    margin-left: 33rem;
+    font-size: .9rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #fff !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4.5rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 8rem;
+    margin-left: 1rem;
+    margin-top:.5rem ;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 90%;
+    font-size: .6rem;
+    margin-top: -.2rem;
+    margin-left: 24rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #fff !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 8rem;
+    margin-left: 1.5rem;
+    margin: .5rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 90%;
+    margin-top: -.2rem;
+    margin-left: 14.5rem;
+    font-size: .6rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #fff !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 540px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 8rem;
+    margin-left: 1rem;
+    margin-top:.5rem ;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 90%;
+    font-size: .6rem;
+    margin-top: -.2rem;
+    margin-left: 11rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #fff !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 8rem;
+    margin-left: 1rem;
+    margin-top: .5rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 10%;
+    margin-top: -.2rem;
+    margin-left: 5rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #000 !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 414px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 7rem;
+    margin-left: 1rem;
+    margin-top: .5rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 13%;
+    margin-top: -.2rem;
+    margin-left: 5rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #000 !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 411px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 7rem;
+    margin-left: 1rem;
+    margin-top: .5rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 13%;
+    margin-top: -.2rem;
+    margin-left: 5rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #000 !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 375px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 7rem;
+    margin-top: .5rem;
+    margin-left: 1rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 16%;
+    margin-top: -.2rem;
+    margin-left: 5rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #000 !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 360px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 7rem;
+    margin-top: .5rem;
+    margin-left: .9rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 16%;
+    margin-top: -.2rem;
+    margin-left: 5rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #000 !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width:320px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 6rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 16%;
+    margin-top: -.2rem;
+    margin-left: 5rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #000 !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
+  }
+}
+@media only screen and (max-width:280px) {
+  .navbar-container {
+    display: flex;
+    justify-content: space-between;
+    background: #003767;
+    text-align: left;
+    height: 4rem;
+  }
+  
+  .logo-container {
+    width: 10%;
+    margin-top: .9rem;
+  }
+  
+  .hrf-logo {
+    width: 6rem;
+  }
+  
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    width: 16%;
+    margin-top: -.2rem;
+    margin-left: 5rem;
+    height: 1rem;
+    border-bottom: none !important;
+  }
+  
+  .menu-link {
+    color: #000 !important ;
+  }
+  
+  .NavbarItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--blue);
+    height: 80px;
+    margin: 0;
+  }
+  
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+  .nav-menu {
+    display: flex;
+    /* grid-template-columns: repeat(5, auto); */
+    /* list-style: none; */
+    text-align: center;
+    width: 70vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #7f9bb3;
+    border-radius: 4px;
+    transition: all 0.2s ease-out;
+  }
+  
+  .menu-icon {
+    display: none;
+  }
+  
+  .fas {
+    color: white;
+  }
+  
+  .lambda-logo {
+    width: 100px;
+    margin: 0;
   }
 }

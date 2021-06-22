@@ -84,17 +84,20 @@ div.line-break {
 }
 
 #title {
-  /* display: block; */
   color: white;
   font-weight: normal;
   margin-right: 10%;
-  /* width: 98%; */
 }
 
 .more-info {
   margin: -1.5% 0% 1.2% 0%;
   color: white;
   font-weight: lighter;
+}
+
+/*arrows scroll behavior*/
+html {
+  scroll-behavior: smooth !important;
 }
 
 /*arrows implementation & animation */

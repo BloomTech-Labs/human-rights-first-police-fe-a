@@ -1,60 +1,47 @@
 @import '~antd/dist/antd.css';
-
+.incident-reports-page {
+  width: 100%;
+  margin: auto;
+  margin-top: 2rem;
+}
+.incident-reports-page h1{
+  margin-left: 1rem ;
+  font-size: 1.5rem;
+}
 .export-form {
-  margin:3rem 0 2rem 0;
-  width: 20%;
-  padding: 10px;
-  background-color: rgba(0, 0, 0, 0.158);
-  border: rgba(131, 84, 84, 0.25) 1px solid;
-  margin-left: 11.9rem;
+  width: 96%;
   text-align: left;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.158);
 }
-
-.rank-select {
-  width: 278px;;
-  margin-top: 5px;
+.export-form .ant-select{
+  width: 90rem;
+  margin-bottom: 1rem;
 }
-.state-search{
-  width: 278px;
-  margin-top: 5px;
+.ant-picker {
+  width: 90rem;
+  margin-bottom: 1rem;
 }
-.category-select {
-  width: 278px;
-  margin-top: 5px;
-}
-.date-select {
-  width: fit-content;
-  margin-top: 5px;
-  
-}
-.export-select .export-button {
-  margin-top: 1rem;
-  margin-left: 2.5rem;
-  width: 200px;
-  color: #ffffff;
-  background-color: #003767;
-  padding: 2px;
-}
-
 .incidents-container {
-  max-width: 69vw;
-  margin-left: 11.9rem;
-  
+  width: 98%;
+  margin:auto;
+  padding: .5rem;
+}
+.incidents-container h1 {
+  margin-left: 5rem;
 }
 .header-top {
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  justify-content: space-evenly;
   width: 100%;
 }
-#title {
-  margin-top: 2px;
-  margin-left: 25px;
-  flex: 100%;
+#title{
+  margin-top: .11rem;
+  margin-left: 1.5rem;
+  font-size: 1rem;
+  color: #000;
 }
-.collapse-content {
-  display: flex;
-}
-
 .incidents-page header .user-input {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -64,44 +51,44 @@
   justify-content: space-between;
 }
 .panel {
-background-color: rgba(0, 0, 0, 0.158);
+  background-color: rgba(0, 0, 0, 0.158);
 }
 .extra {
   display: flex;
-  flex-direction: row;
-  width: 95%;
-  justify-content: flex-end;
-}
-.incident-rank {
-  flex: 0.25;
-  margin-left:20px;
-  justify-content: right;
+  flex-flow: column; 
+  width: 100%;
+  text-align: left;
 }
 .incident-location {
-  flex: .25;
-  font-size: 12px;
+  margin-left: 1.4rem;
+  margin-bottom: .1rem;
+  font-size: .9rem;
   color: #003767;
 }
 .incident-date {
   display: flex;
-  flex: 0.25;
-  margin:  0 8px;
-  font-size: 12px;
+  flex-direction: row;
+  margin-left: 1.4rem;
+  font-size: .9rem;
   color: #003767;
 }
 .incident-rank span {
-  margin-left: 2.5rem;
+  margin-left: 1.4rem;
+  margin-bottom: .5rem;
 }
-.add-to-list {
-  flex: 0.25;
+.header-checkbox {
+  margin-left: 1.4rem;
 }
 .pagination {
+  width: 100%;
+  margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
+  padding: 1rem;
   padding-bottom: 2.5vh;
 }
 
@@ -127,21 +114,1483 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   border-color: #003767;
 }
 
-@media screen and (max-width: 1081px) {
-  .incidents-page header {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-    -ms-flex-flow: column;
-    flex-flow: column;
-  }
-}
 
-@media screen and (max-width: 400px) {
+/* Tablets and Lap */
+
+/* Laptop Large */
+@media only screen and (max-width: 1440px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 96%;
+    text-align: left;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .export-form .ant-select{
+    width: 83.5rem;
+    margin-bottom: 1rem;
+  }
+  .ant-picker {
+    width: 83.5rem;
+    margin-bottom: 1rem;
+  }
+  .incidents-container {
+    width: 98%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .incidents-container h1 {
+    margin-left: 5rem;
+  }
   .header-top {
     display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
-    flex-direction: column;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
   }
 }
+@media only screen and (max-width: 1280px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 96%;
+    text-align: left;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .export-form .ant-select{
+    width: 72rem;
+    margin-bottom: 1rem;
+  }
+  .ant-picker {
+    width: 72rem;
+    margin-bottom: 1rem;
+  }
+  .incidents-container {
+    width: 98%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .incidents-container h1 {
+    margin-left: 5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+/* ipad pro */
+@media only screen and (max-width: 1024px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 97.5%;
+    text-align: left;
+    padding: 1rem;
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .export-form .ant-select{
+    width: 59rem;
+    margin-bottom: .2rem;
+  }
+  .ant-picker {
+    width: 59rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+/* iPad */
+@media only screen and (max-width: 768px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 97%;
+    margin: auto;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.158);
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 44rem;
+    margin-bottom: .5rem;
+  }
+  .ant-picker {
+    width: 44rem;
+    margin-bottom: .5rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 95%;
+    margin: auto;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.158);
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 33rem;
+    margin-bottom: .5rem;
+  }
+  .ant-picker {
+    width: 33rem;
+    margin-bottom: .5rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+/* Surface Duo */
+@media only screen and (max-width: 540px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 96%;
+    margin: auto;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.158);
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 30rem;
+    margin-bottom: .2rem;
+  }
+  .ant-picker {
+    width: 30rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 96%;
+    margin: auto;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.158);
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 27rem;
+    margin-bottom: .2rem;
+  }
+  .ant-picker {
+    width: 27rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+/* Mobile Media Queries */
 
-/*# sourceMappingURL=Incidents.css.map */
+/* iPhone 6/7/8 plus */
+@media only screen and (max-width: 414px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 95%;
+    margin: auto;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.158);
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 22rem;
+    margin-bottom: .2rem;
+  }
+  .ant-picker {
+    width: 22rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+/* Pixel 2 and Pixel 2XL */
+@media only screen and (max-width: 411px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 95%;
+    margin: auto;
+    text-align: left;
+    background-color: rgba(0, 0, 0, 0.158);
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 22rem;
+    margin-bottom: .2rem;
+  }
+  .ant-picker {
+    width: 22rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+/* iPhone 6/7/8 and iPhone X */
+@media only screen and (max-width: 375px) {
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 95%;
+    margin: auto;
+    text-align: left;
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 20rem ;
+    margin-bottom: .2rem;
+  }
+  .ant-picker {
+    width: 20rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+/* Moto G4 and Galaxy S5 */
+@media only screen and (max-width: 360px){
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.3rem;
+  }
+  .export-form {
+    width: 95%;
+    margin: auto;
+    text-align: left;
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 19rem;
+    margin-bottom: .2rem;
+  }
+  .ant-picker {
+    width: 19rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .incidents-container h1 {
+    font-size: 1.3rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+/* Iphone 5/SE */
+@media only screen and (max-width: 320px){
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1.5rem ;
+    font-size: 1.3rem;
+  }
+  .export-form {
+    width: 95%;
+    margin: auto;
+    text-align: left;
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 17.375rem;
+    margin-bottom: .2rem;
+  }
+  .ant-picker {
+    width: 17.375rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .incidents-container h1 {
+    font-size: 1.3rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}
+/* Galaxy Fold */
+@media only screen and (max-width: 280px){
+  .incident-reports-page {
+    width: 100%;
+    margin: auto;
+    margin-top: 2rem;
+  }
+  .incident-reports-page h1{
+    margin-left: 1rem ;
+    font-size: 1.5rem;
+  }
+  .export-form {
+    width: 95%;
+    margin: auto;
+    text-align: left;
+    padding: 1rem;
+  }
+  .export-form .ant-select{
+    width: 14.5rem;
+    margin-bottom: .2rem;
+  }
+  .ant-picker {
+    width: 14.5rem;
+  }
+  .incidents-container {
+    width: 100%;
+    margin:auto;
+    padding: .5rem;
+  }
+  .header-top {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  #title{
+    margin-top: .11rem;
+    margin-left: 1.5rem;
+    font-size: 1rem;
+  }
+  .incidents-page header .user-input {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+  }
+  .panel {
+    background-color: rgba(0, 0, 0, 0.158);
+  }
+  .extra {
+    display: flex;
+    flex-flow: column; 
+    width: 100%;
+    text-align: left;
+  }
+  .incident-location {
+    margin-left: 1.4rem;
+    margin-bottom: .1rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-date {
+    display: flex;
+    flex-direction: row;
+    margin-left: 1.4rem;
+    font-size: .9rem;
+    color: #003767;
+  }
+  .incident-rank span {
+    margin-left: 1.4rem;
+    margin-bottom: .5rem;
+  }
+  .header-checkbox {
+    margin-left: 1.4rem;
+  }
+  .pagination {
+    width: 100%;
+    margin: auto;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding: 1rem;
+    padding-bottom: 2.5vh;
+  }
+  
+  span.ant-tag.ant-tag-checkable:hover {
+    color: #003767;
+  }
+  
+  .ant-tag-checkable-checked {
+    background-color: #003767;
+  }
+  
+  span.ant-tag.ant-tag-checkable-checked:hover {
+    color: #ffffff;
+  }
+  
+  .ant-pagination-item a:hover {
+    color: #003767;
+    border-color: #003767;
+  }
+  
+  .ant-pagination-item-active a {
+    color: #003767;
+    border-color: #003767;
+  }
+}

@@ -242,6 +242,7 @@ const AdminDashboard = () => {
                 currentSet={currentSet}
                 setUnapprovedIncidents={setUnapprovedIncidents}
                 setPageNumber={setPageNumber}
+                unapprovedIncidents={unapprovedIncidents}
               />
               <div className="pagination">
                 <DoubleLeftOutlined
