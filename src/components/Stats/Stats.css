@@ -63,6 +63,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 div.line-break {
   background-color: white;
   width: 109.6%;
@@ -71,6 +75,8 @@ div.line-break {
 }
 
 .site-layout-background {
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
   color: white;
   text-align: center;
@@ -78,10 +84,9 @@ div.line-break {
 }
 
 #title {
-  display: block;
   color: white;
   font-weight: normal;
-  width: 98%;
+  margin-right: 10%;
 }
 
 .more-info {

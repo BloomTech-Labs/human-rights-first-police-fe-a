@@ -1,8 +1,8 @@
 import React from 'react';
-import { Layout, Typography } from 'antd';
+import { Layout } from 'antd';
 import './Stats.css';
 
-const { Title } = Typography;
+
 const { Content } = Layout;
 
 const Stats = () => {
@@ -16,7 +16,7 @@ const Stats = () => {
           <div className="arrow"></div>
         </a>
         <div className="line-break"></div>
-        <Title id="title">Blue Witness Statistics</Title>
+        <h2 id="title">Blue Witness Statistics</h2>
       </div>
     </Content>
   );

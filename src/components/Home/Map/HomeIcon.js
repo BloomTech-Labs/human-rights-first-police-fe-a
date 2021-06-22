@@ -28,7 +28,7 @@ function HomeIcon({ initialPosition, zoomOnCluster, resetFocus }) {
   };
 
   return (
-    <StyledHome>
+    <StyledHome className="home-icon">
       <button onClick={onClick}>
         <img src={homeIcon} alt="Zoom out to Home" />
       </button>
