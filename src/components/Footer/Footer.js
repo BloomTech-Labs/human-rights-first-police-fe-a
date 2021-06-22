@@ -22,7 +22,7 @@ const Footer = () => {
       <div className="top-container">
         <div className="footer-links-container">
           <div className="left-links">
-            <h3>Blue Witness</h3>
+            <h3 className="blue-title">Blue Witness</h3>
             <a
               href="https://www.humanrightsfirst.org"
               target="_blank"
@@ -54,7 +54,7 @@ const Footer = () => {
             <br />
           </div>
           <div className="right-links">
-            <h3>Lambda School</h3>
+            <h3 className="red-title">Lambda</h3>
             <a
               href="https://lambdaschool.com/"
               target="_blank"
