@@ -81,10 +81,8 @@ export default function Clusters({ zoomOnCluster }) {
             offsetTop={-(10 + (pointCount / points.length) * 300) / 2}
             onClick={() => {
               if (isCluster) {
-                console.log('check');
                 handleClusterClick(c.id, longitude, latitude);
               } else {
-                console.log('locale');
                 handleIncidentClick(c.incidentId, longitude, latitude);
               }
             }}

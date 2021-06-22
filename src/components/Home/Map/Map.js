@@ -106,9 +106,7 @@ export default function Map() {
             setViewport(vp);
           }}
           onClick={() => {
-            console.log('hello');
             dispatch(resetFocus());
-            // dispatch(resetReduxViewport());
           }}
           width="fit"
           height="calc(90vh - 59px)"
