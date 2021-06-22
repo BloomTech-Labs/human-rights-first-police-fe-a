@@ -18,3 +18,37 @@
     margin-right: 2%;
   }
 }
+
+@media (min-width: 1024px) {
+  .more-info {
+    margin: -2.8% 0% 2.2% 0%;
+  }
+  .arrow:before,
+  .arrow:after {
+  width: 3px;
+  height: 27px;
+  }
+  .arrow-container {
+    padding: 2.7%;
+  }
+  #title {
+    margin-bottom: -1%;
+  }
+  div.ant-collapse-item {
+    margin-right: 4%;
+  }
+  div.line-break {
+    margin-top: 1%;
+    width: 111.3%;
+  }
+  .timeline {
+    margin: -7% 0% 0% -9.8%;
+    width: 95%;
+  }
+  .horizontal-graph {
+    margin-left: -3%;
+    width: 42%;
+  }
+  
+}
+
