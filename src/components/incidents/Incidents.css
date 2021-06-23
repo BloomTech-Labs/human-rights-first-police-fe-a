@@ -4,8 +4,8 @@
   margin: auto;
   margin-top: 2rem;
 }
-.incident-reports-page h1{
-  margin-left: 1rem ;
+.incident-reports-page h1 {
+  margin-left: 1rem;
   font-size: 1.5rem;
 }
 .export-form {
@@ -14,18 +14,20 @@
   padding: 2rem;
   background-color: rgba(0, 0, 0, 0.158);
 }
-.export-form .ant-select{
-  width: 90rem;
+.export-form .ant-select {
+  width: 98%;
   margin-bottom: 1rem;
 }
 .ant-picker {
-  width: 90rem;
   margin-bottom: 1rem;
+}
+.form-inputs {
+  width: 98%;
 }
 .incidents-container {
   width: 98%;
-  margin:auto;
-  padding: .5rem;
+  margin: auto;
+  padding: 0.5rem;
 }
 .incidents-container h1 {
   margin-left: 5rem;
@@ -36,8 +38,8 @@
   justify-content: space-evenly;
   width: 100%;
 }
-#title{
-  margin-top: .11rem;
+#title {
+  margin-top: 0.11rem;
   margin-left: 1.5rem;
   font-size: 1rem;
   color: #000;
@@ -45,7 +47,7 @@
 .incidents-page header .user-input {
   display: -webkit-box;
   display: -ms-flexbox;
-  
+
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -55,26 +57,26 @@
 }
 .extra {
   display: flex;
-  flex-flow: column; 
+  flex-flow: column;
   width: 100%;
   text-align: left;
 }
 .incident-location {
   margin-left: 1.4rem;
-  margin-bottom: .1rem;
-  font-size: .9rem;
+  margin-bottom: 0.1rem;
+  font-size: 0.9rem;
   color: #003767;
 }
 .incident-date {
   display: flex;
   flex-direction: row;
   margin-left: 1.4rem;
-  font-size: .9rem;
+  font-size: 0.9rem;
   color: #003767;
 }
 .incident-rank span {
   margin-left: 1.4rem;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 .header-checkbox {
   margin-left: 1.4rem;
@@ -114,7 +116,6 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   border-color: #003767;
 }
 
-
 /* Tablets and Lap */
 
 /* Laptop Large */
@@ -124,8 +125,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -134,18 +135,16 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.158);
   }
-  .export-form .ant-select{
-    width: 83.5rem;
+  .export-form .ant-select {
     margin-bottom: 1rem;
   }
   .ant-picker {
-    width: 83.5rem;
     margin-bottom: 1rem;
   }
   .incidents-container {
     width: 98%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .incidents-container h1 {
     margin-left: 5rem;
@@ -156,15 +155,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -174,26 +173,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -210,24 +209,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
@@ -239,8 +238,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -249,18 +248,16 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 2rem;
     background-color: rgba(0, 0, 0, 0.158);
   }
-  .export-form .ant-select{
-    width: 72rem;
+  .export-form .ant-select {
     margin-bottom: 1rem;
   }
   .ant-picker {
-    width: 72rem;
     margin-bottom: 1rem;
   }
   .incidents-container {
     width: 98%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .incidents-container h1 {
     margin-left: 5rem;
@@ -271,15 +268,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -289,26 +286,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -325,24 +322,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
@@ -355,8 +352,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -365,17 +362,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     background-color: rgba(0, 0, 0, 0.158);
   }
-  .export-form .ant-select{
-    width: 59rem;
-    margin-bottom: .2rem;
-  }
-  .ant-picker {
-    width: 59rem;
+  .export-form .ant-select {
+    margin-bottom: 0.2rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .header-top {
     display: flex;
@@ -383,15 +376,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -401,26 +394,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -437,24 +430,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
@@ -467,8 +460,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -478,18 +471,16 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 44rem;
-    margin-bottom: .5rem;
+  .export-form .ant-select {
+    margin-bottom: 0.5rem;
   }
   .ant-picker {
-    width: 44rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .header-top {
     display: flex;
@@ -497,15 +488,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -515,26 +506,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -551,24 +542,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
@@ -580,8 +571,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -591,18 +582,16 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 33rem;
-    margin-bottom: .5rem;
+  .export-form .ant-select {
+    margin-bottom: 0.5rem;
   }
   .ant-picker {
-    width: 33rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .header-top {
     display: flex;
@@ -610,15 +599,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -634,20 +623,20 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -664,24 +653,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
@@ -694,8 +683,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -705,17 +694,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 30rem;
-    margin-bottom: .2rem;
-  }
-  .ant-picker {
-    width: 30rem;
+  .export-form .ant-select {
+    margin-bottom: 0.2rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .header-top {
     display: flex;
@@ -723,15 +708,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -741,26 +726,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -777,24 +762,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
@@ -806,8 +791,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -817,17 +802,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 27rem;
-    margin-bottom: .2rem;
-  }
-  .ant-picker {
-    width: 27rem;
+  .export-form .ant-select {
+    margin-bottom: 0.2rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .header-top {
     display: flex;
@@ -835,15 +816,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -853,26 +834,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -889,24 +870,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
@@ -921,8 +902,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -932,17 +913,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 22rem;
-    margin-bottom: .2rem;
-  }
-  .ant-picker {
-    width: 22rem;
+  .export-form .ant-select {
+    margin-bottom: 0.2rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .header-top {
     display: flex;
@@ -950,15 +927,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -968,26 +945,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -1004,24 +981,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
@@ -1034,8 +1011,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -1045,17 +1022,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     background-color: rgba(0, 0, 0, 0.158);
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 22rem;
-    margin-bottom: .2rem;
-  }
-  .ant-picker {
-    width: 22rem;
+  .export-form .ant-select {
+    margin-bottom: 0.2rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .header-top {
     display: flex;
@@ -1063,15 +1036,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -1081,26 +1054,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -1117,24 +1090,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
@@ -1147,8 +1120,8 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -1157,17 +1130,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     text-align: left;
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 20rem ;
-    margin-bottom: .2rem;
-  }
-  .ant-picker {
-    width: 20rem;
+  .export-form .ant-select {
+    margin-bottom: 0.2rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .header-top {
     display: flex;
@@ -1175,15 +1144,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -1193,26 +1162,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -1229,38 +1198,38 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
   }
 }
 /* Moto G4 and Galaxy S5 */
-@media only screen and (max-width: 360px){
+@media only screen and (max-width: 360px) {
   .incident-reports-page {
     width: 100%;
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.3rem;
   }
   .export-form {
@@ -1269,17 +1238,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     text-align: left;
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 19rem;
-    margin-bottom: .2rem;
-  }
-  .ant-picker {
-    width: 19rem;
+  .export-form .ant-select {
+    margin-bottom: 0.2rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .incidents-container h1 {
     font-size: 1.3rem;
@@ -1290,15 +1255,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -1308,26 +1273,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -1344,38 +1309,38 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
   }
 }
 /* Iphone 5/SE */
-@media only screen and (max-width: 320px){
+@media only screen and (max-width: 320px) {
   .incident-reports-page {
     width: 100%;
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1.5rem ;
+  .incident-reports-page h1 {
+    margin-left: 1.5rem;
     font-size: 1.3rem;
   }
   .export-form {
@@ -1384,17 +1349,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     text-align: left;
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 17.375rem;
-    margin-bottom: .2rem;
-  }
-  .ant-picker {
-    width: 17.375rem;
+  .export-form .ant-select {
+    margin-bottom: 0.2rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .incidents-container h1 {
     font-size: 1.3rem;
@@ -1405,15 +1366,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -1423,26 +1384,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -1459,38 +1420,38 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
   }
 }
 /* Galaxy Fold */
-@media only screen and (max-width: 280px){
+@media only screen and (max-width: 280px) {
   .incident-reports-page {
     width: 100%;
     margin: auto;
     margin-top: 2rem;
   }
-  .incident-reports-page h1{
-    margin-left: 1rem ;
+  .incident-reports-page h1 {
+    margin-left: 1rem;
     font-size: 1.5rem;
   }
   .export-form {
@@ -1499,17 +1460,13 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     text-align: left;
     padding: 1rem;
   }
-  .export-form .ant-select{
-    width: 14.5rem;
-    margin-bottom: .2rem;
-  }
-  .ant-picker {
-    width: 14.5rem;
+  .export-form .ant-select {
+    margin-bottom: 0.2rem;
   }
   .incidents-container {
     width: 100%;
-    margin:auto;
-    padding: .5rem;
+    margin: auto;
+    padding: 0.5rem;
   }
   .header-top {
     display: flex;
@@ -1517,15 +1474,15 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     justify-content: space-evenly;
     width: 100%;
   }
-  #title{
-    margin-top: .11rem;
+  #title {
+    margin-top: 0.11rem;
     margin-left: 1.5rem;
     font-size: 1rem;
   }
   .incidents-page header .user-input {
     display: -webkit-box;
     display: -ms-flexbox;
-    
+
     -webkit-box-pack: justify;
     -ms-flex-pack: justify;
     justify-content: space-between;
@@ -1535,26 +1492,26 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   }
   .extra {
     display: flex;
-    flex-flow: column; 
+    flex-flow: column;
     width: 100%;
     text-align: left;
   }
   .incident-location {
     margin-left: 1.4rem;
-    margin-bottom: .1rem;
-    font-size: .9rem;
+    margin-bottom: 0.1rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-date {
     display: flex;
     flex-direction: row;
     margin-left: 1.4rem;
-    font-size: .9rem;
+    font-size: 0.9rem;
     color: #003767;
   }
   .incident-rank span {
     margin-left: 1.4rem;
-    margin-bottom: .5rem;
+    margin-bottom: 0.5rem;
   }
   .header-checkbox {
     margin-left: 1.4rem;
@@ -1571,24 +1528,24 @@ span.ant-tag.ant-tag-checkable-checked:hover {
     padding: 1rem;
     padding-bottom: 2.5vh;
   }
-  
+
   span.ant-tag.ant-tag-checkable:hover {
     color: #003767;
   }
-  
+
   .ant-tag-checkable-checked {
     background-color: #003767;
   }
-  
+
   span.ant-tag.ant-tag-checkable-checked:hover {
     color: #ffffff;
   }
-  
+
   .ant-pagination-item a:hover {
     color: #003767;
     border-color: #003767;
   }
-  
+
   .ant-pagination-item-active a {
     color: #003767;
     border-color: #003767;
