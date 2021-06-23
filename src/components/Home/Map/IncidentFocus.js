@@ -2,6 +2,7 @@ import { CaretRightOutlined } from '@ant-design/icons';
 import { Collapse, List } from 'antd';
 import IncidentFocusCard from './IncidentFocusCard';
 import useIncidentFilter from '../../../hooks/useIncidentFilter';
+import './IncidentFocus.css';
 
 const { Panel } = Collapse;
 
