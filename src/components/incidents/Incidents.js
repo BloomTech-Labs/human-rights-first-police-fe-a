@@ -296,7 +296,7 @@ const Incidents = () => {
             onChange={onRank}
             showSearch
             defaultValue="All"
-            className="rank-select"
+            className="rank-select form-inputs"
             id="ranks"
             value={rank}
           >
@@ -312,7 +312,7 @@ const Incidents = () => {
           <label htmlFor="locations" className="location">
             Location
           </label>
-          <SearchBar id="locations" setUsState={setUsState} />{' '}
+          <SearchBar className="form-inputs" setUsState={setUsState} />{' '}
         </div>
 
         <div className="category-select">
@@ -329,6 +329,7 @@ const Incidents = () => {
             placeholder="Browse Categories"
             notFoundContent="Category Not Found"
             id="categories"
+            className="form-inputs"
           />
           {activeCategories &&
             activeCategories.map(tag => {
@@ -351,7 +352,10 @@ const Incidents = () => {
           <label htmlFor="dates" className="date">
             Date
           </label>
-          <RangePicker onCalendarChange={onDateSelection} />
+          <RangePicker
+            onCalendarChange={onDateSelection}
+            className="form-inputs"
+          />
         </div>
         <div className="export-button">
           <div className="list-items-count">
