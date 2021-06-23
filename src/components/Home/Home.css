@@ -1,8 +1,6 @@
 .bottom-section {
   padding-bottom: 1vh;
 }
-
-
 .nav-container {
   margin-top: 20%;
   width: 5.5%;
@@ -10,25 +8,22 @@
   top: -290px;
   left: 23px;
 }
-
-#title {
+.blue-witness-title {
   display: flex;
   justify-content: center;
+  color: white;
   font-size: 3rem;
   width: 100%;
   text-align: center;
   margin-right: 10%;
   padding-right: 3%;
 }
-
 .timeline {
   margin-left: -30%;
 }
-
 .horizontal-graph {
   margin-right: -10%;
 }
-
 @media (max-width: 1440px) {
   .timeline {
     width: 90%;
@@ -41,9 +36,6 @@
   div.line-break {
     width: 110.3%;
   }
-  div.ant-collapse-item {
-    margin-right: 2%;
-  }
   .nav-container {
     margin-top: 20%;
     width: 5.5%;
@@ -52,7 +44,6 @@
     left: 23px;
   }
 }
-
 @media (max-width: 1024px) {
   .more-info {
     margin: -2.8% 0% 2.2% 0%;
@@ -67,9 +58,6 @@
   }
   #title {
     margin-bottom: -1%;
-  }
-  div.ant-collapse-item {
-    margin-right: 4%;
   }
   div.line-break {
     margin-top: 1%;
@@ -90,13 +78,8 @@
     top: -140px;
     left: 23px;
   }
-  
 }
-
-@media (max-width: 785px) {
-  div.ant-collapse-item {
-    margin: -167% 6% 0% -20%;
-  }
+@media (max-width: 768px) {
   .nav-container {
     margin-top: 20%;
     width: 4.7%;
@@ -127,13 +110,8 @@
     margin: 3% 0% 5% 0%;
     width: 100%;
   }
-  
 }
-
 @media (max-width: 600px) {
-  div.ant-collapse-item {
-    margin: -218% 6% 0% -20%;
-  }
   .nav-container {
     margin-top: 20%;
     width: 5.5%;
@@ -168,11 +146,7 @@
     padding: 12%;
   }
 }
-
 @media (max-width: 414px) {
-  div.ant-collapse-item {
-    margin: -210% -16% 0% -250%;
-  }
   .nav-container {
     margin-top: 20%;
     width: 8.5%;
@@ -194,13 +168,9 @@
     width: 200%;
   }
 }
-
 @media (max-width: 375px) {
   .search-header {
     width: 87.5%;
-  }
-  div.ant-collapse-item {
-    margin: -235% 21% 0% -300%;
   }
   .more-info {
     margin: -8% 0% 4% 0%;
@@ -219,17 +189,12 @@
     padding: 15%;
   }
 }
-
 @media (max-width: 320px) {
-
   .horizontal-graph {
     margin: 0% 0% 0% 0%;
     width: 100%;
     border-top: solid rgb(204, 204, 204);
     padding: 2% 2% 20% 2%;
-  }
-  div.ant-collapse-item {
-    margin: -235% 17% 0% -292%;
   }
   div.line-break {
     margin: 2% 0% 0% -12%;
@@ -245,5 +210,10 @@
   .nav-container {
     width: 11%;
   }
-
+}
+@media (max-width:280px) {
+  .nav-container {
+    width: 12%;
+    top: 65%;
+  }
 }
