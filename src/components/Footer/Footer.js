@@ -41,7 +41,11 @@ const Footer = () => {
               Twitter Bot
             </a>
             <br />
-            <NavLink to="/admin-dashboard" activeClassName="active-nav-link">
+            <NavLink
+              to="/admin-dashboard"
+              target="_blank"
+              activeClassName="active-nav-link"
+            >
               Admin Dashboard
             </NavLink>
             {authState.isAuthenticated && (
