@@ -432,7 +432,7 @@ const Incidents = () => {
                       </Popover>
                     </div>
                     {incident.categories.map(i => {
-                      return <Tag>{i}</Tag>;
+                      return <Tag key={i}>{i}</Tag>;
                     })}
                   </Panel>
                 );
