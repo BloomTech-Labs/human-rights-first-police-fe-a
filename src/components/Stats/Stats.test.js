@@ -17,7 +17,7 @@ describe('<Stats /> component tests', () => {
     await render(<Stats />);
     const headings = screen.getAllByRole('heading');
     expect(headings[0]).toBeInTheDocument();
-    const buttons = screen.getAllByRole('button');
-    expect(buttons[0]).toBeInTheDocument();
+    const links = screen.getAllByRole('link');
+    expect(links[0]).toBeInTheDocument();
   });
 });
