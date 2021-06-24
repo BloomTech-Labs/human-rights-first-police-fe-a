@@ -10,6 +10,25 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Contributors
 
+### Labs 35
+
+[Anas Abdelsalam](https://github.com/YourPersonalTechGuy)
+[Alex Ardanov](https://github.com/aleksandr-ardanov)
+[Caroline Lucas](https://github.com/carolinefallonlucas)
+[Hairo Garcia](https://github.com/xpeedy)
+[Max Huckstepp](https://github.com/mhuckstepp)
+[Stephanie Enciso](https://github.com/StephanieEnciso)
+[Will Berman](https://github.com/wberman27)
+[Alexis Marroquin](https://github.com/alexismarroquin7)
+[Anhutan Tran](https://github.com/AnhtuanTran-11)
+[Casey Cerrito](https://github.com/CerritoCode0101)
+[Joshua Samaneigo](https://github.com/joshuasamaniego)
+[Jose Robles](https://github.com/jcrobles1989)
+[Jonathan Majors](https://github.com/izzymajors)
+[Damaris Garcia](https://github.com/didi-codes)
+
+[Labs 35 Notion Document](https://www.notion.so/Blue-Witness-Documentation-5f486e8548224616b545167e65b3c284)
+
 ### Labs 34
 
 [Robert Petersen](https://github.com/robert-petersen)
