@@ -67,3 +67,17 @@ div.card-tags-container {
   }
 }
 /*# sourceMappingURL=RecentTimeline.css.map */
+
+@media (max-width: 768px) {
+  .entry {
+    text-align: center
+  }
+  .timeline-item-date {
+    background: none;
+    clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 5% 100%, 0% 50%);
+  }
+  .timeline-item-dateinner {
+    clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 5% 100%, 0% 50%);
+  }
+
+}
