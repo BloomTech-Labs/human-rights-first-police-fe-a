@@ -32,6 +32,15 @@
   color: #fff !important ;
 }
 
+.ant-menu-item-selected  {
+  background-color:  #ffffff00 !important;
+}
+
+.ant-menu-submenu-popup > .ant-menu {
+  background-color: #003767;
+  border: 1px solid #ffffff46;
+}
+
 .ant-menu-submenu-title span {
   color: #fff;
 }
