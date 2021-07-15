@@ -85,28 +85,34 @@ const Incidents = () => {
   const header = incident => {
     return (
       <div className="header-top">
-        <p id="title">{incident.title}</p>
+        <div className="title-container">
+          <p id="title">{incident.title}</p>
+        </div>
         <div className="extra">
           <div className="incident-rank">
             <Tag className="panel-tags">{incident.force_rank.slice(0, 6)}</Tag>
           </div>
           <div className="incident-location">
-            {incident.city}, {incident.state}
+            <div className="location">
+              {incident.city}, {incident.state}
+            </div>
           </div>
           <div className="incident-date">
-            <p className="panel-date">
+            <div className="panel-date">
               {DateTime.fromISO(incident.date)
                 .plus({ days: 1 })
                 .toLocaleString(DateTime.DATE_MED)}
-            </p>
+            </div>
           </div>
           <div className="header-checkbox">
-            <Checkbox
-              checked={selectedIncidents.indexOf(incident.id) > -1}
-              onChange={checked => onSelect(incident.id, checked)}
-            >
-              Add To List
-            </Checkbox>
+            <div className="checkbox">
+              <Checkbox
+                checked={selectedIncidents.indexOf(incident.id) > -1}
+                onChange={checked => onSelect(incident.id, checked)}
+              >
+                Add To List
+              </Checkbox>
+            </div>
           </div>
         </div>
       </div>
@@ -286,140 +292,141 @@ const Incidents = () => {
 
   return (
     <div className="incident-reports-page">
-      <h1>Report Search Box</h1>
-      <form className="export-form">
-        <div className="rank-select">
-          <label htmlFor="ranks" className="rank">
-            Rank
-          </label>
-          <Select
-            onChange={onRank}
-            showSearch
-            defaultValue="All"
-            className="rank-select form-inputs"
-            id="ranks"
-            value={rank}
-          >
-            <Option value="All">All</Option>
-            <Option value="1">Rank: 1</Option>
-            <Option value="2">Rank: 2</Option>
-            <Option value="3">Rank: 3</Option>
-            <Option value="4">Rank: 4</Option>
-            <Option value="5">Rank: 5</Option>
-          </Select>
-        </div>
-        <div className="state-search">
-          <label htmlFor="locations" className="location">
-            Location
-          </label>
-          <SearchBar className="form-inputs" setUsState={setUsState} />{' '}
-        </div>
-
-        <div className="category-select">
-          <label htmlFor="categories" className="category">
-            Category
-          </label>
-          <AutoComplete
-            value={value}
-            options={categoriesData}
-            onSelect={onCategorySelect}
-            onChange={onCategoryChange}
-            allowClear={true}
-            filterOption={filterOption}
-            placeholder="Browse Categories"
-            notFoundContent="Category Not Found"
-            id="categories"
-            className="form-inputs"
-          />
-          {activeCategories &&
-            activeCategories.map(tag => {
-              return (
-                <CheckableTag
-                  style={{
-                    marginTop: 3,
-                    backgroundColor: '#003767',
-                  }}
-                  key={tag}
-                  checked={activeCategories.indexOf(tag) > -1}
-                  onChange={checked => onToggle(tag, checked)}
-                >
-                  {tag}
-                </CheckableTag>
-              );
-            })}
-        </div>
-        <div className="date-select">
-          <label htmlFor="dates" className="date">
-            Date
-          </label>
-          <RangePicker
-            onCalendarChange={onDateSelection}
-            className="form-inputs"
-          />
-        </div>
-        <div className="export-button">
-          <div className="list-items-count">
-            <br />
-            <label>Items in the main list: {rec.length}</label>
+      <div className="form-container">
+        <h1>Report Search Box</h1>
+        <form className="export-form">
+          <div className="rank-select">
+            <label htmlFor="ranks" className="rank">
+              Rank
+            </label>
+            <Select
+              onChange={onRank}
+              showSearch
+              defaultValue="All"
+              className="rank-select form-inputs"
+              id="ranks"
+              value={rank}
+            >
+              <Option value="All">All</Option>
+              <Option value="1">Rank: 1</Option>
+              <Option value="2">Rank: 2</Option>
+              <Option value="3">Rank: 3</Option>
+              <Option value="4">Rank: 4</Option>
+              <Option value="5">Rank: 5</Option>
+            </Select>
           </div>
-          <Button
-            type="primary"
-            style={{
-              backgroundColor: '#003767',
-              border: 'none',
-              marginTop: 5,
-            }}
-          >
-            <CSVLink {...csvReport} target="_blank">
-              {/* exports CSV file */}
-              Export List
-            </CSVLink>
-          </Button>
-        </div>
-        <br />
-        <div className="additional-list">
-          <label>Items in the secondary list: {added.length}</label>
-          <Button
-            type="primary"
-            disabled={added.length === 0}
-            style={{
-              backgroundColor: added.length === 0 ? 'transparent' : '#003767',
-              border: 'none',
-              marginTop: 5,
-            }}
-          >
-            <CSVLink {...markedReport} target="_blank">
-              Export Secondary List
-            </CSVLink>
-          </Button>
-          <Button
-            onClick={clearList}
-            disabled={added.length === 0}
-            style={{
-              backgroundColor: added.length === 0 ?? 'transparent',
-              border: 'none',
-            }}
-          >
-            Clear List
-          </Button>
-        </div>
-      </form>
+          <div className="state-search">
+            <label htmlFor="locations" className="location">
+              Location
+            </label>
+            <SearchBar className="form-inputs" setUsState={setUsState} />{' '}
+          </div>
+
+          <div className="category-select">
+            <label htmlFor="categories" className="category">
+              Category
+            </label>
+            <AutoComplete
+              value={value}
+              options={categoriesData}
+              onSelect={onCategorySelect}
+              onChange={onCategoryChange}
+              allowClear={true}
+              filterOption={filterOption}
+              placeholder="Browse Categories"
+              notFoundContent="Category Not Found"
+              id="categories"
+              className="form-inputs"
+            />
+            {activeCategories &&
+              activeCategories.map(tag => {
+                return (
+                  <CheckableTag
+                    style={{
+                      marginTop: 3,
+                      backgroundColor: '#003767',
+                    }}
+                    key={tag}
+                    checked={activeCategories.indexOf(tag) > -1}
+                    onChange={checked => onToggle(tag, checked)}
+                  >
+                    {tag}
+                  </CheckableTag>
+                );
+              })}
+          </div>
+          <div className="date-select">
+            <label htmlFor="dates" className="date">
+              Date
+            </label>
+            <RangePicker
+              onCalendarChange={onDateSelection}
+              className="form-inputs"
+            />
+          </div>
+          <div className="export-button">
+            <div className="list-items-count">
+              <br />
+              <label>Items in the main list: {rec.length}</label>
+            </div>
+            <Button
+              type="primary"
+              style={{
+                backgroundColor: '#003767',
+                border: 'none',
+                marginTop: 5,
+              }}
+            >
+              <CSVLink {...csvReport} target="_blank">
+                {/* exports CSV file */}
+                Export List
+              </CSVLink>
+            </Button>
+          </div>
+          <br />
+          <div className="additional-list">
+            <label>Items in the secondary list: {added.length}</label>
+            <Button
+              type="primary"
+              disabled={added.length === 0}
+              style={{
+                backgroundColor: added.length === 0 ? 'transparent' : '#003767',
+                border: 'none',
+                marginTop: 5,
+              }}
+            >
+              <CSVLink {...markedReport} target="_blank">
+                Export Secondary List
+              </CSVLink>
+            </Button>
+            <Button
+              onClick={clearList}
+              disabled={added.length === 0}
+              style={{
+                backgroundColor: added.length === 0 ?? 'transparent',
+                border: 'none',
+              }}
+            >
+              Clear List
+            </Button>
+          </div>
+        </form>
+      </div>
       <div className="incidents-container">
         <h1>Report Results</h1>
-        <div className="reports">
-          {data.length ? (
-            <Collapse key={nanoid()} className="collapse">
-              {currentPosts.map(incident => {
-                return (
-                  <Panel
-                    header={header(incident)}
-                    className="panel"
-                    expandIconPosition="left"
-                    key={incident.id}
-                  >
-                    <div className="collapse-content">
-                      <p>{incident.desc}</p>
-
+        {data.length ? (
+          <Collapse key={nanoid()} className="collapse">
+            {currentPosts.map(incident => {
+              return (
+                <Panel
+                  header={header(incident)}
+                  className="panel"
+                  expandIconPosition="left"
+                  key={incident.id}
+                >
+                  <div className="collapse-content">
+                    <p>{incident.desc}</p>
+                    <div className="bottom-container">
                       <Popover
                         content={sourceListHelper(incident)}
                         placement="rightTop"
@@ -434,18 +441,21 @@ const Incidents = () => {
                           Sources
                         </Button>
                       </Popover>
+                      <div className="tags-container">
+                        {incident.categories.map(i => {
+                          return <Tag key={i}>{i}</Tag>;
+                        })}
+                      </div>
                     </div>
-                    {incident.categories.map(i => {
-                      return <Tag key={i}>{i}</Tag>;
-                    })}
-                  </Panel>
-                );
-              })}
-            </Collapse>
-          ) : (
-            noDataDisplay()
-          )}
-        </div>
+                  </div>
+                </Panel>
+              );
+            })}
+          </Collapse>
+        ) : (
+          noDataDisplay()
+        )}
+
         <section className="pagination">
           <Pagination
             onChange={onChange}
