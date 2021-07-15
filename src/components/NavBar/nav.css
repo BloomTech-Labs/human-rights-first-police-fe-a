@@ -7,7 +7,7 @@
 }
 
 .logo-container {
-  width: 10%;
+  width: 20%;
 }
 
 .hrf-logo {
@@ -19,12 +19,12 @@
 .menu {
   background: #003767;
   padding-top: 1rem;
-  width: 90%;
+  width: 55%;
   margin-top: -.2rem;
-  margin-left: 63rem;
   font-size: 1rem;
   height: 1rem;
   border-bottom: none !important;
+  text-align: right;
 }
 
 .menu-link {
