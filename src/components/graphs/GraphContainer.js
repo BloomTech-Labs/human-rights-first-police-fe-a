@@ -206,7 +206,7 @@ const GraphContainer = () => {
               Total incident reports identified by our data collection methods
               by state
             </h2>
-            <h4>April 2020 to Present</h4>
+            <h4>April 2020 - Present</h4>
             <BarGraph count={barCounts} />
           </section>
         ) : null}
@@ -217,7 +217,7 @@ const GraphContainer = () => {
                 Prevalence of Force Ranks as identified by our data collection
                 methods
               </h2>
-              <h4>April 2020 to Present</h4>
+              <h4>April 2020 - Present</h4>
               <div className="pie-holder">
                 <div className="pie">
                   <PieGraph data={filtered} />
