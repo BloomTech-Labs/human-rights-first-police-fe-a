@@ -6,8 +6,8 @@ const labsCohorts = [
     students: [
       { name: 'Daniel Kim', githubUser: 'danielbkim', roles: ['tpm'] },
       { name: 'Ryan Hammer', githubUser: 'ryanhammer', roles: ['tpm'] },
-      { name: 'Jalpa Shah', githubUser: 'ShahJalpa', roles: ['fe'] },
-      { name: 'Alex Pfeifer', githubUser: 'apfeif12', roles: ['fe'] },
+      { name: 'Jalpa Shah', githubUser: 'ShahJalpa', roles: ['design'] },
+      { name: 'Alex Pfeifer', githubUser: 'apfeif12', roles: ['design'] },
       { name: 'Daniel Vargas', githubUser: 'davarg5', roles: ['fe'] },
       { name: 'Leon Nasswetter', githubUser: 'leon-nasswetter', roles: ['fe'] },
       { name: 'Bradley Hubbs', githubUser: 'bradleyhubbs', roles: ['fe'] },
