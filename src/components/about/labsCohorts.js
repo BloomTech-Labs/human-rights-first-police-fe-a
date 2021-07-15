@@ -2,6 +2,29 @@
 
 const labsCohorts = [
   {
+    number: 36,
+    students: [
+      { name: 'Daniel Kim', githubUser: 'danielbkim', roles: ['tpm'] },
+      { name: 'Ryan Hammer', githubUser: 'ryanhammer', roles: ['tpm'] },
+      { name: 'Jalpa Shah', githubUser: 'ShahJalpa', roles: ['fe'] },
+      { name: 'Alex Pfeifer', githubUser: 'apfeif12', roles: ['fe'] },
+      { name: 'Daniel Vargas', githubUser: 'davarg5', roles: ['fe'] },
+      { name: 'Leon Nasswetter', githubUser: 'leon-nasswetter', roles: ['fe'] },
+      { name: 'Bradley Hubbs', githubUser: 'bradleyhubbs', roles: ['fe'] },
+      { name: 'George Vinueza', githubUser: 'g3or3', roles: ['fe'] },
+      { name: 'Justin Peczenij', githubUser: 'JustinPeczenij', roles: ['be'] },
+      { name: 'Francis Nguyen', githubUser: 'francishtknguyen', roles: ['be'] },
+      { name: 'Jaison Alonso', githubUser: 'abe-one', roles: ['be'] },
+      { name: 'Hillary Khan', githubUser: 'hillarykhan', roles: ['ds'] },
+      { name: 'Eric Park', githubUser: 'ericyeonpark', roles: ['mle'] },
+      {
+        name: 'Marcos Morales',
+        githubUser: 'MarcosMorales2011',
+        roles: ['mle'],
+      },
+    ],
+  },
+  {
     number: 35,
     students: [
       { name: 'Damaris Garcia', githubUser: 'didi-codes', roles: ['design'] },
