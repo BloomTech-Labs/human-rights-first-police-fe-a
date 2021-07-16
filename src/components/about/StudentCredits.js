@@ -57,6 +57,10 @@ export default function StudentCredits() {
               {student.roles.map(role =>
                 role === 'fe' ? (
                   <Tag>Front End</Tag>
+                ) : role === 'mle' ? (
+                  <Tag>Machine Learning Engineer</Tag>
+                ) : role === 'tpm' ? (
+                  <Tag>Technical Project Manager</Tag>
                 ) : role === 'be' ? (
                   <Tag>Back End</Tag>
                 ) : role === 'design' ? (
