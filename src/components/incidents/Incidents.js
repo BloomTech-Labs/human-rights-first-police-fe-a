@@ -37,7 +37,7 @@ const { Option } = Select;
 const { CheckableTag } = Tag;
 
 const Incidents = () => {
-  const [itemsPerPage] = useState(8);
+  const [itemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
 
   // Data State

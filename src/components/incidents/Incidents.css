@@ -165,3 +165,18 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   width: 25%;
 }
 
+/* Media Queries */
+
+@media only screen and (max-width: 720px){
+
+  .extra{
+    margin-left: 0px;
+  }
+  .header-top{
+    flex-direction: column;
+  }
+  .title-container{
+    width: 100%;
+    margin-bottom: 5%;
+  }
+}
