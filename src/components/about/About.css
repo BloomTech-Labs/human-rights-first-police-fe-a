@@ -40,9 +40,10 @@ h1 {
 }
 
 .data-description-container {
-  width: 80vw;
-  text-align: left;
+  /* width: 80%; */
+  text-align: center;
   margin-left: 2.5rem;
+  margin-right: 2.5rem;
 }
 
 .data-info-container {
@@ -66,13 +67,14 @@ h1 {
 
 .info-container h2 {
   text-align: center;
-  margin-right: 2.5rem;
-  flex: 0.15;
+  margin-right: 2rem;
+  flex: .15;
 }
 .info-container p {
   margin: 2rem 1rem 1.5rem 0rem;
   text-align: left;
   flex: 0.8;
+  text-align: center;
 }
 
 .icons {
@@ -137,8 +139,9 @@ h1 {
   .data-description-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-right: 2rem;
+    width: 95%;
+    /* padding-right: 2rem; */
+    text-align: center;
   }
 
   .data-info-container {
@@ -156,6 +159,7 @@ h1 {
 
   .info-container p {
     margin: 2rem 0rem 1.5rem 0rem;
+    text-align: center;
   }
 
   .about-bottom-container {
@@ -175,8 +179,9 @@ h1 {
   .data-description-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 95%;
     padding-right: 2rem;
+    text-align: center;
   }
 
   .data-info-container {
@@ -194,6 +199,7 @@ h1 {
 
   .info-container p {
     margin: 2rem 0rem 1.5rem 0rem;
+    text-align: center;
   }
 
   .about-bottom-container {
@@ -213,8 +219,9 @@ h1 {
   .data-description-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 95%; */
     padding-right: 2rem;
+    text-align: center;
   }
 
   .data-info-container {
@@ -232,6 +239,7 @@ h1 {
 
   .info-container p {
     margin: 2rem 0rem 1.5rem 0rem;
+    text-align: center;
   }
 
   .about-bottom-container {
@@ -251,8 +259,9 @@ h1 {
   .data-description-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
+    /* width: 95%; */
     padding-right: 2rem;
+    text-align: center;
   }
 
   .data-info-container {
@@ -270,6 +279,7 @@ h1 {
 
   .info-container p {
     margin: 2rem 0rem 1.5rem 0rem;
+    text-align: center;
   }
 
   .about-bottom-container {
@@ -289,8 +299,8 @@ h1 {
   .data-description-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-right: 2rem;
+    width: 95%;
+    text-align: center;
   }
 
   .data-info-container {
@@ -308,6 +318,7 @@ h1 {
 
   .info-container p {
     margin: 2rem 0rem 1.5rem 0rem;
+    text-align: center;
   }
 
   .about-bottom-container {
@@ -327,8 +338,9 @@ h1 {
   .data-description-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-right: 2rem;
+    /* width: 90%; */
+    /* padding-right: 2rem; */
+    text-align: center;
   }
 
   .data-info-container {
@@ -346,6 +358,7 @@ h1 {
 
   .info-container p {
     margin: 2rem 0rem 1.5rem 0rem;
+    text-align: center;
   }
 
   .about-bottom-container {
@@ -365,8 +378,9 @@ h1 {
   .data-description-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-right: 2rem;
+    /* width: 95%; */
+    /* padding-right: 2rem; */
+    text-align: center;
   }
 
   .data-info-container {
@@ -384,6 +398,7 @@ h1 {
 
   .info-container p {
     margin: 2rem 0rem 1.5rem 0rem;
+    text-align: center;
   }
 
   .about-bottom-container {
@@ -403,8 +418,9 @@ h1 {
   .data-description-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-right: 2rem;
+    /* width: 95%; */
+    /* padding-right: 2rem; */
+    text-align: center;
   }
 
   .data-info-container {
@@ -441,8 +457,8 @@ h1 {
   .data-description-container {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    padding-right: 2rem;
+    /* width: 95%; */
+    /* padding-right: 2rem; */
   }
 
   .data-info-container {
@@ -450,7 +466,7 @@ h1 {
   }
 
   .info-container {
-    width: 90%;
+    width: 95%;
     display: flex;
     margin: 0 auto;
     align-items: center;
@@ -461,7 +477,7 @@ h1 {
   }
   .info-container p {
     margin: 2rem 0rem 1.5rem 0rem;
-    text-align: left;
+    text-align: center;
     flex: 0.8;
   }
 
