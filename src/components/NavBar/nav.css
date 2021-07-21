@@ -28,17 +28,12 @@
   text-align: right;
 }
 
-.menu-link {
-  color: #fff !important ;
+.ant-menu-horizontal > .ant-menu-item a {
+  color: white;
 }
 
 .ant-menu-item-selected  {
   background-color:  #ffffff00 !important;
-}
-
-.ant-menu-submenu-popup > .ant-menu {
-  background-color: #003767;
-  border: 1px solid #ffffff46;
 }
 
 .ant-menu-submenu-title span {
