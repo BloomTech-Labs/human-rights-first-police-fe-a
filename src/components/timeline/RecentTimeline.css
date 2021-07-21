@@ -80,4 +80,9 @@ div.card-tags-container {
     clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 5% 100%, 0% 50%);
   }
 
+  h3.card-title {
+    text-align: center;
+    padding-bottom: 1%;
+  }
+
 }
