@@ -1,5 +1,5 @@
   .footer-container {
-    background-color: black;
+    background-color: #003767;
     width: 100%;
     color: white;
     display: flex;
@@ -11,7 +11,7 @@
     padding-bottom: 1rem;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
   }
   
   .footer-links-container {
