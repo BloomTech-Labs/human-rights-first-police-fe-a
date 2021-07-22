@@ -1091,7 +1091,7 @@ form label {
 .Map {
   position: relative;
   width: 100%;
-  min-height: calc(90vh - 59px);
+  min-height: calc(82vh - 59px);
   margin-top: -1px;
   margin: 0 auto;
 }

@@ -90,7 +90,7 @@ export default function Map() {
             dispatch(resetFocus());
           }}
           width="fit"
-          height="calc(90vh - 59px)"
+          height="calc(82vh - 59px)"
           minZoom={2.75}
           maxZoom={17}
           mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
