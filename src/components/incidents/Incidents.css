@@ -144,28 +144,82 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   align-items: center;;
 }
 .title-container{
-  width: 25%;
+  width: 35%;
 }
 .rank-select{
-  width: 25%;
+  width: 35%;
 }
 .state-search{
-  width: 25%;
+  width: 35%;
 }
 .category-select{
-  width: 25%;
+  width: 35%;
 }
 .date-select{
-  width: 25%;
+  width: 35%;
 }
 .export-button{
-  width: 25%;
+  width: 35%;
 }
 .additional-list{
-  width: 25%;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
- 
+
+.clear-button{
+  margin-top: 10px;
+}
+
 /* Media Queries */
+@media only screen and (max-width: 1000px){
+  .title-container{
+    width: 50%;
+  }
+  .rank-select{
+    width: 50%;
+  }
+  .state-search{
+    width: 50%;
+  }
+  .category-select{
+    width: 50%;
+  }
+  .date-select{
+    width: 50%;
+  }
+  .export-button{
+    width: 50%;
+  }
+  .additional-list{
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .title-container{
+    width: 75%;
+  }
+  .rank-select{
+    width: 75%;
+  }
+  .state-search{
+    width: 75%;
+  }
+  .category-select{
+    width: 75%;
+  }
+  .date-select{
+    width: 75%;
+  }
+  .export-button{
+    width: 75%;
+  }
+  .additional-list{
+    width: 75%;
+  }
+}
  
 @media only screen and (max-width: 720px){
  
