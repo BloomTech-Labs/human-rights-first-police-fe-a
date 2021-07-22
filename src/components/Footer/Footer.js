@@ -20,6 +20,16 @@ const Footer = () => {
   return (
     <div className="footer-container">
       <div className="top-container">
+        <div className="office-contact">
+          <h3>New York · Washington · Los Angeles</h3>
+          <p>Human Rights First, 75 Broad St, 31st Floor, New York, NY 10004</p>
+          <p>For Media Inquiries call 202-370-3323</p>
+          <p>
+            Human Rights First is a nonpartisan, 501(c)(3), international human
+            rights organization based in New York and Washington, DC. We do not
+            favor or oppose any candidate for public office.
+          </p>
+        </div>
         <div className="footer-links-container">
           <div className="left-links">
             <h3 className="blue-title">Blue Witness</h3>

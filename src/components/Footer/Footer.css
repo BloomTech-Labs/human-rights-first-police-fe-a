@@ -13,6 +13,10 @@
     flex-direction: row;
     justify-content: space-evenly;
   }
+
+  .office-contact {
+    width: 50%;
+  }
   
   .footer-links-container {
     display: flex;
