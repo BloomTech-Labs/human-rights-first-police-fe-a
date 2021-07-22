@@ -12,17 +12,17 @@ import {
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 import { Empty, Button, Collapse, Tag, Checkbox, Popover, Select } from 'antd';
- 
+
 // Time Imports
 import { DateTime } from 'luxon';
- 
+
 // Search Bar
 import SearchBar from '../graphs/searchbar/SearchBar';
- 
+
 // Ant Design Imports:
 import { AutoComplete, Pagination, DatePicker } from 'antd';
 import { CSVLink } from 'react-csv'; // helper for export CSV from current State
- 
+
 let ranks = [
   'Rank 1 - Police Presence',
   'Rank 2 - Empty-hand',
@@ -30,16 +30,16 @@ let ranks = [
   'Rank 4 - Chemical & Electric',
   'Rank 5 - Lethal Force',
 ];
- 
+
 const { RangePicker } = DatePicker;
 const { Panel } = Collapse;
 const { Option } = Select;
 const { CheckableTag } = Tag;
- 
+
 const Incidents = () => {
   const [itemsPerPage] = useState(10);
   const [currentPage, setCurrentPage] = useState(1);
- 
+
   // Data State
   const [usState, setUsState] = useState(null);
   const [dates, setDates] = useState(null);
@@ -52,25 +52,25 @@ const Incidents = () => {
   ); // all marked incidents saved in local storage
   const [added, setAdded] = useState([]); // data where all checked cases stored(from checkboxes)
   const [rank, setRank] = useState('All');
- 
+
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
   const tagIndex = useSelector(state => Object.keys(state.incident.tagIndex));
   const fetchStatus = useSelector(
     state => state.api.incidents.getincidents.status
   );
- 
+
   const [value, setValue] = useState('');
   const [activeCategories, setActiveCategories] = useState([]);
- 
+
   const categoriesData = [];
- 
+
   const allObj = {
     value: 'All',
   };
- 
+
   categoriesData.push(allObj);
- 
+
   for (let tag of tagIndex) {
     if (tag.length < 3) {
       continue;
@@ -81,7 +81,7 @@ const Incidents = () => {
       categoriesData.push(item);
     }
   }
- 
+
   const header = incident => {
     return (
       <div className="header-top">
@@ -118,7 +118,7 @@ const Incidents = () => {
       </div>
     );
   };
- 
+
   useEffect(() => {
     const range = dates && createRange(dates);
     let filtered = [...incidents];
@@ -147,11 +147,11 @@ const Incidents = () => {
     // setAdded([]); // it cleans checked data when we change the filtered data
     // setSelectedIncidents([]);
   }, [usState, dates, activeCategories, rank]);
- 
+
   const indexOfLastPost = currentPage * itemsPerPage;
   const indexOfFirstPost = indexOfLastPost - itemsPerPage;
   const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
- 
+
   const onSelect = id => {
     let newSelectedIncidents = [];
     if (selectedIncidents.indexOf(id) > -1) {
@@ -161,11 +161,11 @@ const Incidents = () => {
     }
     setSelectedIncidents(newSelectedIncidents);
   };
- 
+
   const onChange = page => {
     setCurrentPage(page);
   };
- 
+
   const onToggle = (tag, checked) => {
     let nextSelectedTags = checked
       ? [...activeCategories, tag]
@@ -180,11 +180,11 @@ const Incidents = () => {
     }
     setActiveCategories(nextSelectedTags);
   };
- 
+
   const onRank = e => {
     setRank(e);
   };
- 
+
   let rec = [...data]; // copies the current data to avoid manipulating with the main state
   rec.forEach(i => {
     // makes the current data prettier
@@ -192,7 +192,7 @@ const Incidents = () => {
     i.date = i.date.slice(0, 10); // removes unreadable timestamps
     i.added_on = i.added_on.slice(0, 10); // removes unreadable timestamps
   });
- 
+
   const headers = [
     { label: 'id', key: 'id' },
     { label: 'Date', key: 'date' },
@@ -208,7 +208,7 @@ const Incidents = () => {
     { label: 'Added On', key: 'added_on' },
     { label: 'Incident id', key: 'incident_id' },
   ];
- 
+
   useEffect(() => {
     // handles any changes with checked/unchecked incidents
     let k = [];
@@ -225,25 +225,25 @@ const Incidents = () => {
     }
     setAdded(k);
   }, [selectedIncidents]);
- 
+
   const csvReport = {
     // stores all data for CSV report
     data: rec, // uploads filtered data
     headers: headers,
     filename: 'report.csv',
   };
- 
+
   const markedReport = {
     // stores marked data for CSV report
     data: added, // uploads marked data
     headers: headers,
     filename: 'marked_report.csv',
   };
- 
+
   const clearList = () => {
     setSelectedIncidents([]);
   };
- 
+
   const onDateSelection = (dates, dateStrings) => {
     setDates(
       dateStrings[0] && dateStrings[1]
@@ -251,7 +251,7 @@ const Incidents = () => {
         : null
     );
   };
- 
+
   const noDataDisplay = () => {
     return (
       <div className="no-data-container">
@@ -270,7 +270,7 @@ const Incidents = () => {
       </div>
     );
   };
- 
+
   const onCategoryChange = data => {
     setValue(data);
   };
@@ -289,7 +289,7 @@ const Incidents = () => {
       ? option
       : null;
   };
- 
+
   return (
     <div className="incident-reports-page">
       <div className="form-container">
@@ -321,7 +321,7 @@ const Incidents = () => {
             </label>
             <SearchBar className="form-inputs" setUsState={setUsState} />{' '}
           </div>
- 
+
           <div className="category-select">
             <label htmlFor="categories" className="category">
               Category
@@ -390,7 +390,7 @@ const Incidents = () => {
               type="primary"
               disabled={added.length === 0}
               style={{
-                backgroundColor: added.length === 0 ? 'transparent' : '#003767',
+                backgroundColor: added.length === 0 ? '#F5F5F5' : '#003767',
                 border: 'none',
                 marginTop: 5,
               }}
@@ -402,6 +402,7 @@ const Incidents = () => {
             <Button
               onClick={clearList}
               disabled={added.length === 0}
+              className="clear-button"
               style={{
                 backgroundColor: added.length === 0 ?? 'transparent',
                 border: 'none',
@@ -455,7 +456,7 @@ const Incidents = () => {
         ) : (
           noDataDisplay()
         )}
- 
+
         <section className="pagination">
           <Pagination
             onChange={onChange}
@@ -469,6 +470,5 @@ const Incidents = () => {
     </div>
   );
 };
- 
-export default Incidents;
 
+export default Incidents;
