@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 import './Footer.css';
 import builtByLambda from '../../assets/LambdaAssets/Built by lambda.png';
+import logo from '../../assets/blue-witness1.png';
 
 const Footer = () => {
   const { push } = useHistory();
@@ -46,53 +47,21 @@ const Footer = () => {
           </a>
         </div>
         <div className="footer-links-container">
-          <div className="left-links">
-            <h3 className="blue-title">Blue Witness</h3>
-            <a
-              href="https://www.humanrightsfirst.org"
-              target="_blank"
-              alt="Human Rights First"
-              rel="noreferrer"
-            >
-              Human Rights First
-            </a>
-            <br />
-            <a
-              href="https://www.humanrightsfirst.org"
-              target="_blank"
-              rel="noreferrer"
-              alt="Twitter Bot"
-            >
-              Twitter Bot
-            </a>
-            <br />
-            <NavLink
-              to="/admin-dashboard"
-              target="_blank"
-              activeClassName="active-nav-link"
-            >
-              Admin Dashboard
-            </NavLink>
-            {authState.isAuthenticated && (
-              <div className="logout" onClick={logout}>
-                <NavLink to="/" activeClassName="active-nav-link">
-                  Log out
-                </NavLink>
-              </div>
-            )}
-            <br />
-          </div>
-          <div className="right-links">
-            <h3 className="red-title">Lambda</h3>
-            <a
-              href="https://lambdaschool.com/"
-              target="_blank"
-              alt="Lambda School"
-              rel="noreferrer"
-            >
-              Lambda School
-            </a>
-          </div>
+          <img className="blue-logo" alt="Blue Witness logo" src={logo} />
+          <NavLink
+            to="/admin-dashboard"
+            target="_blank"
+            activeClassName="active-nav-link"
+          >
+            Admin Dashboard
+          </NavLink>
+          {authState.isAuthenticated && (
+            <div className="logout" onClick={logout}>
+              <NavLink to="/" activeClassName="active-nav-link">
+                Log out
+              </NavLink>
+            </div>
+          )}
         </div>
       </div>
       <div className="copyright-container">
