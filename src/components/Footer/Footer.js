@@ -30,6 +30,21 @@ const Footer = () => {
             favor or oppose any candidate for public office.
           </p>
         </div>
+        <div className="built-by-lambda-container">
+          <a href="https://www.humanrightsfirst.org">
+            <img
+              src="https://www.humanrightsfirst.org/sites/all/themes/hrf/images/hrf-footer-logo.png"
+              alt="HRF footer logo"
+            />
+          </a>
+          <a href="https://lambdaschool.com/" target="_blank" rel="noreferrer">
+            <img
+              className="built-by-lambda"
+              src={builtByLambda}
+              alt="built by lambda logo"
+            />
+          </a>
+        </div>
         <div className="footer-links-container">
           <div className="left-links">
             <h3 className="blue-title">Blue Witness</h3>
@@ -77,27 +92,7 @@ const Footer = () => {
             >
               Lambda School
             </a>
-            <br />
-            {/* Do we want to include the Labs GitHub? */}
-            {/* <a
-              href="https://github.com/Lambda-School-Labs"
-              target="_blank"
-              alt="Lambda Labs GitHub"
-              rel="noreferrer"
-            >
-              Lambda Labs GitHub
-            </a> */}
-            <br />
           </div>
-        </div>
-        <div className="built-by-lambda-container">
-          <a href="https://lambdaschool.com/" target="_blank" rel="noreferrer">
-            <img
-              className="built-by-lambda"
-              src={builtByLambda}
-              alt="built by lambda logo"
-            />
-          </a>
         </div>
       </div>
       <div className="copyright-container">
