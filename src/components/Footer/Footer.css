@@ -97,3 +97,9 @@
     }
   }
 
+  @media only screen and (max-width: 768px) {
+    .built-by-lambda-container {
+      flex-direction: column;
+    }
+  }
+
