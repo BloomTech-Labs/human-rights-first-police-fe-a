@@ -30,7 +30,11 @@ const NavBar = () => {
       <Menu
         className="menu"
         mode="horizontal"
-        overflowedIndicator={<MenuOutlined />}
+        overflowedIndicator={
+          <MenuOutlined
+            style={{ margin: '0', fontSize: '1.5rem', paddingTop: '14px' }}
+          />
+        }
       >
         <Space></Space>
         <Menu.Item key="1">
