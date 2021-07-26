@@ -3,10 +3,11 @@
   width: 100%;
   margin: auto;
   margin-top: 2rem;
+  max-width: 1550px;
 }
 .incident-reports-page h1 {
   font-size: 1.5rem;
-  text-align: center;
+  text-align: flex-start;
 }
 .export-form {
   text-align: left;
@@ -140,8 +141,7 @@ span.ant-tag.ant-tag-checkable-checked:hover {
 .export-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;;
+  align-items: left;;
 }
 .title-container{
   width: 35%;
