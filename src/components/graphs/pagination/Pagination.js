@@ -3,7 +3,7 @@ import React from 'react';
 // Search Bar
 import SearchBar from '../searchbar/SearchBar';
 
-import "./Pagination.css";
+import './Pagination.css';
 
 import {
   LineChartOutlined,
@@ -65,9 +65,11 @@ const Pagination = ({ setGraph, setUsState, filtered }) => {
 
   return (
     <nav style={{ marginTop: '1rem' }} className="link-container">
-      <ul className="graph-buttons">
-        {filtered.length > 0 ? generateButtons(onClick) : null}
-      </ul>
+      <div className="graph-buttons-container">
+        <ul className="graph-buttons">
+          {filtered.length > 0 ? generateButtons(onClick) : null}
+        </ul>
+      </div>
       <div className="search-bar-container">
         <SearchBar setUsState={setUsState} className="search-bar" />
       </div>
