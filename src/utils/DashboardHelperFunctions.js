@@ -43,7 +43,7 @@ export const sortApproved = (unapprovedIncidents, selected) => {
   const reviewedData = [];
   const unreviewedData = [];
   unapprovedIncidents.forEach(dataObj => {
-    if (selected.includes(dataObj.id)) {
+    if (selected.includes(dataObj.incident_id)) {
       reviewedData.push(dataObj);
     } else {
       unreviewedData.push(dataObj);

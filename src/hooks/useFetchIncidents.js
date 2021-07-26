@@ -19,33 +19,34 @@ export default function useFetchIncidents() {
       );
 
       const { data: incidentsRes } = await axios.get(
-        `${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`
+        `${process.env.REACT_APP_BACKENDURL}incidents/getincidents`
       );
       const { data: timelineRes } = await axios.get(
-        `${process.env.REACT_APP_BACKENDURL}/incidents/gettimeline`
+        `${process.env.REACT_APP_BACKENDURL}incidents/gettimeline`
       );
 
       const incidents = {};
       const tagIndex = {};
+
       incidentsRes.forEach(item => {
-        incidents[item.id] = {
+        incidents[item.incident_id] = {
           ...item,
           geoJSON: {
             type: 'Feature',
-            incidentId: item.id,
+            incidentId: item.incident_id,
             geometry: { type: 'Point', coordinates: [item.long, item.lat] },
           },
         };
 
-        item.categories.forEach(category => {
-          if (tagIndex.hasOwnProperty(category)) {
-            tagIndex[category].add(item.id);
+        item.tags.forEach(tag => {
+          if (tagIndex.hasOwnProperty(tag)) {
+            tagIndex[tag].add(item.incident_id);
           } else {
-            tagIndex[category] = new Set([item.id]);
+            tagIndex[tag] = new Set([item.incident_id]);
           }
         });
       });
-      const timeline = timelineRes.map(item => item.id);
+      const timeline = timelineRes.map(item => item.incident_id);
 
       dispatch(
         onInitialFetch({

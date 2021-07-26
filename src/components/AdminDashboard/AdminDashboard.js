@@ -101,7 +101,7 @@ const AdminDashboard = () => {
   const selectAll = () => {
     setAllSelected(!allSelected);
     if (!allSelected) {
-      setSelected(currentSet.map(data => data.id));
+      setSelected(currentSet.map(data => data.incident_id));
     } else {
       setSelected([]);
     }
@@ -109,13 +109,13 @@ const AdminDashboard = () => {
 
   const changeSelected = incident => {
     if (!confirmApprove && !confirmReject) {
-      if (selected.includes(incident.id)) {
+      if (selected.includes(incident.incident_id)) {
         const newSelected = selected.filter(id => {
-          return id !== incident.id;
+          return id !== incident.incident_id;
         });
         setSelected(newSelected);
       } else {
-        setSelected([...selected, incident.id]);
+        setSelected([...selected, incident.incident_id]);
       }
     }
   };

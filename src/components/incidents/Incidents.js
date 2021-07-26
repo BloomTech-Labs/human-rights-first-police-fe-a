@@ -188,25 +188,22 @@ const Incidents = () => {
   let rec = [...data]; // copies the current data to avoid manipulating with the main state
   rec.forEach(i => {
     // makes the current data prettier
-    i.desc = i.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
-    i.date = i.date.slice(0, 10); // removes unreadable timestamps
-    i.added_on = i.added_on.slice(0, 10); // removes unreadable timestamps
+    i.description = i.description.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
+    i.incident_date = i.incident_date.slice(0, 10); // removes unreadable timestamps
   });
 
   const headers = [
-    { label: 'id', key: 'id' },
-    { label: 'Date', key: 'date' },
+    { label: 'Incident ID', key: 'incident_id' },
+    { label: 'Date', key: 'incident_date' },
     { label: 'Title', key: 'title' },
     { label: 'Force Rank', key: 'force_rank' },
-    { label: 'Categories', key: 'categories' },
+    { label: 'Tags', key: 'tags' },
     { label: 'City', key: 'city' },
     { label: 'State', key: 'state' },
     { label: 'Source', key: 'src' },
-    { label: 'Description', key: 'desc' },
+    { label: 'Description', key: 'description' },
     { label: 'Latitude', key: 'lat' },
     { label: 'Longitude', key: 'long' },
-    { label: 'Added On', key: 'added_on' },
-    { label: 'Incident id', key: 'incident_id' },
   ];
 
   useEffect(() => {
@@ -443,7 +440,7 @@ const Incidents = () => {
                         </Button>
                       </Popover>
                       <div className="tags-container">
-                        {incident.categories.map(i => {
+                        {incident.tags.map(i => {
                           return <Tag key={i}>{i}</Tag>;
                         })}
                       </div>
