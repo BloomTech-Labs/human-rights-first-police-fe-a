@@ -7,7 +7,7 @@ import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
 import IncidentFocus from '../Home/Map/IncidentFocus';
 // import { useOktaAuth } from '@okta/okta-react';
 import { Layout, Menu, Sider, Input, Space, Typography } from 'antd';
-import { SearchOutlined } from '@ant-design/icons';
+import { MenuOutlined } from '@ant-design/icons';
 import './nav.css';
 const { Search } = Input;
 
@@ -27,7 +27,15 @@ const NavBar = () => {
           <img className="hrf-logo" alt="hrf-logo" src={logo} />
         </Link>
       </div>
-      <Menu className="menu" mode="horizontal">
+      <Menu
+        className="menu"
+        mode="horizontal"
+        overflowedIndicator={
+          <MenuOutlined
+            style={{ margin: '0', fontSize: '1.5rem', paddingTop: '14px' }}
+          />
+        }
+      >
         <Space></Space>
         <Menu.Item key="1">
           <Link className="menu-link" to="/">
