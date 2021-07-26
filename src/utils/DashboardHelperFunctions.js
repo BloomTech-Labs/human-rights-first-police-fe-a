@@ -54,9 +54,10 @@ export const sortApproved = (unapprovedIncidents, selected) => {
 
 export const getData = setUnapprovedIncidents => {
   axios
-    .get(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`)
+    .get(`${process.env.REACT_APP_BACKENDURL}dashboard/incidents`)
     .then(res => {
       setUnapprovedIncidents(res.data);
+      console.log(res.data);
     })
     .catch(err => {
       console.log(err);

@@ -81,9 +81,10 @@ const AdminDashboard = () => {
 
   React.useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
+      .get(`${process.env.REACT_APP_BACKENDURL}dashboard/incidents/approved`)
       .then(res => {
         setIncidents(res.data);
+        console.log(res.data);
       });
   }, []);
 

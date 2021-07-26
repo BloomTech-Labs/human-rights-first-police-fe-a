@@ -41,8 +41,8 @@ function AntTable(props) {
     //     },
     {
       title: 'Description',
-      dataIndex: 'desc',
-      key: 'desc',
+      dataIndex: 'description',
+      key: 'description',
       ellipsis: true,
       fixed: 'top',
     },
@@ -61,13 +61,13 @@ function AntTable(props) {
     },
     {
       title: 'Date',
-      dataIndex: 'date',
-      key: 'date',
+      dataIndex: 'incident_date',
+      key: 'incident_date',
       fixed: 'top',
       defaultSortOrder: 'descend',
       sorter: (a, b) => {
-        let aTime = DateTime.fromISO(a.date.slice(0.1));
-        let bTime = DateTime.fromISO(b.date.slice(0, 10));
+        let aTime = DateTime.fromISO(a.incident_date.slice(0.1));
+        let bTime = DateTime.fromISO(b.incident_date.slice(0, 10));
 
         return aTime - bTime;
       },
@@ -81,7 +81,7 @@ function AntTable(props) {
         dataSource={
           unapprovedIncidents ? unapprovedIncidents : approvedIncidents
         } // If the unapprovedIncidents component is mounted, the datasource will be unapprovedIncidents, else the data source will be approvedIncidents
-        rowKey={'id'}
+        rowKey={'incident_id'}
         expandable={{
           expandedRowRender: incident => {
             return (
