@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useOktaAuth } from '@okta/okta-react';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'antd';
 
 import './Footer.css';
 import builtByLambda from '../../assets/LambdaAssets/Built by lambda.png';
@@ -53,7 +54,7 @@ const Footer = () => {
             target="_blank"
             activeClassName="active-nav-link"
           >
-            Admin Dashboard
+            <Button>Admin Dashboard</Button>
           </NavLink>
           {authState.isAuthenticated && (
             <div className="logout" onClick={logout}>
