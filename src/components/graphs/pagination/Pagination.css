@@ -4,7 +4,7 @@
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
-          justify-content: space-between;
+          justify-content: space-around;
 
 }
 
@@ -65,7 +65,7 @@
   margin-right: 8px;
 }
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 880px) {
   .link-container .graph-buttons .link-item .text {
     display: none;
   }
@@ -104,4 +104,18 @@
 
 .search-bar-container{
   margin: 0 6%;
+}
+
+.link-container{
+  width: 75%;
+}
+.graph-buttons{
+  height: 100%;
+}
+.graph-buttons-container{
+  width: 75%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
