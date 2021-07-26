@@ -30,10 +30,8 @@
     font-size: 1.2rem;
   }
 
-  .footer-links-container a{
-    padding: 5px 10px 5px 10px;
-    border: 1px solid white;
-    color: white;
+  .footer-links-container Button {
+    margin-top: 1.2rem;
   }
   
   .footer-links-container a:hover {
