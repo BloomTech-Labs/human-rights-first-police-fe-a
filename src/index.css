@@ -1171,13 +1171,6 @@ form label {
 }
 
 @media (max-width: 800px) {
-  body {
-    width: 375px;
-  }
-
-  /* .nav-container div {
-    width: 90%;
-  } */
 
   .mapDiv {
     width: 100%;
