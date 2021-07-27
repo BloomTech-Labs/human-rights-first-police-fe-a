@@ -9,30 +9,25 @@ import {
 } from '../../utils/DashboardHelperFunctions';
 
 const initialFormValues = {
-  approved: true,
   city: '',
-  coordinates: '',
-  date: '',
-  desc: '',
+  confidence: '',
+  description: '',
   force_rank: '',
-  geo: null,
-  language: 'en',
+  incident_date: '',
   lat: null,
   long: null,
-  pending: false,
-  rejected: false,
   src: '',
   state: '',
+  status: 'pending',
+  tags: [],
   title: '',
-  user_description: '',
-  user_location: '',
-  user_name: '',
+  tweet_id: null,
+  user_name: null,
 };
 
 const AddIncident = props => {
   // setting state for form management
   const [formValues, setFormValues] = useState(initialFormValues);
-  const [twitterSrc, setTwitterSrc] = useState('');
 
   // setting state for add incident pop up
   const [modalText, setModalText] = useState('');
@@ -46,23 +41,23 @@ const AddIncident = props => {
     evt.preventDefault();
     // formatting date
     let newDateString;
-    if (!formValues.date) {
+    if (!formValues.incident_date) {
       newDateString = new Date().toJSON();
     } else {
-      const formattedDate = formatDate(formValues.date);
+      const formattedDate = formatDate(formValues.incident_date);
       newDateString = formattedDate + 'T00:00:00.000Z';
     }
 
     // getting coordinates
-    const [lat, long] = await getLatAndLong(formValues);
+    // const [lat, long] = await getLatAndLong(formValues);
 
     // creating new incident object to be posted
     const newIncident = {
       ...formValues,
-      desc: formValues.desc + ' ' + twitterSrc,
-      date: newDateString,
-      lat,
-      long,
+      incident_date: newDateString,
+      src: [formValues.src],
+      // lat,
+      // long,
     };
 
     // posting new incident to database
@@ -82,14 +77,10 @@ const AddIncident = props => {
   //   form management functions
   const handleChange = evt => {
     const { name, value } = evt.target;
-    if (name === 'tweet') {
-      setTwitterSrc(value);
-    } else {
-      setFormValues({
-        ...formValues,
-        [name]: value,
-      });
-    }
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
   };
 
   const handleCancel = () => {
@@ -118,13 +109,13 @@ const AddIncident = props => {
         </label>
         <br />
         <br />
-        <label htmlFor="desc">
+        <label htmlFor="description">
           Description of Incident
           <br />
           <input
             type="text"
-            name="desc"
-            value={formValues.desc}
+            name="description"
+            value={formValues.description}
             onChange={handleChange}
           />
         </label>
@@ -154,13 +145,13 @@ const AddIncident = props => {
         </label>
         <br />
         <br />
-        <label htmlFor="date">
+        <label htmlFor="incident_date">
           Date (Month/Day/Year)
           <br />
           <input
             type="text"
-            name="date"
-            value={formValues.date}
+            name="incident_date"
+            value={formValues.incident_date}
             onChange={handleChange}
           />
         </label>
@@ -186,20 +177,8 @@ const AddIncident = props => {
         </label>
         <br />
         <br />
-        <label htmlFor="tweet">
-          Tweet URL
-          <br />
-          <input
-            type="text"
-            value={twitterSrc}
-            onChange={handleChange}
-            name="tweet"
-          />
-        </label>
-        <br />
-        <br />
         <label htmlFor="src">
-          Additional Source
+          Sources (separate by commas)
           <br />
           <input
             type="text"

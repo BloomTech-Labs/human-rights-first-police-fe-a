@@ -94,7 +94,7 @@ export const getLatAndLong = formValues => {
     const { city, state } = formValues;
     axios
       .get(
-        `http://open.mapquestapi.com/geocoding/v1/address?key=${
+        `https://open.mapquestapi.com/geocoding/v1/address?key=${
           process.env.REACT_APP_MAPQUEST_API_KEY
         }&location=${city ? city.toLowerCase() : ''}${
           state ? ',' + state.toLowerCase() : ''
@@ -115,7 +115,7 @@ export const postIncident = newIncident => {
   const postRequest = new Promise((resolve, reject) => {
     axios
       .post(
-        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
+        `${process.env.REACT_APP_BACKENDURL}dashboard/incidents`,
         newIncident
       )
       .then(res => {
