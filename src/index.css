@@ -1197,7 +1197,7 @@ form label {
   }
   .map-menu {
     position: absolute;
-    top: 48%;
+    top: 41%;
     right: 0px;
   }
   .ant-carousel {
@@ -1227,7 +1227,7 @@ form label {
   }
 }
 
-@media (max-width: 414px) {
+@media (max-width: 430px) {
   .map-menu {
     position: absolute;
     z-index: 1;
@@ -1235,6 +1235,10 @@ form label {
     right: 40px;
     color: black;
     margin-bottom: 10px;
+    top: 85%;
+    right: 22px;
+    width: 298px;
+    padding-top: 30%;
   }
 
   .horizontal-graph {
@@ -1279,14 +1283,16 @@ form label {
   }
 }
 
-@media (max-width: 375px) {
+@media (max-width: 380px) {
   .map-menu {
     position: absolute;
     z-index: 1;
-    bottom: 160px;
-    right: -10px;
+    bottom: 190px;
     color: black;
     margin-bottom: 10px;
+    top: 32%;
+    width: 100px;
+    padding-right: 5px;
   }
 }
 

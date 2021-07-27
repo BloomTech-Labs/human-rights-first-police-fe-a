@@ -15,11 +15,15 @@
 @media (max-width: 600px) {
     .collapseText.ant-collapse-item {
         margin: -218% 5% 0 -25%;
+        
     }
 }
-@media (max-width: 414px) {
+
+/* //incident div breakpoints */
+@media (max-width: 420px) {
     .collapseText.ant-collapse-item {
-        margin: -200% -15% 0 -250%;
+        margin: -200% 15% 0 -250%;
+        border: 20px transparent;
     }
 }
 @media (max-width: 375px) {
