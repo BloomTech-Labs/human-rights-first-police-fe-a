@@ -52,12 +52,11 @@ export const sortApproved = (unapprovedIncidents, selected) => {
   return [reviewedData, unreviewedData];
 };
 
-export const getData = setUnapprovedIncidents => {
-  axios
-    .get(`${process.env.REACT_APP_BACKENDURL}dashboard/incidents`)
+export const getData = (oktaAxios, setUnapprovedIncidents) => {
+  oktaAxios
+    .get('/dashboard/incidents')
     .then(res => {
       setUnapprovedIncidents(res.data);
-      console.log(res.data);
     })
     .catch(err => {
       console.log(err);

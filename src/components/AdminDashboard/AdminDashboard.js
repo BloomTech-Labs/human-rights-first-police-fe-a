@@ -6,6 +6,7 @@ import Incidents from './Incidents';
 import ApprovedIncidents from './ApprovedIncidents';
 import './AdminDashboard.css';
 import { Modal } from './Modal';
+import useOktaAxios from '../../hooks/useOktaAxios';
 
 import {
   getData,
@@ -74,18 +75,17 @@ const AdminDashboard = () => {
 
   const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
 
+  const oktaAxios = useOktaAxios();
+
   // getting unapproved/pending incidents from the database
   useEffect(() => {
-    getData(setUnapprovedIncidents);
+    getData(oktaAxios, setUnapprovedIncidents);
   }, []);
 
   React.useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_BACKENDURL}dashboard/incidents/approved`)
-      .then(res => {
-        setIncidents(res.data);
-        console.log(res.data);
-      });
+    oktaAxios.get('/dashboard/incidents/approved').then(res => {
+      setIncidents(res.data);
+    });
   }, []);
 
   // setting up pagination display on dashboard
