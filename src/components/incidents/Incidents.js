@@ -22,6 +22,7 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 // Ant Design Imports:
 import { AutoComplete, Pagination, DatePicker } from 'antd';
 import { CSVLink } from 'react-csv'; // helper for export CSV from current State
+import { ConsoleSqlOutlined } from '@ant-design/icons';
 
 let ranks = [
   'Rank 1 - Police Presence',
@@ -99,7 +100,7 @@ const Incidents = () => {
           </div>
           <div className="incident-date">
             <div className="panel-date">
-              {DateTime.fromISO(incident.date)
+              {DateTime.fromISO(incident.incident_date)
                 .plus({ days: 1 })
                 .toLocaleString(DateTime.DATE_MED)}
             </div>
@@ -107,8 +108,8 @@ const Incidents = () => {
           <div className="header-checkbox">
             <div className="checkbox">
               <Checkbox
-                checked={selectedIncidents.indexOf(incident.id) > -1}
-                onChange={checked => onSelect(incident.id, checked)}
+                checked={selectedIncidents.indexOf(incident.incident_id) > -1}
+                onChange={checked => onSelect(incident.incident_id, checked)}
               >
                 Add To List
               </Checkbox>
@@ -212,11 +213,10 @@ const Incidents = () => {
     let f = [];
     if (selectedIncidents.length !== 0) {
       selectedIncidents.forEach(i => {
-        [f] = incidents.filter(inc => inc.id === i);
+        [f] = incidents.filter(inc => inc.incident_id === i);
         let cl = JSON.parse(JSON.stringify(f)); // deep copy of read-only file to make data prettier
-        cl.desc = cl.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
-        cl.date = cl.date.slice(0, 10); // removes unreadable timestamps
-        cl.added_on = cl.added_on.slice(0, 10); // removes unreadable timestamps
+        cl.description = cl.description.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
+        cl.incident_date = cl.incident_date.slice(0, 10); // removes unreadable timestamps
         k.push(cl);
       });
     }
@@ -420,10 +420,10 @@ const Incidents = () => {
                   header={header(incident)}
                   className="panel"
                   expandIconPosition="left"
-                  key={incident.id}
+                  key={incident.incident_id}
                 >
                   <div className="collapse-content">
-                    <p>{incident.desc}</p>
+                    <p>{incident.description}</p>
                     <div className="bottom-container">
                       <Popover
                         content={sourceListHelper(incident)}

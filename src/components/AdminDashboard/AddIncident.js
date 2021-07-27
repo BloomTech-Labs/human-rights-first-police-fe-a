@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useState, createRef } from 'react';
+import useOktaAxios from '../../hooks/useOktaAxios';
 import { Modal } from 'antd';
 
 import {
@@ -9,19 +9,19 @@ import {
 } from '../../utils/DashboardHelperFunctions';
 
 const initialFormValues = {
-  city: '',
+  city: null,
   confidence: 0,
   description: '',
   force_rank: '',
   incident_date: '',
-  lat: '',
-  long: '',
+  lat: null,
+  long: null,
   src: '',
-  state: '',
+  state: null,
   status: 'pending',
   tags: [],
   title: '',
-  tweet_id: '',
+  tweet_id: null,
 };
 
 const AddIncident = props => {
@@ -34,6 +34,8 @@ const AddIncident = props => {
   const [confirmLoading, setConfirmLoading] = useState(false);
 
   const { setAdding, setPageNumber } = props;
+
+  const oktaAxios = useOktaAxios();
 
   // submitting form
   const handleOk = async evt => {
@@ -60,7 +62,8 @@ const AddIncident = props => {
     };
     console.log(newIncident);
     // posting new incident to database
-    const modalMessage = await postIncident(newIncident);
+
+    const modalMessage = await postIncident(oktaAxios, newIncident);
 
     setModalText(modalMessage);
 
@@ -87,8 +90,11 @@ const AddIncident = props => {
     setAdding(false);
   };
 
+  const wrapper = createRef();
+
   return (
     <Modal
+      ref={wrapper}
       title="Create New Incident"
       visible={visible}
       onOk={handleOk}
@@ -145,7 +151,7 @@ const AddIncident = props => {
         <br />
         <br />
         <label htmlFor="incident_date">
-          Date (Month/Day/Year)
+          Date (MM/DD/YYYY)
           <br />
           <input
             type="text"
@@ -160,6 +166,7 @@ const AddIncident = props => {
           Force Rank
           <br />
           <select onChange={handleChange} name="force_rank">
+            <option value="">--Select One--</option>
             <option value="Rank 0 - No Police Presence">
               Rank 0 - No Police Presence
             </option>

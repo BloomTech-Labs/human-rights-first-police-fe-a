@@ -20,7 +20,7 @@ function AntTable(props) {
   } = props;
 
   function formattingDate(inputData) {
-    const [year, month, day] = inputData.date.split('-');
+    const [year, month, day] = inputData.incident_date.split('-');
     return `${month}/${day.slice(0, 2)}/${year}`;
   }
 

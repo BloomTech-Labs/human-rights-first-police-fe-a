@@ -34,6 +34,7 @@ const AdminDashboard = () => {
   //   setting state for confirmation buttons of confirming/rejecting
   const [confirmApprove, setConfirmApprove] = useState(false);
   const [confirmReject, setConfirmReject] = useState(false);
+  const [confirmStatus, setConfirmStatus] = useState('pending');
 
   // setting state for unapproved/pending incidents from the database
   const [unapprovedIncidents, setUnapprovedIncidents] = useState([]);
@@ -127,7 +128,7 @@ const AdminDashboard = () => {
       unapprovedIncidents,
       selected
     );
-    putIncidents(reviewedIncidents, confirmApprove);
+    putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
     setUnapprovedIncidents(unreviewedIncidents);
     setAllSelected(false);
     setSelected([]);
@@ -142,17 +143,20 @@ const AdminDashboard = () => {
   const confirmApproveHandler = evt => {
     evt.preventDefault();
     setConfirmApprove(true);
+    setConfirmStatus('approved');
   };
 
   const confirmRejectHandler = evt => {
     evt.preventDefault();
     setConfirmReject(true);
+    setConfirmStatus('rejected');
   };
 
   const confirmCancel = evt => {
     evt.preventDefault();
     setConfirmApprove(false);
     setConfirmReject(false);
+    setConfirmStatus('pending');
   };
 
   //   pagination functions

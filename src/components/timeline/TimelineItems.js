@@ -20,8 +20,8 @@ export default function TimelineItems({ details }) {
   return (
     <TimelineItem
       key={nanoid()}
-      description={details.desc}
-      dateText={DateTime.fromISO(details.date)
+      description={details.description}
+      dateText={DateTime.fromISO(details.incident_date)
         .plus({ days: 1 })
         .toLocaleString(DateTime.DATE_FULL)}
       style={{ color: '#e63946' }}
@@ -40,13 +40,13 @@ export default function TimelineItems({ details }) {
             <div>
               <h5 className="card-force-rank">{details.force_rank}</h5>
               <div className="card-tags-container">
-                {details.categories.map(element => (
+                {details.tags.map(element => (
                   <Tag key={nanoid()}>
                     {element.charAt(0).toUpperCase() + element.slice(1)}
                   </Tag>
                 ))}
               </div>
-              <p>{details.desc}</p>
+              <p>{details.description}</p>
               <Popover content={sourceListHelper(details)} placement="rightTop">
                 <Button
                   type="primary"

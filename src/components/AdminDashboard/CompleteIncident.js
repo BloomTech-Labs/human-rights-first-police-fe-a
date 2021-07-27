@@ -8,6 +8,8 @@ import EmbedSource from '../EmbedSource';
 
 import { applyEdits, getData } from '../../utils/DashboardHelperFunctions';
 import { AntDesignOutlined } from '@ant-design/icons';
+import useOktaAxios from '../../hooks/useOktaAxios';
+import { nanoid } from 'nanoid';
 
 const CompleteIncident = props => {
   const {
@@ -17,12 +19,6 @@ const CompleteIncident = props => {
     setUnapprovedIncidents,
   } = props;
 
-  // separating the description and the tweet url to display in tweet URL form field when editing (for incidents that have a tweet URL included in the description)
-  const [description, twitterUrl] = incident.desc.split('https');
-  const [twitterSrc, setTwitterSrc] = useState(
-    twitterUrl ? 'https' + twitterUrl : ''
-  );
-
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
 
@@ -31,14 +27,14 @@ const CompleteIncident = props => {
   useEffect(() => {
     setFormValues({
       ...incident,
-      date: formattedDate,
-      desc: description,
+      incident_date: formattedDate,
+      description: incident.description,
     });
 
     return () => {
       setFormValues({});
     };
-  }, [editing, incident]);
+  }, [editing, incident, formattedDate]);
 
   // toggle "editing mode"
   const toggleEditor = evt => {
@@ -50,29 +46,17 @@ const CompleteIncident = props => {
   // form control functions
   const handleInputChange = evt => {
     const { name, value } = evt.target;
-    if (name === 'twitter-src') {
-      setTwitterSrc(value);
-      const splitUrl = value.split('/');
-      const tweetId = splitUrl[splitUrl.length - 1];
-      setFormValues({
-        ...formValues,
-        incident_id: tweetId,
-      });
-    } else {
-      setFormValues({
-        ...formValues,
-        [name]: value,
-      });
-    }
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
   };
+
+  const oktaAxios = useOktaAxios();
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    const editedIncident = {
-      ...formValues,
-      desc: formValues.desc + ' ' + twitterSrc,
-    };
-    applyEdits(editedIncident, incident)
+    applyEdits(oktaAxios, formValues, incident)
       .then(res => {
         window.location.reload();
         console.log(res);
@@ -105,8 +89,8 @@ const CompleteIncident = props => {
               className="edit-input"
               onChange={handleInputChange}
               type="text"
-              name="date"
-              value={formValues.date}
+              name="incident_date"
+              value={formValues.incident_date}
             />
             <br />
           </>
@@ -151,11 +135,11 @@ const CompleteIncident = props => {
             <p className="complete-incident-dropdown-titles-bold">
               Description:
             </p>
-            <p>{description}</p>
+            <p>{incident.description}</p>
           </div>
         ) : (
           <>
-            <label htmlFor="desc" className="label">
+            <label htmlFor="description" className="label">
               Description
             </label>
             <br />
@@ -163,8 +147,8 @@ const CompleteIncident = props => {
               className="edit-input"
               onChange={handleInputChange}
               type="text"
-              name="desc"
-              value={formValues.desc}
+              name="description"
+              value={formValues.description}
             />
             <br />
           </>
@@ -209,46 +193,22 @@ const CompleteIncident = props => {
 
         {!editing ? (
           <div className="dropdown-text-wrap">
-            <p className="complete-incident-dropdown-titles-bold">Tweet</p>
-            <br />
-            {incident.incident_id && (
-              <EmbedSource
-                key={incident.incident_id}
-                tweetId={incident.incident_id}
-                tweetUrl={twitterSrc}
-              />
-            )}
-          </div>
-        ) : (
-          <>
-            <label htmlFor="twitter-src" className="label">
-              Tweet URL
-              <br />
-              <input
-                type="text"
-                name="twitter-src"
-                value={twitterSrc}
-                onChange={handleInputChange}
-                className="edit-input"
-              />
-            </label>
-            <br />
-          </>
-        )}
-
-        {!editing ? (
-          <div className="dropdown-text-wrap">
-            <p className="complete-incident-dropdown-titles-bold">
-              Additional Source
-            </p>
-            <a href={incident.src} target="_blank">
-              {incident.src}
-            </a>
+            <p className="complete-incident-dropdown-titles-bold">Source(s)</p>
+            <div>
+              {incident.src.map(source => (
+                <div key={nanoid()}>
+                  <a href={source} rel="noreferrer" target="_blank">
+                    {source}
+                  </a>
+                  <br />
+                </div>
+              ))}
+            </div>
           </div>
         ) : (
           <>
             <label htmlFor="src" className="label">
-              Additional Source
+              Source(s)
               <br />
             </label>
             <br />

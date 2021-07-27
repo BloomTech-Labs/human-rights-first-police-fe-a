@@ -1,36 +1,15 @@
 import axios from 'axios';
 
-const postToApproved = reviewedIncidents => {
-  axios
-    .post(
-      `${process.env.REACT_APP_BACKENDURL}/data/createincidents`,
-      reviewedIncidents
-    )
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
-export const putIncidents = (incidents, approved) => {
+export const putIncidents = (oktaAxios, incidents, status) => {
   const reviewedIncidents = incidents.map(incident => {
     return {
       ...incident,
-      approved,
-      pending: false,
-      rejected: !approved,
+      status: status,
     };
   });
 
-  postToApproved(reviewedIncidents);
-
-  axios
-    .put(
-      `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
-      reviewedIncidents
-    )
+  oktaAxios
+    .put('dashboard/incidents', reviewedIncidents)
     .then(res => {
       console.log(res);
     })
@@ -64,19 +43,17 @@ export const getData = (oktaAxios, setUnapprovedIncidents) => {
 };
 
 // CompleteIncident.js
-export const applyEdits = (formValues, incident) => {
-  const [month, day, year] = formValues.date.split('/');
-  const [date, time] = incident.date.split('T');
+export const applyEdits = (oktaAxios, formValues, incident) => {
+  const [month, day, year] = formValues.incident_date.split('/');
+  const [date, time] = incident.incident_date.split('T');
   const newDate = `${year}-${month}-${day}T${time}`;
   const updatedIncident = {
     ...formValues,
-    date: newDate,
+    incident_date: newDate,
   };
   const putRequest = new Promise((resolve, reject) => {
-    axios
-      .put(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`, [
-        { ...updatedIncident },
-      ])
+    oktaAxios
+      .put('/dashboard/incidents', [{ ...updatedIncident }])
       .then(res => {
         resolve(res);
       })
@@ -110,13 +87,10 @@ export const getLatAndLong = formValues => {
   return getRequest;
 };
 
-export const postIncident = newIncident => {
+export const postIncident = (oktaAxios, newIncident) => {
   const postRequest = new Promise((resolve, reject) => {
-    axios
-      .post(
-        `${process.env.REACT_APP_BACKENDURL}dashboard/incidents`,
-        newIncident
-      )
+    oktaAxios
+      .post('/dashboard/incidents', newIncident)
       .then(res => {
         resolve('New incident added successfully');
       })

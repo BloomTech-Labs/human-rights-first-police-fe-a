@@ -19,10 +19,10 @@ export default function useFetchIncidents() {
       );
 
       const { data: incidentsRes } = await axios.get(
-        `${process.env.REACT_APP_BACKENDURL}incidents/getincidents`
+        `${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`
       );
       const { data: timelineRes } = await axios.get(
-        `${process.env.REACT_APP_BACKENDURL}incidents/gettimeline`
+        `${process.env.REACT_APP_BACKENDURL}/incidents/gettimeline`
       );
 
       const incidents = {};
