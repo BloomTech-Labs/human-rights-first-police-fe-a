@@ -10,19 +10,18 @@ import {
 
 const initialFormValues = {
   city: '',
-  confidence: '',
+  confidence: 0,
   description: '',
   force_rank: '',
   incident_date: '',
-  lat: null,
-  long: null,
+  lat: '',
+  long: '',
   src: '',
   state: '',
   status: 'pending',
   tags: [],
   title: '',
-  tweet_id: null,
-  user_name: null,
+  tweet_id: '',
 };
 
 const AddIncident = props => {
@@ -59,7 +58,7 @@ const AddIncident = props => {
       // lat,
       // long,
     };
-
+    console.log(newIncident);
     // posting new incident to database
     const modalMessage = await postIncident(newIncident);
 
