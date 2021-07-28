@@ -1,36 +1,15 @@
 import axios from 'axios';
 
-const postToApproved = reviewedIncidents => {
-  axios
-    .post(
-      `${process.env.REACT_APP_BACKENDURL}/data/createincidents`,
-      reviewedIncidents
-    )
-    .then(res => {
-      console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-};
-
-export const putIncidents = (incidents, approved) => {
+export const putIncidents = (oktaAxios, incidents, status) => {
   const reviewedIncidents = incidents.map(incident => {
     return {
       ...incident,
-      approved,
-      pending: false,
-      rejected: !approved,
+      status: status,
     };
   });
 
-  postToApproved(reviewedIncidents);
-
-  axios
-    .put(
-      `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
-      reviewedIncidents
-    )
+  oktaAxios
+    .put('dashboard/incidents', reviewedIncidents)
     .then(res => {
       console.log(res);
     })
@@ -43,7 +22,7 @@ export const sortApproved = (unapprovedIncidents, selected) => {
   const reviewedData = [];
   const unreviewedData = [];
   unapprovedIncidents.forEach(dataObj => {
-    if (selected.includes(dataObj.id)) {
+    if (selected.includes(dataObj.incident_id)) {
       reviewedData.push(dataObj);
     } else {
       unreviewedData.push(dataObj);
@@ -52,9 +31,9 @@ export const sortApproved = (unapprovedIncidents, selected) => {
   return [reviewedData, unreviewedData];
 };
 
-export const getData = setUnapprovedIncidents => {
-  axios
-    .get(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`)
+export const getData = (oktaAxios, setUnapprovedIncidents) => {
+  oktaAxios
+    .get('/dashboard/incidents')
     .then(res => {
       setUnapprovedIncidents(res.data);
     })
@@ -64,19 +43,17 @@ export const getData = setUnapprovedIncidents => {
 };
 
 // CompleteIncident.js
-export const applyEdits = (formValues, incident) => {
-  const [month, day, year] = formValues.date.split('/');
-  const [date, time] = incident.date.split('T');
+export const applyEdits = (oktaAxios, formValues, incident) => {
+  const [month, day, year] = formValues.incident_date.split('/');
+  const [date, time] = incident.incident_date.split('T');
   const newDate = `${year}-${month}-${day}T${time}`;
   const updatedIncident = {
     ...formValues,
-    date: newDate,
+    incident_date: newDate,
   };
   const putRequest = new Promise((resolve, reject) => {
-    axios
-      .put(`${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`, [
-        { ...updatedIncident },
-      ])
+    oktaAxios
+      .put('/dashboard/incidents', [{ ...updatedIncident }])
       .then(res => {
         resolve(res);
       })
@@ -93,7 +70,7 @@ export const getLatAndLong = formValues => {
     const { city, state } = formValues;
     axios
       .get(
-        `http://open.mapquestapi.com/geocoding/v1/address?key=${
+        `https://open.mapquestapi.com/geocoding/v1/address?key=${
           process.env.REACT_APP_MAPQUEST_API_KEY
         }&location=${city ? city.toLowerCase() : ''}${
           state ? ',' + state.toLowerCase() : ''
@@ -110,13 +87,10 @@ export const getLatAndLong = formValues => {
   return getRequest;
 };
 
-export const postIncident = newIncident => {
+export const postIncident = (oktaAxios, newIncident) => {
   const postRequest = new Promise((resolve, reject) => {
-    axios
-      .post(
-        `${process.env.REACT_APP_BACKENDURL}/dashboard/incidents`,
-        newIncident
-      )
+    oktaAxios
+      .post('/dashboard/incidents', newIncident)
       .then(res => {
         resolve('New incident added successfully');
       })

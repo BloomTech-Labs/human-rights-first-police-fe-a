@@ -6,6 +6,7 @@ import Incidents from './Incidents';
 import ApprovedIncidents from './ApprovedIncidents';
 import './AdminDashboard.css';
 import { Modal } from './Modal';
+import useOktaAxios from '../../hooks/useOktaAxios';
 
 import {
   getData,
@@ -33,6 +34,7 @@ const AdminDashboard = () => {
   //   setting state for confirmation buttons of confirming/rejecting
   const [confirmApprove, setConfirmApprove] = useState(false);
   const [confirmReject, setConfirmReject] = useState(false);
+  const [confirmStatus, setConfirmStatus] = useState('pending');
 
   // setting state for unapproved/pending incidents from the database
   const [unapprovedIncidents, setUnapprovedIncidents] = useState([]);
@@ -74,17 +76,17 @@ const AdminDashboard = () => {
 
   const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
 
+  const oktaAxios = useOktaAxios();
+
   // getting unapproved/pending incidents from the database
   useEffect(() => {
-    getData(setUnapprovedIncidents);
+    getData(oktaAxios, setUnapprovedIncidents);
   }, []);
 
   React.useEffect(() => {
-    axios
-      .get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
-      .then(res => {
-        setIncidents(res.data);
-      });
+    oktaAxios.get('/dashboard/incidents/approved').then(res => {
+      setIncidents(res.data);
+    });
   }, []);
 
   // setting up pagination display on dashboard
@@ -101,7 +103,7 @@ const AdminDashboard = () => {
   const selectAll = () => {
     setAllSelected(!allSelected);
     if (!allSelected) {
-      setSelected(currentSet.map(data => data.id));
+      setSelected(currentSet.map(data => data.incident_id));
     } else {
       setSelected([]);
     }
@@ -109,13 +111,13 @@ const AdminDashboard = () => {
 
   const changeSelected = incident => {
     if (!confirmApprove && !confirmReject) {
-      if (selected.includes(incident.id)) {
+      if (selected.includes(incident.incident_id)) {
         const newSelected = selected.filter(id => {
-          return id !== incident.id;
+          return id !== incident.incident_id;
         });
         setSelected(newSelected);
       } else {
-        setSelected([...selected, incident.id]);
+        setSelected([...selected, incident.incident_id]);
       }
     }
   };
@@ -126,7 +128,7 @@ const AdminDashboard = () => {
       unapprovedIncidents,
       selected
     );
-    putIncidents(reviewedIncidents, confirmApprove);
+    putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
     setUnapprovedIncidents(unreviewedIncidents);
     setAllSelected(false);
     setSelected([]);
@@ -141,17 +143,20 @@ const AdminDashboard = () => {
   const confirmApproveHandler = evt => {
     evt.preventDefault();
     setConfirmApprove(true);
+    setConfirmStatus('approved');
   };
 
   const confirmRejectHandler = evt => {
     evt.preventDefault();
     setConfirmReject(true);
+    setConfirmStatus('rejected');
   };
 
   const confirmCancel = evt => {
     evt.preventDefault();
     setConfirmApprove(false);
     setConfirmReject(false);
+    setConfirmStatus('pending');
   };
 
   //   pagination functions

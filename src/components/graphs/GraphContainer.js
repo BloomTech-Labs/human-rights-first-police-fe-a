@@ -97,15 +97,9 @@ const GraphContainer = () => {
       ])
     );
     filtered12m.forEach(incident => {
-      let month = new DateTime.fromISO(incident?.date)
+      let month = new DateTime.fromISO(incident?.incident_date)
         .plus({ day: 1 })
         .toFormat('MMM');
-      console.log(
-        DateTime.fromISO(incident.date)
-          .plus({ day: 1 })
-          .toFormat('MMMM yyyy'),
-        incident.id
-      );
       if (month in counts) {
         counts[month]++;
       }
@@ -179,7 +173,7 @@ const GraphContainer = () => {
                 Incident reports identified by our data collection methods per
                 month
               </h2>
-              <p>
+              <div>
                 <h4>
                   {DateTime.fromISO(today)
                     .minus({ months: 12 })
@@ -189,7 +183,7 @@ const GraphContainer = () => {
                     .minus({ months: 1 })
                     .toFormat('MMMM yyyy')}
                 </h4>
-              </p>
+              </div>
             </div>
           ) : null}
 

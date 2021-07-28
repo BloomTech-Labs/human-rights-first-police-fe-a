@@ -39,7 +39,7 @@ const createRange = range => {
 
 const filterDataByDate = (data, range) => {
   return data.filter(incident =>
-    range.contains(DateTime.fromISO(incident.date).plus({ day: 1 }))
+    range.contains(DateTime.fromISO(incident.incident_date).plus({ day: 1 }))
   );
 };
 
@@ -47,7 +47,7 @@ const filterByTags = (data, tags) => {
   let filtered = [];
   tags.forEach(tag => {
     data.forEach(incident => {
-      if (incident.categories.indexOf(tag) > 0) {
+      if (incident.tags.indexOf(tag) > 0) {
         filtered.push(incident);
       }
     });

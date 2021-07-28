@@ -5,12 +5,13 @@ import { Menu } from 'antd';
 import labsCohorts from './labsCohorts';
 import { useState } from 'react';
 import { indexOf } from 'lodash';
+import { nanoid } from 'nanoid';
 const { Panel } = Collapse;
 
 export default function StudentCredits() {
   const [cohort, setCohort] = useState(labsCohorts[0]);
   return (
-    <div style={{ 'padding-bottom': '2rem' }}>
+    <div style={{ paddingBottom: '2rem' }}>
       <Menu
         mode="horizontal"
         style={{
@@ -39,13 +40,14 @@ export default function StudentCredits() {
               // alignItems: 'center',
             }}
             className="student-container"
+            key={nanoid()}
           >
             <div>
               <a
                 href={`https://github.com/${student.githubUser}`}
                 target="_blank"
                 rel="noreferrer"
-                style={{ 'margin-right': '0.4rem' }}
+                style={{ marginRight: '0.4rem' }}
               >
                 <Avatar src={GitHubMark} size={16} />
               </a>
@@ -53,24 +55,24 @@ export default function StudentCredits() {
               {student.name}
             </div>
 
-            <span style={{ 'margin-left': '0.5rem' }}>
+            <span style={{ marginLeft: '0.5rem' }}>
               {student.roles.map(role =>
                 role === 'fe' ? (
-                  <Tag>Front End</Tag>
+                  <Tag key={nanoid()}>Front End</Tag>
                 ) : role === 'mle' ? (
-                  <Tag>Machine Learning Engineer</Tag>
+                  <Tag key={nanoid()}>Machine Learning Engineer</Tag>
                 ) : role === 'tpm' ? (
-                  <Tag>Technical Project Manager</Tag>
+                  <Tag key={nanoid()}>Technical Project Manager</Tag>
                 ) : role === 'be' ? (
-                  <Tag>Back End</Tag>
+                  <Tag key={nanoid()}>Back End</Tag>
                 ) : role === 'design' ? (
-                  <Tag>Design Lead</Tag>
+                  <Tag key={nanoid()}>Design Lead</Tag>
                 ) : role === 'ds' ? (
-                  <Tag>Data Science</Tag>
+                  <Tag key={nanoid()}>Data Science</Tag>
                 ) : role === 'web' ? (
-                  <Tag>Web</Tag>
+                  <Tag key={nanoid()}>Web</Tag>
                 ) : role === 'fs' ? (
-                  <Tag>Full Stack</Tag>
+                  <Tag key={nanoid()}>Full Stack</Tag>
                 ) : (
                   ''
                 )

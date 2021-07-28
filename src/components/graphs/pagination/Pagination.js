@@ -31,7 +31,7 @@ const generateButtons = onClick => {
     }
 
     return (
-      <div className="container">
+      <div className="container" key={nanoid()}>
         <li
           className="link-item"
           data-key={`${name}`}

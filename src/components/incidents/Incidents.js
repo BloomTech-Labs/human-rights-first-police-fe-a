@@ -22,6 +22,7 @@ import SearchBar from '../graphs/searchbar/SearchBar';
 // Ant Design Imports:
 import { AutoComplete, Pagination, DatePicker } from 'antd';
 import { CSVLink } from 'react-csv'; // helper for export CSV from current State
+import { ConsoleSqlOutlined } from '@ant-design/icons';
 
 let ranks = [
   'Rank 1 - Police Presence',
@@ -99,7 +100,7 @@ const Incidents = () => {
           </div>
           <div className="incident-date">
             <div className="panel-date">
-              {DateTime.fromISO(incident.date)
+              {DateTime.fromISO(incident.incident_date)
                 .plus({ days: 1 })
                 .toLocaleString(DateTime.DATE_MED)}
             </div>
@@ -107,8 +108,8 @@ const Incidents = () => {
           <div className="header-checkbox">
             <div className="checkbox">
               <Checkbox
-                checked={selectedIncidents.indexOf(incident.id) > -1}
-                onChange={checked => onSelect(incident.id, checked)}
+                checked={selectedIncidents.indexOf(incident.incident_id) > -1}
+                onChange={checked => onSelect(incident.incident_id, checked)}
               >
                 Add To List
               </Checkbox>
@@ -188,25 +189,22 @@ const Incidents = () => {
   let rec = [...data]; // copies the current data to avoid manipulating with the main state
   rec.forEach(i => {
     // makes the current data prettier
-    i.desc = i.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
-    i.date = i.date.slice(0, 10); // removes unreadable timestamps
-    i.added_on = i.added_on.slice(0, 10); // removes unreadable timestamps
+    i.description = i.description.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
+    i.incident_date = i.incident_date.slice(0, 10); // removes unreadable timestamps
   });
 
   const headers = [
-    { label: 'id', key: 'id' },
-    { label: 'Date', key: 'date' },
+    { label: 'Incident ID', key: 'incident_id' },
+    { label: 'Date', key: 'incident_date' },
     { label: 'Title', key: 'title' },
     { label: 'Force Rank', key: 'force_rank' },
-    { label: 'Categories', key: 'categories' },
+    { label: 'Tags', key: 'tags' },
     { label: 'City', key: 'city' },
     { label: 'State', key: 'state' },
     { label: 'Source', key: 'src' },
-    { label: 'Description', key: 'desc' },
+    { label: 'Description', key: 'description' },
     { label: 'Latitude', key: 'lat' },
     { label: 'Longitude', key: 'long' },
-    { label: 'Added On', key: 'added_on' },
-    { label: 'Incident id', key: 'incident_id' },
   ];
 
   useEffect(() => {
@@ -215,11 +213,10 @@ const Incidents = () => {
     let f = [];
     if (selectedIncidents.length !== 0) {
       selectedIncidents.forEach(i => {
-        [f] = incidents.filter(inc => inc.id === i);
+        [f] = incidents.filter(inc => inc.incident_id === i);
         let cl = JSON.parse(JSON.stringify(f)); // deep copy of read-only file to make data prettier
-        cl.desc = cl.desc.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
-        cl.date = cl.date.slice(0, 10); // removes unreadable timestamps
-        cl.added_on = cl.added_on.slice(0, 10); // removes unreadable timestamps
+        cl.description = cl.description.split('"').join("'"); //  replaces double quotes with single quotes to avoid error with description in CSV tables
+        cl.incident_date = cl.incident_date.slice(0, 10); // removes unreadable timestamps
         k.push(cl);
       });
     }
@@ -423,10 +420,10 @@ const Incidents = () => {
                   header={header(incident)}
                   className="panel"
                   expandIconPosition="left"
-                  key={incident.id}
+                  key={incident.incident_id}
                 >
                   <div className="collapse-content">
-                    <p>{incident.desc}</p>
+                    <p>{incident.description}</p>
                     <div className="bottom-container">
                       <Popover
                         content={sourceListHelper(incident)}
@@ -443,7 +440,7 @@ const Incidents = () => {
                         </Button>
                       </Popover>
                       <div className="tags-container">
-                        {incident.categories.map(i => {
+                        {incident.tags.map(i => {
                           return <Tag key={i}>{i}</Tag>;
                         })}
                       </div>
