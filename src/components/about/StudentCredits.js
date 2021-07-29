@@ -58,21 +58,21 @@ export default function StudentCredits() {
             <span style={{ marginLeft: '0.5rem' }}>
               {student.roles.map(role =>
                 role === 'fe' ? (
-                  <Tag key={nanoid()}>Front End</Tag>
+                  <Tag key={nanoid()}>Front End Developer</Tag>
                 ) : role === 'mle' ? (
                   <Tag key={nanoid()}>Machine Learning Engineer</Tag>
                 ) : role === 'tpm' ? (
                   <Tag key={nanoid()}>Technical Project Manager</Tag>
                 ) : role === 'be' ? (
-                  <Tag key={nanoid()}>Back End</Tag>
+                  <Tag key={nanoid()}>Back End Developer</Tag>
                 ) : role === 'design' ? (
                   <Tag key={nanoid()}>Design Lead</Tag>
                 ) : role === 'ds' ? (
-                  <Tag key={nanoid()}>Data Science</Tag>
+                  <Tag key={nanoid()}>Data Scientist</Tag>
                 ) : role === 'web' ? (
-                  <Tag key={nanoid()}>Web</Tag>
+                  <Tag key={nanoid()}>Web Developer</Tag>
                 ) : role === 'fs' ? (
-                  <Tag key={nanoid()}>Full Stack</Tag>
+                  <Tag key={nanoid()}>Full Stack Developer</Tag>
                 ) : (
                   ''
                 )
