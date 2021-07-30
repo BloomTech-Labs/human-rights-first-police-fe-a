@@ -10,6 +10,13 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Contributors
 
+### Labs 36
+|[Jalpa Shah](https://github.com/ShahJalpa)|[Alex Pfeifer](https://github.com/apfeif12)|[Leon Nasswetter](https://github.com/leon-nasswetter)|[Bradley Hubbs](https://github.com/BradleyHubbs)|[Daniel Vargas](https://github.com/davarg5)|[Ryan H.](https://github.com/ryanhammer)|[Daniel B. Kim](https://github.com/danielbkim)|
+| :-: | :-: | :-: | :-: | :-: | :-: | :-: |
+|[<img src="https://avatars.githubusercontent.com/u/22461108?v=4" width = "200" />](https://github.com/)|[<img src="https://avatars.githubusercontent.com/u/73003199?v=4" width = "200" />](https://github.com/)|[<img src="https://avatars.githubusercontent.com/u/75326573?v=4" width = "200" />](https://github.com/)|[<img src="https://avatars.githubusercontent.com/u/75264076?v=4" width = "200" />](https://github.com/)|[<img src="https://avatars.githubusercontent.com/u/41202834?v=4" width = "200" />](https://github.com/)|[<img src="https://avatars.githubusercontent.com/u/77473341?v=4" width = "200" />](https://github.com/)|[<img src="https://avatars.githubusercontent.com/u/78748670?v=4" width = "200" />](https://github.com/)|
+|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jalpa-shah-501a9584/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/alex-pfeifer12/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/leon-nasswetter/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/bradley-hubbs/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/danielvargas916/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ryanhammerscode/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/daniel-b-kim-a2b4032a/)|
+
+
 ### Labs 35
 
 [Anas Abdelsalam](https://github.com/YourPersonalTechGuy)
@@ -88,6 +95,7 @@ Our team is developing an interactive map that identifies potential instances of
 [Data Science Repo](https://github.com/Lambda-School-Labs/human-rights-first-ds-c)
 
 ## Getting Started
+All [Labs Engineering Standards](https://labs.lambdaschool.com/topics/node-js/) must be followed.
 
 ## Test Coverage
 - To check test coverage run 'npm run coverage'
