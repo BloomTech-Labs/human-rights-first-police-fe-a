@@ -102,7 +102,17 @@ const About = () => {
             </p>
           </div>
           <div className="about-bot-container">
-            <h2>Our Twitter Bot</h2>
+            <h2>
+              Our Twitter Bot
+              <span>
+                {' '}
+                <img
+                  className="twitter-icon"
+                  src="https://img.icons8.com/android/24/ffffff/twitter.png"
+                  alt="twitter icon"
+                />
+              </span>
+            </h2>
             <p>
               The goal of the Twitterbot on the Blue Witness project is to
               adequately scrape twitter for reports of incidents of police
@@ -119,14 +129,6 @@ const About = () => {
               you'd like to know more, feel free to reach out to HRF on our
               contact page.
             </p>
-            <div className="twitter-icon-container">
-              <img
-                className="twitter-icon"
-                src="https://img.icons8.com/android/24/ffffff/twitter.png"
-                alt="twitter icon"
-              />
-              <span className="bot-css">Meet The Bot</span>
-            </div>
           </div>
         </div>
         <div className="inside-bottom-container lambda-credits-container">
