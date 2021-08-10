@@ -10,10 +10,18 @@
   width: 20%;
 }
 
-.hrf-logo {
+.bw-logo {
   width: 10rem;
   margin-left: 2rem;
   margin-top: 1.3rem;
+}
+
+.hrf-logo {
+    position: absolute;
+    width: 133px;
+    height: 21px;
+    margin-left: 1rem;
+    margin-top: 1.8rem;
 }
 
 .menu {

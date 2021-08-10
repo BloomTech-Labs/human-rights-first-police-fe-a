@@ -6,7 +6,8 @@ import { Button } from 'antd';
 
 import './Footer.css';
 import builtByLambda from '../../assets/LambdaAssets/Built by lambda.png';
-import logo from '../../assets/blue-witness1.png';
+import bwlogo from '../../assets/blue-witness1.png';
+import hrflogo from '../../assets/hrf-logo1.2.png';
 
 const Footer = () => {
   const { push } = useHistory();
@@ -34,10 +35,7 @@ const Footer = () => {
         </div>
         <div className="built-by-lambda-container">
           <a href="https://www.humanrightsfirst.org">
-            <img
-              src="https://www.humanrightsfirst.org/sites/all/themes/hrf/images/hrf-footer-logo.png"
-              alt="HRF footer logo"
-            />
+            <img className="hrflogo" src={hrflogo} alt="HRF footer logo" />
           </a>
           <a href="https://lambdaschool.com/" target="_blank" rel="noreferrer">
             <img
@@ -48,7 +46,7 @@ const Footer = () => {
           </a>
         </div>
         <div className="footer-links-container">
-          <img className="blue-logo" alt="Blue Witness logo" src={logo} />
+          <img className="blue-logo" alt="Blue Witness logo" src={bwlogo} />
           <NavLink
             to="/admin-dashboard"
             target="_blank"
