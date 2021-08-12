@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import { Card, Tag, Popover, Button } from 'antd';
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import sourceListHelper from '../../utils/sourceListHelper';
-import './RecentTimeline.css';
+import './TimelineItems.css';
 
 export default function TimelineItems({ details }) {
   // the urlDomain function pulls the website name from the string we are getting back from the API, this one cuts off the .com part as well (not currently in use)
