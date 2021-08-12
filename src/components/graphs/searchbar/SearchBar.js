@@ -3,6 +3,7 @@ import { stateData } from '../assets/bargraphAssets';
 
 // Components
 import { AutoComplete } from 'antd';
+import './SearchBar.css';
 
 const data = [];
 for (let state in stateData) {
