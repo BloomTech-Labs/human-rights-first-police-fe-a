@@ -40,6 +40,11 @@
   color: white;
 }
 
+.ant-menu-horizontal > .ant-menu-item a:hover {
+  color: white;
+  border-bottom: solid 1.1px white;
+}
+
 .ant-menu-item-selected {
   background-color: #ffffff00 !important;
 }
