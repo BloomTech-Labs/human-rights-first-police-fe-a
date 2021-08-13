@@ -6,7 +6,7 @@ const labsCohorts = [
     students: [
       { name: 'Ryan Fikejs', githubUser: 'RyanFikejs', roles: ['tpm'] },
       {
-        name: 'Imani Faith Kirika',
+        name: 'Imani-F. Kirika',
         githubUser: 'Iamlegend-Imani',
         roles: ['tpm'],
       },
