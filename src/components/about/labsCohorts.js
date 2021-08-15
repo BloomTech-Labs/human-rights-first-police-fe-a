@@ -6,11 +6,11 @@ const labsCohorts = [
     students: [
       { name: 'Ryan Fikejs', githubUser: 'RyanFikejs', roles: ['tpm'] },
       {
-        name: 'Imani Faith Kirika',
+        name: 'Imani-F. Kirika',
         githubUser: 'Iamlegend-Imani',
         roles: ['tpm'],
       },
-      { name: 'Joshua', githubUser: 'JAaron93', roles: ['tpm'] },
+      { name: 'Joshua Elamin', githubUser: 'JAaron93', roles: ['tpm'] },
       { name: 'Alvin Joseph', githubUser: 'alvin-joseph', roles: ['fe'] },
       { name: 'Cooper Jackson', githubUser: 'cooper-jackson', roles: ['fe'] },
       { name: 'Devin Mitchell', githubUser: 'devin-mitchell', roles: ['fe'] },
@@ -27,7 +27,7 @@ const labsCohorts = [
       { name: 'Andrew Haney', githubUser: 'Andrew-Haney', roles: ['ds'] },
       { name: 'Eric Galan', githubUser: 'esgalan', roles: ['ds'] },
       { name: 'Murat Benbanaste', githubUser: 'mbenbanaste', roles: ['mle'] },
-      { name: 'Rhia', githubUser: 'rhiag', roles: ['mle'] },
+      { name: 'Rhia George', githubUser: 'rhiag', roles: ['mle'] },
     ],
   },
   {
