@@ -233,7 +233,7 @@ const CompleteIncident = props => {
             Apply Changes
           </Button>
         )}
-        <AntModal />
+        <AntModal incident={incident} />
       </div>
     </div>
   );

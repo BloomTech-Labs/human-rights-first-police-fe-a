@@ -12,6 +12,7 @@ import LoginContainer from './components/Login/LoginContainer';
 import Dashboard from './components/AdminDashboard/AdminDashboard';
 import Footer from './components/Footer/Footer';
 import OktaRoute from './components/OktaRoute';
+import TwitterForm from './components/form/TwitterForm';
 
 export default function App() {
   // Keeps Okta and Redux in sync
@@ -41,6 +42,7 @@ export default function App() {
         {/* Bandaid fix to prevent production from crashing due to unspecified Okta environment variables */}
         <OktaRoute path="/admin-dashboard" component={Dashboard} />
         <Route path="/implicit/callback" component={LoginCallback} />
+        <Route path="/edit/:incident_id" component={TwitterForm} />
       </Switch>
       <Footer />
     </div>
