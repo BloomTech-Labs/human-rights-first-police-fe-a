@@ -5,7 +5,7 @@
   margin-top: 20%;
   width: 5.5%;
   position: absolute;
-  top: -290px;
+  top: -200px;
   left: 23px;
 }
 .blue-witness-title {
@@ -40,7 +40,7 @@
     margin-top: 20%;
     width: 5.5%;
     position: absolute;
-    top: -180px;
+    top: -100px;
     left: 23px;
   }
 }
@@ -75,7 +75,7 @@
     margin-top: 20%;
     width: 5.5%;
     position: absolute;
-    top: -140px;
+    top: -5px;
     left: 23px;
   }
 }
@@ -84,7 +84,7 @@
     margin-top: 20%;
     width: 4.7%;
     position: absolute;
-    top: 10px;
+    top: 25px;
     left: 25px;
   }
   div.line-break {
@@ -116,7 +116,7 @@
     margin-top: 20%;
     width: 5.5%;
     position: absolute;
-    top: 320px;
+    top: 250px;
     left: 25px;
   }
   .more-info {
@@ -151,8 +151,8 @@
     margin-top: 20%;
     width: 8.5%;
     position: absolute;
-    top: 380px;
-    left: 25px;
+    top: 290px;
+    left: 345px;
   }
   .more-info {
     margin: -7% 0% 4% 0%;
@@ -169,6 +169,10 @@
   }
 }
 @media (max-width: 375px) {
+  .nav-container{
+    top: 240px;
+    left: 314px;
+  }
   .search-header {
     width: 87.5%;
   }
@@ -187,6 +191,12 @@
     width: 107%;
     border-top: solid rgb(204, 204, 204);
     padding: 15%;
+  }
+}
+@media (max-width: 360px) {
+  .nav-container{
+    top: 220px;
+    left: 300px;
   }
 }
 @media (max-width: 320px) {
@@ -209,11 +219,14 @@
   }
   .nav-container {
     width: 11%;
+    top: 165px;
+    left: 265px;
   }
 }
 @media (max-width:280px) {
   .nav-container {
     width: 12%;
-    top: 65%;
+    top: 245px;
+    left: 225px;
   }
 }
