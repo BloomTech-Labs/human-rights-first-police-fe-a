@@ -27,7 +27,11 @@ const NavBar = () => {
         <Link to="/">
           <img className="bw-logo" alt="blue-witness-logo" src={bwlogo} />
         </Link>
-        <a href="https://www.humanrightsfirst.org">
+        <a
+          href="https://www.humanrightsfirst.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img src={hrflogo} className="hrf-logo" alt="HRF logo" />
         </a>
       </div>
