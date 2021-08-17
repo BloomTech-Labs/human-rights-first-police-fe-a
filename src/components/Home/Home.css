@@ -24,6 +24,12 @@
 .horizontal-graph {
   margin-right: -10%;
 }
+
+.mapboxgl-ctrl {
+  position: absolute;
+  z-index: 2;
+}
+
 @media (max-width: 1440px) {
   .timeline {
     width: 90%;
