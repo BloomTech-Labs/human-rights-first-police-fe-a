@@ -43,7 +43,7 @@ const AdminDashboard = () => {
   const [adding, setAdding] = useState(false);
 
   // setting state to change between approved and unapproved incidents
-  const [unapproved, setUnapproved] = useState(true);
+  const [listType, setListType] = useState('unapproved');
 
   // modal
 
@@ -203,11 +203,14 @@ const AdminDashboard = () => {
 
       <div className="dashboard-buttons-container">
         <div className="incident-btn-container">
-          <button className="approve-btn" onClick={() => setUnapproved(true)}>
+          <button className="approve-btn" onClick={() => setListType('unapproved')}>
             Unapproved Incidents
           </button>
-          <button className="approve-btn" onClick={() => setUnapproved(false)}>
+          <button className="approve-btn" onClick={() => setListType('approved')}>
             Approved Incidents
+          </button>
+          <button className="approve-btn" onClick={() => setListType('form-responses')}>
+            Form Responses
           </button>
         </div>
         <div className="logout-container">
@@ -216,12 +219,12 @@ const AdminDashboard = () => {
           </button>
         </div>
       </div>
-      {unapproved ? (
+      {listType === 'unapproved' && (
         <div className="dashboard-container">
           <DashboardTop
             unapprovedIncidents={unapprovedIncidents}
             toggleAddIncident={toggleAddIncident}
-            unapproved={unapproved}
+            listType={listType}
           />
 
           {adding ? (
@@ -276,7 +279,8 @@ const AdminDashboard = () => {
             </>
           )}
         </div>
-      ) : (
+      )}
+      {listType === 'unapproved' && (
         <>
           <div className="dashboard-container">
             <DashboardTop
@@ -286,6 +290,11 @@ const AdminDashboard = () => {
             <ApprovedIncidents incidents={incidents} />
           </div>
         </>
+      )}
+      {listType === 'form-responses' && (
+        <div>
+          HOWDY
+        </div>
       )}
     </>
   );
