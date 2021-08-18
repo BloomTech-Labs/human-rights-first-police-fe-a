@@ -12,10 +12,10 @@ const About = () => {
     <div className="about-page-container">
       <div className="about-top-container">
         <div className="data-description-container">
-          <h1>How Our Data Is Collected</h1>
+          <h1>How We Collected Data</h1>
           <p className="h1-text">
-            The data for this website is crowdsourced from multiple sources,
-            categorized by ML techs, and is then approved by a member of the
+            This website crowdsources data from multiple sources, categorized by
+            Machine Learning (ML) techs, and is then approved by a member of the
             Blue Witness Administrative Team.
           </p>
         </div>
@@ -25,8 +25,7 @@ const About = () => {
             <img className="icons" src={gatherIcon} alt="" />
             <h2>Gather</h2>
             <p>
-              The data used for this website originates from multiple sources.
-              The first being the
+              The first data source used for this website originates from the
               <a
                 className="about-links"
                 href="https://github.com/2020PB/police-brutality"
@@ -37,10 +36,10 @@ const About = () => {
                 PB2020/police-brutality GitHub Repository
               </a>
               {'. '}
-              This repository accumulates and contextualizes crowdsourced
+              This repository accumulates and contextualize crowdsourced
               evidence of police use of force from various sources. Our second
               resource is Twitter. We continually search Twitter for evidence of
-              police use of force with a twitter bot using a technique called
+              police use of force with a Twitter bot using a technique called
               Natural Language Processing.
             </p>
           </div>
@@ -49,14 +48,14 @@ const About = () => {
             <img className="icons" src={categorizeIcon} alt="" />
             <h2>Categorize</h2>
             <p>
-              We have generated a model with in our data base to catergorize
-              each incident report we recive. Because our system is in beta,
-              there may be some false positives (e.g.,incident reports where law
-              enforcement were present but no use-of-force incidents actually
-              occurred), and some false negatives (e.g., incident reports where
-              use-of-force occurred and were reported but do not make it into
-              our system). To combat this, each incident report needs to be
-              approved by the Blue Witness Administrative Team.
+              We generated a model within our database to categorize each
+              incident report we receive. Our system is in beta, there may be
+              some false positives (e.g., incident reports where law enforcement
+              was present but no use-of-force incidents actually occurred).
+              Also, some false negatives (e.g., incident reports where
+              use-of-force occurred and reported but do not make it into our
+              system). To combat this, each incident report needs approval by
+              the Blue Witness Administrative Team.
             </p>
           </div>
 
@@ -64,8 +63,8 @@ const About = () => {
             <img className="icons" src={confirmIcon} alt="confirm icon" />
             <h2>Confirm</h2>
             <p>
-              If a gathered incident report meets the criteria of a valid police
-              use of force incident, then it's marked to be reviewed. After an
+              If a gathered incident report meets the criteria of valid police
+              use of force, the incident will be marked and reviewed. After an
               identified incident report has been approved, it is added to the
               incident reports database.
             </p>
@@ -80,12 +79,12 @@ const About = () => {
             <p>
               The Blue Witness project is a movement to give the public access
               to reports of police use of force incidents. By crowdsourcing
-              incident reports from twitter and reddit we create a platform
-              where people can contribute to a greater cause. Our database
-              allows our users to export report data for their own use. We
-              strive to provide a single source of truth on the topic of police
-              use of force, that the public can use to inform themselves in the
-              current state of the issue.
+              incident reports from Twitter, we create a platform where people
+              can contribute to a greater cause. Our database allows our users
+              to export report data for their own use. We strive to provide a
+              single source of truth on the topic of police use of force, that
+              the public can use to inform themselves in the current state of
+              the issue.
             </p>
           </div>
           <div className="about-hrf">
@@ -96,7 +95,7 @@ const About = () => {
               believe American leadership is essential in the global struggle
               for human rights, so we press the U.S. government and private
               companies to respect human rights and the rule of law. When they
-              fail, we step in to demand reform, accountability and justice.
+              fail, we step in to demand reform, accountability, and justice.
               Around the world, we work where we can best harness American
               influence to secure core freedoms.
             </p>
@@ -114,20 +113,19 @@ const About = () => {
               </span>
             </h2>
             <p>
-              The goal of the Twitterbot on the Blue Witness project is to
-              adequately scrape twitter for reports of incidents of police
+              The goal of the Twitter bot on the Blue Witness project is to
+              adequately scrape Twitter for reports of incidents of police
               violence. This is a complicated process, and inevitably some data
-              is gathered that is at the very least difficult to verify or at
-              the very worst simply not related to police incidents at all. As
-              the Blue Witness project grows, the team is refining the training
-              of this model to not only more accurately reflect individual
-              incidents on twitter but to reach out to people posting those
-              incidents and automatically ask some follow-up questions,
-              enhancing the Human Rights First administrative teams ability to
-              quickly update the incident map as well as the data available for
-              download to researchers, journalists, students and activists. If
-              you'd like to know more, feel free to reach out to HRF on our
-              contact page.
+              gathered will be difficult to verify or at the very worst simply
+              not relate to police incidents at all. As the Blue Witness project
+              grows, the team is refining the training of this model to
+              accurately reflect individual incidents on Twitter. It reaches out
+              to people posting those incidents and automatically ask some
+              follow-up questions, enhancing the Human Rights First
+              administrative team. By having the Ability to quickly update the
+              incident map as well as the data available for download to
+              researchers, journalists, students, and activists. If you'd like
+              to know more, feel free to reach out to HRF on our contact page.
             </p>
           </div>
         </div>
@@ -135,10 +133,10 @@ const About = () => {
           <div className="lambda-credits">
             <h2>Who Built This Website</h2>
             <p>
-              This project was designed and built in partnership between Human
+              This project designed and built in partnership between Human
               Rights First's Innovation Lab and Lambda School. It represents
-              nearly seven months of work by Lambda School students. Below are
-              all the students, and their Github profiles, that have ever worked
+              nearly eight months of work by Lambda School students. Below are
+              all the students, and their GitHub profiles, that have ever worked
               on this website.
             </p>
           </div>
