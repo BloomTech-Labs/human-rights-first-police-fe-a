@@ -19,6 +19,7 @@ import { DoubleLeftOutlined } from '@ant-design/icons';
 
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import AntTable from './AntTableComponents/AntTable';
 
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
@@ -38,6 +39,9 @@ const AdminDashboard = () => {
 
   // setting state for unapproved/pending incidents from the database
   const [unapprovedIncidents, setUnapprovedIncidents] = useState([]);
+
+  //setting state for form-response incidents from DS database
+  const [formResponses, setFormResponses] = useState([]);
 
   // setting state to toggle whether or not the modal pop up (addIncident) is rendered
   const [adding, setAdding] = useState(false);
@@ -83,12 +87,24 @@ const AdminDashboard = () => {
     getData(oktaAxios, setUnapprovedIncidents);
   }, []);
 
-  React.useEffect(() => {
+  // getting approved incidents from database
+  useEffect(() => {
     oktaAxios.get('/dashboard/incidents/approved').then(res => {
       setIncidents(res.data);
     });
   }, []);
 
+  // getting form-responses form DS database
+  useEffect(() => {
+    axios.get('http://rowendevtest.eba-bwc9wxnx.us-east-1.elasticbeanstalk.com/to-approve')
+    .then(res => {
+      setFormResponses(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    });
+  }, []);
+  console.log("FORM RESPONSES", formResponses);
   // setting up pagination display on dashboard
   useEffect(() => {
     const start = incidentsPerPage * pageNumber - incidentsPerPage;
@@ -191,7 +207,6 @@ const AdminDashboard = () => {
     push('/');
     window.location.reload();
   };
-
   return (
     <>
       {showModal ? <div className="back-drop"></div> : null}
@@ -234,58 +249,33 @@ const AdminDashboard = () => {
               setAdding={setAdding}
             />
           ) : (
-            <>
-              <Incidents
-                confirmApprove={confirmApprove}
-                confirmReject={confirmReject}
-                confirmApproveHandler={confirmApproveHandler}
-                confirmRejectHandler={confirmRejectHandler}
-                approveAndRejectHandler={approveAndRejectHandler}
-                confirmCancel={confirmCancel}
-                setSelected={setSelected}
-                selected={selected}
-                selectAll={selectAll}
-                allSelected={allSelected}
-                handlePerPageChange={handlePerPageChange}
-                currentSet={currentSet}
-                setUnapprovedIncidents={setUnapprovedIncidents}
-                setPageNumber={setPageNumber}
-                unapprovedIncidents={unapprovedIncidents}
-              />
-              {/* <div className="pagination">
-                <DoubleLeftOutlined
-                  onClick={handleBackClick}
-                  className={
-                    pageNumber === 1 ? 'prev-arrow shaded-arrow' : 'prev-arrow'
-                  }
-                >
-                  Previous Page
-                </DoubleLeftOutlined>
-                <p className="page-number-display">
-                  Page {unapprovedIncidents.length === 0 ? '0' : pageNumber} of{' '}
-                  {Math.ceil(unapprovedIncidents.length / incidentsPerPage)}
-                </p>
-                <DoubleRightOutlined
-                  className={
-                    pageNumber === lastPage
-                      ? 'next-arrow shaded-arrow'
-                      : 'next-arrow'
-                  }
-                  onClick={handleNextClick}
-                >
-                  Next Page
-                </DoubleRightOutlined>
-              </div> */}
-            </>
+            <Incidents
+              confirmApprove={confirmApprove}
+              confirmReject={confirmReject}
+              confirmApproveHandler={confirmApproveHandler}
+              confirmRejectHandler={confirmRejectHandler}
+              approveAndRejectHandler={approveAndRejectHandler}
+              confirmCancel={confirmCancel}
+              setSelected={setSelected}
+              selected={selected}
+              selectAll={selectAll}
+              allSelected={allSelected}
+              handlePerPageChange={handlePerPageChange}
+              currentSet={currentSet}
+              setUnapprovedIncidents={setUnapprovedIncidents}
+              setPageNumber={setPageNumber}
+              unapprovedIncidents={unapprovedIncidents}
+            />
           )}
         </div>
       )}
-      {listType === 'unapproved' && (
+      {listType === 'approved' && (
         <>
           <div className="dashboard-container">
             <DashboardTop
               unapprovedIncidents={unapprovedIncidents}
               toggleAddIncident={toggleAddIncident}
+              listType={listType}
             />
             <ApprovedIncidents incidents={incidents} />
           </div>
@@ -293,6 +283,14 @@ const AdminDashboard = () => {
       )}
       {listType === 'form-responses' && (
         <div>
+           <DashboardTop
+              unapprovedIncidents={unapprovedIncidents}
+              toggleAddIncident={toggleAddIncident}
+              listType={listType}
+            />
+            <AntTable
+
+            />
           HOWDY
         </div>
       )}
