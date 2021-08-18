@@ -2,6 +2,35 @@
 
 const labsCohorts = [
   {
+    number: 37,
+    students: [
+      { name: 'Ryan Fikejs', githubUser: 'RyanFikejs', roles: ['tpm'] },
+      {
+        name: 'Imani-F. Kirika',
+        githubUser: 'Iamlegend-Imani',
+        roles: ['tpm'],
+      },
+      { name: 'Joshua Elamin', githubUser: 'JAaron93', roles: ['tpm'] },
+      { name: 'Alvin Joseph', githubUser: 'alvin-joseph', roles: ['fe'] },
+      { name: 'Cooper Jackson', githubUser: 'cooper-jackson', roles: ['fe'] },
+      { name: 'Devin Mitchell', githubUser: 'devin-mitchell', roles: ['fe'] },
+      { name: 'Johnny Murillo', githubUser: 'jossters', roles: ['fe'] },
+      { name: 'Ryan Dill', githubUser: 'Ryand1127', roles: ['design'] },
+      { name: 'Tony Yang', githubUser: 'n0tybynature', roles: ['design'] },
+      { name: 'Nicholas Cabuno', githubUser: 'nickcabuno', roles: ['design'] },
+      { name: 'Joseph Witzke', githubUser: 'joseph-witzke', roles: ['be'] },
+      { name: 'Ryder Kline', githubUser: 'RyderBlues', roles: ['be'] },
+      { name: 'Bruno Paula', githubUser: 'devbrunopaula', roles: ['be'] },
+      { name: 'Dylan Rinella', githubUser: 'dylan-rinella', roles: ['be'] },
+      { name: 'Brody Osterbuhr', githubUser: 'BOsterbuhr', roles: ['ds'] },
+      { name: 'Rowen  Witt', githubUser: 'RowenWitt', roles: ['ds'] },
+      { name: 'Andrew Haney', githubUser: 'Andrew-Haney', roles: ['ds'] },
+      { name: 'Eric Galan', githubUser: 'esgalan', roles: ['ds'] },
+      { name: 'Murat Benbanaste', githubUser: 'mbenbanaste', roles: ['mle'] },
+      { name: 'Rhia George', githubUser: 'rhiag', roles: ['mle'] },
+    ],
+  },
+  {
     number: 36,
     students: [
       { name: 'Daniel Kim', githubUser: 'danielbkim', roles: ['tpm'] },

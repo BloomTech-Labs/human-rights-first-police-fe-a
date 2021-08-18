@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 import { Link, NavLink } from 'react-router-dom';
 
 import bwlogo from '../../assets/blue-witness1.png';
-import hrflogo1 from '../../assets/hrf-logo1.3.png';
+import hrflogo from '../../assets/hrf-logo1.3.png';
 import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
 import IncidentFocus from '../Home/Map/IncidentFocus';
 // import { useOktaAuth } from '@okta/okta-react';
@@ -27,8 +27,12 @@ const NavBar = () => {
         <Link to="/">
           <img className="bw-logo" alt="blue-witness-logo" src={bwlogo} />
         </Link>
-        <a href="https://www.humanrightsfirst.org">
-          <img src={hrflogo1} className="hrf-logo" alt="HRF logo" />
+        <a
+          href="https://www.humanrightsfirst.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <img src={hrflogo} className="hrf-logo" alt="HRF logo" />
         </a>
       </div>
       <Menu

@@ -11,18 +11,60 @@
 }
 
 .bw-logo {
-  width: 10rem;
+  width: 9rem;
   margin-left: 2rem;
-  margin-top: 1.3rem;
+  margin-top: -0.2rem;
 }
 
 .hrf-logo {
-    position: absolute;
-    width: 133px;
-    height: 21px;
-    margin-left: 1rem;
-    margin-top: 1.8rem;
+    width: 7rem;
+    margin-left: -8.6rem;
+    margin-top: 3.2rem;
 }
+
+@media (max-width: 879px) {
+  .logo-container {
+    width: 100%;
+  }
+} 
+
+@media (max-width: 879px) {
+  .bw-logo {
+    width: 7rem;
+    margin-left: 2rem;
+    margin-top: -0.2rem;
+  }
+} 
+
+@media (max-width: 879px) {
+  .hrf-logo {
+    width: 5.44rem;
+    margin-left: -6.5rem;
+    margin-top: 3rem;
+  }
+} 
+
+@media (max-width: 500px) {
+  .logo-container {
+    width: 100%;
+  }
+} 
+
+@media (max-width: 500px) {
+  .bw-logo {
+    width: 7rem;
+    margin-left: 2rem;
+    margin-top: -0.2rem;
+  }
+} 
+
+@media (max-width: 500px) {
+  .hrf-logo {
+    width: 5.44rem;
+    margin-left: -6.5rem;
+    margin-top: 3rem;
+  }
+} 
 
 .menu {
   background: #003767;
@@ -38,6 +80,11 @@
 
 .ant-menu-horizontal > .ant-menu-item a {
   color: white;
+}
+
+.ant-menu-horizontal > .ant-menu-item a:hover {
+  color: white;
+  border-bottom: solid 1.1px white;
 }
 
 .ant-menu-item-selected {

@@ -110,6 +110,10 @@ div.timeline-container {
     position: relative;
     height: 32px;
   }
+  .entry .title:before{
+    display: none;
+  }
+
   .entry:before {
     content: "";
     position: absolute;
@@ -196,6 +200,9 @@ div.timeline-container {
       float: left;
       width: 100%;
     }
+    .entry .title:before{
+      display: none;
+    }
     .timeline-item-date {
       background: none;
       clip-path: polygon(5% 0%, 100% 0%, 100% 100%, 5% 100%, 0% 50%);
@@ -225,11 +232,17 @@ div.timeline-container {
     .timeline-wrapper {
       width: 40vw;
     }
+    .entry .title:before{
+      display: none;
+    }
   }
   
   @media (max-width: 1980px) {
     .timeline-wrapper {
       width: 45vw;
+    }
+    .entry .title:before{
+      display: none;
     }
   }
   
@@ -237,10 +250,16 @@ div.timeline-container {
     .timeline-wrapper {
       width: 55vw;
     }
+    .entry .title:before{
+      display: none;
+    }
   }
   
   @media (max-width: 1280px) {
     .timeline-wrapper {
       width: 55vw;
+    }
+    .entry .title:before{
+      display: none;
     }
   }
