@@ -121,7 +121,7 @@ const About = () => {
               </span>
             </h2>
             <p>
-              The Twitter scrapper on the Blue Witness project is responsible
+              The Twitter scraper on the Blue Witness project is responsible
               for gathering tweets with content-specific criteria, including
               (but not limited to) keywords such as “police” and “misconduct”
               and their synonyms. It does this multiple times a day and checks
