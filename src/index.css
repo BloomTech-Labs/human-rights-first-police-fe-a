@@ -362,6 +362,10 @@ div.HeaderInfo {
   /* search on top of map */
 }
 
+.search-header > div > span {
+  top: 16px;
+}
+
 .map-menu {
   margin-top: 1rem;
   margin-right: 1rem;
