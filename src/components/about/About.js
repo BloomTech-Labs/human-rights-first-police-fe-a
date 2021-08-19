@@ -36,11 +36,20 @@ const About = () => {
                 PB2020/police-brutality GitHub Repository
               </a>
               {'. '}
-              This repository accumulates and contextualize crowdsourced
+              This repository accumulates and contextualizes crowdsourced
               evidence of police use of force from various sources. Our second
               resource is Twitter. We continually search Twitter for evidence of
-              police use of force with a Twitter bot using a technique called
-              Natural Language Processing.
+              police use of force with a Twitter scraper using
+              <a
+                className="about-links"
+                href="https://en.wikipedia.org/wiki/BERT_(language_model)"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {' '}
+                BERT
+              </a>
+              {'. '}
             </p>
           </div>
 
@@ -48,14 +57,13 @@ const About = () => {
             <img className="icons" src={categorizeIcon} alt="" />
             <h2>Categorize</h2>
             <p>
-              We generated a model within our database to categorize each
-              incident report we receive. Our system is in beta, there may be
-              some false positives (e.g., incident reports where law enforcement
-              was present but no use-of-force incidents actually occurred).
-              Also, some false negatives (e.g., incident reports where
-              use-of-force occurred and reported but do not make it into our
-              system). To combat this, each incident report needs approval by
-              the Blue Witness Administrative Team.
+              Our BERT model categorizes each incident report we receive. Our
+              system is in beta, there may be some false positives (e.g.,
+              incident reports where law enforcement was present but no
+              use-of-force incidents occurred). Also, some false negatives
+              (e.g., incident reports where use-of-force occurred and reported
+              but do not make it into our system). To combat this, each incident
+              report needs approval from the Blue Witness Administrative Team.
             </p>
           </div>
 
@@ -63,10 +71,10 @@ const About = () => {
             <img className="icons" src={confirmIcon} alt="confirm icon" />
             <h2>Confirm</h2>
             <p>
-              If a gathered incident report meets the criteria of valid police
-              use of force, the incident will be marked and reviewed. After an
-              identified incident report has been approved, it is added to the
-              incident reports database.
+              The incident report exists in our database and its status changed
+              to 'approved' or 'rejected'. By keeping both in the database, we
+              can be sure that our Twitter scraper doesn't pull in a duplicated
+              instance in our database.
             </p>
           </div>
         </div>
@@ -81,10 +89,10 @@ const About = () => {
               to reports of police use of force incidents. By crowdsourcing
               incident reports from Twitter, we create a platform where people
               can contribute to a greater cause. Our database allows our users
-              to export report data for their own use. We strive to provide a
-              single source of truth on the topic of police use of force, that
-              the public can use to inform themselves in the current state of
-              the issue.
+              to export report data for their use. We strive to provide a single
+              source of truth on the topic of police use of force, that the
+              public can use to inform themselves in the current state of the
+              issue.
             </p>
           </div>
           <div className="about-hrf">
@@ -102,7 +110,7 @@ const About = () => {
           </div>
           <div className="about-bot-container">
             <h2>
-              Our Twitter Bot
+              Our Twitter Scrapper/Bot
               <span>
                 {' '}
                 <img
@@ -113,19 +121,22 @@ const About = () => {
               </span>
             </h2>
             <p>
-              The goal of the Twitter bot on the Blue Witness project is to
-              adequately scrape Twitter for reports of incidents of police
-              violence. This is a complicated process, and inevitably some data
-              gathered will be difficult to verify or at the very worst simply
-              not relate to police incidents at all. As the Blue Witness project
-              grows, the team is refining the training of this model to
-              accurately reflect individual incidents on Twitter. It reaches out
-              to people posting those incidents and automatically ask some
-              follow-up questions, enhancing the Human Rights First
-              administrative team. By having the Ability to quickly update the
-              incident map as well as the data available for download to
-              researchers, journalists, students, and activists. If you'd like
-              to know more, feel free to reach out to HRF on our contact page.
+              The Twitter scrapper on the Blue Witness project is responsible
+              for gathering tweets with content-specific criteria, including
+              (but not limited to) keywords such as “police” and “misconduct”
+              and their synonyms. It does this multiple times a day and checks
+              the incoming data against data in our database to prevent
+              duplicates from being entered into the database. It then passes
+              them to the BERT model to be classified and awaits administrator
+              approval. The Twitter bot is a tool that reaches out to Twitter
+              users to confirm or supply the missing information. It is also
+              triggered by the Administration team, and new data gathered awaits
+              approval before being marked as an 'approved' incident report.
+              This enhances the Human Rights First administrator's ability to
+              quickly update the incident map as well as the data available for
+              download for researchers, journalists, students, and activists. If
+              you'd like to know more, feel free to reach out to HRF on our
+              contact page.
             </p>
           </div>
         </div>
@@ -133,11 +144,11 @@ const About = () => {
           <div className="lambda-credits">
             <h2>Who Built This Website</h2>
             <p>
-              This project designed and built in partnership between Human
-              Rights First's Innovation Lab and Lambda School. It represents
-              nearly eight months of work by Lambda School students. Below are
-              all the students, and their GitHub profiles, that have ever worked
-              on this website.
+              Project designed and developed in partnership between Human Rights
+              First's Innovation Lab and Lambda School. It represents nearly
+              eight months of work by Lambda School students. Below are the
+              students who have worked on this project, with links to their
+              GitHub profiles included.
             </p>
           </div>
           <div className="student-credits-container">
