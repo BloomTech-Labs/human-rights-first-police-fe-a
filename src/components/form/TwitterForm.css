@@ -1,3 +1,66 @@
-.form-content{
+.form-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    text-align: left;
+    padding: 2rem;
+    background-color:#C1D2E9;
+}
 
+#tweet {
+    display: flex;
+    flex-direction: row;
+    font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+    border-color: #eee #ddd #bbb;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    padding: 16px 16px 16px 16px;
+    max-width: 468px;
+    display: flex;
+}
+
+.twitter-tweet {
+        /* display: inline-block; */
+        font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 16px;
+        border-color: #eee #ddd #bbb;
+        border-radius: 5px;
+        border-style: solid;
+        border-width: 1px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        margin: 10px 5px;
+        padding: 16px 16px 16px 16px;
+        max-width: 468px;
+}
+
+.form-inputs {
+    font-size: 0.9rem;
+    width: 15%
+}
+
+.form-label {
+    display: flex;
+    flex-wrap: row;
+}
+
+.graph {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 750px;
+    /* margin-left: 60%;
+    margin-top: -17%;
+    margin-right: .2%; */
+    padding: 1%;
+    border: 1px solid rgba(255, 99, 132, 0.4);
+}
+
+.rank {
+    font-size: 9px;
 }

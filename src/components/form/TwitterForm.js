@@ -45,11 +45,61 @@ const TwitterForm = () => {
       <label htmlFor="tweet" className="tweet">
         Tweet
       </label>
-      <p id="tweet"> {data.description}</p>
+      {/* <p id="tweet"> {data.description}</p> */}
+      <section>
+        <div>
+          {/* random filler tweet */}
+          <div class="twitter-tweet">
+            <p lang="en" dir="ltr">
+              <a href="https://twitter.com/hashtag/Jaguars?src=hash&amp;ref_src=twsrc%5Etfw">
+                #Jaguars
+              </a>{' '}
+              coach Urban Meyer on releasing Tim Tebow: “It was the right
+              thing.”<br></br>A bit of his Q and A with reporters:{' '}
+              <a href="https://t.co/CgibqbArK8">pic.twitter.com/CgibqbArK8</a>
+            </p>
+            &mdash; Ian Rapoport (@RapSheet){' '}
+            <a href="https://twitter.com/RapSheet/status/1427676181571198985?ref_src=twsrc%5Etfw">
+              August 17, 2021
+            </a>
+          </div>{' '}
+          <script
+            async
+            src="https://platform.twitter.com/widgets.js"
+            charset="utf-8"
+          ></script>
+        </div>
+        <p className="graph">
+          <li className="rank">
+            Rank 1 — Officer Presence: Police are present, but no force
+            detected. This is not shown on the graph.
+          </li>
+          <li className="rank">
+            Rank 2 — Empty-hand: Officers use bodily force to gain control of a
+            situation. Officers may use grabs, holds, joint locks, punches and
+            kicks to restrain an individual.
+          </li>
+          <li className="rank">
+            Rank 3 — Blunt Force: Officers use less-lethal technologies to gain
+            control of a situation. Baton or projectile may be used to
+            immobilize a combative person for example.
+          </li>
+          <li className="rank">
+            Rank 4 — Chemical & Electric: Officers use less-lethal technologies
+            to gain control of a situation, such as chemical sprays, projectiles
+            embedded with chemicals, or tasers to restrain an individual.
+          </li>
+          <li className="rank">
+            Rank 5 — Lethal Force: Officers use lethal weapons to gain control
+            of a situation.
+          </li>
+        </p>
+      </section>
       <div className="form-content">
-        <label htmlFor="ranks" className="ranks">
+        <label htmlFor="ranks" className="form-label">
           Rank
         </label>
+        <br></br>
         <Select
           type="text"
           id="ranks"
@@ -68,7 +118,7 @@ const TwitterForm = () => {
           <Option value="Rank 5 - Lethal Force">Rank 5 - Lethal Force</Option>
         </Select>
 
-        <label htmlFor="city" className="city">
+        <label htmlFor="city" className="form-label">
           City
         </label>
         <input
@@ -79,7 +129,7 @@ const TwitterForm = () => {
           onChange={handleChange}
         />
 
-        <label htmlFor="state" className="state">
+        <label htmlFor="state" className="form-label">
           State
         </label>
         <input
@@ -90,7 +140,7 @@ const TwitterForm = () => {
           onChange={handleChange}
         />
 
-        <label htmlFor="date" className="date">
+        <label htmlFor="date" className="form-label">
           Date
         </label>
         <input
