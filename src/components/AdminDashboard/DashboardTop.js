@@ -11,7 +11,7 @@ const DashboardTop = props => {
         </h2>
       )}
       {listType === 'approved' && (
-        <h2 id="admin-dashboard-title"> 'Approved Incidents'</h2>
+        <h2 id="admin-dashboard-title"> Approved Incidents</h2>
       )}
       {listType === 'form-responses' && (
         <h2 id="admin-dashboard-title">Form Responses</h2>
@@ -19,9 +19,11 @@ const DashboardTop = props => {
 
       <div className="confirmation-message-div">
         <div className="incidents-wrap">
-          <button id="create-incident-button" onClick={toggleAddIncident}>
-            Create New Incident
-          </button>
+          {listType !== 'form-responses' && (
+            <button id="create-incident-button" onClick={toggleAddIncident}>
+              Create New Incident
+            </button>
+          )}
         </div>
       </div>
     </div>

@@ -94,7 +94,7 @@ const AdminDashboard = () => {
     });
   }, []);
 
-  // getting form-responses form DS database
+  // getting form-responses from DS database
   useEffect(() => {
     axios.get('http://rowendevtest.eba-bwc9wxnx.us-east-1.elasticbeanstalk.com/to-approve')
     .then(res => {
@@ -104,7 +104,7 @@ const AdminDashboard = () => {
       console.log(err);
     });
   }, []);
-  console.log("FORM RESPONSES", formResponses);
+
   // setting up pagination display on dashboard
   useEffect(() => {
     const start = incidentsPerPage * pageNumber - incidentsPerPage;
@@ -282,16 +282,28 @@ const AdminDashboard = () => {
         </>
       )}
       {listType === 'form-responses' && (
-        <div>
+        <div className="dashboard-container">
            <DashboardTop
               unapprovedIncidents={unapprovedIncidents}
               toggleAddIncident={toggleAddIncident}
               listType={listType}
             />
-            <AntTable
-
+            <Incidents
+              confirmApprove={confirmApprove}
+              confirmReject={confirmReject}
+              confirmApproveHandler={confirmApproveHandler}
+              confirmRejectHandler={confirmRejectHandler}
+              approveAndRejectHandler={approveAndRejectHandler}
+              confirmCancel={confirmCancel}
+              setSelected={setSelected}
+              selected={selected}
+              selectAll={selectAll}
+              allSelected={allSelected}
+              handlePerPageChange={handlePerPageChange}
+              currentSet={currentSet}
+              setPageNumber={setPageNumber}
+              formResponses={formResponses}
             />
-          HOWDY
         </div>
       )}
     </>

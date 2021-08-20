@@ -22,8 +22,8 @@ const DashboardIncidents = props => {
     setPageNumber,
     unapprovedIncidents,
     setSelected,
+    formResponses
   } = props;
-
   return (
     <>
       <div className="dashboard-top-flex">
@@ -112,6 +112,7 @@ const DashboardIncidents = props => {
         <AntTable
           unapprovedIncidents={unapprovedIncidents}
           setUnapprovedIncidents={setUnapprovedIncidents}
+          formResponses={formResponses}
           selected={selected}
           setSelected={setSelected}
         />

@@ -15,10 +15,10 @@ function AntTable(props) {
     unapprovedIncidents,
     setUnapprovedIncidents,
     approvedIncidents,
+    formResponses,
     selected,
     setSelected,
   } = props;
-
   function formattingDate(inputData) {
     const [year, month, day] = inputData.incident_date.split('-');
     return `${month}/${day.slice(0, 2)}/${year}`;
@@ -74,16 +74,25 @@ function AntTable(props) {
     },
   ];
 
+  // provides which list of data to used based on props passed when button on the admin is pressed
+  let listToUse = [];
+  if (unapprovedIncidents) {
+    listToUse = unapprovedIncidents;
+  } else if (approvedIncidents) {
+    listToUse = approvedIncidents;
+  } else {
+    listToUse = formResponses;
+  } 
   return (
     <div>
       <Table
         columns={columns}
-        dataSource={
-          unapprovedIncidents ? unapprovedIncidents : approvedIncidents
-        } // If the unapprovedIncidents component is mounted, the datasource will be unapprovedIncidents, else the data source will be approvedIncidents
+        dataSource={listToUse}
         rowKey={'incident_id'}
         expandable={{
           expandedRowRender: incident => {
+            incident.src = Object.values(incident.src);   //changes structure of payload returned from initial GET request to match other listTypes' payload structure
+            incident.tags = Object.values(incident.tags); //changes structure of payload returned from initial GET request to match other listTypes' payload structure
             return (
               <CompleteIncident
                 incident={incident}
@@ -101,9 +110,9 @@ function AntTable(props) {
         }}
         pagination={{
           position: ['topRight', 'bottomCenter'],
-          total: unapprovedIncidents
-            ? unapprovedIncidents.length
-            : approvedIncidents.length,
+          total: listToUse
+            ? listToUse.length
+            : 0,
           showTotal(total, range) {
             return `${range[0]}-${range[1]} of ${total} items`;
           },
