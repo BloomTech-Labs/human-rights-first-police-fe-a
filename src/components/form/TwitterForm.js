@@ -209,27 +209,28 @@ const TwitterForm = () => {
       </div>
       <p className="graph">
         <li className="rank">
-          Rank 1 — Officer Presence: Police are present, but no force detected.
-          This is not shown on the graph.
+          <span className="ranky">Rank 1</span> — Officer Presence: Police are
+          present, but no force detected. This is not shown on the graph.
         </li>
         <li className="rank">
-          Rank 2 — Empty-hand: Officers use bodily force to gain control of a
-          situation. Officers may use grabs, holds, joint locks, punches and
-          kicks to restrain an individual.
+          <span className="ranky">Rank 2</span> — Empty-hand: Officers use
+          bodily force to gain control of a situation. Officers may use grabs,
+          holds, joint locks, punches and kicks to restrain an individual.
         </li>
         <li className="rank">
-          Rank 3 — Blunt Force: Officers use less-lethal technologies to gain
-          control of a situation. Baton or projectile may be used to immobilize
-          a combative person for example.
+          <span className="ranky">Rank 3</span> — Blunt Force: Officers use
+          less-lethal technologies to gain control of a situation. Baton or
+          projectile may be used to immobilize a combative person for example.
         </li>
         <li className="rank">
-          Rank 4 — Chemical & Electric: Officers use less-lethal technologies to
-          gain control of a situation, such as chemical sprays, projectiles
-          embedded with chemicals, or tasers to restrain an individual.
+          <span className="ranky">Rank 4</span> — Chemical & Electric: Officers
+          use less-lethal technologies to gain control of a situation, such as
+          chemical sprays, projectiles embedded with chemicals, or tasers to
+          restrain an individual.
         </li>
         <li className="rank">
-          Rank 5 — Lethal Force: Officers use lethal weapons to gain control of
-          a situation.
+          <span className="ranky">Rank 5</span> — Lethal Force: Officers use
+          lethal weapons to gain control of a situation.
         </li>
         <br />
       </p>
