@@ -292,10 +292,9 @@ const Incidents = () => {
       <div className="form-container">
         <h1>Report Search Box</h1>
         <form className="export-form">
-          <div className="rank-select">
-            <label htmlFor="ranks" className="rank">
-              Rank
-            </label>
+          <label htmlFor="ranks" className="rank">
+            Rank
+            <br></br>
             <Select
               onChange={onRank}
               showSearch
@@ -311,18 +310,17 @@ const Incidents = () => {
               <Option value="4">Rank: 4</Option>
               <Option value="5">Rank: 5</Option>
             </Select>
-          </div>
-          <div className="state-search">
-            <label htmlFor="locations" className="location">
-              Location
-            </label>
+          </label>
+          <br></br>
+          <label htmlFor="locations" className="labels">
+            Location
+            <br></br>
             <SearchBar className="form-inputs" setUsState={setUsState} />{' '}
-          </div>
-
-          <div className="category-select">
-            <label htmlFor="categories" className="category">
-              Category
-            </label>
+          </label>
+          <br></br>
+          <label htmlFor="categories" className="category">
+            Category
+            <br></br>
             <AutoComplete
               value={value}
               options={categoriesData}
@@ -351,15 +349,17 @@ const Incidents = () => {
                   </CheckableTag>
                 );
               })}
-          </div>
-          <div className="date-select">
+          </label>
+          <br></br>
+          <div>
             <label htmlFor="dates" className="date">
               Date
+              <br></br>
+              <RangePicker
+                onCalendarChange={onDateSelection}
+                className="form-inputs"
+              />
             </label>
-            <RangePicker
-              onCalendarChange={onDateSelection}
-              className="form-inputs"
-            />
           </div>
           <div className="export-button">
             <div className="list-items-count">
@@ -423,7 +423,7 @@ const Incidents = () => {
                   key={incident.incident_id}
                 >
                   <div className="collapse-content">
-                    <p>{incident.description}</p>
+                    <p className="collapse-content-p">{incident.description}</p>
                     <div className="bottom-container">
                       <Popover
                         content={sourceListHelper(incident)}

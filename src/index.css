@@ -539,7 +539,7 @@ div.timeline-container {
 }
 
 .ant-collapse-content-box {
-  background-color: white;
+  background-color: #C1D2E9;
   overflow: auto;
 }
 
@@ -1247,9 +1247,6 @@ form label {
     left: 12%;
     top: 108%;
   }
-  div.ant-collapse {
-    width: 200px;
-  }
 }
 @media (max-width: 430px) {
   .map-menu {
@@ -1320,9 +1317,6 @@ form label {
     left: 66%;
     top: 40%;
   }
-  div.ant-collapse {
-    width: 100px;
-  }
 }
 @media (max-width: 380px) {
   .map-menu {
@@ -1342,9 +1336,6 @@ form label {
     left: 73.3%;
     top: 43%;
   }
-  div.ant-collapse {
-    width: 86px;
-  }
 }
 @media (max-width: 360px) {
   .map-menu {
@@ -1352,17 +1343,11 @@ form label {
     left: 74%;
     top: 45%;
   }
-  div.ant-collapse {
-    width: 83px;
-  }
 }
 @media (max-width: 320px) {
   .map-menu {
     position: absolute;
     top: 56%;
-  }
-  div.ant-collapse {
-    width: 75px;
   }
 }
 @media (max-width: 280px) {

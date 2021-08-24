@@ -5,25 +5,26 @@
   margin-top: 2rem;
   max-width: 1550px;
 }
+
 .incident-reports-page h1 {
   font-size: 1.5rem;
   text-align: flex-start;
 }
+
 .export-form {
   text-align: left;
   padding: 2rem;
   background-color:#C1D2E9;
 }
+
 .export-form .ant-select {
-  width: 98%;
-  margin-bottom: 1rem;
+  width: 278px;
 }
+
 .ant-picker {
   margin-bottom: 1rem;
 }
-.form-inputs {
-  width: 98%;
-}
+
 .incidents-container {
   width: 98%;
   margin: auto;
@@ -48,9 +49,11 @@
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-.panel {
-  background-color: #C1D2E9;
+
+.collapse-content-p {
+  color: black;
 }
+
 .extra {
   display: flex;
   flex-flow: row;
@@ -102,15 +105,6 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   flex-direction: row;
   justify-content: space-between;
 }
-.incident-rank {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
- 
-.collapse{
-  background-color: #C1D2E9;
-}
  
 .header-top {
   display: flex;
@@ -124,11 +118,7 @@ span.ant-tag.ant-tag-checkable-checked:hover {
   display:flex;
   flex-direction:column;
 }
-.incident-date{
-  display: flex;
-  align-items: center;
-  padding-right: 1rem;
-}
+
 .header-checkbox{
   display: flex;
   align-items: center;
@@ -141,7 +131,7 @@ span.ant-tag.ant-tag-checkable-checked:hover {
 .export-form {
   display: flex;
   flex-direction: column;
-  align-items: left;;
+  align-items: left;
 }
 .title-container{
   width: 35%;
