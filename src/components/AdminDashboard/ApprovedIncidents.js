@@ -13,23 +13,6 @@ const ApprovedIncidents = ({ incidents }) => {
   const [page, setPage] = useState(1);
   const [usState, setUsState] = useState(null);
 
-  const handleForwardClick = () => {
-    setPageStart(pageStart + 5);
-    setPageEnd(pageEnd + 5);
-    setPage(page + 1);
-  };
-
-  const handleBackClick = () => {
-    if (page === 1) {
-      setPage(page);
-      setPageStart(0);
-      setPageEnd(5);
-    } else {
-      setPageStart(pageStart - 5);
-      setPageEnd(pageEnd - 5);
-      setPage(page - 1);
-    }
-  };
   const onDateSelection = (dates, dateStrings) => {};
 
   return (

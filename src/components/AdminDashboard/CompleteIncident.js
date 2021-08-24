@@ -18,7 +18,6 @@ const CompleteIncident = props => {
     setMoreInfo,
     setUnapprovedIncidents,
   } = props;
-
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
 
@@ -28,14 +27,11 @@ const CompleteIncident = props => {
     setFormValues({
       ...incident,
       incident_date: formattedDate,
-      description: incident.description,
     });
-
     return () => {
       setFormValues({});
     };
   }, [editing, incident, formattedDate]);
-
   // toggle "editing mode"
   const toggleEditor = evt => {
     evt.preventDefault();
@@ -59,7 +55,6 @@ const CompleteIncident = props => {
     applyEdits(oktaAxios, formValues, incident)
       .then(res => {
         window.location.reload();
-        console.log(res);
       })
       .catch(err => {
         console.log(err);
@@ -233,7 +228,7 @@ const CompleteIncident = props => {
             Apply Changes
           </Button>
         )}
-        <AntModal />
+        <AntModal incident={incident} />
       </div>
     </div>
   );
