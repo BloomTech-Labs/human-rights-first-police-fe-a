@@ -20,14 +20,12 @@ const TwitterForm = () => {
   const [date, setDate] = useState();
   const { incident_id } = useParams();
   useEffect(() => {
-    // axios.get(`https://humanrightsfirst-a-api.herokuapp.com/incidents/incident/${incident_id}`)
     axios
       .get(
         `${process.env.REACT_APP_BACKENDURL}/incidents/incident/${incident_id}`
       )
       .then(res => {
         setData(res.data);
-        // setData({...data, incident_date: date});
         setRank(res.data.force_rank);
       })
       .catch(err => {
@@ -35,10 +33,6 @@ const TwitterForm = () => {
       });
   }, []);
 
-  // useEffect(() => {
-  //   // data.incident_date = data.incident_date.substring(0, 10);
-  //   // console.log(data.incident_date.substring(0, 10));
-  // }, [data]);
   const handleChange = e => {
     setData({
       ...data,
