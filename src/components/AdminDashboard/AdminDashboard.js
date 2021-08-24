@@ -96,13 +96,16 @@ const AdminDashboard = () => {
 
   // getting form-responses from DS database
   useEffect(() => {
-    axios.get('http://rowendevtest.eba-bwc9wxnx.us-east-1.elasticbeanstalk.com/to-approve')
-    .then(res => {
-      setFormResponses(res.data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    axios
+      .get(
+        'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve'
+      )
+      .then(res => {
+        setFormResponses(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, []);
 
   // setting up pagination display on dashboard
@@ -218,13 +221,22 @@ const AdminDashboard = () => {
 
       <div className="dashboard-buttons-container">
         <div className="incident-btn-container">
-          <button className="approve-btn" onClick={() => setListType('unapproved')}>
+          <button
+            className="approve-btn"
+            onClick={() => setListType('unapproved')}
+          >
             Unapproved Incidents
           </button>
-          <button className="approve-btn" onClick={() => setListType('approved')}>
+          <button
+            className="approve-btn"
+            onClick={() => setListType('approved')}
+          >
             Approved Incidents
           </button>
-          <button className="approve-btn" onClick={() => setListType('form-responses')}>
+          <button
+            className="approve-btn"
+            onClick={() => setListType('form-responses')}
+          >
             Form Responses
           </button>
         </div>
@@ -283,27 +295,27 @@ const AdminDashboard = () => {
       )}
       {listType === 'form-responses' && (
         <div className="dashboard-container">
-           <DashboardTop
-              unapprovedIncidents={unapprovedIncidents}
-              toggleAddIncident={toggleAddIncident}
-              listType={listType}
-            />
-            <Incidents
-              confirmApprove={confirmApprove}
-              confirmReject={confirmReject}
-              confirmApproveHandler={confirmApproveHandler}
-              confirmRejectHandler={confirmRejectHandler}
-              approveAndRejectHandler={approveAndRejectHandler}
-              confirmCancel={confirmCancel}
-              setSelected={setSelected}
-              selected={selected}
-              selectAll={selectAll}
-              allSelected={allSelected}
-              handlePerPageChange={handlePerPageChange}
-              currentSet={currentSet}
-              setPageNumber={setPageNumber}
-              formResponses={formResponses}
-            />
+          <DashboardTop
+            unapprovedIncidents={unapprovedIncidents}
+            toggleAddIncident={toggleAddIncident}
+            listType={listType}
+          />
+          <Incidents
+            confirmApprove={confirmApprove}
+            confirmReject={confirmReject}
+            confirmApproveHandler={confirmApproveHandler}
+            confirmRejectHandler={confirmRejectHandler}
+            approveAndRejectHandler={approveAndRejectHandler}
+            confirmCancel={confirmCancel}
+            setSelected={setSelected}
+            selected={selected}
+            selectAll={selectAll}
+            allSelected={allSelected}
+            handlePerPageChange={handlePerPageChange}
+            currentSet={currentSet}
+            setPageNumber={setPageNumber}
+            formResponses={formResponses}
+          />
         </div>
       )}
     </>
