@@ -142,8 +142,14 @@ span.ant-tag.ant-tag-checkable-checked:hover {
 .state-search{
   width: 35%;
 }
+.location{
+  display: block;
+}
 .category-select{
   width: 35%;
+}
+.category{
+  display: block;
 }
 .date-select{
   width: 35%;

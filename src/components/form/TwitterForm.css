@@ -1,4 +1,4 @@
-.twitter-tweet {
+#tweet {
     font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
     font-size: 12px;
     font-weight: bold;
@@ -11,7 +11,7 @@
     margin-bottom: 2%;
     margin-left: -0.2%;
     padding: 16px 16px 16px 16px;
-    max-width: 468px;
+    max-width: 585px;
 }
 
 .form-content {
@@ -19,7 +19,7 @@
     padding: 2rem;
     background-color:#C1D2E9;
     display: table;
-
+    width: 585px;
 }
 
 .form-labels {
@@ -29,7 +29,7 @@
 .form-labels .form-inputs {
     font-size: 0.9rem;
     width: 295px;
-    margin-bottom: 1%;
+    margin-bottom: 3%;
 }
 
 .submitbutton {
@@ -45,9 +45,9 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 628px) {
 
-    .twitter-tweet {
+    #tweet {
         font-family: "Helvetica Neue", Roboto, "Segoe UI", Calibri, sans-serif;
         font-size: 12px;
         font-weight: bold;
@@ -68,6 +68,7 @@
         padding: 2rem;
         background-color:#C1D2E9;
         display: block;
+        width: auto;
     }
 
     .form-labels .form-inputs {

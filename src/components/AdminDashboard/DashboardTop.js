@@ -1,23 +1,34 @@
 import React from 'react';
 
 const DashboardTop = props => {
-  const { unapprovedIncidents, toggleAddIncident, unapproved } = props;
+  const {
+    unapprovedIncidents,
+    toggleAddIncident,
+    unapproved,
+    listType,
+  } = props;
   return (
     <div>
-      {unapproved ? (
+      {listType === 'unapproved' && (
         <h2 id="admin-dashboard-title">
           {' '}
           Unapproved Incidents: {unapprovedIncidents.length}
         </h2>
-      ) : (
-        <h2 id="admin-dashboard-title"> 'Approved Incidents'</h2>
+      )}
+      {listType === 'approved' && (
+        <h2 id="admin-dashboard-title"> Approved Incidents</h2>
+      )}
+      {listType === 'form-responses' && (
+        <h2 id="admin-dashboard-title">Form Responses</h2>
       )}
 
       <div className="confirmation-message-div">
         <div className="incidents-wrap">
-          <button id="create-incident-button" onClick={toggleAddIncident}>
-            Create New Incident
-          </button>
+          {listType !== 'form-responses' && (
+            <button id="create-incident-button" onClick={toggleAddIncident}>
+              Create New Incident
+            </button>
+          )}
         </div>
       </div>
     </div>

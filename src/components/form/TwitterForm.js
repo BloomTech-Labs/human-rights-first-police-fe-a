@@ -1,18 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import axios from 'axios';
-import { Empty, Button, Collapse, Tag, Checkbox, Popover, Select } from 'antd';
+import moment from 'moment';
 import './TwitterForm.css';
-
+import {
+  Empty,
+  Button,
+  Collapse,
+  Tag,
+  Checkbox,
+  Popover,
+  Select,
+  DatePicker,
+} from 'antd';
 const { Option } = Select;
 
 const TwitterForm = () => {
   const [data, setData] = useState([]);
   const [rank, setRank] = useState();
+  const [date, setDate] = useState();
   const { incident_id } = useParams();
-
   useEffect(() => {
-    // axios.get(`https://humanrightsfirst-a-api.herokuapp.com/incidents/incident/${incident_id}`)
     axios
       .get(
         `${process.env.REACT_APP_BACKENDURL}/incidents/incident/${incident_id}`
@@ -29,55 +37,74 @@ const TwitterForm = () => {
   const handleChange = e => {
     setData({
       ...data,
-      [e.target.id]: e.target.value,
+      [e.target.name]: e.target.value,
     });
   };
 
-  const onRank = e => {
-    setRank(e);
+  const changeRank = e => {
+    setData({
+      ...data,
+      force_rank: e,
+    });
+  };
+
+  const changeState = e => {
+    setData({
+      ...data,
+      state: e,
+    });
+  };
+
+  const changeDate = e => {
+    setData({
+      ...data,
+      incident_date: moment(e._d)
+        .format('YYYY-MM-DD')
+        .toString(),
+    });
   };
 
   const sendObj = () => {
     console.log(data);
+    if (data.lat == null) {
+      data.lat = 0;
+      data.long = 0;
+    }
+    if (data.title == null) {
+      data.title = 'Temp Title';
+    }
+    axios
+      .post(
+        `http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/form-in`,
+        data
+      )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   return (
     <div className="form-container">
       <h2>Blue Witness TwitterBot Additional Information Form</h2>
-      {/* <p id="tweet"> {data.description}</p> */}
-      <div>
-        {/* random filler tweet */}
-        <blockquote class="twitter-tweet">
-          <p lang="en" dir="ltr">
-            <a href="https://twitter.com/hashtag/Jaguars?src=hash&amp;ref_src=twsrc%5Etfw">
-              #Jaguars
-            </a>{' '}
-            coach Urban Meyer on releasing Tim Tebow: “It was the right thing.”
-            <br></br>A bit of his Q and A with reporters:{' '}
-            <a href="https://t.co/CgibqbArK8">pic.twitter.com/CgibqbArK8</a>
-          </p>
-          &mdash; Ian Rapoport (@RapSheet){' '}
-          <a href="https://twitter.com/RapSheet/status/1427676181571198985?ref_src=twsrc%5Etfw">
-            August 17, 2021
-          </a>
-        </blockquote>{' '}
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charset="utf-8"
-        ></script>
-      </div>
+      <label htmlFor="tweet" className="tweet">
+        Tweet
+      </label>
+      <p id="tweet"> {data.description}</p>
       <div className="form-content">
         <label htmlFor="ranks" className="form-labels">
           <b>Rank</b>
           <br></br>
           <Select
             type="text"
-            id="ranks"
+            name="ranks"
             className="form-inputs"
-            onChange={onRank}
-            value={rank}
+            onChange={changeRank}
+            value={data.force_rank}
           >
+            <Option value=""></Option>
             <Option value="Rank 1 - Police Presence">
               Rank 1 - Police Presence
             </Option>
@@ -89,7 +116,7 @@ const TwitterForm = () => {
             <Option value="Rank 5 - Lethal Force">Rank 5 - Lethal Force</Option>
           </Select>
         </label>
-
+        <br></br>
         <label htmlFor="city" className="form-labels">
           <b>City</b>
           <br></br>
@@ -97,63 +124,112 @@ const TwitterForm = () => {
             type="text"
             name="city"
             className="form-inputs"
-            value={data.city}
+            defaultValue={data.city}
             onChange={handleChange}
           />
         </label>
-
+        <br></br>
         <label htmlFor="state" className="form-labels">
           <b>State</b>
           <br></br>
-          <input
+          <Select
             type="text"
             name="state"
             className="form-inputs"
+            onChange={changeState}
             value={data.state}
-            onChange={handleChange}
-          />
+          >
+            <Option value="Alabama">Alabama</Option>
+            <Option value="Alaska">Alaska</Option>
+            <Option value="Arizona">Arizona</Option>
+            <Option value="Arkansas">Arkansas</Option>
+            <Option value="California">California</Option>
+            <Option value="Colorado">Colorado</Option>
+            <Option value="Connecticut">Connecticut</Option>
+            <Option value="Delaware">Delaware</Option>
+            <Option value="Florida">Florida</Option>
+            <Option value="Georgia">Georgia</Option>
+            <Option value="Hawaii">Hawaii</Option>
+            <Option value="Idaho">Idaho</Option>
+            <Option value="Illinois">Illinois</Option>
+            <Option value="Indiana">Indiana</Option>
+            <Option value="Iowa">Iowa</Option>
+            <Option value="Kansas">Kansas</Option>
+            <Option value="Kentucky">Kentucky</Option>
+            <Option value="Louisiana">Louisiana</Option>
+            <Option value="Maine">Maine</Option>
+            <Option value="Maryland">Maryland</Option>
+            <Option value="Massachusetts">Massachusetts</Option>
+            <Option value="Michigan">Michigan</Option>
+            <Option value="Minnesota">Minnesota</Option>
+            <Option value="Mississippi">Mississippi</Option>
+            <Option value="Missouri">Missouri</Option>
+            <Option value="Montana">Montana</Option>
+            <Option value="Nebraska">Nebraska</Option>
+            <Option value="Nevada">Nevada</Option>
+            <Option value="New Hampshire">New Hampshire</Option>
+            <Option value="New Jersey">New Jersey</Option>
+            <Option value="New Mexico">New Mexico</Option>
+            <Option value="New York">New York</Option>
+            <Option value="North Carolina">North Carolina</Option>
+            <Option value="North Dakota">North Dakota</Option>
+            <Option value="Ohio">Ohio</Option>
+            <Option value="Oklahoma">Oklahoma</Option>
+            <Option value="Oregon">Oregon</Option>
+            <Option value="Pennsylvania">Pennsylvania</Option>
+            <Option value="Rhode Island">Rhode Island</Option>
+            <Option value="South Carolina">South Carolina</Option>
+            <Option value="South Dakota">South Dakota</Option>
+            <Option value="Tennessee">Tennessee</Option>
+            <Option value="Texas">Texas</Option>
+            <Option value="Utah">Utah</Option>
+            <Option value="Vermont">Vermont</Option>
+            <Option value="Virginia">Virginia</Option>
+            <Option value="Washington">Washington</Option>
+            <Option value="West Virginia">West Virginia</Option>
+            <Option value="Wisconsin">Wisconsin</Option>
+            <Option value="Wyoming">Wyoming</Option>
+          </Select>
         </label>
-
-        <label htmlFor="date" className="form-labels">
+        <br></br>
+        <label htmlFor="incident_date" className="form-labels">
           <b>Date</b>
           <br></br>
-          <input
-            type="text"
-            id="date"
+          {/* Potential project for upcoming cohort, we ran out of time to figure out how defaultValue works for DatePicker from antd
+        Somehow, we have to be able to convert the "zulu timestamp" to a regular date statement YYYY-MM-DD. Since we were unable
+        to do this, we've decided to keep the date blank for our submission. */}
+          <DatePicker
+            name="incident_date"
             className="form-inputs"
-            value={`${data.incident_date}`}
-            onChange={handleChange}
+            onChange={changeDate}
           />
         </label>
-        <div className="submitbutton">
-          <Button onClick={sendObj}>SUBMIT</Button>
-        </div>
+        <br></br>
+        <Button onClick={sendObj}>SUBMIT</Button>
       </div>
-
       <p className="graph">
         <li className="rank">
-          <b>Rank 1</b> — Officer Presence: Police are present, but no force
-          detected. This is not shown on the graph.
+          Rank 1 — Officer Presence: Police are present, but no force detected.
+          This is not shown on the graph.
         </li>
         <li className="rank">
-          <b>Rank 2</b> — Empty-hand: Officers use bodily force to gain control
-          of a situation. Officers may use grabs, holds, joint locks, punches
-          and kicks to restrain an individual.
+          Rank 2 — Empty-hand: Officers use bodily force to gain control of a
+          situation. Officers may use grabs, holds, joint locks, punches and
+          kicks to restrain an individual.
         </li>
         <li className="rank">
-          <b>Rank 3</b> — Blunt Force: Officers use less-lethal technologies to
-          gain control of a situation. Baton or projectile may be used to
-          immobilize a combative person for example.
+          Rank 3 — Blunt Force: Officers use less-lethal technologies to gain
+          control of a situation. Baton or projectile may be used to immobilize
+          a combative person for example.
         </li>
         <li className="rank">
-          <b>Rank 4</b> — Chemical & Electric: Officers use less-lethal
-          technologies to gain control of a situation, such as chemical sprays,
-          projectiles embedded with chemicals, or tasers to restrain an
-          individual.
+          Rank 4 — Chemical & Electric: Officers use less-lethal technologies to
+          gain control of a situation, such as chemical sprays, projectiles
+          embedded with chemicals, or tasers to restrain an individual.
         </li>
         <li className="rank">
-          <b>Rank 5</b> — Lethal Force: Officers use lethal weapons to gain
-          control of a situation.
+          Rank 5 — Lethal Force: Officers use lethal weapons to gain control of
+          a situation.
         </li>
         <br />
       </p>

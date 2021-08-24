@@ -8,22 +8,16 @@ const AntModal = props => {
   const incident_id = props.incident.incident_id;
   const tweet_id = props.incident.tweet_id;
   const user_name = props.incident.user_name;
-  // The default message displayed inside of the input's text area
-  const defaultMessage = {
-    message: `https://a.humanrightsfirst.dev/edit/${tweet_id}`,
-  };
 
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [inputValue, setInputValue] = useState(defaultMessage);
-  const [isChecked, setIsChecked] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const sendObj = {
     incident_id: incident_id,
     tweet_id: tweet_id,
+    isChecked: true,
     user_name: user_name,
     link: `https://a.humanrightsfirst.dev/edit/${tweet_id}`,
-    isChecked: isChecked,
     form: 1,
   };
 
@@ -32,33 +26,23 @@ const AntModal = props => {
   };
 
   const handleSend = () => {
-    // setIsModalVisible(false);
-    console.log(sendObj);
+    axios
+      .post(
+        'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/form-out',
+        sendObj
+      )
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
 
-    //Commented out isChecked until we know what the run.mocky.io line is
-    // axios
-    //   .post(
-    //     'https://run.mocky.io/v3/f1175471-f517-4935-9d53-5319d0c95b3d', // Not certain that this endpoint is, we'll have to check and adjust with new payload (isChecked)
-    //     inputValue
-    //     // isChecked
-    //   )
-    //   .then(res => {
-    //     console.log(res);
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //   });
+    setIsModalVisible(false);
   };
 
   const handleCancel = () => {
     setIsModalVisible(false);
-  };
-
-  const handleCheckboxChange = e => {
-    setIsChecked({
-      ...isChecked,
-      [e.target.name]: e.target.checked,
-    });
   };
 
   return (
@@ -74,28 +58,9 @@ const AntModal = props => {
         okButtonProps={{ disabled: isButtonDisabled }}
         onCancel={handleCancel}
       >
-        <p>What data needs clarification?</p>
-        <div className="checkbox-container">
-          <label htmlFor="date" className="date">
-            {' '}
-            Date
-          </label>
-          <Checkbox name="date" onChange={handleCheckboxChange}></Checkbox>
-        </div>
-        <div className="checkbox-container">
-          <label htmlFor="location" className="location">
-            {' '}
-            Location
-          </label>
-          <Checkbox name="location" onChange={handleCheckboxChange}></Checkbox>
-        </div>
-        <div className="checkbox-container">
-          <label htmlFor="rank" className="rank">
-            {' '}
-            Rank
-          </label>
-          <Checkbox name="rank" onChange={handleCheckboxChange}></Checkbox>
-        </div>
+        <h3>Send update form?</h3>
+        <p>{`${props.incident.description}`}</p>
+        <p>{`User: @${props.incident.user_name}`}</p>
       </Modal>
     </>
   );

@@ -20,12 +20,6 @@
 }
 
 /* //incident div breakpoints */
-@media (max-width: 420px) {
-    .collapseText.ant-collapse-item {
-        margin: -200% 15% 0 -250%;
-        border: 20px transparent;
-    }
-}
 @media (max-width: 375px) {
     .collapseText.ant-collapse-item {
         margin: -220% 22% 0 -299%;
