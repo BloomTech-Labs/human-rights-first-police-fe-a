@@ -130,9 +130,21 @@ span.ant-tag.ant-tag-checkable-checked:hover {
 }
 .export-form {
   display: flex;
-  flex-direction: column;
-  align-items: left;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 }
+
+.labels {
+  margin-right: 2%;
+  margin-bottom: 3%;
+}
+
+.buttonbutton {
+  display: flex;
+  justify-content: left;
+  flex-flow: column;
+}
+
 .title-container{
   width: 35%;
 }

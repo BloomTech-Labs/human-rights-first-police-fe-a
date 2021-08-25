@@ -292,14 +292,14 @@ const Incidents = () => {
       <div className="form-container">
         <h1>Report Search Box</h1>
         <form className="export-form">
-          <label htmlFor="ranks" className="rank">
+          <label htmlFor="ranks" className="labels">
             Rank
             <br></br>
             <Select
               onChange={onRank}
               showSearch
               defaultValue="All"
-              className="rank-select form-inputs"
+              className="form-inputs"
               id="ranks"
               value={rank}
             >
@@ -311,14 +311,12 @@ const Incidents = () => {
               <Option value="5">Rank: 5</Option>
             </Select>
           </label>
-          <br></br>
           <label htmlFor="locations" className="labels">
             Location
             <br></br>
             <SearchBar className="form-inputs" setUsState={setUsState} />{' '}
           </label>
-          <br></br>
-          <label htmlFor="categories" className="category">
+          <label htmlFor="categories" className="labels">
             Category
             <br></br>
             <AutoComplete
@@ -350,17 +348,16 @@ const Incidents = () => {
                 );
               })}
           </label>
-          <br></br>
-          <div>
-            <label htmlFor="dates" className="date">
-              Date
-              <br></br>
-              <RangePicker
-                onCalendarChange={onDateSelection}
-                className="form-inputs"
-              />
-            </label>
-          </div>
+          <label htmlFor="dates" className="labels">
+            Date
+            <br></br>
+            <RangePicker
+              onCalendarChange={onDateSelection}
+              className="form-inputs"
+            />
+          </label>
+        </form>
+        <div className="buttonbutton">
           <div className="export-button">
             <div className="list-items-count">
               <br />
@@ -408,8 +405,9 @@ const Incidents = () => {
               Clear List
             </Button>
           </div>
-        </form>
+        </div>
       </div>
+
       <div className="incidents-container">
         <h1>Report Results</h1>
         {data.length ? (
