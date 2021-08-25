@@ -18,6 +18,7 @@ function AntTable(props) {
     formResponses,
     selected,
     setSelected,
+    setCurrList,
   } = props;
   function formattingDate(inputData) {
     const [year, month, day] = inputData.incident_date.split('-');
@@ -31,7 +32,6 @@ function AntTable(props) {
       setApprovedSelected(selectedIncidents);
     }
   };
-
   const columns = [
     //   //When DS provides data for this, uncomment for Admin Table to show %, and move.
     // {
@@ -78,11 +78,16 @@ function AntTable(props) {
   let listToUse = [];
   if (unapprovedIncidents) {
     listToUse = unapprovedIncidents;
+    setCurrList(unapprovedIncidents);
   } else if (approvedIncidents) {
     listToUse = approvedIncidents;
   } else {
     listToUse = formResponses;
+
+    setCurrList(formResponses);
   }
+
+
   return (
     <div>
       <Table
