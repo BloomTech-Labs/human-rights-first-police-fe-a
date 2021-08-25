@@ -3,11 +3,15 @@ import axios from 'axios';
 export const putIncidents = (oktaAxios, incidents, status) => {
   const reviewedIncidents = incidents.map(incident => {
     return {
-      ...incident,
       status: status,
+      city: incident.city,
+      state: incident.state,
+      force_rank: incident.force_rank,
+      lat: incident.lat,
+      long: incident.long,
+      incident_id: incident.incident_id,
     };
   });
-
   oktaAxios
     .put('dashboard/incidents', reviewedIncidents)
     .then(res => {
