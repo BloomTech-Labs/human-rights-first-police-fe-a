@@ -15,7 +15,6 @@ const AntModal = props => {
   const sendObj = {
     incident_id: incident_id,
     tweet_id: tweet_id,
-    isChecked: true,
     user_name: user_name,
     link: `https://a.humanrightsfirst.dev/edit/${tweet_id}`,
     form: 1,
