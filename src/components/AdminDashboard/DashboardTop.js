@@ -1,7 +1,12 @@
 import React from 'react';
 
 const DashboardTop = props => {
-  const { unapprovedIncidents, toggleAddIncident, unapproved, listType} = props;
+  const {
+    unapprovedIncidents,
+    toggleAddIncident,
+    unapproved,
+    listType,
+  } = props;
   return (
     <div>
       {listType === 'unapproved' && (
