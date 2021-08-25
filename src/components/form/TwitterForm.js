@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 import {
@@ -19,6 +20,8 @@ const TwitterForm = () => {
   const [rank, setRank] = useState();
   const [date, setDate] = useState();
   const { incident_id } = useParams();
+  const history = useHistory();
+
   useEffect(() => {
     axios
       .get(
@@ -79,6 +82,7 @@ const TwitterForm = () => {
       )
       .then(res => {
         console.log(res);
+        history.push('/');
       })
       .catch(err => {
         console.log(err);
