@@ -27,10 +27,7 @@ const AntModal = props => {
 
   const handleSend = () => {
     axios
-      .post(
-        'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/form-out',
-        sendObj
-      )
+      .post('https://a.api.humanrightsfirst.dev/form-out', sendObj)
       .then(res => {
         console.log(res);
       })

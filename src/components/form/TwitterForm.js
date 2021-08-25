@@ -77,10 +77,7 @@ const TwitterForm = () => {
       data.title = 'Temp Title';
     }
     axios
-      .post(
-        `http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/form-in`,
-        data
-      )
+      .post(`https://a.api.humanrightsfirst.dev/form-in`, data)
       .then(res => {
         console.log(res);
         history.push('/');
