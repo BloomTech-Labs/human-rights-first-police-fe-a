@@ -104,7 +104,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     axios
       .get(
-        'https://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve'
+        'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve'
       )
       .then(res => {
         setFormResponses(res.data);
