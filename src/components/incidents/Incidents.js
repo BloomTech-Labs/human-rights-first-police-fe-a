@@ -292,15 +292,14 @@ const Incidents = () => {
       <div className="form-container">
         <h1>Report Search Box</h1>
         <form className="export-form">
-          <div className="rank-select">
-            <label htmlFor="ranks" className="rank">
-              Rank
-            </label>
+          <label htmlFor="ranks" className="labels">
+            Rank
+            <br></br>
             <Select
               onChange={onRank}
               showSearch
               defaultValue="All"
-              className="rank-select form-inputs"
+              className="form-inputs"
               id="ranks"
               value={rank}
             >
@@ -311,18 +310,15 @@ const Incidents = () => {
               <Option value="4">Rank: 4</Option>
               <Option value="5">Rank: 5</Option>
             </Select>
-          </div>
-          <div className="state-search">
-            <label htmlFor="locations" className="location">
-              Location
-            </label>
+          </label>
+          <label htmlFor="locations" className="labels">
+            Location
+            <br></br>
             <SearchBar className="form-inputs" setUsState={setUsState} />{' '}
-          </div>
-
-          <div className="category-select">
-            <label htmlFor="categories" className="category">
-              Category
-            </label>
+          </label>
+          <label htmlFor="categories" className="labels">
+            Category
+            <br></br>
             <AutoComplete
               value={value}
               options={categoriesData}
@@ -351,16 +347,17 @@ const Incidents = () => {
                   </CheckableTag>
                 );
               })}
-          </div>
-          <div className="date-select">
-            <label htmlFor="dates" className="date">
-              Date
-            </label>
+          </label>
+          <label htmlFor="dates" className="labels">
+            Date
+            <br></br>
             <RangePicker
               onCalendarChange={onDateSelection}
               className="form-inputs"
             />
-          </div>
+          </label>
+        </form>
+        <div className="buttonbutton">
           <div className="export-button">
             <div className="list-items-count">
               <br />
@@ -408,8 +405,9 @@ const Incidents = () => {
               Clear List
             </Button>
           </div>
-        </form>
+        </div>
       </div>
+
       <div className="incidents-container">
         <h1>Report Results</h1>
         {data.length ? (
@@ -423,7 +421,7 @@ const Incidents = () => {
                   key={incident.incident_id}
                 >
                   <div className="collapse-content">
-                    <p>{incident.description}</p>
+                    <p className="collapse-content-p">{incident.description}</p>
                     <div className="bottom-container">
                       <Popover
                         content={sourceListHelper(incident)}
