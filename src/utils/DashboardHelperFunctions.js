@@ -23,7 +23,6 @@ export const putIncidents = (oktaAxios, incidents, status) => {
 };
 
 export const sortApproved = (unapprovedIncidents, selected) => {
-  console.log('SELECTED', selected);
   const reviewedData = [];
   const unreviewedData = [];
   unapprovedIncidents.forEach(dataObj => {

@@ -18,6 +18,7 @@ function AntTable(props) {
     formResponses,
     selected,
     setSelected,
+    setCurrList,
   } = props;
   function formattingDate(inputData) {
     const [year, month, day] = inputData.incident_date.split('-');
@@ -31,7 +32,6 @@ function AntTable(props) {
       setApprovedSelected(selectedIncidents);
     }
   };
-
   const columns = [
     //   //When DS provides data for this, uncomment for Admin Table to show %, and move.
     // {
@@ -78,11 +78,14 @@ function AntTable(props) {
   let listToUse = [];
   if (unapprovedIncidents) {
     listToUse = unapprovedIncidents;
+    setCurrList(unapprovedIncidents);
   } else if (approvedIncidents) {
     listToUse = approvedIncidents;
   } else {
     listToUse = formResponses;
-  } 
+    setCurrList(formResponses);
+  }
+
   return (
     <div>
       <Table
@@ -91,7 +94,7 @@ function AntTable(props) {
         rowKey={'incident_id'}
         expandable={{
           expandedRowRender: incident => {
-            incident.src = Object.values(incident.src);   //changes structure of payload returned from initial GET request to match other listTypes' payload structure
+            incident.src = Object.values(incident.src); //changes structure of payload returned from initial GET request to match other listTypes' payload structure
             incident.tags = Object.values(incident.tags); //changes structure of payload returned from initial GET request to match other listTypes' payload structure
             return (
               <CompleteIncident
@@ -110,9 +113,7 @@ function AntTable(props) {
         }}
         pagination={{
           position: ['topRight', 'bottomCenter'],
-          total: listToUse
-            ? listToUse.length
-            : 0,
+          total: listToUse ? listToUse.length : 0,
           showTotal(total, range) {
             return `${range[0]}-${range[1]} of ${total} items`;
           },

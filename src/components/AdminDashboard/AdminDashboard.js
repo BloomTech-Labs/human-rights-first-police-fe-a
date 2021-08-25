@@ -36,6 +36,7 @@ const AdminDashboard = () => {
   const [confirmApprove, setConfirmApprove] = useState(false);
   const [confirmReject, setConfirmReject] = useState(false);
   const [confirmStatus, setConfirmStatus] = useState('pending');
+  const [currList, setCurrList] = useState([]);
 
   // setting state for unapproved/pending incidents from the database
   const [unapprovedIncidents, setUnapprovedIncidents] = useState([]);
@@ -89,9 +90,14 @@ const AdminDashboard = () => {
 
   // getting approved incidents from database
   useEffect(() => {
-    oktaAxios.get('/dashboard/incidents/approved').then(res => {
-      setIncidents(res.data);
-    });
+    oktaAxios
+      .get('/dashboard/incidents/approved')
+      .then(res => {
+        setIncidents(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }, []);
 
   // getting form-responses from DS database
@@ -144,11 +150,16 @@ const AdminDashboard = () => {
   const approveAndRejectHandler = evt => {
     evt.preventDefault();
     const [reviewedIncidents, unreviewedIncidents] = sortApproved(
-      unapprovedIncidents,
+      currList,
       selected
     );
     putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
-    setUnapprovedIncidents(unreviewedIncidents);
+    if (listType === 'unapproved') {
+      setUnapprovedIncidents(unreviewedIncidents);
+    } else if (listType === 'form-responses') {
+      //did 'else if' incase we wanted to add Reject button to Approved list
+      setFormResponses(unreviewedIncidents);
+    }
     setAllSelected(false);
     setSelected([]);
     setConfirmApprove(false);
@@ -277,6 +288,7 @@ const AdminDashboard = () => {
               setUnapprovedIncidents={setUnapprovedIncidents}
               setPageNumber={setPageNumber}
               unapprovedIncidents={unapprovedIncidents}
+              setCurrList={setCurrList}
             />
           )}
         </div>
@@ -315,6 +327,7 @@ const AdminDashboard = () => {
             currentSet={currentSet}
             setPageNumber={setPageNumber}
             formResponses={formResponses}
+            setCurrList={setCurrList}
           />
         </div>
       )}

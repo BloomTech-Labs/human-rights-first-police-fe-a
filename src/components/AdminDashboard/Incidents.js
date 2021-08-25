@@ -22,8 +22,10 @@ const DashboardIncidents = props => {
     setPageNumber,
     unapprovedIncidents,
     setSelected,
-    formResponses
+    formResponses,
+    setCurrList,
   } = props;
+
   return (
     <>
       <div className="dashboard-top-flex">
@@ -115,6 +117,7 @@ const DashboardIncidents = props => {
           formResponses={formResponses}
           selected={selected}
           setSelected={setSelected}
+          setCurrList={setCurrList}
         />
       </div>
     </>
