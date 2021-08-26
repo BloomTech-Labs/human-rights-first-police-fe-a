@@ -42,7 +42,7 @@ export default function App() {
         {/* Bandaid fix to prevent production from crashing due to unspecified Okta environment variables */}
         <OktaRoute path="/admin-dashboard" component={Dashboard} />
         <Route path="/implicit/callback" component={LoginCallback} />
-        <Route path="/edit/:incident_id" component={TwitterForm} />
+        <Route path="/edit/:tweet_id" component={TwitterForm} />
       </Switch>
       <Footer />
     </div>
