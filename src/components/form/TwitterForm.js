@@ -20,14 +20,12 @@ const TwitterForm = () => {
   const [data, setData] = useState([]);
   const [rank, setRank] = useState();
   const [date, setDate] = useState();
-  const { incident_id } = useParams();
+  const { tweet_id } = useParams();
   const history = useHistory();
 
   useEffect(() => {
     axios
-      .get(
-        `${process.env.REACT_APP_BACKENDURL}/incidents/incident/${incident_id}`
-      )
+      .get(`${process.env.REACT_APP_BACKENDURL}/incidents/incident/${tweet_id}`)
       .then(res => {
         setData(res.data);
         setRank(res.data.force_rank);
