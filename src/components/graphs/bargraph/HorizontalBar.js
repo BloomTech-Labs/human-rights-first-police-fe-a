@@ -49,22 +49,22 @@ const Horizontalbar = () => {
 
   useEffect(() => {
     const emptyHandTotal = dataList.filter((x, index) => {
-      return x.force_rank === 'Rank 2 - Empty-hand';
+      return x.force_rank === 'Rank 2';
     }).length;
     setEmptyHand(emptyHandTotal);
 
     const bluntForceTotal = dataList.filter((x, index) => {
-      return x.force_rank === 'Rank 3 - Blunt Force';
+      return x.force_rank === 'Rank 3';
     }).length;
     setBluntForce(bluntForceTotal);
 
     const chemicalElectricTotal = dataList.filter((x, index) => {
-      return x.force_rank === 'Rank 4 - Chemical & Electric';
+      return x.force_rank === 'Rank 4';
     }).length;
     setChemicalElectric(chemicalElectricTotal);
 
     const lethalforceMethodsTotal = dataList.filter((x, index) => {
-      return x.force_rank === 'Rank 5 - Lethal Force';
+      return x.force_rank === 'Rank 5';
     }).length;
     setLethalForce(lethalforceMethodsTotal);
   }, [dataList]);
