@@ -25,7 +25,6 @@ const labsCohorts = [
       { name: 'Brody Osterbuhr', githubUser: 'BOsterbuhr', roles: ['ds'] },
       { name: 'Rowen  Witt', githubUser: 'RowenWitt', roles: ['ds'] },
       { name: 'Andrew Haney', githubUser: 'Andrew-Haney', roles: ['ds'] },
-      { name: 'Eric Galan', githubUser: 'esgalan', roles: ['ds'] },
       { name: 'Murat Benbanaste', githubUser: 'mbenbanaste', roles: ['mle'] },
       { name: 'Rhia George', githubUser: 'rhiag', roles: ['mle'] },
     ],

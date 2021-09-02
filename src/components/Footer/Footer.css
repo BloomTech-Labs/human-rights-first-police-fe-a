@@ -4,6 +4,8 @@
     color: white;
     display: flex;
     flex-direction: column;
+    position: absolute;
+    bottom: auto;
   }
   
   .top-container {
@@ -97,6 +99,10 @@
       width: 100%;
       padding-top: 1rem;
       border-top: 1px solid white;
+    }
+
+    .footer-container { 
+      position: relative;
     }
   }
 

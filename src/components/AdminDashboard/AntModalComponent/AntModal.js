@@ -15,7 +15,6 @@ const AntModal = props => {
   const sendObj = {
     incident_id: incident_id,
     tweet_id: tweet_id,
-    isChecked: true,
     user_name: user_name,
     link: `https://a.humanrightsfirst.dev/edit/${tweet_id}`,
     form: 1,
@@ -27,10 +26,7 @@ const AntModal = props => {
 
   const handleSend = () => {
     axios
-      .post(
-        'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/form-out',
-        sendObj
-      )
+      .post('https://a.api.humanrightsfirst.dev/form-out', sendObj)
       .then(res => {
         console.log(res);
       })

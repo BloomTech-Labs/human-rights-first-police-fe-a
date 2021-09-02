@@ -82,10 +82,7 @@
   color: white;
 }
 
-.ant-menu-horizontal > .ant-menu-item a:hover {
-  color: white;
-  border-bottom: solid 1.1px white;
-}
+
 
 .ant-menu-item-selected {
   background-color: #ffffff00 !important;
@@ -93,6 +90,7 @@
 
 .ant-menu-submenu-title span {
   color: #fff;
+  
 }
 
 /* Fix for bottom border of nav-menu collapsed icon (removing it will somehow still display black border when leaving hover state */
@@ -104,5 +102,10 @@
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
 .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
-  border-color: rgba(0, 0, 0, 0);
+  border-color: #003767;
+  
+}
+
+.ant-menu-horizontal > .ant-menu-item a:hover {
+  color: #D3945F;
 }
