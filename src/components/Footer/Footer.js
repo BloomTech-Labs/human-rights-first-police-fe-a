@@ -47,13 +47,6 @@ const Footer = () => {
         </div>
         <div className="footer-links-container">
           <img className="blue-logo" alt="Blue Witness logo" src={bwlogo} />
-          <NavLink
-            to="/admin-dashboard"
-            target="_blank"
-            activeClassName="active-nav-link"
-          >
-            <Button>Admin Dashboard</Button>
-          </NavLink>
           {authState.isAuthenticated && (
             <div className="logout" onClick={logout}>
               <NavLink to="/" activeClassName="active-nav-link">
