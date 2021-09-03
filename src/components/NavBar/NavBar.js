@@ -24,12 +24,11 @@ const NavBar = () => {
     setNavState(!navState);
   };
 
-  const { authState } = useOktaAuth();
+  const { oktaAuth, authState } = useOktaAuth();
 
   const logout = () => {
     localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
-    push('/');
-    window.location.reload();
+    oktaAuth.signOut('/');
   };
 
   return (
@@ -78,7 +77,7 @@ const NavBar = () => {
         </Menu.Item>
         {authState.isAuthenticated && (
           <Menu.Item key="5">
-            <div className="logout" onClick={logout}>
+            <div className="menu-link" onClick={logout}>
               Log out
             </div>
           </Menu.Item>
