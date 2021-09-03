@@ -27,7 +27,6 @@ const NavBar = () => {
   const { oktaAuth, authState } = useOktaAuth();
 
   const logout = () => {
-    localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
     oktaAuth.signOut('/');
   };
 
