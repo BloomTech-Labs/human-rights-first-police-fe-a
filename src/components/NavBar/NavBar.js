@@ -75,11 +75,18 @@ const NavBar = () => {
           </Link>
         </Menu.Item>
         {authState.isAuthenticated && (
-          <Menu.Item key="5">
-            <div className="menu-link" onClick={logout}>
-              Log out
-            </div>
-          </Menu.Item>
+          <>
+            <Menu.Item key="5">
+              <Link className="menu-link" to="/admin-dashboard">
+                Admin Dashboard
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="6">
+              <div className="menu-link" onClick={logout}>
+                Log out
+              </div>
+            </Menu.Item>
+          </>
         )}
       </Menu>
     </div>
