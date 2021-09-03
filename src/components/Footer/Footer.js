@@ -1,8 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useOktaAuth } from '@okta/okta-react';
-import { useHistory } from 'react-router-dom';
-import { Button } from 'antd';
 
 import './Footer.css';
 import builtByLambda from '../../assets/LambdaAssets/Built by lambda.png';
@@ -10,16 +6,6 @@ import bwlogo from '../../assets/blue-witness1.png';
 import hrflogo from '../../assets/hrf-logo1.2.png';
 
 const Footer = () => {
-  const { push } = useHistory();
-
-  const { authState } = useOktaAuth();
-
-  const logout = () => {
-    localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
-    push('/');
-    window.location.reload();
-  };
-
   return (
     <div className="footer-container">
       <div className="top-container">
@@ -47,13 +33,6 @@ const Footer = () => {
         </div>
         <div className="footer-links-container">
           <img className="blue-logo" alt="Blue Witness logo" src={bwlogo} />
-          {authState.isAuthenticated && (
-            <div className="logout" onClick={logout}>
-              <NavLink to="/" activeClassName="active-nav-link">
-                Log out
-              </NavLink>
-            </div>
-          )}
         </div>
       </div>
       <div className="copyright-container">
