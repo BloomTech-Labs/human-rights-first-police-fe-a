@@ -7,7 +7,6 @@ import hrflogo from '../../assets/hrf-logo1.3.png';
 import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
 import IncidentFocus from '../Home/Map/IncidentFocus';
 import { useOktaAuth } from '@okta/okta-react';
-import { useHistory } from 'react-router-dom';
 import { Layout, Menu, Sider, Input, Space, Typography } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import './nav.css';
@@ -16,8 +15,6 @@ const { Search } = Input;
 const { SubMenu } = Menu;
 const { Title, Paragraph } = Typography;
 const NavBar = () => {
-  const { push } = useHistory();
-
   const [navState, setNavState] = useState(false);
 
   let handleClick = () => {
