@@ -6,7 +6,8 @@ import bwlogo from '../../assets/blue-witness1.png';
 import hrflogo from '../../assets/hrf-logo1.3.png';
 import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
 import IncidentFocus from '../Home/Map/IncidentFocus';
-// import { useOktaAuth } from '@okta/okta-react';
+import { useOktaAuth } from '@okta/okta-react';
+import { useHistory } from 'react-router-dom';
 import { Layout, Menu, Sider, Input, Space, Typography } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import './nav.css';
@@ -15,10 +16,20 @@ const { Search } = Input;
 const { SubMenu } = Menu;
 const { Title, Paragraph } = Typography;
 const NavBar = () => {
+  const { push } = useHistory();
+
   const [navState, setNavState] = useState(false);
 
   let handleClick = () => {
     setNavState(!navState);
+  };
+
+  const { authState } = useOktaAuth();
+
+  const logout = () => {
+    localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
+    push('/');
+    window.location.reload();
   };
 
   return (
@@ -65,6 +76,13 @@ const NavBar = () => {
             About
           </Link>
         </Menu.Item>
+        {authState.isAuthenticated && (
+          <Menu.Item key="5">
+            <div className="logout" onClick={logout}>
+              Log out
+            </div>
+          </Menu.Item>
+        )}
       </Menu>
     </div>
   );
