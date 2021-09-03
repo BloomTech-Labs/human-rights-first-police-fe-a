@@ -106,15 +106,15 @@ const TwitterForm = () => {
             value={data.force_rank}
           >
             <Option value=""></Option>
-            <Option value="Rank 1 - Police Presence">
+            <Option value="Rank 1">
               Rank 1 - Police Presence
             </Option>
-            <Option value="Rank 2 - Empty Hand">Rank 2 - Empty-hand</Option>
-            <Option value="Rank 3 - Blunt Force">Rank 3 - Blunt Force</Option>
-            <Option value="Rank 4 - Chemical & Electric">
+            <Option value="Rank 2">Rank 2 - Empty-hand</Option>
+            <Option value="Rank 3">Rank 3 - Blunt Force</Option>
+            <Option value="Rank 4">
               Rank 4 - Chemical & Electric
             </Option>
-            <Option value="Rank 5 - Lethal Force">Rank 5 - Lethal Force</Option>
+            <Option value="Rank 5">Rank 5 - Lethal Force</Option>
           </Select>
         </label>
         <br></br>
