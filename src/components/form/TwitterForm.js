@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 import './TwitterForm.css';
@@ -21,8 +20,6 @@ const TwitterForm = () => {
   const [rank, setRank] = useState();
   const [date, setDate] = useState();
   const { incident_id } = useParams();
-  const history = useHistory();
-
   useEffect(() => {
     axios
       .get(
@@ -80,7 +77,6 @@ const TwitterForm = () => {
       .post(`https://a.api.humanrightsfirst.dev/form-in`, data)
       .then(res => {
         console.log(res);
-        history.push('/');
       })
       .catch(err => {
         console.log(err);

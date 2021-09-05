@@ -103,7 +103,9 @@ const AdminDashboard = () => {
   // getting form-responses from DS database
   useEffect(() => {
     axios
-      .get('https://a.api.humanrightsfirst.dev/to-approve')
+      .get(
+        'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve'
+      )
       .then(res => {
         setFormResponses(res.data);
       })
