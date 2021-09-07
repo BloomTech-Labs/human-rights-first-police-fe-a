@@ -7,6 +7,7 @@ import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import sourceListHelper from '../../utils/sourceListHelper';
 import './TimelineItems.css';
 import TimelineDetailsExpander from './TimelineDetailsExpander';
+import { getDescriptiveRank } from '../../utils/forceRankHelper';
 
 export default function TimelineItems(props) {
   const { description, incident_date, city, state, force_rank, tags, src } = props.details;
@@ -25,17 +26,12 @@ export default function TimelineItems(props) {
     >
       <div className="timeline-box">
         <Card>
-          <div className="city-state-rank-container">
-            <h4 className="cityState">
-              {city}, {state}
-            </h4>
-            <h4 className="timeline-rank">
-              {force_rank}
-            </h4>
-          </div>
+          <h4 className="cityState">
+            {city}, {state}
+          </h4>
           <p className="card-desc">{description}</p>
-
           <TimelineDetailsExpander>
+            <p className="card-desc">{getDescriptiveRank(force_rank)}</p>
             <div className="card-tags-container">
               {tags.map(element => (
                 <Tag key={nanoid()}>
