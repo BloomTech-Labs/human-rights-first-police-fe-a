@@ -26,6 +26,7 @@ const CompleteIncident = props => {
   useEffect(() => {
     setFormValues({
       ...incident,
+      tags: incident.tags.join(", "),
       incident_date: formattedDate,
     });
     return () => {
@@ -214,8 +215,34 @@ const CompleteIncident = props => {
               name="src"
               value={formValues.src || ' '}
             />
+            <br />
           </>
         )}
+
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Tags</p>
+            <div>
+              {incident.tags.join(", ")}
+            </div>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="src" className="label">
+              Tags
+              <br />
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="tags"
+              value={formValues.tags}
+            />
+          </>
+        )}
+
         <Button
           id="dropdown-edit-button"
           className="approve-reject-select"
