@@ -39,7 +39,7 @@ export default function TimelineItems(props) {
           <TimelineDetailsExpander>
             <p className="card-desc">{getDescriptiveRank(force_rank)}</p>
             <div className="card-tags-container">
-              {tags.map(element => (
+              {tags && tags.map(element => (
                 <Tag key={nanoid()}>
                   {element.charAt(0).toUpperCase() + element.slice(1)}
                 </Tag>

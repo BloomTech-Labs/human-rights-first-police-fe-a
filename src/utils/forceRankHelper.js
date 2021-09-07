@@ -15,6 +15,9 @@ const forceRanks = [
  * @returns {string} the longer, descriptive force rank
  */
 export function getDescriptiveRank(rank) {
+	if (rank == null)
+		return '';
+
 	const rankValue = rank.toString().trim().split(" ").slice(-1);
 
 	const rankIndex = parseInt(rankValue);
