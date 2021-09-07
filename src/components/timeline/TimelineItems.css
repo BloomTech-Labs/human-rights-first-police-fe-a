@@ -22,17 +22,16 @@ div.city-state-rank-container {
 
 h4.cityState {
   font-weight: bold;
-  padding-bottom: 1%;
 }
 
 h4.timeline-rank {
   font-weight: normal;
-  padding-bottom: 1%;
 }
 
 p.card-desc {
   text-align: left;
-  padding-bottom: 1%;
+  padding-bottom: 0;
+  margin-bottom: 0.5rem;
 }
 
 h5.card-force-rank {
@@ -41,7 +40,7 @@ h5.card-force-rank {
 }
 
 div.card-tags-container {
-  padding-bottom: 2%;
+  margin-bottom: 0.5rem;
 }
 
 .timeline-button {

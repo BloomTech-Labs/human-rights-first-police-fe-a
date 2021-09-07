@@ -8,23 +8,15 @@ import sourceListHelper from '../../utils/sourceListHelper';
 import './TimelineItems.css';
 import TimelineDetailsExpander from './TimelineDetailsExpander';
 
-export default function TimelineItems({ details }) {
-  // the urlDomain function pulls the website name from the string we are getting back from the API, this one cuts off the .com part as well (not currently in use)
-  const urlDomain = url => {
-    let re = /^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/\n?]+)/gim;
-    let newUrl = url.split(re)[1].replace('.com', '');
-    return newUrl;
-  };
-
-  const [isInfoVisible, setIsInfoVisible] = useState(false);
+export default function TimelineItems(props) {
+  const { description, incident_date, city, state, force_rank, tags, src } = props.details;
+  const displayDate = DateTime.fromISO(incident_date).plus({ days: 1 }).toLocaleString(DateTime.DATE_FULL);
 
   return (
     <TimelineItem
       key={nanoid()}
-      description={details.description}
-      dateText={DateTime.fromISO(details.incident_date)
-        .plus({ days: 1 })
-        .toLocaleString(DateTime.DATE_FULL)}
+      description={description}
+      dateText={displayDate}
       style={{ color: '#e63946' }}
       dateInnerStyle={{
         color: 'white',
@@ -35,24 +27,23 @@ export default function TimelineItems({ details }) {
         <Card>
           <div className="city-state-rank-container">
             <h4 className="cityState">
-              {details.city}, {details.state}
+              {city}, {state}
             </h4>
             <h4 className="timeline-rank">
-              {details.force_rank}
+              {force_rank}
             </h4>
           </div>
-          <p className="card-desc">{details.description}</p>
+          <p className="card-desc">{description}</p>
+
           <TimelineDetailsExpander>
-            <h5 className="card-force-rank">{details.force_rank}</h5>
             <div className="card-tags-container">
-              {details.tags.map(element => (
+              {tags.map(element => (
                 <Tag key={nanoid()}>
                   {element.charAt(0).toUpperCase() + element.slice(1)}
                 </Tag>
               ))}
             </div>
-            <p>{details.description}</p>
-            <Popover content={sourceListHelper(details)} placement="rightTop">
+            <Popover content={sourceListHelper(src)} placement="rightTop">
               <Button
                 type="primary"
                 style={{ backgroundColor: '#003767', border: 'none' }}
@@ -60,8 +51,8 @@ export default function TimelineItems({ details }) {
                 Sources
               </Button>
             </Popover>
-            <br /> <br />
           </TimelineDetailsExpander>
+
         </Card>
       </div>
     </TimelineItem>
