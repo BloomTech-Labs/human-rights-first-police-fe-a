@@ -301,6 +301,32 @@ const AdminDashboard = () => {
               toggleAddIncident={toggleAddIncident}
               listType={listType}
             />
+            {adding ? (
+              <AddIncident
+                setPageNumber={setPageNumber}
+                getData={getData}
+                setAdding={setAdding}
+              />
+            ) : (
+              <Incidents
+                confirmApprove={confirmApprove}
+                confirmReject={confirmReject}
+                confirmApproveHandler={confirmApproveHandler}
+                confirmRejectHandler={confirmRejectHandler}
+                approveAndRejectHandler={approveAndRejectHandler}
+                confirmCancel={confirmCancel}
+                setSelected={setSelected}
+                selected={selected}
+                selectAll={selectAll}
+                allSelected={allSelected}
+                handlePerPageChange={handlePerPageChange}
+                currentSet={currentSet}
+                setUnapprovedIncidents={setUnapprovedIncidents}
+                setPageNumber={setPageNumber}
+                unapprovedIncidents={unapprovedIncidents}
+                setCurrList={setCurrList}
+              />
+            )}
             <ApprovedIncidents incidents={incidents} />
           </div>
         </>
