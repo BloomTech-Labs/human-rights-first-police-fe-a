@@ -257,7 +257,7 @@ const CompleteIncident = props => {
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">Tags</p>
             <div>
-              {incident.tags.join(", ")}
+              {incident.tags ? incident.tags.join(", ") : ''}
             </div>
           </div>
         ) : (
