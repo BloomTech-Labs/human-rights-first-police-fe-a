@@ -6,6 +6,7 @@ import { Card, Tag, Popover, Button } from 'antd';
 import { UpOutlined, DownOutlined } from '@ant-design/icons';
 import sourceListHelper from '../../utils/sourceListHelper';
 import './TimelineItems.css';
+import TimelineDetailsExpander from './TimelineDetailsExpander';
 
 export default function TimelineItems({ details }) {
   // the urlDomain function pulls the website name from the string we are getting back from the API, this one cuts off the .com part as well (not currently in use)
@@ -32,41 +33,35 @@ export default function TimelineItems({ details }) {
     >
       <div className="timeline-box">
         <Card>
-          <h4 className="cityState">
-            {details.city}, {details.state}
-          </h4>
-          <h3 className="card-title">{details.title}</h3>
-          {isInfoVisible ? (
-            <div>
-              <h5 className="card-force-rank">{details.force_rank}</h5>
-              <div className="card-tags-container">
-                {details.tags.map(element => (
-                  <Tag key={nanoid()}>
-                    {element.charAt(0).toUpperCase() + element.slice(1)}
-                  </Tag>
-                ))}
-              </div>
-              <p>{details.description}</p>
-              <Popover content={sourceListHelper(details)} placement="rightTop">
-                <Button
-                  type="primary"
-                  style={{ backgroundColor: '#003767', border: 'none' }}
-                >
-                  Sources
-                </Button>
-              </Popover>
-              <br /> <br />
-              <UpOutlined
-                className="timeline-button"
-                onClick={() => setIsInfoVisible(false)}
-              />
+          <div className="city-state-rank-container">
+            <h4 className="cityState">
+              {details.city}, {details.state}
+            </h4>
+            <h4 className="timeline-rank">
+              {details.force_rank}
+            </h4>
+          </div>
+          <p className="card-desc">{details.description}</p>
+          <TimelineDetailsExpander>
+            <h5 className="card-force-rank">{details.force_rank}</h5>
+            <div className="card-tags-container">
+              {details.tags.map(element => (
+                <Tag key={nanoid()}>
+                  {element.charAt(0).toUpperCase() + element.slice(1)}
+                </Tag>
+              ))}
             </div>
-          ) : (
-            <DownOutlined
-              className="timeline-button"
-              onClick={() => setIsInfoVisible(true)}
-            />
-          )}
+            <p>{details.description}</p>
+            <Popover content={sourceListHelper(details)} placement="rightTop">
+              <Button
+                type="primary"
+                style={{ backgroundColor: '#003767', border: 'none' }}
+              >
+                Sources
+              </Button>
+            </Popover>
+            <br /> <br />
+          </TimelineDetailsExpander>
         </Card>
       </div>
     </TimelineItem>
