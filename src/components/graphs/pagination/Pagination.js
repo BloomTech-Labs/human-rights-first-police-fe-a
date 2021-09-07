@@ -3,7 +3,7 @@ import React from 'react';
 // Search Bar
 import SearchBar from '../searchbar/SearchBar';
 
-import './Pagination.css';
+import './Pagination.less';
 
 import {
   LineChartOutlined,
