@@ -13,36 +13,37 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-  }
-  .search-bar-container {
-    margin: 0 6%;
-  }
-  .graph-buttons {
-    list-style-type: none;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    .link-item {
-      height: 48px;
-      line-height: 46px;
-      font-size: 14px;
-      color: #1890ff;
-      .icon {
-        margin: 0 auto;
-        margin-right: 10px;
-        line-height: 0px;
-        min-width: 14px;
-        width: 2%;
-        @media screen and (max-width: 880px) {
-          font-size: 1.6rem;
+    .graph-buttons {
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      .link-item {
+        height: 48px;
+        line-height: 46px;
+        font-size: 14px;
+        color: #1890ff;
+        .icon {
+          margin: 0 auto;
+          margin-right: 10px;
+          line-height: 0px;
+          min-width: 14px;
+          width: 2%;
+          @media screen and (max-width: 880px) {
+            font-size: 1.6rem;
+          }
         }
-      }
-      .text {
-        margin-right: 8px;
-        @media screen and (max-width: 880px) {
-          display: none;
+        .text {
+          margin-right: 8px;
+          @media screen and (max-width: 880px) {
+            display: none;
+          }
         }
       }
     }
+  }
+  .search-bar-container {
+    margin: 0 6%;
+    max-width: 50%;
   }
 }
