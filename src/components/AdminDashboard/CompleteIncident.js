@@ -26,6 +26,7 @@ const CompleteIncident = props => {
   useEffect(() => {
     setFormValues({
       ...incident,
+      tags: incident.tags ? incident.tags.join(", ") : [],
       incident_date: formattedDate,
     });
     return () => {
@@ -69,6 +70,8 @@ const CompleteIncident = props => {
   return (
     <div className="complete-incident">
       <div className="complete-incident-dropdown">
+
+        {/* Date */}
         {!editing ? (
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">Date:</p>
@@ -90,6 +93,8 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
+
+        {/* Location */}
         {!editing ? (
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">Location:</p>
@@ -125,6 +130,8 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
+
+        {/* Description */}
         {!editing ? (
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">
@@ -148,6 +155,8 @@ const CompleteIncident = props => {
             <br />
           </>
         )}
+
+        {/* Force Rank */}
         {!editing ? (
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">
@@ -186,6 +195,7 @@ const CompleteIncident = props => {
           </>
         )}
 
+        {/* Sources */}
         {!editing ? (
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">Source(s)</p>
@@ -204,7 +214,6 @@ const CompleteIncident = props => {
           <>
             <label htmlFor="src" className="label">
               Source(s)
-              <br />
             </label>
             <br />
             <input
@@ -214,8 +223,35 @@ const CompleteIncident = props => {
               name="src"
               value={formValues.src || ' '}
             />
+            <br />
           </>
         )}
+
+        {/* Tags */}
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Tags</p>
+            <div>
+              {incident.tags.join(", ")}
+            </div>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="src" className="label">
+              Tags
+              <span style={{ fontWeight: "normal" }}>&nbsp;(comma separated values)</span>
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="tags"
+              value={formValues.tags}
+            />
+          </>
+        )}
+
         <Button
           id="dropdown-edit-button"
           className="approve-reject-select"

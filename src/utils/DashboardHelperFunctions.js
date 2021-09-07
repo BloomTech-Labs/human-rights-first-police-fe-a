@@ -53,6 +53,7 @@ export const applyEdits = (oktaAxios, formValues, incident) => {
   const newDate = `${year}-${month}-${day}T${time}`;
   const updatedIncident = {
     ...formValues,
+    tags: formValues.tags.split(',').map(t => t.trim()).sort(),
     incident_date: newDate,
   };
   const putRequest = new Promise((resolve, reject) => {
@@ -74,10 +75,8 @@ export const getLatAndLong = formValues => {
     const { city, state } = formValues;
     axios
       .get(
-        `https://open.mapquestapi.com/geocoding/v1/address?key=${
-          process.env.REACT_APP_MAPQUEST_API_KEY
-        }&location=${city ? city.toLowerCase() : ''}${
-          state ? ',' + state.toLowerCase() : ''
+        `https://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAPQUEST_API_KEY
+        }&location=${city ? city.toLowerCase() : ''}${state ? ',' + state.toLowerCase() : ''
         }`
       )
       .then(res => {
