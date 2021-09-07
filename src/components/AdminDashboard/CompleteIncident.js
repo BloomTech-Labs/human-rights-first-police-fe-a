@@ -131,6 +131,31 @@ const CompleteIncident = props => {
           </>
         )}
 
+        {/* Title */}
+        {!editing ? (
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">
+              Title:
+            </p>
+            <p>{incident.title || '(none)'}</p>
+          </div>
+        ) : (
+          <>
+            <label htmlFor="description" className="label">
+              Title
+            </label>
+            <br />
+            <input
+              className="edit-input"
+              onChange={handleInputChange}
+              type="text"
+              name="title"
+              value={formValues.title}
+            />
+            <br />
+          </>
+        )}
+
         {/* Description */}
         {!editing ? (
           <div className="dropdown-text-wrap">
