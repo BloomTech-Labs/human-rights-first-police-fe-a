@@ -10,7 +10,7 @@ import TimelineDetailsExpander from './TimelineDetailsExpander';
 import { getDescriptiveRank } from '../../utils/forceRankHelper';
 
 export default function TimelineItems(props) {
-  const { description, incident_date, city, state, force_rank, tags, src } = props.details;
+  const { description, incident_date, city, state, force_rank, tags, src, title } = props.details;
   const displayDate = DateTime.fromISO(incident_date).plus({ days: 1 }).toLocaleString(DateTime.DATE_FULL);
 
   return (
@@ -29,7 +29,13 @@ export default function TimelineItems(props) {
           <h4 className="cityState">
             {city}, {state}
           </h4>
-          <p className="card-desc">{description}</p>
+
+          {title ?
+            <h3 className="card-title">{title}</h3>
+            :
+            <h3 className="card-desc">{description}</h3>
+          }
+
           <TimelineDetailsExpander>
             <p className="card-desc">{getDescriptiveRank(force_rank)}</p>
             <div className="card-tags-container">
@@ -39,6 +45,9 @@ export default function TimelineItems(props) {
                 </Tag>
               ))}
             </div>
+
+            <p>{description}</p>
+
             <Popover content={sourceListHelper(src)} placement="rightTop">
               <Button
                 type="primary"

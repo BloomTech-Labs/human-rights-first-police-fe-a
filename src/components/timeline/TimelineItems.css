@@ -14,24 +14,28 @@ div.timeline-container {
   box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.08);
 }
 
-div.city-state-rank-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 h4.cityState {
-  font-weight: bold;
+  font-weight: normal;
 }
 
 h4.timeline-rank {
   font-weight: normal;
 }
 
-p.card-desc {
+h3.card-title {
+  text-align: left;
+  padding-bottom: 1%;
+}
+
+h3.card-desc {
   text-align: left;
   padding-bottom: 0;
   margin-bottom: 0.5rem;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-weight: 500;
 }
 
 h5.card-force-rank {
@@ -229,6 +233,10 @@ div.card-tags-container {
     text-align: center;
     padding-bottom: 1%;
     font-weight: normal;
+  }
+  h3.card-title {
+    text-align: center;
+    padding-bottom: 1%;
   }
   .entry:before {
     top: 4px;
