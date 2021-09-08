@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 import moment from 'moment';
 import './TwitterForm.css';
@@ -21,8 +20,6 @@ const TwitterForm = () => {
   const [rank, setRank] = useState();
   const [date, setDate] = useState();
   const { incident_id } = useParams();
-  const history = useHistory();
-
   useEffect(() => {
     axios
       .get(
@@ -80,7 +77,6 @@ const TwitterForm = () => {
       .post(`https://a.api.humanrightsfirst.dev/form-in`, data)
       .then(res => {
         console.log(res);
-        history.push('/');
       })
       .catch(err => {
         console.log(err);
@@ -106,15 +102,15 @@ const TwitterForm = () => {
             value={data.force_rank}
           >
             <Option value=""></Option>
-            <Option value="Rank 1 - Police Presence">
+            <Option value="Rank 1">
               Rank 1 - Police Presence
             </Option>
-            <Option value="Rank 2 - Empty Hand">Rank 2 - Empty-hand</Option>
-            <Option value="Rank 3 - Blunt Force">Rank 3 - Blunt Force</Option>
-            <Option value="Rank 4 - Chemical & Electric">
+            <Option value="Rank 2">Rank 2 - Empty-hand</Option>
+            <Option value="Rank 3">Rank 3 - Blunt Force</Option>
+            <Option value="Rank 4">
               Rank 4 - Chemical & Electric
             </Option>
-            <Option value="Rank 5 - Lethal Force">Rank 5 - Lethal Force</Option>
+            <Option value="Rank 5">Rank 5 - Lethal Force</Option>
           </Select>
         </label>
         <br></br>

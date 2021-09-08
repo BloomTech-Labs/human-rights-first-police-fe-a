@@ -103,7 +103,9 @@ const AdminDashboard = () => {
   // getting form-responses from DS database
   useEffect(() => {
     axios
-      .get('https://a.api.humanrightsfirst.dev/to-approve')
+      .get(
+        'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve'
+      )
       .then(res => {
         setFormResponses(res.data);
       })
@@ -299,6 +301,32 @@ const AdminDashboard = () => {
               toggleAddIncident={toggleAddIncident}
               listType={listType}
             />
+            {adding ? (
+              <AddIncident
+                setPageNumber={setPageNumber}
+                getData={getData}
+                setAdding={setAdding}
+              />
+            ) : (
+              <Incidents
+                confirmApprove={confirmApprove}
+                confirmReject={confirmReject}
+                confirmApproveHandler={confirmApproveHandler}
+                confirmRejectHandler={confirmRejectHandler}
+                approveAndRejectHandler={approveAndRejectHandler}
+                confirmCancel={confirmCancel}
+                setSelected={setSelected}
+                selected={selected}
+                selectAll={selectAll}
+                allSelected={allSelected}
+                handlePerPageChange={handlePerPageChange}
+                currentSet={currentSet}
+                setUnapprovedIncidents={setUnapprovedIncidents}
+                setPageNumber={setPageNumber}
+                unapprovedIncidents={unapprovedIncidents}
+                setCurrList={setCurrList}
+              />
+            )}
             <ApprovedIncidents incidents={incidents} />
           </div>
         </>

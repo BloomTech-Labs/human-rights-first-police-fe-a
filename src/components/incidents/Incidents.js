@@ -25,11 +25,11 @@ import { CSVLink } from 'react-csv'; // helper for export CSV from current State
 import { ConsoleSqlOutlined } from '@ant-design/icons';
 
 let ranks = [
-  'Rank 1 - Police Presence',
-  'Rank 2 - Empty-hand',
-  'Rank 3 - Blunt Force',
-  'Rank 4 - Chemical & Electric',
-  'Rank 5 - Lethal Force',
+  'Rank 1',
+  'Rank 2',
+  'Rank 3',
+  'Rank 4',
+  'Rank 5',
 ];
 
 const { RangePicker } = DatePicker;
