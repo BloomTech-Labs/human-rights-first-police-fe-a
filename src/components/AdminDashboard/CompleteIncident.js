@@ -11,6 +11,8 @@ import { AntDesignOutlined } from '@ant-design/icons';
 import useOktaAxios from '../../hooks/useOktaAxios';
 import { nanoid } from 'nanoid';
 
+import './CompleteIncident.css';
+
 const CompleteIncident = props => {
   const {
     incident,
@@ -79,18 +81,16 @@ const CompleteIncident = props => {
           </div>
         ) : (
           <>
-            <label htmlFor="date" className="label">
+            <label className="label">
               Date
+              <input
+                className="edit-input"
+                onChange={handleInputChange}
+                type="text"
+                name="incident_date"
+                value={formValues.incident_date}
+              />
             </label>
-            <br />
-            <input
-              className="edit-input"
-              onChange={handleInputChange}
-              type="text"
-              name="incident_date"
-              value={formValues.incident_date}
-            />
-            <br />
           </>
         )}
 
@@ -104,30 +104,27 @@ const CompleteIncident = props => {
           </div>
         ) : (
           <>
-            <label htmlFor="city" className="label">
+            <label className="label">
               City
+              <input
+                className="edit-input"
+                onChange={handleInputChange}
+                type="text"
+                name="city"
+                value={formValues.city}
+              />
             </label>
-            <br />
-            <input
-              className="edit-input"
-              onChange={handleInputChange}
-              type="text"
-              name="city"
-              value={formValues.city}
-            />
-            <br />
-            <label htmlFor="state" className="label">
+
+            <label className="label">
               State
+              <input
+                className="edit-input"
+                onChange={handleInputChange}
+                type="text"
+                name="state"
+                value={formValues.state}
+              />
             </label>
-            <br />
-            <input
-              className="edit-input"
-              onChange={handleInputChange}
-              type="text"
-              name="state"
-              value={formValues.state}
-            />
-            <br />
           </>
         )}
 
@@ -141,18 +138,16 @@ const CompleteIncident = props => {
           </div>
         ) : (
           <>
-            <label htmlFor="description" className="label">
+            <label className="label">
               Title
+              <input
+                className="edit-input"
+                onChange={handleInputChange}
+                type="text"
+                name="title"
+                value={formValues.title}
+              />
             </label>
-            <br />
-            <input
-              className="edit-input"
-              onChange={handleInputChange}
-              type="text"
-              name="title"
-              value={formValues.title}
-            />
-            <br />
           </>
         )}
 
@@ -166,18 +161,16 @@ const CompleteIncident = props => {
           </div>
         ) : (
           <>
-            <label htmlFor="description" className="label">
+            <label className="label">
               Description
+              <input
+                className="edit-input"
+                onChange={handleInputChange}
+                type="text"
+                name="description"
+                value={formValues.description}
+              />
             </label>
-            <br />
-            <input
-              className="edit-input"
-              onChange={handleInputChange}
-              type="text"
-              name="description"
-              value={formValues.description}
-            />
-            <br />
           </>
         )}
 
@@ -191,32 +184,30 @@ const CompleteIncident = props => {
           </div>
         ) : (
           <>
-            <label htmlFor="force-rank" className="label">
+            <label className="label">
               Force Rank
+              <select
+                className="edit-input"
+                onChange={handleInputChange}
+                name="force_rank"
+                value={formValues.force_rank}
+              >
+                <option value="Rank 0 - No Police Presence">
+                  Rank 0 - No Police Presence
+                </option>
+                <option value="Rank 1 - Police Presence">
+                  Rank 1 - Police Presence
+                </option>
+                <option value="Rank 2 - Empty-hand">Rank 2 - Empty-hand</option>
+                <option value="Rank 3 - Blunt Force">Rank 3 - Blunt Force</option>
+                <option value="Rank 4 - Chemical &amp; Electric">
+                  Rank 4 - Chemical &amp; Electric
+                </option>
+                <option value="Rank 5 - Lethal Force">
+                  Rank 5 - Lethal Force
+                </option>
+              </select>
             </label>
-            <br />
-            <select
-              className="edit-input"
-              onChange={handleInputChange}
-              name="force_rank"
-              value={formValues.force_rank}
-            >
-              <option value="Rank 0 - No Police Presence">
-                Rank 0 - No Police Presence
-              </option>
-              <option value="Rank 1 - Police Presence">
-                Rank 1 - Police Presence
-              </option>
-              <option value="Rank 2 - Empty-hand">Rank 2 - Empty-hand</option>
-              <option value="Rank 3 - Blunt Force">Rank 3 - Blunt Force</option>
-              <option value="Rank 4 - Chemical &amp; Electric">
-                Rank 4 - Chemical &amp; Electric
-              </option>
-              <option value="Rank 5 - Lethal Force">
-                Rank 5 - Lethal Force
-              </option>
-            </select>
-            <br />
           </>
         )}
 
@@ -237,18 +228,16 @@ const CompleteIncident = props => {
           </div>
         ) : (
           <>
-            <label htmlFor="src" className="label">
+            <label className="label">
               Source(s)
+              <input
+                className="edit-input"
+                onChange={handleInputChange}
+                type="text"
+                name="src"
+                value={formValues.src || ' '}
+              />
             </label>
-            <br />
-            <input
-              className="edit-input"
-              onChange={handleInputChange}
-              type="text"
-              name="src"
-              value={formValues.src || ' '}
-            />
-            <br />
           </>
         )}
 
@@ -262,18 +251,17 @@ const CompleteIncident = props => {
           </div>
         ) : (
           <>
-            <label htmlFor="src" className="label">
+            <label className="label">
               Tags
               <span style={{ fontWeight: "normal" }}>&nbsp;(comma separated values)</span>
+              <input
+                className="edit-input"
+                onChange={handleInputChange}
+                type="text"
+                name="tags"
+                value={formValues.tags}
+              />
             </label>
-            <br />
-            <input
-              className="edit-input"
-              onChange={handleInputChange}
-              type="text"
-              name="tags"
-              value={formValues.tags}
-            />
           </>
         )}
 
