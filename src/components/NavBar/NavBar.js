@@ -6,7 +6,7 @@ import bwlogo from '../../assets/blue-witness1.png';
 import hrflogo from '../../assets/hrf-logo1.3.png';
 import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
 import IncidentFocus from '../Home/Map/IncidentFocus';
-// import { useOktaAuth } from '@okta/okta-react';
+import { useOktaAuth } from '@okta/okta-react';
 import { Layout, Menu, Sider, Input, Space, Typography } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
 import './nav.css';
@@ -19,6 +19,12 @@ const NavBar = () => {
 
   let handleClick = () => {
     setNavState(!navState);
+  };
+
+  const { oktaAuth, authState } = useOktaAuth();
+
+  const logout = () => {
+    oktaAuth.signOut('/');
   };
 
   return (
@@ -65,6 +71,20 @@ const NavBar = () => {
             About
           </Link>
         </Menu.Item>
+        {authState.isAuthenticated && (
+          <>
+            <Menu.Item key="5">
+              <Link className="menu-link" to="/admin-dashboard">
+                Admin Dashboard
+              </Link>
+            </Menu.Item>
+            <Menu.Item key="6">
+              <div className="menu-link" onClick={logout}>
+                Log out
+              </div>
+            </Menu.Item>
+          </>
+        )}
       </Menu>
     </div>
   );
