@@ -71,7 +71,6 @@ const Horizontalbar = () => {
 
   return (
     <div>
-      {console.log('LOOK HERE', dataList)}
       <div className="home-bar-graph">
         <h1>Incident Reports Grouped by Level of Police Force</h1>
         <p>
