@@ -17,9 +17,9 @@ import './CompleteIncident.css';
  */
 
 /**
- *
+ * Component for displaying/editing incident details on the admin dashboard
  * @param {CompleteIncidentProps} props
- * @returns
+ * @returns {JSX.Element} the CompleteIncident component
  */
 const CompleteIncident = props => {
   const {
