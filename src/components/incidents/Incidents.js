@@ -424,7 +424,7 @@ const Incidents = () => {
                     <p className="collapse-content-p">{incident.description}</p>
                     <div className="bottom-container">
                       <Popover
-                        content={sourceListHelper(incident.src)}
+                        content={sourceListHelper(incident?.src)}
                         placement="rightTop"
                       >
                         <Button
