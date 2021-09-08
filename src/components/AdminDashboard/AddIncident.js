@@ -167,18 +167,12 @@ const AddIncident = props => {
           <br />
           <select onChange={handleChange} name="force_rank">
             <option value="">--Select One--</option>
-            <option value="Rank 0 - No Police Presence">
-              Rank 0 - No Police Presence
-            </option>
-            <option value="Rank 1 - Police Presence">
-              Rank 1 - Police Presence
-            </option>
-            <option value="Rank 2 - Empty-hand">Rank 2 - Empty-hand</option>
-            <option value="Rank 3 - Blunt Force">Rank 3 - Blunt Force</option>
-            <option value="Rank 4 - Chemical &amp; Electric">
-              Rank 4 - Chemical &amp; Electric
-            </option>
-            <option value="Rank 5 - Lethal Force">Rank 5 - Lethal Force</option>
+            <option value="Rank 0">Rank 0 - No Police Presence</option>
+            <option value="Rank 1">Rank 1 - Police Presence</option>
+            <option value="Rank 2">Rank 2 - Empty-hand</option>
+            <option value="Rank 3">Rank 3 - Blunt Force</option>
+            <option value="Rank 4">Rank 4 - Chemical &amp; Electric</option>
+            <option value="Rank 5">Rank 5 - Lethal Force</option>
           </select>
         </label>
         <br />
