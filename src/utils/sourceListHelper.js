@@ -1,5 +1,13 @@
 import { nanoid } from 'nanoid';
 
+/**
+ * This function takes a list of urls and returns a list of links showing just the site name for the link text
+ *
+ * (This technically should be a component, but I'm just documenting it as it was written.) *
+ *
+ * @param {string[]} sources - a list of urls
+ * @returns {JSX.Element} a list of links
+ */
 const sourceListHelper = sources => {
   // This still has a bug if the url has a . anywhere besides www. and .com
   function getDomain(url) {
@@ -14,7 +22,7 @@ const sourceListHelper = sources => {
 
   return (
     <div>
-      {!sources || sources === [] ? (
+      {!sources || sources === [] || !Array.isArray(sources) ? (
         <p>No sources listed</p>
       ) : (
         sources.map(source => {
@@ -23,7 +31,6 @@ const sourceListHelper = sources => {
               <a href={source} target="_blank" rel="noopener noreferrer">
                 {getDomain(source)}
               </a>
-              <br />
             </div>
           );
         })
