@@ -57,7 +57,7 @@ export default function IncidentFocusCard({ id, zoomOnCluster }) {
         : ''}
       <MapIncidentInfo className="map-incident-info">
         <p className="incident-description">{incident?.desc}</p>
-        <Popover content={sourceListHelper(incident.src)} placement="rightTop">
+        <Popover content={sourceListHelper(incident?.src)} placement="rightTop">
           <Button
             type="primary"
             style={{ backgroundColor: '#2f54eb', border: 'none' }}
