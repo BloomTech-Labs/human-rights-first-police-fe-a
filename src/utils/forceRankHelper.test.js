@@ -16,10 +16,27 @@ describe('getDescriptiveRank() tests', () => {
 		let res = getDescriptiveRank(-3);
 		expect(res).toMatch("-3");
 
+		res = getDescriptiveRank('eff');
+		expect(res).toMatch('eff');
+
 		res = getDescriptiveRank('Rank Rainbow');
 		expect(res).toMatch('Rank Rainbow');
 
 		res = getDescriptiveRank('Rank 7');
 		expect(res).toMatch('Rank 7');
+	});
+
+	test('returns an empty string with a null or empty input', () => {
+		let res = getDescriptiveRank('');
+		expect(res).toMatch('');
+
+		res = getDescriptiveRank(null);
+		expect(res).toMatch('');
+
+		res = getDescriptiveRank([]);
+		expect(res).toMatch('');
+
+		res = getDescriptiveRank({});
+		expect(res).toMatch('');
 	});
 });
