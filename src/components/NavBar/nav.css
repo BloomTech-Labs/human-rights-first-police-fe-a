@@ -40,24 +40,6 @@
   }
 } 
 
-@media (max-width: 500px) {
-  .logo-container {
-    width: 100%;
-  }
-} 
-
-@media (max-width: 500px) {
-  .bw-logo {
-    width: 7rem;
-  }
-} 
-
-@media (max-width: 500px) {
-  .hrf-logo {
-    width: 5.44rem;
-  }
-} 
-
 .menu {
   background: #003767;
   padding-top: 1rem;
