@@ -8,10 +8,13 @@
 }
 
 .logo-container {
+  height: 100%;
   width: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  padding-bottom: 0.5rem;
 }
 
 .bw-logo {
@@ -19,7 +22,8 @@
 }
 
 .hrf-logo {
-    width: 7rem;
+  margin-top: 0.3rem;
+  width: 7rem;
 }
 
 @media (max-width: 879px) {
