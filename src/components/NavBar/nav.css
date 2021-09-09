@@ -4,12 +4,23 @@
   background: #003767;
   text-align: left;
   height: 5rem;
+}
+
+.menu-pusher {
+  display: flex;
+  justify-content: flex-start;
   padding-left: 2rem;
+  width: 20%;
+}
+
+@media (max-width: 879px) {
+  .menu-pusher {
+    width: 100%;
+  }
 }
 
 .logo-container {
   height: 100%;
-  width: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -25,12 +36,6 @@
   margin-top: 0.3rem;
   width: 7rem;
 }
-
-@media (max-width: 879px) {
-  .logo-container {
-    width: 100%;
-  }
-} 
 
 @media (max-width: 879px) {
   .bw-logo {
