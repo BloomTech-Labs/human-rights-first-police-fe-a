@@ -4,20 +4,22 @@
   background: #003767;
   text-align: left;
   height: 5rem;
+  padding-left: 2rem;
 }
 
 .logo-container {
   width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bw-logo {
   width: 9rem;
-  margin-left: 2rem;
 }
 
 .hrf-logo {
     width: 7rem;
-    margin-top: 3.2rem;
 }
 
 @media (max-width: 879px) {
@@ -35,7 +37,6 @@
 @media (max-width: 879px) {
   .hrf-logo {
     width: 5.44rem;
-    margin-top: 3rem;
   }
 } 
 
