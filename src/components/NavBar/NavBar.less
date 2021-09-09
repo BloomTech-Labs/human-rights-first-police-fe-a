@@ -5,19 +5,19 @@
   text-align: left;
   height: 5rem;
   padding-left: 2rem;
-  /*
-  This menu-pusher is required to get the mobile menu looking right,
-   because the way that the mobile menu activates was by being squashed by a div with 100% width
- */
+
   .logo-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding-top: 0.8rem;
+    @media (max-width: 879px) {
+      padding-top: 1.1rem;
+    }
+
     .bw-logo {
       width: 9rem;
-
       @media (max-width: 879px) {
         width: 7rem;
       }
@@ -26,54 +26,52 @@
     .hrf-logo {
       margin-top: 0.2rem;
       width: 7rem;
-
       @media (max-width: 879px) {
         width: 5.44rem;
       }
     }
   }
-}
 
-.menu {
-  background: #003767;
-  padding-top: 1rem;
-  margin-top: -0.2rem;
-  margin-right: 1rem;
-  font-size: 1rem;
-  height: 1rem;
-  border-bottom: none !important;
-  text-align: right;
-  width: 55%;
-  @media (max-width: 879px) {
-    width: 4rem;
+  .menu {
+    background: #003767;
+    padding-top: 1rem;
+    margin-top: -0.2rem;
+    margin-right: 1rem;
+    font-size: 1rem;
+    height: 1rem;
+    border-bottom: none !important;
+    text-align: right;
+    width: 55%;
+    @media (max-width: 879px) {
+      width: 4rem;
+    }
   }
-}
 
-.ant-menu-horizontal > .ant-menu-item a {
-  color: white;
-}
+  .ant-menu-horizontal > .ant-menu-item a {
+    color: white;
+  }
 
-.ant-menu-item-selected {
-  background-color: #ffffff00 !important;
-}
+  .ant-menu-item-selected {
+    background-color: #ffffff00 !important;
+  }
 
-.ant-menu-submenu-title span {
-  color: #fff;
-}
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
 
-/* Fix for bottom border of nav-menu collapsed icon (removing it will somehow still display black border when leaving hover state */
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
-  border-color: #003767;
-  
-}
+  /* Fix for bottom border of nav-menu collapsed icon (removing it will somehow still display black border when leaving hover state */
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu:hover,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-active,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-active,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-open,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-open,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
+  .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
+    border-color: #003767;
+  }
 
-.ant-menu-horizontal > .ant-menu-item a:hover {
-  color: #D3945F;
+  .ant-menu-horizontal > .ant-menu-item a:hover {
+    color: #D3945F;
+  }
 }
