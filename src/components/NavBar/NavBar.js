@@ -9,7 +9,7 @@ import IncidentFocus from '../Home/Map/IncidentFocus';
 import { useOktaAuth } from '@okta/okta-react';
 import { Layout, Menu, Sider, Input, Space, Typography } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
-import './nav.css';
+import './NavBar.less';
 const { Search } = Input;
 
 const { SubMenu } = Menu;
