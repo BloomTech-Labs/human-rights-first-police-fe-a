@@ -14,12 +14,8 @@ import {
   putIncidents,
 } from '../../utils/DashboardHelperFunctions.js';
 
-import { DoubleRightOutlined } from '@ant-design/icons';
-import { DoubleLeftOutlined } from '@ant-design/icons';
-
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import AntTable from './AntTableComponents/AntTable';
 
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
@@ -134,19 +130,6 @@ const AdminDashboard = () => {
     }
   };
 
-  const changeSelected = incident => {
-    if (!confirmApprove && !confirmReject) {
-      if (selected.includes(incident.incident_id)) {
-        const newSelected = selected.filter(id => {
-          return id !== incident.incident_id;
-        });
-        setSelected(newSelected);
-      } else {
-        setSelected([...selected, incident.incident_id]);
-      }
-    }
-  };
-
   const approveAndRejectHandler = evt => {
     evt.preventDefault();
     const [reviewedIncidents, unreviewedIncidents] = sortApproved(
@@ -187,21 +170,6 @@ const AdminDashboard = () => {
     setConfirmApprove(false);
     setConfirmReject(false);
     setConfirmStatus('pending');
-  };
-
-  //   pagination functions
-  const handleNextClick = evt => {
-    evt.preventDefault();
-    if (pageNumber < lastPage) {
-      setPageNumber(pageNumber + 1);
-    }
-  };
-
-  const handleBackClick = evt => {
-    evt.preventDefault();
-    if (pageNumber > 1) {
-      setPageNumber(pageNumber - 1);
-    }
   };
 
   const handlePerPageChange = evt => {
