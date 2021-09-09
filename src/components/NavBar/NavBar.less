@@ -45,18 +45,26 @@
     @media (max-width: 879px) {
       width: 4rem;
     }
-  }
 
-  .ant-menu-horizontal > .ant-menu-item a {
-    color: white;
+    .hamburger-icon {
+      color: #fff;
+      font-size: 1.5rem;
+      margin: 0;
+      padding-top: 0.9rem;
+    }
+
+    .menu-link {
+      color: white;
+      transition: color 0.1s;
+      &:hover {
+        color: #d3945f;
+        transition: color 0.1s;
+      }
+    }
   }
 
   .ant-menu-item-selected {
     background-color: #ffffff00 !important;
-  }
-
-  .ant-menu-submenu-title span {
-    color: #fff;
   }
 
   /* Fix for bottom border of nav-menu collapsed icon (removing it will somehow still display black border when leaving hover state */
@@ -69,9 +77,5 @@
   .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item-selected,
   .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
     border-color: #003767;
-  }
-
-  .ant-menu-horizontal > .ant-menu-item a:hover {
-    color: #D3945F;
   }
 }
