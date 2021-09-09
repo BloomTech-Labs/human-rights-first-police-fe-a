@@ -13,12 +13,10 @@
 .bw-logo {
   width: 9rem;
   margin-left: 2rem;
-  margin-top: -0.2rem;
 }
 
 .hrf-logo {
     width: 7rem;
-    margin-left: -8.6rem;
     margin-top: 3.2rem;
 }
 
@@ -32,14 +30,12 @@
   .bw-logo {
     width: 7rem;
     margin-left: 2rem;
-    margin-top: -0.2rem;
   }
 } 
 
 @media (max-width: 879px) {
   .hrf-logo {
     width: 5.44rem;
-    margin-left: -6.5rem;
     margin-top: 3rem;
   }
 } 
@@ -54,14 +50,12 @@
   .bw-logo {
     width: 7rem;
     margin-left: 2rem;
-    margin-top: -0.2rem;
   }
 } 
 
 @media (max-width: 500px) {
   .hrf-logo {
     width: 5.44rem;
-    margin-left: -6.5rem;
     margin-top: 3rem;
   }
 } 
