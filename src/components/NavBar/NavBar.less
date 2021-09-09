@@ -1,6 +1,7 @@
 @background-color: #003767;
-@text-color: white;
+@nav-text-color: white;
 @transparent: #ffffff00;
+@breakpoint-width: 879px;
 
 .navbar-container {
   display: flex;
@@ -16,13 +17,13 @@
     align-items: center;
     justify-content: center;
     padding-top: 0.8rem;
-    @media (max-width: 879px) {
+    @media (max-width: @breakpoint-width) {
       padding-top: 1.1rem;
     }
 
     .bw-logo {
       width: 9rem;
-      @media (max-width: 879px) {
+      @media (max-width: @breakpoint-width) {
         width: 7rem;
       }
     }
@@ -30,7 +31,7 @@
     .hrf-logo {
       margin-top: 0.2rem;
       width: 7rem;
-      @media (max-width: 879px) {
+      @media (max-width: @breakpoint-width) {
         width: 5.44rem;
       }
     }
@@ -46,19 +47,19 @@
     border-bottom: none !important;
     text-align: right;
     width: 80%;
-    @media (max-width: 879px) {
+    @media (max-width: @breakpoint-width) {
       width: 4rem;
     }
 
     .hamburger-icon {
-      color: @text-color;
+      color: @nav-text-color;
       font-size: 1.5rem;
       margin: 0;
       padding-top: 0.9rem;
     }
 
     .menu-link {
-      color: @text-color;
+      color: @nav-text-color;
       transition: color 0.1s;
       &:hover {
         color: #d3945f;
