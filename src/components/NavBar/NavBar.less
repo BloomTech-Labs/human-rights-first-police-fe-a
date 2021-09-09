@@ -4,46 +4,35 @@
   background: #003767;
   text-align: left;
   height: 5rem;
+  padding-left: 2rem;
   /*
   This menu-pusher is required to get the mobile menu looking right,
    because the way that the mobile menu activates was by being squashed by a div with 100% width
  */
-  .menu-pusher {
+  .logo-container {
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
     align-items: center;
-    padding-left: 2rem;
-    padding-bottom: 0.5rem;
+    justify-content: center;
+    padding-top: 0.8rem;
+    .bw-logo {
+      width: 9rem;
 
-    .logo-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      .bw-logo {
-        width: 9rem;
-
-        @media (max-width: 879px) {
-          width: 7rem;
-        }
-      }
-
-      .hrf-logo {
-        margin-top: 0.3rem;
+      @media (max-width: 879px) {
         width: 7rem;
+      }
+    }
 
-        @media (max-width: 879px) {
-          width: 5.44rem;
-        }
+    .hrf-logo {
+      margin-top: 0.2rem;
+      width: 7rem;
+
+      @media (max-width: 879px) {
+        width: 5.44rem;
       }
     }
   }
 }
-
-
-
-
-
 
 .menu {
   background: #003767;
@@ -63,8 +52,6 @@
 .ant-menu-horizontal > .ant-menu-item a {
   color: white;
 }
-
-
 
 .ant-menu-item-selected {
   background-color: #ffffff00 !important;

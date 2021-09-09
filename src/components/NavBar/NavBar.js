@@ -29,18 +29,16 @@ const NavBar = () => {
 
   return (
     <div className="navbar-container">
-      <div className="menu-pusher">
-        <a
-          href="https://humanrightsfirst.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div className="logo-container">
-            <img className="bw-logo" alt="blue-witness-logo" src={bwlogo} />
-            <img src={hrflogo} className="hrf-logo" alt="HRF logo" />
-          </div>
-        </a>
-      </div>
+      <a
+        href="https://humanrightsfirst.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div className="logo-container">
+          <img className="bw-logo" alt="blue-witness-logo" src={bwlogo} />
+          <img src={hrflogo} className="hrf-logo" alt="HRF logo" />
+        </div>
+      </a>
       <Menu
         className="menu"
         mode="horizontal"
