@@ -29,7 +29,6 @@
 @media (max-width: 879px) {
   .bw-logo {
     width: 7rem;
-    margin-left: 2rem;
   }
 } 
 
@@ -49,14 +48,12 @@
 @media (max-width: 500px) {
   .bw-logo {
     width: 7rem;
-    margin-left: 2rem;
   }
 } 
 
 @media (max-width: 500px) {
   .hrf-logo {
     width: 5.44rem;
-    margin-top: 3rem;
   }
 } 
 
