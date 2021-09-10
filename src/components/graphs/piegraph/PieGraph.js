@@ -3,7 +3,7 @@ import { Pie } from 'react-chartjs-2';
 
 import colorShader from './colorShader';
 
-import './PieGraph.css';
+import './PieGraph.less';
 
 const incrementor = (incident, type, types) => {
   if (type in types) {
@@ -116,7 +116,7 @@ const PieGraph = ({ data, usState }) => {
   }, [types]);
 
   return (
-    <div>
+    <div className="pie-container">
       <Pie data={graphData} />
     </div>
   );
