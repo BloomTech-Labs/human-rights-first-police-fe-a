@@ -1246,12 +1246,6 @@ form label {
   .pie-graph {
     margin-left: 0;
   }
-
-  .graph-container {
-    margin: -18px;
-    width: 350px;
-    display: block;
-  }
   .pie {
     width: 340px;
     margin: 0 auto;
