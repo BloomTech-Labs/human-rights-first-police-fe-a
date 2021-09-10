@@ -12,7 +12,7 @@ function Legend() {
         </li>
         <li className="rank">
           Rank 2 — Empty Hand: Officers use bodily force to gain control of a
-          situation. Officers may use grabs, holds, joint locks, punches and
+          situation. Officers may use grabs, holds, joint locks, punches, and
           kicks to restrain an individual.
         </li>
         <li className="rank">

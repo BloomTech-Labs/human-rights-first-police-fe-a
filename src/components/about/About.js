@@ -12,7 +12,7 @@ const About = () => {
     <div className="about-page-container">
       <div className="about-top-container">
         <div className="data-description-container">
-          <h1>How We Collected Data</h1>
+          <h1>How We Collect Data</h1>
           <p className="h1-text">
             This website crowdsources data from multiple sources, categorized by
             Machine Learning (ML) techs, and is then approved by a member of the
@@ -37,9 +37,9 @@ const About = () => {
               </a>
               {'. '}
               This repository accumulates and contextualizes crowdsourced
-              evidence of police use of force from various sources. Our second
+              evidence of police use-of-force from various sources. Our second
               resource is Twitter. We continually search Twitter for evidence of
-              police use of force with a Twitter scraper using
+              police use-of-force with a Twitter scraper using
               <a
                 className="about-links"
                 href="https://en.wikipedia.org/wiki/BERT_(language_model)"
@@ -86,11 +86,11 @@ const About = () => {
             <h2>The Blue Witness Project</h2>
             <p>
               The Blue Witness project is a movement to give the public access
-              to reports of police use of force incidents. By crowdsourcing
+              to reports of police use-of-force incidents. By crowdsourcing
               incident reports from Twitter, we create a platform where people
               can contribute to a greater cause. Our database allows our users
               to export report data for their use. We strive to provide a single
-              source of truth on the topic of police use of force, that the
+              source of truth on the topic of police use-of-force, that the
               public can use to inform themselves in the current state of the
               issue.
             </p>
@@ -110,7 +110,7 @@ const About = () => {
           </div>
           <div className="about-bot-container">
             <h2>
-              Our Twitter Scrapper/Bot
+              Our Twitter Scraper/Bot
               <span>
                 {' '}
                 <img
@@ -121,22 +121,21 @@ const About = () => {
               </span>
             </h2>
             <p>
-              The Twitter scraper on the Blue Witness project is responsible
-              for gathering tweets with content-specific criteria, including
-              (but not limited to) keywords such as “police” and “misconduct”
-              and their synonyms. It does this multiple times a day and checks
-              the incoming data against data in our database to prevent
-              duplicates from being entered into the database. It then passes
-              them to the BERT model to be classified and awaits administrator
-              approval. The Twitter bot is a tool that reaches out to Twitter
-              users to confirm or supply the missing information. It is also
-              triggered by the Administration team, and new data gathered awaits
-              approval before being marked as an 'approved' incident report.
-              This enhances the Human Rights First administrator's ability to
-              quickly update the incident map as well as the data available for
-              download for researchers, journalists, students, and activists. If
-              you'd like to know more, feel free to reach out to HRF on our
-              contact page.
+              The Twitter scraper on the Blue Witness project is responsible for
+              gathering tweets with content-specific criteria, including (but
+              not limited to) keywords such as “police” and “misconduct” and
+              their synonyms. It does this multiple times a day and checks the
+              incoming data against data in our database to prevent duplicates
+              from being entered into the database. It then passes them to the
+              BERT model to be classified and awaits administrator approval. The
+              Twitter bot is a tool that reaches out to Twitter users to confirm
+              or supply the missing information. It is also triggered by the
+              Administration Team, and new data gathered awaits approval before
+              being marked as an 'approved' incident report. This enhances the
+              Blue Witness administrator's ability to quickly update the
+              incident map as well as the data available for download for
+              researchers, journalists, students, and activists. If you'd like
+              to know more, feel free to reach out to HRF on our contact page.
             </p>
           </div>
         </div>
