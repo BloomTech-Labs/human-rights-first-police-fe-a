@@ -8,7 +8,7 @@ const Stats = () => {
   return (
     <Content className="BW-container" Dark="On" type="Primary">
       <div className="site-layout-background">
-        <p className="more-info">Click arrows for more infomation</p>
+        <p className="more-info">Click arrows for more information</p>
         <a href="#bw-title" className="arrow-container">
           <div className="arrow"></div>
           <div className="arrow"></div>

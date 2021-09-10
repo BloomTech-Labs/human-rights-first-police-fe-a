@@ -63,7 +63,7 @@ const NavBar = () => {
         </Menu.Item>
         <Menu.Item key="3">
           <Link className="menu-link" to="/graph">
-            Graph
+            Graphs
           </Link>
         </Menu.Item>
         <Menu.Item key="4">
@@ -80,7 +80,7 @@ const NavBar = () => {
             </Menu.Item>
             <Menu.Item key="6">
               <div className="menu-link" onClick={logout}>
-                Log out
+                Log Out
               </div>
             </Menu.Item>
           </>

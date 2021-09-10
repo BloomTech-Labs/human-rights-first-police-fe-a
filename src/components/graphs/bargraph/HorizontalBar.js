@@ -16,7 +16,7 @@ const Horizontalbar = () => {
 
   const data = {
     labels: [
-      'Rank 2 - Empty-hand',
+      'Rank 2 - Empty Hand',
       'Rank 3 - Blunt Force',
       'Rank 4 - Chemical & Electric',
       'Rank 5 - Lethal Force',
@@ -74,8 +74,8 @@ const Horizontalbar = () => {
       <div className="home-bar-graph">
         <h1>Incident Reports Grouped by Level of Police Force</h1>
         <p>
-          This graph is intended to provide an at-a-glance understanding of the
-          types and volume of incident reports that are being catalogued.
+          This graph provides a brief overview of the types and volume of
+          incident reports that are catalogued.
         </p>
         <Legend />
         <HorizontalBar
