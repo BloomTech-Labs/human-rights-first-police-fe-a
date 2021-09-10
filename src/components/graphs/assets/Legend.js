@@ -8,7 +8,6 @@ function Legend() {
       <p className="graph-legend-wrap">
         <li className="rank">
           Rank 1 — Officer Presence: Police are present, but no force detected.
-          This is not shown on the graph.
         </li>
         <li className="rank">
           Rank 2 — Empty-hand: Officers use bodily force to gain control of a
