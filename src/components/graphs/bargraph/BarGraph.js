@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { createDataSet } from '../assets/bargraphAssets';
 
-import './BarGraph.css';
+import './BarGraph.less';
 
 const def = {
   labels: ['Loading Data'],
@@ -37,8 +37,9 @@ const BarGraph = ({ count }) => {
 
   return (
     <>
-      <Bar data={barData} />
-      <br />
+      <div className="bar-container">
+        <Bar data={barData} />
+      </div>
       <p className="graph-disclaimer">
         Note: This graph relies on open source data from multiple sources and a
         machine learning model that is still in beta. These categories may not

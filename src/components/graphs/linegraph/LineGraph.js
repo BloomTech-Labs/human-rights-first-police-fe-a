@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { options } from '../assets';
 
-import './LineGraph.css';
+import './LineGraph.less';
 
 const LineGraph = ({ data, months }) => {
   const [inCategories] = useState({});
@@ -31,13 +31,7 @@ const LineGraph = ({ data, months }) => {
 
   return (
     <>
-      <div
-        style={{
-          backgroundColor: '#191A1A',
-          margin: '0 auto',
-          maxWidth: '1550px',
-        }}
-      >
+      <div className="line-container">
         <Line
           data={{
             labels: labels,
