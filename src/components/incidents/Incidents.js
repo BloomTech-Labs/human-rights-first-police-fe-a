@@ -24,13 +24,7 @@ import { AutoComplete, Pagination, DatePicker } from 'antd';
 import { CSVLink } from 'react-csv'; // helper for export CSV from current State
 import { ConsoleSqlOutlined } from '@ant-design/icons';
 
-let ranks = [
-  'Rank 1',
-  'Rank 2',
-  'Rank 3',
-  'Rank 4',
-  'Rank 5',
-];
+let ranks = ['Rank 1', 'Rank 2', 'Rank 3', 'Rank 4', 'Rank 5'];
 
 const { RangePicker } = DatePicker;
 const { Panel } = Collapse;
@@ -290,7 +284,7 @@ const Incidents = () => {
   return (
     <div className="incident-reports-page">
       <div className="form-container">
-        <h1>Report Search Box</h1>
+        <h1>Search Incident Reports</h1>
         <form className="export-form">
           <label htmlFor="ranks" className="labels">
             Rank
