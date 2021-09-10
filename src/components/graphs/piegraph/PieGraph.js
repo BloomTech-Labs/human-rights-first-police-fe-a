@@ -3,6 +3,8 @@ import { Pie } from 'react-chartjs-2';
 
 import colorShader from './colorShader';
 
+import './PieGraph.css';
+
 const incrementor = (incident, type, types) => {
   if (type in types) {
     types[type] += 1;
