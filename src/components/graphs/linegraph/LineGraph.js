@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Line } from 'react-chartjs-2';
 import { options } from '../assets';
 
+import './LineGraph.css';
+
 const LineGraph = ({ data, months }) => {
   const [inCategories] = useState({});
   const [labels, setLabels] = useState([]);
