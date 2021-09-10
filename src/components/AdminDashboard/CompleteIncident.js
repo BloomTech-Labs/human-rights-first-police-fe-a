@@ -82,7 +82,7 @@ const CompleteIncident = props => {
     <div className="complete-incident">
       <div className="complete-incident-dropdown">
 
-        {!editing ? (
+        {!editing &&
           <>
             {/* Date */}
             <div className="dropdown-text-wrap">
@@ -150,9 +150,9 @@ const CompleteIncident = props => {
               Edit
             </Button>
           </>
+        }
 
-        ) : (
-
+        {editing &&
           <>
             {/* Date */}
             <label className="label">
@@ -267,11 +267,11 @@ const CompleteIncident = props => {
               Apply Changes
             </Button>
           </>
-        )}
+        }
 
         <AntModal incident={incident} />
-      </div >
-    </div >
+      </div>
+    </div>
   );
 };
 

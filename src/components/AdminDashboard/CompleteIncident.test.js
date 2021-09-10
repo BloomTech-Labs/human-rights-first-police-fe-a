@@ -11,7 +11,6 @@ const props = {
   incident: {
     incident_id: 'example',
     src: ['https://www.example.com'],
-    categories: ['less-lethal'],
     city: 'San Jose',
     state: 'California',
     lat: 37.33532,
@@ -19,12 +18,8 @@ const props = {
     title: 'Example',
     desc: 'Example',
     date: '2000-01-01T06:00:00.000Z',
-    verbalization: false,
-    empty_hand_soft: false,
-    empty_hand_hard: false,
-    less_lethal_methods: true,
-    lethal_force: false,
-    uncategorized: false,
+    force_rank: "Rank 4",
+    tags: ['test', 'testing', 'tests']
   },
   formattedDate: null,
   unapprovedIncidents: [],

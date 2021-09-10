@@ -30,10 +30,9 @@ export default function TimelineItems(props) {
             {city}, {state}
           </h4>
 
-          {title ?
-            <h3 className="card-title">{title}</h3>
-            :
-            <h3 className="card-desc">{description}</h3>
+          {title
+            ? <h3 className="card-title">{title}</h3>
+            : <h3 className="card-desc">{description}</h3>
           }
 
           <TimelineDetailsExpander>
