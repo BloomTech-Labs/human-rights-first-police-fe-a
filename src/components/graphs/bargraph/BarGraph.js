@@ -5,6 +5,7 @@ import './BarGraph.less';
 
 const graphOptions = {
   responsive: true,
+  maintainAspectRatio: false,
 };
 
 const def = {
