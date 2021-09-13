@@ -32,9 +32,9 @@ const BarGraph = ({ count }) => {
     const below1100px = window.matchMedia('(max-width: 1100px)');
     const callback = ({ matches }) => {
       setHorizShowing(matches);
-      console.log(matches);
     };
     below1100px.addListener(callback);
+
     return () => {
       below1100px.removeListener(callback);
     };
