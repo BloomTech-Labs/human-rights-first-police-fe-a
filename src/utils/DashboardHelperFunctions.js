@@ -75,6 +75,8 @@ export const getLatAndLong = formValues => {
   const getRequest = new Promise((resolve, reject) => {
     const { city, state } = formValues;
 
+    const mapQuestURL = `https://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAPQUEST_API_KEY}&location=${city},${state}`;
+
     if (!city || !state) {
       throw new Error('Missing city or state');
     } else {
@@ -83,17 +85,18 @@ export const getLatAndLong = formValues => {
     }
 
     axios
-      .get(
-        `https://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAPQUEST_API_KEY}&location=${city},${state}`
-      )
+      .get(mapQuestURL)
+      // .get(
+      //   `https://open.mapquestapi.com/geocoding/v1/address?key=tvbLuDv8Zodf667s026GlEBBFP7c2Glr&location=atlanta,georgia`
+      // )
       .then(res => {
+        console.log('res: ', res);
         const { lat, lng } = res.data.results[0].locations[0].latLng;
-        console.log('working path:', { lat, lng });
-
         resolve([lat, lng]);
       })
       .catch(err => {
         console.log('bad path', err);
+        console.log('city, state: ', city, state);
         reject([null, null]);
       });
   });

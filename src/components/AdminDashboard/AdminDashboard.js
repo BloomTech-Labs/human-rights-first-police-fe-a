@@ -138,11 +138,11 @@ const AdminDashboard = () => {
     );
 
     // *** getLatAndLong -> get long/lat from mapquest api for newly approved
-    console.log('Admin - reviewedIncidents: ', reviewedIncidents);
+    console.log('reviewedIncidents: ', reviewedIncidents);
 
     getLatAndLong(reviewedIncidents[0]);
 
-    console.log('Admin - reviewedIncidents: ', reviewedIncidents);
+    console.log('reviewedIncidents: ', reviewedIncidents);
 
     putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
 
