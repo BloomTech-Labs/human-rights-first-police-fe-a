@@ -13,6 +13,11 @@ const incrementor = (incident, type, types) => {
   }
 };
 
+const graphOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+};
+
 const getTypesOfForce = data => {
   let types = {};
 
@@ -117,7 +122,7 @@ const PieGraph = ({ data, usState }) => {
 
   return (
     <div className="pie-container">
-      <Pie data={graphData} />
+      <Pie data={graphData} options={graphOptions} />
     </div>
   );
 };
