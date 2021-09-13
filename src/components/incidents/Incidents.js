@@ -284,7 +284,7 @@ const Incidents = () => {
   return (
     <div className="incident-reports-page">
       <div className="form-container">
-        <h1>Search Incident Reports</h1>
+        <h1>Filter Incident Reports</h1>
         <form className="export-form">
           <label htmlFor="ranks" className="labels">
             Rank
