@@ -25,6 +25,14 @@ const def = {
 const BarGraph = ({ count }) => {
   const [barData, setBarData] = useState(def);
   const [horizBarData, setHorizBarData] = useState(def);
+  const [horizShowing, setHorizShowing] = useState(false);
+
+  useEffect(() => {
+    const below1100px = window.matchMedia('(max-width: 1100px)');
+    below1100px.addListener(({ matches }) => {
+      setHorizShowing(matches);
+    });
+  }, []);
 
   useEffect(() => {
     const data = {
@@ -48,8 +56,11 @@ const BarGraph = ({ count }) => {
   return (
     <>
       <div className="bar-container">
-        <HorizontalBar data={horizBarData} options={graphOptions} />
-        <Bar data={barData} options={graphOptions} />
+        {horizShowing ? (
+          <HorizontalBar data={horizBarData} options={graphOptions} />
+        ) : (
+          <Bar data={barData} options={graphOptions} />
+        )}
       </div>
       <p className="graph-disclaimer">
         Note: This graph relies on open source data from multiple sources and a
