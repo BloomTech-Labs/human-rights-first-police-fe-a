@@ -50,15 +50,15 @@ const AddIncident = props => {
     }
 
     // getting coordinates
-    // const [lat, long] = await getLatAndLong(formValues);
+    const [lat, long] = await getLatAndLong(formValues);
 
     // creating new incident object to be posted
     const newIncident = {
       ...formValues,
       incident_date: newDateString,
       src: [formValues.src],
-      // lat,
-      // long,
+      lat,
+      long,
     };
     console.log(newIncident);
     // posting new incident to database

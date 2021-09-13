@@ -12,6 +12,7 @@ import {
   getData,
   sortApproved,
   putIncidents,
+  getLatAndLong,
 } from '../../utils/DashboardHelperFunctions.js';
 
 import axios from 'axios';
@@ -47,7 +48,6 @@ const AdminDashboard = () => {
   const [listType, setListType] = useState('unapproved');
 
   // modal
-
   const [showModal, setShowModal] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');
 
@@ -136,6 +136,11 @@ const AdminDashboard = () => {
       currList,
       selected
     );
+    // *** getLatAndLong -> get long/lat from mapquest api for newly approved
+    console.log('Admin selected: ', selected); // provides incidentID
+    console.log('Admin reviewedIncidents: ', reviewedIncidents);
+    console.log('Admin unreviewedIncidents: ', unreviewedIncidents);
+
     putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
     if (listType === 'unapproved') {
       setUnapprovedIncidents(unreviewedIncidents);

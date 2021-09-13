@@ -30,6 +30,10 @@ export default function Clusters({ zoomOnCluster }) {
   const incidents = useIncidentFilter();
   const points = incidents.map(id => incident.data[id].geoJSON);
 
+  console.log('incident: ', incident);
+  console.log('incidents: ', incidents);
+  console.log('points: ', points);
+
   // See for supercluster usage and config: https://github.com/mapbox/supercluster
   const supercluster = useMemo(() => {
     const sc = new Supercluster({ radius: 40, maxZoom: 17 });
