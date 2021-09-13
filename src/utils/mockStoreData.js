@@ -34,7 +34,7 @@ const incidentsData = [
     desc:
       "Down the street from the Portland ICE facility, a police officer pushes protesters back. The officer passes one protester who then appears to turn on their phone's flashlight. The officer doubles back and pepper sprays the individual.",
     categories: ['less-lethal', 'pepper-spray', 'protester', 'spray'],
-    force_rank: 'Rank 4 - Chemical & Electric',
+    force_rank: 'Rank 4',
   },
   {
     id: 1320,
@@ -50,7 +50,7 @@ const incidentsData = [
     desc:
       'As the curfew approached outside the Brooklyn Center precinct, a protester can be seeing waving a sign several feet away from officers who are huddled behind a chain link fence. One officer fires a less-lethal projectile at the protester, striking them in the foot. There is no evident provocation.',
     categories: ['less-lethal', 'projectile', 'protester', 'shoot'],
-    force_rank: 'Rank 5 - Lethal Force',
+    force_rank: 'Rank 5',
   },
   {
     id: 1330,
@@ -79,7 +79,7 @@ const incidentsData = [
       'shove',
       'tackle',
     ],
-    force_rank: 'Rank 1 - Police Presence',
+    force_rank: 'Rank 1',
   },
   {
     id: 1327,
@@ -105,7 +105,7 @@ const incidentsData = [
       'shove',
       'tackle',
     ],
-    force_rank: 'Rank 2 - Empty-hand',
+    force_rank: 'Rank 2',
   },
   {
     id: 1323,
@@ -121,7 +121,7 @@ const incidentsData = [
     desc:
       'Police and protesters face off on opposite sides of a barricade. Police discharge pepper spray in a wide berth, targeting protesters who step towards them in particular. It is unclear what instigated this incident, although one protester does appear to be trying to recover a red umbrella on the ground.',
     categories: ['less-lethal', 'pepper-spray', 'protester', 'spray'],
-    force_rank: 'Rank 4 - Chemical & Electric',
+    force_rank: 'Rank 4',
   },
   {
     id: 1328,
@@ -143,7 +143,7 @@ const incidentsData = [
     desc:
       'Police arrested a protester near Jefferson Square Park. During the arrest, police tackled the protester to the ground and punched him repeatedly to subdue him. The protester was allegedly flexing his arms, making it difficult for officers to handcuff him.',
     categories: ['arrest', 'protester', 'punch', 'strike'],
-    force_rank: 'Rank 2 - Empty-hand',
+    force_rank: 'Rank 2',
   },
   {
     id: 1309,
@@ -162,7 +162,7 @@ const incidentsData = [
     desc:
       'During a protest regarding the ferries on the island of Culebra, Puerto Rico, protesting kayakers were rammed by a police boat and knocked into the water. Police then hauled the kayak into their boat, leaving the protesters treading water.',
     categories: ['boat', 'protester'],
-    force_rank: 'Rank 1 - Police Presence',
+    force_rank: 'Rank 1',
   },
   {
     id: 1307,
@@ -193,7 +193,7 @@ const incidentsData = [
       'tackle',
       'zip-tie',
     ],
-    force_rank: 'Rank 3 - Blunt Force',
+    force_rank: 'Rank 3',
   },
   {
     id: 1308,
@@ -220,7 +220,7 @@ const incidentsData = [
       'rubber-bullet',
       'shoot',
     ],
-    force_rank: 'Rank 4 - Chemical & Electric',
+    force_rank: 'Rank 4',
   },
 ];
 

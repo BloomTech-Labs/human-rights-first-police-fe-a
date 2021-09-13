@@ -20,23 +20,23 @@ const getTypesOfForce = data => {
       //   incrementor(incident, 'Uncategorized', types);
       //   break;
 
-      case 'Rank 1 - Officer Presence':
+      case 'Rank 1':
         incrementor(incident, 'Officer Presence', types);
         break;
 
-      case 'Rank 2 - Empty-hand':
+      case 'Rank 2':
         incrementor(incident, 'Empty Hand', types);
         break;
 
-      case 'Rank 3 - Blunt Force':
+      case 'Rank 3':
         incrementor(incident, 'Blunt Force', types);
         break;
 
-      case 'Rank 4 - Chemical & Electric':
+      case 'Rank 4':
         incrementor(incident, 'Chemical & Electric', types);
         break;
 
-      case 'Rank 5 - Lethal Force':
+      case 'Rank 5':
         incrementor(incident, 'Lethal Force', types);
         break;
 
