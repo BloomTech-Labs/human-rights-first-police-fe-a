@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { createDataSet } from '../assets/bargraphAssets';
+import { Bar, HorizontalBar } from 'react-chartjs-2';
 
 import './BarGraph.less';
+
+const graphOptions = {
+  responsive: true,
+};
 
 const def = {
   labels: ['Loading Data'],
   datasets: [
     {
-      type: 'horizontalBar',
       label: 'Number of Incidents',
       backgroundColor: 'rgb(103,183,220)',
       borderColor: 'rgb(103,183,220)',
@@ -22,23 +24,32 @@ const def = {
 
 const BarGraph = ({ count }) => {
   const [barData, setBarData] = useState(def);
-  const [incidentCount, setIncidentCount] = useState(null);
+  const [horizBarData, setHorizBarData] = useState(def);
 
   useEffect(() => {
-    setIncidentCount(count);
+    const data = {
+      datasets: [
+        {
+          ...def.datasets[0],
+          data: Object.values(count).map(elem => elem.count),
+        },
+      ],
+    };
+    setBarData({
+      ...data,
+      labels: Object.keys(count),
+    });
+    setHorizBarData({
+      ...data,
+      labels: Object.values(count).map(elem => elem.abbreviation),
+    });
   }, [count]);
-
-  useEffect(() => {
-    if (incidentCount) {
-      const dataset = createDataSet(incidentCount);
-      setBarData(dataset);
-    }
-  }, [incidentCount]);
 
   return (
     <>
       <div className="bar-container">
-        <Bar data={barData} />
+        <HorizontalBar data={horizBarData} options={graphOptions} />
+        <Bar data={barData} options={graphOptions} />
       </div>
       <p className="graph-disclaimer">
         Note: This graph relies on open source data from multiple sources and a
