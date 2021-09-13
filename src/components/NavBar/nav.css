@@ -6,63 +6,50 @@
   height: 5rem;
 }
 
-.logo-container {
+/*
+  This menu-pusher is required to get the mobile menu looking right,
+   because the way that the mobile menu activates was by being squashed by a div with 100% width
+*/
+.menu-pusher {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 2rem;
+  padding-bottom: 0.5rem;
   width: 20%;
+}
+
+@media (max-width: 879px) {
+  .menu-pusher {
+    width: 100%;
+  }
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .bw-logo {
   width: 9rem;
-  margin-left: 2rem;
-  margin-top: -0.2rem;
 }
 
 .hrf-logo {
-    width: 7rem;
-    margin-left: -8.6rem;
-    margin-top: 3.2rem;
+  margin-top: 0.3rem;
+  width: 7rem;
 }
 
 @media (max-width: 879px) {
-  .logo-container {
-    width: 100%;
-  }
-} 
-
-@media (max-width: 879px) {
   .bw-logo {
     width: 7rem;
-    margin-left: 2rem;
-    margin-top: -0.2rem;
   }
 } 
 
 @media (max-width: 879px) {
   .hrf-logo {
     width: 5.44rem;
-    margin-left: -6.5rem;
-    margin-top: 3rem;
-  }
-} 
-
-@media (max-width: 500px) {
-  .logo-container {
-    width: 100%;
-  }
-} 
-
-@media (max-width: 500px) {
-  .bw-logo {
-    width: 7rem;
-    margin-left: 2rem;
-    margin-top: -0.2rem;
-  }
-} 
-
-@media (max-width: 500px) {
-  .hrf-logo {
-    width: 5.44rem;
-    margin-left: -6.5rem;
-    margin-top: 3rem;
   }
 } 
 

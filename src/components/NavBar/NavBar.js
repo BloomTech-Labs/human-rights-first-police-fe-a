@@ -29,16 +29,16 @@ const NavBar = () => {
 
   return (
     <div className="navbar-container">
-      <div className="logo-container">
-        <Link to="/">
-          <img className="bw-logo" alt="blue-witness-logo" src={bwlogo} />
-        </Link>
+      <div className="menu-pusher">
         <a
-          href="https://www.humanrightsfirst.org"
+          href="https://humanrightsfirst.org"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <img src={hrflogo} className="hrf-logo" alt="HRF logo" />
+          <div className="logo-container">
+            <img className="bw-logo" alt="blue-witness-logo" src={bwlogo} />
+            <img src={hrflogo} className="hrf-logo" alt="HRF logo" />
+          </div>
         </a>
       </div>
       <Menu
