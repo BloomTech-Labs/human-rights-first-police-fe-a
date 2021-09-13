@@ -74,22 +74,26 @@ export const applyEdits = (oktaAxios, formValues, incident) => {
 export const getLatAndLong = formValues => {
   const getRequest = new Promise((resolve, reject) => {
     const { city, state } = formValues;
-    // ******
-    console.log('city, state: ', city, state);
-    // *****
+
+    if (!city || !state) {
+      throw new Error('Missing city or state');
+    } else {
+      city.toLowerCase();
+      state.toLowerCase();
+    }
+
     axios
       .get(
-        `https://open.mapquestapi.com/geocoding/v1/address?key=${
-          process.env.REACT_APP_MAPQUEST_API_KEY
-        }&location=${city ? city.toLowerCase() : ''}${
-          state ? ',' + state.toLowerCase() : ''
-        }`
+        `https://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAPQUEST_API_KEY}&location=${city},${state}`
       )
       .then(res => {
         const { lat, lng } = res.data.results[0].locations[0].latLng;
+        console.log('working path:', { lat, lng });
+
         resolve([lat, lng]);
       })
       .catch(err => {
+        console.log('bad path', err);
         reject([null, null]);
       });
   });

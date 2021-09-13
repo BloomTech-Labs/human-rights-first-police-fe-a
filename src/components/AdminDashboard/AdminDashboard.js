@@ -142,6 +142,8 @@ const AdminDashboard = () => {
 
     getLatAndLong(reviewedIncidents[0]);
 
+    console.log('Admin - reviewedIncidents: ', reviewedIncidents);
+
     putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
 
     if (listType === 'unapproved') {
