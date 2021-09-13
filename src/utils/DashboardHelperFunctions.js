@@ -2,6 +2,9 @@ import axios from 'axios';
 
 export const putIncidents = (oktaAxios, incidents, status) => {
   const reviewedIncidents = incidents.map(incident => {
+    // *****
+    console.log('city: ', incident.city);
+    console.log('state: ', incident.state);
     return {
       status: status,
       city: incident.city,
@@ -12,6 +15,10 @@ export const putIncidents = (oktaAxios, incidents, status) => {
       incident_id: incident.incident_id,
     };
   });
+
+  // *** getLatAndLong here ?? **
+  console.log('Dashboard incidents: ', incidents);
+
   oktaAxios
     .put('dashboard/incidents', reviewedIncidents)
     .then(res => {
@@ -68,7 +75,7 @@ export const applyEdits = (oktaAxios, formValues, incident) => {
   return putRequest;
 };
 
-// AddIncident.js
+// Gets Longitude/Latitude so geoJSON coordinates can be created in Clusters.js
 export const getLatAndLong = formValues => {
   const getRequest = new Promise((resolve, reject) => {
     const { city, state } = formValues;
