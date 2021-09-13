@@ -37,6 +37,7 @@ const BarGraph = ({ count }) => {
 
   useEffect(() => {
     const queryMatcher = window.matchMedia('(max-width: 1100px)');
+    setHorizShowing(queryMatcher.matches);
     const callback = ({ matches }) => {
       setHorizShowing(matches);
     };
