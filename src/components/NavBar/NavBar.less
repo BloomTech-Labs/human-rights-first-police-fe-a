@@ -63,9 +63,8 @@
       }
     }
   }
-
-  .ant-menu-item-selected {
-    background-color: @transparent !important;
+  .ant-menu-submenu-title span {
+    color: #fff;
   }
 
   /* Fix for bottom border of nav-menu collapsed icon (removing it will somehow still display black border when leaving hover state */
@@ -79,4 +78,8 @@
   .ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-submenu-selected {
     border-color: @background-color;
   }
+}
+
+.ant-menu-item-selected {
+  background: @transparent !important;
 }
