@@ -137,7 +137,7 @@ const AdminDashboard = () => {
       selected
     );
 
-    // *** getLatAndLong -> get long/lat from mapquest api for newly approved
+    // delete logs ****
     console.log('reviewedIncidents: ', reviewedIncidents);
 
     getLatAndLong(reviewedIncidents[0]);
