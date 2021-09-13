@@ -136,12 +136,14 @@ const AdminDashboard = () => {
       currList,
       selected
     );
+
     // *** getLatAndLong -> get long/lat from mapquest api for newly approved
-    console.log('Admin selected: ', selected); // provides incidentID
-    console.log('Admin reviewedIncidents: ', reviewedIncidents);
-    console.log('Admin unreviewedIncidents: ', unreviewedIncidents);
+    console.log('Admin - reviewedIncidents: ', reviewedIncidents);
+
+    getLatAndLong(reviewedIncidents[0]);
 
     putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
+
     if (listType === 'unapproved') {
       setUnapprovedIncidents(unreviewedIncidents);
     } else if (listType === 'form-responses') {

@@ -60,9 +60,8 @@ const AddIncident = props => {
       lat,
       long,
     };
-    console.log(newIncident);
-    // posting new incident to database
 
+    // posting new incident to database
     const modalMessage = await postIncident(oktaAxios, newIncident);
 
     setModalText(modalMessage);
