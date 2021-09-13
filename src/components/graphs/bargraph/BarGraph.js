@@ -30,9 +30,14 @@ const BarGraph = ({ count }) => {
 
   useEffect(() => {
     const below1100px = window.matchMedia('(max-width: 1100px)');
-    below1100px.addListener(({ matches }) => {
+    const callback = ({ matches }) => {
       setHorizShowing(matches);
-    });
+      console.log(matches);
+    };
+    below1100px.addListener(callback);
+    return () => {
+      below1100px.removeListener(callback);
+    };
   }, []);
 
   useEffect(() => {
