@@ -6,6 +6,10 @@ import './BarGraph.less';
 const graphOptions = {
   responsive: true,
   maintainAspectRatio: false,
+};
+
+const horizOptions = {
+  ...graphOptions,
   scales: {
     xAxes: [{ position: 'top' }],
   },
@@ -66,7 +70,7 @@ const BarGraph = ({ count }) => {
     <>
       <div className="bar-container">
         {horizShowing ? (
-          <HorizontalBar data={horizBarData} options={graphOptions} />
+          <HorizontalBar data={horizBarData} options={horizOptions} />
         ) : (
           <Bar data={barData} options={graphOptions} />
         )}
