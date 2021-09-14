@@ -16,7 +16,7 @@ const initData = {
   ],
 };
 
-const graphOptions = {
+const options = {
   responsive: true,
   maintainAspectRatio: false,
   legend: {
@@ -25,7 +25,6 @@ const graphOptions = {
   scales: {
     yAxes: [
       {
-        stacked: false,
         beginAtZero: true,
         scaleLabel: {
           fontSize: 20,
@@ -38,7 +37,6 @@ const graphOptions = {
     ],
     xAxes: [
       {
-        stacked: false,
         scaleLabel: {
           fontSize: 20,
           lineHeight: 1,
@@ -54,52 +52,40 @@ const graphOptions = {
 };
 
 const LineGraph = ({ data, months }) => {
-  const [dataObj, setDataObj] = useState(initData);
-  const [inCategories] = useState({});
-  const [labels, setLabels] = useState([]);
-  const [lineData, setLineData] = useState([]);
+  const [lineData, setLineData] = useState(initData);
 
-  console.log(months);
+  console.log('data:', data);
   useEffect(() => {
-    setDataObj({
-      ...dataObj,
+    setLineData({
+      ...lineData,
       labels: months,
+      datasets: [
+        {
+          ...lineData.datasets[0],
+          data: months.map(month => data[month]),
+        },
+      ],
     });
-    setLabels(months);
   }, [data, months]);
 
-  useEffect(() => {
-    if (
-      !(Object.keys(data).length === 0 && inCategories.constructor === Object)
-    ) {
-      let lineDataPoints = [];
-
-      months.forEach(month => {
-        lineDataPoints.push(data[month]);
-      });
-
-      setLineData(lineDataPoints);
-    }
-  }, [data, labels]);
-
-  console.log(dataObj);
   return (
     <>
       <div className="line-container">
         <Line
-          data={{
-            labels: labels,
-            datasets: [
-              {
-                data: lineData,
-                borderColor: '#2f54eb',
-                backgroundColor: '#597ef7',
-                pointBackgroundColor: '#e63946',
-                pointBorderColor: '#95363d',
-              },
-            ],
-          }}
-          options={graphOptions}
+          data={lineData}
+          /* data={{ */
+          /*   labels: labels, */
+          /*   datasets: [ */
+          /*     { */
+          /*       data: lineData, */
+          /*       borderColor: '#2f54eb', */
+          /*       backgroundColor: '#597ef7', */
+          /*       pointBackgroundColor: '#e63946', */
+          /*       pointBorderColor: '#95363d', */
+          /*     }, */
+          /*   ], */
+          /* }} */
+          options={options}
         />
       </div>
       <p className="graph-disclaimer">
