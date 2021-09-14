@@ -1,29 +1,3 @@
-const defaultData = {
-  labels: [
-    'Jan',
-    'Feb',
-    'Mar',
-    'Apr',
-    'May',
-    'Jun',
-    'Jul',
-    'Aug',
-    'Sep',
-    'Oct',
-    'Nov',
-    'Dec',
-  ],
-  datasets: [
-    {
-      incidentId: 'all',
-      label: 'All',
-      data: [],
-      borderColor: '#c0ba17',
-      backgroundColor: 'rgba(0,0,0,0)',
-    },
-  ],
-};
-
 const options = {
   responsive: true,
   maintainAspectRatio: false,
@@ -62,4 +36,4 @@ const options = {
   },
 };
 
-export { options, defaultData };
+export { options };
