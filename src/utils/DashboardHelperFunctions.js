@@ -71,7 +71,6 @@ export const applyEdits = (oktaAxios, formValues, incident) => {
 
 // MapQuest API to get Latitude/Longitude used in clusters (Clusters.js)
 export const getLatAndLong = formValues => {
-  console.log('formValues: ', formValues);
   const getRequest = new Promise((resolve, reject) => {
     const { city, state } = formValues;
 
@@ -88,9 +87,7 @@ export const getLatAndLong = formValues => {
     axios
       .get(mapQuestURL)
       .then(res => {
-        console.log('res: ', res);
         const { lat, lng } = res.data.results[0].locations[0].latLng;
-        console.log('lat: ', lat, 'long: ', lng);
         resolve([lat, lng]);
       })
       .catch(err => {
