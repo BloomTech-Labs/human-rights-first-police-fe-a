@@ -6,12 +6,42 @@ import './BarGraph.less';
 const graphOptions = {
   responsive: true,
   maintainAspectRatio: false,
+  legend: {
+    display: false,
+    position: 'left',
+    labels: {
+      boxWidth: 0,
+    },
+  },
 };
 
 const horizOptions = {
   ...graphOptions,
   scales: {
-    xAxes: [{ position: 'top' }],
+    xAxes: [
+      {
+        position: 'top',
+        scaleLabel: {
+          fontSize: 14,
+          display: true,
+          labelString: 'Number of Incidents',
+        },
+      },
+    ],
+    yAxes: [
+      {
+        position: 'left',
+        scaleLabel: {
+          fontSize: 14,
+          display: true,
+          labelString: 'U.S. State',
+        },
+      },
+    ],
+  },
+  legend: {
+    ...graphOptions.legend,
+    position: 'top',
   },
 };
 
@@ -20,8 +50,8 @@ const def = {
   datasets: [
     {
       label: 'Number of Incidents',
-      backgroundColor: 'rgb(103,183,220)',
-      borderColor: 'rgb(103,183,220)',
+      backgroundColor: '#597ef7',
+      borderColor: '#2f54eb',
       borderWidth: 1,
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
