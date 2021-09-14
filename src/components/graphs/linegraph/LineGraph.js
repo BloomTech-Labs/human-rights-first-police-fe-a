@@ -54,7 +54,6 @@ const options = {
 const LineGraph = ({ data, months }) => {
   const [lineData, setLineData] = useState(initData);
 
-  console.log('data:', data);
   useEffect(() => {
     setLineData({
       ...lineData,
@@ -71,22 +70,7 @@ const LineGraph = ({ data, months }) => {
   return (
     <>
       <div className="line-container">
-        <Line
-          data={lineData}
-          /* data={{ */
-          /*   labels: labels, */
-          /*   datasets: [ */
-          /*     { */
-          /*       data: lineData, */
-          /*       borderColor: '#2f54eb', */
-          /*       backgroundColor: '#597ef7', */
-          /*       pointBackgroundColor: '#e63946', */
-          /*       pointBorderColor: '#95363d', */
-          /*     }, */
-          /*   ], */
-          /* }} */
-          options={options}
-        />
+        <Line data={lineData} options={options} />
       </div>
       <p className="graph-disclaimer">
         Note: This graph relies on open source data from multiple sources and a
