@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const putIncidents = (oktaAxios, incidents, status) => {
-  console.log('Dashboard - incidents: ', incidents);
   const reviewedIncidents = incidents.map(incident => {
     return {
       status: status,
@@ -70,12 +69,11 @@ export const applyEdits = (oktaAxios, formValues, incident) => {
   return putRequest;
 };
 
-// MapQuest API to get Longitude/Latitude for map clusters (Clusters.js)
+// MapQuest API to get Latitude/Longitude used in clusters (Clusters.js)
 export const getLatAndLong = formValues => {
+  console.log('formValues: ', formValues);
   const getRequest = new Promise((resolve, reject) => {
     const { city, state } = formValues;
-
-    const mapQuestURL = `https://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAPQUEST_API_KEY}&location=${city},${state}`;
 
     if (!city || !state) {
       throw new Error('Missing city or state');
@@ -84,19 +82,19 @@ export const getLatAndLong = formValues => {
       state.toLowerCase();
     }
 
+    const mapQuestURL = `https://open.mapquestapi.com/geocoding/v1/address?key=
+      ${process.env.REACT_APP_MAPQUEST_API_KEY}&location=${city},${state}`;
+
     axios
       .get(mapQuestURL)
-      // .get(
-      //   `https://open.mapquestapi.com/geocoding/v1/address?key=tvbLuDv8Zodf667s026GlEBBFP7c2Glr&location=atlanta,georgia`
-      // )
       .then(res => {
         console.log('res: ', res);
         const { lat, lng } = res.data.results[0].locations[0].latLng;
+        console.log('lat: ', lat, 'long: ', lng);
         resolve([lat, lng]);
       })
       .catch(err => {
-        console.log('bad path', err);
-        console.log('city, state: ', city, state);
+        console.log('Error: ', err);
         reject([null, null]);
       });
   });
