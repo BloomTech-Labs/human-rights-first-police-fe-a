@@ -100,7 +100,6 @@ function AntTable(props) {
               <CompleteIncident
                 incident={incident}
                 formattedDate={formattingDate(incident)}
-                getData={getData}
                 setUnapprovedIncidents={setUnapprovedIncidents}
               />
             );

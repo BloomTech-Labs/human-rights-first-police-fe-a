@@ -16,10 +16,12 @@
   margin-bottom: 2%;
   border: solid #e3e8ee 1px;
   width: 97%;
+  display: block;
 }
 
 .label {
   font-weight: bold;
+  display: block;
 }
 
 .complete-incident-dropdown {
