@@ -7,7 +7,6 @@ import './LineGraph.less';
 const LineGraph = ({ data, months }) => {
   const [inCategories] = useState({});
   const [labels, setLabels] = useState([]);
-  const [incidentID] = useState('all');
   const [label] = useState('All');
   const [lineData, setLineData] = useState([]);
 
@@ -29,6 +28,7 @@ const LineGraph = ({ data, months }) => {
     }
   }, [data, labels]);
 
+  console.log(options);
   return (
     <>
       <div className="line-container">
@@ -37,7 +37,6 @@ const LineGraph = ({ data, months }) => {
             labels: labels,
             datasets: [
               {
-                incidentId: incidentID,
                 label: label,
                 data: lineData,
                 borderColor: '#2f54eb',

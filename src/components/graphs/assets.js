@@ -26,12 +26,9 @@ const defaultData = {
 
 const options = {
   responsive: true,
+  maintainAspectRatio: false,
   legend: {
     display: false,
-    labels: {
-      fontSize: 16,
-      padding: 32,
-    },
   },
   scales: {
     yAxes: [
@@ -40,12 +37,10 @@ const options = {
         beginAtZero: true,
         scaleLabel: {
           fontSize: 20,
-          lineHeight: 2,
+          lineHeight: 1,
           display: true,
           labelString: '# of incidents',
-        },
-        ticks: {
-          autoSkip: false,
+          padding: 0,
         },
       },
     ],
@@ -55,12 +50,12 @@ const options = {
         beginAtZero: true,
         scaleLabel: {
           fontSize: 20,
-          lineHeight: 2,
+          lineHeight: 1,
           display: true,
           labelString: 'Months',
-        },
-        ticks: {
-          autoSkip: false,
+          padding: {
+            bottom: 10,
+          },
         },
       },
     ],
