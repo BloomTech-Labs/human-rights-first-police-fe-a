@@ -13,7 +13,9 @@ const graphOptions = {
           fontSize: 20,
           display: true,
           labelString: 'U.S. State',
-          padding: 20,
+          padding: {
+            top: 20,
+          },
         },
       },
     ],
@@ -23,6 +25,9 @@ const graphOptions = {
           fontSize: 20,
           display: true,
           labelString: 'Number of Incidents',
+          padding: {
+            bottom: 20,
+          },
         },
       },
     ],
@@ -39,7 +44,7 @@ const horizOptions = {
       {
         position: 'top',
         scaleLabel: {
-          fontSize: 14,
+          fontSize: 18,
           display: true,
           labelString: 'Number of Incidents',
         },
@@ -48,7 +53,7 @@ const horizOptions = {
     yAxes: [
       {
         scaleLabel: {
-          fontSize: 14,
+          fontSize: 18,
           display: true,
           labelString: 'U.S. State',
         },
