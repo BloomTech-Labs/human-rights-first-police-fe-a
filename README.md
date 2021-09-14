@@ -10,6 +10,12 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Contributors
 
+### Labs 38
+|[Kelly Jerrell](https://github.com/kcjerrell)|[Austin Carman](https://github.com/austin-carman)|[Ethan Edmond](https://github.com/Ethan-Edmond)|[Ahmed Serag](https://github.com/ahmedseragcodes)|[Jeremiah Candelaria](https://github.com/imjeremiah)|
+| :-: | :-: | :-: | :-: | :-: |
+|[<img src="https://avatars.githubusercontent.com/u/74943910?v=4" width = "200" />](https://github.com/kcjerrell)|[<img src="https://avatars.githubusercontent.com/u/78825655?v=4" width = "200" />](https://github.com/austin-carman)|[<img src="https://avatars.githubusercontent.com/u/71735640?v=4" width = "200" />](https://github.com/Ethan-Edmond)|[<img src="https://avatars.githubusercontent.com/u/70908925?v=4" width = "200" />](https://github.com/ahmedseragcodes)|[<img src="https://avatars.githubusercontent.com/u/52246955?v=4" width = "200" />](https://github.com/imjeremiah)|
+|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/kcjerrell/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/austin-carman/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ethan-edmond/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ahmedcanam/)|[ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/jeremiahcandelaria/)|
+
 ### Labs 37
 |[Alvin Joseph](https://github.com/alvin-joseph)|[Cooper Jackson](https://github.com/cooper-jackson)|[Devin Mitchell](https://github.com/devin-mitchell)|[Johnny Murillo](https://github.com/jossters)|[Ryan Dill](https://github.com/Ryand1127)|[Tony Yang](https://github.com/n0tybynature)|[Nicholas Cabuno](https://github.com/nickcabuno)|
 | :-: | :-: | :-: | :-: | :-: | :-: | :-: |

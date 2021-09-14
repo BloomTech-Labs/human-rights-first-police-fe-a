@@ -2,6 +2,28 @@
 
 const labsCohorts = [
   {
+    number: 38,
+    students: [
+      { name: 'Ahmed Serag', githubUser: 'ahmedseragcodes', roles: ['tpm'] },
+      { name: 'Jeremiah Candelaria', githubUser: 'imjeremiah', roles: ['tpm'] },
+      { name: 'Onaje Oladuwa', githubUser: 'ooladuwa', roles: ['be'] },
+      { name: 'Luis Garcia', githubUser: 'lgarcia2689', roles: ['be'] },
+      { name: 'Kelly Jerrell', githubUser: 'kcjerrell', roles: ['fe'] },
+      { name: 'Austin Carman', githubUser: 'austin-carman', roles: ['fe'] },
+      { name: 'Ethan Edmond', githubUser: 'Ethan-Edmond', roles: ['design'] },
+      {
+        name: 'Christopher Chilton',
+        githubUser: 'ChristopherKchilton',
+        roles: ['ds'],
+      },
+      { name: 'Ian Knight', githubUser: 'iknight7000', roles: ['ds'] },
+      { name: 'Gabriel Nosek', githubUser: 'gaben3722', roles: ['mle'] },
+      { name: 'Joshua Araujo', githubUser: 'joshua-araujo', roles: ['mle'] },
+      { name: 'Michael Carrier', githubUser: 'mikecarrier4', roles: ['mle'] },
+      { name: 'Mudesir Suleyman', githubUser: 'mudesir', roles: ['mle'] },
+    ],
+  },
+  {
     number: 37,
     students: [
       { name: 'Ryan Fikejs', githubUser: 'RyanFikejs', roles: ['tpm'] },
