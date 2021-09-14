@@ -6,12 +6,29 @@ import './BarGraph.less';
 const graphOptions = {
   responsive: true,
   maintainAspectRatio: false,
+  scales: {
+    xAxes: [
+      {
+        scaleLabel: {
+          fontSize: 20,
+          display: true,
+          labelString: 'U.S. State',
+          padding: 20,
+        },
+      },
+    ],
+    yAxes: [
+      {
+        scaleLabel: {
+          fontSize: 20,
+          display: true,
+          labelString: 'Number of Incidents',
+        },
+      },
+    ],
+  },
   legend: {
     display: false,
-    position: 'left',
-    labels: {
-      boxWidth: 0,
-    },
   },
 };
 
@@ -30,7 +47,6 @@ const horizOptions = {
     ],
     yAxes: [
       {
-        position: 'left',
         scaleLabel: {
           fontSize: 14,
           display: true,
@@ -38,10 +54,6 @@ const horizOptions = {
         },
       },
     ],
-  },
-  legend: {
-    ...graphOptions.legend,
-    position: 'top',
   },
 };
 
