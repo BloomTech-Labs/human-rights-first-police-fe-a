@@ -17,7 +17,7 @@ import {
 
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import IncidentStatusForm from './IncidentStatusForm';
+import IncidentStatus from './IncidentStatus';
 
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
@@ -136,8 +136,7 @@ const AdminDashboard = () => {
     }
   };
 
-  const approveAndRejectHandler = async evt => {
-    evt.preventDefault();
+  const approveAndRejectHandler = async (evt, newStatus) => {
     const [reviewedIncidents, unreviewedIncidents] = sortApproved(
       currList,
       selected
@@ -147,7 +146,7 @@ const AdminDashboard = () => {
     reviewedIncidents[0].lat = latAndLong[0];
     reviewedIncidents[0].long = latAndLong[1];
 
-    putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
+    putIncidents(oktaAxios, reviewedIncidents, newStatus);
 
     if (listType === 'unapproved') {
       setUnapprovedIncidents(unreviewedIncidents);
@@ -225,7 +224,7 @@ const AdminDashboard = () => {
             className="approve-btn"
             onClick={() => setListType('unapproved')}
           >
-            Unapproved Incidents
+            Pending Incidents
           </button>
           <button
             className="approve-btn"
@@ -247,19 +246,17 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-
       <div className="dashboard-container">
-
         <DashboardTop
           unapprovedIncidents={unapprovedIncidents}
           toggleAddIncident={toggleAddIncident}
           listType={listType}
         />
 
-        <IncidentStatusForm
+        <IncidentStatus
           visible={selected.length > 0}
           currentStatus={listType === 'unapproved' ? 'pending' : 'approved'}
-          onStatusConfirm={onChangeStatusConfirmed}
+          onStatusConfirm={approveAndRejectHandler}
         />
 
         {adding &&
@@ -292,7 +289,8 @@ const AdminDashboard = () => {
 
         {listType === 'approved' && (
           <ApprovedIncidents
-            approvedIncidents={incidents}
+            incidents={incidents}
+            formResponses={formResponses}
             setSelected={setSelected}
             selected={selected}
             selectAll={selectAll}
@@ -304,32 +302,30 @@ const AdminDashboard = () => {
         )}
       </div>
 
-      {
-        listType === 'form-responses' && (
-          <div className="dashboard-container">
-            <DashboardTop
-              unapprovedIncidents={unapprovedIncidents}
-              toggleAddIncident={toggleAddIncident}
-              listType={listType}
-            />
-            <Incidents
-              confirmApprove={confirmApprove}
-              confirmReject={confirmReject}
-              confirmApproveHandler={confirmApproveHandler}
-              confirmRejectHandler={confirmRejectHandler}
-              confirmCancel={confirmCancel}
-              setSelected={setSelected}
-              selected={selected}
-              selectAll={selectAll}
-              allSelected={allSelected}
-              handlePerPageChange={handlePerPageChange}
-              currentSet={currentSet}
-              setPageNumber={setPageNumber}
-              formResponses={formResponses}
-              setCurrList={setCurrList}
-            />
-          </div>
-        )
+      {listType === 'form-responses' &&
+        <div className="dashboard-container">
+          <DashboardTop
+            unapprovedIncidents={unapprovedIncidents}
+            toggleAddIncident={toggleAddIncident}
+            listType={listType}
+          />
+          <Incidents
+            confirmApprove={confirmApprove}
+            confirmReject={confirmReject}
+            confirmApproveHandler={confirmApproveHandler}
+            confirmRejectHandler={confirmRejectHandler}
+            confirmCancel={confirmCancel}
+            setSelected={setSelected}
+            selected={selected}
+            selectAll={selectAll}
+            allSelected={allSelected}
+            handlePerPageChange={handlePerPageChange}
+            currentSet={currentSet}
+            setPageNumber={setPageNumber}
+            formResponses={formResponses}
+            setCurrList={setCurrList}
+          />
+        </div>
       }
     </>
   );

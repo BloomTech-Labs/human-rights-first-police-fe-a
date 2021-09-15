@@ -42,11 +42,12 @@ const ApprovedIncidents = (props) => {
 
   return (
     <>
-      <SearchBar setUsState={setUsState} />
-      <RangePicker onCalendarChange={onDateSelection} />
+      {/* <SearchBar setUsState={setUsState} /> */}
+      {/* <RangePicker onCalendarChange={onDateSelection} /> */}
       <AntTable
         approvedIncidents={incidents}
         formResponses={formResponses}
+        allSelected={allSelected}
         selected={selected}
         setSelected={setSelected}
         setCurrList={setCurrList} />

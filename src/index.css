@@ -880,7 +880,7 @@ form label {
   display: -ms-flexbox;
   display: flex;
   align-items: center;
-  width: 50%;
+  width: 30%;
 }
 
 .dashboard-top-approve-reject button {
