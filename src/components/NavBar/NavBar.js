@@ -9,7 +9,7 @@ import IncidentFocus from '../Home/Map/IncidentFocus';
 import { useOktaAuth } from '@okta/okta-react';
 import { Layout, Menu, Sider, Input, Space, Typography } from 'antd';
 import { MenuOutlined } from '@ant-design/icons';
-import './nav.css';
+import './NavBar.less';
 const { Search } = Input;
 
 const { SubMenu } = Menu;
@@ -29,26 +29,20 @@ const NavBar = () => {
 
   return (
     <div className="navbar-container">
-      <div className="menu-pusher">
-        <a
-          href="https://humanrightsfirst.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <div className="logo-container">
-            <img className="bw-logo" alt="blue-witness-logo" src={bwlogo} />
-            <img src={hrflogo} className="hrf-logo" alt="HRF logo" />
-          </div>
-        </a>
-      </div>
+      <a
+        href="https://humanrightsfirst.org"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div className="logo-container">
+          <img className="bw-logo" alt="blue-witness-logo" src={bwlogo} />
+          <img src={hrflogo} className="hrf-logo" alt="HRF logo" />
+        </div>
+      </a>
       <Menu
         className="menu"
         mode="horizontal"
-        overflowedIndicator={
-          <MenuOutlined
-            style={{ margin: '0', fontSize: '1.5rem', paddingTop: '14px' }}
-          />
-        }
+        overflowedIndicator={<MenuOutlined className="hamburger-icon" />}
       >
         <Space></Space>
         <Menu.Item key="1">
@@ -63,7 +57,7 @@ const NavBar = () => {
         </Menu.Item>
         <Menu.Item key="3">
           <Link className="menu-link" to="/graph">
-            Graph
+            Graphs
           </Link>
         </Menu.Item>
         <Menu.Item key="4">
@@ -80,7 +74,7 @@ const NavBar = () => {
             </Menu.Item>
             <Menu.Item key="6">
               <div className="menu-link" onClick={logout}>
-                Log out
+                Log Out
               </div>
             </Menu.Item>
           </>
