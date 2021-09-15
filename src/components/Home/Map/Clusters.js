@@ -10,6 +10,7 @@ import {
   getLatAndLong,
   putIncidents,
 } from '../../../utils/DashboardHelperFunctions.js';
+import useOktaAxios from '../../../hooks/useOktaAxios';
 
 const { setFocusCluster } = mapActions;
 
@@ -31,6 +32,7 @@ const LEAVES_LIMIT = 1000000; // Max # of incidents to display in IncidentFocus
 
 export default function Clusters({ zoomOnCluster }) {
   const dispatch = useDispatch();
+  const oktaAxios = useOktaAxios();
   const incident = useSelector(state => state.incident);
   const incidents = useIncidentFilter();
   const points = incidents.map(id => {
@@ -39,15 +41,14 @@ export default function Clusters({ zoomOnCluster }) {
       incident.data[id].state != null &&
       (incident.data[id].lat === null || incident.data[id].long == null)
     ) {
-      const updateIncident = incident.data[id];
+      const updateIncident = { ...incident.data[id] };
 
-      getLatAndLong(incident.data[id])
+      getLatAndLong(updateIncident)
         .then(res => {
-          // [lat, long]
-          console.log('res: ', res);
-          // **** assign lat/long values
           updateIncident.lat = res[0];
-          // call putIncidents() and pass in necessary arguments to update in db
+          updateIncident.long = res[1];
+
+          putIncidents(oktaAxios, [updateIncident], updateIncident.status);
         })
         .catch(err => console.log('err: ', err));
     }
