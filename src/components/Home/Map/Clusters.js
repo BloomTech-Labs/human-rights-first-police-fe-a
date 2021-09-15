@@ -6,7 +6,10 @@ import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { mapActions } from '../../../store';
 import useIncidentFilter from '../../../hooks/useIncidentFilter';
-import { getLatAndLong } from '../../../utils/DashboardHelperFunctions.js';
+import {
+  getLatAndLong,
+  putIncidents,
+} from '../../../utils/DashboardHelperFunctions.js';
 
 const { setFocusCluster } = mapActions;
 
@@ -31,15 +34,22 @@ export default function Clusters({ zoomOnCluster }) {
   const incident = useSelector(state => state.incident);
   const incidents = useIncidentFilter();
   const points = incidents.map(id => {
-    if (incident.data[id].lat === null || incident.data[id].long == null) {
-      console.log('incident.data[id]: ', incident.data[id]);
-      // First: get the lat/long for the incident
-      getLatAndLong(incident) // function returns a promise
-        .then(res => console.log('res: ', res)) // am I getting a res after merge?
+    if (
+      incident.data[id].city != null &&
+      incident.data[id].state != null &&
+      (incident.data[id].lat === null || incident.data[id].long == null)
+    ) {
+      const updateIncident = incident.data[id];
+
+      getLatAndLong(incident.data[id])
+        .then(res => {
+          // [lat, long]
+          console.log('res: ', res);
+          // **** assign lat/long values
+          updateIncident.lat = res[0];
+          // call putIncidents() and pass in necessary arguments to update in db
+        })
         .catch(err => console.log('err: ', err));
-      // Second: update the incident's lat/long properties stored in memory with lat/long values
-      // ??? using axios vs oktaAxios ???
-      // .put ??? (what is the correct endpoint?) ???
     }
     return incident.data[id].geoJSON;
   });
