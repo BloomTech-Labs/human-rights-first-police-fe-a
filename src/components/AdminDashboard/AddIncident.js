@@ -125,7 +125,7 @@ const AddIncident = props => {
     console.log(newDateString);
 
     // getting coordinates
-    // const [lat, long] = await getLatAndLong(vals);
+    const [lat, long] = await getLatAndLong(vals);
 
     // creating new incident object to be posted
     const newIncident = {
@@ -133,24 +133,24 @@ const AddIncident = props => {
       ...vals,
       incident_date: newDateString,
       src: [vals.src],
-      // lat,
-      // long,
+      lat,
+      long,
     };
     console.log(newIncident);
 
     // // posting new incident to database
 
-    // const modalMessage = await postIncident(oktaAxios, newIncident);
+    const modalMessage = await postIncident(oktaAxios, newIncident);
 
-    // setModalText(modalMessage);
+    setModalText(modalMessage);
 
-    // setTimeout(() => {
-    //   // modal is unmounted, admin is redirected to first page of dashboard
-    //   setVisible(false);
-    //   setConfirmLoading(false);
-    //   setAdding(false);
-    //   setPageNumber(1);
-    // }, 1750);
+    setTimeout(() => {
+      // modal is unmounted, admin is redirected to first page of dashboard
+      setVisible(false);
+      setConfirmLoading(false);
+      setAdding(false);
+      setPageNumber(1);
+    }, 1750);
   };
 
   const wrapper = createRef();
