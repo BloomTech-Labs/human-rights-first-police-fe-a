@@ -12,6 +12,7 @@ export const putIncidents = (oktaAxios, incidents, status) => {
       incident_id: incident.incident_id,
     };
   });
+
   oktaAxios
     .put('dashboard/incidents', reviewedIncidents)
     .then(res => {
@@ -69,21 +70,29 @@ export const applyEdits = (oktaAxios, formValues, incident) => {
   return putRequest;
 };
 
-// AddIncident.js
+// MapQuest API to get Latitude/Longitude used in clusters (Clusters.js)
 export const getLatAndLong = formValues => {
   const getRequest = new Promise((resolve, reject) => {
     const { city, state } = formValues;
+
+    if (!city || !state) {
+      throw new Error('Missing city or state');
+    } else {
+      city.toLowerCase();
+      state.toLowerCase();
+    }
+
+    const mapQuestURL = `https://open.mapquestapi.com/geocoding/v1/address?key=
+      ${process.env.REACT_APP_MAPQUEST_API_KEY}&location=${city},${state}`;
+
     axios
-      .get(
-        `https://open.mapquestapi.com/geocoding/v1/address?key=${process.env.REACT_APP_MAPQUEST_API_KEY
-        }&location=${city ? city.toLowerCase() : ''}${state ? ',' + state.toLowerCase() : ''
-        }`
-      )
+      .get(mapQuestURL)
       .then(res => {
         const { lat, lng } = res.data.results[0].locations[0].latLng;
         resolve([lat, lng]);
       })
       .catch(err => {
+        console.log('Error: ', err);
         reject([null, null]);
       });
   });

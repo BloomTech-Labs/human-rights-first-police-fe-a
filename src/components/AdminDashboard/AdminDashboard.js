@@ -12,6 +12,7 @@ import {
   getData,
   sortApproved,
   putIncidents,
+  getLatAndLong,
 } from '../../utils/DashboardHelperFunctions.js';
 
 import axios from 'axios';
@@ -47,12 +48,10 @@ const AdminDashboard = () => {
   const [listType, setListType] = useState('unapproved');
 
   // modal
-
   const [showModal, setShowModal] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');
 
   //variable to push to homepage for logout button
-
   const { push } = useHistory();
 
   useEffect(() => {
@@ -130,13 +129,19 @@ const AdminDashboard = () => {
     }
   };
 
-  const approveAndRejectHandler = evt => {
+  const approveAndRejectHandler = async evt => {
     evt.preventDefault();
     const [reviewedIncidents, unreviewedIncidents] = sortApproved(
       currList,
       selected
     );
+    // MVP: One-by-one approvals. Needs work for multiple approvals simultaneously
+    const latAndLong = await getLatAndLong(reviewedIncidents[0]);
+    reviewedIncidents[0].lat = latAndLong[0];
+    reviewedIncidents[0].long = latAndLong[1];
+
     putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
+
     if (listType === 'unapproved') {
       setUnapprovedIncidents(unreviewedIncidents);
     } else if (listType === 'form-responses') {
