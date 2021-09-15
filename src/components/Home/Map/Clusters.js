@@ -36,22 +36,29 @@ export default function Clusters({ zoomOnCluster }) {
   const incident = useSelector(state => state.incident);
   const incidents = useIncidentFilter();
   const points = incidents.map(id => {
+    /*
+    Where should this conditional be taking place?
+    
     if (
       incident.data[id].city != null &&
       incident.data[id].state != null &&
       (incident.data[id].lat === null || incident.data[id].long == null)
-    ) {
-      const updateIncident = { ...incident.data[id] };
-
-      getLatAndLong(updateIncident)
+      ) {
+        const updateIncident = { ...incident.data[id] };
+        
+        getLatAndLong(updateIncident)
         .then(res => {
           updateIncident.lat = res[0];
           updateIncident.long = res[1];
         })
         .catch(err => console.log('err: ', err));
+        
+        // create new put request for updating incident of id x
+        // what endpoint should I be using?
+        // ?? putIncidents(oktaAxios, [updateIncident], updateIncident.status);
+      }
 
-      putIncidents(oktaAxios, [updateIncident], updateIncident.status);
-    }
+      */
     return incident.data[id].geoJSON;
   });
 
