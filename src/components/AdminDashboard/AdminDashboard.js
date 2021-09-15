@@ -17,6 +17,7 @@ import {
 
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import IncidentStatusForm from './IncidentStatusForm';
 
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
@@ -69,6 +70,12 @@ const AdminDashboard = () => {
     window.setTimeout(handleShowModal, 2000);
     window.scrollTo(0, 0);
   }, [HAS_VISITED_BEFORE]);
+
+  // resets the selected incidents when switching from approved to unapproved page
+  useEffect(() => {
+    setSelected([]);
+    setAllSelected(false);
+  }, [listType]);
 
   const modalHandler = () => {
     setShowModal(false);
@@ -144,14 +151,22 @@ const AdminDashboard = () => {
 
     if (listType === 'unapproved') {
       setUnapprovedIncidents(unreviewedIncidents);
-    } else if (listType === 'form-responses') {
+    }
+
+    else if (listType === 'form-responses') {
       //did 'else if' incase we wanted to add Reject button to Approved list
       setFormResponses(unreviewedIncidents);
     }
+
+    else if (listType === 'approved') {
+
+    }
+
     setAllSelected(false);
     setSelected([]);
     setConfirmApprove(false);
     setConfirmReject(false);
+
     if (pageNumber > lastPage) {
       setPageNumber(pageNumber - 1);
     }
@@ -194,6 +209,7 @@ const AdminDashboard = () => {
     push('/');
     window.location.reload();
   };
+
   return (
     <>
       {showModal ? <div className="back-drop"></div> : null}
@@ -230,75 +246,36 @@ const AdminDashboard = () => {
           </button>
         </div>
       </div>
-      {listType === 'unapproved' && (
-        <div className="dashboard-container">
-          <DashboardTop
-            unapprovedIncidents={unapprovedIncidents}
-            toggleAddIncident={toggleAddIncident}
-            listType={listType}
-          />
 
-          {adding ? (
-            <AddIncident
-              setPageNumber={setPageNumber}
-              getData={getData}
-              setAdding={setAdding}
-            />
-          ) : (
-            <Incidents
-              confirmApprove={confirmApprove}
-              confirmReject={confirmReject}
-              confirmApproveHandler={confirmApproveHandler}
-              confirmRejectHandler={confirmRejectHandler}
-              approveAndRejectHandler={approveAndRejectHandler}
-              confirmCancel={confirmCancel}
-              setSelected={setSelected}
-              selected={selected}
-              selectAll={selectAll}
-              allSelected={allSelected}
-              handlePerPageChange={handlePerPageChange}
-              currentSet={currentSet}
-              setUnapprovedIncidents={setUnapprovedIncidents}
-              setPageNumber={setPageNumber}
-              unapprovedIncidents={unapprovedIncidents}
-              setCurrList={setCurrList}
-            />
-          )}
-        </div>
-      )}
-      {listType === 'approved' && (
-        <>
-          <div className="dashboard-container">
-            <DashboardTop
-              unapprovedIncidents={unapprovedIncidents}
-              toggleAddIncident={toggleAddIncident}
-              listType={listType}
-            />
-            {adding ? (
-              <AddIncident
-                setPageNumber={setPageNumber}
-                getData={getData}
-                setAdding={setAdding}
-              />
-            ) : (
-              <ApprovedIncidents incidents={incidents} />
-            )}
-          </div>
-        </>
-      )}
-      {listType === 'form-responses' && (
-        <div className="dashboard-container">
-          <DashboardTop
-            unapprovedIncidents={unapprovedIncidents}
-            toggleAddIncident={toggleAddIncident}
-            listType={listType}
+
+      <div className="dashboard-container">
+
+        <DashboardTop
+          unapprovedIncidents={unapprovedIncidents}
+          toggleAddIncident={toggleAddIncident}
+          listType={listType}
+        />
+
+        <IncidentStatusForm
+          visible={selected.length > 0}
+          currentStatus={listType === 'unapproved' ? 'pending' : 'approved'}
+          onStatusConfirm={onChangeStatusConfirmed}
+        />
+
+        {adding &&
+          <AddIncident
+            setPageNumber={setPageNumber}
+            getData={getData}
+            setAdding={setAdding}
           />
+        }
+
+        {listType === 'unapproved' &&
           <Incidents
             confirmApprove={confirmApprove}
             confirmReject={confirmReject}
             confirmApproveHandler={confirmApproveHandler}
             confirmRejectHandler={confirmRejectHandler}
-            approveAndRejectHandler={approveAndRejectHandler}
             confirmCancel={confirmCancel}
             setSelected={setSelected}
             selected={selected}
@@ -306,12 +283,54 @@ const AdminDashboard = () => {
             allSelected={allSelected}
             handlePerPageChange={handlePerPageChange}
             currentSet={currentSet}
+            setUnapprovedIncidents={setUnapprovedIncidents}
             setPageNumber={setPageNumber}
-            formResponses={formResponses}
+            unapprovedIncidents={unapprovedIncidents}
             setCurrList={setCurrList}
           />
-        </div>
-      )}
+        }
+
+        {listType === 'approved' && (
+          <ApprovedIncidents
+            approvedIncidents={incidents}
+            setSelected={setSelected}
+            selected={selected}
+            selectAll={selectAll}
+            allSelected={allSelected}
+            setCurrList={setCurrList}
+            currentSet={currentSet}
+            confirmApproveHandler={confirmApproveHandler}
+          />
+        )}
+      </div>
+
+      {
+        listType === 'form-responses' && (
+          <div className="dashboard-container">
+            <DashboardTop
+              unapprovedIncidents={unapprovedIncidents}
+              toggleAddIncident={toggleAddIncident}
+              listType={listType}
+            />
+            <Incidents
+              confirmApprove={confirmApprove}
+              confirmReject={confirmReject}
+              confirmApproveHandler={confirmApproveHandler}
+              confirmRejectHandler={confirmRejectHandler}
+              confirmCancel={confirmCancel}
+              setSelected={setSelected}
+              selected={selected}
+              selectAll={selectAll}
+              allSelected={allSelected}
+              handlePerPageChange={handlePerPageChange}
+              currentSet={currentSet}
+              setPageNumber={setPageNumber}
+              formResponses={formResponses}
+              setCurrList={setCurrList}
+            />
+          </div>
+        )
+      }
     </>
   );
 };
