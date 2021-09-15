@@ -6,6 +6,8 @@ import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 import { mapActions } from '../../../store';
 import useIncidentFilter from '../../../hooks/useIncidentFilter';
+import { getLatAndLong } from '../../../utils/DashboardHelperFunctions.js';
+
 const { setFocusCluster } = mapActions;
 
 const ClusterMarker = styled.div`
@@ -28,7 +30,19 @@ export default function Clusters({ zoomOnCluster }) {
   const dispatch = useDispatch();
   const incident = useSelector(state => state.incident);
   const incidents = useIncidentFilter();
-  const points = incidents.map(id => incident.data[id].geoJSON);
+  const points = incidents.map(id => {
+    if (incident.data[id].lat === null || incident.data[id].long == null) {
+      console.log('incident.data[id]: ', incident.data[id]);
+      // First: get the lat/long for the incident
+      getLatAndLong(incident) // function returns a promise
+        .then(res => console.log('res: ', res)) // am I getting a res after merge?
+        .catch(err => console.log('err: ', err));
+      // Second: update the incident's lat/long properties stored in memory with lat/long values
+      // ??? using axios vs oktaAxios ???
+      // .put ??? (what is the correct endpoint?) ???
+    }
+    return incident.data[id].geoJSON;
+  });
 
   // See for supercluster usage and config: https://github.com/mapbox/supercluster
   const supercluster = useMemo(() => {
