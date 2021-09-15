@@ -122,7 +122,6 @@ const AddIncident = props => {
       newDateString =
         vals.incident_date.format('YYYY-MM-DD') + 'T00:00:00.000Z';
     }
-    console.log(newDateString);
 
     // getting coordinates
     const [lat, long] = await getLatAndLong(vals);
@@ -136,7 +135,6 @@ const AddIncident = props => {
       lat,
       long,
     };
-    console.log(newIncident);
 
     // // posting new incident to database
 
