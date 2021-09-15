@@ -8,7 +8,7 @@ const confirmText = {
 };
 
 /**
- * @typedef IncidentStatusFormProps
+ * @typedef IncidentStatusProps
  * @property {boolean} visible
  * @property {string} currentStatus
  * @property {(newStatus: string) => void} onStatusConfirm
@@ -16,10 +16,10 @@ const confirmText = {
 
 /**
  *
- * @param {IncidentStatusFormProps} props
+ * @param {IncidentStatusProps} props
  * @returns
  */
-const IncidentStatusForm = props => {
+const IncidentStatus = props => {
 	const { visible, currentStatus, onStatusConfirm } = props;
 
 	const [newStatus, setNewStatus] = useState(currentStatus);
@@ -32,8 +32,10 @@ const IncidentStatusForm = props => {
 		}
 	}, [visible, currentStatus]);
 
-	const newStatusChange = e => {
+	const statusOnClick = (e, status) => {
+		e.preventDefault();
 		setNewStatus(e.target.value);
+		setIsAskConfirm(true);
 	};
 
 	const submitOnClick = e => {
@@ -55,18 +57,30 @@ const IncidentStatusForm = props => {
 		<div className="dashboard-top-approve-reject"
 			style={{ visibility: visible ? 'visible' : 'collapse' }}>
 
+			<span>Change Status:</span>
+
 			{!isAskConfirm &&
 				<>
-					<Radio.Group onChange={newStatusChange} value={newStatus}>
-						<Radio value='pending' >Pending</Radio>
-						<Radio value='approved'>Approved</Radio>
-						<Radio value='rejected'>Rejected</Radio>
-					</Radio.Group>
+					{currentStatus === 'pending' &&
+						<button
+							className='approve-reject-select'
+							onClick={e => statusOnClick(e, 'approved')}>
+							Approve
+						</button>
+					}
+
+					{currentStatus === 'approved' &&
+						<button
+							className='approve-reject-select'
+							onClick={e => statusOnClick(e, 'approved')}>
+							Unapproved
+						</button>
+					}
 
 					<button
 						className='approve-reject-select'
-						onClick={submitOnClick}>
-						Set Status
+						onClick={e => statusOnClick(e, 'approved')}>
+						Reject
 					</button>
 				</>
 			}
@@ -92,4 +106,4 @@ const IncidentStatusForm = props => {
 	);
 };
 
-export default IncidentStatusForm;
+export default IncidentStatus;

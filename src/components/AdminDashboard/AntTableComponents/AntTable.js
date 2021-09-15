@@ -111,7 +111,7 @@ function AntTable(props) {
           onChange: onSelect,
         }}
         pagination={{
-          position: ['topRight', 'bottomCenter'],
+          position: ['bottomCenter'],
           total: listToUse ? listToUse.length : 0,
           showTotal(total, range) {
             return `${range[0]}-${range[1]} of ${total} items`;
