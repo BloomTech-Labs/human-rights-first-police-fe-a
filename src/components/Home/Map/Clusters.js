@@ -47,10 +47,10 @@ export default function Clusters({ zoomOnCluster }) {
         .then(res => {
           updateIncident.lat = res[0];
           updateIncident.long = res[1];
-
-          putIncidents(oktaAxios, [updateIncident], updateIncident.status);
         })
         .catch(err => console.log('err: ', err));
+
+      putIncidents(oktaAxios, [updateIncident], updateIncident.status);
     }
     return incident.data[id].geoJSON;
   });
