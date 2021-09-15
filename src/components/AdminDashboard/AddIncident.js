@@ -136,8 +136,7 @@ const AddIncident = props => {
       long,
     };
 
-    // // posting new incident to database
-
+    // posting new incident to database
     const modalMessage = await postIncident(oktaAxios, newIncident);
 
     setModalText(modalMessage);
