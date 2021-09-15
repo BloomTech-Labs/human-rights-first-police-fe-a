@@ -270,6 +270,14 @@ const CompleteIncident = props => {
               />
             </label>
 
+            {/* Confidence Rating: */}
+            <div className="dropdown-text-wrap">
+              <p className="complete-incident-dropdown-titles-bold">
+                Confidence Rating:
+              </p>
+              <p>{(incident.confidence * 100).toFixed(2)}%</p>
+            </div>
+
             {/* Cancel button */}
             <Button
               id="dropdown-edit-button"
