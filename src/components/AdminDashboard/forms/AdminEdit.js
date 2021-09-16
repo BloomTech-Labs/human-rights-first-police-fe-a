@@ -35,20 +35,20 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
       tags: [...formattedTags],
     };
 
-    // applyEdits(oktaAxios, finalVals, initialValues)
-    //   .then(res => {
-    //     console.log(res);
-    //     // window.location.reload();
-    //     // TODO instead of reloading we should just update the incident in state //
-    //     // notice that this kinda breaks the whole cleanup step.
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     // TODO put some kind of actual error handling here
-    //   })
-    //   .finally(res => {
-    //     cleanup();
-    //   });
+    applyEdits(oktaAxios, finalVals, initialValues)
+      .then(res => {
+        console.log(res);
+        window.location.reload();
+        // TODO instead of reloading we should just update the incident in state
+        // notice that this kinda breaks the whole cleanup step.
+      })
+      .catch(err => {
+        console.log(err);
+        // TODO put some kind of actual error handling here
+      })
+      .finally(res => {
+        cleanup();
+      });
   };
 
   return (
@@ -58,7 +58,7 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
       onFinish={handleSubmit}
       initialValues={{
         ...initialValues,
-        incident_date: moment(initialValues.incident_date),
+        incident_date: moment(initialValues.incident_date).add(1, 'days'),
       }}
     >
       <div className="admin-edit-top">
