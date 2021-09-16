@@ -18,16 +18,11 @@ function AdminEdit({ initialValues, cancel, applyChanges }) {
     }
     formattedDate = formattedDate.format('YYYY-MM-DD') + 'T00:00:00.000Z';
 
-    console.log({
+    applyChanges({
       ...initialValues,
       ...vals,
       incident_date: formattedDate,
     });
-    // applyChanges({
-    //   ...initialValues,
-    //   ...vals,
-    //   incident_date: formattedDate
-    // });
   };
 
   return (
