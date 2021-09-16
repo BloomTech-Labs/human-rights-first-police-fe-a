@@ -4,7 +4,7 @@ import moment from 'moment';
 
 const { Option } = Select;
 
-function AdminEdit({ initialValues }) {
+function AdminEdit({ initialValues, cancel }) {
   const [form] = Form.useForm();
   console.log(form);
 
@@ -60,7 +60,8 @@ function AdminEdit({ initialValues }) {
       <Form.Item name="src" label="Sources">
         <Input />
       </Form.Item>
-      <Button htmlType="submit">Submit</Button>
+      <Button htmlType="submit">Apply Changes</Button>
+      <Button onClick={cancel}>Cancel</Button>
     </Form>
   );
 }

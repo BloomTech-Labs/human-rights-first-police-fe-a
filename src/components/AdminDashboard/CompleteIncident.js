@@ -81,7 +81,13 @@ const CompleteIncident = props => {
   return (
     <div className="complete-incident">
       <div className="complete-incident-dropdown">
-        {!editing && (
+        {editing ? (
+          <AdminEdit
+            initialValues={incident}
+            cancel={toggleEditor}
+            applyChanges={handleSubmit}
+          />
+        ) : (
           <>
             {/* Date */}
             <div className="dropdown-text-wrap">
@@ -151,130 +157,6 @@ const CompleteIncident = props => {
               onClick={toggleEditor}
             >
               Edit
-            </Button>
-          </>
-        )}
-
-        {editing && (
-          <>
-            <AdminEdit initialValues={incident} />
-            {/* Date */}
-            <label className="label">
-              Date
-              <input
-                className="edit-input"
-                onChange={handleInputChange}
-                type="text"
-                name="incident_date"
-                value={formValues.incident_date}
-              />
-            </label>
-
-            {/* City */}
-            <label className="label">
-              City
-              <input
-                className="edit-input"
-                onChange={handleInputChange}
-                type="text"
-                name="city"
-                value={formValues.city || ''}
-              />
-            </label>
-
-            {/* State */}
-            <label className="label">
-              State
-              <input
-                className="edit-input"
-                onChange={handleInputChange}
-                type="text"
-                name="state"
-                value={formValues.state || ''}
-              />
-            </label>
-
-            {/* Title */}
-            <label className="label">
-              Title
-              <input
-                className="edit-input"
-                onChange={handleInputChange}
-                type="text"
-                name="title"
-                value={formValues.title || ''}
-              />
-            </label>
-
-            {/* Description */}
-            <label className="label">
-              Description
-              <input
-                className="edit-input"
-                onChange={handleInputChange}
-                type="text"
-                name="description"
-                value={formValues.description}
-              />
-            </label>
-
-            {/* Force Rank */}
-            <label className="label">
-              Force Rank
-              <select
-                className="edit-input"
-                onChange={handleInputChange}
-                name="force_rank"
-                value={formValues.force_rank}
-              >
-                <option value="Rank 0">Rank 0 - No Police Presence</option>
-                <option value="Rank 1">Rank 1 - Police Presence</option>
-                <option value="Rank 2">Rank 2 - Empty-hand</option>
-                <option value="Rank 3">Rank 3 - Blunt Force</option>
-                <option value="Rank 4">Rank 4 - Chemical &amp; Electric</option>
-                <option value="Rank 5">Rank 5 - Lethal Force</option>
-              </select>
-            </label>
-
-            {/* Sources */}
-            <label className="label">
-              Source(s)
-              <input
-                className="edit-input"
-                onChange={handleInputChange}
-                type="text"
-                name="src"
-                value={formValues.src || ''}
-              />
-            </label>
-
-            {/* Tags */}
-            <label className="label">
-              Tags
-              <span style={{ fontWeight: 'normal' }}>
-                &nbsp;(comma separated values)
-              </span>
-              <input
-                className="edit-input"
-                onChange={handleInputChange}
-                type="text"
-                name="tags"
-                value={formValues.tags}
-              />
-            </label>
-
-            {/* Cancel button */}
-            <Button
-              id="dropdown-edit-button"
-              className="approve-reject-select"
-              onClick={toggleEditor}
-            >
-              Cancel
-            </Button>
-
-            {/* Apply button */}
-            <Button className="approve-reject-select" onClick={handleSubmit}>
-              Apply Changes
             </Button>
           </>
         )}
