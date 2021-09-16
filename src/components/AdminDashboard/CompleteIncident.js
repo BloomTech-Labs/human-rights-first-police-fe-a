@@ -76,7 +76,6 @@ const CompleteIncident = props => {
         getData(setUnapprovedIncidents);
       });
   };
-  console.log('incident: ', incident);
 
   return (
     <div className="complete-incident">
