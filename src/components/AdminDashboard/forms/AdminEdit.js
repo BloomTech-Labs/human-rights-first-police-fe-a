@@ -2,7 +2,6 @@ import React from 'react';
 import { Form, Input, Select, DatePicker, Button } from 'antd';
 import moment from 'moment';
 import useOktaAxios from '../../../hooks/useOktaAxios';
-import { applyEdits } from '../../../utils/DashboardHelperFunctions';
 
 import './AdminEdit.less';
 
@@ -35,7 +34,8 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
       tags: [...formattedTags],
     };
 
-    applyEdits(oktaAxios, finalVals, initialValues)
+    oktaAxios
+      .put('/dashboard/incidents', [{ ...finalVals }])
       .then(res => {
         console.log(res);
         window.location.reload();

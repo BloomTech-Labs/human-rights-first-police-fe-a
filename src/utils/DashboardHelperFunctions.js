@@ -47,11 +47,6 @@ export const getData = (oktaAxios, setUnapprovedIncidents) => {
     });
 };
 
-// AdminEdit.js
-export const applyEdits = (oktaAxios, formValues, incident) => {
-  return oktaAxios.put('/dashboard/incidents', [{ ...formValues }]);
-};
-
 // MapQuest API to get Latitude/Longitude used in clusters (Clusters.js)
 export const getLatAndLong = formValues => {
   const getRequest = new Promise((resolve, reject) => {
