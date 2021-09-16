@@ -1,22 +1,28 @@
 import axios from 'axios';
 
 export const putIncidents = (oktaAxios, incidents, status) => {
-  const reviewedIncidents = incidents.map(incident => {
-    return {
-      status: status,
-      city: incident.city,
-      state: incident.state,
-      force_rank: incident.force_rank,
-      lat: incident.lat,
-      long: incident.long,
-      incident_id: incident.incident_id,
-    };
-  });
+  // const reviewedIncidents = incidents.map(incident => {
+  //   return {
+  //     status: status,
+  //     city: incident.city,
+  //     state: incident.state,
+  //     force_rank: incident.force_rank,
+  //     lat: incident.lat,
+  //     long: incident.long,
+  //     incident_id: incident.incident_id,
+  //   };
+  // });
 
+  const modifiedIncidents = incidents.map(inc => {
+    return { ...inc, status };
+  });
+  console.log(modifiedIncidents);
+  //return Promise.resolve();
   return oktaAxios
-    .put('dashboard/incidents', reviewedIncidents)
+    .put('dashboard/incidents', modifiedIncidents)
     .then(res => {
       console.log(res);
+      return res;
     })
     .catch(err => {
       console.log(err);
@@ -34,9 +40,8 @@ export const putIncidents = (oktaAxios, incidents, status) => {
  * @returns {{selected: any[], source: any[]}} two arrays of incident data
  */
 export function splitIncidentsByIds(incidents, ids) {
-  // Sizing these arrays at the beginning for performance
-  const selected = new Array(ids.length);
-  const source = new Array(incidents.length);
+  const selected = [];
+  const source = [];
 
   incidents.forEach(inc => {
     if (ids.includes(inc.incident_id)) {

@@ -122,6 +122,8 @@ const AdminDashboard = () => {
 
     putIncidents(oktaAxios, selected, newStatus)
       .then(res => {
+        console.log(res);
+
         if (listType === 'pending') {
           setPendingIncidents(source);
         }
@@ -154,7 +156,7 @@ const AdminDashboard = () => {
   const selectedTabButtonStyle = {
     background: '#095fab'
   };
-
+  console.log(selectedIds);
   return (
     <>
       {/* I don't know what this is */}
@@ -198,6 +200,10 @@ const AdminDashboard = () => {
           toggleAddIncident={toggleAddIncident}
           listType={listType}
         />
+
+        {selectedIds.length > 0 &&
+          <div>{selectedIds.length} selected</div>
+        }
 
         {/* Controls for setting the status of selected incidents (unapproved, pending, approved) */}
         <IncidentStatus
