@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
 const confirmText = {
-	approved: 'Approve incidents?',
-	pending: 'Unapprove incidents?',
-	rejected: 'Reject incidents?'
+  approved: 'Approve incidents?',
+  pending: 'Unapprove incidents?',
+  rejected: 'Reject incidents?'
 };
 
 /**
@@ -19,85 +19,85 @@ const confirmText = {
  * @returns
  */
 const IncidentStatus = props => {
-	const { isActive, listType, onStatusConfirm } = props;
+  const { isActive, listType, onStatusConfirm } = props;
 
-	const [newStatus, setNewStatus] = useState(listType);
-	const [isAskConfirm, setIsAskConfirm] = useState(false);
+  const [newStatus, setNewStatus] = useState(listType);
+  const [isAskConfirm, setIsAskConfirm] = useState(false);
 
-	useEffect(() => {
-		if (!isActive) {
-			setNewStatus(listType);
-			setIsAskConfirm(false);
-		}
-	}, [isActive, listType]);
+  useEffect(() => {
+    if (!isActive) {
+      setNewStatus(listType);
+      setIsAskConfirm(false);
+    }
+  }, [isActive, listType]);
 
-	const statusOnClick = (e, status) => {
-		e.preventDefault();
-		setNewStatus(e.target.value);
-		setIsAskConfirm(true);
-	};
+  const statusOnClick = (e, status) => {
+    e.preventDefault();
+    setNewStatus(e.target.value);
+    setIsAskConfirm(true);
+  };
 
-	const cancelOnClick = e => {
-		e.preventDefault();
-		setIsAskConfirm(false);
-	};
+  const cancelOnClick = e => {
+    e.preventDefault();
+    setIsAskConfirm(false);
+  };
 
-	const yesOnClick = e => {
-		e.preventDefault();
-		onStatusConfirm(newStatus);
-	};
+  const yesOnClick = e => {
+    e.preventDefault();
+    onStatusConfirm(newStatus);
+  };
 
-	return (
-		<div className="dashboard-top-approve-reject"
-			style={{ visibility: isActive ? 'visible' : 'collapse' }}>
+  return (
+    <div className="dashboard-top-approve-reject"
+      style={{ visibility: isActive ? 'visible' : 'collapse' }}>
 
-			<span>Change Status:</span>
+      <span>Change Status:</span>
 
-			{!isAskConfirm &&
-				<>
-					{listType === 'pending' &&
-						<button
-							className='approve-reject-select'
-							onClick={e => statusOnClick(e, 'approved')}>
-							Approve
-						</button>
-					}
+      {!isAskConfirm &&
+        <>
+          {listType === 'pending' &&
+            <button
+              className='approve-reject-select'
+              onClick={e => statusOnClick(e, 'approved')}>
+              Approve
+            </button>
+          }
 
-					{listType === 'approved' &&
-						<button
-							className='approve-reject-select'
-							onClick={e => statusOnClick(e, 'approved')}>
-							Unapproved
-						</button>
-					}
+          {listType === 'approved' &&
+            <button
+              className='approve-reject-select'
+              onClick={e => statusOnClick(e, 'approved')}>
+              Unapproved
+            </button>
+          }
 
-					<button
-						className='approve-reject-select'
-						onClick={e => statusOnClick(e, 'approved')}>
-						Reject
-					</button>
-				</>
-			}
+          <button
+            className='approve-reject-select'
+            onClick={e => statusOnClick(e, 'approved')}>
+            Reject
+          </button>
+        </>
+      }
 
-			{isAskConfirm &&
-				<>
-					<span>{confirmText[newStatus]}</span>
+      {isAskConfirm &&
+        <>
+          <span>{confirmText[newStatus]}</span>
 
-					<button
-						className='approve-reject-select'
-						onClick={yesOnClick}>
-						Yes
-					</button>
+          <button
+            className='approve-reject-select'
+            onClick={yesOnClick}>
+            Yes
+          </button>
 
-					<button
-						className='approve-reject-select'
-						onClick={cancelOnClick}>
-						Cancel
-					</button>
-				</>
-			}
-		</div>
-	);
+          <button
+            className='approve-reject-select'
+            onClick={cancelOnClick}>
+            Cancel
+          </button>
+        </>
+      }
+    </div>
+  );
 };
 
 export default IncidentStatus;
