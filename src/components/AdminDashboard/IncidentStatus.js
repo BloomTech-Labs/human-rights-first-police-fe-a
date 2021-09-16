@@ -33,7 +33,7 @@ const IncidentStatus = props => {
 
   const statusOnClick = (e, status) => {
     e.preventDefault();
-    setNewStatus(e.target.value);
+    setNewStatus(status);
     setIsAskConfirm(true);
   };
 
@@ -66,14 +66,14 @@ const IncidentStatus = props => {
           {listType === 'approved' &&
             <button
               className='approve-reject-select'
-              onClick={e => statusOnClick(e, 'approved')}>
+              onClick={e => statusOnClick(e, 'pending')}>
               Unapproved
             </button>
           }
 
           <button
             className='approve-reject-select'
-            onClick={e => statusOnClick(e, 'approved')}>
+            onClick={e => statusOnClick(e, 'rejected')}>
             Reject
           </button>
         </>
