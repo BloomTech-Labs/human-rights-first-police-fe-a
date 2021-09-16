@@ -80,8 +80,7 @@ const AdminDashboard = () => {
 
   const oktaAxios = useOktaAxios();
 
-  // getting all incident data
-  useEffect(() => {
+  const fetchIncidents = () => {
     getApprovedIncidents(oktaAxios)
       .then(res => setApprovedIncidents(res))
       .catch(err => console.log(err));
@@ -93,17 +92,12 @@ const AdminDashboard = () => {
     getFormResponses(oktaAxios)
       .then(res => setFormResponses(res))
       .catch(err => console.log(err));
-  }, []);
-
-  // incident selection (checkbox) functions
-  const selectAll = () => {
-    setAllSelected(!allSelected);
-    if (!allSelected) {
-      // setSelected(currentSet.map(data => data.incident_id));
-    } else {
-      setSelectedIds([]);
-    }
   };
+
+  // getting all incident data
+  useEffect(() => {
+    fetchIncidents();
+  }, []);
 
   const approveAndRejectHandler = async (newStatus) => {
     const currentList = getCurrentList();
@@ -156,7 +150,7 @@ const AdminDashboard = () => {
   const selectedTabButtonStyle = {
     background: '#095fab'
   };
-  console.log(selectedIds);
+
   return (
     <>
       {/* I don't know what this is */}
@@ -202,7 +196,7 @@ const AdminDashboard = () => {
         />
 
         {selectedIds.length > 0 &&
-          <div>{selectedIds.length} selected</div>
+          <span>{selectedIds.length} selected</span>
         }
 
         {/* Controls for setting the status of selected incidents (unapproved, pending, approved) */}
@@ -220,12 +214,34 @@ const AdminDashboard = () => {
           />
         }
 
-        <Incidents
-          selected={selectedIds}
-          setSelected={setSelectedIds}
-          setUnapprovedIncidents={setPendingIncidents}
-          incidents={getCurrentList()}
-        />
+        {listType === 'pending' &&
+          <Incidents
+            selected={selectedIds}
+            setSelected={setSelectedIds}
+            setUnapprovedIncidents={setPendingIncidents}
+            incidents={getCurrentList()}
+          />
+        }
+
+        {listType === 'approved' &&
+          <Incidents
+            selected={selectedIds}
+            setSelected={setSelectedIds}
+            setUnapprovedIncidents={setPendingIncidents}
+            incidents={getCurrentList()}
+          />
+        }
+
+        {listType === 'form-responses' &&
+          <Incidents
+            selected={selectedIds}
+            setSelected={setSelectedIds}
+            setUnapprovedIncidents={setPendingIncidents}
+            incidents={getCurrentList()}
+          />
+        }
+
+
       </div>
     </>
   );
