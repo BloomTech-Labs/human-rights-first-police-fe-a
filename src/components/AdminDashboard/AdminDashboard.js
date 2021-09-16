@@ -11,24 +11,18 @@ import {
   getData,
   putIncidents,
   getLatAndLong,
-  spliceByIds,
   getApprovedIncidents,
   getPendingIncidents,
   getFormResponses,
   splitIncidentsByIds
 } from '../../utils/DashboardHelperFunctions.js';
 
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 import IncidentStatus from './IncidentStatus';
 
 const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
   const [selectedIds, setSelectedIds] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
-
-  // the incidents that are currently displayed (filtered by status/listType)
-  // const [currList, setCurrList] = useState([]);
 
   // The three categories of incidents
   const [formResponses, setFormResponses] = useState([]);
@@ -50,9 +44,6 @@ const AdminDashboard = () => {
         return [];
     }
   };
-
-  // I can't figure out what this does, so I'm gonna take it out!
-  // const [currentSet, setCurrentSet] = useState([]);
 
   // setting state to toggle whether or not the modal pop up (addIncident) is rendered
   const [adding, setAdding] = useState(false);
@@ -230,32 +221,6 @@ const AdminDashboard = () => {
           incidents={getCurrentList()}
         />
       </div>
-
-      {/* {listType === 'form-responses' &&
-        <div className="dashboard-container">
-          <DashboardTop
-            unapprovedIncidents={unapprovedIncidents}
-            toggleAddIncident={toggleAddIncident}
-            listType={listType}
-          />
-          <Incidents
-            confirmApprove={confirmApprove}
-            confirmReject={confirmReject}
-            confirmApproveHandler={confirmApproveHandler}
-            confirmRejectHandler={confirmRejectHandler}
-            confirmCancel={confirmCancel}
-            setSelected={setSelected}
-            selected={selected}
-            selectAll={selectAll}
-            allSelected={allSelected}
-            handlePerPageChange={handlePerPageChange}
-            currentSet={currentSet}
-            setPageNumber={setPageNumber}
-            formResponses={formResponses}
-            setCurrList={setCurrList}
-          />
-        </div>
-      } */}
     </>
   );
 };
