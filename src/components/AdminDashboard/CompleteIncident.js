@@ -31,51 +31,29 @@ const CompleteIncident = props => {
 
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
-  const [formValues, setFormValues] = useState({});
 
   const oktaAxios = useOktaAxios();
 
-  useEffect(() => {
-    setFormValues({
-      ...incident,
-      tags: incident.tags ? incident.tags.join(', ') : [],
-      incident_date: formattedDate,
-    });
-    return () => {
-      setFormValues({});
-    };
-  }, [editing, incident, formattedDate]);
-
   // toggle "editing mode"
-  const toggleEditor = evt => {
-    evt.preventDefault();
-    setFormValues({ ...incident, date: formattedDate });
+  const toggleEditor = () => {
     setEditing(!editing);
   };
 
   // form control functions
-  const handleInputChange = evt => {
-    const { name, value } = evt.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
   const handleSubmit = evt => {
-    evt.preventDefault();
-    applyEdits(oktaAxios, formValues, incident)
-      .then(res => {
-        window.location.reload();
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .finally(res => {
-        setEditing(false);
-        setMoreInfo(false);
-        getData(setUnapprovedIncidents);
-      });
+    // evt.preventDefault();
+    // applyEdits(oktaAxios, formValues, incident)
+    //   .then(res => {
+    //     window.location.reload();
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   })
+    //   .finally(res => {
+    //     setEditing(false);
+    //     setMoreInfo(false);
+    //     getData(setUnapprovedIncidents);
+    //   });
   };
 
   return (
