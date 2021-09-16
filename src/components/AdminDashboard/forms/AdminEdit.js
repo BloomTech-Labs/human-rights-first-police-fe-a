@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, Select, DatePicker, Button } from 'antd';
 import moment from 'moment';
 import useOktaAxios from '../../../hooks/useOktaAxios';
-import { applyEdits } from '../../../utils/DashBoardHelperFunctions';
+import { applyEdits } from '../../../utils/DashboardHelperFunctions';
 
 import './AdminEdit.less';
 
@@ -15,11 +15,14 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
 
   const handleSubmit = vals => {
     let formattedDate;
+
+    // Making sure that the date is a moment
     if (vals.incident_date === null) {
       formattedDate = moment();
     } else {
       formattedDate = vals.incident_date;
     }
+    // Putting the date in the correct format
     formattedDate = formattedDate.format('YYYY-MM-DD') + 'T00:00:00.000Z';
 
     const finalVals = {
@@ -32,6 +35,7 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
       .then(res => {
         window.location.reload();
         // TODO instead of reloading we should just update the incident in state
+        // notice that this kinda breaks the whole cleanup step.
       })
       .catch(err => {
         console.log(err);
