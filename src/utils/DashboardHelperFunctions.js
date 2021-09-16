@@ -13,7 +13,7 @@ export const putIncidents = (oktaAxios, incidents, status) => {
     };
   });
 
-  oktaAxios
+  return oktaAxios
     .put('dashboard/incidents', reviewedIncidents)
     .then(res => {
       console.log(res);
@@ -23,18 +23,32 @@ export const putIncidents = (oktaAxios, incidents, status) => {
     });
 };
 
-export const sortApproved = (unapprovedIncidents, selected) => {
-  const reviewedData = [];
-  const unreviewedData = [];
-  unapprovedIncidents.forEach(dataObj => {
-    if (selected.includes(dataObj.incident_id)) {
-      reviewedData.push(dataObj);
-    } else {
-      unreviewedData.push(dataObj);
+/**
+ * This function finds the specified incidents within an array and returns two
+ * new arrays: the selected incidents, and the source array WITHOUT the selected
+ * incidents
+ *
+ * @param {any[]} incidents an array of incident data
+ * @param {number[]} ids a list of the desired incident ids to extract
+ *
+ * @returns {{selected: any[], source: any[]}} two arrays of incident data
+ */
+export function splitIncidentsByIds(incidents, ids) {
+  // Sizing these arrays at the beginning for performance
+  const selected = new Array(ids.length);
+  const source = new Array(incidents.length);
+
+  incidents.forEach(inc => {
+    if (ids.includes(inc.incident_id)) {
+      selected.push(inc);
+    }
+    else {
+      source.push(inc);
     }
   });
-  return [reviewedData, unreviewedData];
-};
+
+  return { selected, source };
+}
 
 export const getData = (oktaAxios, setUnapprovedIncidents) => {
   oktaAxios
@@ -46,6 +60,42 @@ export const getData = (oktaAxios, setUnapprovedIncidents) => {
       console.log(err);
     });
 };
+
+/**
+ * Returns a promise that resolves to an array of pending incidents
+ * @param {import('axios').AxiosInstance} oktaAxios
+ * @returns {Promise<any[]>} all pending incidents
+ */
+export function getPendingIncidents(oktaAxios) {
+  return oktaAxios.get('/dashboard/incidents')
+    .then(res => {
+      return res.data;
+    });
+}
+
+/**
+ * Returns a promise that resolves to an array of approved incidents
+ * @param {import('axios').AxiosInstance} oktaAxios
+ * @returns {Promise<any[]>} all approved incidents
+ */
+export function getApprovedIncidents(oktaAxios) {
+  return oktaAxios.get('/dashboard/incidents/approved')
+    .then(res => {
+      return res.data;
+    });
+}
+
+/**
+ * Returns a promise that resolves to an array of approved incidents
+ * @param {import('axios').AxiosInstance} oktaAxios
+ * @returns {Promise<any[]>} all approved incidents
+ */
+export function getFormResponses(oktaAxios) {
+  return oktaAxios.get('http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve')
+    .then(res => {
+      return res.data;
+    });
+}
 
 // CompleteIncident.js
 export const applyEdits = (oktaAxios, formValues, incident) => {
