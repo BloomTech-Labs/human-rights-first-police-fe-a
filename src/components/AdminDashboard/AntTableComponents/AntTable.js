@@ -8,17 +8,18 @@ import { DateTime } from 'luxon';
 //https://ant.design/components/table/ <---documentation on the table
 
 function AntTable(props) {
-  const [incidents, setIncidents] = useState([]);
+  //const [incidents, setIncidents] = useState([]);
   const [selectionType, setSelectionType] = useState('checkbox');
   const [approvedSelected, setApprovedSelected] = useState([]);
   const {
-    unapprovedIncidents,
+    // unapprovedIncidents,
     setUnapprovedIncidents,
-    approvedIncidents,
-    formResponses,
+    // approvedIncidents,
+    // formResponses,
     selected,
     setSelected,
-    setCurrList,
+    // setCurrList,
+    incidents
   } = props;
   function formattingDate(inputData) {
     const [year, month, day] = inputData.incident_date.split('-');
@@ -75,16 +76,16 @@ function AntTable(props) {
   ];
 
   // provides which list of data to used based on props passed when button on the admin is pressed
-  let listToUse = [];
-  if (unapprovedIncidents) {
-    listToUse = unapprovedIncidents;
-    setCurrList(unapprovedIncidents);
-  } else if (approvedIncidents) {
-    listToUse = approvedIncidents;
-  } else {
-    listToUse = formResponses;
-    setCurrList(formResponses);
-  }
+  let listToUse = incidents;
+  // if (unapprovedIncidents) {
+  //   listToUse = unapprovedIncidents;
+  //   setCurrList(unapprovedIncidents);
+  // } else if (approvedIncidents) {
+  //   listToUse = approvedIncidents;
+  // } else {
+  //   listToUse = formResponses;
+  //   setCurrList(formResponses);
+  // }
 
   return (
     <div>

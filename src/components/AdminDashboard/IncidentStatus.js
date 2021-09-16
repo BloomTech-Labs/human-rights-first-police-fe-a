@@ -1,4 +1,3 @@
-import { Radio, Space } from 'antd';
 import React, { useEffect, useState } from 'react';
 
 const confirmText = {
@@ -9,9 +8,9 @@ const confirmText = {
 
 /**
  * @typedef IncidentStatusProps
- * @property {boolean} visible
- * @property {string} currentStatus
- * @property {(newStatus: string) => void} onStatusConfirm
+ * @property {boolean} isActive - whether or not to show/hide component (or enable/disable)
+ * @property {string} listType - which incident list is active (unapproved/approved/form-responses)
+ * @property {(newStatus: string) => void} onStatusConfirm - callback function indicating the status type chosen
  */
 
 /**
@@ -20,26 +19,21 @@ const confirmText = {
  * @returns
  */
 const IncidentStatus = props => {
-	const { visible, currentStatus, onStatusConfirm } = props;
+	const { isActive, listType, onStatusConfirm } = props;
 
-	const [newStatus, setNewStatus] = useState(currentStatus);
+	const [newStatus, setNewStatus] = useState(listType);
 	const [isAskConfirm, setIsAskConfirm] = useState(false);
 
 	useEffect(() => {
-		if (!visible) {
-			setNewStatus(currentStatus);
+		if (!isActive) {
+			setNewStatus(listType);
 			setIsAskConfirm(false);
 		}
-	}, [visible, currentStatus]);
+	}, [isActive, listType]);
 
 	const statusOnClick = (e, status) => {
 		e.preventDefault();
 		setNewStatus(e.target.value);
-		setIsAskConfirm(true);
-	};
-
-	const submitOnClick = e => {
-		e.preventDefault();
 		setIsAskConfirm(true);
 	};
 
@@ -55,13 +49,13 @@ const IncidentStatus = props => {
 
 	return (
 		<div className="dashboard-top-approve-reject"
-			style={{ visibility: visible ? 'visible' : 'collapse' }}>
+			style={{ visibility: isActive ? 'visible' : 'collapse' }}>
 
 			<span>Change Status:</span>
 
 			{!isAskConfirm &&
 				<>
-					{currentStatus === 'pending' &&
+					{listType === 'pending' &&
 						<button
 							className='approve-reject-select'
 							onClick={e => statusOnClick(e, 'approved')}>
@@ -69,7 +63,7 @@ const IncidentStatus = props => {
 						</button>
 					}
 
-					{currentStatus === 'approved' &&
+					{listType === 'approved' &&
 						<button
 							className='approve-reject-select'
 							onClick={e => statusOnClick(e, 'approved')}>
