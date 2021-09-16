@@ -1,10 +1,9 @@
 .complete-incident {
   text-align: left;
   border: solid #e3e8ee 1px;
-  border-top: none;
   padding-bottom: 2%;
   margin-top: 0px;
-  background-color: #f7fafc;
+  background-color: white;
   border-radius: 5px;
 }
 
@@ -26,7 +25,6 @@
 
 .complete-incident-dropdown {
   margin-top: 0px;
-  margin-left: 3%;
 }
 
 #dropdown-edit-button {
@@ -50,7 +48,4 @@
   display: flex;
 }
 
-.link-button {
-  margin-left: 0.5%;
-}
 /*# sourceMappingURL=CompleteIncident.css.map */
