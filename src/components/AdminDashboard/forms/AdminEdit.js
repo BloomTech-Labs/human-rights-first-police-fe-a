@@ -1,13 +1,17 @@
 import React from 'react';
 import { Form, Input, Select, DatePicker, Button } from 'antd';
 import moment from 'moment';
+import useOktaAxios from '../../../hooks/useOktaAxios';
+import { applyEdits } from '../../../utils/DashBoardHelperFunctions';
 
 import './AdminEdit.less';
 
 const { Option } = Select;
 
-function AdminEdit({ initialValues, cancel, applyChanges }) {
+function AdminEdit({ initialValues, cancel, cleanup }) {
   const [form] = Form.useForm();
+
+  const oktaAxios = useOktaAxios();
 
   const handleSubmit = vals => {
     let formattedDate;
@@ -18,11 +22,24 @@ function AdminEdit({ initialValues, cancel, applyChanges }) {
     }
     formattedDate = formattedDate.format('YYYY-MM-DD') + 'T00:00:00.000Z';
 
-    applyChanges({
+    const finalVals = {
       ...initialValues,
       ...vals,
       incident_date: formattedDate,
-    });
+    };
+
+    applyEdits(oktaAxios, finalVals, initialValues)
+      .then(res => {
+        window.location.reload();
+        // TODO instead of reloading we should just update the incident in state
+      })
+      .catch(err => {
+        console.log(err);
+        // TODO put some kind of actual error handling here
+      })
+      .finally(res => {
+        cleanup();
+      });
   };
 
   return (
