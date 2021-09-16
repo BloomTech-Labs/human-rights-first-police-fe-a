@@ -1,16 +1,28 @@
 import React from 'react';
-import { Form, Input, Select, DatePicker } from 'antd';
+import { Form, Input, Select, DatePicker, Button } from 'antd';
 import moment from 'moment';
 
 const { Option } = Select;
 
-function AdminEdit(props) {
+function AdminEdit({ initialValues }) {
   const [form] = Form.useForm();
   console.log(form);
-  const handleFinish = vals => {};
+
+  console.log(initialValues);
+  const handleFinish = vals => {
+    console.log(vals);
+  };
 
   return (
-    <Form form={form} layout="vertical" onFinish={handleFinish}>
+    <Form
+      form={form}
+      layout="vertical"
+      onFinish={handleFinish}
+      initialValues={{
+        ...initialValues,
+        incident_date: moment(initialValues.incident_date),
+      }}
+    >
       <Form.Item name="title" label="Title of Incident">
         <Input />
       </Form.Item>
@@ -48,6 +60,7 @@ function AdminEdit(props) {
       <Form.Item name="src" label="Sources">
         <Input />
       </Form.Item>
+      <Button htmlType="submit">Submit</Button>
     </Form>
   );
 }
