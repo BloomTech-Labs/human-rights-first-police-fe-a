@@ -49,17 +49,10 @@ export const getData = (oktaAxios, setUnapprovedIncidents) => {
 
 // AdminEdit.js
 export const applyEdits = (oktaAxios, formValues, incident) => {
-  const [month, day, year] = formValues.incident_date.split('/');
-  const [date, time] = incident.incident_date.split('T');
-  const newDate = `${year}-${month}-${day}T${time}`;
-  const updatedIncident = {
-    ...formValues,
-    incident_date: newDate,
-  };
-  console.log(updatedIncident);
+  console.log(formValues);
   // const putRequest = new Promise((resolve, reject) => {
   //   oktaAxios
-  //     .put('/dashboard/incidents', [{ ...updatedIncident }])
+  //     .put('/dashboard/incidents', [{ ...formValues }])
   //     .then(res => {
   //       resolve(res);
   //     })
