@@ -52,7 +52,7 @@ const CompleteIncident = props => {
           cleanup={onFormSubmit}
         />
       ) : (
-        <>
+        <div className="complete-incident-dropdown">
           {/* Title */}
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">Title:</p>
@@ -121,7 +121,7 @@ const CompleteIncident = props => {
 
           {/* Request More Info button */}
           <AntModal incident={incident} />
-        </>
+        </div>
       )}
     </div>
   );
