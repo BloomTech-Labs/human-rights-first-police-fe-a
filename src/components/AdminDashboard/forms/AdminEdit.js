@@ -18,17 +18,21 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
 
     // Making sure that the date is a moment
     if (vals.incident_date === null) {
-      formattedDate = moment();
+      formattedDate = moment(initialValues.incident_date);
     } else {
       formattedDate = vals.incident_date;
     }
     // Putting the date in the correct format
     formattedDate = formattedDate.format('YYYY-MM-DD') + 'T00:00:00.000Z';
 
+    // Removing duplicate tags, ex: "asdf " and "asdf"
+    let formattedTags = new Set(vals.tags.map(tag => tag.trim()));
+
     const finalVals = {
       ...initialValues,
       ...vals,
       incident_date: formattedDate,
+      tags: [...formattedTags],
     };
 
     applyEdits(oktaAxios, finalVals, initialValues)
@@ -77,7 +81,7 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
           <DatePicker
             style={{ width: '100%' }}
             disabledDate={picked => {
-              return moment() < picked;
+              return moment().add(1, 'days') <= picked;
             }}
           />
         </Form.Item>
