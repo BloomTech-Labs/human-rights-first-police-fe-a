@@ -6,7 +6,11 @@ import { Button } from 'antd';
 
 import EmbedSource from '../EmbedSource';
 
-import { applyEdits, getData } from '../../utils/DashboardHelperFunctions';
+import {
+  applyEdits,
+  getData,
+  deleteApproved,
+} from '../../utils/DashboardHelperFunctions';
 import { AntDesignOutlined } from '@ant-design/icons';
 import useOktaAxios from '../../hooks/useOktaAxios';
 import { nanoid } from 'nanoid';
@@ -21,7 +25,11 @@ const CompleteIncident = props => {
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
 
+  const [deleting, setDeleting] = useState(false);
+
   const [formValues, setFormValues] = useState({});
+
+  const oktaAxios = useOktaAxios();
 
   useEffect(() => {
     setFormValues({
@@ -39,6 +47,22 @@ const CompleteIncident = props => {
     setEditing(!editing);
   };
 
+  // for incident deletion button
+  const toggleDelete = evt => {
+    evt.preventDefault();
+    oktaAxios
+      .delete(`/dashboard/incidents/${incident.incident_id}`)
+      .then(res => {
+        window.alert(
+          `Case with id ${incident.incident_id} successfully deleted`
+        );
+        window.location.reload();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   // form control functions
   const handleInputChange = evt => {
     const { name, value } = evt.target;
@@ -47,8 +71,6 @@ const CompleteIncident = props => {
       [name]: value,
     });
   };
-
-  const oktaAxios = useOktaAxios();
 
   const handleSubmit = evt => {
     evt.preventDefault();
@@ -167,20 +189,12 @@ const CompleteIncident = props => {
               name="force_rank"
               value={formValues.force_rank}
             >
-              <option value="Rank 0">
-                Rank 0 - No Police Presence
-              </option>
-              <option value="Rank 1">
-                Rank 1 - Police Presence
-              </option>
+              <option value="Rank 0">Rank 0 - No Police Presence</option>
+              <option value="Rank 1">Rank 1 - Police Presence</option>
               <option value="Rank 2">Rank 2 - Empty-hand</option>
               <option value="Rank 3">Rank 3 - Blunt Force</option>
-              <option value="Rank 4">
-                Rank 4 - Chemical &amp; Electric
-              </option>
-              <option value="Rank 5">
-                Rank 5 - Lethal Force
-              </option>
+              <option value="Rank 4">Rank 4 - Chemical &amp; Electric</option>
+              <option value="Rank 5">Rank 5 - Lethal Force</option>
             </select>
             <br />
           </>
@@ -223,11 +237,13 @@ const CompleteIncident = props => {
         >
           {editing ? 'Cancel' : 'Edit'}
         </Button>
-        {editing && (
-          <Button className="approve-reject-select" onClick={handleSubmit}>
-            Apply Changes
-          </Button>
-        )}
+        {editing && <Button onClick={handleSubmit}>Apply Changes</Button>}
+
+        {/* Button for deleting incidents */}
+        <Button onClick={toggleDelete} type="danger">
+          {deleting ? 'Cancel' : 'Delete'}
+        </Button>
+
         <AntModal incident={incident} />
       </div>
     </div>

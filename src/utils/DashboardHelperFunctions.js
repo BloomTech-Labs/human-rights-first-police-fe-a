@@ -39,6 +39,9 @@ export const getData = (oktaAxios, setUnapprovedIncidents) => {
   oktaAxios
     .get('/dashboard/incidents')
     .then(res => {
+      console.log(res.data[0].incident_id);
+      // console.log(res.data);
+
       setUnapprovedIncidents(res.data);
     })
     .catch(err => {
@@ -59,6 +62,7 @@ export const applyEdits = (oktaAxios, formValues, incident) => {
     oktaAxios
       .put('/dashboard/incidents', [{ ...updatedIncident }])
       .then(res => {
+        console.log(res);
         resolve(res);
       })
       .catch(err => {
