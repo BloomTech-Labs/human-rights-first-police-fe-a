@@ -16,12 +16,10 @@ export const putIncidents = (oktaAxios, incidents, status) => {
   const modifiedIncidents = incidents.map(inc => {
     return { ...inc, status };
   });
-  console.log(modifiedIncidents);
-  //return Promise.resolve();
+
   return oktaAxios
     .put('dashboard/incidents', modifiedIncidents)
     .then(res => {
-      console.log(res);
       return res;
     })
     .catch(err => {

@@ -51,15 +51,15 @@ const IncidentStatus = props => {
     <div className="dashboard-top-approve-reject"
       style={{ visibility: isActive ? 'visible' : 'collapse' }}>
 
-      <span>Change Status:</span>
-
       {!isAskConfirm &&
         <>
+          <span>Change Status:</span>
+
           {listType === 'pending' &&
             <button
               className='approve-reject-select'
               onClick={e => statusOnClick(e, 'approved')}>
-              Approve
+              Approved
             </button>
           }
 
@@ -67,14 +67,14 @@ const IncidentStatus = props => {
             <button
               className='approve-reject-select'
               onClick={e => statusOnClick(e, 'pending')}>
-              Unapproved
+              Pending
             </button>
           }
 
           <button
             className='approve-reject-select'
             onClick={e => statusOnClick(e, 'rejected')}>
-            Reject
+            Rejected
           </button>
         </>
       }
