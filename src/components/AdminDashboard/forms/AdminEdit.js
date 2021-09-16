@@ -37,7 +37,6 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
     oktaAxios
       .put('/dashboard/incidents', [{ ...finalVals }])
       .then(res => {
-        console.log(res);
         window.location.reload();
         // TODO instead of reloading we should just update the incident in state
         // notice that this kinda breaks the whole cleanup step.
