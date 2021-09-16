@@ -6,11 +6,7 @@ import { Button } from 'antd';
 
 import EmbedSource from '../EmbedSource';
 
-import {
-  applyEdits,
-  getData,
-  deleteApproved,
-} from '../../utils/DashboardHelperFunctions';
+import { applyEdits, getData } from '../../utils/DashboardHelperFunctions';
 import { AntDesignOutlined } from '@ant-design/icons';
 import useOktaAxios from '../../hooks/useOktaAxios';
 import { nanoid } from 'nanoid';
