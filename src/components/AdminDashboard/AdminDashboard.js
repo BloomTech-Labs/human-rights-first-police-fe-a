@@ -3,56 +3,55 @@ import React, { useState, useEffect } from 'react';
 import AddIncident from './AddIncident';
 import DashboardTop from './DashboardTop';
 import Incidents from './Incidents';
-import ApprovedIncidents from './ApprovedIncidents';
 import './AdminDashboard.css';
 import { Modal } from './Modal';
 import useOktaAxios from '../../hooks/useOktaAxios';
 
 import {
   getData,
-  sortApproved,
   putIncidents,
   getLatAndLong,
+  getApprovedIncidents,
+  getPendingIncidents,
+  getFormResponses,
+  splitIncidentsByIds
 } from '../../utils/DashboardHelperFunctions.js';
 
-import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import IncidentStatus from './IncidentStatus';
+import AntTable from './AntTableComponents/AntTable';
 
 const AdminDashboard = () => {
-  // setting up local state to keep track of selected/"checked" incidents
-  const [selected, setSelected] = useState([]);
+  /** List of selected (checked) incident_ids */
+  const [selectedIds, setSelectedIds] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
-  const [incidents, setIncidents] = useState([]);
 
-  //   setting state necessary for pagination
-  const [pageNumber, setPageNumber] = useState(1);
-  const [incidentsPerPage, setIncidentsPerPage] = useState(10);
-  const [currentSet, setCurrentSet] = useState([]);
-
-  //   setting state for confirmation buttons of confirming/rejecting
-  const [confirmApprove, setConfirmApprove] = useState(false);
-  const [confirmReject, setConfirmReject] = useState(false);
-  const [confirmStatus, setConfirmStatus] = useState('pending');
-  const [currList, setCurrList] = useState([]);
-
-  // setting state for unapproved/pending incidents from the database
-  const [unapprovedIncidents, setUnapprovedIncidents] = useState([]);
-
-  //setting state for form-response incidents from DS database
+  // The three categories of incidents
   const [formResponses, setFormResponses] = useState([]);
+  const [pendingIncidents, setPendingIncidents] = useState([]);
+  const [approvedIncidents, setApprovedIncidents] = useState([]);
+
+  // The incident status type to display: 'pending', 'approved', 'form-responses'
+  const [listType, setListType] = useState('pending');
+
+  const getCurrentList = () => {
+    switch (listType) {
+      case 'pending':
+        return pendingIncidents;
+      case 'approved':
+        return approvedIncidents;
+      case 'form-responses':
+        return formResponses;
+      default:
+        return [];
+    }
+  };
 
   // setting state to toggle whether or not the modal pop up (addIncident) is rendered
   const [adding, setAdding] = useState(false);
 
-  // setting state to change between approved and unapproved incidents
-  const [listType, setListType] = useState('unapproved');
-
   // modal
   const [showModal, setShowModal] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');
-
-  //variable to push to homepage for logout button
-  const { push } = useHistory();
 
   useEffect(() => {
     const handleShowModal = () => {
@@ -70,117 +69,81 @@ const AdminDashboard = () => {
     window.scrollTo(0, 0);
   }, [HAS_VISITED_BEFORE]);
 
+  // resets the selected incidents when switching from approved to unapproved page
+  useEffect(() => {
+    setSelectedIds([]);
+    setAllSelected(false);
+  }, [listType]);
+
   const modalHandler = () => {
     setShowModal(false);
   };
 
-  const lastPage = Math.ceil(unapprovedIncidents.length / incidentsPerPage);
-
   const oktaAxios = useOktaAxios();
 
-  // getting unapproved/pending incidents from the database
+  const fetchIncidents = () => {
+    getApprovedIncidents(oktaAxios)
+      .then(res => setApprovedIncidents(res))
+      .catch(err => console.log(err));
+
+    getPendingIncidents(oktaAxios)
+      .then(res => setPendingIncidents(res))
+      .catch(err => console.log(err));
+
+    getFormResponses(oktaAxios)
+      .then(res => setFormResponses(res))
+      .catch(err => console.log(err));
+  };
+
+  // getting all incident data
   useEffect(() => {
-    getData(oktaAxios, setUnapprovedIncidents);
+    fetchIncidents();
   }, []);
 
-  // getting approved incidents from database
-  useEffect(() => {
-    oktaAxios
-      .get('/dashboard/incidents/approved')
+  const approveAndRejectHandler = async (newStatus) => {
+    const currentList = getCurrentList();
+    const { selected, source } = splitIncidentsByIds(currentList, selectedIds);
+
+    // setting lat and long for approved incidents
+    if (newStatus === 'approved') {
+      for (const inc of selected) {
+        if (inc.city && inc.state) {
+          try {
+            const latAndLong = await getLatAndLong(inc);
+            inc.lat = latAndLong[0];
+            inc.long = latAndLong[1];
+          } catch (err) {
+            console.log(err);
+          }
+        }
+      }
+    }
+
+    putIncidents(oktaAxios, selected, newStatus)
       .then(res => {
-        setIncidents(res.data);
+        console.log(res);
+
+        if (listType === 'pending') {
+          setPendingIncidents(source);
+        }
+
+        else if (listType === 'form-responses') {
+          setFormResponses(source);
+        }
+
+        else if (listType === 'approved') {
+          setApprovedIncidents(source);
+        }
+
+        setAllSelected(false);
+        setSelectedIds([]);
+        fetchIncidents();
       })
       .catch(err => {
         console.log(err);
+
+        // TODO: Better error handling!
       });
-  }, []);
-
-  // getting form-responses from DS database
-  useEffect(() => {
-    axios
-      .get(
-        'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve'
-      )
-      .then(res => {
-        setFormResponses(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
-
-  // setting up pagination display on dashboard
-  useEffect(() => {
-    const start = incidentsPerPage * pageNumber - incidentsPerPage;
-    const newCurrentSet = unapprovedIncidents.slice(
-      start,
-      start + incidentsPerPage
-    );
-    setCurrentSet(newCurrentSet);
-  }, [pageNumber, incidentsPerPage, unapprovedIncidents]);
-
-  // incident selection (checkbox) functions
-  const selectAll = () => {
-    setAllSelected(!allSelected);
-    if (!allSelected) {
-      setSelected(currentSet.map(data => data.incident_id));
-    } else {
-      setSelected([]);
-    }
-  };
-
-  const approveAndRejectHandler = async evt => {
-    evt.preventDefault();
-    const [reviewedIncidents, unreviewedIncidents] = sortApproved(
-      currList,
-      selected
-    );
-    // MVP: One-by-one approvals. Needs work for multiple approvals simultaneously
-    const latAndLong = await getLatAndLong(reviewedIncidents[0]);
-    reviewedIncidents[0].lat = latAndLong[0];
-    reviewedIncidents[0].long = latAndLong[1];
-
-    putIncidents(oktaAxios, reviewedIncidents, confirmStatus);
-
-    if (listType === 'unapproved') {
-      setUnapprovedIncidents(unreviewedIncidents);
-    } else if (listType === 'form-responses') {
-      //did 'else if' incase we wanted to add Reject button to Approved list
-      setFormResponses(unreviewedIncidents);
-    }
-    setAllSelected(false);
-    setSelected([]);
-    setConfirmApprove(false);
-    setConfirmReject(false);
-    if (pageNumber > lastPage) {
-      setPageNumber(pageNumber - 1);
-    }
-  };
-
-  // toggling confirmation of approve/reject buttons
-  const confirmApproveHandler = evt => {
-    evt.preventDefault();
-    setConfirmApprove(true);
-    setConfirmStatus('approved');
-  };
-
-  const confirmRejectHandler = evt => {
-    evt.preventDefault();
-    setConfirmReject(true);
-    setConfirmStatus('rejected');
-  };
-
-  const confirmCancel = evt => {
-    evt.preventDefault();
-    setConfirmApprove(false);
-    setConfirmReject(false);
-    setConfirmStatus('pending');
-  };
-
-  const handlePerPageChange = evt => {
-    evt.preventDefault();
-    setIncidentsPerPage(Number(evt.target.value));
-    setPageNumber(1);
   };
 
   // toggling rendering of AddIncident pop up modal
@@ -189,129 +152,106 @@ const AdminDashboard = () => {
     setAdding(true);
   };
 
-  const logout = () => {
-    localStorage.removeItem('okta-token-storage', 'okta-cache-storage');
-    push('/');
-    window.location.reload();
+  // this needs to be improved
+  const selectedTabButtonStyle = {
+    background: '#095fab'
   };
+
   return (
     <>
+      {/* I don't know what this is */}
       {showModal ? <div className="back-drop"></div> : null}
       <Modal
         showModal={showModal}
         modalHandler={modalHandler}
-        unapprovedIncidents={unapprovedIncidents}
+        unapprovedIncidents={pendingIncidents}
       />
 
+      {/* Incident "tabs" - unapproved, approved, form responses */}
       <div className="dashboard-buttons-container">
         <div className="incident-btn-container">
           <button
             className="approve-btn"
-            onClick={() => setListType('unapproved')}
+            style={listType === 'pending' ? selectedTabButtonStyle : {}}
+            onClick={() => setListType('pending')}
           >
-            Unapproved Incidents
+            Pending Incidents
           </button>
           <button
             className="approve-btn"
+            style={listType === 'approved' ? selectedTabButtonStyle : {}}
             onClick={() => setListType('approved')}
           >
             Approved Incidents
           </button>
           <button
             className="approve-btn"
+            style={listType === 'form-responses' ? selectedTabButtonStyle : {}}
             onClick={() => setListType('form-responses')}
           >
             Form Responses
           </button>
         </div>
-        <div className="logout-container">
-          <button className="approve-btn" onClick={logout}>
-            Log Out
-          </button>
-        </div>
       </div>
-      {listType === 'unapproved' && (
-        <div className="dashboard-container">
-          <DashboardTop
-            unapprovedIncidents={unapprovedIncidents}
-            toggleAddIncident={toggleAddIncident}
-            listType={listType}
-          />
 
-          {adding ? (
-            <AddIncident
-              setPageNumber={setPageNumber}
-              getData={getData}
-              setAdding={setAdding}
+      <div className="dashboard-container">
+        <DashboardTop
+          unapprovedIncidents={pendingIncidents}
+          toggleAddIncident={toggleAddIncident}
+          listType={listType}
+        />
+
+        {selectedIds.length > 0 &&
+          <span>{selectedIds.length} selected</span>
+        }
+
+        {/* Controls for setting the status of selected incidents (unapproved, pending, approved) */}
+        <IncidentStatus
+          isActive={selectedIds.length > 0}
+          listType={listType}
+          onStatusConfirm={approveAndRejectHandler}
+        />
+
+        {/* modal popup for adding a new incident */}
+        {adding &&
+          <AddIncident
+            getData={getData}
+            setAdding={setAdding}
+          />
+        }
+
+        {listType === 'pending' &&
+          <div className="incidents">
+            <AntTable
+              selected={selectedIds}
+              setSelected={setSelectedIds}
+              incidents={pendingIncidents}
+              showConfidence={true}
             />
-          ) : (
-            <Incidents
-              confirmApprove={confirmApprove}
-              confirmReject={confirmReject}
-              confirmApproveHandler={confirmApproveHandler}
-              confirmRejectHandler={confirmRejectHandler}
-              approveAndRejectHandler={approveAndRejectHandler}
-              confirmCancel={confirmCancel}
-              setSelected={setSelected}
-              selected={selected}
-              selectAll={selectAll}
-              allSelected={allSelected}
-              handlePerPageChange={handlePerPageChange}
-              currentSet={currentSet}
-              setUnapprovedIncidents={setUnapprovedIncidents}
-              setPageNumber={setPageNumber}
-              unapprovedIncidents={unapprovedIncidents}
-              setCurrList={setCurrList}
-            />
-          )}
-        </div>
-      )}
-      {listType === 'approved' && (
-        <>
-          <div className="dashboard-container">
-            <DashboardTop
-              unapprovedIncidents={unapprovedIncidents}
-              toggleAddIncident={toggleAddIncident}
-              listType={listType}
-            />
-            {adding ? (
-              <AddIncident
-                setPageNumber={setPageNumber}
-                getData={getData}
-                setAdding={setAdding}
-              />
-            ) : (
-              <ApprovedIncidents incidents={incidents} />
-            )}
           </div>
-        </>
-      )}
-      {listType === 'form-responses' && (
-        <div className="dashboard-container">
-          <DashboardTop
-            unapprovedIncidents={unapprovedIncidents}
-            toggleAddIncident={toggleAddIncident}
-            listType={listType}
-          />
-          <Incidents
-            confirmApprove={confirmApprove}
-            confirmReject={confirmReject}
-            confirmApproveHandler={confirmApproveHandler}
-            confirmRejectHandler={confirmRejectHandler}
-            approveAndRejectHandler={approveAndRejectHandler}
-            confirmCancel={confirmCancel}
-            setSelected={setSelected}
-            selected={selected}
-            selectAll={selectAll}
-            allSelected={allSelected}
-            handlePerPageChange={handlePerPageChange}
-            currentSet={currentSet}
-            setPageNumber={setPageNumber}
-            formResponses={formResponses}
-            setCurrList={setCurrList}
-          />
-        </div>
-      )}
+        }
+
+        {listType === 'approved' &&
+          <div className="incidents">
+            <AntTable
+              selected={selectedIds}
+              setSelected={setSelectedIds}
+              incidents={getCurrentList()}
+            />
+          </div>
+        }
+
+        {listType === 'form-responses' &&
+          <div className="incidents">
+            <AntTable
+              selected={selectedIds}
+              setSelected={setSelectedIds}
+              incidents={getCurrentList()}
+            />
+          </div>
+        }
+
+      </div>
     </>
   );
 };
