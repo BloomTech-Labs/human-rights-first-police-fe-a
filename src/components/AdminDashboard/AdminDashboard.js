@@ -108,9 +108,13 @@ const AdminDashboard = () => {
     if (newStatus === 'approved') {
       for (const inc of selected) {
         if (inc.city && inc.state) {
-          const latAndLong = await getLatAndLong(inc);
-          inc.lat = latAndLong[0];
-          inc.long = latAndLong[1];
+          try {
+            const latAndLong = await getLatAndLong(inc);
+            inc.lat = latAndLong[0];
+            inc.long = latAndLong[1];
+          } catch (err) {
+            console.log(err);
+          }
         }
       }
     }
@@ -133,6 +137,7 @@ const AdminDashboard = () => {
 
         setAllSelected(false);
         setSelectedIds([]);
+        fetchIncidents();
       })
       .catch(err => {
         console.log(err);
@@ -215,14 +220,36 @@ const AdminDashboard = () => {
           />
         }
 
-        <div className="incidents">
-          <AntTable
-            selectedIds={selectedIds}
-            setSelected={setSelectedIds}
-            incidents={getCurrentList()}
-            listType={listType}
-          />
-        </div>
+        {listType === 'pending' &&
+          <div className="incidents">
+            <AntTable
+              selected={selectedIds}
+              setSelected={setSelectedIds}
+              incidents={pendingIncidents}
+              showConfidence={true}
+            />
+          </div>
+        }
+
+        {listType === 'approved' &&
+          <div className="incidents">
+            <AntTable
+              selected={selectedIds}
+              setSelected={setSelectedIds}
+              incidents={getCurrentList()}
+            />
+          </div>
+        }
+
+        {listType === 'form-responses' &&
+          <div className="incidents">
+            <AntTable
+              selected={selectedIds}
+              setSelected={setSelectedIds}
+              incidents={getCurrentList()}
+            />
+          </div>
+        }
 
       </div>
     </>

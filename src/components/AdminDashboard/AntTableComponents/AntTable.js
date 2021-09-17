@@ -9,18 +9,18 @@ import { DateTime } from 'luxon';
  * @typedef AntTableProps
  * @property {any[]} incidents - incident data
  * @property {number[]} selectedIds - an aray of the currently selected incident IDs
- * @property {React.Dispatch<React.SetStateAction<number[]>} setSelected - setter for selected IDs
- * @property {'approved' | 'pending' | 'form-responses'} listType - optional
+ * @property {React.Dispatch<React.SetStateAction<number[]>} setSelectedIds - setter for selected IDs
+ * @property {boolean} showConfidence - shows a column for incident confidence
  */
 
 /**
  * Component for rendering a list of incident data on the AdminDashboard
- * 
+ *
  * @param {AntTableProps} props
  * @returns {JSX.Element} the AntTable component
  */
 function AntTable(props) {
-  const { selectedIds, setSelectedIds, incidents, listType } = props;
+  const { selectedIds, setSelectedIds, incidents, listType, showConfidence } = props;
 
   const [selectedRows, setSelectedRows] = useState([]);
 
@@ -52,15 +52,7 @@ function AntTable(props) {
     }
   };
 
-
-
   const columns = [
-    //   //When DS provides data for this, uncomment for Admin Table to show %, and move.
-    // {
-    //   title: 'Accuracy Estimate',
-    //   dataIndex: 'acc_estimate',
-    //     key: 'acc_estimate',
-    //     },
     {
       title: 'Description',
       dataIndex: 'description',
@@ -97,6 +89,20 @@ function AntTable(props) {
       render: renderDate
     },
   ];
+
+  if (showConfidence) {
+    const confidenceColumn = {
+      title: 'Confidence',
+      dataIndex: 'confidence',
+      key: 'confidence',
+      render: c => `${(c * 100).toFixed(3)}%`,
+    };
+
+    // Juggling columns to insert confidence column
+    const date = columns.pop();
+    columns.push(confidenceColumn);
+    columns.push(date);
+  }
 
   return (
     <div>
