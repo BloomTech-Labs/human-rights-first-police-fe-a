@@ -1,27 +1,12 @@
 import axios from 'axios';
 
 export const putIncidents = (oktaAxios, incidents, status) => {
-  // const reviewedIncidents = incidents.map(incident => {
-  //   return {
-  //     status: status,
-  //     city: incident.city,
-  //     state: incident.state,
-  //     force_rank: incident.force_rank,
-  //     lat: incident.lat,
-  //     long: incident.long,
-  //     incident_id: incident.incident_id,
-  //   };
-  // });
-
   const modifiedIncidents = incidents.map(inc => {
     return { ...inc, status };
   });
 
   return oktaAxios
     .put('dashboard/incidents', modifiedIncidents)
-    .then(res => {
-      return res;
-    })
     .catch(err => {
       console.log(err);
     });
@@ -66,6 +51,7 @@ export const getData = (oktaAxios, setUnapprovedIncidents) => {
 
 /**
  * Returns a promise that resolves to an array of pending incidents
+ *
  * @param {import('axios').AxiosInstance} oktaAxios
  * @returns {Promise<any[]>} all pending incidents
  */
@@ -78,6 +64,7 @@ export function getPendingIncidents(oktaAxios) {
 
 /**
  * Returns a promise that resolves to an array of approved incidents
+ *
  * @param {import('axios').AxiosInstance} oktaAxios
  * @returns {Promise<any[]>} all approved incidents
  */
@@ -90,6 +77,7 @@ export function getApprovedIncidents(oktaAxios) {
 
 /**
  * Returns a promise that resolves to an array of approved incidents
+ *
  * @param {import('axios').AxiosInstance} oktaAxios
  * @returns {Promise<any[]>} all approved incidents
  */
