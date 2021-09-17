@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import AddIncident from './AddIncident';
 import DashboardTop from './DashboardTop';
-import Incidents from './Incidents';
 import './AdminDashboard.css';
 import { Modal } from './Modal';
 import useOktaAxios from '../../hooks/useOktaAxios';
