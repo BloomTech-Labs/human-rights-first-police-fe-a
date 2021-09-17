@@ -1,12 +1,68 @@
 import React from 'react';
-import { Collapse, Form, Input, Button, Select, DatePicker } from 'antd';
+import { Collapse, Form, Input, Select, DatePicker } from 'antd';
+import { useSelector } from 'react-redux';
 
 const { Option } = Select;
 const { Panel } = Collapse;
 const { RangePicker } = DatePicker;
 
+const states = [
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'NewHampshire',
+  'NewJersey',
+  'NewMexico',
+  'NewYork',
+  'NorthCarolina',
+  'NorthDakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Pennsylvania',
+  'RhodeIsland',
+  'SouthCarolina',
+  'SouthDakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'WestVirginia',
+  'Wisconsin',
+  'Wyoming',
+];
+
 function FilterForm({ onValuesChange }) {
   const [form] = Form.useForm();
+  const tags = useSelector(state => Object.keys(state.incident.tagIndex));
+
   const onChange = (trash, vals) => {
     onValuesChange(vals);
   };
@@ -30,13 +86,17 @@ function FilterForm({ onValuesChange }) {
             </Form.Item>
             <Form.Item name="state" noStyle>
               <Select placeholder="State" style={{ width: '50%' }}>
-                <Option value="asdf">asdf</Option>
+                {states.map(state => (
+                  <Option value={state}>{state}</Option>
+                ))}
               </Select>
             </Form.Item>
           </Form.Item>
           <Form.Item name="tags" label="Tags">
             <Select mode="multiple">
-              <Option value="asdfasdf">asdfasdf</Option>
+              {tags.map(tag => (
+                <Option value={tag}>{tag}</Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item name="date_range" label="Date">
