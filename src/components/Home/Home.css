@@ -62,7 +62,7 @@
   .arrow-container {
     padding: 2.7%;
   }
-  #title {
+  #title-text {
     margin-bottom: -1%;
   }
   div.line-break {
@@ -103,7 +103,7 @@
     width: 100%;
     margin: 8% 0% 0% 0%;
   }
-  #title {
+  #title-text {
     padding-right: 7%;
   }
   .timeline {
@@ -132,7 +132,7 @@
     margin-top: 1%;
     width: 114%;
   }
-  #title {
+  #title-text {
     padding-right: 9.5%;
   }
   .bottom-section-wrap {
@@ -167,7 +167,7 @@
     margin-top: 2%;
     width: 117%;
   }
-  #title {
+  #title-text {
     padding-right: 12%;
   }
   .timeline {
@@ -189,7 +189,7 @@
     margin: 2% 0% 0% -10%;
     width: 120.3%;
   }
-  #title {
+  #title-text {
     padding-right: 13%;
   }
   .horizontal-graph {
@@ -216,7 +216,7 @@
     margin: 2% 0% 0% -12%;
     width: 124.1%;
   }
-  #title {
+  #title-text {
     padding-right: 19%;
   }
   .timeline {

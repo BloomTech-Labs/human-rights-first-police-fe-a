@@ -1,12 +1,27 @@
 import React, { useState, createRef } from 'react';
 import useOktaAxios from '../../hooks/useOktaAxios';
-import { Modal } from 'antd';
+import { Modal, Form, Select, Input, DatePicker } from 'antd';
+import moment from 'moment';
 
 import {
   getLatAndLong,
   postIncident,
-  formatDate,
 } from '../../utils/DashboardHelperFunctions';
+
+const Required = props => {
+  // This makes a required form item without the little red star
+  return (
+    <Form.Item label={props.label}>
+      <Form.Item
+        noStyle
+        {...props}
+        rules={[{ required: true, message: props.reqMessage }]}
+      />
+    </Form.Item>
+  );
+};
+
+const { Option } = Select;
 
 const initialFormValues = {
   city: null,
@@ -24,9 +39,62 @@ const initialFormValues = {
   tweet_id: null,
 };
 
+const states = [
+  'Alabama',
+  'Alaska',
+  'Arizona',
+  'Arkansas',
+  'California',
+  'Colorado',
+  'Connecticut',
+  'Delaware',
+  'Florida',
+  'Georgia',
+  'Hawaii',
+  'Idaho',
+  'Illinois',
+  'Indiana',
+  'Iowa',
+  'Kansas',
+  'Kentucky',
+  'Louisiana',
+  'Maine',
+  'Maryland',
+  'Massachusetts',
+  'Michigan',
+  'Minnesota',
+  'Mississippi',
+  'Missouri',
+  'Montana',
+  'Nebraska',
+  'Nevada',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
+  'Ohio',
+  'Oklahoma',
+  'Oregon',
+  'Pennsylvania',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
+  'Tennessee',
+  'Texas',
+  'Utah',
+  'Vermont',
+  'Virginia',
+  'Washington',
+  'West Virginia',
+  'Wisconsin',
+  'Wyoming',
+];
+
 const AddIncident = props => {
   // setting state for form management
-  const [formValues, setFormValues] = useState(initialFormValues);
+  const [form] = Form.useForm();
 
   // setting state for add incident pop up
   const [modalText, setModalText] = useState('');
@@ -37,26 +105,33 @@ const AddIncident = props => {
 
   const oktaAxios = useOktaAxios();
 
-  // submitting form
-  const handleOk = async evt => {
-    evt.preventDefault();
+  //   form management functions
+  const handleCancel = () => {
+    setVisible(false);
+    setAdding(false);
+  };
+
+  const handleFinish = async vals => {
+    setConfirmLoading(true);
+
     // formatting date
     let newDateString;
-    if (!formValues.incident_date) {
+    if (vals.incident_date == null) {
       newDateString = new Date().toJSON();
     } else {
-      const formattedDate = formatDate(formValues.incident_date);
-      newDateString = formattedDate + 'T00:00:00.000Z';
+      newDateString =
+        vals.incident_date.format('YYYY-MM-DD') + 'T00:00:00.000Z';
     }
 
     // getting coordinates
-    const [lat, long] = await getLatAndLong(formValues);
+    const [lat, long] = await getLatAndLong(vals);
 
     // creating new incident object to be posted
     const newIncident = {
-      ...formValues,
+      ...initialFormValues,
+      ...vals,
       incident_date: newDateString,
-      src: [formValues.src],
+      src: [vals.src],
       lat,
       long,
     };
@@ -75,121 +150,75 @@ const AddIncident = props => {
     }, 1750);
   };
 
-  //   form management functions
-  const handleChange = evt => {
-    const { name, value } = evt.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
-  const handleCancel = () => {
-    setVisible(false);
-    setAdding(false);
-  };
-
   const wrapper = createRef();
 
   return (
-    <Modal
-      ref={wrapper}
-      title="Create New Incident"
-      visible={visible}
-      onOk={handleOk}
-      confirmLoading={confirmLoading}
-      onCancel={handleCancel}
-    >
-      <form>
-        <label htmlFor="title">
-          Title of Incident
-          <br />
-          <input
-            type="text"
+    <div ref={wrapper}>
+      {/* The above div removes the "findDomNode" warning */}
+      <Modal
+        title="Create New Incident"
+        visible={visible}
+        okText="Submit"
+        onOk={form.submit}
+        confirmLoading={confirmLoading}
+        onCancel={handleCancel}
+      >
+        <Form form={form} layout="vertical" onFinish={handleFinish}>
+          <Required
             name="title"
-            value={formValues.title}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="description">
-          Description of Incident
-          <br />
-          <input
-            type="text"
-            name="description"
-            value={formValues.description}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="city">
-          City
-          <br />
-          <input
-            type="text"
-            name="city"
-            value={formValues.city}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="state">
-          State
-          <br />
-          <input
-            type="text"
-            name="state"
-            value={formValues.state}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="incident_date">
-          Date (MM/DD/YYYY)
-          <br />
-          <input
-            type="text"
-            name="incident_date"
-            value={formValues.incident_date}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-        <br />
-        <label htmlFor="force_rank">
-          Force Rank
-          <br />
-          <select onChange={handleChange} name="force_rank">
-            <option value="">--Select One--</option>
-            <option value="Rank 0">Rank 0 - No Police Presence</option>
-            <option value="Rank 1">Rank 1 - Police Presence</option>
-            <option value="Rank 2">Rank 2 - Empty-hand</option>
-            <option value="Rank 3">Rank 3 - Blunt Force</option>
-            <option value="Rank 4">Rank 4 - Chemical &amp; Electric</option>
-            <option value="Rank 5">Rank 5 - Lethal Force</option>
-          </select>
-        </label>
-        <br />
-        <br />
-        <label htmlFor="src">
-          Sources (separate by commas)
-          <br />
-          <input
-            type="text"
-            name="src"
-            value={formValues.src}
-            onChange={handleChange}
-          />
-        </label>
-        <br />
-      </form>
-      {modalText || ''}
-    </Modal>
+            label="Title of Incident"
+            reqMessage="Title is Required"
+          >
+            <Input placeholder="Input the title of the incident" />
+          </Required>
+          <Form.Item name="description" label="Description of Incident">
+            <Input />
+          </Form.Item>
+          <Form.Item label="Location">
+            <Input.Group compact>
+              <Form.Item name="city" label="City" noStyle>
+                <Input style={{ width: '50%' }} placeholder="City" />
+              </Form.Item>
+              <Form.Item name="state" label="State" noStyle>
+                <Select style={{ width: '50%' }} placeholder="State">
+                  {states.map(state => (
+                    <Option value={state} key={state}>
+                      {state}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+            </Input.Group>
+          </Form.Item>
+          <Form.Item name="incident_date" label="Date">
+            <DatePicker
+              style={{ width: '100%' }}
+              disabledDate={picked => {
+                return moment() < picked; // only allow dates before now
+              }}
+            />
+          </Form.Item>
+          <Required
+            name="force_rank"
+            label="Force Rank"
+            reqMessage="Force Rank is Required"
+          >
+            <Select placeholder="Select a Force Rank">
+              <Option value="Rank 0">Rank 0 - No Police Presence</Option>
+              <Option value="Rank 1">Rank 1 - Police Presence</Option>
+              <Option value="Rank 2">Rank 2 - Empty-hand</Option>
+              <Option value="Rank 3">Rank 3 - Blunt Force</Option>
+              <Option value="Rank 4">Rank 4 - Chemical &amp; Electric</Option>
+              <Option value="Rank 5">Rank 5 - Lethal Force</Option>
+            </Select>
+          </Required>
+          <Form.Item name="src" label="Sources">
+            <Input />
+          </Form.Item>
+        </Form>
+        {modalText || ''}
+      </Modal>
+    </div>
   );
 };
 export default AddIncident;

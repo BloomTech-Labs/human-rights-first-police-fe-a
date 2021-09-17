@@ -81,7 +81,10 @@ const Incidents = () => {
     return (
       <div className="header-top">
         <div className="title-container">
-          <p id="title">{incident.title}</p>
+          {/* title-text is used instead of title since ant design form items
+           * with name="title" get the id "title" from ant design, so there's
+           * some namespace clashes in the css */}
+          <p id="title-text">{incident.title}</p>
         </div>
         <div className="extra">
           <div className="incident-rank">
