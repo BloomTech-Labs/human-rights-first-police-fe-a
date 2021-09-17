@@ -52,7 +52,7 @@ const ApprovedIncident = ({ item }) => {
           }}
           onClick={() => handleDelete(item.id)}
         >
-          x
+          Delete
         </button>
       </div>
       {moreInfo && (
