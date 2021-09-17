@@ -285,11 +285,14 @@ const Incidents = () => {
       : null;
   };
 
+  const onFilterChange = formVals => {
+    console.log(formVals);
+  };
   return (
     <div className="incident-reports-page">
+      <FilterForm onValuesChange={onFilterChange} />
       <div className="form-container">
         <h1>Filter Incident Reports</h1>
-        <FilterForm />
         <form className="export-form">
           <label htmlFor="ranks" className="labels">
             Rank
