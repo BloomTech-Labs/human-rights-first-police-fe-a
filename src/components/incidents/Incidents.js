@@ -9,6 +9,7 @@ import {
   createRange,
   filterByTags,
 } from '../incidents/IncidentFilter';
+import FilterForm from './FilterForm';
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
 import { Empty, Button, Collapse, Tag, Checkbox, Popover, Select } from 'antd';
@@ -288,6 +289,7 @@ const Incidents = () => {
     <div className="incident-reports-page">
       <div className="form-container">
         <h1>Filter Incident Reports</h1>
+        <FilterForm />
         <form className="export-form">
           <label htmlFor="ranks" className="labels">
             Rank
