@@ -1,17 +1,57 @@
 import React, { useState, useEffect } from 'react';
-import { Bar } from 'react-chartjs-2';
-import { createDataSet } from '../assets/bargraphAssets';
+import { Bar, HorizontalBar } from 'react-chartjs-2';
 
 import './BarGraph.less';
+
+const graphOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
+  legend: {
+    display: false,
+    position: 'left',
+    labels: {
+      boxWidth: 0,
+    },
+  },
+};
+
+const horizOptions = {
+  ...graphOptions,
+  scales: {
+    xAxes: [
+      {
+        position: 'top',
+        scaleLabel: {
+          fontSize: 14,
+          display: true,
+          labelString: 'Number of Incidents',
+        },
+      },
+    ],
+    yAxes: [
+      {
+        position: 'left',
+        scaleLabel: {
+          fontSize: 14,
+          display: true,
+          labelString: 'U.S. State',
+        },
+      },
+    ],
+  },
+  legend: {
+    ...graphOptions.legend,
+    position: 'top',
+  },
+};
 
 const def = {
   labels: ['Loading Data'],
   datasets: [
     {
-      type: 'horizontalBar',
       label: 'Number of Incidents',
-      backgroundColor: 'rgb(103,183,220)',
-      borderColor: 'rgb(103,183,220)',
+      backgroundColor: '#597ef7',
+      borderColor: '#2f54eb',
       borderWidth: 1,
       hoverBackgroundColor: 'rgba(255,99,132,0.4)',
       hoverBorderColor: 'rgba(255,99,132,1)',
@@ -22,23 +62,49 @@ const def = {
 
 const BarGraph = ({ count }) => {
   const [barData, setBarData] = useState(def);
-  const [incidentCount, setIncidentCount] = useState(null);
+  const [horizBarData, setHorizBarData] = useState(def);
+  const [horizShowing, setHorizShowing] = useState(false);
 
   useEffect(() => {
-    setIncidentCount(count);
+    const queryMatcher = window.matchMedia('(max-width: 1100px)');
+    setHorizShowing(queryMatcher.matches);
+    const callback = ({ matches }) => {
+      setHorizShowing(matches);
+    };
+    queryMatcher.addListener(callback);
+
+    return () => {
+      queryMatcher.removeListener(callback);
+    };
+  }, []);
+
+  useEffect(() => {
+    const data = {
+      datasets: [
+        {
+          ...def.datasets[0],
+          data: Object.values(count).map(elem => elem.count),
+        },
+      ],
+    };
+    setBarData({
+      ...data,
+      labels: Object.keys(count),
+    });
+    setHorizBarData({
+      ...data,
+      labels: Object.values(count).map(elem => elem.abbreviation),
+    });
   }, [count]);
-
-  useEffect(() => {
-    if (incidentCount) {
-      const dataset = createDataSet(incidentCount);
-      setBarData(dataset);
-    }
-  }, [incidentCount]);
 
   return (
     <>
       <div className="bar-container">
-        <Bar data={barData} />
+        {horizShowing ? (
+          <HorizontalBar data={horizBarData} options={horizOptions} />
+        ) : (
+          <Bar data={barData} options={graphOptions} />
+        )}
       </div>
       <p className="graph-disclaimer">
         Note: This graph relies on open source data from multiple sources and a

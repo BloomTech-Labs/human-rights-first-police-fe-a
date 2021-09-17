@@ -219,22 +219,4 @@ for (let i = 0; i < states.length - 1; i++) {
 //   count: 0,
 // };
 
-const createDataSet = data => {
-  const result = {
-    labels: Object.keys(data).map(key => key),
-    datasets: [
-      {
-        label: 'Number of incidents',
-        backgroundColor: 'rgb(103,183,220)',
-        borderColor: 'rgb(103,183,220)',
-        borderWidth: 1,
-        hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-        hoverBorderColor: 'rgba(255,99,132,1)',
-        data: Object.keys(data).map(key => data[key]['count']),
-      },
-    ],
-  };
-  return result;
-};
-
-export { stateData, createDataSet };
+export { stateData };
