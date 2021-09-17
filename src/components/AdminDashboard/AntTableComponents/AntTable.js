@@ -20,22 +20,9 @@ import { DateTime } from 'luxon';
  * @returns {JSX.Element} the AntTable component
  */
 function AntTable(props) {
-  const { selectedIds, setSelectedIds, incidents, listType, showConfidence } = props;
+  const { selectedIds, setSelectedIds, incidents, showConfidence } = props;
 
   const [selectedRows, setSelectedRows] = useState([]);
-
-  // The current page shown in the table
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // updates page when changed
-  const onPageChange = (current, size) => {
-    setCurrentPage(current);
-  };
-
-  // returns to page 1 when listType is changed
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [listType]);
 
   // formats the date in the table
   function renderDate(date) {
@@ -125,9 +112,7 @@ function AntTable(props) {
           onChange: onSelect,
         }}
         pagination={{
-          current: currentPage,
-          onChange: onPageChange,
-          position: ['bottomCenter'],
+          position: ['bottomCenter', 'topRight'],
           total: incidents ? incidents.length : 0,
           showTotal(total, range) {
             return `${range[0]}-${range[1]} of ${total} items`;

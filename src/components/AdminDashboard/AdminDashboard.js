@@ -223,8 +223,8 @@ const AdminDashboard = () => {
         {listType === 'pending' &&
           <div className="incidents">
             <AntTable
-              selected={selectedIds}
-              setSelected={setSelectedIds}
+              selectedIds={selectedIds}
+              setSelectedIds={setSelectedIds}
               incidents={pendingIncidents}
               showConfidence={true}
             />
@@ -234,9 +234,9 @@ const AdminDashboard = () => {
         {listType === 'approved' &&
           <div className="incidents">
             <AntTable
-              selected={selectedIds}
-              setSelected={setSelectedIds}
-              incidents={getCurrentList()}
+              selectedIds={selectedIds}
+              setSelectedIds={setSelectedIds}
+              incidents={approvedIncidents}
             />
           </div>
         }
@@ -244,9 +244,9 @@ const AdminDashboard = () => {
         {listType === 'form-responses' &&
           <div className="incidents">
             <AntTable
-              selected={selectedIds}
-              setSelected={setSelectedIds}
-              incidents={getCurrentList()}
+              selectedIds={selectedIds}
+              setSelectedIds={setSelectedIds}
+              incidents={formResponses}
             />
           </div>
         }
