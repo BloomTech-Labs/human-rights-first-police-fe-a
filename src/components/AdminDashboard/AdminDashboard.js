@@ -23,7 +23,6 @@ import AntTable from './AntTableComponents/AntTable';
 const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
   const [selectedIds, setSelectedIds] = useState([]);
-  const [allSelected, setAllSelected] = useState(false);
 
   // The three categories of incidents
   const [formResponses, setFormResponses] = useState([]);
@@ -72,7 +71,6 @@ const AdminDashboard = () => {
   // resets the selected incidents when switching from approved to unapproved page
   useEffect(() => {
     setSelectedIds([]);
-    setAllSelected(false);
   }, [listType]);
 
   const modalHandler = () => {
@@ -83,16 +81,16 @@ const AdminDashboard = () => {
 
   const fetchIncidents = () => {
     getApprovedIncidents(oktaAxios)
-      .then(res => setApprovedIncidents(res))
-      .catch(err => console.log(err));
+      .then(setApprovedIncidents)
+      .catch(console.log);
 
     getPendingIncidents(oktaAxios)
-      .then(res => setPendingIncidents(res))
-      .catch(err => console.log(err));
+      .then(setPendingIncidents)
+      .catch(console.log);
 
     getFormResponses(oktaAxios)
-      .then(res => setFormResponses(res))
-      .catch(err => console.log(err));
+      .then(setFormResponses)
+      .catch(console.log);
   };
 
   // getting all incident data
@@ -121,27 +119,11 @@ const AdminDashboard = () => {
 
     putIncidents(oktaAxios, selected, newStatus)
       .then(res => {
-        console.log(res);
-
-        if (listType === 'pending') {
-          setPendingIncidents(source);
-        }
-
-        else if (listType === 'form-responses') {
-          setFormResponses(source);
-        }
-
-        else if (listType === 'approved') {
-          setApprovedIncidents(source);
-        }
-
-        setAllSelected(false);
         setSelectedIds([]);
         fetchIncidents();
       })
       .catch(err => {
         console.log(err);
-
         // TODO: Better error handling!
       });
   };
