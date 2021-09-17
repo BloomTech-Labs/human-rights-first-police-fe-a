@@ -215,35 +215,15 @@ const AdminDashboard = () => {
           />
         }
 
-        {listType === 'pending' &&
-          <div className="incidents">
-            <AntTable
-              selected={selectedIds}
-              setSelected={setSelectedIds}
-              incidents={pendingIncidents}
-            />
-          </div>
-        }
+        <div className="incidents">
+          <AntTable
+            selectedIds={selectedIds}
+            setSelected={setSelectedIds}
+            incidents={getCurrentList()}
+            listType={listType}
+          />
+        </div>
 
-        {listType === 'approved' &&
-          <div className="incidents">
-            <AntTable
-              selected={selectedIds}
-              setSelected={setSelectedIds}
-              incidents={getCurrentList()}
-            />
-          </div>
-        }
-
-        {listType === 'form-responses' &&
-          <div className="incidents">
-            <AntTable
-              selected={selectedIds}
-              setSelected={setSelectedIds}
-              incidents={getCurrentList()}
-            />
-          </div>
-        }
       </div>
     </>
   );

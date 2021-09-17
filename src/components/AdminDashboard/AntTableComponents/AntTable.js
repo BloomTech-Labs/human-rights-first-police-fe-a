@@ -1,30 +1,58 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
 import CompleteIncident from '../CompleteIncident';
 import { DateTime } from 'luxon';
 
 //https://ant.design/components/table/ <---documentation on the table
 
-function AntTable(props) {
-  const [approvedSelected, setApprovedSelected] = useState([]);
-  const {
-    selected,
-    setSelected,
-    incidents
-  } = props;
+/**
+ * @typedef AntTableProps
+ * @property {any[]} incidents - incident data
+ * @property {number[]} selectedIds - an aray of the currently selected incident IDs
+ * @property {React.Dispatch<React.SetStateAction<number[]>} setSelected - setter for selected IDs
+ * @property {'approved' | 'pending' | 'form-responses'} listType - optional
+ */
 
-  function formattingDate(inputData) {
-    const [year, month, day] = inputData.incident_date.split('-');
-    return `${month}/${day.slice(0, 2)}/${year}`;
+/**
+ * Component for rendering a list of incident data on the AdminDashboard
+ * 
+ * @param {AntTableProps} props
+ * @returns {JSX.Element} the AntTable component
+ */
+function AntTable(props) {
+  const { selectedIds, setSelectedIds, incidents, listType } = props;
+
+  const [selectedRows, setSelectedRows] = useState([]);
+
+  // The current page shown in the table
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // updates page when changed
+  const onPageChange = (current, size) => {
+    setCurrentPage(current);
+  };
+
+  // returns to page 1 when listType is changed
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [listType]);
+
+  // formats the date in the table
+  function renderDate(date) {
+    return DateTime.fromISO(date)
+      .plus({ days: 1 })
+      .toLocaleString(DateTime.DATETIME_MED);
   }
 
   const onSelect = selectedIncidents => {
-    if (selected !== undefined) {
-      setSelected(selectedIncidents);
+    if (setSelectedIds !== undefined) {
+      setSelectedIds(selectedIncidents);
     } else {
-      setApprovedSelected(selectedIncidents);
+      setSelectedRows(selectedIncidents);
     }
   };
+
+
 
   const columns = [
     //   //When DS provides data for this, uncomment for Admin Table to show %, and move.
@@ -39,6 +67,7 @@ function AntTable(props) {
       key: 'description',
       ellipsis: true,
       fixed: 'top',
+      width: '50%'
     },
     {
       title: 'City',
@@ -65,6 +94,7 @@ function AntTable(props) {
 
         return aTime - bTime;
       },
+      render: renderDate
     },
   ];
 
@@ -79,19 +109,18 @@ function AntTable(props) {
             incident.src = Object.values(incident.src); //changes structure of payload returned from initial GET request to match other listTypes' payload structure
             incident.tags = Object.values(incident.tags); //changes structure of payload returned from initial GET request to match other listTypes' payload structure
             return (
-              <CompleteIncident
-                incident={incident}
-                formattedDate={formattingDate(incident)}
-              />
+              <CompleteIncident incident={incident} />
             );
           },
           rowExpandable: data => data.id !== null,
         }}
         rowSelection={{
-          selectedRowKeys: selected !== undefined ? selected : approvedSelected,
+          selectedRowKeys: selectedIds !== undefined ? selectedIds : selectedRows,
           onChange: onSelect,
         }}
         pagination={{
+          current: currentPage,
+          onChange: onPageChange,
           position: ['bottomCenter'],
           total: incidents ? incidents.length : 0,
           showTotal(total, range) {

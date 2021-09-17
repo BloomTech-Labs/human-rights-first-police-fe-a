@@ -15,7 +15,7 @@ const DashboardIncidents = props => {
       <div className="incidents">
         <AntTable
           setUnapprovedIncidents={setUnapprovedIncidents}
-          selected={selected}
+          selectedIds={selected}
           setSelected={setSelected}
           incidents={incidents}
         />

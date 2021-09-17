@@ -24,9 +24,15 @@ import './CompleteIncident.css';
 const CompleteIncident = props => {
   const {
     incident,
-    formattedDate,
     setMoreInfo,
   } = props;
+
+  const formatDate = (inputData) => {
+    const [year, month, day] = inputData.incident_date.split('-');
+    return `${month}/${day.slice(0, 2)}/${year}`;
+  };
+
+  const formattedDate = formatDate(incident);
 
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
