@@ -18,6 +18,7 @@ import {
 } from '../../utils/DashboardHelperFunctions.js';
 
 import IncidentStatus from './IncidentStatus';
+import AntTable from './AntTableComponents/AntTable';
 
 const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
@@ -215,33 +216,34 @@ const AdminDashboard = () => {
         }
 
         {listType === 'pending' &&
-          <Incidents
-            selected={selectedIds}
-            setSelected={setSelectedIds}
-            setUnapprovedIncidents={setPendingIncidents}
-            incidents={getCurrentList()}
-          />
+          <div className="incidents">
+            <AntTable
+              selected={selectedIds}
+              setSelected={setSelectedIds}
+              incidents={pendingIncidents}
+            />
+          </div>
         }
 
         {listType === 'approved' &&
-          <Incidents
-            selected={selectedIds}
-            setSelected={setSelectedIds}
-            setUnapprovedIncidents={setPendingIncidents}
-            incidents={getCurrentList()}
-          />
+          <div className="incidents">
+            <AntTable
+              selected={selectedIds}
+              setSelected={setSelectedIds}
+              incidents={getCurrentList()}
+            />
+          </div>
         }
 
         {listType === 'form-responses' &&
-          <Incidents
-            selected={selectedIds}
-            setSelected={setSelectedIds}
-            setUnapprovedIncidents={setPendingIncidents}
-            incidents={getCurrentList()}
-          />
+          <div className="incidents">
+            <AntTable
+              selected={selectedIds}
+              setSelected={setSelectedIds}
+              incidents={getCurrentList()}
+            />
+          </div>
         }
-
-
       </div>
     </>
   );

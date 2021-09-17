@@ -26,7 +26,6 @@ const CompleteIncident = props => {
     incident,
     formattedDate,
     setMoreInfo,
-    setUnapprovedIncidents,
   } = props;
 
   // setting state to toggle "editing mode"
@@ -69,12 +68,12 @@ const CompleteIncident = props => {
         window.location.reload();
       })
       .catch(err => {
+        // TODO: Better error handling!
         console.log(err);
       })
       .finally(res => {
         setEditing(false);
         setMoreInfo(false);
-        getData(setUnapprovedIncidents);
       });
   };
 

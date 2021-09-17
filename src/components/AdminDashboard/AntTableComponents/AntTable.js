@@ -8,7 +8,6 @@ import { DateTime } from 'luxon';
 function AntTable(props) {
   const [approvedSelected, setApprovedSelected] = useState([]);
   const {
-    setUnapprovedIncidents,
     selected,
     setSelected,
     incidents
@@ -83,7 +82,6 @@ function AntTable(props) {
               <CompleteIncident
                 incident={incident}
                 formattedDate={formattingDate(incident)}
-                setUnapprovedIncidents={setUnapprovedIncidents}
               />
             );
           },

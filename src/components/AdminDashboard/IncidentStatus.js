@@ -31,17 +31,20 @@ const IncidentStatus = props => {
     }
   }, [isActive, listType]);
 
+  // handler for clicking on new status type (pending, approved, rejected)
   const statusOnClick = (e, status) => {
     e.preventDefault();
     setNewStatus(status);
     setIsAskConfirm(true);
   };
 
+  // cancel handler for status confirmation
   const cancelOnClick = e => {
     e.preventDefault();
     setIsAskConfirm(false);
   };
 
+  // confirm handler for status confirmation
   const yesOnClick = e => {
     e.preventDefault();
     onStatusConfirm(newStatus);
