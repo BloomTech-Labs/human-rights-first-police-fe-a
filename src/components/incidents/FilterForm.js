@@ -3,16 +3,25 @@ import { Collapse, Form, Input, Button, Select, DatePicker } from 'antd';
 
 const { Option } = Select;
 const { Panel } = Collapse;
+const { RangePicker } = DatePicker;
 
-function FilterForm(props) {
+function FilterForm({ onValuesChange }) {
   const [form] = Form.useForm();
+  const onChange = (trash, vals) => {
+    onValuesChange(vals);
+  };
   return (
     <Collapse>
       <Panel header="Filter Incident Reports">
-        <Form form={form} onFinish={console.log} layout="vertical">
+        <Form form={form} onValuesChange={onChange} layout="vertical">
           <Form.Item name="force_rank" label="Force Rank">
             <Select>
-              <Option value="vdn" />
+              <Option value="">Show All Force Ranks</Option>
+              <Option value="Rank 1">Rank 1 - Police Presence</Option>
+              <Option value="Rank 2">Rank 2 - Empty-hand</Option>
+              <Option value="Rank 3">Rank 3 - Blunt Force</Option>
+              <Option value="Rank 4">Rank 4 - Chemical &amp; Electric</Option>
+              <Option value="Rank 5">Rank 5 - Lethal Force</Option>
             </Select>
           </Form.Item>
           <Form.Item label="Location">
@@ -21,7 +30,7 @@ function FilterForm(props) {
             </Form.Item>
             <Form.Item name="state" noStyle>
               <Select placeholder="State" style={{ width: '50%' }}>
-                <Option value="asdf" />
+                <Option value="asdf">asdf</Option>
               </Select>
             </Form.Item>
           </Form.Item>
@@ -30,12 +39,9 @@ function FilterForm(props) {
               <Option value="asdfasdf">asdfasdf</Option>
             </Select>
           </Form.Item>
-          <Form.Item name="incident_date" label="Date">
-            <DatePicker style={{ width: '100%' }} />
+          <Form.Item name="date_range" label="Date">
+            <RangePicker style={{ width: '100%' }} />
           </Form.Item>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
         </Form>
       </Panel>
     </Collapse>
