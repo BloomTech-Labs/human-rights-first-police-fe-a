@@ -1,0 +1,77 @@
+@background-color: #003767;
+@nav-text-color: white;
+@transparent: #ffffff00;
+@breakpoint-width: 879px;
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  background: @background-color;
+  text-align: left;
+  height: 5rem;
+  padding-left: 2rem;
+  padding-right: 1rem;
+  padding-top: 0.8rem;
+
+  .logo-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @media (max-width: @breakpoint-width) {
+      padding-top: 0.3rem;
+    }
+
+    .bw-logo {
+      width: 9rem;
+      @media (max-width: @breakpoint-width) {
+        width: 7rem;
+      }
+    }
+
+    .hrf-logo {
+      margin-top: 0.2rem;
+      width: 7rem;
+      @media (max-width: @breakpoint-width) {
+        width: 5.44rem;
+      }
+    }
+  }
+
+  .menu {
+    background: @background-color;
+    border-bottom: none;
+    text-align: right;
+    width: 80%;
+    @media (max-width: @breakpoint-width) {
+      width: 4rem;
+    }
+
+    & > * {
+      border-bottom: 0px !important;
+    }
+
+    .hamburger-icon {
+      color: @nav-text-color;
+      font-size: 1.5rem;
+      padding-top: 0.9rem;
+    }
+
+    .menu-link {
+      font-size: 1rem;
+      color: @nav-text-color;
+      transition: color 0.1s;
+      &:hover {
+        color: #d3945f;
+        transition: color 0.1s;
+      }
+    }
+  }
+  .ant-menu-submenu-title span {
+    color: #fff;
+  }
+}
+
+.ant-menu-item-selected {
+  background: @transparent !important;
+}
