@@ -240,11 +240,19 @@ const Incidents = () => {
     setSelectedIncidents([]);
   };
 
-  const onDateSelection = (dates, dateStrings) => {
-    console.log(dates, dateStrings);
+  const onDateSelection = dates => {
+    let formattedDates;
+    if (dates === null) {
+      formattedDates = [];
+    } else {
+      formattedDates = dates.map(date => date.format('YYYY-MM-DD'));
+    }
     setDates(
-      dateStrings[0] && dateStrings[1]
-        ? [DateTime.fromISO(dateStrings[0]), DateTime.fromISO(dateStrings[1])]
+      formattedDates[0] && formattedDates[1]
+        ? [
+            DateTime.fromISO(formattedDates[0]),
+            DateTime.fromISO(formattedDates[1]),
+          ]
         : null
     );
   };
@@ -293,7 +301,8 @@ const Incidents = () => {
       force_rank: onRank,
       state: setUsState,
       tags: setActiveCategories,
-      date_range: notImplemented,
+      date_range: onDateSelection,
+      city: notImplemented,
     };
     changeFns[key](val);
   };
@@ -302,49 +311,16 @@ const Incidents = () => {
     <div className="incident-reports-page">
       <FilterForm onValuesChange={onFilterChange} />
       <div className="form-container">
-        <h1>Filter Incident Reports</h1>
-        <form className="export-form">
-          <label htmlFor="categories" className="labels">
-            Category
-            <br></br>
-            <AutoComplete
-              value={value}
-              options={categoriesData}
-              onSelect={onCategorySelect}
-              onChange={onCategoryChange}
-              allowClear={true}
-              filterOption={filterOption}
-              placeholder="Browse Categories"
-              notFoundContent="Category Not Found"
-              id="categories"
-              className="form-inputs"
-            />
-            {activeCategories &&
-              activeCategories.map(tag => {
-                return (
-                  <CheckableTag
-                    style={{
-                      marginTop: 3,
-                      backgroundColor: '#003767',
-                    }}
-                    key={tag}
-                    checked={activeCategories.indexOf(tag) > -1}
-                    onChange={checked => onToggle(tag, checked)}
-                  >
-                    {tag}
-                  </CheckableTag>
-                );
-              })}
-          </label>
-          <label htmlFor="dates" className="labels">
-            Date
-            <br></br>
-            <RangePicker
-              onCalendarChange={onDateSelection}
-              className="form-inputs"
-            />
-          </label>
-        </form>
+        {/* <form className="export-form"> */}
+        {/*   <label htmlFor="dates" className="labels"> */}
+        {/*     Date */}
+        {/*     <br></br> */}
+        {/*     <RangePicker */}
+        {/*       onCalendarChange={onDateSelection} */}
+        {/*       className="form-inputs" */}
+        {/*     /> */}
+        {/*   </label> */}
+        {/* </form> */}
         <div className="buttonbutton">
           <div className="export-button">
             <div className="list-items-count">
