@@ -205,23 +205,21 @@ const GraphContainer = () => {
           </section>
         ) : null}
         {filtered.length > 0 ? (
-          <div>
-            <section id="pieGraph" className="graph-container">
-              <h2 style={{ marginTop: '5rem' }}>
-                Prevalence of Force Ranks as identified by our data collection
-                methods
-              </h2>
-              <h4>April 2020 - Present</h4>
-              <div className="pie-holder">
-                <div className="pie">
-                  <PieGraph data={filtered} />
-                </div>
-                <div className="pie-legend">
-                  <Legend />
-                </div>
+          <section id="pieGraph" className="graph-container">
+            <h2 style={{ marginTop: '5rem' }}>
+              Prevalence of Force Ranks as identified by our data collection
+              methods
+            </h2>
+            <h4>April 2020 - Present</h4>
+            <div className="pie-holder">
+              <div className="pie">
+                <PieGraph data={filtered} />
               </div>
-            </section>
-          </div>
+              <div className="pie-legend">
+                <Legend />
+              </div>
+            </div>
+          </section>
         ) : null}
       </div>
     </div>

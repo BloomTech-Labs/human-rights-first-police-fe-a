@@ -3,12 +3,19 @@ import { Pie } from 'react-chartjs-2';
 
 import colorShader from './colorShader';
 
+import './PieGraph.less';
+
 const incrementor = (incident, type, types) => {
   if (type in types) {
     types[type] += 1;
   } else {
     types[type] = 1;
   }
+};
+
+const graphOptions = {
+  responsive: true,
+  maintainAspectRatio: false,
 };
 
 const getTypesOfForce = data => {
@@ -114,15 +121,8 @@ const PieGraph = ({ data, usState }) => {
   }, [types]);
 
   return (
-    <div>
-      <Pie data={graphData} />
-      {/* <br />
-      <p className="graph-disclaimer">
-        Note: This graph relies on open source data from multiple sources and a
-        machine learning model that is still in beta. These categories may not
-        accurately represent the circumstances of each incident.{' '}
-      </p> */}
-      {/* <Key /> */}
+    <div className="pie-container">
+      <Pie data={graphData} options={graphOptions} />
     </div>
   );
 };
