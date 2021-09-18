@@ -240,13 +240,13 @@ const Incidents = () => {
   };
 
   const onFilterChange = (key, val) => {
-    const notImplemented = () => console.log('Not Implemented');
+    // TODO make filtering by city work, ideally by changing the filtering system to
+    // work on the entire form data instead of one value at a time
     const changeFns = {
       force_rank: onRank,
       state: setUsState,
       tags: setActiveCategories,
       date_range: onDateSelection,
-      city: notImplemented,
     };
     changeFns[key](val);
   };

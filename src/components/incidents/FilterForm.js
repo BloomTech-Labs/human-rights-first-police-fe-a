@@ -64,6 +64,9 @@ function FilterForm({ onValuesChange }) {
   const tags = useSelector(state => Object.keys(state.incident.tagIndex));
 
   const onChange = (changed, vals) => {
+    // TODO make filtering work for the whole object instead of by one property
+    // at a time, notice that vals is not being used here. vals is all of the
+    // form values.
     const changedKey = Object.keys(changed)[0];
     onValuesChange(changedKey, changed[changedKey]);
   };
@@ -82,11 +85,10 @@ function FilterForm({ onValuesChange }) {
             </Select>
           </Form.Item>
           <Form.Item label="Location">
-            <Form.Item name="city" noStyle>
-              <Input placeholder="City" style={{ width: '50%' }} />
-            </Form.Item>
+            {/* TODO make filtering by city work, then add a Form.Item and Input
+             * or Autocomplete here */}
             <Form.Item name="state" noStyle>
-              <Select showSearch placeholder="State" style={{ width: '50%' }}>
+              <Select showSearch placeholder="State">
                 <Option value="">Show All States</Option>
                 {states.map(state => (
                   <Option value={state}>{state}</Option>
