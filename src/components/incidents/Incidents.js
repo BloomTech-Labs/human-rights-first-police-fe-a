@@ -59,7 +59,6 @@ const Incidents = () => {
   const [value, setValue] = useState('');
   const [activeCategories, setActiveCategories] = useState([]);
 
-  console.log(activeCategories);
   const categoriesData = [];
 
   const allObj = {
@@ -293,7 +292,7 @@ const Incidents = () => {
     const changeFns = {
       force_rank: onRank,
       state: setUsState,
-      tags: notImplemented,
+      tags: setActiveCategories,
       date_range: notImplemented,
     };
     changeFns[key](val);
