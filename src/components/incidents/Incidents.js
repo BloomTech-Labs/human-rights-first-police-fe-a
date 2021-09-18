@@ -127,6 +127,7 @@ const Incidents = () => {
     ) {
       filtered = filterByTags(filtered, activeCategories);
     }
+    console.log(usState);
     if (usState) {
       filtered = filterDataByState(filtered, usState);
     }
@@ -296,17 +297,13 @@ const Incidents = () => {
     };
     changeFns[key](val);
   };
+
   return (
     <div className="incident-reports-page">
       <FilterForm onValuesChange={onFilterChange} />
       <div className="form-container">
         <h1>Filter Incident Reports</h1>
         <form className="export-form">
-          <label htmlFor="locations" className="labels">
-            Location
-            <br></br>
-            <SearchBar className="form-inputs" setUsState={setUsState} />{' '}
-          </label>
           <label htmlFor="categories" className="labels">
             Category
             <br></br>
