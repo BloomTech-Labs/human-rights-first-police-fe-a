@@ -136,9 +136,9 @@ const Incidents = () => {
       setQueryString(`&state=${usState}&start=${startDate}&end=${endDate}`);
       filtered = filterDataByDate(filtered, range);
     }
-    if (rank !== 'All') {
+    if (rank !== '') {
       filtered = filtered.filter(incident => {
-        return incident.force_rank.trim() === ranks[parseInt(rank) - 1].trim();
+        return incident.force_rank === rank;
       });
     }
     setData(falsiesRemoved(filtered));
@@ -240,6 +240,7 @@ const Incidents = () => {
   };
 
   const onDateSelection = (dates, dateStrings) => {
+    console.log(dates, dateStrings);
     setDates(
       dateStrings[0] && dateStrings[1]
         ? [DateTime.fromISO(dateStrings[0]), DateTime.fromISO(dateStrings[1])]
@@ -285,8 +286,15 @@ const Incidents = () => {
       : null;
   };
 
-  const onFilterChange = formVals => {
-    console.log(formVals);
+  const onFilterChange = (key, val) => {
+    const notImplemented = () => console.log('Not Implemented');
+    const changeFns = {
+      force_rank: onRank,
+      state: setUsState,
+      tags: notImplemented,
+      date_range: notImplemented,
+    };
+    changeFns[key](val);
   };
   return (
     <div className="incident-reports-page">
@@ -294,25 +302,6 @@ const Incidents = () => {
       <div className="form-container">
         <h1>Filter Incident Reports</h1>
         <form className="export-form">
-          <label htmlFor="ranks" className="labels">
-            Rank
-            <br></br>
-            <Select
-              onChange={onRank}
-              showSearch
-              defaultValue="All"
-              className="form-inputs"
-              id="ranks"
-              value={rank}
-            >
-              <Option value="All">All</Option>
-              <Option value="1">Rank: 1</Option>
-              <Option value="2">Rank: 2</Option>
-              <Option value="3">Rank: 3</Option>
-              <Option value="4">Rank: 4</Option>
-              <Option value="5">Rank: 5</Option>
-            </Select>
-          </label>
           <label htmlFor="locations" className="labels">
             Location
             <br></br>

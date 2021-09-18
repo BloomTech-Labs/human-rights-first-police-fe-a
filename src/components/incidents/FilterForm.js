@@ -63,8 +63,9 @@ function FilterForm({ onValuesChange }) {
   const [form] = Form.useForm();
   const tags = useSelector(state => Object.keys(state.incident.tagIndex));
 
-  const onChange = (trash, vals) => {
-    onValuesChange(vals);
+  const onChange = (changed, vals) => {
+    const changedKey = Object.keys(changed)[0];
+    onValuesChange(changedKey, changed[changedKey]);
   };
   return (
     <Collapse>
