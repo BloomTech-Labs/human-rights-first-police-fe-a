@@ -31,8 +31,6 @@ const Incidents = () => {
   const [usState, setUsState] = useState(null);
   const [dates, setDates] = useState(null);
   const [data, setData] = useState([]); // State for User Searches
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [queryString, setQueryString] = useState('');
   const [selectedIncidents, setSelectedIncidents] = useLocalStorage(
     'marked',
     []
@@ -43,11 +41,7 @@ const Incidents = () => {
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
   const tagIndex = useSelector(state => Object.keys(state.incident.tagIndex));
-  const fetchStatus = useSelector(
-    state => state.api.incidents.getincidents.status
-  );
 
-  const [value, setValue] = useState('');
   const [activeCategories, setActiveCategories] = useState([]);
 
   const categoriesData = [];
@@ -119,9 +113,6 @@ const Incidents = () => {
       filtered = filterDataByState(filtered, usState);
     }
     if (dates) {
-      const startDate = `${dates[0].c.year}-${dates[0].c.month}-${dates[0].c.day}`;
-      const endDate = `${dates[1].c.year}-${dates[1].c.month}-${dates[1].c.day}`;
-      setQueryString(`&state=${usState}&start=${startDate}&end=${endDate}`);
       filtered = filterDataByDate(filtered, range);
     }
     if (rank !== '') {
@@ -246,25 +237,6 @@ const Incidents = () => {
         />
       </div>
     );
-  };
-
-  const onCategoryChange = data => {
-    setValue(data);
-  };
-  const onCategorySelect = data => {
-    if (activeCategories.includes(data)) {
-      setValue('');
-      return;
-    } else {
-      setActiveCategories([...activeCategories, data]);
-      setValue('');
-    }
-  };
-  const filterOption = (inputValue, option) => {
-    return inputValue.slice(0, inputValue.length).toLowerCase() ===
-      option.value.slice(0, inputValue.length).toLowerCase()
-      ? option
-      : null;
   };
 
   const onFilterChange = (key, val) => {
