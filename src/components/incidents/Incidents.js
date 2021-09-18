@@ -40,7 +40,7 @@ const Incidents = () => {
   const [usState, setUsState] = useState(null);
   const [dates, setDates] = useState(null);
   const [data, setData] = useState([]); // State for User Searches
-  const [selectedTags, setSelectedTags] = useState(['All']);
+  const [selectedTags, setSelectedTags] = useState([]);
   const [queryString, setQueryString] = useState('');
   const [selectedIncidents, setSelectedIncidents] = useLocalStorage(
     'marked',
@@ -121,10 +121,7 @@ const Incidents = () => {
   useEffect(() => {
     const range = dates && createRange(dates);
     let filtered = [...incidents];
-    if (
-      activeCategories.length !== 0 &&
-      activeCategories.indexOf('All') === -1
-    ) {
+    if (activeCategories.length !== 0) {
       filtered = filterByTags(filtered, activeCategories);
     }
     if (usState) {
@@ -163,21 +160,6 @@ const Incidents = () => {
 
   const onChange = page => {
     setCurrentPage(page);
-  };
-
-  const onToggle = (tag, checked) => {
-    let nextSelectedTags = checked
-      ? [...activeCategories, tag]
-      : activeCategories.filter(t => t !== tag || t === 'All');
-    if (tag === 'All') {
-      setActiveCategories([]);
-      return;
-    }
-    if (nextSelectedTags[0] === 'All') {
-      setActiveCategories(nextSelectedTags.slice(1));
-      return;
-    }
-    setActiveCategories(nextSelectedTags);
   };
 
   const onRank = e => {
