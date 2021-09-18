@@ -67,9 +67,9 @@ const Incidents = () => {
     return (
       <div className="header-top">
         <div className="title-container">
-          {/* title-text is used instead of title since ant design form items
-           * with name="title" get the id "title" from ant design, so there's
-           * some namespace clashes in the css */}
+          {/* title-text is used on the p element below instead of title since
+           * ant design form items with name="title" get the id "title" from ant
+           * design, so there's some namespace clashes in the css */}
           <p id="title-text">{incident.title}</p>
         </div>
         <div className="extra">
