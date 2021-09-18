@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Button } from 'antd';
+import { Modal, Button } from 'antd';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { nanoid } from 'nanoid';
 
 import AntModal from './AntModalComponent/AntModal';
@@ -56,20 +57,29 @@ const CompleteIncident = props => {
   };
 
   // for incident deletion button
-  const toggleDelete = evt => {
-    evt.preventDefault();
-    oktaAxios
-      .delete(`/dashboard/incidents/${incident.incident_id}`)
-      .then(res => {
-        window.alert(
-          `Case with id ${incident.incident_id} successfully deleted`
-        );
-        window.location.reload();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  const { confirm } = Modal;
+
+  function toggleDelete() {
+    confirm({
+      title: `Do you want to DELETE incident #${incident.incident_id}?`,
+      icon: <ExclamationCircleOutlined />,
+      content: 'Once you click OK this dialogue will disappear in one second',
+      onOk() {
+        oktaAxios
+          .delete(`/dashboard/incidents/${incident.incident_id}`)
+          .then(res => {
+            window.location.reload();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+        return new Promise((resolve, reject) => {
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
+        }).catch(() => console.log('Oops errors!'));
+      },
+      onCancel() {},
+    });
+  }
 
   // form control functions
   const handleInputChange = evt => {
