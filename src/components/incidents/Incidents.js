@@ -12,25 +12,16 @@ import {
 import FilterForm from './FilterForm';
 import { nanoid } from 'nanoid';
 import { useSelector } from 'react-redux';
-import { Empty, Button, Collapse, Tag, Checkbox, Popover, Select } from 'antd';
+import { Empty, Button, Collapse, Tag, Checkbox, Popover } from 'antd';
 
 // Time Imports
 import { DateTime } from 'luxon';
 
-// Search Bar
-import SearchBar from '../graphs/searchbar/SearchBar';
-
 // Ant Design Imports:
-import { AutoComplete, Pagination, DatePicker } from 'antd';
+import { Pagination } from 'antd';
 import { CSVLink } from 'react-csv'; // helper for export CSV from current State
-import { ConsoleSqlOutlined } from '@ant-design/icons';
 
-let ranks = ['Rank 1', 'Rank 2', 'Rank 3', 'Rank 4', 'Rank 5'];
-
-const { RangePicker } = DatePicker;
 const { Panel } = Collapse;
-const { Option } = Select;
-const { CheckableTag } = Tag;
 
 const Incidents = () => {
   const [itemsPerPage] = useState(10);
