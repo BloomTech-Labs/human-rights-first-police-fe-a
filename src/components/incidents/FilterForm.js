@@ -1,5 +1,5 @@
 import React from 'react';
-import { Collapse, Form, Input, Select, DatePicker } from 'antd';
+import { Collapse, Form, Select, DatePicker } from 'antd';
 import { useSelector } from 'react-redux';
 
 const { Option } = Select;
