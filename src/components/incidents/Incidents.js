@@ -309,18 +309,8 @@ const Incidents = () => {
 
   return (
     <div className="incident-reports-page">
-      <FilterForm onValuesChange={onFilterChange} />
       <div className="form-container">
-        {/* <form className="export-form"> */}
-        {/*   <label htmlFor="dates" className="labels"> */}
-        {/*     Date */}
-        {/*     <br></br> */}
-        {/*     <RangePicker */}
-        {/*       onCalendarChange={onDateSelection} */}
-        {/*       className="form-inputs" */}
-        {/*     /> */}
-        {/*   </label> */}
-        {/* </form> */}
+        <FilterForm onValuesChange={onFilterChange} />
         <div className="buttonbutton">
           <div className="export-button">
             <div className="list-items-count">
