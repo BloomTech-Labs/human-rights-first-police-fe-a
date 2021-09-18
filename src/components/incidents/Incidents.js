@@ -47,7 +47,7 @@ const Incidents = () => {
     []
   ); // all marked incidents saved in local storage
   const [added, setAdded] = useState([]); // data where all checked cases stored(from checkboxes)
-  const [rank, setRank] = useState('All');
+  const [rank, setRank] = useState('');
 
   // Get incident data from Redux
   const incidents = useSelector(state => Object.values(state.incident.data));
@@ -127,7 +127,6 @@ const Incidents = () => {
     ) {
       filtered = filterByTags(filtered, activeCategories);
     }
-    console.log(usState);
     if (usState) {
       filtered = filterDataByState(filtered, usState);
     }
