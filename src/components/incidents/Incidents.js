@@ -59,6 +59,7 @@ const Incidents = () => {
   const [value, setValue] = useState('');
   const [activeCategories, setActiveCategories] = useState([]);
 
+  console.log(activeCategories);
   const categoriesData = [];
 
   const allObj = {

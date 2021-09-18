@@ -35,26 +35,26 @@ const states = [
   'Montana',
   'Nebraska',
   'Nevada',
-  'NewHampshire',
-  'NewJersey',
-  'NewMexico',
-  'NewYork',
-  'NorthCarolina',
-  'NorthDakota',
+  'New Hampshire',
+  'New Jersey',
+  'New Mexico',
+  'New York',
+  'North Carolina',
+  'North Dakota',
   'Ohio',
   'Oklahoma',
   'Oregon',
   'Pennsylvania',
-  'RhodeIsland',
-  'SouthCarolina',
-  'SouthDakota',
+  'Rhode Island',
+  'South Carolina',
+  'South Dakota',
   'Tennessee',
   'Texas',
   'Utah',
   'Vermont',
   'Virginia',
   'Washington',
-  'WestVirginia',
+  'West Virginia',
   'Wisconsin',
   'Wyoming',
 ];
@@ -86,7 +86,8 @@ function FilterForm({ onValuesChange }) {
               <Input placeholder="City" style={{ width: '50%' }} />
             </Form.Item>
             <Form.Item name="state" noStyle>
-              <Select placeholder="State" style={{ width: '50%' }}>
+              <Select showSearch placeholder="State" style={{ width: '50%' }}>
+                <Option value="">Show All States</Option>
                 {states.map(state => (
                   <Option value={state}>{state}</Option>
                 ))}
