@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
 
 /**
  * Returns a promise that resolves to an array of pending incidents
@@ -60,6 +61,8 @@ export function getFormResponses(oktaAxios) {
 
 /**
  * @typedef AllIncidentsState
+ * @property {boolean} isLoading
+ * @property {string} errorMessage
  * @property {Incident[]} approvedIncidents
  * @property {Incident[]} pendingIncidents
  * @property {Incident[]} formResponses
@@ -67,30 +70,64 @@ export function getFormResponses(oktaAxios) {
 
 /** @type {AllIncidentsState} */
 const initialState = {
+	isLoading: false,
+	errorMessage: '',
 	approvedIncidents: [],
 	pendingIncidents: [],
 	formResponses: []
 };
 
 
-const fetchApproveIncidents = createAsyncThunk(
-	'dashboard/incidents',
+export const fetchAllIncidents = createAsyncThunk(
+	'dashboard/fetchAllIncidents',
 	async (oktaAxios, thunkAPI) => {
-		return await getApprovedIncidents(oktaAxios);
+		const approved = await getApprovedIncidents(oktaAxios);
+		const pending = await getPendingIncidents(oktaAxios);
+		const formResponses = await getFormResponses(oktaAxios);
+
+		return { approved, pending, formResponses };
 	}
 );
 
-const slice = createSlice({
+export const modifyIncidents = createAsyncThunk(
+	'dashboard/modifyIncidents',
+	async (payload, thunkAPI) => {
+		const { oktaAxios, incidents } = payload;
+		
+	}
+)
+
+export const slice = createSlice({
 	name: 'allIncident',
 	initialState,
 	reducers: {
-		
+
 	},
 	extraReducers: (builder) => {
-		builder.addCase(fetchApproveIncidents.fulfilled, (state, action) => {
-			state.approvedIncidents = action.payload;
+		builder.addCase(fetchAllIncidents.pending, (state, action) => {
+			state.isLoading = true;
+		});
+		builder.addCase(fetchAllIncidents.fulfilled, (state, action) => {
+			const { approved, pending, formResponses } = action.payload;
+			state.approvedIncidents = approved;
+			state.pendingIncidents = pending;
+			state.formResponses = formResponses;
+			state.isLoading = false;
+		});
+		builder.addCase(fetchAllIncidents.rejected, (state, action) => {
+			state.errorMessage = action.error.message;
+			state.isLoading = false;
 		});
 	}
 });
 
-export default slice;
+/**
+ *
+ * @returns {{state: AllIncidentsState, dispatch: import('redux').Dispatch<any>}}
+ */
+export const useAllIncidents = () => {
+	const state = useSelector(state => state.allIncidents);
+	const dispatch = useDispatch();
+
+	return { state, dispatch };
+};

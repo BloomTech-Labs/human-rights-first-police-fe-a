@@ -17,12 +17,16 @@ import {
 
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
+import { fetchAllIncidents, useAllIncidents } from '../../store/allIncidentsSlice';
 
 const AdminDashboard = () => {
   // setting up local state to keep track of selected/"checked" incidents
   const [selected, setSelected] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
-  const [incidents, setIncidents] = useState([]);
+  //const [incidents, setIncidents] = useState([]);
+
+  const { state, dispatch } = useAllIncidents();
+  const incidents = state.approvedIncidents;
 
   //   setting state necessary for pagination
   const [pageNumber, setPageNumber] = useState(1);
@@ -78,36 +82,40 @@ const AdminDashboard = () => {
 
   const oktaAxios = useOktaAxios();
 
-  // getting unapproved/pending incidents from the database
   useEffect(() => {
-    getData(oktaAxios, setUnapprovedIncidents);
+    dispatch(fetchAllIncidents(oktaAxios));
   }, []);
+
+  // // getting unapproved/pending incidents from the database
+  // useEffect(() => {
+  //   getData(oktaAxios, setUnapprovedIncidents);
+  // }, []);
 
   // getting approved incidents from database
-  useEffect(() => {
-    oktaAxios
-      .get('/dashboard/incidents/approved')
-      .then(res => {
-        setIncidents(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   oktaAxios
+  //     .get('/dashboard/incidents/approved')
+  //     .then(res => {
+  //       setIncidents(res.data);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
-  // getting form-responses from DS database
-  useEffect(() => {
-    axios
-      .get(
-        'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve'
-      )
-      .then(res => {
-        setFormResponses(res.data);
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }, []);
+  // // getting form-responses from DS database
+  // useEffect(() => {
+  //   axios
+  //     .get(
+  //       'http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve'
+  //     )
+  //     .then(res => {
+  //       setFormResponses(res.data);
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   // setting up pagination display on dashboard
   useEffect(() => {
