@@ -318,28 +318,26 @@ const Incidents = () => {
                   expandIconPosition="left"
                   key={incident.incident_id}
                 >
-                  <div className="collapse-content">
-                    <p className="collapse-content-p">{incident.description}</p>
-                    <div className="bottom-container">
-                      <Popover
-                        content={sourceListHelper(incident?.src)}
-                        placement="rightTop"
+                  <p className="collapse-content-p">{incident.description}</p>
+                  <div className="bottom-container">
+                    <Popover
+                      content={sourceListHelper(incident?.src)}
+                      placement="rightTop"
+                    >
+                      <Button
+                        type="primary"
+                        style={{
+                          backgroundColor: '#003767',
+                          border: 'none',
+                        }}
                       >
-                        <Button
-                          type="primary"
-                          style={{
-                            backgroundColor: '#003767',
-                            border: 'none',
-                          }}
-                        >
-                          Sources
-                        </Button>
-                      </Popover>
-                      <div className="tags-container">
-                        {incident.tags.map(i => {
-                          return <Tag key={i}>{i}</Tag>;
-                        })}
-                      </div>
+                        Sources
+                      </Button>
+                    </Popover>
+                    <div className="tags-container">
+                      {incident.tags.map(i => {
+                        return <Tag key={i}>{i}</Tag>;
+                      })}
                     </div>
                   </div>
                 </Panel>
