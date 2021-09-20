@@ -90,16 +90,20 @@ function FilterForm({ onValuesChange }) {
             <Form.Item name="state" noStyle>
               <Select showSearch placeholder="Filter by State">
                 <Option value="">Show All States</Option>
-                {states.map(state => (
-                  <Option value={state}>{state}</Option>
+                {states.map((state, index) => (
+                  <Option key={index} value={state}>
+                    {state}
+                  </Option>
                 ))}
               </Select>
             </Form.Item>
           </Form.Item>
           <Form.Item name="tags" label="Tags">
             <Select mode="multiple" placeholder="Filter by Tags">
-              {tags.map(tag => (
-                <Option value={tag}>{tag}</Option>
+              {tags.map((tag, index) => (
+                <Option key={index} value={tag}>
+                  {tag}
+                </Option>
               ))}
             </Select>
           </Form.Item>
