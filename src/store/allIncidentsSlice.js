@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import useOktaAxios from '../hooks/useOktaAxios';
-import { putIncidents, selectIncidentsByIds } from '../utils/DashboardHelperFunctions';
+import { putIncidents, selectIncidentsByIds, splitIncidentsByIds } from '../utils/DashboardHelperFunctions';
 
 /**
  * Returns a promise that resolves to an array of pending incidents
@@ -105,7 +105,7 @@ export const changeIncidentsStatus = createAsyncThunk(
 	'dashboard/changeStatus',
 	async (payload, thunkAPI) => {
 		const { oktaAxios, incidentIds, oldStatus, newStatus } = payload;
-		const list = selectListByStatus(oldStatus, thunkAPI.getState());
+		const list = selectListByStatus(oldStatus, thunkAPI.getState().allIncidents);
 		const selected = selectIncidentsByIds(list, incidentIds, true);
 
 		return await putIncidents(oktaAxios, selected, newStatus);
@@ -187,25 +187,33 @@ export const slice = createSlice({
 			state.isLoading = true;
 		});
 		builder.addCase(changeIncidentsStatus.fulfilled, (state, action) => {
-			const { oktaAxios, incidentIds, oldStatus, newStatus } = action.payload;
+			const { incidentIds, oldStatus, newStatus } = action.meta.arg;
 
 			// incidents have just been PUT to the server with the status property changed
 			// we can re-fetch all the data
 			// or remove the incidents from their old list, insert them into their new list, and sort
-			const oldList = selectListByStatus(oldStatus, state);
-			const newList = selectListByStatus(newStatus, state);
 
-			incidentIds.forEach(incId => {
-				const index = oldList.findIndex(inc => inc.incident_id === incId);
-				const incident = oldList[index];
+			let split;
 
-				// because we are using Redux toolkit, it's safe to modify state within a reducer
-				incident.status = newStatus;
-				oldList.splice(index, 1);
-				newList.push(incident);
-			});
+			if (oldStatus === 'pending') {
+				split = splitIncidentsByIds(state.pendingIncidents, incidentIds);
+				state.pendingIncidents = split.source;
+			}
+			else if (oldStatus === 'approved') {
+				split = splitIncidentsByIds(state.approvedIncidents, incidentIds);
+				state.approvedIncidents = split.source;
+			}
 
-			newList.sort((a, b) => a.incident_date > b.incident_date);
+			if (newStatus !== 'rejected') {
+				const newList = selectListByStatus(newStatus, state);
+
+				split.selected.forEach(inc => {
+					inc.status = newStatus;
+					newList.push(inc);
+				});
+
+				newList?.sort((a, b) => a.incident_date > b.incident_date);
+			}
 
 			state.isLoading = false;
 		});
