@@ -22,9 +22,16 @@
   justify-content: space-between;
 }
 
-.panel > .ant-collapse-content {
-  background: #c1d2e9;
+.incidents-collapse {
+  border: 0 !important;
+  .panel {
+    background: white;
+    & > .ant-collapse-content {
+      background: #c1d2e9;
+    }
+  }
 }
+
 #title-text {
   font-size: 1rem;
   color: #000;
