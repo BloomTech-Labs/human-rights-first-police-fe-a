@@ -66,6 +66,7 @@ export function getFormResponses(oktaAxios) {
  * @property {Incident[]} approvedIncidents
  * @property {Incident[]} pendingIncidents
  * @property {Incident[]} formResponses
+ * @property {Incident[]} allIncidents
  */
 
 /** @type {AllIncidentsState} */
@@ -74,7 +75,8 @@ const initialState = {
 	errorMessage: '',
 	approvedIncidents: [],
 	pendingIncidents: [],
-	formResponses: []
+	formResponses: [],
+	allIncidents: [],
 };
 
 
@@ -93,9 +95,18 @@ export const modifyIncidents = createAsyncThunk(
 	'dashboard/modifyIncidents',
 	async (payload, thunkAPI) => {
 		const { oktaAxios, incidents } = payload;
-		
+		const state = thunkAPI.getState();
+
+		return await oktaAxios
+			.put('dashboard/incidents', incidents)
+			.then(res => {
+				incidents.forEach(inc => {
+					state.allIncidents.findIndex(orig => inc.incident_id === orig.incident_id);
+
+				});
+			});
 	}
-)
+);
 
 export const slice = createSlice({
 	name: 'allIncident',
@@ -112,9 +123,24 @@ export const slice = createSlice({
 			state.approvedIncidents = approved;
 			state.pendingIncidents = pending;
 			state.formResponses = formResponses;
+
+			state.allIncidents = Array.concat(approved, pending, formResponses);
+
 			state.isLoading = false;
 		});
 		builder.addCase(fetchAllIncidents.rejected, (state, action) => {
+			state.errorMessage = action.error.message;
+			state.isLoading = false;
+		});
+
+		builder.addCase(modifyIncidents.pending, (state, action) => {
+			state.isLoading = true;
+		});
+		builder.addCase(modifyIncidents.fulfilled, (state, action) => {
+			state.isLoading = false;
+			console.log(action.payload);
+		});
+		builder.addCase(modifyIncidents.rejected, (state, action) => {
 			state.errorMessage = action.error.message;
 			state.isLoading = false;
 		});

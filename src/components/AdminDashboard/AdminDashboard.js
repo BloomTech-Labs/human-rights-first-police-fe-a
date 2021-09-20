@@ -13,22 +13,26 @@ import {
   getApprovedIncidents,
   getPendingIncidents,
   getFormResponses,
-  splitIncidentsByIds
+  splitIncidentsByIds,
+  selectIncidentsByIds
 } from '../../utils/DashboardHelperFunctions.js';
 
 import IncidentStatus from './IncidentStatus';
 import AntTable from './AntTableComponents/AntTable';
+import { fetchAllIncidents, modifyIncidents, useAllIncidents } from '../../store/allIncidentsSlice';
 
 const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
   const [selectedIds, setSelectedIds] = useState([]);
 
   // The three categories of incidents
-  const [formResponses, setFormResponses] = useState([]);
-  const [pendingIncidents, setPendingIncidents] = useState([]);
-  const [approvedIncidents, setApprovedIncidents] = useState([]);
+  // const [formResponses, setFormResponses] = useState([]);
+  // const [pendingIncidents, setPendingIncidents] = useState([]);
+  // const [approvedIncidents, setApprovedIncidents] = useState([]);
 
-  // The incident status type to display: 'pending', 'approved', 'form-responses'
+  const { state, dispatch } = useAllIncidents();
+  const { formResponses, approvedIncidents, pendingIncidents, isLoading, errorMessage } = state;
+
   const [listType, setListType] = useState('pending');
 
   const getCurrentList = () => {
@@ -79,17 +83,7 @@ const AdminDashboard = () => {
   const oktaAxios = useOktaAxios();
 
   const fetchIncidents = () => {
-    getApprovedIncidents(oktaAxios)
-      .then(setApprovedIncidents)
-      .catch(console.log);
-
-    getPendingIncidents(oktaAxios)
-      .then(setPendingIncidents)
-      .catch(console.log);
-
-    getFormResponses(oktaAxios)
-      .then(setFormResponses)
-      .catch(console.log);
+    dispatch(fetchAllIncidents(oktaAxios));
   };
 
   // getting all incident data
@@ -99,7 +93,7 @@ const AdminDashboard = () => {
 
   const approveAndRejectHandler = async (newStatus) => {
     const currentList = getCurrentList();
-    const { selected, source } = splitIncidentsByIds(currentList, selectedIds);
+    const selected = selectIncidentsByIds(currentList, selectedIds, true);
 
     // setting lat and long for approved incidents
     if (newStatus === 'approved') {
@@ -116,15 +110,9 @@ const AdminDashboard = () => {
       }
     }
 
-    putIncidents(oktaAxios, selected, newStatus)
-      .then(res => {
-        setSelectedIds([]);
-        fetchIncidents();
-      })
-      .catch(err => {
-        console.log(err);
-        // TODO: Better error handling!
-      });
+    selected.forEach(inc => inc.status = newStatus);
+
+    dispatch(modifyIncidents({ oktaAxios, incidents: selected }));
   };
 
   // toggling rendering of AddIncident pop up modal

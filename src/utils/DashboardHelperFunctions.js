@@ -38,6 +38,29 @@ export function splitIncidentsByIds(incidents, ids) {
   return { selected, source };
 }
 
+/**
+ * This function finds the specified incidents within an array and returns two
+ * new arrays: the selected incidents, and the source array WITHOUT the selected
+ * incidents
+ *
+ * @param {any[]} incidents an array of incident data
+ * @param {number[]} ids a list of the desired incident ids to extract
+ *
+ * @returns {any[]} two arrays of incident data
+ */
+export function selectIncidentsByIds(incidents, ids, copy = false) {
+  const selected = incidents.filter(inc => ids.includes(inc.incident_id));
+
+  if (copy) {
+    return selected.map(inc => {
+      return { ...inc };
+    });
+  }
+  else {
+    return selected;
+  }
+}
+
 export const getData = (oktaAxios, setUnapprovedIncidents) => {
   oktaAxios
     .get('/dashboard/incidents')
