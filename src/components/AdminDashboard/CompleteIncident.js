@@ -24,10 +24,15 @@ import './CompleteIncident.css';
 const CompleteIncident = props => {
   const {
     incident,
-    formattedDate,
     setMoreInfo,
-    setUnapprovedIncidents,
   } = props;
+
+  const formatDate = (inputData) => {
+    const [year, month, day] = inputData.incident_date.split('-');
+    return `${month}/${day.slice(0, 2)}/${year}`;
+  };
+
+  const formattedDate = formatDate(incident);
 
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
@@ -69,12 +74,12 @@ const CompleteIncident = props => {
         window.location.reload();
       })
       .catch(err => {
+        // TODO: Better error handling!
         console.log(err);
       })
       .finally(res => {
         setEditing(false);
         setMoreInfo(false);
-        getData(setUnapprovedIncidents);
       });
   };
 
