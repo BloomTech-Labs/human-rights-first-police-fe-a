@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from 'react';
 
+import './AdminDashboard.css';
+
 import AddIncident from './AddIncident';
 import DashboardTop from './DashboardTop';
-import './AdminDashboard.css';
-import { Modal } from './Modal';
+import Welcome from './Welcome';
 import useOktaAxios from '../../hooks/useOktaAxios';
-
+import IncidentStatus from './IncidentStatus';
+import AntTable from './AntTableComponents/AntTable';
 import {
-  getData,
   putIncidents,
   getLatAndLong,
   getApprovedIncidents,
   getPendingIncidents,
   getFormResponses,
-  splitIncidentsByIds
 } from '../../utils/DashboardHelperFunctions.js';
 
-import IncidentStatus from './IncidentStatus';
-import AntTable from './AntTableComponents/AntTable';
 
 const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
@@ -28,9 +26,10 @@ const AdminDashboard = () => {
   const [pendingIncidents, setPendingIncidents] = useState([]);
   const [approvedIncidents, setApprovedIncidents] = useState([]);
 
-  // The incident status type to display: 'pending', 'approved', 'form-responses'
+  // The incident tab to display: 'pending', 'approved', 'form-responses'
   const [listType, setListType] = useState('pending');
 
+  // returns the corrent incidents array for the current tab
   const getCurrentList = () => {
     switch (listType) {
       case 'pending':
@@ -44,40 +43,29 @@ const AdminDashboard = () => {
     }
   };
 
-  // setting state to toggle whether or not the modal pop up (addIncident) is rendered
-  const [adding, setAdding] = useState(false);
-
-  // modal
-  const [showModal, setShowModal] = useState(false);
-  const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');
-
-  useEffect(() => {
-    const handleShowModal = () => {
-      if (HAS_VISITED_BEFORE && HAS_VISITED_BEFORE > new Date()) {
-        return;
-      }
-      if (!HAS_VISITED_BEFORE) {
-        setShowModal(true);
-        let expires = new Date();
-        expires = expires.setHours(expires.getHours() + 24);
-        localStorage.setItem('hasVisitedBefore', expires);
-      }
-    };
-    window.setTimeout(handleShowModal, 2000);
-    window.scrollTo(0, 0);
-  }, [HAS_VISITED_BEFORE]);
-
-  // resets the selected incidents when switching from approved to unapproved page
+  // resets the selected incidents when switching tabs
   useEffect(() => {
     setSelectedIds([]);
   }, [listType]);
 
-  const modalHandler = () => {
-    setShowModal(false);
+  // gives the active tab a different color
+  const selectedTabButtonStyle = {
+    background: '#095fab'
   };
 
+  // toggles whether or not the addIncident popup is displayed
+  const [adding, setAdding] = useState(false);
+
+  // toggling rendering of AddIncident pop up modal
+  const toggleAddIncident = evt => {
+    evt.preventDefault();
+    setAdding(true);
+  };
+
+  // authorized axios
   const oktaAxios = useOktaAxios();
 
+  // downloads all incident data
   const fetchIncidents = () => {
     getApprovedIncidents(oktaAxios)
       .then(setApprovedIncidents)
@@ -92,14 +80,15 @@ const AdminDashboard = () => {
       .catch(console.log);
   };
 
-  // getting all incident data
+  // loads incident data on first render
   useEffect(() => {
     fetchIncidents();
   }, []);
 
+  // approves or rejects the selected incidents
   const approveAndRejectHandler = async (newStatus) => {
     const currentList = getCurrentList();
-    const { selected, source } = splitIncidentsByIds(currentList, selectedIds);
+    const selected = currentList.filter(inc => selectedIds.includes(inc.incident_id));
 
     // setting lat and long for approved incidents
     if (newStatus === 'approved') {
@@ -127,26 +116,10 @@ const AdminDashboard = () => {
       });
   };
 
-  // toggling rendering of AddIncident pop up modal
-  const toggleAddIncident = evt => {
-    evt.preventDefault();
-    setAdding(true);
-  };
-
-  // this needs to be improved
-  const selectedTabButtonStyle = {
-    background: '#095fab'
-  };
-
   return (
     <>
-      {/* I don't know what this is */}
-      {showModal ? <div className="back-drop"></div> : null}
-      <Modal
-        showModal={showModal}
-        modalHandler={modalHandler}
-        unapprovedIncidents={pendingIncidents}
-      />
+      {/* Welcome message */}
+      <Welcome pendingCount={pendingIncidents.length} />
 
       {/* Incident "tabs" - unapproved, approved, form responses */}
       <div className="dashboard-buttons-container">
@@ -196,7 +169,6 @@ const AdminDashboard = () => {
         {/* modal popup for adding a new incident */}
         {adding &&
           <AddIncident
-            getData={getData}
             setAdding={setAdding}
           />
         }
