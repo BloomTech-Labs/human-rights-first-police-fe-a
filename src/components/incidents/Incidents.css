@@ -11,20 +11,6 @@
   text-align: flex-start;
 }
 
-.export-form {
-  text-align: left;
-  padding: 2rem;
-  background-color:#C1D2E9;
-}
-
-.export-form .ant-select {
-  width: 278px;
-}
-
-.ant-picker {
-  margin-bottom: 1rem;
-}
-
 .incidents-container {
   width: 98%;
   margin: auto;
@@ -46,16 +32,10 @@
 .incidents-page header .user-input {
   display: -webkit-box;
   display: -ms-flexbox;
- 
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
 }
-
-.collapse-content-p {
-  color: black;
-}
-
 .extra {
   display: flex;
   flex-flow: row;
