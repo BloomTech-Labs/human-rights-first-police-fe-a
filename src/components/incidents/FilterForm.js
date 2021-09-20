@@ -75,7 +75,7 @@ function FilterForm({ onValuesChange }) {
       <Panel header="Filter Incident Reports">
         <Form form={form} onValuesChange={onChange} layout="vertical">
           <Form.Item name="force_rank" label="Force Rank">
-            <Select>
+            <Select placeholder="Filter by Force Rank">
               <Option value="">Show All Force Ranks</Option>
               <Option value="Rank 1">Rank 1 - Police Presence</Option>
               <Option value="Rank 2">Rank 2 - Empty-hand</Option>
@@ -88,7 +88,7 @@ function FilterForm({ onValuesChange }) {
             {/* TODO make filtering by city work, then add a Form.Item and Input
              * or Autocomplete here */}
             <Form.Item name="state" noStyle>
-              <Select showSearch placeholder="State">
+              <Select showSearch placeholder="Filter by State">
                 <Option value="">Show All States</Option>
                 {states.map(state => (
                   <Option value={state}>{state}</Option>
@@ -97,7 +97,7 @@ function FilterForm({ onValuesChange }) {
             </Form.Item>
           </Form.Item>
           <Form.Item name="tags" label="Tags">
-            <Select mode="multiple">
+            <Select mode="multiple" placeholder="Filter by Tags">
               {tags.map(tag => (
                 <Option value={tag}>{tag}</Option>
               ))}
