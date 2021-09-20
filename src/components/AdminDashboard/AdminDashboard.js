@@ -19,7 +19,7 @@ import {
 
 import IncidentStatus from './IncidentStatus';
 import AntTable from './AntTableComponents/AntTable';
-import { fetchAllIncidents, modifyIncidents, useAllIncidents } from '../../store/allIncidentsSlice';
+import { fetchAllIncidents, editIncident, useAllIncidents, useEasyMode } from '../../store/allIncidentsSlice';
 
 const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
@@ -30,8 +30,10 @@ const AdminDashboard = () => {
   // const [pendingIncidents, setPendingIncidents] = useState([]);
   // const [approvedIncidents, setApprovedIncidents] = useState([]);
 
-  const { state, dispatch } = useAllIncidents();
-  const { formResponses, approvedIncidents, pendingIncidents, isLoading, errorMessage } = state;
+  //const { state, dispatch } = useAllIncidents();
+  const oktaAxios = useOktaAxios();
+  const easyMode = useEasyMode(oktaAxios);
+  const { formResponses, approvedIncidents, pendingIncidents, isLoading, errorMessage } = easyMode.state;;
 
   const [listType, setListType] = useState('pending');
 
@@ -80,10 +82,8 @@ const AdminDashboard = () => {
     setShowModal(false);
   };
 
-  const oktaAxios = useOktaAxios();
-
   const fetchIncidents = () => {
-    dispatch(fetchAllIncidents(oktaAxios));
+    easyMode.fetchAll();
   };
 
   // getting all incident data
@@ -92,27 +92,33 @@ const AdminDashboard = () => {
   }, []);
 
   const approveAndRejectHandler = async (newStatus) => {
-    const currentList = getCurrentList();
-    const selected = selectIncidentsByIds(currentList, selectedIds, true);
+    //const currentList = getCurrentList();
+    //const selected = selectIncidentsByIds(currentList, selectedIds, true);
 
     // setting lat and long for approved incidents
-    if (newStatus === 'approved') {
-      for (const inc of selected) {
-        if (inc.city && inc.state) {
-          try {
-            const latAndLong = await getLatAndLong(inc);
-            inc.lat = latAndLong[0];
-            inc.long = latAndLong[1];
-          } catch (err) {
-            console.log(err);
-          }
-        }
-      }
+    // if (newStatus === 'approved') {
+    //   for (const inc of selected) {
+    //     if (inc.city && inc.state) {
+    //       try {
+    //         const latAndLong = await getLatAndLong(inc);
+    //         inc.lat = latAndLong[0];
+    //         inc.long = latAndLong[1];
+    //       } catch (err) {
+    //         console.log(err);
+    //       }
+    //     }
+    //   }
+    // }
+
+    // selected.forEach(inc => inc.status = newStatus);
+
+    try {
+      await easyMode.changeIncidentsStatus(selectedIds, listType, newStatus);
+      setSelectedIds([]);
     }
-
-    selected.forEach(inc => inc.status = newStatus);
-
-    dispatch(modifyIncidents({ oktaAxios, incidents: selected }));
+    catch (err) {
+      console.log(err);
+    }
   };
 
   // toggling rendering of AddIncident pop up modal

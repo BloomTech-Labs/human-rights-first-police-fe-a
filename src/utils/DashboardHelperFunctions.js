@@ -7,6 +7,10 @@ export const putIncidents = (oktaAxios, incidents, status) => {
 
   return oktaAxios
     .put('dashboard/incidents', modifiedIncidents)
+    .then(res => {
+      console.log(res);
+      return res;
+    })
     .catch(err => {
       console.log(err);
     });
