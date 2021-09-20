@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './Incidents.css';
+import './Incidents.less';
 import sourceListHelper from '../../utils/sourceListHelper';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import {
@@ -309,7 +309,7 @@ const Incidents = () => {
       <div className="incidents-container">
         <h1>Report Results</h1>
         {data.length ? (
-          <Collapse key={nanoid()} className="collapse">
+          <Collapse key={nanoid()} className="incidents-collapse">
             {currentPosts.map(incident => {
               return (
                 <Panel
