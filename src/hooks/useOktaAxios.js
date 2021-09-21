@@ -8,7 +8,7 @@ export default function useOktaAxios() {
   return axios.create({
     baseURL: process.env.REACT_APP_BACKENDURL || '',
     headers: {
-      authorization: isAuthenticated ? `Bearer ${idToken.value}` : '',
+      authorization: isAuthenticated ? `${idToken.value}` : '',
     },
   });
 }
