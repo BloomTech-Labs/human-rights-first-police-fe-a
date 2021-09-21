@@ -8,7 +8,6 @@ import { applyEdits, getData } from '../../utils/DashboardHelperFunctions';
 
 import './CompleteIncident.css';
 
-
 /**
  * @typedef CompleteIncidentProps
  * @property {any} incident - incident data
@@ -38,7 +37,7 @@ const CompleteIncident = props => {
   useEffect(() => {
     setFormValues({
       ...incident,
-      tags: incident.tags ? incident.tags.join(", ") : [],
+      tags: incident.tags ? incident.tags.join(', ') : [],
       incident_date: formattedDate,
     });
     return () => {
@@ -81,8 +80,7 @@ const CompleteIncident = props => {
   return (
     <div className="complete-incident">
       <div className="complete-incident-dropdown">
-
-        {!editing &&
+        {!editing && (
           <>
             {/* Date */}
             <div className="dropdown-text-wrap">
@@ -92,7 +90,9 @@ const CompleteIncident = props => {
 
             {/* Location */}
             <div className="dropdown-text-wrap">
-              <p className="complete-incident-dropdown-titles-bold">Location:</p>
+              <p className="complete-incident-dropdown-titles-bold">
+                Location:
+              </p>
               <p className="location-dropdown-wrap">
                 {incident.city}, {incident.state}
               </p>
@@ -100,9 +100,7 @@ const CompleteIncident = props => {
 
             {/* Title */}
             <div className="dropdown-text-wrap">
-              <p className="complete-incident-dropdown-titles-bold">
-                Title:
-              </p>
+              <p className="complete-incident-dropdown-titles-bold">Title:</p>
               <p>{incident.title || '(none)'}</p>
             </div>
 
@@ -124,7 +122,9 @@ const CompleteIncident = props => {
 
             {/* Sources */}
             <div className="dropdown-text-wrap">
-              <p className="complete-incident-dropdown-titles-bold">Source(s)</p>
+              <p className="complete-incident-dropdown-titles-bold">
+                Source(s):
+              </p>
               <div>
                 {incident.src.map(source => (
                   <div key={nanoid()}>
@@ -139,20 +139,30 @@ const CompleteIncident = props => {
 
             {/* Tags */}
             <div className="dropdown-text-wrap">
-              <p className="complete-incident-dropdown-titles-bold">Tags</p>
-              <div>
-                {incident.tags ? incident.tags.join(", ") : ''}
-              </div>
+              <p className="complete-incident-dropdown-titles-bold">Tags:</p>
+              <div>{incident.tags ? incident.tags.join(', ') : ''}</div>
+            </div>
+
+            {/* Confidence Rating: */}
+            <div className="dropdown-text-wrap">
+              <p className="complete-incident-dropdown-titles-bold">
+                Confidence Rating:
+              </p>
+              <p>{(incident.confidence * 100).toFixed(2)}%</p>
             </div>
 
             {/* Edit button */}
-            <Button id="dropdown-edit-button" className="approve-reject-select" onClick={toggleEditor}>
+            <Button
+              id="dropdown-edit-button"
+              className="approve-reject-select"
+              onClick={toggleEditor}
+            >
               Edit
             </Button>
           </>
-        }
+        )}
 
-        {editing &&
+        {editing && (
           <>
             {/* Date */}
             <label className="label">
@@ -247,7 +257,9 @@ const CompleteIncident = props => {
             {/* Tags */}
             <label className="label">
               Tags
-              <span style={{ fontWeight: "normal" }}>&nbsp;(comma separated values)</span>
+              <span style={{ fontWeight: 'normal' }}>
+                &nbsp;(comma separated values)
+              </span>
               <input
                 className="edit-input"
                 onChange={handleInputChange}
@@ -257,8 +269,20 @@ const CompleteIncident = props => {
               />
             </label>
 
+            {/* Confidence Rating: */}
+            <div className="dropdown-text-wrap">
+              <p className="complete-incident-dropdown-titles-bold">
+                Confidence Rating:
+              </p>
+              <p>{(incident.confidence * 100).toFixed(2)}%</p>
+            </div>
+
             {/* Cancel button */}
-            <Button id="dropdown-edit-button" className="approve-reject-select" onClick={toggleEditor}>
+            <Button
+              id="dropdown-edit-button"
+              className="approve-reject-select"
+              onClick={toggleEditor}
+            >
               Cancel
             </Button>
 
@@ -267,7 +291,7 @@ const CompleteIncident = props => {
               Apply Changes
             </Button>
           </>
-        }
+        )}
 
         <AntModal incident={incident} />
       </div>
