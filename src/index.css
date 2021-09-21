@@ -1030,28 +1030,6 @@ form label {
   display: block;
   margin: 0 auto;
 }
-#pieGraph {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.pie-holder {
-  width: 60vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-.pie {
-  width: 60vw;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-.pie-legend {
-  margin-bottom: 6%;
-  padding: 20px;
-  width: 60vw;
-}
 .all-graphs-container {
   display: flex;
   flex-direction: column;
@@ -1120,42 +1098,8 @@ form label {
   .horizontal-graph {
     padding-bottom: 50px;
   }
-  .pie-holder {
-    width: 350px;
-    display: block;
-  }
-  .pie-graph {
-    margin-left: 0;
-  }
-
-  .graph-container {
-    margin: -18px;
-    width: 350px;
-    display: block;
-  }
-  .pie {
-    width: 340px;
-    margin: 0 auto;
-  }
-  .pie div {
-    width: 320px;
-  }
-
-  div canvas {
-    width: 310px;
-    position: unset;
-  }
   .graph-legend-wrap {
     width: 320px;
-  }
-  div .pie-legend {
-    width: 350px;
-    padding: 0;
-    margin-top: 20px;
-  }
-  .pie-legend div {
-    margin: 0;
-    width: 338px;
   }
 }
 

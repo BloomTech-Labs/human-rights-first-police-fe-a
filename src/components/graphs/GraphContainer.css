@@ -1,6 +1,9 @@
+.all-graphs-container {
+  padding: 0 2rem;
+}
 .graph-container {
+  width: 100%;
   max-width: 1200px;
-  margin: 0 5%;
 }
 
 .link-container[role='menu'] {
