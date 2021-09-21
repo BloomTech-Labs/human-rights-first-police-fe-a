@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Button } from 'antd';
 import { nanoid } from 'nanoid';
 
 import AntModal from './AntModalComponent/AntModal';
-import useOktaAxios from '../../hooks/useOktaAxios';
-import { applyEdits, getData } from '../../utils/DashboardHelperFunctions';
+import { getData } from '../../utils/DashboardHelperFunctions';
+import AdminEdit from './forms/AdminEdit';
 
 import './CompleteIncident.css';
 
@@ -30,55 +30,99 @@ const CompleteIncident = props => {
 
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
-  const [formValues, setFormValues] = useState({});
-
-  const oktaAxios = useOktaAxios();
-
-  useEffect(() => {
-    setFormValues({
-      ...incident,
-      tags: incident.tags ? incident.tags.join(', ') : [],
-      incident_date: formattedDate,
-    });
-    return () => {
-      setFormValues({});
-    };
-  }, [editing, incident, formattedDate]);
 
   // toggle "editing mode"
-  const toggleEditor = evt => {
-    evt.preventDefault();
-    setFormValues({ ...incident, date: formattedDate });
+  const toggleEditor = () => {
     setEditing(!editing);
   };
 
   // form control functions
-  const handleInputChange = evt => {
-    const { name, value } = evt.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = evt => {
-    evt.preventDefault();
-    applyEdits(oktaAxios, formValues, incident)
-      .then(res => {
-        window.location.reload();
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .finally(res => {
-        setEditing(false);
-        setMoreInfo(false);
-        getData(setUnapprovedIncidents);
-      });
+  const onFormSubmit = () => {
+    setEditing(false);
+    setMoreInfo(false);
+    getData(setUnapprovedIncidents);
   };
 
   return (
     <div className="complete-incident">
+      {editing ? (
+        <AdminEdit
+          initialValues={incident}
+          cancel={toggleEditor}
+          cleanup={onFormSubmit}
+        />
+      ) : (
+        <div className="complete-incident-dropdown">
+          {/* Title */}
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Title:</p>
+            <p>{incident.title || '(none)'}</p>
+          </div>
+
+          {/* Description */}
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">
+              Description:
+            </p>
+            <p>{incident.description}</p>
+          </div>
+
+          {/* Location */}
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Location:</p>
+            <p className="location-dropdown-wrap">
+              {incident.city}, {incident.state}
+            </p>
+          </div>
+
+          {/* Date */}
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Date:</p>
+            <p>{formattedDate}</p>
+          </div>
+
+          {/* Force Rank */}
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">
+              Force Rank:
+            </p>
+            <p>{incident.force_rank}</p>
+          </div>
+
+          {/* Sources */}
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Source(s)</p>
+            <div>
+              {incident.src.map(source => (
+                <div key={nanoid()}>
+                  <a href={source} rel="noreferrer" target="_blank">
+                    {source}
+                  </a>
+                  <br />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Tags */}
+          <div className="dropdown-text-wrap">
+            <p className="complete-incident-dropdown-titles-bold">Tags</p>
+            <div>{incident.tags ? incident.tags.join(', ') : ''}</div>
+          </div>
+
+          {/* Edit button */}
+          <Button
+            id="dropdown-edit-button"
+            className="approve-reject-select"
+            onClick={toggleEditor}
+          >
+            Edit
+          </Button>
+
+          {/* Request More Info button */}
+          <AntModal incident={incident} />
+        </div>
+      )}
       <div className="complete-incident-dropdown">
         {!editing && (
           <>
