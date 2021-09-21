@@ -85,6 +85,15 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
             }}
           />
         </Form.Item>
+
+        {/* Confidence Rating: */}
+        <div className="dropdown-text-wrap">
+          <p className="complete-incident-dropdown-titles-bold">
+            Confidence Rating:
+          </p>
+          <p>{(initialValues.confidence * 100).toFixed(2)}%</p>
+        </div>
+
         <Form.Item name="force_rank" label="Force Rank">
           <Select placeholder="Select a Force Rank">
             <Option value="Rank 0">Rank 0 - No Police Presence</Option>
