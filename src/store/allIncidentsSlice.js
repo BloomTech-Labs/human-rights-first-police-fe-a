@@ -1,46 +1,9 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
-import useOktaAxios from '../hooks/useOktaAxios';
-import { putIncidents, selectIncidentsByIds, splitIncidentsByIds } from '../utils/DashboardHelperFunctions';
+import api from '../utils/apiHelpers';
+import { splitIncidentsByIds } from '../utils/DashboardHelperFunctions';
 
-/**
- * Returns a promise that resolves to an array of pending incidents
- *
- * @param {import('axios').AxiosInstance} oktaAxios
- * @returns {Promise<Incident[]>} all pending incidents
- */
-export function getPendingIncidents(oktaAxios) {
-	return oktaAxios.get('/dashboard/incidents')
-		.then(res => {
-			return res.data;
-		});
-}
 
-/**
- * Returns a promise that resolves to an array of approved incidents
- *
- * @param {import('axios').AxiosInstance} oktaAxios
- * @returns {Promise<Incident[]>} all approved incidents
- */
-export function getApprovedIncidents(oktaAxios) {
-	return oktaAxios.get('/dashboard/incidents/approved')
-		.then(res => {
-			return res.data;
-		});
-}
-
-/**
- * Returns a promise that resolves to an array of approved incidents
- *
- * @param {import('axios').AxiosInstance} oktaAxios
- * @returns {Promise<Incident[]>} all approved incidents
- */
-export function getFormResponses(oktaAxios) {
-	return oktaAxios.get('http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve')
-		.then(res => {
-			return res.data;
-		});
-}
 
 /**
  * @typedef Incident
@@ -79,19 +42,92 @@ const initialState = {
 	formResponses: [],
 };
 
+// These 'matcher' functions are used by the reducer to match Thunk lifecycle events
+const isPendingAction = (action) => action.type.endsWith('/pending');
+const isFulfilledAction = (action) => action.type.endsWith('/fulfilled');
+const isRejectedAction = (action) => action.type.endsWith('/rejected');
 
-export const fetchAllIncidents = createAsyncThunk(
+/**
+ * This Thunk fetches all incident data
+ */
+export const fetchAllIncidentsThunk = createAsyncThunk(
 	'dashboard/fetchAllIncidents',
 	async (oktaAxios, thunkAPI) => {
-		const approved = await getApprovedIncidents(oktaAxios);
-		const pending = await getPendingIncidents(oktaAxios);
-		const formResponses = await getFormResponses(oktaAxios);
+		const approved = await api.getApprovedIncidents(oktaAxios);
+		const pending = await api.getPendingIncidents(oktaAxios);
+		const formResponses = await api.getFormResponses(oktaAxios);
 
 		return { approved, pending, formResponses };
 	}
 );
 
-export const editIncident = createAsyncThunk(
+/**
+ * this will be called when the fetchAllIncidents thunk is fulfilled
+ * because we are using Redux Toolkit, we can safely modify state from within a reducer
+ *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
+ */
+const fetchAllReducer = (state, action) => {
+	const { approved, pending, formResponses } = action.payload;
+	state.approvedIncidents = approved;
+	state.pendingIncidents = pending;
+	state.formResponses = formResponses;
+};
+
+/**
+ * This Thunk changes the status for the specified incidents
+ */
+export const setStatusThunk = createAsyncThunk(
+	'dashboard/changeStatus',
+	async (payload, thunkAPI) => {
+		const { oktaAxios, incidentIds, newStatus } = payload;
+		return await api.changeIncidentsStatus(oktaAxios, incidentIds, newStatus);
+	}
+);
+
+/**
+ * this will be called when the setStatus thunk is fulfilled
+ * because we are using Redux Toolkit, we can safely modify state from within a reducer
+ *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
+ */
+const setStatusReducer = (state, action) => {
+	const { incidentIds, oldStatus, newStatus } = action.meta.arg;
+
+	// incidents have just been PUT to the server with the status property changed
+	// locally, those incidents need to be moved from one list to another
+	// ie: after approving incident_id:8003, it should be removed from pendingIncidents and inserted into approvedIncidents
+
+	// if you having trouble keeping local state in sync with the server
+	// this can be removed, and instead re-fetch all incident data after any changes are made.
+
+
+	// removing the specified incidents from their original list
+	let split;
+	if (oldStatus === 'pending') {
+		split = splitIncidentsByIds(state.pendingIncidents, incidentIds);
+		state.pendingIncidents = split.source;
+	}
+	else if (oldStatus === 'approved') {
+		split = splitIncidentsByIds(state.approvedIncidents, incidentIds);
+		state.approvedIncidents = split.source;
+	}
+
+	// adding the specified incidents to their new list (unless they have been rejected)
+	if (newStatus !== 'rejected') {
+		const newList = selectListByStatus(newStatus, state);
+
+		split.selected.forEach(inc => {
+			inc.status = newStatus;
+			newList.push(inc);
+		});
+
+		newList?.sort((a, b) => a.incident_date > b.incident_date);
+	}
+};
+
+/**
+ * This thunk is used for editing the properties of an incident
+ */
+export const editIncidentThunk = createAsyncThunk(
 	'dashboard/editIncident',
 	async (payload, thunkAPI) => {
 		const { oktaAxios, incident } = payload;
@@ -101,16 +137,33 @@ export const editIncident = createAsyncThunk(
 	}
 );
 
-export const changeIncidentsStatus = createAsyncThunk(
-	'dashboard/changeStatus',
-	async (payload, thunkAPI) => {
-		const { oktaAxios, incidentIds, oldStatus, newStatus } = payload;
-		const list = selectListByStatus(oldStatus, thunkAPI.getState().allIncidents);
-		const selected = selectIncidentsByIds(list, incidentIds, true);
+/**
+ * this will be called after an incidents properties are edited
+ * because we are using Redux Toolkit, we can safely modify state from within a reducer
+ *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
+ */
+const editIncidentReducer = (state, action) => {
+	console.log(action.payload);
 
-		return await putIncidents(oktaAxios, selected, newStatus);
+	// So an incident has just been PUT to the incidents endpoint sucessfully
+	// locally, state needs to be updated with the incident's new values
+
+	// if you having trouble keeping local state in sync with the server
+	// this can be removed, and instead re-fetch all incident data after any changes are made.
+
+	/** @type {Incident} */
+	const incident = action.payload.incident;
+	const list = selectListByStatus(incident.status, state);
+	const index = list.findIndex(inc => inc.incident_id === incident.inciden_id);
+
+	if (index !== -1) {
+		list[index] = incident;
 	}
-);
+	else {
+		throw Error("something wierd happened....");
+	};
+};
+
 
 /**
  *
@@ -135,91 +188,33 @@ export const slice = createSlice({
 	name: 'allIncident',
 	initialState,
 	reducers: {
-
+		// since all the actions here are async thunks, there are no reducers here
 	},
 	extraReducers: (builder) => {
-		builder.addCase(fetchAllIncidents.pending, (state, action) => {
+		// these set up the case reducers for each thunk, called after they successfully complete
+		// https://redux-toolkit.js.org/api/createreducer/#builderaddcase
+		builder.addCase(fetchAllIncidentsThunk.fulfilled, fetchAllReducer);
+		builder.addCase(setStatusThunk.fulfilled, setStatusReducer);
+		builder.addCase(editIncidentThunk.fulfilled, editIncidentReducer);
+
+		// in Redux Toolkit, thunks created with createAsyncThunk will generate 3 actions representing
+		// the lifecycle of an async thunk: pending, fulfilled, rejected
+		// https://redux-toolkit.js.org/api/createAsyncThunk
+
+		// For any Thunk 'pending' actions, set isLoading to true
+		builder.addMatcher(isPendingAction, (state, action) => {
 			state.isLoading = true;
 		});
-		builder.addCase(fetchAllIncidents.fulfilled, (state, action) => {
-			const { approved, pending, formResponses } = action.payload;
-			state.approvedIncidents = approved;
-			state.pendingIncidents = pending;
-			state.formResponses = formResponses;
 
+		// For any Thunk 'fulfilled' actions, set isLoading to false
+		builder.addMatcher(isFulfilledAction, (state, action) => {
 			state.isLoading = false;
 		});
-		builder.addCase(fetchAllIncidents.rejected, (state, action) => {
+
+		// For any Thunk 'rejected' actions, set isLoading to false
+		builder.addMatcher(isRejectedAction, (state, action) => {
+			state.isLoading = false;
 			state.errorMessage = action.error.message;
-			state.isLoading = false;
-		});
-
-		builder.addCase(editIncident.pending, (state, action) => {
-			state.isLoading = true;
-		});
-		builder.addCase(editIncident.fulfilled, (state, action) => {
-			state.isLoading = false;
-			console.log(action.payload);
-
-			// So an incident has just been PUT to the incidents endpoint sucessfully
-			// We can either fetch all the data again
-			// or just update the current state
-
-			/** @type {Incident} */
-			const incident = action.payload.incidents;
-			const list = selectListByStatus(incident.status, state);
-			const index = list.findIndex(inc => inc.incident_id === incident.inciden_id);
-
-			if (index !== -1) {
-				// because we are using Redux Toolkit, we can safely modify state from within a reducer
-				list[index] = incident;
-			}
-			else {
-				throw Error("I don't know");
-			};
-		});
-		builder.addCase(editIncident.rejected, (state, action) => {
-			state.errorMessage = action.error.message;
-			state.isLoading = false;
-		});
-
-		builder.addCase(changeIncidentsStatus.pending, (state, action) => {
-			state.isLoading = true;
-		});
-		builder.addCase(changeIncidentsStatus.fulfilled, (state, action) => {
-			const { incidentIds, oldStatus, newStatus } = action.meta.arg;
-
-			// incidents have just been PUT to the server with the status property changed
-			// we can re-fetch all the data
-			// or remove the incidents from their old list, insert them into their new list, and sort
-
-			let split;
-
-			if (oldStatus === 'pending') {
-				split = splitIncidentsByIds(state.pendingIncidents, incidentIds);
-				state.pendingIncidents = split.source;
-			}
-			else if (oldStatus === 'approved') {
-				split = splitIncidentsByIds(state.approvedIncidents, incidentIds);
-				state.approvedIncidents = split.source;
-			}
-
-			if (newStatus !== 'rejected') {
-				const newList = selectListByStatus(newStatus, state);
-
-				split.selected.forEach(inc => {
-					inc.status = newStatus;
-					newList.push(inc);
-				});
-
-				newList?.sort((a, b) => a.incident_date > b.incident_date);
-			}
-
-			state.isLoading = false;
-		});
-		builder.addCase(changeIncidentsStatus.rejected, (state, action) => {
-			state.errorMessage = action.error.message;
-			state.isLoading = false;
 		});
 	}
 });
@@ -235,13 +230,14 @@ export const useAllIncidents = () => {
 	return { state, dispatch };
 };
 
+
 export const useEasyMode = (oktaAxios) => {
 	const { state, dispatch } = useAllIncidents();
 
 	const easyMode = {
 		state,
 		fetchAll: () => {
-			dispatch(fetchAllIncidents(oktaAxios));
+			dispatch(fetchAllIncidentsThunk(oktaAxios));
 		},
 		/**
 		 * Say cheese
@@ -249,10 +245,10 @@ export const useEasyMode = (oktaAxios) => {
 		 * @returns {Promise<void>}
 		 */
 		modifyIncidents: (incidents) => {
-			return dispatch(editIncident({ oktaAxios, incidents }));
+			return dispatch(editIncidentThunk({ oktaAxios, incidents }));
 		},
 		changeIncidentsStatus: (incidentIds, oldStatus, newStatus) => {
-			return dispatch(changeIncidentsStatus({ oktaAxios, incidentIds, oldStatus, newStatus }));
+			return dispatch(setStatusThunk({ oktaAxios, incidentIds, oldStatus, newStatus }));
 		}
 	};
 
