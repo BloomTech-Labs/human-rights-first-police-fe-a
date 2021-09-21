@@ -11,8 +11,6 @@ import './CompleteIncident.css';
 /**
  * @typedef CompleteIncidentProps
  * @property {any} incident - incident data
- * @property {string} formattedDate - correctly formatted date
- * @property {React.Dispatch<React.SetStateAction<any[]} setUnapprovedIncidents
  */
 
 /**
@@ -23,7 +21,6 @@ import './CompleteIncident.css';
 const CompleteIncident = props => {
   const {
     incident,
-    setMoreInfo,
   } = props;
 
   const formatDate = (inputData) => {
@@ -44,7 +41,6 @@ const CompleteIncident = props => {
   // form control functions
   const onFormSubmit = () => {
     setEditing(false);
-    setMoreInfo(false);
   };
 
   return (
