@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Table } from 'antd';
-import CompleteIncident from '../CompleteIncident';
 import { DateTime } from 'luxon';
+
+import CompleteIncident from '../CompleteIncident';
 
 //https://ant.design/components/table/ <---documentation on the table
 
@@ -10,7 +11,7 @@ import { DateTime } from 'luxon';
  * @property {any[]} incidents - incident data
  * @property {number[]} selectedIds - an aray of the currently selected incident IDs
  * @property {React.Dispatch<React.SetStateAction<number[]>} setSelectedIds - setter for selected IDs
- * @property {boolean} showConfidence - shows a column for incident confidence
+ * @property {boolean} showConfidence - shows a column for incident confidence, (default: false)
  */
 
 /**
@@ -92,7 +93,7 @@ function AntTable(props) {
   }
 
   return (
-    <div>
+    <div className="incidents">
       <Table
         columns={columns}
         dataSource={incidents}
