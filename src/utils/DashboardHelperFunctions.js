@@ -47,32 +47,6 @@ export const getData = (oktaAxios, setUnapprovedIncidents) => {
     });
 };
 
-// CompleteIncident.js
-export const applyEdits = (oktaAxios, formValues, incident) => {
-  const [month, day, year] = formValues.incident_date.split('/');
-  const [date, time] = incident.incident_date.split('T');
-  const newDate = `${year}-${month}-${day}T${time}`;
-  const updatedIncident = {
-    ...formValues,
-    tags: formValues.tags
-      .split(',')
-      .map(t => t.trim())
-      .sort(),
-    incident_date: newDate,
-  };
-  const putRequest = new Promise((resolve, reject) => {
-    oktaAxios
-      .put('/dashboard/incidents', [{ ...updatedIncident }])
-      .then(res => {
-        resolve(res);
-      })
-      .catch(err => {
-        reject(err);
-      });
-  });
-  return putRequest;
-};
-
 // MapQuest API to get Latitude/Longitude used in clusters (Clusters.js)
 export const getLatAndLong = formValues => {
   const getRequest = new Promise((resolve, reject) => {

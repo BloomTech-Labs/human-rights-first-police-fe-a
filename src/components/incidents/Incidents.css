@@ -21,10 +21,6 @@
   width: 278px;
 }
 
-.ant-picker {
-  margin-bottom: 1rem;
-}
-
 .incidents-container {
   width: 98%;
   margin: auto;
@@ -35,7 +31,7 @@
   flex-flow: row;
   justify-content: space-between;
 }
-#title {
+#title-text {
   margin-top: 0.11rem;
   margin-left: 1.5rem;
   font-size: 1rem;
