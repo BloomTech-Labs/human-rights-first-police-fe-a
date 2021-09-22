@@ -11,7 +11,7 @@ const useIncidentFilter = () => {
   const dateIncidentList = useSelector(state =>
     state.incident.ids.map(id => ({
       id,
-      date: state.incident.data[id]?.date,
+      date: state.incident.data[id].incident_date,
     }))
   );
 
