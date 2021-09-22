@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import { nanoid } from 'nanoid';
-
+import useOktaAxios from '../../hooks/useOktaAxios';
 import AntModal from './AntModalComponent/AntModal';
 import { getData } from '../../utils/DashboardHelperFunctions';
 import AdminEdit from './forms/AdminEdit';
@@ -27,6 +27,24 @@ const CompleteIncident = props => {
     setMoreInfo,
     setUnapprovedIncidents,
   } = props;
+
+  const oktaAxios = useOktaAxios();
+  const [deleting, setDeleting] = useState(false);
+  // for incident deletion button
+  const toggleDelete = evt => {
+    evt.preventDefault();
+    oktaAxios
+      .delete(`/dashboard/incidents/${incident.incident_id}`)
+      .then(res => {
+        window.alert(
+          `Case with id ${incident.incident_id} successfully deleted`
+        );
+        window.location.reload();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
@@ -124,6 +142,9 @@ const CompleteIncident = props => {
             onClick={toggleEditor}
           >
             Edit
+          </Button>
+          <Button onClick={toggleDelete} type="danger">
+            {deleting ? 'Cancel' : 'Delete'}
           </Button>
 
           {/* Request More Info button */}

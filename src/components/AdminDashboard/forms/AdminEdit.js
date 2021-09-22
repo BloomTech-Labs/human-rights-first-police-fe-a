@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Form, Input, Select, DatePicker, Button } from 'antd';
 import moment from 'moment';
 import useOktaAxios from '../../../hooks/useOktaAxios';
@@ -9,24 +9,8 @@ const { Option } = Select;
 
 function AdminEdit({ initialValues, cancel, cleanup }) {
   const [form] = Form.useForm();
-  const [deleting, setDeleting] = useState(false);
 
   const oktaAxios = useOktaAxios();
-  // for incident deletion button
-  const toggleDelete = evt => {
-    evt.preventDefault();
-    oktaAxios
-      .delete(`/dashboard/incidents/${initialValues.incident_id}`)
-      .then(res => {
-        window.alert(
-          `Case with id ${initialValues.incident_id} successfully deleted`
-        );
-        window.location.reload();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
 
   const handleSubmit = vals => {
     let formattedDate;
@@ -137,9 +121,6 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
         <Button onClick={cancel}>Cancel</Button>
         <Button className="admin-edit-submit" type="primary" htmlType="submit">
           Apply Changes
-        </Button>
-        <Button onClick={toggleDelete} type="danger">
-          {deleting ? 'Cancel' : 'Delete'}
         </Button>
       </div>
     </Form>
