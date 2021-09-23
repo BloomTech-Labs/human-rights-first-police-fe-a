@@ -1,5 +1,17 @@
 /* //incident div breakpoints */
 
+.collapserMap .ant-collapse-content-box {
+    background: #c1d2e9;
+}
+
+.collapserMap div.ant-collapse-header {
+    padding: 8px;
+    font-size: 1rem;
+    text-align: left;
+    font-weight: 400;
+    color: #212529;
+}
+
 @media (max-width: 1440px) {
     .collapseText.ant-collapse-item {
         margin: 0 3% 0 0 ;
