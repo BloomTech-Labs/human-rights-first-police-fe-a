@@ -1,9 +1,5 @@
 /* //incident div breakpoints */
 
-.collapserMap .ant-collapse-content-box {
-    background: #c1d2e9;
-}
-
 .collapserMap div.ant-collapse-header {
     padding: 8px;
     font-size: 1rem;

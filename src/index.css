@@ -469,6 +469,7 @@ div.timeline-container {
 }
 
 .ant-collapse-content-box {
+  background: #c1d2e9;
   overflow: auto;
 }
 
