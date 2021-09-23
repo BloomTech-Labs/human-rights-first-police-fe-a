@@ -14,7 +14,7 @@ export default function IncidentFocus({ zoomOnCluster }) {
       <Collapse
         className="collapserMap"
         style={{ color: 'white' }}
-        defaultActiveKey={['0']}
+        defaultActiveKey={['1']}
         bordered={false}
         expandIcon={({ isActive }) => (
           <CaretRightOutlined rotate={isActive ? 90 : 0} />
