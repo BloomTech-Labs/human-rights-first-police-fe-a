@@ -1,63 +1,13 @@
 import React from 'react';
 import { Collapse, Form, Select, DatePicker } from 'antd';
 import { useSelector } from 'react-redux';
-
+import { stateData as graphStates } from '../graphs/assets/bargraphAssets';
 const { Option } = Select;
 const { Panel } = Collapse;
 const { RangePicker } = DatePicker;
 
-const states = [
-  'Alabama',
-  'Alaska',
-  'Arizona',
-  'Arkansas',
-  'California',
-  'Colorado',
-  'Connecticut',
-  'Delaware',
-  'Florida',
-  'Georgia',
-  'Hawaii',
-  'Idaho',
-  'Illinois',
-  'Indiana',
-  'Iowa',
-  'Kansas',
-  'Kentucky',
-  'Louisiana',
-  'Maine',
-  'Maryland',
-  'Massachusetts',
-  'Michigan',
-  'Minnesota',
-  'Mississippi',
-  'Missouri',
-  'Montana',
-  'Nebraska',
-  'Nevada',
-  'New Hampshire',
-  'New Jersey',
-  'New Mexico',
-  'New York',
-  'North Carolina',
-  'North Dakota',
-  'Ohio',
-  'Oklahoma',
-  'Oregon',
-  'Pennsylvania',
-  'Rhode Island',
-  'South Carolina',
-  'South Dakota',
-  'Tennessee',
-  'Texas',
-  'Utah',
-  'Vermont',
-  'Virginia',
-  'Washington',
-  'West Virginia',
-  'Wisconsin',
-  'Wyoming',
-];
+// TODO put list of states in a more centralized place
+const states = Object.keys(graphStates);
 
 function FilterForm({ onValuesChange }) {
   const [form] = Form.useForm();
