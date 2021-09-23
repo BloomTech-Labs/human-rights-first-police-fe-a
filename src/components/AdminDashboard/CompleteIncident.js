@@ -11,8 +11,6 @@ import './CompleteIncident.css';
 /**
  * @typedef CompleteIncidentProps
  * @property {any} incident - incident data
- * @property {string} formattedDate - correctly formatted date
- * @property {React.Dispatch<React.SetStateAction<any[]} setUnapprovedIncidents
  */
 
 /**
@@ -23,9 +21,6 @@ import './CompleteIncident.css';
 const CompleteIncident = props => {
   const {
     incident,
-    formattedDate,
-    setMoreInfo,
-    setUnapprovedIncidents,
   } = props;
 
   const oktaAxios = useOktaAxios();
@@ -46,6 +41,13 @@ const CompleteIncident = props => {
       });
   };
 
+  const formatDate = (inputData) => {
+    const [year, month, day] = inputData.incident_date.split('-');
+    return `${month}/${day.slice(0, 2)}/${year}`;
+  };
+
+  const formattedDate = formatDate(incident);
+
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
 
@@ -56,8 +58,6 @@ const CompleteIncident = props => {
   // form control functions
   const onFormSubmit = () => {
     setEditing(false);
-    setMoreInfo(false);
-    getData(setUnapprovedIncidents);
   };
 
   return (
