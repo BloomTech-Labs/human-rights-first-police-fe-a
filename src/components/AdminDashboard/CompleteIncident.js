@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from 'antd';
 import { nanoid } from 'nanoid';
-
+import useOktaAxios from '../../hooks/useOktaAxios';
 import AntModal from './AntModalComponent/AntModal';
 import { getData } from '../../utils/DashboardHelperFunctions';
 import AdminEdit from './forms/AdminEdit';
@@ -11,8 +11,6 @@ import './CompleteIncident.css';
 /**
  * @typedef CompleteIncidentProps
  * @property {any} incident - incident data
- * @property {string} formattedDate - correctly formatted date
- * @property {React.Dispatch<React.SetStateAction<any[]} setUnapprovedIncidents
  */
 
 /**
@@ -23,10 +21,32 @@ import './CompleteIncident.css';
 const CompleteIncident = props => {
   const {
     incident,
-    formattedDate,
-    setMoreInfo,
-    setUnapprovedIncidents,
   } = props;
+
+  const oktaAxios = useOktaAxios();
+  const [deleting, setDeleting] = useState(false);
+  // for incident deletion button
+  const toggleDelete = evt => {
+    evt.preventDefault();
+    oktaAxios
+      .delete(`/dashboard/incidents/${incident.incident_id}`)
+      .then(res => {
+        window.alert(
+          `Case with id ${incident.incident_id} successfully deleted`
+        );
+        window.location.reload();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  const formatDate = (inputData) => {
+    const [year, month, day] = inputData.incident_date.split('-');
+    return `${month}/${day.slice(0, 2)}/${year}`;
+  };
+
+  const formattedDate = formatDate(incident);
 
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
@@ -35,12 +55,9 @@ const CompleteIncident = props => {
   const toggleEditor = () => {
     setEditing(!editing);
   };
-
   // form control functions
   const onFormSubmit = () => {
     setEditing(false);
-    setMoreInfo(false);
-    getData(setUnapprovedIncidents);
   };
 
   return (
@@ -125,6 +142,9 @@ const CompleteIncident = props => {
             onClick={toggleEditor}
           >
             Edit
+          </Button>
+          <Button onClick={toggleDelete} type="danger">
+            {deleting ? 'Cancel' : 'Delete'}
           </Button>
 
           {/* Request More Info button */}
