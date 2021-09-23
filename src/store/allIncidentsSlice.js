@@ -49,7 +49,9 @@ export const slice = createSlice({
   name: 'allIncident',
   initialState,
   reducers: {
-    // since all the actions here are async thunks, there are no reducers here
+    setErrorMessage: (state, action) => {
+      state.errorMessage = action.payload;
+    }
   },
   extraReducers: (builder) => {
     // these set up the case reducers for each thunk, called after they successfully complete
@@ -91,3 +93,5 @@ export const useAllIncidents = () => {
 
   return { state, dispatch };
 };
+
+export default slice;

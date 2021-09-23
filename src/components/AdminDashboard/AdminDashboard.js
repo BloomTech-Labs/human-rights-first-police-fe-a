@@ -15,16 +15,19 @@ import {
   getPendingIncidents,
   getFormResponses,
 } from '../../utils/DashboardHelperFunctions.js';
+import { useEasyModeAuth } from '../../store/allIncidentsEasyMode';
 
 
 const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
   const [selectedIds, setSelectedIds] = useState([]);
 
-  // The three categories of incidents
-  const [formResponses, setFormResponses] = useState([]);
-  const [pendingIncidents, setPendingIncidents] = useState([]);
-  const [approvedIncidents, setApprovedIncidents] = useState([]);
+  // authorized axios
+  const oktaAxios = useOktaAxios();
+
+  // Redux store functionality
+  const easyMode = useEasyModeAuth(oktaAxios);
+  const { approvedIncidents, pendingIncidents, formResponses } = easyMode.state;
 
   // The incident tab to display: 'pending', 'approved', 'form-responses'
   const [listType, setListType] = useState('pending');
@@ -62,57 +65,44 @@ const AdminDashboard = () => {
     setAdding(true);
   };
 
-  // authorized axios
-  const oktaAxios = useOktaAxios();
-
-  // downloads all incident data
-  const fetchIncidents = () => {
-    getApprovedIncidents(oktaAxios)
-      .then(setApprovedIncidents)
-      .catch(console.log);
-
-    getPendingIncidents(oktaAxios)
-      .then(setPendingIncidents)
-      .catch(console.log);
-
-    getFormResponses(oktaAxios)
-      .then(setFormResponses)
-      .catch(console.log);
-  };
-
   // loads incident data on first render
   useEffect(() => {
-    fetchIncidents();
+    easyMode.fetchIncidents();
   }, []);
 
   // approves or rejects the selected incidents
   const approveAndRejectHandler = async (newStatus) => {
-    const currentList = getCurrentList();
-    const selected = currentList.filter(inc => selectedIds.includes(inc.incident_id));
+    // const currentList = getCurrentList();
+    // const selected = currentList.filter(inc => selectedIds.includes(inc.incident_id));
 
-    // setting lat and long for approved incidents
-    if (newStatus === 'approved') {
-      for (const inc of selected) {
-        if (inc.city && inc.state) {
-          try {
-            const latAndLong = await getLatAndLong(inc);
-            inc.lat = latAndLong[0];
-            inc.long = latAndLong[1];
-          } catch (err) {
-            console.log(err);
-          }
-        }
-      }
-    }
+    // // setting lat and long for approved incidents
+    // if (newStatus === 'approved') {
+    //   for (const inc of selected) {
+    //     if (inc.city && inc.state) {
+    //       try {
+    //         const latAndLong = await getLatAndLong(inc);
+    //         inc.lat = latAndLong[0];
+    //         inc.long = latAndLong[1];
+    //       } catch (err) {
+    //         console.log(err);
+    //       }
+    //     }
+    //   }
+    // }
 
-    putIncidents(oktaAxios, selected, newStatus)
-      .then(res => {
+    // putIncidents(oktaAxios, selected, newStatus)
+    //   .then(res => {
+    //     setSelectedIds([]);
+    //     fetchIncidents();
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     // TODO: Better error handling!
+    //   });
+
+    easyMode.changeIncidentsStatus(selectedIds, listType, newStatus)
+      .then(() => {
         setSelectedIds([]);
-        fetchIncidents();
-      })
-      .catch(err => {
-        console.log(err);
-        // TODO: Better error handling!
       });
   };
 

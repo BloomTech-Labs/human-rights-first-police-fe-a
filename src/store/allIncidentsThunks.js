@@ -8,9 +8,9 @@ import { splitIncidentsByIds } from '../utils/DashboardHelperFunctions';
 const fetchIncidentsThunk = createAsyncThunk(
   'dashboard/fetchAllIncidents',
   async (oktaAxios, thunkAPI) => {
-    console.log('thunk');
+    console.log('fetch thunk');
     if (oktaAxios) {
-      console.log('thunk a');
+      console.log('fetch thunk a');
       const approved = await api.getApprovedIncidents(oktaAxios);
       const pending = await api.getPendingIncidents(oktaAxios);
       const formResponses = await api.getFormResponses(oktaAxios);
@@ -18,7 +18,7 @@ const fetchIncidentsThunk = createAsyncThunk(
       return { approved, pending, formResponses };
     }
     else {
-      console.log('thunk b');
+      console.log('fetch thunk b');
       const approved = await api.getApprovedIncidents();
       const pending = [];
       const formResponses = [];
@@ -34,6 +34,7 @@ const fetchIncidentsThunk = createAsyncThunk(
  *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
  */
 const fetchIncidentsReducer = (state, action) => {
+  console.log('fetch reducer');
   const { approved, pending, formResponses } = action.payload;
   state.approvedIncidents = approved;
   state.pendingIncidents = pending;
@@ -46,6 +47,7 @@ const fetchIncidentsReducer = (state, action) => {
 const setStatusThunk = createAsyncThunk(
   'dashboard/changeStatus',
   async (payload, thunkAPI) => {
+    console.log('setStatus thunk');
     const { oktaAxios, incidentIds, newStatus } = payload;
     return await api.changeIncidentsStatus(oktaAxios, incidentIds, newStatus);
   }
@@ -57,6 +59,7 @@ const setStatusThunk = createAsyncThunk(
  *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
  */
 const setStatusReducer = (state, action) => {
+  console.log('setStatus reducer');
   const { incidentIds, oldStatus, newStatus } = action.meta.arg;
 
   // incidents have just been PUT to the server with the status property changed
@@ -97,6 +100,7 @@ const setStatusReducer = (state, action) => {
 const editIncidentThunk = createAsyncThunk(
   'dashboard/editIncident',
   async (payload, thunkAPI) => {
+    console.log('editIncident thunk');
     const { oktaAxios, incident } = payload;
 
     return await oktaAxios
@@ -111,6 +115,7 @@ const editIncidentThunk = createAsyncThunk(
  */
 const editIncidentReducer = (state, action) => {
   console.log(action.payload);
+  console.log('editIncident reducer');
 
   // So an incident has just been PUT to the incidents endpoint sucessfully
   // locally, state needs to be updated with the incident's new values
