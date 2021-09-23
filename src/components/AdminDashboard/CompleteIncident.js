@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { Button } from 'antd';
+import { Modal, Button } from 'antd';
 import { nanoid } from 'nanoid';
 import useOktaAxios from '../../hooks/useOktaAxios';
 import AntModal from './AntModalComponent/AntModal';
 import { getData } from '../../utils/DashboardHelperFunctions';
 import AdminEdit from './forms/AdminEdit';
+import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import './CompleteIncident.css';
 
@@ -19,29 +20,33 @@ import './CompleteIncident.css';
  * @returns {JSX.Element} the CompleteIncident component
  */
 const CompleteIncident = props => {
-  const {
-    incident,
-  } = props;
+  const { incident } = props;
 
   const oktaAxios = useOktaAxios();
+  const { confirm } = Modal;
+
   const [deleting, setDeleting] = useState(false);
   // for incident deletion button
-  const toggleDelete = evt => {
-    evt.preventDefault();
-    oktaAxios
-      .delete(`/dashboard/incidents/${incident.incident_id}`)
-      .then(res => {
-        window.alert(
-          `Case with id ${incident.incident_id} successfully deleted`
-        );
-        window.location.reload();
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  function toggleDelete() {
+    confirm({
+      title: `Do you want to DELETE incident #${incident.incident_id}?`,
+      icon: <ExclamationCircleOutlined />,
+      content: 'Once you click OK this message will be deleted',
+      onOk() {
+        return oktaAxios
+          .delete(`/dashboard/incidents/${incident.incident_id}`)
+          .then(res => {
+            window.location.reload();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      },
+      onCancel() {},
+    });
+  }
 
-  const formatDate = (inputData) => {
+  const formatDate = inputData => {
     const [year, month, day] = inputData.incident_date.split('-');
     return `${month}/${day.slice(0, 2)}/${year}`;
   };
