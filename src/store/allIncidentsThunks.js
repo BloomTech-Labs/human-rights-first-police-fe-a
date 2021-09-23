@@ -5,14 +5,26 @@ import { splitIncidentsByIds } from '../utils/DashboardHelperFunctions';
 /**
  * This Thunk fetches all incident data
  */
-const fetchAllIncidentsThunk = createAsyncThunk(
+const fetchIncidentsThunk = createAsyncThunk(
   'dashboard/fetchAllIncidents',
   async (oktaAxios, thunkAPI) => {
-    const approved = await api.getApprovedIncidents(oktaAxios);
-    const pending = await api.getPendingIncidents(oktaAxios);
-    const formResponses = await api.getFormResponses(oktaAxios);
+    console.log('thunk');
+    if (oktaAxios) {
+      console.log('thunk a');
+      const approved = await api.getApprovedIncidents(oktaAxios);
+      const pending = await api.getPendingIncidents(oktaAxios);
+      const formResponses = await api.getFormResponses(oktaAxios);
 
-    return { approved, pending, formResponses };
+      return { approved, pending, formResponses };
+    }
+    else {
+      console.log('thunk b');
+      const approved = await api.getApprovedIncidents();
+      const pending = [];
+      const formResponses = [];
+
+      return { approved, pending, formResponses };
+    }
   }
 );
 
@@ -21,7 +33,7 @@ const fetchAllIncidentsThunk = createAsyncThunk(
  * because we are using Redux Toolkit, we can safely modify state from within a reducer
  *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
  */
-const fetchAllReducer = (state, action) => {
+const fetchIncidentsReducer = (state, action) => {
   const { approved, pending, formResponses } = action.payload;
   state.approvedIncidents = approved;
   state.pendingIncidents = pending;
@@ -138,6 +150,6 @@ function selectListByStatus(status, state) {
   }
 }
 
-export const fetchAll = { thunk: fetchAllIncidentsThunk, reducer: fetchAllReducer };
+export const fetchIncidents = { thunk: fetchIncidentsThunk, reducer: fetchIncidentsReducer };
 export const setStatus = { thunk: setStatusThunk, reducer: setStatusReducer };
 export const editIncident = { thunk: editIncidentThunk, reducer: editIncidentReducer };

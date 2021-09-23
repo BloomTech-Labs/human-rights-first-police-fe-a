@@ -1,8 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
-import api from '../utils/apiHelpers';
-import { splitIncidentsByIds } from '../utils/DashboardHelperFunctions';
-import { editIncident, fetchAll, setStatus } from './allIncidentsThunks';
+import { editIncident, fetchIncidents, setStatus } from './allIncidentsThunks';
 
 /**
  * @typedef Incident
@@ -56,7 +54,7 @@ export const slice = createSlice({
   extraReducers: (builder) => {
     // these set up the case reducers for each thunk, called after they successfully complete
     // https://redux-toolkit.js.org/api/createreducer/#builderaddcase
-    builder.addCase(fetchAll.thunk.fulfilled, fetchAll.reducer);
+    builder.addCase(fetchIncidents.thunk.fulfilled, fetchIncidents.reducer);
     builder.addCase(setStatus.thunk.fulfilled, setStatus.reducer);
     builder.addCase(editIncident.thunk.fulfilled, editIncident.reducer);
 
@@ -92,28 +90,4 @@ export const useAllIncidents = () => {
   const dispatch = useDispatch();
 
   return { state, dispatch };
-};
-
-export const useEasyMode = (oktaAxios) => {
-  const { state, dispatch } = useAllIncidents();
-
-  const easyMode = {
-    state,
-    fetchAll: () => {
-      dispatch(fetchAll.thunk(oktaAxios));
-    },
-    /**
-     * Say cheese
-     * @param {Incident[]} incidents
-     * @returns {Promise<void>}
-     */
-    modifyIncidents: (incidents) => {
-      return dispatch(editIncident.thunk({ oktaAxios, incidents }));
-    },
-    changeIncidentsStatus: (incidentIds, oldStatus, newStatus) => {
-      return dispatch(setStatus.thunk({ oktaAxios, incidentIds, oldStatus, newStatus }));
-    }
-  };
-
-  return easyMode;
 };

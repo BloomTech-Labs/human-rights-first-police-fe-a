@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 /**
  * Returns a promise that resolves to an array of pending incidents
  *
@@ -13,15 +15,26 @@ export function getPendingIncidents(oktaAxios) {
 
 /**
  * Returns a promise that resolves to an array of approved incidents
+ * if oktaAxios is provided, it will be used. If not, the approved incidents will be downloaded
+ * from the unrestricted endpoint
  *
- * @param {import('axios').AxiosInstance} oktaAxios
+ * (Currently both endpoints return the same data either way)
+ *
+ * @param {import('axios').AxiosInstance | null} oktaAxios
  * @returns {Promise<Incident[]>} all approved incidents
  */
 export function getApprovedIncidents(oktaAxios) {
-  return oktaAxios.get('/dashboard/incidents/approved')
-    .then(res => {
-      return res.data;
-    });
+  if (oktaAxios) {
+    return oktaAxios.get('/dashboard/incidents/approved')
+      .then(res => {
+        return res.data;
+      });
+  }
+  else {
+    console.log('here');
+    return axios.get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
+      .then(res => res.data);
+  }
 }
 
 /**
@@ -86,7 +99,11 @@ export const applyEdits = (oktaAxios, formValues, incident) => {
 };
 
 const api = {
-  applyEdits, getApprovedIncidents, getFormResponses, getPendingIncidents, changeIncidentsStatus
+  applyEdits,
+  getApprovedIncidents,
+  getFormResponses,
+  getPendingIncidents,
+  changeIncidentsStatus
 };
 
 export default api;
