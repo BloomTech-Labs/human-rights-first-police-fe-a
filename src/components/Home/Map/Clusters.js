@@ -27,7 +27,7 @@ const LEAVES_LIMIT = 1000000; // Max # of incidents to display in IncidentFocus
 export default function Clusters({ zoomOnCluster }) {
   const dispatch = useDispatch();
   const incident = useSelector(state => state.incident);
-  const incidents = useIncidentFilter();
+  const incidents = useIncidentFilter(); // ids of incidents that pass through the filters (default is all approved incidents)
   const points = incidents.map(id => incident.data[id].geoJSON);
 
   // See for supercluster usage and config: https://github.com/mapbox/supercluster
