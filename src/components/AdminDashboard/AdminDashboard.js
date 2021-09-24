@@ -8,14 +8,8 @@ import Welcome from './Welcome';
 import useOktaAxios from '../../hooks/useOktaAxios';
 import IncidentStatus from './IncidentStatus';
 import AntTable from './AntTableComponents/AntTable';
-import {
-  putIncidents,
-  getLatAndLong,
-  getApprovedIncidents,
-  getPendingIncidents,
-  getFormResponses,
-} from '../../utils/DashboardHelperFunctions.js';
 import { useEasyModeAuth } from '../../store/allIncidentsEasyMode';
+import { useAllIncidents } from '../../store/allIncidentsSlice';
 
 
 const AdminDashboard = () => {
@@ -27,7 +21,8 @@ const AdminDashboard = () => {
 
   // Redux store functionality
   const easyMode = useEasyModeAuth(oktaAxios);
-  const { approvedIncidents, pendingIncidents, formResponses } = easyMode.state;
+
+  const { approvedIncidents, pendingIncidents, formResponses } = useAllIncidents();
 
   // The incident tab to display: 'pending', 'approved', 'form-responses'
   const [listType, setListType] = useState('pending');
@@ -68,40 +63,15 @@ const AdminDashboard = () => {
   // loads incident data on first render
   useEffect(() => {
     easyMode.fetchIncidents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // approves or rejects the selected incidents
   const approveAndRejectHandler = async (newStatus) => {
-    // const currentList = getCurrentList();
-    // const selected = currentList.filter(inc => selectedIds.includes(inc.incident_id));
 
-    // // setting lat and long for approved incidents
-    // if (newStatus === 'approved') {
-    //   for (const inc of selected) {
-    //     if (inc.city && inc.state) {
-    //       try {
-    //         const latAndLong = await getLatAndLong(inc);
-    //         inc.lat = latAndLong[0];
-    //         inc.long = latAndLong[1];
-    //       } catch (err) {
-    //         console.log(err);
-    //       }
-    //     }
-    //   }
-    // }
-
-    // putIncidents(oktaAxios, selected, newStatus)
-    //   .then(res => {
-    //     setSelectedIds([]);
-    //     fetchIncidents();
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     // TODO: Better error handling!
-    //   });
 
     easyMode.changeIncidentsStatus(selectedIds, listType, newStatus)
-      .then(() => {
+      .then((res) => {
         setSelectedIds([]);
       });
   };

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { editIncident, fetchIncidents, setStatus } from './allIncidentsThunks';
 
 /**
@@ -85,13 +85,10 @@ export const slice = createSlice({
 
 /**
  *
- * @returns {{state: AllIncidentsState, dispatch: import('redux').Dispatch<any>}}
+ * @returns {AllIncidentsState}}
  */
 export const useAllIncidents = () => {
-  const state = useSelector(state => state.allIncidents);
-  const dispatch = useDispatch();
-
-  return { state, dispatch };
+  return useSelector(state => state.allIncidents);
 };
 
 export default slice;

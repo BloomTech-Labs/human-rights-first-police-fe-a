@@ -54,9 +54,9 @@ export function getFormResponses(oktaAxios) {
  * Changes the status of incidents specified by ID
  *
  * @param {import('axios').AxiosInstance} oktaAxios
- * @param {number[]} incidentsIds - the incident_ids to change
- * @param {'pending' | 'approved' | 'rejected'} status
- * @returns {Promise<void>}
+ * @param {number[]} incidentIds - an array of incident_ids to be change
+ * @param {'pending' | 'approved' | 'rejected'} status - the desired status
+ * @returns {Promise<void>} - resolves if sucessful, rejects
  */
 export const changeIncidentsStatus = (oktaAxios, incidentIds, status) => {
   // to change the incident status, you don't need the entire incident object
@@ -67,13 +67,7 @@ export const changeIncidentsStatus = (oktaAxios, incidentIds, status) => {
 
   return oktaAxios
     .put('dashboard/incidents', changes)
-    .then(res => {
-      console.log(res);
-      return res;
-    })
-    .catch(err => {
-      console.log(err);
-    });
+    .catch(console.log);
 };
 
 export const applyEdits = (oktaAxios, formValues, incident) => {
