@@ -16,7 +16,7 @@ Just a reminder that importing a css or less files in a react component doesn’
 #### .env file:
 Be sure to add the mapquest key to the .env file! (refer to Trello board > documentation and admin credentials or get your own key https://developer.mapquest.com/ )
 
-####Testing:
+#### Testing:
 Testing is one of those things we all assume someone else can work on and the testing coverage is not that great currently, that can always be improved upon.
 
 #### Data Flow:
