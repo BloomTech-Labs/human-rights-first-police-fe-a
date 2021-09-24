@@ -23,6 +23,84 @@ Testing is one of those things we all assume someone else can work on and the te
 * Full walkthrough of the data flow for the form feature Labs 37 implemented (including bugs to be fixed) https://youtu.be/dRBYRQ5QpoI - main take-away is that the project is using the DS database! Frontend is hitting backend endpoints, backend is mostly checking authentication, authorization and req.body validity then hitting the DS database - more information is provided in the backend repo handoff
 * Redux is set up but hardly being used, feel free to convert some components to be utilizing this
 * You might want to check these out [https://react-redux.js.org/api/hooks#useselector](https://react-redux.js.org/api/hooks#useselector) to get from state and [https://redux-toolkit.js.org/api/createslice](https://redux-toolkit.js.org/api/createslice) to set up state and actions
+* Slices contain both the action and reducer for a object or component, so for instance, here’s what the incident slice looks like:
+import { createSlice } from '@reduxjs/toolkit';
+```
+ const slice = createSlice({
+   name: 'incident',
+   initialState: { data: {}, ids: [], timeline: [], tagIndex: {} },
+   reducers: {
+     onInitialFetch: (state, action) => {
+       state.data = action.payload.incidents;
+       state.ids = action.payload.ids;
+       state.timeline = action.payload.timeline;
+       state.tagIndex = action.payload.tagIndex;
+     },
+   },
+ });
+
+ export default slice;
+```
+
+  * From our understanding, initialState is both the action and the reducer, which gets imported into functions like useFetchIncidents to then make the axios requests to the web backend APIs and or the DS APIs (depending on the component):
+```
+import { apiActions, incidentActions } from '../store';
+ const { setInitialFetchStatus } = apiActions;
+ const { onInitialFetch } = incidentActions;
+
+ export default function useFetchIncidents() {
+   const dispatch = useDispatch();
+
+   const fetch = useCallback(async () => {
+     try {
+       dispatch(
+         setInitialFetchStatus({
+           getincidents: { status: 'pending' },
+           gettimeline: { status: 'pending' },
+         })
+       );
+
+       const { data: incidentsRes } = await axios.get(
+         `${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`
+       );
+       const { data: timelineRes } = await axios.get(
+         `${process.env.REACT_APP_BACKENDURL}/incidents/gettimeline`
+       );
+
+       const incidents = {};
+       const tagIndex = {};
+
+       incidentsRes.forEach(item => {
+         incidents[item.incident_id] = {
+           ...item,
+           geoJSON: {
+             type: 'Feature',
+             incidentId: item.incident_id,
+             geometry: { type: 'Point', coordinates: [item.long, item.lat] },
+           },
+         };
+
+         item.tags.forEach(tag => {
+           if (tagIndex.hasOwnProperty(tag)) {
+             tagIndex[tag].add(item.incident_id);
+           } else {
+             tagIndex[tag] = new Set([item.incident_id]);
+           }
+         });
+       });
+       const timeline = timelineRes.map(item => item.incident_id);
+
+       dispatch(
+         onInitialFetch({
+           incidents,
+           ids: Object.keys(incidents),
+           timeline,
+           tagIndex,
+         })
+       );
+```
+
+
 
 ####Features - bugs/features to add/refactoring - Also refer to Trello!:
 * Home Page
