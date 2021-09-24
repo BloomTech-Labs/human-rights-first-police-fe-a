@@ -5,12 +5,6 @@ import moment from 'moment';
 import { mapActions } from '../store';
 const { setFocusGeoFilter, setFocusDateFilter, setFocusQuery } = mapActions;
 
-// These are set relatively low to be on the safe side because there were previous performance issues
-// displaying a large number of focus incidents - you may want to play around with adjusting them
-const GEO_RESULTS_LIMIT = 50;
-const DATE_RESULTS_LIMIT = 50;
-const OVERALL_RESULTS_LIMIT = 20;
-
 export default function useMapSearch() {
   const dispatch = useDispatch();
 
@@ -31,10 +25,6 @@ export default function useMapSearch() {
 
       // Decrementing for loop produces a reverse-chronological list (most recent first)
       for (let i = geoIncidentList.length - 1; i > 0; i--) {
-        if (matches.length >= GEO_RESULTS_LIMIT) {
-          break;
-        }
-
         const { id, lat, long } = geoIncidentList[i];
         if (
           lat >= minLat &&
@@ -88,9 +78,6 @@ export default function useMapSearch() {
       dispatch(setFocusQuery(dateFilterState.list));
     } else if (geoFilterState.active && dateFilterState.active) {
       let matches = _.intersection(geoFilterState.list, dateFilterState.list);
-      if (matches.length > OVERALL_RESULTS_LIMIT) {
-        matches = _.slice(matches, 0, 10);
-      }
       dispatch(setFocusQuery(matches));
     }
   }, [geoFilterState, dateFilterState, dispatch]);
