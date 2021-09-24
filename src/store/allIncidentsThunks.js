@@ -104,7 +104,7 @@ const editIncidentThunk = createAsyncThunk(
     const { oktaAxios, incident } = payload;
 
     return await oktaAxios
-      .put('dashboard/incidents', incident);
+      .put('dashboard/incidents', [incident]);
   }
 );
 
@@ -124,9 +124,9 @@ const editIncidentReducer = (state, action) => {
   // this can be removed, and instead re-fetch all incident data after any changes are made.
 
   /** @type {Incident} */
-  const incident = action.payload.incident;
+  const incident = action.meta.arg.incident;
   const list = selectListByStatus(incident.status, state);
-  const index = list.findIndex(inc => inc.incident_id === incident.inciden_id);
+  const index = list.findIndex(inc => inc.incident_id === incident.incident_id);
 
   if (index !== -1) {
     list[index] = incident;

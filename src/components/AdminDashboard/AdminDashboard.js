@@ -27,7 +27,7 @@ const AdminDashboard = () => {
   // The incident tab to display: 'pending', 'approved', 'form-responses'
   const [listType, setListType] = useState('pending');
 
-  // returns the corrent incidents array for the current tab
+  /** @returns {import('../../store/allIncidentsSlice').Incident[]} the corrent incidents array for the current tab */
   const getCurrentList = () => {
     switch (listType) {
       case 'pending':
@@ -66,9 +66,28 @@ const AdminDashboard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  /**
+   * Verifies that an incident has city/state
+   * @param {number} incident_id
+   * @returns {boolean} true if the incident has city and state
+   */
+  const verifyCityState = (incident_id) => {
+    const sourceList = getCurrentList();
+    const incident = sourceList.find(inc => inc.incident_id === incident_id);
+
+    return (incident.city && incident.state);
+  };
+
   // approves or rejects the selected incidents
   const approveAndRejectHandler = async (newStatus) => {
 
+    // Incident must have city and state before being approved
+    if (newStatus === 'approved') {
+      if (!selectedIds.every(id => verifyCityState(id))) {
+        alert('Incidents must have city and state before being approved!');
+        return;
+      }
+    }
 
     easyMode.changeIncidentsStatus(selectedIds, listType, newStatus)
       .then((res) => {

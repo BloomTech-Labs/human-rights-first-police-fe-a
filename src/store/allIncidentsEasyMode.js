@@ -28,9 +28,9 @@ export const useEasyModeAuth = (oktaAxios) => {
 			return dispatch(fetchIncidents.thunk(oktaAxios));
 		},
 
-		modifyIncidents: (incidents) => {
+		editIncident: (incident) => {
 			console.log('easy mode auth modify');
-			return dispatch(editIncident.thunk({ oktaAxios, incidents }));
+			return dispatch(editIncident.thunk({ oktaAxios, incident }));
 		},
 
 		changeIncidentsStatus: (incidentIds, oldStatus, newStatus) => {
