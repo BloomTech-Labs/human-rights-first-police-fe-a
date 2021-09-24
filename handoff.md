@@ -13,13 +13,13 @@ There may be CSS located in the node_modules file because of certain libraries b
 A lot of the css has repeats in the index.css, make sure to delete those extra and unused selectors as you go.
 Just a reminder that importing a css or less files in a react component doesn’t make those styles specific to that component, className is your friend.
 
-####.env file:
+#### .env file:
 Be sure to add the mapquest key to the .env file! (refer to Trello board > documentation and admin credentials or get your own key https://developer.mapquest.com/ )
 
 ####Testing:
 Testing is one of those things we all assume someone else can work on and the testing coverage is not that great currently, that can always be improved upon.
 
-####Data Flow:
+#### Data Flow:
 * Full walkthrough of the data flow for the form feature Labs 37 implemented (including bugs to be fixed) https://youtu.be/dRBYRQ5QpoI - main take-away is that the project is using the DS database! Frontend is hitting backend endpoints, backend is mostly checking authentication, authorization and req.body validity then hitting the DS database - more information is provided in the backend repo handoff
 * Redux is set up but hardly being used, feel free to convert some components to be utilizing this
 * You might want to check these out [https://react-redux.js.org/api/hooks#useselector](https://react-redux.js.org/api/hooks#useselector) to get from state and [https://redux-toolkit.js.org/api/createslice](https://redux-toolkit.js.org/api/createslice) to set up state and actions
@@ -102,7 +102,7 @@ import { apiActions, incidentActions } from '../store';
 
 
 
-####Features - bugs/features to add/refactoring - Also refer to Trello!:
+#### Features - bugs/features to add/refactoring - Also refer to Trello!:
 * Home Page
   * Map
     * Map clusters - is working (maps all approved incidents)
