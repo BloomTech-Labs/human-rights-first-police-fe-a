@@ -7,7 +7,7 @@ Feel free to watch our most recent product review meeting where we highlight som
 
 
 ### Quick Notes
-####UI/UX:
+#### UI/UX:
 We are using ant design for some styling/components.  https://ant.design/docs/react/introduce, Look at the code examples and the API documentation at the bottom of the pages for the component docs
 There may be CSS located in the node_modules file because of certain libraries being used...  If you want to change one of these components' styling, you may have to find the CSS in the Node_modules that is associated with it, then overwrite that CSS by coding it in the src code.  node_modules is in the .gitignore file so any changes you make here will be ignored when you push your code.  If you have more questions please please please reach out to one of us because this concept was a bit weird and annoying to implement at first.
 A lot of the css has repeats in the index.css, make sure to delete those extra and unused selectors as you go.
