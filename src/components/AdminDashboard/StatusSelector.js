@@ -8,12 +8,13 @@ const confirmText = {
 
 /**
  * @typedef StatusSelectorProps
- * @property {boolean} isVisible - whether or not to show/hide component (or enable/disable)
+ * @property {boolean} isVisible - whether or not to show/hide component
  * @property {string} listType - which incident list is active (unapproved/approved/form-responses)
  * @property {(newStatus: string) => void} onStatusConfirm - callback function indicating the status type chosen
  */
 
 /**
+ * Allows for changing incident status
  *
  * @param {StatusSelectorProps} props
  * @returns
