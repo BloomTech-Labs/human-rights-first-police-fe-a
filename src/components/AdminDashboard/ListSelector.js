@@ -2,7 +2,7 @@ import React from 'react';
 
 // gives the active tab a different color
 const selectedTabButtonStyle = {
-	background: '#095fab'
+  background: '#095fab'
 };
 
 /**
@@ -18,35 +18,35 @@ const selectedTabButtonStyle = {
  * @return {*}
  */
 const ListSelector = props => {
-	const { listType, setListType } = props;
+  const { listType, setListType } = props;
 
-	return (
-		<div className="dashboard-buttons-container">
-			<div className="incident-btn-container">
-				<button
-					className="approve-btn"
-					style={listType === 'pending' ? selectedTabButtonStyle : {}}
-					onClick={() => setListType('pending')}
-				>
-					Pending Incidents
-				</button>
-				<button
-					className="approve-btn"
-					style={listType === 'approved' ? selectedTabButtonStyle : {}}
-					onClick={() => setListType('approved')}
-				>
-					Approved Incidents
-				</button>
-				<button
-					className="approve-btn"
-					style={listType === 'form-responses' ? selectedTabButtonStyle : {}}
-					onClick={() => setListType('form-responses')}
-				>
-					Form Responses
-				</button>
-			</div>
-		</div>
-	);
+  return (
+    <div className="dashboard-buttons-container">
+      <div className="incident-btn-container">
+        <button
+          className="approve-btn"
+          style={listType === 'pending' ? selectedTabButtonStyle : {}}
+          onClick={() => setListType('pending')}
+        >
+          Pending Incidents
+        </button>
+        <button
+          className="approve-btn"
+          style={listType === 'approved' ? selectedTabButtonStyle : {}}
+          onClick={() => setListType('approved')}
+        >
+          Approved Incidents
+        </button>
+        <button
+          className="approve-btn"
+          style={listType === 'form-responses' ? selectedTabButtonStyle : {}}
+          onClick={() => setListType('form-responses')}
+        >
+          Form Responses
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default ListSelector;
