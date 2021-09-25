@@ -7,29 +7,29 @@ const confirmText = {
 };
 
 /**
- * @typedef IncidentStatusProps
- * @property {boolean} isActive - whether or not to show/hide component (or enable/disable)
+ * @typedef StatusSelectorProps
+ * @property {boolean} isVisible - whether or not to show/hide component (or enable/disable)
  * @property {string} listType - which incident list is active (unapproved/approved/form-responses)
  * @property {(newStatus: string) => void} onStatusConfirm - callback function indicating the status type chosen
  */
 
 /**
  *
- * @param {IncidentStatusProps} props
+ * @param {StatusSelectorProps} props
  * @returns
  */
-const IncidentStatus = props => {
-  const { isActive, listType, onStatusConfirm } = props;
+const StatusSelector = props => {
+  const { isVisible, listType, onStatusConfirm } = props;
 
   const [newStatus, setNewStatus] = useState(listType);
   const [isAskConfirm, setIsAskConfirm] = useState(false);
 
   useEffect(() => {
-    if (!isActive) {
+    if (!isVisible) {
       setNewStatus(listType);
       setIsAskConfirm(false);
     }
-  }, [isActive, listType]);
+  }, [isVisible, listType]);
 
   // handler for clicking on new status type (pending, approved, rejected)
   const statusOnClick = (e, status) => {
@@ -50,7 +50,7 @@ const IncidentStatus = props => {
 
   return (
     <div className="dashboard-top-approve-reject"
-      style={{ visibility: isActive ? 'visible' : 'collapse' }}>
+      style={{ visibility: isVisible ? 'visible' : 'collapse' }}>
 
       {!isAskConfirm &&
         <>
@@ -101,4 +101,4 @@ const IncidentStatus = props => {
   );
 };
 
-export default IncidentStatus;
+export default StatusSelector;

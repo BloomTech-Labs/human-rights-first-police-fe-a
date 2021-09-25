@@ -6,7 +6,7 @@ import AddIncident from './AddIncident';
 import DashboardTop from './DashboardTop';
 import Welcome from './Welcome';
 import useOktaAxios from '../../hooks/useOktaAxios';
-import IncidentStatus from './IncidentStatus';
+import StatusSelector from './StatusSelector';
 import AntTable from './AntTableComponents/AntTable';
 import {
   putIncidents,
@@ -15,6 +15,7 @@ import {
   getPendingIncidents,
   getFormResponses,
 } from '../../utils/DashboardHelperFunctions.js';
+import ListSelector from './ListSelector';
 
 
 const AdminDashboard = () => {
@@ -47,11 +48,6 @@ const AdminDashboard = () => {
   useEffect(() => {
     setSelectedIds([]);
   }, [listType]);
-
-  // gives the active tab a different color
-  const selectedTabButtonStyle = {
-    background: '#095fab'
-  };
 
   // toggles whether or not the addIncident popup is displayed
   const [adding, setAdding] = useState(false);
@@ -122,31 +118,7 @@ const AdminDashboard = () => {
       <Welcome pendingCount={pendingIncidents.length} />
 
       {/* Incident "tabs" - unapproved, approved, form responses */}
-      <div className="dashboard-buttons-container">
-        <div className="incident-btn-container">
-          <button
-            className="approve-btn"
-            style={listType === 'pending' ? selectedTabButtonStyle : {}}
-            onClick={() => setListType('pending')}
-          >
-            Pending Incidents
-          </button>
-          <button
-            className="approve-btn"
-            style={listType === 'approved' ? selectedTabButtonStyle : {}}
-            onClick={() => setListType('approved')}
-          >
-            Approved Incidents
-          </button>
-          <button
-            className="approve-btn"
-            style={listType === 'form-responses' ? selectedTabButtonStyle : {}}
-            onClick={() => setListType('form-responses')}
-          >
-            Form Responses
-          </button>
-        </div>
-      </div>
+      <ListSelector listType={listType} setListType={setListType} />
 
       <div className="dashboard-container">
         <DashboardTop
@@ -160,8 +132,8 @@ const AdminDashboard = () => {
         }
 
         {/* Controls for setting the status of selected incidents (unapproved, pending, approved) */}
-        <IncidentStatus
-          isActive={selectedIds.length > 0}
+        <StatusSelector
+          isVisible={selectedIds.length > 0}
           listType={listType}
           onStatusConfirm={approveAndRejectHandler}
         />
@@ -173,6 +145,7 @@ const AdminDashboard = () => {
           />
         }
 
+        {/* Table for pending incidents */}
         {listType === 'pending' &&
           <AntTable
             selectedIds={selectedIds}
@@ -182,6 +155,7 @@ const AdminDashboard = () => {
           />
         }
 
+        {/* Table for approved incidents */}
         {listType === 'approved' &&
           <AntTable
             selectedIds={selectedIds}
@@ -190,6 +164,7 @@ const AdminDashboard = () => {
           />
         }
 
+        {/* table for form-responses */}
         {listType === 'form-responses' &&
           <AntTable
             selectedIds={selectedIds}
