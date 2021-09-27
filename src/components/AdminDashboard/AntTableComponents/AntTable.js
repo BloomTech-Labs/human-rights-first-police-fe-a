@@ -100,11 +100,6 @@ function AntTable(props) {
         rowKey={'incident_id'}
         expandable={{
           expandedRowRender: incident => {
-            // Removing these lines because they modify state
-            // Not sure if they are necessary (it doesn't look like they actually do anything?)
-            // if it turns out to be necessary, it will need to be moved into the fetch all reducer
-            // incident.src = Object.values(incident.src); //changes structure of payload returned from initial GET request to match other listTypes' payload structure
-            // incident.tags = Object.values(incident.tags); //changes structure of payload returned from initial GET request to match other listTypes' payload structure
             return (
               <CompleteIncident incident={incident} />
             );

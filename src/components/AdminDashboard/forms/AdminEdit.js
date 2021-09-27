@@ -38,24 +38,8 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
       tags: [...formattedTags],
     };
 
-    // oktaAxios
-    //   .put('/dashboard/incidents', [{ ...finalVals }])
-    //   .then(res => {
-    //     window.location.reload();
-    //     // TODO instead of reloading we should just update the incident in state
-    //     // notice that this kinda breaks the whole cleanup step.
-    //   })
-    //   .catch(err => {
-    //     console.log(err);
-    //     // TODO put some kind of actual error handling here
-    //   })
-    //   .finally(res => {
-    //     cleanup();
-    //   });
-
     easyMode.editIncident(finalVals)
       .then(cleanup);
-
   };
 
   return (
