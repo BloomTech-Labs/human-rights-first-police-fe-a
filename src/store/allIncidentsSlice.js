@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { useSelector } from 'react-redux';
 import { editIncident, fetchIncidents, setStatus } from './allIncidentsThunks';
+
+// This JsDoc type definition is for the Incident object
+// and enables Intellisense and Autocompletion where possible
 
 /**
  * @typedef Incident
@@ -65,6 +67,8 @@ export const slice = createSlice({
     // the lifecycle of an async thunk: pending, fulfilled, and rejected
     // https://redux-toolkit.js.org/api/createAsyncThunk
 
+    // Also note that in Redux Toolkit, it is safe to modify state from inside a reducer (created with createSlice)
+
     // For any thunk 'pending' actions, set isLoading to true
     builder.addMatcher(isPendingAction, (state, action) => {
       state.isLoading = true;
@@ -82,13 +86,5 @@ export const slice = createSlice({
     });
   }
 });
-
-/**
- *
- * @returns {AllIncidentsState}}
- */
-export const useAllIncidents = () => {
-  return useSelector(state => state.allIncidents);
-};
 
 export default slice;

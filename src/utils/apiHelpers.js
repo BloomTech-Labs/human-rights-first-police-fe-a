@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+/** @typedef {import('../store/allIncidentsSlice').Incident} Incident */
+
 /**
  * Returns a promise that resolves to an array of pending incidents
  *
@@ -26,19 +28,16 @@ export function getPendingIncidents(oktaAxios) {
 export function getApprovedIncidents(oktaAxios) {
   if (oktaAxios) {
     return oktaAxios.get('/dashboard/incidents/approved')
-      .then(res => {
-        return res.data;
-      });
+      .then(res => res.data);
   }
   else {
-    console.log('here');
     return axios.get(`${process.env.REACT_APP_BACKENDURL}/incidents/getincidents`)
       .then(res => res.data);
   }
 }
 
 /**
- * Returns a promise that resolves to an array of approved incidents
+ * Returns a promise that resolves to an array of form responses
  *
  * @param {import('axios').AxiosInstance} oktaAxios
  * @returns {Promise<Incident[]>} all approved incidents
