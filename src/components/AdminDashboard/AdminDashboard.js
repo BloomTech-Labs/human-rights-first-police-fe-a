@@ -11,6 +11,7 @@ import AntTable from './AntTableComponents/AntTable';
 import { useEasyModeAuth } from '../../store/allIncidentsEasyMode';
 import { useAllIncidents } from '../../store/allIncidentsSlice';
 
+/** @typedef {import('../../store/allIncidentsSlice').Incident} Incident */
 
 const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
@@ -22,12 +23,18 @@ const AdminDashboard = () => {
   // Redux store functionality
   const easyMode = useEasyModeAuth(oktaAxios);
 
-  const { approvedIncidents, pendingIncidents, formResponses } = useAllIncidents();
+  const {
+    approvedIncidents,
+    pendingIncidents,
+    formResponses,
+    // isLoading,             // not currently in use here
+    errorMessage           // left comments to show it's available
+  } = useAllIncidents();
 
   // The incident tab to display: 'pending', 'approved', 'form-responses'
   const [listType, setListType] = useState('pending');
 
-  /** @returns {import('../../store/allIncidentsSlice').Incident[]} the corrent incidents array for the current tab */
+  /** @returns {Incident[]} the corrent incidents array for the current tab */
   const getCurrentList = () => {
     switch (listType) {
       case 'pending':
@@ -45,6 +52,12 @@ const AdminDashboard = () => {
   useEffect(() => {
     setSelectedIds([]);
   }, [listType]);
+
+  useEffect(() => {
+    if (errorMessage) {
+      alert("An error occured. You may need to refresh the page.");
+    }
+  }, [errorMessage]);
 
   // gives the active tab a different color
   const selectedTabButtonStyle = {

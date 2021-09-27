@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
 import { editIncident, fetchIncidents, setStatus } from './allIncidentsThunks';
 
 // This JsDoc type definition is for the Incident object
@@ -88,3 +89,11 @@ export const slice = createSlice({
 });
 
 export default slice;
+
+/**
+ *
+ * @returns {AllIncidentsState}}
+ */
+export const useAllIncidents = () => {
+  return useSelector(state => state.allIncidents);
+};

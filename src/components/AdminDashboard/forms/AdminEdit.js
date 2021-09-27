@@ -1,10 +1,11 @@
 import React from 'react';
-import { Form, Input, Select, DatePicker, Button } from 'antd';
+import { Form, Input, Select, DatePicker, Button, Spin } from 'antd';
 import moment from 'moment';
 import useOktaAxios from '../../../hooks/useOktaAxios';
 
 import './AdminEdit.less';
 import { useEasyModeAuth } from '../../../store/allIncidentsEasyMode';
+import { useAllIncidents } from '../../../store/allIncidentsSlice';
 
 const { Option } = Select;
 
@@ -13,6 +14,7 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
 
   const oktaAxios = useOktaAxios();
   const easyMode = useEasyModeAuth(oktaAxios);
+  const { isLoading } = useAllIncidents();
 
   const handleSubmit = vals => {
     let formattedDate;
@@ -125,9 +127,11 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
       </div>
       <div className="admin-edit-bottom">
         <Button onClick={cancel}>Cancel</Button>
-        <Button className="admin-edit-submit" type="primary" htmlType="submit">
-          Apply Changes
-        </Button>
+        <Spin spinning={isLoading}>
+          <Button className="admin-edit-submit" type="primary" htmlType="submit">
+            Apply Changes
+          </Button>
+        </Spin>
       </div>
     </Form>
   );

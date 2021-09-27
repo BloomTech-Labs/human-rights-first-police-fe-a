@@ -3,8 +3,15 @@
 A few important things to you should know:
 
 - This project has had over 100 different developers contributing across at least 9 cohorts.
-- Parts of the code are... - Abandoned - Broken - Confusing - Buggy - Undocumented
-- We are using Redux Toolkit for this project. This library has some patterns which may seem confusing until you are familiar with them. - createSlice - the Redux store is broken up into 'slices.' These slices contain the initial state, the reducers, and action creators as well. https://redux-toolkit.js.org/api/createSlice - createAsyncThunk - async actions (such as fetching or posting data to a server) are referred to as 'thunks' in Reudx. In Redux Toolkit, each 'thunk' will have 'pending', 'fulfilled', and 'rejected' actions generated for it. https://redux-toolkit.js.org/api/createAsyncThunk
+- Parts of the code are... 
+	- Abandoned
+	- Broken
+	- Confusing
+	- Buggy
+	- Undocumented
+- We are using Redux Toolkit for this project. This library has some patterns which may seem confusing until you are familiar with them.
+	- createSlice - the Redux store is broken up into 'slices.' These slices contain the initial state, the reducers, and action creators as well. https://redux-toolkit.js.org/api/createSlice 
+	- createAsyncThunk - async actions (such as fetching or posting data to a server) are referred to as 'thunks' in Reudx. In Redux Toolkit, each 'thunk' will have 'pending', 'fulfilled', and 'rejected' actions generated for it. https://redux-toolkit.js.org/api/createAsyncThunk
 - Here's the most important thing: You don't need to know any of this to use the redux store.
 
 ## Slices
@@ -24,3 +31,42 @@ allIncidentSlice is awesome and you should probably use that for anything going 
 "But Redux is like super confusing and hard?"
 
 Use easyMode. This wraps up the dispatcher, action creators, and authorized axios into one api object.
+
+## Usage
+
+### **Accessing incidents**
+
+```
+const allIncidentsState = useAllIncidents();
+const { approvedIncidents, isLoading, errorMessage } = allIncidentsState;
+```
+
+Note: Data must be fetched first (see below). Try to do this high up in the component hierarchy. (For instance the AdminDashboard component fetches this.)
+
+### **easyMode/Fetching data**
+
+```
+const oktaAxios = useOktaAxios();
+const easyMode = useEasyModeAuth(oktaAxios);
+
+// calls fetch once when the component first loads
+useEffect(() => {
+	easyMode.fetchIncidents();
+}, []);
+
+```
+
+### **modifying an incident**
+
+```
+const modifiedIncident = {
+	...incident,
+	title: 'My rad new title!'
+};
+
+easyMode.editIncident(modifiedIncident)
+	.then(() => alert('it worked!'))
+	.catch(() => alert('it failed!'));
+```
+
+Local state will be updated when the call completes sucessfully. No need to re-fetch or refresh the page.

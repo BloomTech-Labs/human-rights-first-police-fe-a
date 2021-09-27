@@ -1,4 +1,3 @@
-import { useSelector } from "react-redux";
 import { useThunkDispatch } from ".";
 import allIncidents from "./allIncidentsSlice";
 import { editIncident, fetchIncidents, setStatus } from "./allIncidentsThunks";
@@ -80,12 +79,4 @@ export const useEasyModeAuth = (oktaAxios) => {
 	};
 
 	return easyMode;
-};
-
-/**
- *
- * @returns {AllIncidentsState}}
- */
-export const useAllIncidents = () => {
-	return useSelector(state => state.allIncidents);
 };
