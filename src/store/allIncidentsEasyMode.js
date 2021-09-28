@@ -1,13 +1,43 @@
 import { useThunkDispatch } from ".";
 import allIncidents from "./allIncidentsSlice";
-import { editIncident, fetchIncidents, setStatus } from "./allIncidentsThunks";
+import { editIncident, fetchIncidents, postIncident, setStatus } from "./allIncidentsThunks";
+
+/**
+ * Wraps a dispatch in a promise, so dispatch(action(payload)) can be followed with .then() or .catch()
+ * @param {*} dispatch
+ * @returns
+ */
+const promiseDispatch = (dispatch) => {
+
+  /**
+   * Dispatches the given action and returns a promise that resolves or rejects if the action is sucessful or not
+   * @param {import("redux").AnyAction} action
+   * @returns {Promise<any>}
+   */
+  const pd = (action) => {
+    console.log('creating a promise to dispatch in');
+    return new Promise((resolve, reject) => {
+      dispatch(action)
+        .then(res => {
+          console.log('dispatch -> then');
+          if (res.error) reject(res.error);
+          else resolve(res);
+        })
+        .catch(err => {
+          console.log('dispatch -> then');
+          reject(err);
+        });
+    });
+  };
+
+  return pd;
+};
 
 /**
  * EasyMode
  * Takes care of dispatch for any allIncidentSlice-related actions that don't require auth
  */
 export const useEasyMode = () => {
-  console.log('use easy mode');
   const dispatch = useThunkDispatch();
 
   const easyMode = {
@@ -27,8 +57,7 @@ export const useEasyMode = () => {
  * @returns
  */
 export const useEasyModeAuth = (oktaAxios) => {
-  console.log('use easy mode auth');
-  const dispatch = useThunkDispatch();
+  const dispatch = promiseDispatch(useThunkDispatch());
 
   const easyMode = {
     /**
@@ -51,6 +80,17 @@ export const useEasyModeAuth = (oktaAxios) => {
     editIncident: (incident) => {
       console.log('easy mode auth modify');
       return dispatch(editIncident.thunk({ oktaAxios, incident }));
+    },
+
+    /**
+     * Creates an incident (POST request)
+     *
+     * @param {import('./allIncidentsSlice').Incident} incident
+     * @returns
+     */
+    postIncident: (incident) => {
+      console.log('easy mode auth post');
+      return dispatch(postIncident.thunk({ oktaAxios, incident }));
     },
 
     /**

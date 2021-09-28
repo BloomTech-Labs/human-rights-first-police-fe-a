@@ -37,7 +37,7 @@ export default store;
 
 /**
  * Using this dispatch fixes the return type when you dispatch Thunks
- * So you can have proper intellisense/IDE support
+ * so you can have proper intellisense/IDE support
  *
  * @returns {typeof store.dispatch}
  */

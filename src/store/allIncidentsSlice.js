@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
-import { editIncident, fetchIncidents, setStatus } from './allIncidentsThunks';
+import { editIncident, fetchIncidents, postIncident, setStatus } from './allIncidentsThunks';
 
 // This JsDoc type definition is for the Incident object
 // and enables Intellisense and Autocompletion where possible
@@ -62,6 +62,7 @@ export const slice = createSlice({
     builder.addCase(fetchIncidents.thunk.fulfilled, fetchIncidents.reducer);
     builder.addCase(setStatus.thunk.fulfilled, setStatus.reducer);
     builder.addCase(editIncident.thunk.fulfilled, editIncident.reducer);
+    builder.addCase(postIncident.thunk.fulfilled, postIncident.reducer);
 
 
     // in Redux Toolkit, thunks created with createAsyncThunk will generate 3 actions representing
@@ -72,16 +73,19 @@ export const slice = createSlice({
 
     // For any thunk 'pending' actions, set isLoading to true
     builder.addMatcher(isPendingAction, (state, action) => {
+      console.log('reducer match pending');
       state.isLoading = true;
     });
 
     // For any thunk 'fulfilled' actions, set isLoading to false
     builder.addMatcher(isFulfilledAction, (state, action) => {
+      console.log('reducer match fulfilled');
       state.isLoading = false;
     });
 
     // For any thunk 'rejected' actions, set errorMessage and isLoading to false
     builder.addMatcher(isRejectedAction, (state, action) => {
+      console.log('reducer match rejected');
       state.isLoading = false;
       state.errorMessage = action.error.message;
     });
