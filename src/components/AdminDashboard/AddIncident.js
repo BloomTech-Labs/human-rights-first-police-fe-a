@@ -6,7 +6,7 @@ import moment from 'moment';
 import {
   getLatAndLong,
 } from '../../utils/DashboardHelperFunctions';
-import { useEasyModeAuth } from '../../store/allIncidentsEasyMode';
+import { useEasyModeAuth } from '../../store/allIncidentsSlice/easyMode';
 
 const Required = props => {
   // This makes a required form item without the little red star

@@ -1,9 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
-import { editIncident, fetchIncidents, postIncident, setStatus } from './allIncidentsThunks';
 
-// This JsDoc type definition is for the Incident object
-// and enables Intellisense and Autocompletion where possible
+import changeStatus from './thunks/changeStatus';
+import deleteIncident from './thunks/deleteIncident';
+import getIncidents from './thunks/getIncidents';
+import modifyIncident from './thunks/modifyIncident';
+import postIncident from './thunks/postIncident';
+
+// These JsDoc type definitions are for the Incident object and allIncidentsState
+// and enables intellisense and auto-complete where possible
 
 /**
  * @typedef Incident
@@ -59,13 +64,14 @@ export const slice = createSlice({
   extraReducers: (builder) => {
     // these set up the case reducers for each thunk, called after they successfully complete
     // https://redux-toolkit.js.org/api/createreducer/#builderaddcase
-    builder.addCase(fetchIncidents.thunk.fulfilled, fetchIncidents.reducer);
-    builder.addCase(setStatus.thunk.fulfilled, setStatus.reducer);
-    builder.addCase(editIncident.thunk.fulfilled, editIncident.reducer);
-    builder.addCase(postIncident.thunk.fulfilled, postIncident.reducer);
+    builder.addCase(getIncidents.actionCreator.fulfilled, getIncidents.reducer);
+    builder.addCase(changeStatus.actionCreator.fulfilled, changeStatus.reducer);
+    builder.addCase(modifyIncident.actionCreator.fulfilled, modifyIncident.reducer);
+    builder.addCase(postIncident.actionCreator.fulfilled, postIncident.reducer);
+    builder.addCase(deleteIncident.actionCreator.fulfilled, deleteIncident.reducer);
 
 
-    // in Redux Toolkit, thunks created with createAsyncThunk will generate 3 actions representing
+    // in Redux Toolkit, thunks created with createAsyncThunk will generate 3 separate actions representing
     // the lifecycle of an async thunk: pending, fulfilled, and rejected
     // https://redux-toolkit.js.org/api/createAsyncThunk
 

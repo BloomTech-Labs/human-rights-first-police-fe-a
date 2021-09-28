@@ -8,6 +8,7 @@ import AdminEdit from './forms/AdminEdit';
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import './CompleteIncident.css';
+import { useEasyModeAuth } from '../../store/allIncidentsSlice/easyMode';
 
 /**
  * @typedef CompleteIncidentProps
@@ -23,6 +24,8 @@ const CompleteIncident = props => {
   const { incident } = props;
 
   const oktaAxios = useOktaAxios();
+  const easyMode = useEasyModeAuth(oktaAxios);
+
   const { confirm } = Modal;
 
   const [deleting, setDeleting] = useState(false);
@@ -33,16 +36,11 @@ const CompleteIncident = props => {
       icon: <ExclamationCircleOutlined />,
       content: 'Once you click OK this message will be deleted',
       onOk() {
-        return oktaAxios
-          .delete(`/dashboard/incidents/${incident.incident_id}`)
-          .then(res => {
-            window.location.reload();
-          })
-          .catch(err => {
-            console.log(err);
-          });
+        return easyMode.deleteIncident(incident)
+          .then(() => true)
+          .catch(console.log);
       },
-      onCancel() {},
+      onCancel() { },
     });
   }
 

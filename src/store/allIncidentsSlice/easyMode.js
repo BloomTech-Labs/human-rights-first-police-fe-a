@@ -1,6 +1,9 @@
-import { useThunkDispatch } from ".";
-import allIncidents from "./allIncidentsSlice";
-import { editIncident, fetchIncidents, postIncident, setStatus } from "./allIncidentsThunks";
+import { useThunkDispatch, allIncidentActions } from '..';
+import changeStatus from './thunks/changeStatus';
+import deleteIncident from './thunks/deleteIncident';
+import getIncidents from './thunks/getIncidents';
+import modifyIncident from './thunks/modifyIncident';
+import postIncident from './thunks/postIncident';
 
 /**
  * Wraps a dispatch in a promise, so dispatch(action(payload)) can be followed with .then() or .catch()
@@ -38,12 +41,12 @@ const promiseDispatch = (dispatch) => {
  * Takes care of dispatch for any allIncidentSlice-related actions that don't require auth
  */
 export const useEasyMode = () => {
-  const dispatch = useThunkDispatch();
+  const dispatch = promiseDispatch(useThunkDispatch());
 
   const easyMode = {
     fetchIncidents: () => {
       console.log('easy fetch');
-      dispatch(fetchIncidents.thunk());
+      dispatch(getIncidents.actionCreator());
     }
   };
 
@@ -68,29 +71,40 @@ export const useEasyModeAuth = (oktaAxios) => {
      */
     fetchIncidents: () => {
       console.log('easy mode auth fetch');
-      return dispatch(fetchIncidents.thunk(oktaAxios));
+      return dispatch(getIncidents.actionCreator(oktaAxios));
     },
 
     /**
      * Modifies an incident (PUT request)
      *
-     * @param {import('./allIncidentsSlice').Incident} incident
+     * @param {import('.').Incident} incident
      * @returns
      */
     editIncident: (incident) => {
       console.log('easy mode auth modify');
-      return dispatch(editIncident.thunk({ oktaAxios, incident }));
+      return dispatch(modifyIncident.actionCreator({ oktaAxios, incident }));
     },
 
     /**
      * Creates an incident (POST request)
      *
-     * @param {import('./allIncidentsSlice').Incident} incident
+     * @param {import('.').Incident} incident
      * @returns
      */
     postIncident: (incident) => {
       console.log('easy mode auth post');
-      return dispatch(postIncident.thunk({ oktaAxios, incident }));
+      return dispatch(postIncident.actionCreator({ oktaAxios, incident }));
+    },
+
+    /**
+     * Creates an incident (POST request)
+     *
+     * @param {import('.').Incident} incident
+     * @returns
+     */
+    deleteIncident: (incident) => {
+      console.log('easy mode auth delete');
+      return dispatch(deleteIncident.actionCreator({ oktaAxios, incident }));
     },
 
     /**
@@ -103,7 +117,7 @@ export const useEasyModeAuth = (oktaAxios) => {
      */
     changeIncidentsStatus: (incidentIds, oldStatus, newStatus) => {
       console.log('easy mode auth setStatus');
-      return dispatch(setStatus.thunk({ oktaAxios, incidentIds, oldStatus, newStatus }));
+      return dispatch(changeStatus.actionCreator({ oktaAxios, incidentIds, oldStatus, newStatus }));
     },
 
     /**
@@ -114,7 +128,7 @@ export const useEasyModeAuth = (oktaAxios) => {
      */
     setErrorMessage: (message) => {
       console.log('easy mode auth setError');
-      return dispatch(allIncidents.actions.setErrorMessage(message));
+      return dispatch(allIncidentActions.actions.setErrorMessage(message));
     }
   };
 

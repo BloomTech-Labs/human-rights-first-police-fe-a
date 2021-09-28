@@ -8,7 +8,7 @@ import Welcome from './Welcome';
 import useOktaAxios from '../../hooks/useOktaAxios';
 import IncidentStatus from './IncidentStatus';
 import AntTable from './AntTableComponents/AntTable';
-import { useEasyModeAuth } from '../../store/allIncidentsEasyMode';
+import { useEasyModeAuth } from '../../store/allIncidentsSlice/easyMode';
 import { useAllIncidents } from '../../store/allIncidentsSlice';
 
 /** @typedef {import('../../store/allIncidentsSlice').Incident} Incident */

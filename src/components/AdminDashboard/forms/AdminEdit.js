@@ -4,7 +4,7 @@ import moment from 'moment';
 import useOktaAxios from '../../../hooks/useOktaAxios';
 
 import './AdminEdit.less';
-import { useEasyModeAuth } from '../../../store/allIncidentsEasyMode';
+import { useEasyModeAuth } from '../../../store/allIncidentsSlice/easyMode';
 import { useAllIncidents } from '../../../store/allIncidentsSlice';
 
 const { Option } = Select;

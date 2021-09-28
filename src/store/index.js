@@ -5,7 +5,7 @@ import mapSlice from './mapSlice';
 import userSlice from './userSlice';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import { slice as allIncidentsSlice } from './allIncidentsSlice';
+import allIncidentsSlice from './allIncidentsSlice';
 import { useDispatch } from 'react-redux';
 
 const rootReducer = combineReducers({
