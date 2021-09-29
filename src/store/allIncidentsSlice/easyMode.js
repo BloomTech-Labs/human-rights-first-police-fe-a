@@ -2,7 +2,7 @@ import { useThunkDispatch, allIncidentActions } from '..';
 import changeStatus from './thunks/changeStatus';
 import deleteIncident from './thunks/deleteIncident';
 import getIncidents from './thunks/getIncidents';
-import modifyIncident from './thunks/modifyIncident';
+import editIncident from './thunks/editIncident';
 import postIncident from './thunks/postIncident';
 
 /**
@@ -22,12 +22,17 @@ const promiseDispatch = (dispatch) => {
     return new Promise((resolve, reject) => {
       dispatch(action)
         .then(res => {
-          console.log('dispatch -> then');
-          if (res.error) reject(res.error);
-          else resolve(res);
+          if (res.error) {
+            console.log('dispatch -> then -> reject');
+            reject(res.error);
+          }
+          else {
+            console.log('dispatch -> then -> resolve');
+            resolve(res);
+          }
         })
         .catch(err => {
-          console.log('dispatch -> then');
+          console.log('dispatch -> catch');
           reject(err);
         });
     });
@@ -81,8 +86,7 @@ export const useEasyModeAuth = (oktaAxios) => {
      * @returns
      */
     editIncident: (incident) => {
-      console.log('easy mode auth modify');
-      return dispatch(modifyIncident.actionCreator({ oktaAxios, incident }));
+      return dispatch(editIncident.actionCreator({ oktaAxios, incident }));
     },
 
     /**
@@ -97,13 +101,12 @@ export const useEasyModeAuth = (oktaAxios) => {
     },
 
     /**
-     * Creates an incident (POST request)
+     * deletes an incident (DELETE request)
      *
      * @param {import('.').Incident} incident
      * @returns
      */
     deleteIncident: (incident) => {
-      console.log('easy mode auth delete');
       return dispatch(deleteIncident.actionCreator({ oktaAxios, incident }));
     },
 
@@ -116,7 +119,6 @@ export const useEasyModeAuth = (oktaAxios) => {
      * @returns
      */
     changeIncidentsStatus: (incidentIds, oldStatus, newStatus) => {
-      console.log('easy mode auth setStatus');
       return dispatch(changeStatus.actionCreator({ oktaAxios, incidentIds, oldStatus, newStatus }));
     },
 

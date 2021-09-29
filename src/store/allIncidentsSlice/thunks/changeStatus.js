@@ -2,15 +2,19 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { changeIncidentsStatus, splitIncidentsByIds } from '../../../utils/DashboardHelperFunctions';
 import { selectListByStatus } from './util';
 
-/** @typedef {import('../../store/allIncidentsSlice').Incident} Incident */
-/** @typedef {import('..').AllIncidentsState} AllIncidentsState */
 
 /** This Thunk changes the status for the specified incidents */
 const actionCreator = createAsyncThunk(
-	'dashboard/changeStatus',
+	'allIncidents/changeStatus',
+
+	/**
+	 * @param {ChangeStatusPayload} payload
+	 * @param {*} thunkAPI
+	 * @returns
+	 */
 	async (payload, thunkAPI) => {
-		console.log('setStatus thunk');
 		const { oktaAxios, incidentIds, newStatus } = payload;
+
 		return await changeIncidentsStatus(oktaAxios, incidentIds, newStatus);
 	}
 );
@@ -21,7 +25,6 @@ const actionCreator = createAsyncThunk(
  *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
  */
 const reducer = (state, action) => {
-	console.log('setStatus reducer');
 	const { incidentIds, oldStatus, newStatus } = action.meta.arg;
 
 	// incidents have just been PUT to the server with the status property changed
@@ -30,7 +33,6 @@ const reducer = (state, action) => {
 
 	// if you having trouble keeping local state in sync with the server
 	// this can be removed, and instead re-fetch all incident data after any changes are made.
-
 
 	// removing the specified incidents from their original list
 	let split;
@@ -52,9 +54,20 @@ const reducer = (state, action) => {
 			newList.push(inc);
 		});
 
-		newList?.sort((a, b) => a.incident_date > b.incident_date);
+		newList.sort((a, b) => a.incident_date > b.incident_date);
 	}
 };
 
 const changeStatus = { actionCreator, reducer };
 export default changeStatus;
+
+/** @typedef {import('..').Incident} Incident */
+/** @typedef {import('..').AllIncidentsState} AllIncidentsState */
+
+/**
+ * @typedef ChangeStatusPayload
+ * @property {import('axios').AxiosInstance} oktaAxios
+ * @property {number[]} incidentIds
+ * @property {'pending' | 'approved'} oldStatus
+ * @property {'pending' | 'approved' | 'rejected'} newStatus
+ */

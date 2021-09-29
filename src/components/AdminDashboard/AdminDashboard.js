@@ -34,7 +34,7 @@ const AdminDashboard = () => {
   // The incident tab to display: 'pending', 'approved', 'form-responses'
   const [listType, setListType] = useState('pending');
 
-  /** @returns {Incident[]} the corrent incidents array for the current tab */
+  /** @returns {Incident[]} the incidents array for the current tab */
   const getCurrentList = () => {
     switch (listType) {
       case 'pending':
@@ -55,7 +55,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     if (errorMessage) {
-      alert("An error occured. You may need to refresh the page.");
+      alert(`An error occured. You may need to refresh the page.\n\n${errorMessage}`);
     }
   }, [errorMessage]);
 
@@ -105,6 +105,9 @@ const AdminDashboard = () => {
     easyMode.changeIncidentsStatus(selectedIds, listType, newStatus)
       .then((res) => {
         setSelectedIds([]);
+      })
+      .catch(error => {
+        console.log(error);
       });
   };
 

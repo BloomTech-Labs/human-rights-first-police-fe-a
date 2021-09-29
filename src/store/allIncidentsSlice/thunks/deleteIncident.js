@@ -1,23 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { selectListByStatus } from './util';
 
-/** @typedef {import('..').Incident} Incident */
-/** @typedef {import('..').AllIncidentsState} AllIncidentsState */
 
-
-
+/** This async thunk is used to delete an incident */
 const actionCreator = createAsyncThunk(
 	'allIncidents/delete',
+
+	/**
+	 * @param {DeleteIncidentPayload} payload
+	 * @param {*} thunkAPI
+	 * @returns
+	 */
 	async (payload, thunkAPI) => {
-		console.log('deleteIncident thunk');
 		const { oktaAxios, incident } = payload;
 
-		try {
-			return await oktaAxios.delete(`/dashboard/incidents/${incident.incident_id}`);
-		}
-		catch (error) {
-			thunkAPI.rejectWithValue(error);
-		}
+		return await oktaAxios.delete(`/dashboard/incidents/${incident.incident_id}`);
 	}
 );
 
@@ -27,11 +24,8 @@ const actionCreator = createAsyncThunk(
  *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
  */
 const reducer = (state, action) => {
-	console.log('deleteIncident reducer');
-
 	// The incident has just been deleted on the back-end
 	// We can either re-fetch or reload, or remove the incident from whichever list it's on
-
 	const { incident } = action.meta.arg;
 	const list = selectListByStatus(incident.status, state);
 
@@ -41,3 +35,12 @@ const reducer = (state, action) => {
 
 const deleteIncident = { actionCreator, reducer };
 export default deleteIncident;
+
+/** @typedef {import('..').Incident} Incident */
+/** @typedef {import('..').AllIncidentsState} AllIncidentsState */
+
+/**
+ * @typedef DeleteIncidentPayload
+ * @property {import('axios').AxiosInstance} oktaAxios
+ * @property {Incident} incident
+ */

@@ -111,9 +111,7 @@ export const changeIncidentsStatus = (oktaAxios, incidentIds, status) => {
     return { incident_id, status };
   });
 
-  return oktaAxios
-    .put('dashboard/incidents', changes)
-    .catch(console.log);
+  return oktaAxios.put('dashboard/incidents', changes);
 };
 
 // CompleteIncident.js

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import changeStatus from './thunks/changeStatus';
 import deleteIncident from './thunks/deleteIncident';
 import getIncidents from './thunks/getIncidents';
-import modifyIncident from './thunks/modifyIncident';
+import editIncident from './thunks/editIncident';
 import postIncident from './thunks/postIncident';
 
 // These JsDoc type definitions are for the Incident object and allIncidentsState
@@ -66,7 +66,7 @@ export const slice = createSlice({
     // https://redux-toolkit.js.org/api/createreducer/#builderaddcase
     builder.addCase(getIncidents.actionCreator.fulfilled, getIncidents.reducer);
     builder.addCase(changeStatus.actionCreator.fulfilled, changeStatus.reducer);
-    builder.addCase(modifyIncident.actionCreator.fulfilled, modifyIncident.reducer);
+    builder.addCase(editIncident.actionCreator.fulfilled, editIncident.reducer);
     builder.addCase(postIncident.actionCreator.fulfilled, postIncident.reducer);
     builder.addCase(deleteIncident.actionCreator.fulfilled, deleteIncident.reducer);
 
@@ -81,12 +81,14 @@ export const slice = createSlice({
     builder.addMatcher(isPendingAction, (state, action) => {
       console.log('reducer match pending');
       state.isLoading = true;
+      state.errorMessage = '';
     });
 
     // For any thunk 'fulfilled' actions, set isLoading to false
     builder.addMatcher(isFulfilledAction, (state, action) => {
       console.log('reducer match fulfilled');
       state.isLoading = false;
+      state.errorMessage = '';
     });
 
     // For any thunk 'rejected' actions, set errorMessage and isLoading to false
