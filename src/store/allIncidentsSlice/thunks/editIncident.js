@@ -6,11 +6,7 @@ import { selectListByStatus } from './util';
 const actionCreator = createAsyncThunk(
 	'allIncidents/editIncident',
 
-	/**
-	 * @param {EditIncidentPayload} payload
-	 * @param {*} thunkAPI
-	 * @returns
-	 */
+	/** @param {EditIncidentPayload} payload */
 	async (payload, thunkAPI) => {
 		const { oktaAxios, incident } = payload;
 
@@ -18,17 +14,11 @@ const actionCreator = createAsyncThunk(
 	}
 );
 
-/**
- * this will be called after an incidents properties are edited
- * because we are using Redux Toolkit, we can safely modify state from within a reducer
- *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
- */
-const reducer = (state, action) => {
-	// So an incident has just been PUT to the incidents endpoint sucessfully
-	// locally, state needs to be updated with the incident's new values
 
-	// if you having trouble keeping local state in sync with the server
-	// this can be removed, and instead re-fetch all incident data after any changes are made.
+/** @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>} */
+const reducer = (state, action) => {
+	// An incident has just been PUT to the incidents endpoint sucessfully
+	// locally, state needs to be updated with the incident's new values
 
 	const incident = action.meta.arg.incident;
 	const list = selectListByStatus(incident.status, state);
@@ -39,8 +29,10 @@ const reducer = (state, action) => {
 	}
 };
 
+
 const editIncident = { actionCreator, reducer };
 export default editIncident;
+
 
 /** @typedef {import('..').Incident} Incident */
 /** @typedef {import('..').AllIncidentsState} AllIncidentsState */

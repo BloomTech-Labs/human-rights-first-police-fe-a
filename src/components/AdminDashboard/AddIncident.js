@@ -140,7 +140,6 @@ const AddIncident = props => {
     // posting new incident to database
     await easyMode.postIncident(newIncident)
       .then(res => {
-        console.log('easy post then');
         setModalText("Incident created");
 
         setTimeout(() => {
@@ -151,7 +150,6 @@ const AddIncident = props => {
         }, 1750);
       })
       .catch(err => {
-        console.log('easy post catch');
         console.log(err);
       });
   };

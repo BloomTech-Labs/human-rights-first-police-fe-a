@@ -1,4 +1,5 @@
 /**
+ * Returns the correct incident list for the provided status
  *
  * @param {'pending' | 'approved' | 'form-responses'} status
  * @param {import("..").AllIncidentsState} state

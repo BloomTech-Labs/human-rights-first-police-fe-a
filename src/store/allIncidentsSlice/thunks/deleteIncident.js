@@ -6,11 +6,7 @@ import { selectListByStatus } from './util';
 const actionCreator = createAsyncThunk(
 	'allIncidents/delete',
 
-	/**
-	 * @param {DeleteIncidentPayload} payload
-	 * @param {*} thunkAPI
-	 * @returns
-	 */
+	/** @param {DeleteIncidentPayload} payload */
 	async (payload, thunkAPI) => {
 		const { oktaAxios, incident } = payload;
 
@@ -18,14 +14,12 @@ const actionCreator = createAsyncThunk(
 	}
 );
 
-/**
- * This will be called when the deleteIncident thunk sucessfully completes
- * because we are using Redux Toolkit, we can safely modify state from within a reducer
- *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
- */
+
+/** @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>} */
 const reducer = (state, action) => {
 	// The incident has just been deleted on the back-end
-	// We can either re-fetch or reload, or remove the incident from whichever list it's on
+	// locally, we need to remove the incident from its list
+
 	const { incident } = action.meta.arg;
 	const list = selectListByStatus(incident.status, state);
 
@@ -33,8 +27,10 @@ const reducer = (state, action) => {
 	list.splice(index, 1);
 };
 
+
 const deleteIncident = { actionCreator, reducer };
 export default deleteIncident;
+
 
 /** @typedef {import('..').Incident} Incident */
 /** @typedef {import('..').AllIncidentsState} AllIncidentsState */

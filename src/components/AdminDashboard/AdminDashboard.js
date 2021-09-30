@@ -17,19 +17,11 @@ const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
   const [selectedIds, setSelectedIds] = useState([]);
 
-  // authorized axios
+  // authorized axios and easymode
   const oktaAxios = useOktaAxios();
-
-  // Redux store functionality
   const easyMode = useEasyModeAuth(oktaAxios);
 
-  const {
-    approvedIncidents,
-    pendingIncidents,
-    formResponses,
-    // isLoading,             // not currently in use here
-    errorMessage           // left comments to show it's available
-  } = useAllIncidents();
+  const { approvedIncidents, pendingIncidents, formResponses, isLoading, errorMessage } = useAllIncidents();
 
   // The incident tab to display: 'pending', 'approved', 'form-responses'
   const [listType, setListType] = useState('pending');
@@ -59,6 +51,12 @@ const AdminDashboard = () => {
     }
   }, [errorMessage]);
 
+  // loads incident data on first render
+  useEffect(() => {
+    easyMode.fetchIncidents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   // gives the active tab a different color
   const selectedTabButtonStyle = {
     background: '#095fab'
@@ -73,11 +71,6 @@ const AdminDashboard = () => {
     setAdding(true);
   };
 
-  // loads incident data on first render
-  useEffect(() => {
-    easyMode.fetchIncidents();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   /**
    * Verifies that an incident has city/state
@@ -112,7 +105,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <>
+    <div style={{ backgroundColor: isLoading ? '#ddF0dd' : errorMessage ? '#F0dddd' : '#ddddF0'}}>
       {/* Welcome message */}
       <Welcome pendingCount={pendingIncidents.length} />
 
@@ -194,7 +187,7 @@ const AdminDashboard = () => {
         }
 
       </div>
-    </>
+    </div>
   );
 };
 export default AdminDashboard;

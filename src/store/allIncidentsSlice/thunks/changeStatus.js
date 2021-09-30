@@ -7,11 +7,7 @@ import { selectListByStatus } from './util';
 const actionCreator = createAsyncThunk(
 	'allIncidents/changeStatus',
 
-	/**
-	 * @param {ChangeStatusPayload} payload
-	 * @param {*} thunkAPI
-	 * @returns
-	 */
+	/** @param {ChangeStatusPayload} payload */
 	async (payload, thunkAPI) => {
 		const { oktaAxios, incidentIds, newStatus } = payload;
 
@@ -19,20 +15,14 @@ const actionCreator = createAsyncThunk(
 	}
 );
 
-/**
- * this will be called when the setStatus thunk is fulfilled
- * because we are using Redux Toolkit, we can safely modify state from within a reducer
- *  @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>}
- */
-const reducer = (state, action) => {
-	const { incidentIds, oldStatus, newStatus } = action.meta.arg;
 
+/** @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>} */
+const reducer = (state, action) => {
 	// incidents have just been PUT to the server with the status property changed
 	// locally, those incidents need to be moved from one list to another
 	// ie: after approving incident_id:8003, it should be removed from pendingIncidents and inserted into approvedIncidents
 
-	// if you having trouble keeping local state in sync with the server
-	// this can be removed, and instead re-fetch all incident data after any changes are made.
+	const { incidentIds, oldStatus, newStatus } = action.meta.arg;
 
 	// removing the specified incidents from their original list
 	let split;
@@ -58,8 +48,10 @@ const reducer = (state, action) => {
 	}
 };
 
+
 const changeStatus = { actionCreator, reducer };
 export default changeStatus;
+
 
 /** @typedef {import('..').Incident} Incident */
 /** @typedef {import('..').AllIncidentsState} AllIncidentsState */

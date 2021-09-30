@@ -1,7 +1,7 @@
 import { useThunkDispatch, allIncidentActions } from '..';
 import changeStatus from './thunks/changeStatus';
 import deleteIncident from './thunks/deleteIncident';
-import getIncidents from './thunks/getIncidents';
+import fetchIncidents from './thunks/fetchIncidents';
 import editIncident from './thunks/editIncident';
 import postIncident from './thunks/postIncident';
 
@@ -18,22 +18,27 @@ const promiseDispatch = (dispatch) => {
    * @returns {Promise<any>}
    */
   const pd = (action) => {
-    console.log('creating a promise to dispatch in');
+
+    console.group("new dispatch-promise");
+
     return new Promise((resolve, reject) => {
       dispatch(action)
         .then(res => {
           if (res.error) {
-            console.log('dispatch -> then -> reject');
+            console.log('promise rejected!');
             reject(res.error);
           }
           else {
-            console.log('dispatch -> then -> resolve');
+            console.log('promise resolved!');
             resolve(res);
           }
         })
         .catch(err => {
-          console.log('dispatch -> catch');
+          console.log('promise rejected!');
           reject(err);
+        })
+        .finally(() => {
+          console.groupEnd();
         });
     });
   };
@@ -51,7 +56,7 @@ export const useEasyMode = () => {
   const easyMode = {
     fetchIncidents: () => {
       console.log('easy fetch');
-      dispatch(getIncidents.actionCreator());
+      dispatch(fetchIncidents.actionCreator());
     }
   };
 
@@ -62,77 +67,49 @@ export const useEasyMode = () => {
  * EasyModeAuth
  * Takes care of dispatch and auth for any allIncidentsSlice-related actions
  * @param {*} oktaAxios - an authorized axios object (useOktaAxios())
- * @returns
+ * @returns {EasyModeAuth}
  */
 export const useEasyModeAuth = (oktaAxios) => {
   const dispatch = promiseDispatch(useThunkDispatch());
 
+  /** @type {EasyModeAuth} */
   const easyMode = {
-    /**
-     * fetches all incidents (approved, pending, and form-responses) from the back-end
-     * (GET request)
-     *
-     * @returns {Promise<any>}
-     */
     fetchIncidents: () => {
-      console.log('easy mode auth fetch');
-      return dispatch(getIncidents.actionCreator(oktaAxios));
+      return dispatch(fetchIncidents.actionCreator({oktaAxios}));
     },
 
-    /**
-     * Modifies an incident (PUT request)
-     *
-     * @param {import('.').Incident} incident
-     * @returns
-     */
     editIncident: (incident) => {
       return dispatch(editIncident.actionCreator({ oktaAxios, incident }));
     },
 
-    /**
-     * Creates an incident (POST request)
-     *
-     * @param {import('.').Incident} incident
-     * @returns
-     */
     postIncident: (incident) => {
-      console.log('easy mode auth post');
       return dispatch(postIncident.actionCreator({ oktaAxios, incident }));
     },
 
-    /**
-     * deletes an incident (DELETE request)
-     *
-     * @param {import('.').Incident} incident
-     * @returns
-     */
     deleteIncident: (incident) => {
       return dispatch(deleteIncident.actionCreator({ oktaAxios, incident }));
     },
 
-    /**
-     * Changes the status for the given incident IDs
-     *
-     * @param {number[]} incidentIds
-     * @param {'approved' | 'pending' | 'form-responses'} oldStatus
-     * @param {'approved' | 'pending' | 'rejected'} newStatus
-     * @returns
-     */
     changeIncidentsStatus: (incidentIds, oldStatus, newStatus) => {
       return dispatch(changeStatus.actionCreator({ oktaAxios, incidentIds, oldStatus, newStatus }));
     },
 
-    /**
-     * Sets the error message
-     *
-     * @param {string} message
-     * @returns
-     */
     setErrorMessage: (message) => {
-      console.log('easy mode auth setError');
       return dispatch(allIncidentActions.actions.setErrorMessage(message));
     }
   };
 
   return easyMode;
 };
+
+/** @typedef {import('.').Incident} Incident */
+
+/**
+ * @typedef EasyModeAuth
+ * @property {() => Promise<any>} fetchIncidents - fetches all incidents from the back-end (GET)
+ * @property {(incident: Incident) => Promise<any>} editIncident - changes the properties of an incident (PUT)
+ * @property {(incident: Incident) => Promise<any>} postIncident - creates a new incident (POST)
+ * @property {(incident: Incident) => Promise<any>} deleteIncident - deletes an incident (DELETE)
+ * @property {(incidentIds: number[], oldStatus: string, newStatus: string) => Promise<any>} changeIncidentsStatus - changes the status of the specified incidents
+ * @property {(message: string) => Promise<any>} setErrorMessage - sets the error message
+ */
