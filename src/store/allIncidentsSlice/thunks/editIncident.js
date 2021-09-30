@@ -4,29 +4,29 @@ import { selectListByStatus } from './util';
 
 /** This async thunk is used for editing the properties of an incident */
 const actionCreator = createAsyncThunk(
-	'allIncidents/editIncident',
+  'allIncidents/editIncident',
 
-	/** @param {EditIncidentPayload} payload */
-	async (payload, thunkAPI) => {
-		const { oktaAxios, incident } = payload;
+  /** @param {EditIncidentPayload} payload */
+  async (payload, thunkAPI) => {
+    const { oktaAxios, incident } = payload;
 
-		return await oktaAxios.put('dashboard/incidents', [incident]);
-	}
+    return await oktaAxios.put('dashboard/incidents', [incident]);
+  }
 );
 
 
 /** @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>} */
 const reducer = (state, action) => {
-	// An incident has just been PUT to the incidents endpoint sucessfully
-	// locally, state needs to be updated with the incident's new values
+  // An incident has just been PUT to the incidents endpoint sucessfully
+  // locally, state needs to be updated with the incident's new values
 
-	const incident = action.meta.arg.incident;
-	const list = selectListByStatus(incident.status, state);
-	const index = list.findIndex(inc => inc.incident_id === incident.incident_id);
+  const incident = action.meta.arg.incident;
+  const list = selectListByStatus(incident.status, state);
+  const index = list.findIndex(inc => inc.incident_id === incident.incident_id);
 
-	if (index !== -1) {
-		list[index] = incident;
-	}
+  if (index !== -1) {
+    list[index] = incident;
+  }
 };
 
 
