@@ -9,6 +9,8 @@ const actionCreator = createAsyncThunk(
 	/** @param {GetIncidentsPayload} payload */
 	async (payload, thunkAPI) => {
 		const { oktaAxios } = payload;
+
+		// if called with an authorized oktaAxios, all incidents will be retrieved
 		if (oktaAxios) {
 			const approved = await getApprovedIncidents(oktaAxios);
 			const pending = await getPendingIncidents(oktaAxios);
@@ -16,6 +18,8 @@ const actionCreator = createAsyncThunk(
 
 			return { approved, pending, formResponses };
 		}
+
+		// if not authorized, just the approved incidents will be retrieved
 		else {
 			const approved = await getApprovedIncidents();
 			const pending = [];

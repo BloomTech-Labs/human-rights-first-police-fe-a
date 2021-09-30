@@ -57,6 +57,12 @@ const AdminDashboard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // if an incident is deleted while selected, this will remove it from the selection
+  useEffect(() => {
+    const list = getCurrentList();
+    setSelectedIds(sid => sid.filter(id => list.some(inc => inc.incident_id === id)));
+  }, [approvedIncidents, pendingIncidents, formResponses]);
+
   // gives the active tab a different color
   const selectedTabButtonStyle = {
     background: '#095fab'
@@ -105,7 +111,7 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div style={{ backgroundColor: isLoading ? '#ddF0dd' : errorMessage ? '#F0dddd' : '#ddddF0'}}>
+    <>
       {/* Welcome message */}
       <Welcome pendingCount={pendingIncidents.length} />
 
@@ -187,7 +193,7 @@ const AdminDashboard = () => {
         }
 
       </div>
-    </div>
+    </>
   );
 };
 export default AdminDashboard;

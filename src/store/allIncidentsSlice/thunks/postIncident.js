@@ -19,6 +19,8 @@ const reducer = (state, action) => {
 	// it's status should be 'pending'
 	// so we can add it into the pending incidents list and resort
 
+	// TODO: Get the new incident id from the backend!
+
 	state.pendingIncidents.push(action.meta.arg.incident);
 	state.pendingIncidents.sort((a, b) => a.incident_date > b.incident_date);
 };

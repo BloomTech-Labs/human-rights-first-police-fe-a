@@ -142,6 +142,9 @@ const AddIncident = props => {
       .then(res => {
         setModalText("Incident created");
 
+        // this can be removed once the back-end returns the new incident ID on post
+        easyMode.fetchIncidents();
+
         setTimeout(() => {
           // modal is unmounted
           setVisible(false);
