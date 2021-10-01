@@ -18,27 +18,18 @@ const promiseDispatch = (dispatch) => {
    * @returns {Promise<any>}
    */
   const pd = (action) => {
-
-    console.group("new dispatch-promise");
-
     return new Promise((resolve, reject) => {
       dispatch(action)
         .then(res => {
-          if (res.error) {
-            console.log('promise rejected!');
+          if (res.error) {      // this is here because in redux toolkit, thunks resolve with an Error rather than reject
             reject(res.error);
           }
           else {
-            console.log('promise resolved!');
             resolve(res);
           }
         })
         .catch(err => {
-          console.log('promise rejected!');
           reject(err);
-        })
-        .finally(() => {
-          console.groupEnd();
         });
     });
   };
@@ -55,7 +46,6 @@ export const useEasyMode = () => {
 
   const easyMode = {
     fetchIncidents: () => {
-      console.log('easy fetch');
       dispatch(fetchIncidents.actionCreator());
     }
   };

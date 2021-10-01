@@ -49,21 +49,21 @@ export const slice = createSlice({
 
     // For any thunk 'pending' actions, set isLoading to true
     builder.addMatcher(isPendingAction, (state, action) => {
-      console.log('%cpending:', 'color: blue; font-weight: bold;', action.type);
+      //console.log('%cpending:', 'color: blue; font-weight: bold;', action.type);
       state.isLoading = true;
       state.errorMessage = '';
     });
 
     // For any thunk 'fulfilled' actions, set isLoading to false
     builder.addMatcher(isFulfilledAction, (state, action) => {
-      console.log('%cfulfilled:', 'color: green; font-weight: bold;', action.type);
+      //console.log('%cfulfilled:', 'color: green; font-weight: bold;', action.type);
       state.isLoading = false;
       state.errorMessage = '';
     });
 
     // For any thunk 'rejected' actions, set errorMessage and isLoading to false
     builder.addMatcher(isRejectedAction, (state, action) => {
-      console.log('%crejected:', 'color: red; font-weight: bold;', action.type);
+      //console.log('%crejected:', 'color: red; font-weight: bold;', action.type);
       state.isLoading = false;
       state.errorMessage = action.error.message;
     });
