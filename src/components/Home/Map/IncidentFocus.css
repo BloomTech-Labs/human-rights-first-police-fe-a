@@ -6,10 +6,7 @@
     }
 }
 @media (max-width: 800px) {
-    .ant-collapse-content-box {
-        background-color: white;
-    }
-    
+
     .map-menu {
         position: absolute;
         top: 41%;
@@ -24,7 +21,6 @@
 @media (max-width: 600px) {
     .collapseText.ant-collapse-item {
         margin: -218% 5% 0 -25%;
-        
     }
 }
 @media (max-width: 540px) {
