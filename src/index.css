@@ -476,8 +476,6 @@ div.timeline-container {
 .ant-collapse-content-box {
   background-color: #e2e8f2;
   overflow: auto;
-  border: 2px solid #C5C5C5;
-  border-top: 0px;
   z-index: 10;
 }
 
@@ -490,7 +488,6 @@ div.ant-collapse-header {
   padding: 4;
   text-align: center;
   padding-bottom: 4%;
-  border: 2px solid #C5C5C5;
 }
 
 .incidentHeader h2 {
