@@ -1,6 +1,5 @@
 import { useSelector } from 'react-redux';
 import Map from './Map';
-import Stats from '../Stats/Stats';
 import RecentTimeline from '../timeline/RecentTimeline';
 import HorizontalBar from '../graphs/bargraph/HorizontalBar';
 import './Home.css';
@@ -18,7 +17,6 @@ export default function Home() {
       <div className="bottom-section">
         {fetchStatus === 'success' ? (
           <>
-            <Stats />
             <div className="bottom-section-wrap">
               <div className="Timeline">
                 <RecentTimeline />
