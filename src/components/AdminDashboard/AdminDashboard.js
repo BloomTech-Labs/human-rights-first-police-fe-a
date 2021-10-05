@@ -8,29 +8,26 @@ import Welcome from './Welcome';
 import useOktaAxios from '../../hooks/useOktaAxios';
 import StatusSelector from './StatusSelector';
 import AntTable from './AntTableComponents/AntTable';
-import {
-  putIncidents,
-  getLatAndLong,
-  getApprovedIncidents,
-  getPendingIncidents,
-  getFormResponses,
-} from '../../utils/DashboardHelperFunctions.js';
+import { useEasyModeAuth } from '../../store/allIncidentsSlice/easyMode';
+import { useAllIncidents } from '../../store/allIncidentsSlice';
 import ListSelector from './ListSelector';
 
+/** @typedef {import('../../store/allIncidentsSlice').Incident} Incident */
 
 const AdminDashboard = () => {
   /** List of selected (checked) incident_ids */
   const [selectedIds, setSelectedIds] = useState([]);
 
-  // The three categories of incidents
-  const [formResponses, setFormResponses] = useState([]);
-  const [pendingIncidents, setPendingIncidents] = useState([]);
-  const [approvedIncidents, setApprovedIncidents] = useState([]);
+  // authorized axios and easymode
+  const oktaAxios = useOktaAxios();
+  const easyMode = useEasyModeAuth(oktaAxios);
+
+  const { approvedIncidents, pendingIncidents, formResponses, isLoading, errorMessage } = useAllIncidents();
 
   // The incident tab to display: 'pending', 'approved', 'form-responses'
   const [listType, setListType] = useState('pending');
 
-  // returns the corrent incidents array for the current tab
+  /** @returns {Incident[]} the incidents array for the current tab */
   const getCurrentList = () => {
     switch (listType) {
       case 'pending':
@@ -49,6 +46,29 @@ const AdminDashboard = () => {
     setSelectedIds([]);
   }, [listType]);
 
+  useEffect(() => {
+    if (errorMessage) {
+      alert(`An error occured. You may need to refresh the page.\n\n${errorMessage}`);
+    }
+  }, [errorMessage]);
+
+  // loads incident data on first render
+  useEffect(() => {
+    easyMode.fetchIncidents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // if an incident is deleted while selected, this will remove it from the selection
+  useEffect(() => {
+    const list = getCurrentList();
+    setSelectedIds(sid => sid.filter(id => list.some(inc => inc.incident_id === id)));
+  }, [approvedIncidents, pendingIncidents, formResponses]);
+
+  // gives the active tab a different color
+  const selectedTabButtonStyle = {
+    background: '#095fab'
+  };
+
   // toggles whether or not the addIncident popup is displayed
   const [adding, setAdding] = useState(false);
 
@@ -58,57 +78,36 @@ const AdminDashboard = () => {
     setAdding(true);
   };
 
-  // authorized axios
-  const oktaAxios = useOktaAxios();
 
-  // downloads all incident data
-  const fetchIncidents = () => {
-    getApprovedIncidents(oktaAxios)
-      .then(setApprovedIncidents)
-      .catch(console.log);
+  /**
+   * Verifies that an incident has city/state
+   * @param {number} incident_id
+   * @returns {boolean} true if the incident has city and state
+   */
+  const verifyCityState = (incident_id) => {
+    const sourceList = getCurrentList();
+    const incident = sourceList.find(inc => inc.incident_id === incident_id);
 
-    getPendingIncidents(oktaAxios)
-      .then(setPendingIncidents)
-      .catch(console.log);
-
-    getFormResponses(oktaAxios)
-      .then(setFormResponses)
-      .catch(console.log);
+    return (incident.city && incident.state);
   };
-
-  // loads incident data on first render
-  useEffect(() => {
-    fetchIncidents();
-  }, []);
 
   // approves or rejects the selected incidents
   const approveAndRejectHandler = async (newStatus) => {
-    const currentList = getCurrentList();
-    const selected = currentList.filter(inc => selectedIds.includes(inc.incident_id));
 
-    // setting lat and long for approved incidents
+    // Incident must have city and state before being approved
     if (newStatus === 'approved') {
-      for (const inc of selected) {
-        if (inc.city && inc.state) {
-          try {
-            const latAndLong = await getLatAndLong(inc);
-            inc.lat = latAndLong[0];
-            inc.long = latAndLong[1];
-          } catch (err) {
-            console.log(err);
-          }
-        }
+      if (!selectedIds.every(id => verifyCityState(id))) {
+        alert('Incidents must have city and state before being approved!');
+        return;
       }
     }
 
-    putIncidents(oktaAxios, selected, newStatus)
-      .then(res => {
+    easyMode.changeIncidentsStatus(selectedIds, listType, newStatus)
+      .then((res) => {
         setSelectedIds([]);
-        fetchIncidents();
       })
-      .catch(err => {
-        console.log(err);
-        // TODO: Better error handling!
+      .catch(error => {
+        console.log(error);
       });
   };
 

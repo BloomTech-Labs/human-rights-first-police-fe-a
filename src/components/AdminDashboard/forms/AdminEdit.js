@@ -1,9 +1,11 @@
 import React from 'react';
-import { Form, Input, Select, DatePicker, Button } from 'antd';
+import { Form, Input, Select, DatePicker, Button, Spin } from 'antd';
 import moment from 'moment';
 import useOktaAxios from '../../../hooks/useOktaAxios';
 
 import './AdminEdit.less';
+import { useEasyModeAuth } from '../../../store/allIncidentsSlice/easyMode';
+import { useAllIncidents } from '../../../store/allIncidentsSlice';
 
 const { Option } = Select;
 
@@ -11,6 +13,8 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
   const [form] = Form.useForm();
 
   const oktaAxios = useOktaAxios();
+  const easyMode = useEasyModeAuth(oktaAxios);
+  const { isLoading } = useAllIncidents();
 
   const handleSubmit = vals => {
     let formattedDate;
@@ -34,20 +38,8 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
       tags: [...formattedTags],
     };
 
-    oktaAxios
-      .put('/dashboard/incidents', [{ ...finalVals }])
-      .then(res => {
-        window.location.reload();
-        // TODO instead of reloading we should just update the incident in state
-        // notice that this kinda breaks the whole cleanup step.
-      })
-      .catch(err => {
-        console.log(err);
-        // TODO put some kind of actual error handling here
-      })
-      .finally(res => {
-        cleanup();
-      });
+    easyMode.editIncident(finalVals)
+      .then(cleanup);
   };
 
   return (
@@ -119,9 +111,11 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
       </div>
       <div className="admin-edit-bottom">
         <Button onClick={cancel}>Cancel</Button>
-        <Button className="admin-edit-submit" type="primary" htmlType="submit">
-          Apply Changes
-        </Button>
+        <Spin spinning={isLoading}>
+          <Button className="admin-edit-submit" type="primary" htmlType="submit">
+            Apply Changes
+          </Button>
+        </Spin>
       </div>
     </Form>
   );

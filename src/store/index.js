@@ -3,15 +3,17 @@ import apiSlice from './apiSlice';
 import incidentSlice from './incidentSlice';
 import mapSlice from './mapSlice';
 import userSlice from './userSlice';
-import logger from 'redux-logger';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import allIncidentsSlice from './allIncidentsSlice';
+import { useDispatch } from 'react-redux';
 
 const rootReducer = combineReducers({
   api: apiSlice.reducer,
   incident: incidentSlice.reducer,
   map: mapSlice.reducer,
   user: userSlice.reducer,
+  allIncidents: allIncidentsSlice.reducer
 });
 
 const persistConfig = {
@@ -33,7 +35,16 @@ const store = configureStore({
 
 export default store;
 
+/**
+ * Using this dispatch fixes the return type when you dispatch Thunks
+ * so you can have proper intellisense/IDE support
+ *
+ * @returns {typeof store.dispatch}
+ */
+export const useThunkDispatch = () => useDispatch();
+
 export const { actions: apiActions } = apiSlice;
 export const { actions: incidentActions } = incidentSlice;
 export const { actions: mapActions } = mapSlice;
 export const { actions: userActions } = userSlice;
+export const { actions: allIncidentActions } = allIncidentsSlice;

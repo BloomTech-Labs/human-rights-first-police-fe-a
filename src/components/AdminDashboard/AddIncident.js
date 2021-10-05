@@ -5,8 +5,8 @@ import moment from 'moment';
 
 import {
   getLatAndLong,
-  postIncident,
 } from '../../utils/DashboardHelperFunctions';
+import { useEasyModeAuth } from '../../store/allIncidentsSlice/easyMode';
 
 const Required = props => {
   // This makes a required form item without the little red star
@@ -101,9 +101,10 @@ const AddIncident = props => {
   const [visible, setVisible] = useState(true);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
-  const { setAdding, setPageNumber } = props;
+  const { setAdding } = props;
 
   const oktaAxios = useOktaAxios();
+  const easyMode = useEasyModeAuth(oktaAxios);
 
   //   form management functions
   const handleCancel = () => {
@@ -137,16 +138,23 @@ const AddIncident = props => {
     };
 
     // posting new incident to database
-    const modalMessage = await postIncident(oktaAxios, newIncident);
+    await easyMode.postIncident(newIncident)
+      .then(res => {
+        setModalText("Incident created");
 
-    setModalText(modalMessage);
+        // this can be removed once the back-end returns the new incident ID on post
+        easyMode.fetchIncidents();
 
-    setTimeout(() => {
-      // modal is unmounted, admin is redirected to first page of dashboard
-      setVisible(false);
-      setConfirmLoading(false);
-      setAdding(false);
-    }, 1750);
+        setTimeout(() => {
+          // modal is unmounted
+          setVisible(false);
+          setConfirmLoading(false);
+          setAdding(false);
+        }, 1750);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   const wrapper = createRef();
