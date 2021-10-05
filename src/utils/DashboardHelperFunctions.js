@@ -90,7 +90,7 @@ export function getApprovedIncidents(oktaAxios) {
  * @returns {Promise<Incident[]>} all approved incidents
  */
 export function getFormResponses(oktaAxios) {
-  return oktaAxios.get('http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/to-approve')
+  return oktaAxios.get('https://a.api.humanrightsfirst.dev/to-approve')
     .then(res => {
       return res.data;
     });
