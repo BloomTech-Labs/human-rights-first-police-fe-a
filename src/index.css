@@ -485,7 +485,6 @@ div.timeline-container {
 }
 
 div.ant-collapse-header {
-  padding: 4;
   text-align: center;
   padding-bottom: 4%;
 }
@@ -496,7 +495,6 @@ div.ant-collapse-header {
 }
 
 div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
-  padding: 8px;
   font-size: 1rem;
   text-align: left;
   font-weight: 400;
