@@ -3,6 +3,7 @@ import { Table } from 'antd';
 import { DateTime } from 'luxon';
 
 import CompleteIncident from '../CompleteIncident';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
 //https://ant.design/components/table/ <---documentation on the table
 
@@ -23,6 +24,7 @@ import CompleteIncident from '../CompleteIncident';
 function AntTable(props) {
   const { selectedIds, setSelectedIds, incidents, showConfidence } = props;
 
+  const [itemsPerPage, setItemsPerPage] = useLocalStorage('admin-dashboard-items-per-page', 10);
   const [selectedRows, setSelectedRows] = useState([]);
 
   // formats the date in the table
@@ -37,6 +39,14 @@ function AntTable(props) {
       setSelectedIds(selectedIncidents);
     } else {
       setSelectedRows(selectedIncidents);
+    }
+  };
+
+  // handler for changing page size
+  // note: it's not necessary to track the current page, the Table component will handle that
+  const onPageChanged = (page, pageSize) => {
+    if (pageSize !== itemsPerPage) {
+      setItemsPerPage(pageSize);
     }
   };
 
@@ -116,6 +126,8 @@ function AntTable(props) {
           showTotal(total, range) {
             return `${range[0]}-${range[1]} of ${total} items`;
           },
+          pageSize: itemsPerPage,
+          onChange: onPageChanged
         }}
       />
     </div>
