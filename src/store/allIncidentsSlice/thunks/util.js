@@ -17,3 +17,28 @@ export function selectListByStatus(status, state) {
       return null;
   }
 }
+
+function dictionaryToArray(dict) {
+  const array = [];
+
+  for (const key in dict) {
+    const item = dict[key];
+    const index = parseInt(key);
+
+    if (item && !isNaN(index)) {
+      array.push(item);
+    }
+  }
+
+  return array;
+}
+
+export function sanitizeFormResponse(incident) {
+  const safe = {
+    ...incident,
+    src: dictionaryToArray(incident.src),
+    tags: dictionaryToArray(incident.tags)
+  };
+
+  return safe;
+}

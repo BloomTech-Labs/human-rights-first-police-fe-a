@@ -46,7 +46,7 @@ export const useEasyMode = () => {
 
   const easyMode = {
     fetchIncidents: () => {
-      dispatch(fetchIncidents.actionCreator());
+      dispatch(fetchIncidents.actionCreator({type: 'approved'}));
     }
   };
 
@@ -64,8 +64,8 @@ export const useEasyModeAuth = (oktaAxios) => {
 
   /** @type {EasyModeAuth} */
   const easyMode = {
-    fetchIncidents: () => {
-      return dispatch(fetchIncidents.actionCreator({ oktaAxios }));
+    fetchIncidents: (type) => {
+      return dispatch(fetchIncidents.actionCreator({ oktaAxios, type }));
     },
 
     editIncident: (incident) => {
@@ -96,7 +96,7 @@ export const useEasyModeAuth = (oktaAxios) => {
 
 /**
  * @typedef EasyModeAuth
- * @property {() => Promise<any>} fetchIncidents - fetches all incidents from the back-end (GET)
+ * @property {(type: 'approved' | 'pending' | 'form-responses') => Promise<any>} fetchIncidents - fetches the specified incidents (GET)
  * @property {(incident: Incident) => Promise<any>} editIncident - changes the properties of an incident (PUT)
  * @property {(incident: Incident) => Promise<any>} postIncident - creates a new incident (POST)
  * @property {(incident: Incident) => Promise<any>} deleteIncident - deletes an incident (DELETE)

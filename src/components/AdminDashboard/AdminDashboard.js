@@ -54,7 +54,9 @@ const AdminDashboard = () => {
 
   // loads incident data on first render
   useEffect(() => {
-    easyMode.fetchIncidents();
+    easyMode.fetchIncidents('approved');
+    easyMode.fetchIncidents('pending');
+    easyMode.fetchIncidents('form-responses');
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
