@@ -15,12 +15,11 @@ export default function IncidentFocus({ zoomOnCluster }) {
         className="collapserMap"
         style={{ color: 'white' }}
         defaultActiveKey={['1']}
-        bordered={false}
+        bordered={true}
         expandIcon={({ isActive }) => (
           <CaretRightOutlined rotate={isActive ? 90 : 0} />
         )}
         expandIconPosition="right"
-        ghost
         accordion={true}
       >
         <Panel

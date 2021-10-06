@@ -311,7 +311,8 @@ div.HeaderInfo {
 
 .map-incident-card .location {
   cursor: pointer !important;
-  color: var(--active-blue);
+  /* color: var(--active-blue); */
+  color: #406faf;
 }
 
 .map-incident-card .location:hover {
@@ -321,6 +322,10 @@ div.HeaderInfo {
 
 .map-incident-card .date {
   padding-bottom: 10px;
+}
+
+.map-incident-card h4 {
+  color: #545a66;
 }
 
 button.ant-btn.ant-btn-primary.ant-input-search-button {
@@ -469,13 +474,31 @@ div.timeline-container {
 }
 
 .ant-collapse-content-box {
-  background: #c1d2e9;
+  background-color: #e2e8f2;
   overflow: auto;
+  z-index: 10;
 }
 
 .incident-content {
   height: 50vh;
   z-index: 1;
+}
+
+div.ant-collapse-header {
+  text-align: center;
+  padding-bottom: 4%;
+}
+
+.incidentHeader h2 {
+  /* color: #406faf; */
+  color: #545a66;
+}
+
+div.ant-collapse > .ant-collapse-item > .ant-collapse-header {
+  font-size: 1rem;
+  text-align: left;
+  font-weight: 400;
+  color: #a0a0a0;
 }
 
 .incident-container {
