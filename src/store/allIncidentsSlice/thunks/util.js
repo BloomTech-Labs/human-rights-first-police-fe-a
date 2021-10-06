@@ -28,22 +28,9 @@ export function selectListByStatus(status, state) {
  * @return {any[]}
  */
 function dictionaryToArray(dict) {
-  if (dict == null) {
-    return [];
-  }
+  if (dict == null) return [];
 
-  const array = [];
-
-  for (const key in dict) {
-    const item = dict[key];
-    const index = parseInt(key);
-
-    if (item && !isNaN(index)) {
-      array.push(item);
-    }
-  }
-
-  return array;
+  return Object.values(dict);
 }
 
 /**

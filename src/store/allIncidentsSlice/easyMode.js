@@ -46,7 +46,7 @@ export const useEasyMode = () => {
 
   const easyMode = {
     fetchIncidents: () => {
-      dispatch(fetchIncidents.actionCreator({type: 'approved'}));
+      dispatch(fetchIncidents.actionCreator({ type: 'approved' }));
     }
   };
 
