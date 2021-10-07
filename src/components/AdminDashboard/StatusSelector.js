@@ -34,7 +34,7 @@ const StatusSelector = props => {
         </button>
       }
 
-      {(listType === 'approved' || listType === 'form-responses') &&
+      {listType === 'approved' &&
         <button
           className='approve-reject-select'
           onClick={e => statusOnClick(e, 'pending')}>

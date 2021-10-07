@@ -153,16 +153,15 @@ const AddIncident = props => {
         onCancel={handleCancel}
       >
         <Form form={form} layout="vertical" onFinish={handleFinish}>
-          <Required
+          <Form.Item
             name="title"
             label="Title of Incident"
-            reqMessage="Title is Required"
           >
             <Input placeholder="Input the title of the incident" />
-          </Required>
-          <Form.Item name="description" label="Description of Incident">
-            <Input />
           </Form.Item>
+          <Required name="description" label="Description of Incident" reqMessage="Description is Required">
+            <Input />
+          </Required>
           <Form.Item label="Location">
             <Input.Group compact>
               <Form.Item name="city" label="City" noStyle>

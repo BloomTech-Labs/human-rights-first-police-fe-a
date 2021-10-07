@@ -65,7 +65,7 @@ export const useEasyModeAuth = (oktaAxios) => {
   /** @type {EasyModeAuth} */
   const easyMode = {
     fetchIncidents: (type) => {
-      return dispatch(fetchIncidents.actionCreator({ oktaAxios, type }));
+      return dispatch(fetchIncidents.actionCreator({ oktaAxios, type: type || 'approved' }));
     },
 
     editIncident: (incident) => {
