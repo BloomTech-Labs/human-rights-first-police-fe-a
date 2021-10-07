@@ -134,8 +134,6 @@ const AddIncident = props => {
       .then(res => {
         setModalText("Incident created");
         setAdding(false);
-        // this can be removed once the back-end returns the new incident ID on post
-        easyMode.fetchIncidents();
       });
   };
 
