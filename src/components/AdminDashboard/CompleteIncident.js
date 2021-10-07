@@ -60,13 +60,13 @@ const CompleteIncident = props => {
 
   const onSendTweetClick = () => {
     formOut(incident, false)
-      .then(res => showInfoModal({ title: "Info", content: JSON.stringify(res) }))
-      .catch(err => showInfoModal({ title: "Info", content: JSON.stringify(err) }));
+      .then(res => showInfoModal({ title: "Info", content: 'A tweet has been sent requesting more information' }))
+      .catch(err => showInfoModal({ title: "Info", content: <pre>{JSON.stringify(err, null, 2)}</pre> , width: 800}));
   };
 
   const popoverContent = (
     <div>
-      <Button onClick={onSendDMClick}>
+      <Button onClick={onSendDMClick} disabled>
         Send DM
       </Button>
       <Button onClick={onSendTweetClick}>

@@ -15,9 +15,5 @@ export function formOut(incident, sendDM = false) {
 		body: "a body"
 	};
 
-	console.log(request);
-
-	console.log(incident.incident_id);
-
-	return axios.post('http://hrf-bw-labs37-dev.eba-hz3uh94j.us-east-1.elasticbeanstalk.com/form-out/', request);
+	return axios.post('https://a.api.humanrightsfirst.dev/form-out/', request);
 }
