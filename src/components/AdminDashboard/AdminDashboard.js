@@ -17,17 +17,22 @@ import { Spin } from 'antd';
 /** @typedef {import('../../store/allIncidentsSlice').Incident} Incident */
 
 const AdminDashboard = () => {
-  /** List of selected (checked) incident_ids */
-  const [selectedIds, setSelectedIds] = useState([]);
 
-  // authorized axios and easymode
-  const oktaAxios = useOktaAxios();
+  const [selectedIds, setSelectedIds] = useState([]);    // List of selected (checked) incident_ids
+  const [adding, setAdding] = useState(false);           // toggles whether or not the addIncident popup is displayed
+
+  const oktaAxios = useOktaAxios();                      // authorized axios and easymode
   const easyMode = useEasyModeAuth(oktaAxios);
 
-  const { approvedIncidents, pendingIncidents, formResponses, isLoading, errorMessage } = useAllIncidents();
+  const {                                                // allIncidents state slice
+    approvedIncidents,
+    pendingIncidents,
+    formResponses,
+    isLoading,
+    errorMessage
+  } = useAllIncidents();
 
-  // The incident tab to display: 'pending', 'approved', 'form-responses'
-  const [listType, setListType] = useState('pending');
+  const [listType, setListType] = useState('pending');   // The incidents to display: pending/approved/form-responses
 
   /** @returns {Incident[]} the incidents array for the current tab */
   const getCurrentList = () => {
@@ -43,12 +48,11 @@ const AdminDashboard = () => {
     }
   };
 
-  // resets the selected incidents when switching tabs
-  useEffect(() => {
+  useEffect(() => {                                      // resets the selected incidents when switching tabs
     setSelectedIds([]);
   }, [listType]);
 
-  useEffect(() => {
+  useEffect(() => {                                      // shows a message box when state.errorMessage has a value
     if (errorMessage) {
       const title = 'An error occured';
       const content = errorMessage;
@@ -56,8 +60,7 @@ const AdminDashboard = () => {
     }
   }, [errorMessage]);
 
-  // loads incident data on first render
-  useEffect(() => {
+  useEffect(() => {                                      // loads incident data on first render
     easyMode.fetchIncidents('approved');
     easyMode.fetchIncidents('pending');
     easyMode.fetchIncidents('form-responses');
@@ -71,14 +74,6 @@ const AdminDashboard = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [approvedIncidents, pendingIncidents, formResponses]);
 
-  // toggles whether or not the addIncident popup is displayed
-  const [adding, setAdding] = useState(false);
-
-  // toggling rendering of AddIncident pop up modal
-  const toggleAddIncident = evt => {
-    evt.preventDefault();
-    setAdding(true);
-  };
 
   /**
    * Verifies that an incident has city/state
@@ -119,7 +114,7 @@ const AdminDashboard = () => {
       <ListSelector listType={listType} setListType={setListType} />
 
       <div className="dashboard-container">
-        <DashboardTop toggleAddIncident={toggleAddIncident} listType={listType} />
+        <DashboardTop toggleAddIncident={() => setAdding(!adding)} listType={listType} />
 
         <div style={{ visibility: selectedIds.length > 0 ? 'visible' : 'hidden' }}>
           <span>{selectedIds.length} selected</span>
@@ -169,4 +164,5 @@ const AdminDashboard = () => {
     </>
   );
 };
+
 export default AdminDashboard;
