@@ -79,8 +79,8 @@ function AntTable(props) {
       fixed: 'top',
       defaultSortOrder: 'descend',
       sorter: (a, b) => {
-        let aTime = DateTime.fromISO(a.incident_date.slice(0.1));
-        let bTime = DateTime.fromISO(b.incident_date.slice(0, 10));
+        let aTime = DateTime.fromISO(a.incident_date);
+        let bTime = DateTime.fromISO(b.incident_date);
 
         return aTime - bTime;
       },
