@@ -13,7 +13,7 @@ Our team is developing an interactive map that identifies potential instances of
 ### Labs 39
 |[Luiza Coelho](https://github.com/padawan98)|[Andrew Busby](https://github.com/andrewsbusby)|
 | :-: | :-: |
-|[<img src="https://avatars.githubusercontent.com/u/46506254?v=4" width="200">](https://github.com/padawan98)|[<img src="https://avatars.githubusercontent.com/u/64098862?v=4" width="200">](https://github.com/andrewsbusby)|
+|[<img src="https://avatars.githubusercontent.com/u/46506254?v=4" width="150">](https://github.com/padawan98)|[<img src="https://avatars.githubusercontent.com/u/64098862?v=4" width="150">](https://github.com/andrewsbusby)|
 |[<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/luiza-coelho-08499112a/)|[<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/in/andrew-busby-817056197/)|
 
 ### Labs 38
