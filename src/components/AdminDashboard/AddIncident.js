@@ -3,10 +3,8 @@ import useOktaAxios from '../../hooks/useOktaAxios';
 import { Modal, Form, Select, Input, DatePicker } from 'antd';
 import moment from 'moment';
 
-import {
-  getLatAndLong,
-} from '../../utils/DashboardHelperFunctions';
 import { useEasyModeAuth } from '../../store/allIncidentsSlice/easyMode';
+import { useSelector } from 'react-redux';
 
 const Required = props => {
   // This makes a required form item without the little red star
@@ -99,7 +97,8 @@ const AddIncident = props => {
   // setting state for add incident pop up
   const [modalText, setModalText] = useState('');
   const [visible, setVisible] = useState(true);
-  const [confirmLoading, setConfirmLoading] = useState(false);
+
+  const isLoading = useSelector(state => state.allIncidents.isLoading);
 
   const { setAdding } = props;
 
@@ -113,8 +112,6 @@ const AddIncident = props => {
   };
 
   const handleFinish = async vals => {
-    setConfirmLoading(true);
-
     // formatting date
     let newDateString;
     if (vals.incident_date == null) {
@@ -124,36 +121,19 @@ const AddIncident = props => {
         vals.incident_date.format('YYYY-MM-DD') + 'T00:00:00.000Z';
     }
 
-    // getting coordinates
-    const [lat, long] = await getLatAndLong(vals);
-
     // creating new incident object to be posted
     const newIncident = {
       ...initialFormValues,
       ...vals,
       incident_date: newDateString,
-      src: [vals.src],
-      lat,
-      long,
+      src: vals.src || [],
     };
 
     // posting new incident to database
     await easyMode.postIncident(newIncident)
       .then(res => {
         setModalText("Incident created");
-
-        // this can be removed once the back-end returns the new incident ID on post
-        easyMode.fetchIncidents();
-
-        setTimeout(() => {
-          // modal is unmounted
-          setVisible(false);
-          setConfirmLoading(false);
-          setAdding(false);
-        }, 1750);
-      })
-      .catch(err => {
-        console.log(err);
+        setAdding(false);
       });
   };
 
@@ -167,20 +147,19 @@ const AddIncident = props => {
         visible={visible}
         okText="Submit"
         onOk={form.submit}
-        confirmLoading={confirmLoading}
+        confirmLoading={isLoading}
         onCancel={handleCancel}
       >
         <Form form={form} layout="vertical" onFinish={handleFinish}>
-          <Required
+          <Form.Item
             name="title"
             label="Title of Incident"
-            reqMessage="Title is Required"
           >
             <Input placeholder="Input the title of the incident" />
-          </Required>
-          <Form.Item name="description" label="Description of Incident">
-            <Input />
           </Form.Item>
+          <Required name="description" label="Description of Incident" reqMessage="Description is Required">
+            <Input />
+          </Required>
           <Form.Item label="Location">
             <Input.Group compact>
               <Form.Item name="city" label="City" noStyle>

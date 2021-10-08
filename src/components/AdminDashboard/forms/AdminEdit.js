@@ -1,20 +1,36 @@
 import React from 'react';
 import { Form, Input, Select, DatePicker, Button, Spin } from 'antd';
 import moment from 'moment';
-import useOktaAxios from '../../../hooks/useOktaAxios';
 
 import './AdminEdit.less';
-import { useEasyModeAuth } from '../../../store/allIncidentsSlice/easyMode';
-import { useAllIncidents } from '../../../store/allIncidentsSlice';
+
+import { unitedStatesStates } from '../../../utils/DashboardHelperFunctions';
+
+/** @typedef {import('../../../store/allIncidentsSlice').Incident} Incident */
+
+/**
+ * @typedef AdminEditProps
+ * @property {Incident} incident
+ * @property {() => void} onCancel
+ * @property {(incident: Incident) => void} onSubmit
+ * @property {boolean} isLoading
+ */
 
 const { Option } = Select;
 
-function AdminEdit({ initialValues, cancel, cleanup }) {
+/**
+ *
+ * @param {AdminEditProps} props
+ */
+function AdminEdit(props) {
+  const { incident, onCancel, onSubmit, isLoading } = props;
   const [form] = Form.useForm();
 
-  const oktaAxios = useOktaAxios();
-  const easyMode = useEasyModeAuth(oktaAxios);
-  const { isLoading } = useAllIncidents();
+  const initialValues = {
+    ...incident,
+    src: Array.isArray(incident.src) ? incident.src.join('\n') : incident.src,
+    incident_date: moment(incident.incident_date).add(1, 'days'),
+  };
 
   const handleSubmit = vals => {
     let formattedDate;
@@ -25,6 +41,7 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
     } else {
       formattedDate = vals.incident_date;
     }
+
     // Putting the date in the correct format
     formattedDate = formattedDate.format('YYYY-MM-DD') + 'T00:00:00.000Z';
 
@@ -36,39 +53,62 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
       ...vals,
       incident_date: formattedDate,
       tags: [...formattedTags],
+      src: vals.src.split('\n'),
     };
 
-    easyMode.editIncident(finalVals)
-      .then(cleanup);
+    onSubmit(finalVals);
   };
 
   return (
     <Form
       form={form}
-      layout="vertical"
+      layout="horizontal"
+      labelCol={{ span: 3 }}
+      wrapperCol={{ span: 9 }}
       onFinish={handleSubmit}
-      initialValues={{
-        ...initialValues,
-        incident_date: moment(initialValues.incident_date).add(1, 'days'),
-      }}
+      initialValues={initialValues}
     >
       <div className="admin-edit-top">
-        <Form.Item name="title" label="Title of Incident">
-          <Input />
+
+        {/* Title */}
+        <Form.Item name="title" label="Title">
+          <Input placeholder="No Title" />
         </Form.Item>
-        <Form.Item name="description" label="Description of Incident">
-          <Input />
+
+        {/* Description */}
+        <Form.Item name="description" label="Description">
+          <Input.TextArea autoSize={{ minRows: 2 }} />
         </Form.Item>
+
+        {/* Location */}
         <Form.Item label="Location">
           <Input.Group compact>
+
             <Form.Item name="city" label="City" noStyle>
               <Input style={{ width: '50%' }} placeholder="City" />
             </Form.Item>
+
             <Form.Item name="state" label="State" noStyle>
-              <Input style={{ width: '50%' }} placeholder="State" />
+              {/* <Input  placeholder="State" /> */}
+              <Select
+                style={{ width: '50%' }}
+                showSearch
+                placeholder="State"
+                defaultActiveFirstOption={false}
+                showArrow
+                optionFilterProp="value"
+                filterOption={(input, option) =>
+                  option.value.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                }
+              >
+                {unitedStatesStates.map(s => <Option key={s} value={s}>{s}</Option>)}
+              </Select>
             </Form.Item>
+
           </Input.Group>
         </Form.Item>
+
+        {/* Date */}
         <Form.Item name="incident_date" label="Date">
           <DatePicker
             style={{ width: '100%' }}
@@ -79,12 +119,9 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
         </Form.Item>
 
         {/* Confidence Rating: */}
-        <div className="dropdown-text-wrap">
-          <p className="complete-incident-dropdown-titles-bold">
-            Confidence Rating:
-          </p>
-          <p>{(initialValues.confidence * 100).toFixed(2)}%</p>
-        </div>
+        <Form.Item label="Confidence">
+          <div>{(initialValues.confidence * 100).toFixed(2)}%</div>
+        </Form.Item>
 
         <Form.Item name="force_rank" label="Force Rank">
           <Select placeholder="Select a Force Rank">
@@ -96,11 +133,30 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
             <Option value="Rank 5">Rank 5 - Lethal Force</Option>
           </Select>
         </Form.Item>
+
         <Form.Item name="src" label="Sources">
-          <Input />
+          <Input.TextArea
+            placeholder="One source per line"
+            autoSize={{ minRows: 2 }}
+          />
         </Form.Item>
+
+
+        <Form.Item label="Tweet">
+          <Input.Group compact>
+            <Form.Item name="user_name" label="Username" noStyle>
+              <Input style={{ width: '50%' }} placeholder="Username" />
+            </Form.Item>
+
+            <Form.Item name="tweet_id" label="Tweet ID" noStyle>
+              <Input style={{ width: '50%' }} placeholder="Tweet ID" />
+            </Form.Item>
+          </Input.Group>
+        </Form.Item>
+
+
         <Form.Item name="tags" label="Tags">
-          <Select mode="tags">
+          <Select mode="tags" tokenSeparators={[',']}>
             {initialValues.tags.map((tag, index) => (
               <Option key={tag} value={tag}>
                 {tag}
@@ -108,14 +164,17 @@ function AdminEdit({ initialValues, cancel, cleanup }) {
             ))}
           </Select>
         </Form.Item>
-      </div>
-      <div className="admin-edit-bottom">
-        <Button onClick={cancel}>Cancel</Button>
-        <Spin spinning={isLoading}>
-          <Button className="admin-edit-submit" type="primary" htmlType="submit">
-            Apply Changes
-          </Button>
-        </Spin>
+
+        <Form.Item>
+          <div className="admin-edit-bottom">
+            <Button onClick={onCancel}>Cancel</Button>
+            <Spin spinning={isLoading}>
+              <Button className="admin-edit-submit" type="primary" htmlType="submit">
+                Apply Changes
+              </Button>
+            </Spin>
+          </div>
+        </Form.Item>
       </div>
     </Form>
   );

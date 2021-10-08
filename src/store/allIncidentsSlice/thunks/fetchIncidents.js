@@ -1,31 +1,28 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getApprovedIncidents, getFormResponses, getPendingIncidents } from '../../../utils/DashboardHelperFunctions';
+import { sanitizeFormResponse } from './util';
 
 
-/** This thunk fetches all incident data */
+/** This thunk fetches incident data */
 const actionCreator = createAsyncThunk(
-  'allIncidents/fetchAllIncidents',
+  'allIncidents/fetchIncidents',
 
-  /** @param {GetIncidentsPayload} payload */
+  /** @param {FetchIncidentsPayload} payload */
   async (payload, thunkAPI) => {
-    const { oktaAxios } = payload;
+    const { oktaAxios, type } = payload;
 
-    // if called with an authorized oktaAxios, all incidents will be retrieved
-    if (oktaAxios) {
-      const approved = await getApprovedIncidents(oktaAxios);
-      const pending = await getPendingIncidents(oktaAxios);
-      const formResponses = await getFormResponses(oktaAxios);
+    switch (type) {
+      case 'approved':
+        return await getApprovedIncidents(oktaAxios);
 
-      return { approved, pending, formResponses };
-    }
+      case 'pending':
+        return await getPendingIncidents(oktaAxios);
 
-    // if not authorized, just the approved incidents will be retrieved
-    else {
-      const approved = await getApprovedIncidents();
-      const pending = [];
-      const formResponses = [];
+      case 'form-responses':
+        return await getFormResponses(oktaAxios);
 
-      return { approved, pending, formResponses };
+      default:
+        return Promise.reject(Error('invalid incident type'));
     }
   }
 );
@@ -33,10 +30,25 @@ const actionCreator = createAsyncThunk(
 
 /** @type {import('@reduxjs/toolkit').CaseReducer<AllIncidentsState>} */
 const reducer = (state, action) => {
-  const { approved, pending, formResponses } = action.payload;
-  state.approvedIncidents = approved;
-  state.pendingIncidents = pending;
-  state.formResponses = formResponses;
+  const incidents = action.payload;
+  const type = action.meta.arg.type;
+
+  switch (type) {
+    case 'approved':
+      state.approvedIncidents = incidents;
+      return;
+
+    case 'pending':
+      state.pendingIncidents = incidents;
+      return;
+
+    case 'form-responses':
+      state.formResponses = incidents.map(inc => sanitizeFormResponse(inc));
+      return;
+
+    default:
+      return;
+  }
 };
 
 
@@ -48,6 +60,7 @@ export default fetchIncidents;
 /** @typedef {import('..').AllIncidentsState} AllIncidentsState */
 
 /**
- * @typedef GetIncidentsPayload
+ * @typedef FetchIncidentsPayload
  * @property {import('axios').AxiosInstance | null} oktaAxios
+ * @property {'approved' | 'pending' | 'form-responses'} type
  */

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import './Welcome.css';
 
 const Welcome = props => {
-  const { pendingCount } = props;
+  const pendingCount = useSelector(state => state.allIncidents.pendingIncidents.length);
 
   const [showModal, setShowModal] = useState(false);
   const HAS_VISITED_BEFORE = localStorage.getItem('hasVisitedBefore');

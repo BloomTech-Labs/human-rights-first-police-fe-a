@@ -1,10 +1,11 @@
 import React from 'react';
 import './Legend.css';
 
-function Legend() {
+function Legend(props) {
+  const { graph } = props;
   return (
     <div>
-      <h3 className="homepage-legend">Graph Legend</h3>
+      <h3 className="homepage-legend">{graph ? 'Graph Legend' : 'Legend'}</h3>
       <p className="graph-legend-wrap">
         <li className="rank">
           Rank 1 — Officer Presence: Police are present, but no force detected.
@@ -30,11 +31,13 @@ function Legend() {
           a situation.
         </li>
         <br />
-        <li className="graph-disclaimer">
-          Note: This graph relies on open source data from multiple sources and
-          a machine learning model that is still in beta. These categories may
-          not accurately represent the circumstances of each incident.{' '}
-        </li>
+        {graph &&
+          <li className="graph-disclaimer">
+            Note: This graph relies on open source data from multiple sources and
+            a machine learning model that is still in beta. These categories may
+            not accurately represent the circumstances of each incident.{' '}
+          </li>
+        }
       </p>
     </div>
   );
