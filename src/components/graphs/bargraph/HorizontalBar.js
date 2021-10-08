@@ -77,7 +77,7 @@ const Horizontalbar = () => {
           This graph provides a brief overview of the types and volume of
           incident reports that are catalogued.
         </p>
-        <Legend />
+        <Legend graph={true} />
         <HorizontalBar
           style={{ width: '100%', height: '450px' }}
           data={data}

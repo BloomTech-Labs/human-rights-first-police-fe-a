@@ -1,18 +1,20 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 const DashboardTop = props => {
   const {
-    unapprovedIncidents,
     toggleAddIncident,
-    unapproved,
     listType,
   } = props;
+
+  const pendingCount = useSelector(state => state.allIncidents.pendingIncidents.length);
+
   return (
     <div>
       {listType === 'pending' && (
         <h2 id="admin-dashboard-title">
           {' '}
-          Pending Incidents: {unapprovedIncidents.length}
+          Pending Incidents: {pendingCount}
         </h2>
       )}
       {listType === 'approved' && (

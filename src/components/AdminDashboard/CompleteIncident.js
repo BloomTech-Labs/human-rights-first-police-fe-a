@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Modal, Button } from 'antd';
+import { Button, Popover } from 'antd';
 import { nanoid } from 'nanoid';
 import useOktaAxios from '../../hooks/useOktaAxios';
-import AntModal from './AntModalComponent/AntModal';
-import { getData } from '../../utils/DashboardHelperFunctions';
 import AdminEdit from './forms/AdminEdit';
-import { ExclamationCircleOutlined } from '@ant-design/icons';
 
 import './CompleteIncident.css';
 import { useEasyModeAuth } from '../../store/allIncidentsSlice/easyMode';
+import { formOut } from '../../utils/formApiCalls';
+import { dashboardModals, showInfoModal } from '../../utils/dashboardModals';
+import { useSelector } from 'react-redux';
 
 /**
  * @typedef CompleteIncidentProps
@@ -25,24 +25,14 @@ const CompleteIncident = props => {
 
   const oktaAxios = useOktaAxios();
   const easyMode = useEasyModeAuth(oktaAxios);
+  const isLoading = useSelector(state => state.allIncidents.isLoading);
 
-  const { confirm } = Modal;
-
-  const [deleting, setDeleting] = useState(false);
   // for incident deletion button
-  function toggleDelete() {
-    confirm({
-      title: `Do you want to DELETE incident #${incident.incident_id}?`,
-      icon: <ExclamationCircleOutlined />,
-      content: 'Once you click OK this message will be deleted',
-      onOk() {
-        return easyMode.deleteIncident(incident)
-          .then(() => true)
-          .catch(console.log);
-      },
-      onCancel() { },
-    });
-  }
+  const onDelete = async () => {
+    if (await dashboardModals.confirmDeleteIncident(incident.incident_id)) {
+      easyMode.deleteIncident(incident);
+    }
+  };
 
   const formatDate = inputData => {
     const [year, month, day] = inputData.incident_date.split('-');
@@ -54,25 +44,49 @@ const CompleteIncident = props => {
   // setting state to toggle "editing mode"
   const [editing, setEditing] = useState(false);
 
-  // toggle "editing mode"
-  const toggleEditor = () => {
-    setEditing(!editing);
-  };
   // form control functions
-  const onFormSubmit = () => {
-    setEditing(false);
+  const onFormSubmit = (incident) => {
+    easyMode.editIncident(incident)
+      .then(() => {
+        setEditing(false);
+      });
   };
+
+  const onSendDMClick = () => {
+    formOut(incident, true)
+      .then(res => showInfoModal({ title: "Info", content: JSON.stringify(res) }))
+      .catch(err => showInfoModal({ title: "Info", content: JSON.stringify(err) }));
+  };
+
+  const onSendTweetClick = () => {
+    formOut(incident, false)
+      .then(res => showInfoModal({ title: "Info", content: 'A tweet has been sent requesting more information' }))
+      .catch(err => showInfoModal({ title: "Info", content: <pre>{JSON.stringify(err, null, 2)}</pre> , width: 800}));
+  };
+
+  const popoverContent = (
+    <div>
+      <Button onClick={onSendDMClick} disabled>
+        Send DM
+      </Button>
+      <Button onClick={onSendTweetClick}>
+        Send Tweet
+      </Button>
+    </div>
+  );
 
   return (
     <div className="complete-incident">
       {editing ? (
         <AdminEdit
-          initialValues={incident}
-          cancel={toggleEditor}
-          cleanup={onFormSubmit}
+          incident={incident}
+          isLoading={isLoading}
+          onCancel={() => setEditing(false)}
+          onSubmit={onFormSubmit}
         />
       ) : (
         <div className="complete-incident-dropdown">
+
           {/* Title */}
           <div className="dropdown-text-wrap">
             <p className="complete-incident-dropdown-titles-bold">Title:</p>
@@ -142,16 +156,22 @@ const CompleteIncident = props => {
           <Button
             id="dropdown-edit-button"
             className="approve-reject-select"
-            onClick={toggleEditor}
+            onClick={() => setEditing(true)}
           >
             Edit
           </Button>
-          <Button onClick={toggleDelete} type="danger">
-            {deleting ? 'Cancel' : 'Delete'}
+
+          {/* Delete Button */}
+          <Button onClick={onDelete} type="danger">
+            Delete
           </Button>
 
           {/* Request More Info button */}
-          <AntModal incident={incident} />
+          <Popover content={popoverContent} trigger='click'>
+            <Button type='primary'>
+              Request More Info
+            </Button>
+          </Popover>
         </div>
       )}
     </div>
