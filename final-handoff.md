@@ -1,0 +1,7 @@
+- Sending DMs currently doesn't work (and button is disabled)
+- The form responses table needs to be reworked, possibly along with the to-approve endpoint
+  - This table, and the endpoint, is treating the data like they are Incidents, doing a join on the conversations table with incidents.
+  - Sometimes this can return more than one item with the same ID (and same React key)
+- When you request more info for an incident, its status is changed to 'awaiting resonse' and it will disappear from the pending incidents list. You won't see it again unless they respond to the twitter form
+- The twitter form could use some explanation text
+- allIncidentsSlice can be used and expanded for the home page. There's more info in src\store\readme.md
