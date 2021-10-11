@@ -142,3 +142,5 @@ Labs 38 UX/UI put in a lot of work to start the responsive design for the app (c
 - src/components/form/TwitterForm.js We are having an issue populating the "Date" field upon initial render
 - src/components/form/TwitterForm.js display some sort of error/success message upon form submission (right now all we are doing is routing the user back to the homepage upon success line 84)
 - The filter form on the incidents reports page has to call a bunch of individual functions for each field, this would be better if you could do something closer to the classic `(evt) => setFilter({...filter, [evt.target.name]: evt.target.value})`
+- The admin. end-point for editing tweet, such as https://a.humanrightsfirst.dev/edit/3421, has unhashed incident_id at the end "3421." Hashing that endpoint may be a good choice.
+- After adjusting the computer version of the hompage, we discover that the mobile version has some rougher appearances possibly due to breaking point issues. 
