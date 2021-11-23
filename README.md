@@ -108,12 +108,12 @@ Our team is developing an interactive map that identifies potential instances of
 
 ## Related Repos
 
-[Back End Repo](https://github.com/Lambda-School-Labs/human-rights-first-be-a)
+[Back End Repo](https://github.com/BloomTech-Labs/human-rights-first-be-a)
 
-[Data Science Repo](https://github.com/Lambda-School-Labs/human-rights-first-ds-c)
+[Data Science Repo](https://github.com/BloomTech-Labs/human-rights-first-ds-c)
 
 ## Getting Started
-All [Labs Engineering Standards](https://labs.lambdaschool.com/topics/node-js/) must be followed.
+All [Labs Engineering Standards](https://bloomtechlabs.gitbook.io/standards/frameworks/node.js) must be followed.
 
 ## Test Coverage
 - To check test coverage run 'npm run coverage'
@@ -208,7 +208,7 @@ Where to find important files in this project:
 
 - `📂 assets`
 
-  - `📂 LambdaAssets` <- Lambda Logos
+  - `📂 BloomTechAssets` <- BloomTech Logos
 
 - `📂 styles`
 

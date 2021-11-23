@@ -4,7 +4,7 @@
 
 ### Product Review
 
-Feel free to watch our most recent product review meeting where we highlight some of the most recent work we’ve done and the next steps to take. https://www.youtube.com/watch?v=K92fUDY-xMQ&ab_channel=LambdaSchool
+Feel free to watch our most recent product review meeting where we highlight some of the most recent work we’ve done and the next steps to take. https://youtu.be/K92fUDY-xMQ
 
 ### Quick Notes
 

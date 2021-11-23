@@ -100,7 +100,7 @@ h1 {
   padding-left: 3vw;
 }
 
-.lambda-credits-container {
+.bloomtech-credits-container {
   background-color: var(--primary-white);
 }
 
@@ -113,7 +113,7 @@ h1 {
   color: var(--primary-white);
 }
 
-.about-lambda-logo {
+.about-bloomtech-logo {
   max-height: 2rem;
 }
 
@@ -127,7 +127,7 @@ h1 {
   padding-left: 8px;
 }
 
-.lambda-credits {
+.bloomtech-credits {
   text-align: left;
 }
 

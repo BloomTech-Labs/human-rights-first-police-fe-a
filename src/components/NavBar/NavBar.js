@@ -4,7 +4,6 @@ import { Link, NavLink } from 'react-router-dom';
 
 import bwlogo from '../../assets/blue-witness1.png';
 import hrflogo from '../../assets/hrf-logo1.3.png';
-import lambdaLogo from '../../assets/LambdaAssets/Built by lambda.png';
 import IncidentFocus from '../Home/Map/IncidentFocus';
 import { useOktaAuth } from '@okta/okta-react';
 import { Layout, Menu, Sider, Input, Space, Typography } from 'antd';
