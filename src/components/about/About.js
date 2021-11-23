@@ -5,7 +5,7 @@ import gatherIcon from '../../assets/gather-icon.png';
 import categorizeIcon from '../../assets/categorize-icon.png';
 
 import StudentCredits from './StudentCredits';
-import bloomlogo from '../../assets/BloomTechAssets/BIT_Logo_Stacked_White.png';
+import bloomlogo from '../../assets/BloomTechAssets/BIT_Logo_Stacked.png';
 
 const About = () => {
   return (

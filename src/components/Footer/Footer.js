@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './Footer.css';
-import builtByLambda from '../../assets/LambdaAssets/Built by lambda.png';
+import bloomtechlogo from '../../assets/BloomTechAssets/BIT_Logo_Stacked_White.png';
 import bwlogo from '../../assets/blue-witness1.png';
 import hrflogo from '../../assets/hrf-logo1.2.png';
 
@@ -19,15 +19,15 @@ const Footer = () => {
             favor or oppose any candidate for public office.
           </p>
         </div>
-        <div className="built-by-lambda-container">
+        <div className="bloomtech-logo-container">
           <a href="https://www.humanrightsfirst.org">
             <img className="hrflogo" src={hrflogo} alt="HRF footer logo" />
           </a>
-          <a href="https://lambdaschool.com/" target="_blank" rel="noreferrer">
+          <a href="https://www.bloomtech.com/" target="_blank" rel="noreferrer">
             <img
-              className="built-by-lambda"
-              src={builtByLambda}
-              alt="built by lambda logo"
+              className="bloomtech-logo"
+              src={bloomtechlogo}
+              alt="built by bloomtech logo"
             />
           </a>
         </div>
