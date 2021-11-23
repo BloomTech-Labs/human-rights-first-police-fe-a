@@ -5,7 +5,7 @@ import gatherIcon from '../../assets/gather-icon.png';
 import categorizeIcon from '../../assets/categorize-icon.png';
 
 import StudentCredits from './StudentCredits';
-import lambdalogo from '../../assets/LambdaAssets/Lambda-Logo-Red 1.png';
+import bloomlogo from '../../assets/BloomTechAssets/BIT_Logo_Stacked_White.png';
 
 const About = () => {
   return (
@@ -139,15 +139,15 @@ const About = () => {
             </p>
           </div>
         </div>
-        <div className="inside-bottom-container lambda-credits-container">
-          <div className="lambda-credits">
+        <div className="inside-bottom-container bloomtech-credits-container">
+          <div className="bloomtech-credits">
             <h2>Who Built This Website</h2>
             <p>
               Project designed and developed in partnership between Human Rights
-              First's Innovation Lab and Lambda School. It represents nearly
-              eight months of work by Lambda School students. Below are the
-              students who have worked on this project, with links to their
-              GitHub profiles included.
+              First's Innovation Lab and Bloom Institute of Technology. It
+              represents nearly eight months of work by Bloom Institute of
+              Technology learners. Below are the learners who have worked on
+              this project, with links to their GitHub profiles included.
             </p>
           </div>
           <div className="student-credits-container">
@@ -155,9 +155,9 @@ const About = () => {
           </div>
           <div className="about-logo-container">
             <img
-              className="about-lambda-logo"
-              src={lambdalogo}
-              alt="lambda logo"
+              className="about-bloomtech-logo"
+              src={bloomlogo}
+              alt="bloomtech logo"
             ></img>
           </div>
         </div>
